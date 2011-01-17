@@ -1,0 +1,14 @@
+Application\PortfolioBundle\Entity\Project:
+    type: entity
+    table: projects
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 255
+        description:
+            type: text

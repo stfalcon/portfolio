@@ -1,0 +1,11 @@
+portfolioProjectIndex:
+    pattern:  /portfolio
+    defaults: { _controller: PortfolioBundle:Project:index }
+
+portfolioProjectCreate:
+    pattern:  /portfolio/create
+    defaults: { _controller: PortfolioBundle:Project:create }
+
+portfolioProjectEdit:
+    pattern:  /portfolio/edit/{id}
+    defaults: { _controller: PortfolioBundle:Project:edit }

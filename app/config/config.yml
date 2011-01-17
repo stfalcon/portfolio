@@ -16,15 +16,18 @@ twig.config:
     strict_variables: %kernel.debug%
 
 ## Doctrine Configuration
-#doctrine.dbal:
-#    dbname:   xxxxxxxx
-#    user:     xxxxxxxx
-#    password: ~
+doctrine.dbal:
+    driver:   pdo_mysql
+    dbname:   symfony2
+    user:     root
+    password: null
 
-#doctrine.orm:
-#    auto_generate_proxy_classes: %kernel.debug%
-#    mappings:
-#        HelloBundle: ~
+doctrine.orm:
+    default_entity_manager:       default
+    cache_driver:                 apc
+    auto_generate_proxy_classes:  %kernel.debug%
+    mappings:
+        PortfolioBundle: ~
 
 ## Swiftmailer Configuration
 #swiftmailer.config:
