@@ -6,7 +6,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\TextField;
 use Symfony\Component\Form\TextareaField;
 
-class ProjectForm extends Form
+class Project extends Form
 {
     public function configure()
     {

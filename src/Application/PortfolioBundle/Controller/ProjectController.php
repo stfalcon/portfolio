@@ -5,10 +5,6 @@ namespace Application\PortfolioBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Application\PortfolioBundle\Entity\Project;
-use Symfony\Component\Form\Form;
-use Symfony\Component\Form\TextField;
-use Symfony\Component\Form\TextareaField;
-
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProjectController extends Controller
@@ -39,9 +35,7 @@ class ProjectController extends Controller
     {
         $project = new Project();
 
-        $form = new Form('project', $project, $this->get('validator'));
-        $form->add(new TextField('name'));
-        $form->add(new TextareaField('description'));
+        $form = new \Application\PortfolioBundle\Form\Project('project', $project, $this->get('validator'));
 
         if ('POST' === $this->get('request')->getMethod()) {
             $form->bind($this->get('request')->request->get('project'));
@@ -77,9 +71,7 @@ class ProjectController extends Controller
         }
 
         // project form
-        $form = new Form('project', $project, $this->get('validator'));
-        $form->add(new TextField('name'));
-        $form->add(new TextareaField('description'));
+        $form = new \Application\PortfolioBundle\Form\Project('project', $project, $this->get('validator'));
 
         if ('POST' === $this->get('request')->getMethod()) {
             $form->bind($this->get('request')->request->get('project'));
