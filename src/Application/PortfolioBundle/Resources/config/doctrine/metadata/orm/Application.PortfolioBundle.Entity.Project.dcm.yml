@@ -1,6 +1,6 @@
 Application\PortfolioBundle\Entity\Project:
     type: entity
-    table: projects
+    table: portfolio_projects
     fields:
         id:
             type: integer
