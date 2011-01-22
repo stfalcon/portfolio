@@ -4,7 +4,8 @@ app.config:
     csrf_secret:   xxxxxxxxxx
     router:        { resource: "%kernel.root_dir%/config/routing.yml" }
     validation:    { enabled: true, annotations: true }
-    templating:    {} #assets_version: SomeVersionScheme
+    templating:
+        escaping:       htmlspecialchars
     session:
         default_locale: en
         lifetime:       3600
@@ -22,12 +23,19 @@ doctrine.dbal:
     user:     root
     password: null
 doctrine.orm:
-    default_entity_manager:       default
-    cache_driver:                 apc
-    auto_generate_proxy_classes:  %kernel.debug%
+    default_entity_manager:           default
+    cache_driver:                     apc
+    auto_generate_proxy_classes:      %kernel.debug%
+#    auto_generate_hydrator_classes:   %kernel.debug%
     mappings:
         PortfolioBundle: ~
 
+#services:
+#    templating.helper.stylesheets:
+#        class: Symfony\Bundle\CompatAssetsBundle\Templating\Helper\StylesheetsHelper
+#        tags:
+#            - { name: templating.helper, alias: stylesheets }
+#
 ## Swiftmailer Configuration
 #swiftmailer.config:
 #    transport:  smtp

@@ -46,7 +46,7 @@ class ProjectController extends Controller
                 $em->flush();
 
                 $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your project is successfully created!');
-                $this->redirect($this->generateUrl('portfolioProjectIndex'));
+                return $this->redirect($this->generateUrl('portfolioProjectIndex'));
             }
         }
 

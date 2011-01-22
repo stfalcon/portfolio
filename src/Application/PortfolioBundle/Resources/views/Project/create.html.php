@@ -1,10 +1,10 @@
 <?php $view->extend('PortfolioBundle::layout.html.php') ?>
 
-<h2>Create new project</h2>
+<h4>Create new project</h4>
 
 <form action="#" method="post">
-
-    <?php echo $view['form']->render($form) ?>
-
-    <input type="submit" value="Send" />
+    <fieldset>
+        <?php echo $view['form']->render($form) ?>
+        <input type="submit" value="Send" />
+    </fieldset>
 </form>
