@@ -9,3 +9,7 @@ portfolioProjectCreate:
 portfolioProjectEdit:
     pattern:  /portfolio/edit/{id}
     defaults: { _controller: PortfolioBundle:Project:edit }
+
+portfolioProjectDelete:
+    pattern:  /portfolio/delete/{id}
+    defaults: { _controller: PortfolioBundle:Project:delete }

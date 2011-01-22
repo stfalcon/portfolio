@@ -82,7 +82,7 @@ class ProjectController extends Controller
                 $em->flush();
 
                 $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your project is successfully updated!');
-                $this->redirect($this->generateUrl('portfolioProjectIndex'));
+                return $this->redirect($this->generateUrl('portfolioProjectIndex'));
             }
         }
         
@@ -90,5 +90,27 @@ class ProjectController extends Controller
             'form' => $form,
             'project' => $project
         ));
+    }
+
+    /**
+     * Delete project
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        // try find project by id
+        $project = $em->find("PortfolioBundle:Project", $id);
+        if (!$project) {
+            throw new NotFoundHttpException('The project does not exist.');
+        }
+
+        $em->remove($project);
+        $em->flush();
+
+        $this->get('request')->getSession()->setFlash('notice', 'Your project is successfully delete.');
+        return $this->redirect($this->generateUrl('portfolioProjectIndex'));
     }
 }

@@ -14,6 +14,7 @@
             </td>
             <td>
                 <a href="<?php echo $view['router']->generate('portfolioProjectEdit', array('id' => $project['id'])) ?>">Edit project</a>
+                / <a href="<?php echo $view['router']->generate('portfolioProjectDelete', array('id' => $project['id'])) ?>">Delete project</a>
             </td>
         </tr>
     <?php endforeach; ?>
