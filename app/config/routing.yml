@@ -3,4 +3,4 @@ homepage:
     defaults: { _controller: FrameworkBundle:Default:index }
 
 portfolio:
-    resource: PortfolioBundle/Resources/config/routing.yml
+    resource: @PortfolioBundle/Resources/config/routing.yml

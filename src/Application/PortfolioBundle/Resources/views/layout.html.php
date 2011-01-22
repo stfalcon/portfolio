@@ -1,4 +1,4 @@
-<?php $view->extend('::base.php.html') ?>
+<?php $view->extend('::base.html.php') ?>
 
 <h1>stfalcon-studio portfolio</h1>
 

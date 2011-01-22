@@ -21,7 +21,6 @@ doctrine.dbal:
     dbname:   symfony2
     user:     root
     password: null
-
 doctrine.orm:
     default_entity_manager:       default
     cache_driver:                 apc

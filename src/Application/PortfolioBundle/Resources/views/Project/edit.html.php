@@ -1,4 +1,4 @@
-<?php $view->extend('PortfolioBundle::layout.php.html') ?>
+<?php $view->extend('PortfolioBundle::layout.html.php') ?>
 
 <h2>Edit project "<?php echo $project->getName(); ?>"</h2>
 

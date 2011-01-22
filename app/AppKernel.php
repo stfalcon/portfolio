@@ -36,15 +36,6 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-    public function registerBundleDirs()
-    {
-        return array(
-            'Application'     => __DIR__.'/../src/Application',
-            'Bundle'          => __DIR__.'/../src/Bundle',
-            'Symfony\\Bundle' => __DIR__.'/../src/vendor/symfony/src/Symfony/Bundle',
-        );
-    }
-
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');

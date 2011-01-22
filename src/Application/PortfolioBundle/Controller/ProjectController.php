@@ -21,7 +21,7 @@ class ProjectController extends Controller
         $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p');
         $projects = $query->getArrayResult();
 
-        return $this->render('PortfolioBundle:Project:index.php.html', array(
+        return $this->render('PortfolioBundle:Project:index.html.php', array(
             'projects' => $projects
         ));
     }
@@ -50,7 +50,7 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Project:create.php.html', array(
+        return $this->render('PortfolioBundle:Project:create.html.php', array(
             'form' => $form
         ));
     }
@@ -86,7 +86,7 @@ class ProjectController extends Controller
             }
         }
         
-        return $this->render('PortfolioBundle:Project:edit.php.html', array(
+        return $this->render('PortfolioBundle:Project:edit.html.php', array(
             'form' => $form,
             'project' => $project
         ));
