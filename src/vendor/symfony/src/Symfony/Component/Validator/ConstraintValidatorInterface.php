@@ -1,29 +1,29 @@
 <?php
 
-namespace Symfony\Component\Validator;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Validator;
 
 interface ConstraintValidatorInterface
 {
     /**
      * Initialize the constraint validator.
      *
-     * @param ValidationContext $context The current validation context
+     * @param ExecutionContext $context The current validation context
      */
-    function initialize(ValidationContext $context);
+    function initialize(ExecutionContext $context);
 
     /**
      * @param  mixed $value The value that should be validated
      * @param Constraint $constraint The constrain for the validation
-     * @return boolean Whether or not the value is valid
+     * @return Boolean Whether or not the value is valid
      */
     function isValid($value, Constraint $constraint);
 

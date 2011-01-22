@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Reference;
@@ -33,8 +42,9 @@ class TemplatingPass implements CompilerPassInterface
 
         if ($container->hasDefinition('templating.engine.delegating')) {
             $queue = new \SplPriorityQueue();
+            $order = PHP_INT_MAX;
             foreach ($container->findTaggedServiceIds('templating.engine') as $id => $attributes) {
-                $queue->insert($id, isset($attributes[0]['priority']) ? $attributes[0]['priority'] : 0);
+                $queue->insert($id, array(isset($attributes[0]['priority']) ? $attributes[0]['priority'] : 0, --$order));
             }
 
             $engines = array();

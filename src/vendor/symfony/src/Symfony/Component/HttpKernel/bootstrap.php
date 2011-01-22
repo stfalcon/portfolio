@@ -3,48 +3,28 @@ namespace Symfony\Component\HttpKernel\Bundle
 {
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;
 abstract class Bundle extends ContainerAware implements BundleInterface
 {
     protected $name;
-    protected $namespace;
-    protected $path;
-    protected $reflection;
     public function boot()
     {
     }
     public function shutdown()
     {
     }
-    public function getName()
+    public function getParent()
     {
-        if (null === $this->name) {
-            $this->initReflection();
-        }
-        return $this->name;
+        return null;
     }
-    public function getNamespace()
+    final public function getName()
     {
-        if (null === $this->name) {
-            $this->initReflection();
+        if (null !== $this->name) {
+            return $this->name;
         }
-        return $this->namespace;
-    }
-    public function getPath()
-    {
-        if (null === $this->name) {
-            $this->initReflection();
-        }
-        return $this->path;
-    }
-    public function getReflection()
-    {
-        if (null === $this->name) {
-            $this->initReflection();
-        }
-        return $this->reflection;
+        $pos = strrpos(get_class($this), '\\');
+        return $this->name = substr(get_class($this), $pos ? $pos + 1 : 0);
     }
     public function registerExtensions(ContainerBuilder $container)
     {
@@ -53,7 +33,7 @@ abstract class Bundle extends ContainerAware implements BundleInterface
         }
         $finder = new Finder();
         $finder->files()->name('*Extension.php')->in($dir);
-        $prefix = $this->namespace.'\\DependencyInjection';
+        $prefix = $this->getNamespace().'\\DependencyInjection';
         foreach ($finder as $file) {
             $class = $prefix.strtr($file->getPath(), array($dir => '', '/' => '\\')).'\\'.$file->getBasename('.php');
             $container->registerExtension(new $class());
@@ -66,20 +46,13 @@ abstract class Bundle extends ContainerAware implements BundleInterface
         }
         $finder = new Finder();
         $finder->files()->name('*Command.php')->in($dir);
-        $prefix = $this->namespace.'\\Command';
+        $prefix = $this->getNamespace().'\\Command';
         foreach ($finder as $file) {
             $r = new \ReflectionClass($prefix.strtr($file->getPath(), array($dir => '', '/' => '\\')).'\\'.$file->getBasename('.php'));
             if ($r->isSubclassOf('Symfony\\Component\\Console\\Command\\Command') && !$r->isAbstract()) {
                 $application->add($r->newInstance());
             }
         }
-    }
-    protected function initReflection()
-    {
-        $this->reflection = new \ReflectionObject($this);
-        $this->namespace = $this->reflection->getNamespaceName();
-        $this->name = $this->reflection->getShortName();
-        $this->path = str_replace('\\', '/', dirname($this->reflection->getFilename()));
     }
 }
 }
@@ -89,6 +62,10 @@ interface BundleInterface
 {
     function boot();
     function shutdown();
+    function getParent();
+    function getName();
+    function getNamespace();
+    function getPath();
 }
 }
 namespace Symfony\Component\HttpKernel\Debug
@@ -237,6 +214,67 @@ class ClassCollectionLoader
     }
 }
 }
+namespace Symfony\Component\HttpKernel\Debug
+{
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\Exception\FlattenException;
+use Symfony\Component\HttpFoundation\Request;
+class ExceptionListener
+{
+    protected $controller;
+    protected $logger;
+    public function __construct($controller, LoggerInterface $logger = null)
+    {
+        $this->controller = $controller;
+        $this->logger = $logger;
+    }
+    public function register(EventDispatcher $dispatcher, $priority = 0)
+    {
+        $dispatcher->connect('core.exception', array($this, 'handle'), $priority);
+    }
+    public function handle(Event $event)
+    {
+        static $handling;
+        if (true === $handling) {
+            return false;
+        }
+        $handling = true;
+        $exception = $event->get('exception');
+        $request = $event->get('request');
+        if (null !== $this->logger) {
+            $this->logger->err(sprintf('%s: %s (uncaught exception)', get_class($exception), $exception->getMessage()));
+        } else {
+            error_log(sprintf('Uncaught PHP Exception %s: "%s" at %s line %s', get_class($exception), $exception->getMessage(), $exception->getFile(), $exception->getLine()));
+        }
+        $logger = null !== $this->logger ? $this->logger->getDebugLogger() : null;
+        $attributes = array(
+            '_controller' => $this->controller,
+            'exception'   => FlattenException::create($exception),
+            'logger'      => $logger,
+                        'format'      => 0 === strncasecmp(PHP_SAPI, 'cli', 3) ? 'txt' : $request->getRequestFormat(),
+        );
+        $request = $request->duplicate(null, null, $attributes);
+        try {
+            $response = $event->getSubject()->handle($request, HttpKernelInterface::SUB_REQUEST, true);
+        } catch (\Exception $e) {
+            $message = sprintf('Exception thrown when handling an exception (%s: %s)', get_class($e), $e->getMessage());
+            if (null !== $this->logger) {
+                $this->logger->err($message);
+            } else {
+                error_log($message);
+            }
+                        throw $exception;
+        }
+        $event->setReturnValue($response);
+        $handling = false;
+        return true;
+    }
+}
+}
 namespace Symfony\Component\DependencyInjection
 {
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -246,6 +284,7 @@ class Container implements ContainerInterface
 {
     protected $parameterBag;
     protected $services;
+    protected $loading = array();
     public function __construct(ParameterBagInterface $parameterBag = null)
     {
         $this->parameterBag = null === $parameterBag ? new ParameterBag() : $parameterBag;
@@ -288,18 +327,17 @@ class Container implements ContainerInterface
     }
     public function get($id, $invalidBehavior = self::EXCEPTION_ON_INVALID_REFERENCE)
     {
-        static $loading = array();
         $id = strtolower($id);
         if (isset($this->services[$id])) {
             return $this->services[$id];
         }
-        if (isset($loading[$id])) {
-            throw new \LogicException(sprintf('Circular reference detected for service "%s" (services currently loading: %s).', $id, implode(', ', array_keys($loading))));
+        if (isset($this->loading[$id])) {
+            throw new \LogicException(sprintf('Circular reference detected for service "%s" (services currently loading: %s).', $id, implode(', ', array_keys($this->loading))));
         }
         if (method_exists($this, $method = 'get'.strtr($id, array('_' => '', '.' => '_')).'Service')) {
-            $loading[$id] = true;
+            $this->loading[$id] = true;
             $service = $this->$method();
-            unset($loading[$id]);
+            unset($this->loading[$id]);
             return $service;
         }
         if (self::EXCEPTION_ON_INVALID_REFERENCE === $invalidBehavior) {
@@ -380,12 +418,5 @@ interface ParameterBagInterface
     function get($name);
     function set($name, $value);
     function has($name);
-}
-}
-namespace Symfony\Component\DependencyInjection
-{
-interface TaggedContainerInterface extends ContainerInterface
-{
-    function findTaggedServiceIds($name);
 }
 }

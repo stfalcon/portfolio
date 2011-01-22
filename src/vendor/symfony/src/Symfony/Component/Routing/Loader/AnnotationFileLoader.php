@@ -1,18 +1,18 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Component\Routing\Loader;
 
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Resource\FileResource;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * AnnotationFileLoader loads routing information from annotations set
@@ -30,13 +30,13 @@ class AnnotationFileLoader extends FileLoader
      * @param AnnotationClassLoader $loader An AnnotationClassLoader instance
      * @param string|array          $paths  A path or an array of paths where to look for resources
      */
-    public function __construct(AnnotationClassLoader $loader, $paths = array())
+    public function __construct(FileLocator $locator, AnnotationClassLoader $loader, $paths = array())
     {
         if (!function_exists('token_get_all')) {
             throw new \RuntimeException('The Tokenizer extension is required for the routing annotation loaders.');
         }
 
-        parent::__construct($paths);
+        parent::__construct($locator, $paths);
 
         $this->loader = $loader;
     }
@@ -53,7 +53,7 @@ class AnnotationFileLoader extends FileLoader
      */
     public function load($file, $type = null)
     {
-        $path = $this->getAbsolutePath($file);
+        $path = $this->locator->getAbsolutePath($file);
         if (!file_exists($path)) {
             throw new \InvalidArgumentException(sprintf('The file "%s" cannot be found (in: %s).', $file, implode(', ', $this->paths)));
         }
@@ -73,7 +73,7 @@ class AnnotationFileLoader extends FileLoader
      * @param mixed  $resource A resource
      * @param string $type     The resource type
      *
-     * @return boolean True if this class supports the given resource, false otherwise
+     * @return Boolean True if this class supports the given resource, false otherwise
      */
     public function supports($resource, $type = null)
     {

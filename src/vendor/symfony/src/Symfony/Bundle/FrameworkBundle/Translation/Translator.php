@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\FrameworkBundle\Translation;
 
 use Symfony\Component\Translation\Translator as BaseTranslator;
@@ -7,15 +16,6 @@ use Symfony\Component\Translation\Loader\LoaderInterface;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Session;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * Translator.
@@ -103,8 +103,8 @@ class Translator extends BaseTranslator
 
     protected function initialize()
     {
-        foreach ($this->container->findTaggedServiceIds('translation.loader') as $id => $attributes) {
-            $this->addLoader($attributes[0]['alias'], $this->container->get($id));
+        foreach ($this->container->getParameter('translation.loaders') as $id => $alias) {
+            $this->addLoader($alias, $this->container->get($id));
         }
 
         foreach ($this->container->getParameter('translation.resources') as $resource) {

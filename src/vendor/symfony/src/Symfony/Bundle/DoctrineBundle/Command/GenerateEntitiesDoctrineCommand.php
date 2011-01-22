@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\DoctrineBundle\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
@@ -9,15 +18,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Doctrine\ORM\Tools\EntityGenerator;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * Generate entity classes from mapping information
@@ -37,17 +37,17 @@ class GenerateEntitiesDoctrineCommand extends DoctrineCommand
             ->setHelp(<<<EOT
 The <info>doctrine:generate:entities</info> command generates entity classes and method stubs from your mapping information:
 
-  <info>./symfony doctrine:generate:entities</info>
+  <info>./app/console doctrine:generate:entities</info>
 
 The above would generate entity classes for all bundles.
 
 You can also optionally limit generation to entities within an individual bundle:
 
-  <info>./symfony doctrine:generate:entities --bundle="Bundle/MyCustomBundle"</info>
+  <info>./app/console doctrine:generate:entities --bundle="Bundle/MyCustomBundle"</info>
 
 Alternatively, you can limit generation to a single entity within a bundle:
 
-  <info>./symfony doctrine:generate:entities --bundle="Bundle/MyCustomBundle" --entity="User"</info>
+  <info>./app/console doctrine:generate:entities --bundle="Bundle/MyCustomBundle" --entity="User"</info>
 EOT
         );
     }
@@ -62,10 +62,10 @@ EOT
         }
 
         $entityGenerator = $this->getEntityGenerator();
-        foreach ($this->container->get('kernel')->getBundles() as $bundle) {
+        foreach ($this->application->getKernel()->getBundles() as $bundle) {
 
             // retrieve the full bundle classname
-            $class = $bundle->getReflection()->getName();
+            $class = get_class($bundle);
 
             if ($filterBundle && $filterBundle != $class) {
                 continue;

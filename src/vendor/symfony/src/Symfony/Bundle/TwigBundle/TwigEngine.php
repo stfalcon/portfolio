@@ -1,11 +1,5 @@
 <?php
 
-namespace Symfony\Bundle\TwigBundle;
-
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 /*
  * This file is part of the Symfony package.
  *
@@ -14,6 +8,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Symfony\Bundle\TwigBundle;
+
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * This engine knows how to render Twig templates.
@@ -93,7 +93,7 @@ class TwigEngine implements EngineInterface
      *
      * @param string $name A template name
      *
-     * @return boolean True if this class supports the given resource, false otherwise
+     * @return Boolean True if this class supports the given resource, false otherwise
      */
     public function supports($name)
     {

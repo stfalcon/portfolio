@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Validator;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Validator;
 
 use Symfony\Component\Validator\Mapping\ElementMetadata;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -46,7 +46,7 @@ class Validator implements ValidatorInterface
         $metadata = $this->metadataFactory->getClassMetadata(get_class($object));
 
         $walk = function(GraphWalker $walker, $group) use ($metadata, $object) {
-            return $walker->walkClass($metadata, $object, $group, '');
+            return $walker->walkObject($metadata, $object, $group, '');
         };
 
         return $this->validateGraph($object, $walk, $groups);

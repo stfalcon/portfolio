@@ -11,7 +11,6 @@
 
 namespace Symfony\Bundle\DoctrineBundle\Tests;
 
-use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Bundle\DoctrineBundle\DependencyInjection\DoctrineExtension;
@@ -22,13 +21,7 @@ class ContainerTest extends TestCase
     public function getContainer()
     {
         $container = new ContainerBuilder(new ParameterBag(array(
-            'kernel.bundle_dirs' => array(
-                'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles' =>
-                __DIR__ . "/DependencyInjection/Fixtures/Bundles"
-            ),
-            'kernel.bundles'     => array(
-                'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles\YamlBundle\YamlBundle',
-            ),
+            'kernel.bundles'     => array('YamlBundle' => 'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles\YamlBundle\YamlBundle'),
             'kernel.cache_dir'   => sys_get_temp_dir(),
         )));
         $loader = new DoctrineExtension();
@@ -46,10 +39,7 @@ class ContainerTest extends TestCase
 
         $container->setDefinition('my.platform', new \Symfony\Component\DependencyInjection\Definition('Doctrine\DBAL\Platforms\MySqlPlatform'));
 
-        $dumper = new PhpDumper($container);
-        $code = $dumper->dump(array('class' => 'DoctrineBundleTestsProjectServiceContainer'));
-        eval(str_replace('<?php', null, $code));
-        return new \DoctrineBundleTestsProjectServiceContainer;
+        return $container;
     }
 
     public function testContainer()

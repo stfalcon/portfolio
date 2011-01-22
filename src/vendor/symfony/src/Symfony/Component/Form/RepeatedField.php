@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Form;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Form;
 
 /**
  * A field for repeated input of values
@@ -41,27 +41,30 @@ class RepeatedField extends FieldGroup
      */
     protected function configure()
     {
-        $field = clone $this->prototype;
-        $field->setKey('first');
-        $field->setPropertyPath('first');
-        $this->add($field);
-
-        $field = clone $this->prototype;
-        $field->setKey('second');
-        $field->setPropertyPath('second');
-        $this->add($field);
+        $this->addOption('first_key', 'first');
+        $this->addOption('second_key', 'second');
 
         parent::configure();
+
+        $field = clone $this->prototype;
+        $field->setKey($this->getOption('first_key'));
+        $field->setPropertyPath($this->getOption('first_key'));
+        $this->add($field);
+
+        $field = clone $this->prototype;
+        $field->setKey($this->getOption('second_key'));
+        $field->setPropertyPath($this->getOption('second_key'));
+        $this->add($field);
     }
 
     /**
      * Returns whether both entered values are equal
      *
-     * @return bool
+     * @return Boolean
      */
     public function isFirstEqualToSecond()
     {
-        return $this->get('first')->getData() === $this->get('second')->getData();
+        return $this->get($this->getOption('first_key'))->getData() === $this->get($this->getOption('second_key'))->getData();
     }
 
     /**
@@ -71,7 +74,10 @@ class RepeatedField extends FieldGroup
      */
     public function setData($data)
     {
-        parent::setData(array('first' => $data, 'second' => $data));
+        parent::setData(array(
+            $this->getOption('first_key') => $data,
+            $this->getOption('second_key') => $data
+        ));
     }
 
     /**
@@ -82,7 +88,7 @@ class RepeatedField extends FieldGroup
     public function getData()
     {
         if ($this->isBound() && $this->isFirstEqualToSecond()) {
-            return $this->get('first')->getData();
+            return $this->get($this->getOption('first_key'))->getData();
         }
 
         return null;

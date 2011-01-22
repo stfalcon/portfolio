@@ -11,7 +11,6 @@
 
 namespace Symfony\Bundle\DoctrineMongoDBBundle\Tests;
 
-use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Bundle\DoctrineMongoDBBundle\DependencyInjection\DoctrineMongoDBExtension;
@@ -21,19 +20,17 @@ class ContainerTest extends TestCase
 {
     public function getContainer()
     {
+        require_once __DIR__.'/DependencyInjection/Fixtures/Bundles/YamlBundle/YamlBundle.php';
+
         $container = new ContainerBuilder(new ParameterBag(array(
-            'kernel.bundle_dirs' => array(),
-            'kernel.bundles'     => array(),
+            'kernel.bundles'     => array('YamlBundle' => 'DoctrineMongoDBBundle\Tests\DependencyInjection\Fixtures\Bundles\YamlBundle\YamlBundle'),
             'kernel.cache_dir'   => sys_get_temp_dir(),
         )));
         $loader = new DoctrineMongoDBExtension();
         $container->registerExtension($loader);
         $loader->mongodbLoad(array('mappings' => array('YamlBundle' => array())), $container);
 
-        $dumper = new PhpDumper($container);
-        $code = $dumper->dump(array('class' => 'DoctrineMongoDBBundleTestsProjectServiceContainer'));
-        eval(str_replace('<?php', null, $code));
-        return new \DoctrineMongoDBBundleTestsProjectServiceContainer;
+        return $container;
     }
 
     public function testContainer()

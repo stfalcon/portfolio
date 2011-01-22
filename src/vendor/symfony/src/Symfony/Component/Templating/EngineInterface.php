@@ -1,7 +1,5 @@
 <?php
 
-namespace Symfony\Component\Templating;
-
 /*
  * This file is part of the Symfony package.
  *
@@ -10,6 +8,8 @@ namespace Symfony\Component\Templating;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Templating;
 
 /**
  * EngineInterface is the interface each engine must implement.
@@ -55,7 +55,7 @@ interface EngineInterface
      *
      * @param string $name A template name
      *
-     * @return boolean True if this class supports the given template, false otherwise
+     * @return Boolean True if this class supports the given template, false otherwise
      */
     function supports($name);
 }

@@ -1,20 +1,20 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Component\HttpKernel\Security;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * Firewall uses a FirewallMap to register security listeners for the given
@@ -37,7 +37,7 @@ class Firewall
      *
      * @param FirewallMap $map A FirewallMap instance
      */
-    public function __construct(FirewallMap $map)
+    public function __construct(FirewallMapInterface $map)
     {
         $this->map = $map;
         $this->currentListeners = array();
@@ -71,12 +71,12 @@ class Firewall
         // disconnect all listeners from core.security to avoid the overhead
         // of most listeners having to do this manually
         $this->dispatcher->disconnect('core.security');
-        
+
         // ensure that listeners disconnect from wherever they have connected to
         foreach ($this->currentListeners as $listener) {
             $listener->unregister($this->dispatcher);
         }
-        
+
         // register listeners for this firewall
         list($listeners, $exception) = $this->map->getListeners($request);
         if (null !== $exception) {
@@ -85,7 +85,7 @@ class Firewall
         foreach ($listeners as $listener) {
             $listener->register($this->dispatcher);
         }
-        
+
         // save current listener instances
         $this->currentListeners = $listeners;
         if (null !== $exception) {

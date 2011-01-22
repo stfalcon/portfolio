@@ -54,21 +54,10 @@ class Kernel extends BaseKernel
     {
         return array(
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new \TestBundle\FooBundle\FooBundle(),
             new \TestBundle\Sensio\FooBundle\SensioFooBundle(),
-            new \TestApplication\Sensio\FooBundle\SensioFooBundle(),
             new \TestBundle\Sensio\Cms\FooBundle\SensioCmsFooBundle(),
-        );
-    }
-
-    public function registerBundleDirs()
-    {
-        return array(
-            'Application'     => __DIR__.'/../src/Application',
-            'Bundle'          => __DIR__.'/../src/Bundle',
-            'TestApplication' => __DIR__.'/Fixtures/TestApplication',
-            'TestBundle'      => __DIR__.'/Fixtures/TestBundle',
-            'Symfony\\Bundle' => __DIR__.'/../src/vendor/symfony/src/Symfony/Bundle',
+            new \TestBundle\FooBundle\FooBundle(),
+            new \TestBundle\Fabpot\FooBundle\FabpotFooBundle(),
         );
     }
 
@@ -77,5 +66,25 @@ class Kernel extends BaseKernel
         $loader->load(function ($container) {
             $container->setParameter('kernel.compiled_classes', array());
         });
+    }
+
+    public function boot()
+    {
+        if (true === $this->booted) {
+            throw new \LogicException('The kernel is already booted.');
+        }
+
+        // init bundles
+        $this->initializeBundles();
+
+        // init container
+        $this->initializeContainer();
+
+        foreach ($this->bundles as $bundle) {
+            $bundle->setContainer($this->container);
+            $bundle->boot();
+        }
+
+        $this->booted = true;
     }
 }

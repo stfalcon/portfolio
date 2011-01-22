@@ -49,6 +49,8 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
         $this->assertEquals('Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver', $container->getParameter('doctrine.odm.mongodb.metadata.xml_class'));
         $this->assertEquals('Doctrine\ODM\MongoDB\Mapping\Driver\YamlDriver', $container->getParameter('doctrine.odm.mongodb.metadata.yml_class'));
 
+        $this->assertEquals('Symfony\Bundle\DoctrineMongoDBBundle\Validator\Constraints\DoctrineMongoDBUniqueValidator', $container->getParameter('doctrine_odm.mongodb.validator.unique.class'));
+
         $config = array(
             'proxy_namespace' => 'MyProxies',
             'auto_generate_proxy_classes' => true,
@@ -320,13 +322,29 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
         $this->assertTrue($container->getParameter('doctrine.odm.mongodb.auto_generate_proxy_classes'));
     }
 
+    public function testRegistersValidatorNamespace()
+    {
+        $container = $this->getContainer();
+
+        $container->setParameter('validator.annotations.namespaces', array('Namespace1\\', 'Namespace2\\'));
+
+        $loader = new DoctrineMongoDBExtension();
+
+        $loader->mongodbLoad(array(), $container);
+
+        $this->assertEquals(array(
+            'Namespace1\\',
+            'Namespace2\\',
+            'Symfony\Bundle\DoctrineMongoDBBundle\Validator\Constraints\\'
+        ), $container->getParameter('validator.annotations.namespaces'));
+    }
+
     protected function getContainer($bundle = 'YamlBundle')
     {
         require_once __DIR__.'/Fixtures/Bundles/'.$bundle.'/'.$bundle.'.php';
 
         return new ContainerBuilder(new ParameterBag(array(
-            'kernel.bundle_dirs' => array('DoctrineMongoDBBundle\\Tests\\DependencyInjection\\Fixtures\\Bundles' => __DIR__.'/Fixtures/Bundles'),
-            'kernel.bundles'     => array('DoctrineMongoDBBundle\\Tests\\DependencyInjection\\Fixtures\\Bundles\\'.$bundle.'\\'.$bundle),
+            'kernel.bundles'     => array($bundle => 'DoctrineMongoDBBundle\\Tests\\DependencyInjection\\Fixtures\\Bundles\\'.$bundle.'\\'.$bundle),
             'kernel.cache_dir'   => sys_get_temp_dir(),
         )));
     }

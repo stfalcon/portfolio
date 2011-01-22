@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Form;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Form;
 
 use Symfony\Component\Form\ValueTransformer\ReversedTransformer;
 use Symfony\Component\Form\ValueTransformer\DateTimeToArrayTransformer;
@@ -154,7 +154,7 @@ class TimeField extends FieldGroup
      * The hour is valid if it is contained in the list passed to the field's
      * option "hours".
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isHourWithinRange()
     {
@@ -169,7 +169,7 @@ class TimeField extends FieldGroup
      * The minute is valid if it is contained in the list passed to the field's
      * option "minutes".
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isMinuteWithinRange()
     {
@@ -184,7 +184,7 @@ class TimeField extends FieldGroup
      * The second is valid if it is contained in the list passed to the field's
      * option "seconds".
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isSecondWithinRange()
     {

@@ -1,19 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Component\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * Container is a dependency injection container.
@@ -56,6 +56,7 @@ class Container implements ContainerInterface
 {
     protected $parameterBag;
     protected $services;
+    protected $loading = array();
 
     /**
      * Constructor.
@@ -123,7 +124,7 @@ class Container implements ContainerInterface
      *
      * @param  string $name The parameter name
      *
-     * @return boolean The presence of parameter in container
+     * @return Boolean The presence of parameter in container
      */
     public function hasParameter($name)
     {
@@ -183,24 +184,22 @@ class Container implements ContainerInterface
      */
     public function get($id, $invalidBehavior = self::EXCEPTION_ON_INVALID_REFERENCE)
     {
-        static $loading = array();
-
         $id = strtolower($id);
 
         if (isset($this->services[$id])) {
             return $this->services[$id];
         }
 
-        if (isset($loading[$id])) {
-            throw new \LogicException(sprintf('Circular reference detected for service "%s" (services currently loading: %s).', $id, implode(', ', array_keys($loading))));
+        if (isset($this->loading[$id])) {
+            throw new \LogicException(sprintf('Circular reference detected for service "%s" (services currently loading: %s).', $id, implode(', ', array_keys($this->loading))));
         }
 
         if (method_exists($this, $method = 'get'.strtr($id, array('_' => '', '.' => '_')).'Service')) {
-            $loading[$id] = true;
+            $this->loading[$id] = true;
 
             $service = $this->$method();
 
-            unset($loading[$id]);
+            unset($this->loading[$id]);
 
             return $service;
         }

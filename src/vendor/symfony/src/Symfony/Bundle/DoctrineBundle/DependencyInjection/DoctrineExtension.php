@@ -1,24 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\DoctrineBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Alias;
-use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Resource\FileResource;
 use Symfony\Bundle\DoctrineAbstractBundle\DependencyInjection\AbstractDoctrineExtension;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * DoctrineExtension is an extension for the Doctrine DBAL and ORM library.
@@ -217,7 +217,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
         $connections = array();
         if (isset($config['connections'])) {
             $configConnections = $config['connections'];
-            if(isset($config['connections']['connection']) && isset($config['connections']['connection'][0])) {
+            if (isset($config['connections']['connection']) && isset($config['connections']['connection'][0])) {
                 // Multiple connections
                 $configConnections = $config['connections']['connection'];
             }

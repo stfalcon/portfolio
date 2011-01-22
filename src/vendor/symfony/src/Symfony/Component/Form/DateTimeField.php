@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Form;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Form;
 
 use Symfony\Component\Form\ValueTransformer\ReversedTransformer;
 use Symfony\Component\Form\ValueTransformer\DateTimeToStringTransformer;
@@ -32,6 +32,13 @@ class DateTimeField extends FieldGroup
         self::DATETIME,
         self::STRING,
         self::TIMESTAMP,
+    );
+
+    protected static $dateFormats = array(
+        DateField::FULL,
+        DateField::LONG,
+        DateField::MEDIUM,
+        DateField::SHORT,
     );
 
     protected static $dateWidgets = array(
@@ -57,6 +64,7 @@ class DateTimeField extends FieldGroup
         $this->addOption('seconds', range(0, 59));
         $this->addOption('data_timezone', 'UTC');
         $this->addOption('user_timezone', 'UTC');
+        $this->addOption('date_format', DateField::MEDIUM, self::$dateFormats);
         $this->addOption('date_widget', DateField::CHOICE, self::$dateWidgets);
         $this->addOption('time_widget', TimeField::CHOICE, self::$timeWidgets);
         $this->addOption('type', self::DATETIME, self::$types);
@@ -65,6 +73,7 @@ class DateTimeField extends FieldGroup
         $this->add(new DateField('date', array(
             'type' => DateField::RAW,
             'widget' => $this->getOption('date_widget'),
+            'format' => $this->getOption('date_format'),
             'data_timezone' => $this->getOption('user_timezone'),
             'user_timezone' => $this->getOption('user_timezone'),
             'years' => $this->getOption('years'),

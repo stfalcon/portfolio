@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Component\DependencyInjection\Dumper;
 
 use Symfony\Component\DependencyInjection\Variable;
@@ -9,15 +18,6 @@ use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Parameter;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * PhpDumper dumps a service container as a PHP class.
@@ -75,7 +75,6 @@ class PhpDumper extends Dumper
             $this->startClass($options['class'], $options['base_class']).
             $this->addConstructor().
             $this->addServices().
-            $this->addTags().
             $this->addDefaultParametersMethod().
             $this->addInterfaceInjectors().
             $this->endClass()
@@ -491,39 +490,6 @@ EOF;
         return $publicServices.$aliasServices.$privateServices;
     }
 
-    protected function addTags()
-    {
-        $tags = array();
-        foreach ($this->container->getDefinitions() as $id => $definition) {
-            foreach ($definition->getTags() as $name => $ann) {
-                if (!isset($tags[$name])) {
-                    $tags[$name] = array();
-                }
-
-                $tags[$name][$id] = $ann;
-            }
-        }
-        $tags = $this->exportParameters($tags);
-
-        return <<<EOF
-
-    /**
-     * Returns service ids for a given tag.
-     *
-     * @param string \$name The tag name
-     *
-     * @return array An array of tags
-     */
-    public function findTaggedServiceIds(\$name)
-    {
-        static \$tags = $tags;
-
-        return isset(\$tags[\$name]) ? \$tags[\$name] : array();
-    }
-
-EOF;
-    }
-
     protected function startClass($class, $baseClass)
     {
         $bagClass = $this->container->isFrozen() ? 'FrozenParameterBag' : 'ParameterBag';
@@ -532,7 +498,6 @@ EOF;
 <?php
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\TaggedContainerInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Parameter;
@@ -544,7 +509,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\\$bagClass;
  * This class has been auto-generated
  * by the Symfony Dependency Injection Component.
  */
-class $class extends $baseClass implements TaggedContainerInterface
+class $class extends $baseClass
 {
 EOF;
     }
@@ -761,7 +726,7 @@ EOF;
             return $this->dumpParameter($value);
         } elseif (true === $interpolate && is_string($value)) {
             if (preg_match('/^%([^%]+)%$/', $value, $match)) {
-                // we do this to deal with non string values (boolean, integer, ...)
+                // we do this to deal with non string values (Boolean, integer, ...)
                 // the preg_replace_callback converts them to strings
                 return $this->dumpParameter(strtolower($match[1]));
             } else {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Validator;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Validator;
 
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 use Symfony\Component\Validator\Constraint;
@@ -32,10 +32,11 @@ class GraphWalker
     protected $context;
     protected $validatorFactory;
     protected $metadataFactory;
+    protected $validatedObjects = array();
 
     public function __construct($root, ClassMetadataFactoryInterface $metadataFactory, ConstraintValidatorFactoryInterface $factory)
     {
-        $this->context = new ValidationContext($root, $this, $metadataFactory);
+        $this->context = new ExecutionContext($root, $this, $metadataFactory);
         $this->validatorFactory = $factory;
         $this->metadataFactory = $metadataFactory;
     }
@@ -57,26 +58,41 @@ class GraphWalker
      * @param  string $group The validator group to use for validation
      * @param  string $propertyPath
      */
-    public function walkClass(ClassMetadata $metadata, $object, $group, $propertyPath)
+    public function walkObject(ClassMetadata $metadata, $object, $group, $propertyPath)
     {
         $this->context->setCurrentClass($metadata->getClassName());
 
         if ($group === Constraint::DEFAULT_GROUP && $metadata->hasGroupSequence()) {
             $groups = $metadata->getGroupSequence();
             foreach ($groups as $group) {
-                $this->walkClassForGroup($metadata, $object, $group, $propertyPath, Constraint::DEFAULT_GROUP);
+                $this->walkObjectForGroup($metadata, $object, $group, $propertyPath, Constraint::DEFAULT_GROUP);
 
                 if (count($this->getViolations()) > 0) {
                     break;
                 }
             }
         } else {
-            $this->walkClassForGroup($metadata, $object, $group, $propertyPath);
+            $this->walkObjectForGroup($metadata, $object, $group, $propertyPath);
         }
     }
 
-    protected function walkClassForGroup(ClassMetadata $metadata, $object, $group, $propertyPath, $propagatedGroup = null)
+    protected function walkObjectForGroup(ClassMetadata $metadata, $object, $group, $propertyPath, $propagatedGroup = null)
     {
+        $hash = spl_object_hash($object);
+
+        // Exit, if the object is already validated for the current group
+        if (isset($this->validatedObjects[$hash])) {
+            if (isset($this->validatedObjects[$hash][$group])) {
+                return;
+            }
+        } else {
+            $this->validatedObjects[$hash] = array();
+        }
+
+        // Remember validating this object before starting and possibly
+        // traversing the object graph
+        $this->validatedObjects[$hash][$group] = true;
+
         foreach ($metadata->findConstraints($group) as $constraint) {
             $this->walkConstraint($constraint, $object, $group, $propertyPath);
         }
@@ -128,7 +144,7 @@ class GraphWalker
                 throw new UnexpectedTypeException($value, 'object or array');
             } else {
                 $metadata = $this->metadataFactory->getClassMetadata(get_class($value));
-                $this->walkClass($metadata, $value, $group, $propertyPath);
+                $this->walkObject($metadata, $value, $group, $propertyPath);
             }
         }
     }

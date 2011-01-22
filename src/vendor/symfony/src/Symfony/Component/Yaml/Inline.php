@@ -1,7 +1,5 @@
 <?php
 
-namespace Symfony\Component\Yaml;
-
 /*
  * This file is part of the Symfony package.
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
@@ -9,6 +7,8 @@ namespace Symfony\Component\Yaml;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Yaml;
 
 /**
  * Inline implements a YAML parser/dumper for the YAML inline syntax.
@@ -145,7 +145,7 @@ class Inline
      * @param string  $delimiters
      * @param array   $stringDelimiter
      * @param integer $i
-     * @param boolean $evaluate
+     * @param Boolean $evaluate
      *
      * @return string A YAML string
      *

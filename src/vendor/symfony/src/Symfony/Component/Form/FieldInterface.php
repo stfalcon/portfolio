@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Form;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Form;
 
 use Symfony\Component\I18N\TranslatorInterface;
 
@@ -155,7 +155,7 @@ interface FieldInterface
      * Binds POST data to the field, transforms and validates it.
      *
      * @param  string|array $taintedData  The POST data
-     * @return boolean                    Whether the form is valid
+     * @return Boolean                    Whether the form is valid
      * @throws InvalidConfigurationException when the field is not configured
      *                                       correctly
      */
@@ -190,21 +190,21 @@ interface FieldInterface
     /**
      * Returns whether the field is bound.
      *
-     * @return boolean
+     * @return Boolean
      */
     function isBound();
 
     /**
      * Returns whether the field is valid.
      *
-     * @return boolean
+     * @return Boolean
      */
     function isValid();
 
     /**
      * Returns whether the field requires a multipart form.
      *
-     * @return boolean
+     * @return Boolean
      */
     function isMultipart();
 
@@ -215,7 +215,7 @@ interface FieldInterface
      * will always return false. Otherwise the value set with setRequired()
      * is returned.
      *
-     * @return boolean
+     * @return Boolean
      */
     function isRequired();
 
@@ -228,21 +228,21 @@ interface FieldInterface
      * Fields whose parents are disabled are considered disabled regardless of
      * their own state.
      *
-     * @return boolean
+     * @return Boolean
      */
     function isDisabled();
 
     /**
      * Returns whether the field is hidden
      *
-     * @return boolean
+     * @return Boolean
      */
     function isHidden();
 
     /**
      * Sets whether this field is required to be filled out when submitted.
      *
-     * @param boolean $required
+     * @param Boolean $required
      */
     function setRequired($required);
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Form;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Form;
 
 use Symfony\Component\Form\ValueTransformer\ReversedTransformer;
 use Symfony\Component\Form\ValueTransformer\DateTimeToStringTransformer;
@@ -237,7 +237,7 @@ class DateField extends HybridField
      * The year is valid if it is contained in the list passed to the field's
      * option "years".
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isYearWithinRange()
     {
@@ -252,7 +252,7 @@ class DateField extends HybridField
      * The month is valid if it is contained in the list passed to the field's
      * option "months".
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isMonthWithinRange()
     {
@@ -267,7 +267,7 @@ class DateField extends HybridField
      * The day is valid if it is contained in the list passed to the field's
      * option "days".
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isDayWithinRange()
     {

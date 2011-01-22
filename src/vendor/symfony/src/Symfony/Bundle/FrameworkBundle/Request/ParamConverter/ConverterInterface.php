@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\FrameworkBundle\Request\ParamConverter;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +28,7 @@ interface ConverterInterface
      *
      * @param  \ReflectionParameter $parameter
      *
-     * @return boolean
+     * @return Boolean
      */
     function supports(\ReflectionClass $class);
 }

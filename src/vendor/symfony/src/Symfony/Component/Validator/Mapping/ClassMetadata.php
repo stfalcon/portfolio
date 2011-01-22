@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Validator\Mapping;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Validator\Mapping;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Valid;
@@ -96,8 +96,10 @@ class ClassMetadata extends ElementMetadata
      */
     public function addConstraint(Constraint $constraint)
     {
-        if ($constraint instanceof Valid) {
-            throw new ConstraintDefinitionException('The constraint Valid can only be put on properties or getters');
+        if (!in_array(Constraint::CLASS_CONSTRAINT, (array)$constraint->targets())) {
+            throw new ConstraintDefinitionException(sprintf(
+            		'The constraint %s cannot be put on classes',
+                    get_class($constraint)));
         }
 
         $constraint->addImplicitGroupName($this->getDefaultGroup());
@@ -248,7 +250,7 @@ class ClassMetadata extends ElementMetadata
     /**
      * Returns whether this class has an overridden default group sequence.
      *
-     * @return boolean
+     * @return Boolean
      */
     public function hasGroupSequence()
     {

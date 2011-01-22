@@ -1,11 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Component\HttpKernel;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
-use Symfony\Component\DependencyInjection\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Loader\DelegatingLoader;
 use Symfony\Component\DependencyInjection\Loader\LoaderResolver;
@@ -18,15 +26,7 @@ use Symfony\Component\DependencyInjection\Loader\ClosureLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\ClassCollectionLoader;
-
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 /**
  * The Kernel is the heart of the Symfony system. It manages an environment
@@ -37,7 +37,7 @@ use Symfony\Component\HttpKernel\ClassCollectionLoader;
 abstract class Kernel implements HttpKernelInterface, \Serializable
 {
     protected $bundles;
-    protected $bundleDirs;
+    protected $bundleMap;
     protected $container;
     protected $rootDir;
     protected $environment;
@@ -82,18 +82,33 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
         $this->container = null;
     }
 
+    /**
+     * Returns the root directory of this application.
+     *
+     * Most of the time, this is just __DIR__.
+     *
+     * @return string A directory path
+     */
     abstract public function registerRootDir();
 
+    /**
+     * Returns an array of bundles to registers.
+     *
+     * @return array An array of bundle instances.
+     */
     abstract public function registerBundles();
 
-    abstract public function registerBundleDirs();
-
+    /**
+     * Loads the container configuration
+     *
+     * @param LoaderInterface $loader A LoaderInterface instance
+     */
     abstract public function registerContainerConfiguration(LoaderInterface $loader);
 
     /**
      * Checks whether the current kernel has been booted or not.
      *
-     * @return boolean $booted
+     * @return Boolean $booted
      */
     public function isBooted()
     {
@@ -114,13 +129,13 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
             throw new \LogicException('The kernel is already booted.');
         }
 
-        if (!$this->isDebug()) {
-            require_once __DIR__.'/bootstrap.php';
-        }
+        require_once __DIR__.'/bootstrap.php';
 
-        $this->bundles = $this->registerBundles();
-        $this->bundleDirs = $this->registerBundleDirs();
-        $this->container = $this->initializeContainer();
+        // init bundles
+        $this->initializeBundles();
+
+        // init container
+        $this->initializeContainer();
 
         // load core classes
         ClassCollectionLoader::load(
@@ -190,19 +205,9 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
     }
 
     /**
-     * Gets the directories where bundles can be stored.
+     * Gets the registered bundle instances.
      *
-     * @return array An array of directories where bundles can be stored
-     */
-    public function getBundleDirs()
-    {
-        return $this->bundleDirs;
-    }
-
-    /**
-     * Gets the registered bundle names.
-     *
-     * @return array An array of registered bundle names
+     * @return array An array of registered bundle instances
      */
     public function getBundles()
     {
@@ -228,6 +233,95 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
         return false;
     }
 
+    /**
+     * Returns a bundle by its name.
+     *
+     * @param string  $name  Bundle name
+     * @param Boolean $first Whether to return the first bundle or all bundles matching this name
+     *
+     * @return BundleInterface A BundleInterface instance
+     *
+     * @throws \InvalidArgumentException when the bundle is not enabled
+     */
+    public function getBundle($name, $first = true)
+    {
+        if (!isset($this->bundleMap[$name])) {
+            throw new \InvalidArgumentException(sprintf('Bundle "%s" does not exist or it is not enabled.', $name));
+        }
+
+        if (true === $first) {
+            return $this->bundleMap[$name][0];
+        } elseif (false === $first) {
+            return $this->bundleMap[$name];
+        }
+    }
+
+    /**
+     * Returns the file path for a given resource.
+     *
+     * A Resource can be a file or a directory.
+     *
+     * The resource name must follow the following pattern:
+     *
+     *     @BundleName/path/to/a/file.something
+     *
+     * where BundleName is the name of the bundle
+     * and the remaining part is the relative path in the bundle.
+     *
+     * If $dir is passed, and the first segment of the path is Resources,
+     * this method will look for a file named:
+     *
+     *     $dir/BundleName/path/without/Resources
+     *
+     * @param string  $name  A resource name to locate
+     * @param string  $dir   A directory where to look for the resource first
+     * @param Boolean $first Whether to return the first path or paths for all matching bundles
+     *
+     * @return string|array The absolute path of the resource or an array if $first is false
+     *
+     * @throws \InvalidArgumentException if the file cannot be found or the name is not valid
+     * @throws \RuntimeException         if the name contains invalid/unsafe characters
+     */
+    public function locateResource($name, $dir = null, $first = true)
+    {
+        if ('@' !== $name[0]) {
+            throw new \InvalidArgumentException(sprintf('A resource name must start with @ ("%s" given).', $name));
+        }
+
+        if (false !== strpos($name, '..')) {
+            throw new \RuntimeException(sprintf('File name "%s" contains invalid characters (..).', $name));
+        }
+
+        $name = substr($name, 1);
+        list($bundle, $path) = explode('/', $name, 2);
+
+        $isResource = 0 === strpos($path, 'Resources');
+
+        $files = array();
+        if (true === $isResource && null !== $dir && file_exists($file = $dir.'/'.$bundle.'/'.substr($path, 10))) {
+            if ($first) {
+                return $file;
+            }
+
+            $files[] = $file;
+        }
+
+        foreach ($this->getBundle($bundle, false) as $bundle) {
+            if (file_exists($file = $bundle->getPath().'/'.$path)) {
+                if ($first) {
+                    return $file;
+                }
+                $files[] = $file;
+            }
+        }
+
+        if ($files) {
+            return $files;
+        }
+
+        throw new \InvalidArgumentException(sprintf('Unable to find file "@%s".', $name));
+    }
+
     public function getName()
     {
         return $this->name;
@@ -238,39 +332,109 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
         return preg_replace('/[^a-zA-Z0-9_]+/', '', $this->name);
     }
 
+    /**
+     * Gets the environment.
+     *
+     * @return string The current environment
+     */
     public function getEnvironment()
     {
         return $this->environment;
     }
 
+    /**
+     * Checks if debug mode is enabled.
+     *
+     * @return Boolean true if debug mode is enabled, false otherwise
+     */
     public function isDebug()
     {
         return $this->debug;
     }
 
+    /**
+     * Gets the application root dir.
+     *
+     * @return string The application root dir
+     */
     public function getRootDir()
     {
         return $this->rootDir;
     }
 
+    /**
+     * Gets the current container.
+     *
+     * @return ContainerInterface A ContainerInterface instance
+     */
     public function getContainer()
     {
         return $this->container;
     }
 
+    /**
+     * Gets the request start time (not available if debug is disabled).
+     *
+     * @return integer The request start timestamp
+     */
     public function getStartTime()
     {
         return $this->debug ? $this->startTime : -INF;
     }
 
+    /**
+     * Gets the cache directory.
+     *
+     * @return string The cache directory
+     */
     public function getCacheDir()
     {
         return $this->rootDir.'/cache/'.$this->environment;
     }
 
+    /**
+     * Gets the log directory.
+     *
+     * @return string The log directory
+     */
     public function getLogDir()
     {
         return $this->rootDir.'/logs';
+    }
+
+    protected function initializeBundles()
+    {
+        // init bundles
+        $this->bundles = array();
+        foreach ($this->registerBundles() as $bundle) {
+            $name = $bundle->getName();
+            $this->bundles[$name] = $bundle;
+            if (!isset($this->bundleMap[$name])) {
+                $this->bundleMap[$name] = array();
+            }
+            $this->bundleMap[$name][] = $bundle;
+        }
+
+        // inheritance
+        $extended = array();
+        foreach ($this->bundles as $name => $bundle) {
+            $parent = $bundle;
+            $first = true;
+            while ($parentName = $parent->getParent()) {
+                if (!isset($this->bundles[$parentName])) {
+                    throw new \LogicException(sprintf('Bundle "%s" extends bundle "%s", which is not registered.', $name, $parentName));
+                }
+
+                if ($first && isset($extended[$parentName])) {
+                    throw new \LogicException(sprintf('Bundle "%s" is directly extended by two bundles "%s" and "%s".', $parentName, $name, $extended[$parentName]));
+                }
+
+                $first = false;
+                $parent = $this->bundles[$parentName];
+                $extended[$parentName] = $name;
+                array_unshift($this->bundleMap[$parentName], $bundle);
+            }
+        }
     }
 
     protected function initializeContainer()
@@ -286,30 +450,27 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
 
         require_once $location.'.php';
 
-        $container = new $class();
-        $container->set('kernel', $this);
-
-        return $container;
+        $this->container = new $class();
+        $this->container->set('kernel', $this);
     }
 
     public function getKernelParameters()
     {
         $bundles = array();
-        foreach ($this->bundles as $bundle) {
-            $bundles[] = get_class($bundle);
+        foreach ($this->bundles as $name => $bundle) {
+            $bundles[$name] = get_class($bundle);
         }
 
         return array_merge(
             array(
-                'kernel.root_dir'         => $this->rootDir,
-                'kernel.environment'      => $this->environment,
-                'kernel.debug'            => $this->debug,
-                'kernel.name'             => $this->name,
-                'kernel.cache_dir'        => $this->getCacheDir(),
-                'kernel.logs_dir'         => $this->getLogDir(),
-                'kernel.bundle_dirs'      => $this->bundleDirs,
-                'kernel.bundles'          => $bundles,
-                'kernel.charset'          => 'UTF-8',
+                'kernel.root_dir'    => $this->rootDir,
+                'kernel.environment' => $this->environment,
+                'kernel.debug'       => $this->debug,
+                'kernel.name'        => $this->name,
+                'kernel.cache_dir'   => $this->getCacheDir(),
+                'kernel.logs_dir'    => $this->getLogDir(),
+                'kernel.bundles'     => $bundles,
+                'kernel.charset'     => 'UTF-8',
             ),
             $this->getEnvParameters()
         );
@@ -397,10 +558,10 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
     protected function getContainerLoader(ContainerInterface $container)
     {
         $resolver = new LoaderResolver(array(
-            new XmlFileLoader($container, $this->getBundleDirs()),
-            new YamlFileLoader($container, $this->getBundleDirs()),
-            new IniFileLoader($container, $this->getBundleDirs()),
-            new PhpFileLoader($container, $this->getBundleDirs()),
+            new XmlFileLoader($container),
+            new YamlFileLoader($container),
+            new IniFileLoader($container),
+            new PhpFileLoader($container),
             new ClosureLoader($container),
         ));
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Form;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Form;
 
 use Symfony\Component\Validator\ValidatorInterface;
 use Symfony\Component\Form\Exception\FormException;
@@ -27,14 +27,11 @@ use Symfony\Component\Form\Exception\FormException;
  * is generated on the fly.
  *
  * @author Fabien Potencier <fabien.potencier@symfony-project.com>
+ * @author Bernhard Schussek <bernhard.schussek@symfony-project.com>
  */
 class Form extends FieldGroup
 {
     protected $validator = null;
-    protected $validationGroups = null;
-
-    private $csrfSecret = null;
-    private $csrfFieldName = null;
 
     /**
      * Constructor.
@@ -53,11 +50,15 @@ class Form extends FieldGroup
             $this->setData($data);
         }
 
-        if (FormConfiguration::isDefaultCsrfProtectionEnabled()) {
-            $this->enableCsrfProtection();
-        }
-
+        $this->addOption('csrf_protection');
+        $this->addOption('csrf_field_name', '_token');
+        $this->addOption('csrf_secrets', array(__FILE__.php_uname()));
         $this->addOption('field_factory');
+        $this->addOption('validation_groups');
+
+        if (isset($options['validation_groups'])) {
+            $options['validation_groups'] = (array)$options['validation_groups'];
+        }
 
         parent::__construct($name, $options);
 
@@ -66,26 +67,16 @@ class Form extends FieldGroup
         if (null !== $data) {
             $this->setPropertyPath(null);
         }
-    }
 
-    /**
-     * Sets the validation groups for this form.
-     *
-     * @param array|string $validationGroups
-     */
-    public function setValidationGroups($validationGroups)
-    {
-        $this->validationGroups = null === $validationGroups ? $validationGroups : (array) $validationGroups;
-    }
+        // Enable CSRF protection, if necessary
+        if ($this->getOption('csrf_protection')) {
+            $field = new HiddenField($this->getOption('csrf_field_name'), array(
+                'property_path' => null,
+            ));
+            $field->setData($this->generateCsrfToken($this->getOption('csrf_secrets')));
 
-    /**
-     * Returns the validation groups for this form.
-     *
-     * @return array
-     */
-    public function getValidationGroups()
-    {
-        return $this->validationGroups;
+            $this->add($field);
+        }
     }
 
     /**
@@ -100,6 +91,46 @@ class Form extends FieldGroup
     }
 
     /**
+     * Returns the validator used by the form
+     *
+     * @return ValidatorInterface  The validator instance
+     */
+    public function getValidator()
+    {
+        return $this->validator;
+    }
+
+    /**
+     * Returns the validation groups validated by the form
+     *
+     * @return array  A list of validation groups or null
+     */
+    public function getValidationGroups()
+    {
+        return $this->getOption('validation_groups');
+    }
+
+    /**
+     * Returns the name used for the CSRF protection field
+     *
+     * @return string  The field name
+     */
+    public function getCsrfFieldName()
+    {
+        return $this->getOption('csrf_field_name');
+    }
+
+    /**
+     * Returns the secret values used for the CSRF protection
+     *
+     * @return array  A list of string valuesf
+     */
+    public function getCsrfSecrets()
+    {
+        return $this->getOption('csrf_secrets');
+    }
+
+    /**
      * Binds the form with values and files.
      *
      * This method is final because it is very easy to break a form when
@@ -109,7 +140,7 @@ class Form extends FieldGroup
      *
      * @param  array $taintedValues  The form data of the $_POST array
      * @param  array $taintedFiles   An array of uploaded files
-     * @return boolean               Whether the form is valid
+     * @return Boolean               Whether the form is valid
      */
     final public function bind($taintedValues, array $taintedFiles = null)
     {
@@ -132,7 +163,7 @@ class Form extends FieldGroup
                 throw new FormException('A validator is required for binding. Forgot to pass it to the constructor of the form?');
             }
 
-            if ($violations = $this->validator->validate($this, $this->getValidationGroups())) {
+            if ($violations = $this->validator->validate($this, $this->getOption('validation_groups'))) {
                 // TODO: test me
                 foreach ($violations as $violation) {
                     $propertyPath = new PropertyPath($violation->getPropertyPath());
@@ -155,7 +186,7 @@ class Form extends FieldGroup
      * Binds the form with the given data.
      *
      * @param  array $taintedData  The data to bind to the form
-     * @return boolean             Whether the form is valid
+     * @return Boolean             Whether the form is valid
      */
     protected function doBind(array $taintedData)
     {
@@ -172,20 +203,19 @@ class Form extends FieldGroup
      *
      * @return string A token string
      */
-    protected function generateCsrfToken($secret)
+    protected function generateCsrfToken(array $secrets)
     {
-        $secret .= get_class($this);
-        $defaultSecrets = FormConfiguration::getDefaultCsrfSecrets();
+        $implodedSecrets = get_class($this);
 
-        foreach ($defaultSecrets as $defaultSecret) {
-            if ($defaultSecret instanceof \Closure) {
-                $defaultSecret = $defaultSecret();
+        foreach ($secrets as $secret) {
+            if ($secret instanceof \Closure) {
+                $secret = $secret();
             }
 
-            $secret .= $defaultSecret;
+            $implodedSecrets .= $secret;
         }
 
-        return md5($secret);
+        return md5($implodedSecrets);
     }
 
     /**
@@ -193,85 +223,30 @@ class Form extends FieldGroup
      */
     public function isCsrfProtected()
     {
-        return $this->has($this->getCsrfFieldName());
-    }
-
-    /**
-     * Enables CSRF protection for this form.
-     */
-    public function enableCsrfProtection($csrfFieldName = null, $csrfSecret = null)
-    {
-        if (!$this->isCsrfProtected()) {
-            if (null === $csrfFieldName) {
-                $csrfFieldName = FormConfiguration::getDefaultCsrfFieldName();
-            }
-
-            if (null === $csrfSecret) {
-                $csrfSecret = md5(__FILE__.php_uname());
-            }
-
-            $field = new HiddenField($csrfFieldName, array(
-                'property_path' => null,
-            ));
-            $field->setData($this->generateCsrfToken($csrfSecret));
-            $this->add($field);
-
-            $this->csrfFieldName = $csrfFieldName;
-            $this->csrfSecret = $csrfSecret;
-        }
-    }
-
-    /**
-     * Disables CSRF protection for this form.
-     */
-    public function disableCsrfProtection()
-    {
-        if ($this->isCsrfProtected()) {
-            $this->remove($this->getCsrfFieldName());
-
-            $this->csrfFieldName = null;
-            $this->csrfSecret = null;
-        }
-    }
-
-    /**
-     * Returns the CSRF field name used in this form
-     *
-     * @return string The CSRF field name
-     */
-    public function getCsrfFieldName()
-    {
-        return $this->csrfFieldName;
-    }
-
-    /**
-     * Returns the CSRF secret used in this form
-     *
-     * @return string The CSRF secret
-     */
-    public function getCsrfSecret()
-    {
-        return $this->csrfSecret;
+        return $this->has($this->getOption('csrf_field_name'));
     }
 
     /**
      * Returns whether the CSRF token is valid
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isCsrfTokenValid()
     {
         if (!$this->isCsrfProtected()) {
             return true;
         } else {
-            return $this->get($this->getCsrfFieldName())->getDisplayedData() === $this->generateCsrfToken($this->getCsrfSecret());
+            $actual = $this->get($this->getOption('csrf_field_name'))->getDisplayedData();
+            $expected = $this->generateCsrfToken($this->getOption('csrf_secrets'));
+
+            return $actual === $expected;
         }
     }
 
     /**
      * Returns whether the maximum POST size was reached in this request.
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isPostMaxSizeReached()
     {

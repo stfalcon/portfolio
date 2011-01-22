@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\DoctrineBundle\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,15 +23,6 @@ use Doctrine\Common\Cli\CliController as DoctrineCliController;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Internal\CommitOrderCalculator;
 use Doctrine\ORM\Mapping\ClassMetadata;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * Load data fixtures from bundles.
@@ -43,15 +43,15 @@ class LoadDataFixturesDoctrineCommand extends DoctrineCommand
             ->setHelp(<<<EOT
 The <info>doctrine:data:load</info> command loads data fixtures from your bundles:
 
-  <info>./symfony doctrine:data:load</info>
+  <info>./app/console doctrine:data:load</info>
 
 You can also optionally specify the path to fixtures with the <info>--fixtures</info> option:
 
-  <info>./symfony doctrine:data:load --fixtures=/path/to/fixtures1 --fixtures=/path/to/fixtures2</info>
+  <info>./app/console doctrine:data:load --fixtures=/path/to/fixtures1 --fixtures=/path/to/fixtures2</info>
 
 If you want to append the fixtures instead of flushing the database first you can use the <info>--append</info> option:
 
-  <info>./symfony doctrine:data:load --append</info>
+  <info>./app/console doctrine:data:load --append</info>
 EOT
         );
     }
@@ -67,15 +67,8 @@ EOT
             $paths = is_array($dirOrFile) ? $dirOrFile : array($dirOrFile);
         } else {
             $paths = array();
-            $bundleDirs = $this->container->get('kernel')->getBundleDirs();
-            foreach ($this->container->get('kernel')->getBundles() as $bundle) {
-                $tmp = dirname(str_replace('\\', '/', get_class($bundle)));
-                $namespace = str_replace('/', '\\', dirname($tmp));
-                $class = basename($tmp);
-
-                if (isset($bundleDirs[$namespace]) && is_dir($dir = $bundleDirs[$namespace].'/'.$class.'/DataFixtures/ORM')) {
-                    $paths[] = $dir;
-                }
+            foreach ($this->application->getKernel()->getBundles() as $bundle) {
+                $paths[] = $bundle->getPath().'/DataFixtures/ORM';
             }
         }
 

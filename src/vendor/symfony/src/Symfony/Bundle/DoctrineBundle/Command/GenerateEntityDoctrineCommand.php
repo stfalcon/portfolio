@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\DoctrineBundle\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
@@ -10,15 +19,6 @@ use Symfony\Component\Console\Output\Output;
 use Doctrine\ORM\Tools\Export\ClassMetadataExporter;
 use Doctrine\ORM\Tools\EntityGenerator;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * Initialize a new Doctrine entity inside a bundle.
@@ -33,20 +33,20 @@ class GenerateEntityDoctrineCommand extends DoctrineCommand
         $this
             ->setName('doctrine:generate:entity')
             ->setDescription('Generate a new Doctrine entity inside a bundle.')
-            ->addArgument('bundle', null, InputArgument::REQUIRED, 'The bundle to initialize the entity in.')
-            ->addArgument('entity', null, InputArgument::REQUIRED, 'The entity class to initialize.')
-            ->addOption('mapping-type', null, InputOption::VALUE_OPTIONAL, 'The mapping type to to use for the entity.')
+            ->addArgument('bundle', InputArgument::REQUIRED, 'The bundle to initialize the entity in.')
+            ->addArgument('entity', InputArgument::REQUIRED, 'The entity class to initialize.')
+            ->addOption('mapping-type', null, InputOption::VALUE_OPTIONAL, 'The mapping type to to use for the entity.', 'xml')
             ->addOption('fields', null, InputOption::VALUE_OPTIONAL, 'The fields to create with the new entity.')
             ->setHelp(<<<EOT
 The <info>doctrine:generate:entity</info> task initializes a new Doctrine entity inside a bundle:
 
-  <info>./symfony doctrine:generate:entity "Bundle\MyCustomBundle" "User\Group"</info>
+  <info>./app/console doctrine:generate:entity "MyCustomBundle" "User\Group"</info>
 
 The above would initialize a new entity in the following entity namespace <info>Bundle\MyCustomBundle\Entity\User\Group</info>.
 
 You can also optionally specify the fields you want to generate in the new entity:
 
-  <info>./symfony doctrine:generate:entity "Bundle\MyCustomBundle" "User\Group" --fields="name:string(255) description:text"</info>
+  <info>./app/console doctrine:generate:entity "MyCustomBundle" "User\Group" --fields="name:string(255) description:text"</info>
 EOT
         );
     }
@@ -56,28 +56,11 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (!preg_match('/Bundle$/', $bundle = $input->getArgument('bundle'))) {
-            throw new \InvalidArgumentException('The bundle name must end with Bundle. Example: "Bundle\MySampleBundle".');
-        }
-
-        $dirs = $this->container->get('kernel')->getBundleDirs();
-
-        $tmp = str_replace('\\', '/', $bundle);
-        $namespace = str_replace('/', '\\', dirname($tmp));
-        $bundle = basename($tmp);
-
-        if (!isset($dirs[$namespace])) {
-            throw new \InvalidArgumentException(sprintf('Unable to initialize the bundle entity (%s not defined).', $namespace));
-        }
+        $bundle = $this->application->getKernel()->getBundle($input->getArgument('bundle'));
 
         $entity = $input->getArgument('entity');
-        $entityNamespace = $namespace.'\\'.$bundle.'\\Entity';
-        $fullEntityClassName = $entityNamespace.'\\'.$entity;
-        $tmp = str_replace('\\', '/', $fullEntityClassName);
-        $tmp = str_replace('/', '\\', dirname($tmp));
-        $className = basename($tmp);
+        $fullEntityClassName = $bundle->getNamespace().'\\Entity\\'.$entity;
         $mappingType = $input->getOption('mapping-type');
-        $mappingType = $mappingType ? $mappingType : 'xml';
 
         $class = new ClassMetadataInfo($fullEntityClassName);
         $class->mapField(array('fieldName' => 'id', 'type' => 'integer', 'id' => true));
@@ -85,22 +68,21 @@ EOT
 
         // Map the specified fields
         $fields = $input->getOption('fields');
-        if ($fields)
-        {
-          $e = explode(' ', $fields);
-          foreach ($e as $value) {
-              $e = explode(':', $value);
-              $name = $e[0];
-              $type = isset($e[1]) ? $e[1] : 'string';
-              preg_match_all('/(.*)\((.*)\)/', $type, $matches);
-              $type = isset($matches[1][0]) ? $matches[1][0] : $type;
-              $length = isset($matches[2][0]) ? $matches[2][0] : null;
-              $class->mapField(array(
-                  'fieldName' => $name,
-                  'type' => $type,
-                  'length' => $length
-              ));
-          }
+        if ($fields) {
+            $e = explode(' ', $fields);
+            foreach ($e as $value) {
+                $e = explode(':', $value);
+                $name = $e[0];
+                $type = isset($e[1]) ? $e[1] : 'string';
+                preg_match_all('/(.*)\((.*)\)/', $type, $matches);
+                $type = isset($matches[1][0]) ? $matches[1][0] : $type;
+                $length = isset($matches[2][0]) ? $matches[2][0] : null;
+                $class->mapField(array(
+                    'fieldName' => $name,
+                    'type' => $type,
+                    'length' => $length
+                ));
+            }
         }
 
         // Setup a new exporter for the mapping type specified
@@ -108,22 +90,21 @@ EOT
         $exporter = $cme->getExporter($mappingType);
 
         if ('annotation' === $mappingType) {
-            $path = $dirs[$namespace].'/'.$bundle.'/Entity/'.str_replace($entityNamespace.'\\', null, $fullEntityClassName).'.php';
-
+            $path = $bundle->getPath().'/Entity/'.$entity.'.php';
             $exporter->setEntityGenerator($this->getEntityGenerator());
         } else {
             $mappingType = 'yaml' == $mappingType ? 'yml' : $mappingType;
-            $path = $dirs[$namespace].'/'.$bundle.'/Resources/config/doctrine/metadata/orm/'.str_replace('\\', '.', $fullEntityClassName).'.dcm.'.$mappingType;
+            $path = $bundle->getPath().'/Resources/config/doctrine/metadata/orm/'.str_replace('\\', '.', $fullEntityClassName).'.dcm.'.$mappingType;
         }
 
         $code = $exporter->exportClassMetadata($class);
 
+        $output->writeln(sprintf('Generating entity for "<info>%s</info>"', $bundle->getName()));
+        $output->writeln(sprintf('  > generating <comment>%s</comment>', $fullEntityClassName));
+
         if (!is_dir($dir = dirname($path))) {
             mkdir($dir, 0777, true);
         }
-
-        $output->writeln(sprintf('Generating entity for "<info>%s</info>"', $bundle));
-        $output->writeln(sprintf('  > generating <comment>%s</comment>', $fullEntityClassName));
         file_put_contents($path, $code);
     }
 }

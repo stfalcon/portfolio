@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\DependencyInjection;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\DependencyInjection;
 
 /**
  * Definition represents a service definition.
@@ -146,6 +146,25 @@ class Definition
     }
 
     /**
+     * Sets a specific argument
+     *
+     * @param integer $index
+     * @param mixed $argument
+     *
+     * @return Definition The current instance
+     */
+    public function setArgument($index, $argument)
+    {
+        if ($index < 0 || $index > count($this->arguments) - 1) {
+            throw new \OutOfBoundsException(sprintf('The index "%d" is not in the range [0, %d].', $index, count($this->arguments) - 1));
+        }
+
+        $this->arguments[$index] = $argument;
+
+        return $this;
+    }
+
+    /**
      * Gets the arguments to pass to the service constructor/factory method.
      *
      * @return array The array of arguments
@@ -211,7 +230,7 @@ class Definition
      *
      * @param  string $method    The method name to search for
      *
-     * @return boolean
+     * @return Boolean
      */
     public function hasMethodCall($method)
     {

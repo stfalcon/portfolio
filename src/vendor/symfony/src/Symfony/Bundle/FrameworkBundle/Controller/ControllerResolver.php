@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Symfony\Bundle\FrameworkBundle\Controller;
 
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
@@ -8,17 +17,8 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-
-/*
- * This file is part of the Symfony framework.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 /**
  * ControllerResolver.
@@ -28,20 +28,20 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 class ControllerResolver extends BaseControllerResolver
 {
     protected $container;
-    protected $converter;
+    protected $parser;
     protected $esiSupport;
 
     /**
      * Constructor.
      *
-     * @param ContainerInterface      $container A ContainerInterface instance
-     * @param ControllerNameConverter $converter A ControllerNameConverter instance
-     * @param LoggerInterface         $logger    A LoggerInterface instance
+     * @param ContainerInterface   $container A ContainerInterface instance
+     * @param ControllerNameParser $parser    A ControllerNameParser instance
+     * @param LoggerInterface      $logger    A LoggerInterface instance
      */
-    public function __construct(ContainerInterface $container, ControllerNameConverter $converter, LoggerInterface $logger = null)
+    public function __construct(ContainerInterface $container, ControllerNameParser $parser, LoggerInterface $logger = null)
     {
         $this->container = $container;
-        $this->converter = $converter;
+        $this->parser = $parser;
 
         parent::__construct($logger);
     }
@@ -59,7 +59,7 @@ class ControllerResolver extends BaseControllerResolver
             $count = substr_count($controller, ':');
             if (2 == $count) {
                 // controller in the a:b:c notation then
-                $controller = $this->converter->fromShortNotation($controller);
+                $controller = $this->parser->parse($controller);
             } elseif (1 == $count) {
                 // controller in the service:method notation
                 list($service, $method) = explode(':', $controller);

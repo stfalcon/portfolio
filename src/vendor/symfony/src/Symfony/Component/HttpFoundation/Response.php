@@ -1,7 +1,5 @@
 <?php
 
-namespace Symfony\Component\HttpFoundation;
-
 /*
  * This file is part of the Symfony package.
  *
@@ -10,6 +8,8 @@ namespace Symfony\Component\HttpFoundation;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\HttpFoundation;
 
 /**
  * Response represents an HTTP response.
@@ -64,6 +64,7 @@ class Response
         415 => 'Unsupported Media Type',
         416 => 'Requested Range Not Satisfiable',
         417 => 'Expectation Failed',
+        418 => 'I\'m a teapot',
         500 => 'Internal Server Error',
         501 => 'Not Implemented',
         502 => 'Bad Gateway',

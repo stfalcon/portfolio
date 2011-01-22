@@ -1,11 +1,5 @@
 <?php
 
-namespace Symfony\Bundle\TwigBundle;
-
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass;
-
 /*
  * This file is part of the Symfony package.
  *
@@ -14,6 +8,12 @@ use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Symfony\Bundle\TwigBundle;
+
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass;
 
 /**
  * Bundle.
@@ -27,5 +27,21 @@ class TwigBundle extends Bundle
         parent::registerExtensions($container);
 
         $container->addCompilerPass(new TwigEnvironmentPass());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNamespace()
+    {
+        return __NAMESPACE__;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPath()
+    {
+        return strtr(__DIR__, '\\', '/');
     }
 }

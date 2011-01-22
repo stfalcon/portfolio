@@ -1,15 +1,15 @@
 <?php
 
-namespace Symfony\Component\Form;
-
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
+namespace Symfony\Component\Form;
 
 use Symfony\Component\Form\Exception\AlreadyBoundException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
@@ -92,6 +92,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
      * </code>
      *
      * @param FieldInterface|string $field
+     * @return FieldInterface
      */
     public function add($field)
     {
@@ -113,7 +114,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
             $factory = $this->getRoot()->getFieldFactory();
 
             if (!$factory) {
-                throw new \LogicException('A field factory must be available for automatically creating fields');
+                throw new \LogicException('A field factory must be available to automatically create fields');
             }
 
             $options = func_num_args() > 1 ? func_get_arg(1) : array();
@@ -151,7 +152,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
      * Returns whether a field with the given key exists.
      *
      * @param  string $key
-     * @return boolean
+     * @return Boolean
      */
     public function has($key)
     {
@@ -232,15 +233,15 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
     /**
      * Returns a filtered array of fields from the current schema.
      *
-     * @param boolean $hidden Whether to return hidden fields only or visible fields only
-     * @param boolean $recursive Whether to recur through embedded schemas
+     * @param Boolean $hidden Whether to return hidden fields only or visible fields only
+     * @param Boolean $recursive Whether to recur through embedded schemas
      *
      * @return array
      */
     protected function getFieldsByVisibility($hidden, $recursive)
     {
         $fields = array();
-        $hidden = (bool)$hidden;
+        $hidden = (Boolean)$hidden;
 
         foreach ($this->fields as $field) {
             if ($field instanceof FieldGroup && $recursive) {
@@ -278,6 +279,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
      * Returns the data of the field as it is displayed to the user.
      *
      * @see FieldInterface
+     * @return array of field name => value
      */
     public function getDisplayedData()
     {
@@ -294,7 +296,6 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
      * Binds POST data to the field, transforms and validates it.
      *
      * @param  string|array $taintedData  The POST data
-     * @return boolean                    Whether the form is valid
      */
     public function bind($taintedData)
     {
@@ -337,7 +338,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
     }
 
     /**
-     * Updates the chield fields from the properties of the given data
+     * Updates the child fields from the properties of the given data
      *
      * This method calls updateFromProperty() on all child fields that have a
      * property path set. If a child field has no property path set but
@@ -399,7 +400,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
     /**
      * Returns whether this form was bound with extra fields
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isBoundWithExtraFields()
     {
@@ -410,7 +411,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
     /**
      * Returns whether the field is valid.
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isValid()
     {
@@ -471,7 +472,7 @@ class FieldGroup extends Field implements \IteratorAggregate, FieldGroupInterfac
     /**
      * Returns whether the field requires a multipart form.
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isMultipart()
     {

@@ -3,12 +3,12 @@
 namespace Symfony\Component\Form;
 
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the Symfony package.
  *
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use Symfony\Component\Form\ValueTransformer\ValueTransformerInterface;
@@ -31,7 +31,7 @@ use Symfony\Component\Form\ValueTransformer\TransformationFailedException;
  * localized string (3) is presented to and modified by the user.
  *
  * In most cases, format (1) and format (2) will be the same. For example,
- * a checkbox field uses a boolean value both for internal processing as for
+ * a checkbox field uses a Boolean value both for internal processing as for
  * storage in the object. In these cases you simply need to set a value
  * transformer to convert between formats (2) and (3). You can do this by
  * calling setValueTransformer() in the configure() method.
@@ -74,7 +74,7 @@ class Field extends Configurable implements FieldInterface
         $this->addOption('normalization_transformer');
 
         $this->key = (string)$key;
-        $this->locale = FormConfiguration::getDefaultLocale();
+        $this->locale = FormContext::getLocale();
 
         parent::__construct($options);
 
@@ -263,7 +263,7 @@ class Field extends Configurable implements FieldInterface
      * Binds POST data to the field, transforms and validates it.
      *
      * @param  string|array $taintedData  The POST data
-     * @return boolean                    Whether the form is valid
+     * @return Boolean                    Whether the form is valid
      * @throws AlreadyBoundException      when the field is already bound
      */
     public function bind($taintedData)
@@ -303,17 +303,22 @@ class Field extends Configurable implements FieldInterface
     }
 
     /**
-     * Returns the normalized data of the field.
+     * Returns the data in the format needed for the underlying object.
      *
-     * @return mixed  When the field is not bound, the default data is returned.
-     *                When the field is bound, the normalized bound data is
-     *                returned if the field is valid, null otherwise.
+     * @return mixed
      */
     public function getData()
     {
         return $this->data;
     }
 
+    /**
+     * Returns the normalized data of the field.
+     *
+     * @return mixed  When the field is not bound, the default data is returned.
+     *                When the field is bound, the normalized bound data is
+     *                returned if the field is valid, null otherwise.
+     */
     protected function getNormalizedData()
     {
         return $this->normalizedData;
@@ -332,7 +337,7 @@ class Field extends Configurable implements FieldInterface
     /**
      * Returns whether the field is bound.
      *
-     * @return boolean  true if the form is bound to input values, false otherwise
+     * @return Boolean  true if the form is bound to input values, false otherwise
      */
     public function isBound()
     {
@@ -342,7 +347,7 @@ class Field extends Configurable implements FieldInterface
     /**
      * Returns whether the bound value could be reverse transformed correctly
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isTransformationSuccessful()
     {
@@ -352,7 +357,7 @@ class Field extends Configurable implements FieldInterface
     /**
      * Returns whether the field is valid.
      *
-     * @return boolean
+     * @return Boolean
      */
     public function isValid()
     {
@@ -360,9 +365,9 @@ class Field extends Configurable implements FieldInterface
     }
 
     /**
-     * Returns weather there are errors.
+     * Returns whether or not there are errors.
      *
-     * @return boolean  true if form is bound and not valid
+     * @return Boolean  true if form is bound and not valid
      */
     public function hasErrors()
     {
@@ -376,7 +381,7 @@ class Field extends Configurable implements FieldInterface
     /**
      * Returns all errors
      *
-     * @return array  An array of errors that occured during binding
+     * @return array  An array of FieldError instances that occurred during binding
      */
     public function getErrors()
     {
