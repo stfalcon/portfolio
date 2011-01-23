@@ -31,13 +31,27 @@ class SecurityExtension extends Extension
 {
     protected $requestMatchers = array();
 
+    public function configLoad(array $configs, ContainerBuilder $container)
+    {
+        foreach ($configs as $config) {
+            $this->doConfigLoad($config, $container);
+        }
+    }
+
+    public function aclLoad(array $configs, ContainerBuilder $container)
+    {
+        foreach ($configs as $config) {
+            $this->doAclLoad($config, $container);
+        }
+    }
+
     /**
      * Loads the web configuration.
      *
      * @param array            $config    An array of configuration settings
      * @param ContainerBuilder $container A ContainerBuilder instance
      */
-    public function configLoad($config, ContainerBuilder $container)
+    protected function doConfigLoad($config, ContainerBuilder $container)
     {
         if (!$container->hasDefinition('security.context')) {
             $loader = new XmlFileLoader($container, array(__DIR__.'/../Resources/config', __DIR__.'/Resources/config'));
@@ -117,7 +131,7 @@ class SecurityExtension extends Extension
             if (isset($access['host'])) {
                 $host = $access['host'];
             }
-            if (count($tMethods = $this->fixConfig($access, 'method')) > 0) {
+            if (count($tMethods = $this->normalizeConfig($access, 'method')) > 0) {
                 $methods = $tMethods;
             }
             if (isset($access['ip'])) {
@@ -125,7 +139,7 @@ class SecurityExtension extends Extension
             }
 
             $matchAttributes = array();
-            $attributes = $this->fixConfig($access, 'attribute');
+            $attributes = $this->normalizeConfig($access, 'attribute');
             foreach ($attributes as $key => $attribute) {
                 if (isset($attribute['key'])) {
                     $key = $attribute['key'];
@@ -144,7 +158,7 @@ class SecurityExtension extends Extension
 
         $this->createEncoders($config, $container);
 
-        if (!$firewalls = $this->fixConfig($config, 'firewall')) {
+        if (!$firewalls = $this->normalizeConfig($config, 'firewall')) {
             return;
         }
 
@@ -163,7 +177,7 @@ class SecurityExtension extends Extension
         $loader = new XmlFileLoader($c, array(__DIR__.'/../Resources/config', __DIR__.'/Resources/config'));
         $loader->load('security_templates.xml');
 
-        foreach ($this->fixConfig($config, 'template') as $template) {
+        foreach ($this->normalizeConfig($config, 'template') as $template) {
             $loader->load($c->getParameterBag()->resolveValue($template));
         }
         $container->merge($c);
@@ -246,7 +260,7 @@ class SecurityExtension extends Extension
                 $listener->addMethodCall('addHandler', array(new Reference('security.logout.handler.session')));
             }
 
-            if (count($cookies = $this->fixConfig($firewall['logout'], 'cookie')) > 0) {
+            if (count($cookies = $this->normalizeConfig($firewall['logout'], 'cookie')) > 0) {
                 $cookieHandlerId = 'security.logout.handler.cookie_clearing.'.$id;
                 $cookieHandler = $container->setDefinition($cookieHandlerId, clone $container->getDefinition('security.logout.handler.cookie_clearing'));
                 $cookieHandler->setArguments(array($cookies));
@@ -334,7 +348,7 @@ class SecurityExtension extends Extension
     // Parses user providers and returns an array of their ids
     protected function createUserProviders($config, ContainerBuilder $container)
     {
-        $providers = $this->fixConfig($config, 'provider');
+        $providers = $this->normalizeConfig($config, 'provider');
         if (!$providers) {
             return array();
         }
@@ -355,7 +369,7 @@ class SecurityExtension extends Extension
 
     protected function createEncoders($config, ContainerBuilder $container)
     {
-        $encoders = $this->fixConfig($config, 'encoder');
+        $encoders = $this->normalizeConfig($config, 'encoder');
         if (!$encoders) {
             return array();
         }
@@ -500,7 +514,7 @@ class SecurityExtension extends Extension
         // In-memory DAO provider
         $definition = $container->register($name, '%security.user.provider.in_memory.class%');
         $definition->setPublic(false);
-        foreach ($this->fixConfig($provider, 'user') as $username => $user) {
+        foreach ($this->normalizeConfig($provider, 'user') as $username => $user) {
             if (isset($user['name'])) {
                 $username = $user['name'];
             }
@@ -615,7 +629,7 @@ class SecurityExtension extends Extension
         return $this->requestMatchers[$id] = new Reference($id);
     }
 
-    public function aclLoad(array $config, ContainerBuilder $container)
+    protected function doAclLoad(array $config, ContainerBuilder $container)
     {
         if (!$container->hasDefinition('security.acl')) {
             $loader = new XmlFileLoader($container, array(__DIR__.'/../Resources/config', __DIR__.'/Resources/config'));
@@ -652,22 +666,5 @@ class SecurityExtension extends Extension
     public function getAlias()
     {
         return 'security';
-    }
-
-    protected function fixConfig($config, $key)
-    {
-        $values = array();
-        if (isset($config[$key.'s'])) {
-            $values = $config[$key.'s'];
-        } elseif (isset($config[$key])) {
-            if (is_string($config[$key]) || !is_int(key($config[$key]))) {
-                // only one
-                $values = array($config[$key]);
-            } else {
-                $values = $config[$key];
-            }
-        }
-
-        return $values;
     }
 }

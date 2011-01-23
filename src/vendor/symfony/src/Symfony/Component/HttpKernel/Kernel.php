@@ -245,6 +245,7 @@ abstract class Kernel implements HttpKernelInterface, \Serializable
      */
     public function getBundle($name, $first = true)
     {
+//        var_dump(\array_keys($this->bundleMap));exit;
         if (!isset($this->bundleMap[$name])) {
             throw new \InvalidArgumentException(sprintf('Bundle "%s" does not exist or it is not enabled.', $name));
         }
