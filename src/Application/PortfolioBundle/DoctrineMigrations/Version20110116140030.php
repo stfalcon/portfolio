@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\PortfolioBundle\DoctrineMigrations;
+namespace PortfolioBundle\DoctrineMigrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration,
     Doctrine\DBAL\Schema\Schema;
