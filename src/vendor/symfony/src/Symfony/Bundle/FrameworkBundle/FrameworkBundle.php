@@ -23,6 +23,7 @@ use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddClassesToCach
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\TranslatorPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -41,6 +42,10 @@ class FrameworkBundle extends Bundle
 
         if ($container->has('error_handler')) {
             $container->get('error_handler');
+        }
+
+        if ($this->container->hasParameter('document_root')) {
+            File::setDocumentRoot($this->container->getParameter('document_root'));
         }
 
         // the session ID should always be included in the CSRF token, even
@@ -64,6 +69,8 @@ class FrameworkBundle extends Bundle
     public function registerExtensions(ContainerBuilder $container)
     {
         parent::registerExtensions($container);
+
+        $container->addScope('request');
 
         $container->addCompilerPass(new AddSecurityVotersPass());
         $container->addCompilerPass(new ConverterManagerPass());
