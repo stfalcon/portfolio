@@ -28,6 +28,7 @@ class Definition
     protected $configurator;
     protected $tags;
     protected $public;
+    protected $synthetic;
 
     /**
      * Constructor.
@@ -43,6 +44,7 @@ class Definition
         $this->scope = ContainerInterface::SCOPE_CONTAINER;
         $this->tags = array();
         $this->public = true;
+        $this->synthetic = false;
     }
 
     /**
@@ -295,6 +297,18 @@ class Definition
     }
 
     /**
+     * Whether this definition has a tag with the given name
+     *
+     * @param string $name
+     *
+     * @return Boolean
+     */
+    public function hasTag($name)
+    {
+        return isset($this->tags[$name]);
+    }
+
+    /**
      * Clears the tags for this definition.
      *
      * @return Definition The current instance
@@ -375,6 +389,32 @@ class Definition
     public function isPublic()
     {
         return $this->public;
+    }
+
+    /**
+     * Sets whether this definition is synthetic, that is not constructed by the
+     * container, but dynamically injected.
+     *
+     * @param Boolean $boolean
+     *
+     * @return Definition the current instance
+     */
+    public function setSynthetic($boolean)
+    {
+        $this->synthetic = (Boolean) $boolean;
+
+        return $this;
+    }
+
+    /**
+     * Whether this definition is synthetic, that is not constructed by the
+     * container, but dynamically injected.
+     *
+     * @return Boolean
+     */
+    public function isSynthetic()
+    {
+        return $this->synthetic;
     }
 
     /**

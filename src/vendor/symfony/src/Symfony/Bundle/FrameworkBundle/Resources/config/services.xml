@@ -11,10 +11,12 @@
         <parameter key="error_handler.class">Symfony\Component\HttpKernel\Debug\ErrorHandler</parameter>
         <parameter key="error_handler.level">null</parameter>
         <parameter key="filesystem.class">Symfony\Bundle\FrameworkBundle\Util\Filesystem</parameter>
+        <parameter key="cache_warmer.class">Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate</parameter>
     </parameters>
 
     <services>
         <service id="event_dispatcher" class="%event_dispatcher.class%">
+            <argument type="service" id="service_container" />
         </service>
 
         <service id="error_handler" class="%error_handler.class%" public="false">
@@ -23,16 +25,22 @@
 
         <service id="http_kernel" class="%http_kernel.class%">
             <argument type="service" id="service_container" />
-            <argument type="service" id="event_dispatcher" />
             <argument type="service" id="controller_resolver" />
+            <call method="setEventDispatcher"><argument type="service" id="event_dispatcher" /></call>
+        </service>
+
+        <service id="cache_warmer" class="%cache_warmer.class%">
+            <argument type="collection" />
         </service>
 
         <!--
             If you want to change the Request class, modify the code in
             your front controller (app.php) so that it passes an instance of
             YourRequestClass to the Kernel.
+            This service definition only defines the scope of the request.
+            It is used to check references scope.
         -->
-        <service id="request" scope="request" />
+        <service id="request" scope="request" synthetic="true" />
 
         <service id="response" class="%response.class%" scope="prototype">
             <call method="setCharset">

@@ -6,8 +6,8 @@ app.config:
         secret: xxxxxxxxxx
     router:        { resource: "%kernel.root_dir%/config/routing.yml" }
     validation:    { enabled: true, annotations: true }
-    templating:
-        escaping:       htmlspecialchars
+    templating:    { engines: ['php'] }
+#        escaping:       htmlspecialchars
     session:
         default_locale: en
         lifetime:       3600

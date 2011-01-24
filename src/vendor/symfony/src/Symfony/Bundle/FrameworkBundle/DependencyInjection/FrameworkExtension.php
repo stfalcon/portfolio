@@ -157,6 +157,13 @@ class FrameworkExtension extends Extension
             $this->registerEsiConfiguration($config, $container);
         }
 
+        if (isset($config['cache-warmer'])) {
+            $config['cache_warmer'] = $config['cache-warmer'];
+        }
+
+        $warmer = isset($config['cache_warmer']) ? $config['cache_warmer'] : !$container->getParameter('kernel.debug');
+        $container->setParameter('kernel.cache_warmup', $warmer);
+
         $this->addClassesToCompile(array(
             'Symfony\\Component\\HttpFoundation\\ParameterBag',
             'Symfony\\Component\\HttpFoundation\\HeaderBag',
@@ -205,9 +212,10 @@ class FrameworkExtension extends Extension
     {
         $config = isset($config['templating']) ? $config['templating'] : array();
 
-        if (!$container->hasDefinition('templating')) {
+        if (!$container->hasDefinition('templating.locator')) {
             $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
             $loader->load('templating.xml');
+            $loader->load('templating_php.xml');
 
             if ($container->getParameter('kernel.debug')) {
                 $loader->load('templating_debug.xml');
@@ -228,11 +236,6 @@ class FrameworkExtension extends Extension
 
         if (array_key_exists('assets_base_urls', $config)) {
             $container->setParameter('templating.assets.base_urls', $config['assets_base_urls']);
-        }
-
-        // path for the filesystem loader
-        if (isset($config['path'])) {
-            $container->setParameter('templating.loader.filesystem.path', $config['path']);
         }
 
         // loaders
@@ -260,11 +263,38 @@ class FrameworkExtension extends Extension
             $container->setParameter('templating.loader.cache.path', $config['cache']);
         }
 
-        // compilation
+        if (isset($config['cache-warmer'])) {
+            $config['cache_warmer'] = $config['cache-warmer'];
+        }
+
+        if (isset($config['cache_warmer']) && $config['cache_warmer']) {
+            $container->getDefinition('templating.cache_warmer.template_paths')->addTag('kernel.cache_warmer');
+            $container->setAlias('templating.locator', 'templating.locator.cached');
+        }
+
+        // engines
+        if (!$engines = $this->normalizeConfig($config, 'engine')) {
+            throw new \LogicException('You must register at least one templating engine.');
+        }
+
+        foreach ($engines as $i => $engine) {
+            $engines[$i] = new Reference('templating.engine.'.(is_array($engine) ? $engine['id'] : $engine));
+        }
+
+        if (1 === count($engines)) {
+            $container->setAlias('templating', (string) $engines[0]);
+        } else {
+            $def = $container->getDefinition('templating.engine.delegating');
+            $def->setArgument(1, $engines);
+
+            $container->setAlias('templating', 'templating.engine.delegating');
+        }
+
         $this->addClassesToCompile(array(
-            'Symfony\\Component\\Templating\\DelegatingEngine',
             'Symfony\\Bundle\\FrameworkBundle\\Templating\\EngineInterface',
             'Symfony\\Component\\Templating\\EngineInterface',
+            'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\TemplateLocatorInterface',
+            $container->findDefinition('templating.locator')->getClass(),
         ));
     }
 
@@ -290,9 +320,11 @@ class FrameworkExtension extends Extension
      */
     protected function registerEsiConfiguration(array $config, ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('esi')) {
-            $loader = new XmlFileLoader($container, array(__DIR__.'/../Resources/config', __DIR__.'/Resources/config'));
-            $loader->load('esi.xml');
+        if (isset($config['esi']['enabled']) && $config['esi']['enabled']) {
+            if (!$container->hasDefinition('esi')) {
+                $loader = new XmlFileLoader($container, array(__DIR__.'/../Resources/config', __DIR__.'/Resources/config'));
+                $loader->load('esi.xml');
+            }
         }
     }
 
@@ -375,7 +407,11 @@ class FrameworkExtension extends Extension
             }
         }
 
-        if (isset($config['auto_start']) || isset($config['auto-start'])) {
+        if (isset($config['auto-start'])) {
+            $config['auto_start'] = $config['auto-start'];
+        }
+
+        if (isset($config['auto_start']) && $config['auto_start']) {
             $container->getDefinition('session')->addMethodCall('start');
         }
 
@@ -429,15 +465,22 @@ class FrameworkExtension extends Extension
 
         $container->setParameter('routing.resource', $config['router']['resource']);
 
+        if (isset($config['router']['cache-warmer'])) {
+            $config['router']['cache_warmer'] = $config['router']['cache-warmer'];
+        }
+
+        if (isset($config['router']['cache_warmer']) && $config['router']['cache_warmer']) {
+            $container->getDefinition('router.cache_warmer')->addTag('kernel.cache_warmer');
+            $container->setAlias('router', 'router.cached');
+        }
+
         $this->addClassesToCompile(array(
             'Symfony\\Component\\Routing\\RouterInterface',
-            'Symfony\\Component\\Routing\\Router',
             'Symfony\\Component\\Routing\\Matcher\\UrlMatcherInterface',
             'Symfony\\Component\\Routing\\Matcher\\UrlMatcher',
             'Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface',
             'Symfony\\Component\\Routing\\Generator\\UrlGenerator',
-            'Symfony\\Component\\Routing\\Loader\\LoaderInterface',
-            'Symfony\\Bundle\\FrameworkBundle\\Routing\\LazyLoader',
+            $container->findDefinition('router')->getClass()
         ));
     }
 

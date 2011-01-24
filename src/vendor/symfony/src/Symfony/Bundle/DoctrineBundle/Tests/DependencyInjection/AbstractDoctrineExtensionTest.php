@@ -133,7 +133,6 @@ abstract class AbstractDoctrineExtensionTest extends TestCase
         $this->assertEquals('Doctrine\ORM\Mapping\Driver\DriverChain', $container->getParameter('doctrine.orm.metadata.driver_chain_class'));
         $this->assertEquals('Doctrine\ORM\Mapping\Driver\AnnotationDriver', $container->getParameter('doctrine.orm.metadata.annotation_class'));
         $this->assertEquals('Doctrine\Common\Annotations\AnnotationReader', $container->getParameter('doctrine.orm.metadata.annotation_reader_class'));
-        $this->assertEquals('Doctrine\ORM\Mapping\\', $container->getParameter('doctrine.orm.metadata.annotation_default_namespace'));
         $this->assertEquals('Doctrine\ORM\Mapping\Driver\XmlDriver', $container->getParameter('doctrine.orm.metadata.xml_class'));
         $this->assertEquals('Doctrine\ORM\Mapping\Driver\YamlDriver', $container->getParameter('doctrine.orm.metadata.yml_class'));
 
@@ -425,33 +424,33 @@ abstract class AbstractDoctrineExtensionTest extends TestCase
         ));
     }
 
-    public function testMultipleOrmLoadCalls()
+    public function testOrmMergeConfigs()
     {
         $container = $this->getContainer(array('XmlBundle', 'AnnotationsBundle'));
         $loader = new DoctrineExtension();
 
         $loader->dbalLoad(array(array()), $container);
         $loader->ormLoad(array(array(
-                'auto_generate_proxy_dir' => true,
+                'auto_generate_proxy_classes' => true,
                 'mappings' => array('AnnotationsBundle' => array())
             ),
             array(
-                'auto_generate_proxy_dir' => false,
+                'auto_generate_proxy_classes' => false,
                 'mappings' => array('XmlBundle' => array())
         )), $container);
 
         $definition = $container->getDefinition('doctrine.orm.default_metadata_driver');
         $this->assertDICDefinitionMethodCallAt(0, $definition, 'addDriver', array(
-            new Reference('doctrine.orm.default_annotation_metadata_driver'),
-            'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles\AnnotationsBundle\Entity'
-        ));
-        $this->assertDICDefinitionMethodCallAt(1, $definition, 'addDriver', array(
             new Reference('doctrine.orm.default_xml_metadata_driver'),
             'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles\XmlBundle\Entity'
         ));
+        $this->assertDICDefinitionMethodCallAt(1, $definition, 'addDriver', array(
+            new Reference('doctrine.orm.default_annotation_metadata_driver'),
+            'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles\AnnotationsBundle\Entity'
+        ));
 
         $configDef = $container->getDefinition('doctrine.orm.default_configuration');
-        $this->assertDICDefinitionMethodCallOnce($configDef, 'setAutoGenerateProxyClasses', array(false));
+        $this->assertDICDefinitionMethodCallOnce($configDef, 'setAutoGenerateProxyClasses', array(true));
     }
 
     public function testEntityManagerMetadataCacheDriverConfiguration()
