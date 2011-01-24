@@ -8,11 +8,6 @@ namespace Application\PortfolioBundle\Entity;
 class Project
 {
     /**
-     * @var integer $id
-     */
-    private $id;
-
-    /**
      * @var string $name
      */
     private $name;
@@ -23,14 +18,14 @@ class Project
     private $description;
 
     /**
-     * Get id
-     *
-     * @return integer $id
+     * @var integer $id
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id;
+
+    /**
+     * @var Application\PortfolioBundle\Entity\Category
+     */
+    private $categories;
 
     /**
      * Set name
@@ -70,5 +65,35 @@ class Project
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param Application\PortfolioBundle\Entity\Category $categories
+     */
+    public function addCategories(\Application\PortfolioBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Doctrine\Common\Collections\Collection $categories
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

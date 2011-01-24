@@ -118,7 +118,6 @@ EOT
         }
 
         $toType = strtolower($input->getArgument('to-type'));
-
         $cme = new ClassMetadataExporter();
         $exporter = $cme->getExporter($toType, $destPath);
 

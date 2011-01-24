@@ -8,11 +8,6 @@ namespace Application\PortfolioBundle\Entity;
 class Category
 {
     /**
-     * @var integer $id
-     */
-    private $id;
-
-    /**
      * @var string $name
      */
     private $name;
@@ -23,14 +18,9 @@ class Category
     private $description;
 
     /**
-     * Get id
-     *
-     * @return integer $id
+     * @var integer $id
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id;
 
     /**
      * Set name
@@ -70,5 +60,15 @@ class Category
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

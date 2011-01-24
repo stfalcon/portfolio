@@ -1,0 +1,25 @@
+Application\PortfolioBundle\Entity\Project:
+    type: entity
+    table: portfolio_projects
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 255
+        description:
+            type: text
+    manyToMany:
+      categories:
+        targetEntity: Application\PortfolioBundle\Entity\Category
+        joinTable:
+          name: portfolio_projects_categories
+          joinColumns:
+            project_id:
+              referencedColumnName: id
+          inverseJoinColumns:
+            category_id:
+              referencedColumnName: id
