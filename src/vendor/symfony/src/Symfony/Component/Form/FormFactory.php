@@ -12,6 +12,9 @@ namespace Symfony\Component\Form;
  */
 
 use Symfony\Component\Form\FieldFactory\FieldFactoryInterface;
+use Symfony\Component\Form\CsrfProvider\CsrfProviderInterface;
+use Symfony\Component\Form\CsrfProvider\DefaultCsrfProvider;
+use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Validator\ValidatorInterface;
 
 /**
@@ -52,6 +55,43 @@ class FormFactory implements FormContextInterface
      * @var FormContextInterface
      */
     protected $defaultContext;
+
+    /**
+     * Builds a form factory with default values
+     *
+     * By default, CSRF protection is enabled. In this case you have to provide
+     * a CSRF secret in the second parameter of this method. A recommended
+     * value is a generated value with at least 32 characters and mixed
+     * letters, digits and special characters.
+     *
+     * If you don't want to use CSRF protection, you can leave the CSRF secret
+     * empty and set the third parameter to false.
+     *
+     * @param ValidatorInterface $validator  The validator for validating
+     *                                       forms
+     * @param string $csrfSecret             The secret to be used for
+     *                                       generating CSRF tokens
+     * @param boolean $csrfProtection        Whether forms should be CSRF
+     *                                       protected
+     * @throws FormException                 When CSRF protection is enabled,
+     *                                       but no CSRF secret is passed
+     */
+    public static function buildDefault(ValidatorInterface $validator, $csrfSecret = null, $csrfProtection = true)
+    {
+        $context = new FormContext();
+        $context->csrfProtection($csrfProtection);
+        $context->validator($validator);
+
+        if ($csrfProtection) {
+            if (empty($csrfSecret)) {
+                throw new FormException('Please provide a CSRF secret when CSRF protection is enabled');
+            }
+
+            $context->csrfProvider(new DefaultCsrfProvider($csrfSecret));
+        }
+
+        return new static($context);
+    }
 
     /**
      * Sets the given context as default context
@@ -133,32 +173,17 @@ class FormFactory implements FormContextInterface
     }
 
     /**
-     * Overrides the CSRF secrets setting of the default context and returns
+     * Overrides the CSRF provider setting of the default context and returns
      * the new context
      *
-     * @param  array $secrets        The secrets to use for CSRF protection
-     * @return FormContextInterface  The preconfigured form context
+     * @param  CsrfProviderInterface $provider  The provider instance
+     * @return FormContextInterface             The preconfigured form context
      */
-    public function csrfSecrets(array $secrets)
+    public function csrfProvider(CsrfProviderInterface $csrfProvider)
     {
         $context = clone $this->defaultContext;
 
-        return $context->csrfSecrets($secrets);
-    }
-
-    /**
-     * Adds a new CSRF secret to the ones in the default context and returns
-     * the new context
-     *
-     * @param  string $secret        The secret to add to the secrets used for
-     *                               CSRF protection
-     * @return FormContextInterface  The preconfigured form context
-     */
-    public function addCsrfSecret($secret)
-    {
-        $context = clone $this->defaultContext;
-
-        return $context->addCsrfSecret($secret);
+        return $context->csrfProvider($csrfProvider);
     }
 
     /**

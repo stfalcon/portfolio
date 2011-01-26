@@ -16,7 +16,7 @@ namespace Symfony\Component\EventDispatcher;
  *
  * @author Fabien Potencier <fabien.potencier@symfony-project.com>
  */
-class Event
+class Event implements EventInterface
 {
     protected $value = null;
     protected $processed = false;

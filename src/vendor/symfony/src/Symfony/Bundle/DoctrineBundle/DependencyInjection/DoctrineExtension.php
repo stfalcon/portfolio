@@ -154,7 +154,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
     {
         $containerDef = new Definition($container->getParameter('doctrine.dbal.configuration_class'));
         $containerDef->setPublic(false);
-        if (isset($connection['logging']) && $connection['logging']) {
+        if (isset($connection['container']['logging']) && $connection['container']['logging']) {
             $containerDef->addMethodCall('setSQLLogger', array(new Reference('doctrine.dbal.logger')));
         }
         $container->setDefinition(sprintf('doctrine.dbal.%s_connection.configuration', $connection['name']), $containerDef);
@@ -234,6 +234,8 @@ class DoctrineExtension extends AbstractDoctrineExtension
                 );
             }
         }
+
+        $container->setParameter('doctrine.orm.entity_managers', array_keys($config['entity_managers']));
     }
 
     protected function mergeOrmConfig(array $configs, $container)

@@ -68,7 +68,7 @@ class FrameworkExtension extends Extension
         }
 
         if (isset($config['i18n']) && $config['i18n']) {
-            FormContext::setLocale(\Locale::get());
+            FormContext::setLocale(\Locale::getDefault());
         }
 
         if (isset($config['ide'])) {
@@ -181,7 +181,9 @@ class FrameworkExtension extends Extension
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\Controller',
 
+            'Symfony\\Component\\EventDispatcher\\EventInterface',
             'Symfony\\Component\\EventDispatcher\\Event',
+            'Symfony\\Component\\EventDispatcher\\EventDispatcherInterface',
             'Symfony\\Component\\EventDispatcher\\EventDispatcher',
             'Symfony\\Bundle\\FrameworkBundle\\EventDispatcher',
 
