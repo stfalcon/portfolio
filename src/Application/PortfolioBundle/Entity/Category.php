@@ -4,71 +4,33 @@ namespace Application\PortfolioBundle\Entity;
 
 /**
  * Application\PortfolioBundle\Entity\Category
+ *
+ * @orm:Table(name="portfolio_categories")
+ * @orm:Entity
  */
 class Category
 {
     /**
+     * @var integer $id
+     *
+     * @orm:Column(name="id", type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @var string $name
+     *
+     * @orm:Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var text $description
+     *
+     * @orm:Column(name="description", type="text")
      */
     private $description;
 
-    /**
-     * @var integer $id
-     */
-    private $id;
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string $name
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param text $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return text $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 }

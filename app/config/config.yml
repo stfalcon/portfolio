@@ -6,7 +6,7 @@ app.config:
         secret: xxxxxxxxxx
     router:        { resource: "%kernel.root_dir%/config/routing.yml" }
     validation:    { enabled: true, annotations: true }
-    templating:    { engines: ['php'] }
+    templating:    { engines: ['php', 'twig'] }
 #        escaping:       htmlspecialchars
     session:
         default_locale: en
