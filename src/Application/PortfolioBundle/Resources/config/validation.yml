@@ -9,3 +9,12 @@ Application\PortfolioBundle\Entity\Project:
 #    getters:
 #        tokenValid:
 #            - AssertTrue: { message: "The token is invalid" }
+
+Application\PortfolioBundle\Entity\Category:
+    properties:
+        name:
+            - NotBlank: ~
+            - MinLength: 3
+        description:
+            - NotBlank: ~
+            - MinLength: 10

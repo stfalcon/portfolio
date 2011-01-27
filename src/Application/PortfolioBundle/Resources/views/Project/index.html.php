@@ -21,4 +21,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+<?php else: ?>
+    <div class="info">
+        List of projects is empty
+    </div>
 <?php endif; ?>

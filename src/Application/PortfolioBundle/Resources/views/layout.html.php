@@ -30,6 +30,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="<?php echo $view['router']->generate('portfolioCategoryIndex') ?>">Categories</a>
+                        <ul>
+                            <li>
+                                <a href="<?php echo $view['router']->generate('portfolioCategoryCreate') ?>">Create new category</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="clear"></div>
