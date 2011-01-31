@@ -16,7 +16,7 @@
         <div class="container_12">
             <div class="grid_12">
                 <h1 id="branding">
-                    <a href="">PortfolioBundle</a>
+                    <a href="<?php echo $view['router']->generate('homepage') ?>">PortfolioBundle</a>
                 </h1>
             </div>
             <div class="clear"></div>

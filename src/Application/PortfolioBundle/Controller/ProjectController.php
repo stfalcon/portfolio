@@ -98,6 +98,21 @@ class ProjectController extends Controller
         ));
     }
 
+    public function viewAction($id)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        // try find project by id
+        $project = $em->find("PortfolioBundle:Project", $id);
+        if (!$project) {
+            throw new NotFoundHttpException('The project does not exist.');
+        }
+
+        return $this->render('PortfolioBundle:Project:view.html.php', array(
+            'project' => $project
+        ));
+    }
+
     /**
      * Delete project
      *
