@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../app/AppKernel.php';
+require_once __DIR__.'/../app/bootstrap.php';
 
 use Symfony\Component\HttpFoundation\Request;
 
