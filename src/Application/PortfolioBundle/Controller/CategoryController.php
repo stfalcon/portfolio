@@ -66,6 +66,9 @@ class CategoryController extends Controller
 
         // try find category by id
         $category = $em->find("PortfolioBundle:Category", $id);
+//        var_dump(is_a($category->getProjects(), 'Traversable'));
+        var_dump($category->getProjects()->toArray());
+        exit;
         if (!$category) {
             throw new NotFoundHttpException('The category does not exist.');
         }
@@ -77,6 +80,9 @@ class CategoryController extends Controller
             $form->bind($this->get('request')->request->get('category'));
 
             if ($form->isValid()) {
+//                $project = $em->find("PortfolioBundle:Project", 1);
+//                $category->addProject($project);
+                
                 // save category
                 $em->persist($category);
                 $em->flush();

@@ -33,6 +33,26 @@ class Category
      */
     private $description;
 
+    /**
+     * @var Doctrine\Common\Collections\ArrayCollection
+     *
+     * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Project")
+     * @orm:JoinTable(name="portfolio_projects_categories",
+     *   joinColumns={
+     *     @orm:JoinColumn(name="category_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @orm:JoinColumn(name="project_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
+
     public function getId()
     {
         return $this->id;
@@ -56,6 +76,21 @@ class Category
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    public function addProject(\Application\PortfolioBundle\Entity\Project $project)
+    {
+        $this->projects[] = $project;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
 }

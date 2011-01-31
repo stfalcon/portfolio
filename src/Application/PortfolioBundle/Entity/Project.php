@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Project
 {
+    
     /**
      * @var integer $id
      *
@@ -52,7 +53,6 @@ class Project
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-        $this->contributionRepos = new ArrayCollection();
     }
 
     public function getId()
@@ -88,6 +88,11 @@ class Project
     public function addCategory(\Application\PortfolioBundle\Entity\Category $category)
     {
         $this->categories[] = $category;
+    }
+
+    public function setCategories(\Doctrine\Common\Collections\ArrayCollection $categories)
+    {
+        $this->categories = $categories;
     }
 
 }

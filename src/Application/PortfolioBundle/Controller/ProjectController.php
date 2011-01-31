@@ -33,19 +33,23 @@ class ProjectController extends Controller
      */
     public function createAction()
     {
+        $em = $this->get('doctrine.orm.entity_manager');
+        
         $project = new Project();
 
-        $form = new \Application\PortfolioBundle\Form\Project('project', $project, $this->get('validator'));
-
+        // project form
+        $form = new \Application\PortfolioBundle\Form\Project(
+                'project', $project, $this->get('validator'), array('em' => $em));
+        
         if ('POST' === $this->get('request')->getMethod()) {
             $form->bind($this->get('request')->request->get('project'));
-
             if ($form->isValid()) {
-                $em = $this->get('doctrine.orm.entity_manager');
+                // create project
                 $em->persist($project);
                 $em->flush();
 
-                $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your project is successfully created!');
+                $this->get('request')->getSession()->setFlash('notice',
+                        'Congratulations, your project is successfully created!');
                 return $this->redirect($this->generateUrl('portfolioProjectIndex'));
             }
         }
@@ -71,8 +75,9 @@ class ProjectController extends Controller
         }
 
         // project form
-        $form = new \Application\PortfolioBundle\Form\Project('project', $project, $this->get('validator'));
-
+        $form = new \Application\PortfolioBundle\Form\Project(
+                'project', $project, $this->get('validator'), array('em' => $em));
+        
         if ('POST' === $this->get('request')->getMethod()) {
             $form->bind($this->get('request')->request->get('project'));
 
@@ -81,7 +86,8 @@ class ProjectController extends Controller
                 $em->persist($project);
                 $em->flush();
 
-                $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your project is successfully updated!');
+                $this->get('request')->getSession()->setFlash('notice',
+                        'Congratulations, your project is successfully updated!');
                 return $this->redirect($this->generateUrl('portfolioProjectIndex'));
             }
         }
@@ -110,7 +116,8 @@ class ProjectController extends Controller
         $em->remove($project);
         $em->flush();
 
-        $this->get('request')->getSession()->setFlash('notice', 'Your project is successfully delete.');
+        $this->get('request')->getSession()->setFlash('notice',
+                'Your project is successfully delete.');
         return $this->redirect($this->generateUrl('portfolioProjectIndex'));
     }
 }
