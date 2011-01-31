@@ -5,7 +5,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
     'Symfony'                        => __DIR__.'/../vendor/symfony/src',
-    'Sensio'                         => __DIR__.'/../src',
+    'Application'                    => __DIR__.'/../src',
     'Doctrine\\Common\\DataFixtures' => __DIR__.'/../vendor/doctrine-data-fixtures/lib',
     'Doctrine\\Common'               => __DIR__.'/../vendor/doctrine-common/lib',
     'Doctrine\\DBAL\\Migrations'     => __DIR__.'/../vendor/doctrine-migrations/lib',
