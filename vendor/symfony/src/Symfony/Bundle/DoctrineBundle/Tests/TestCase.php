@@ -50,7 +50,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     public function createYamlBundleTestContainer()
     {
         $container = new ContainerBuilder(new ParameterBag(array(
-            'kernel.bundles'     => array('YamlBundle' => 'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles\YamlBundle\YamlBundle'),
+            'kernel.bundles'     => array('YamlBundle' => 'Fixtures\Bundles\YamlBundle\YamlBundle'),
             'kernel.cache_dir'   => sys_get_temp_dir(),
             'kernel.root_dir'    => __DIR__ . "/../../../../" // src dir
         )));
@@ -63,14 +63,17 @@ class TestCase extends \PHPUnit_Framework_TestCase
                     'charset' => 'UTF-8',
                     'platform-service' => 'my.platform',
                 )
-            )
+            ),
+            'types' => array(
+                'test' => 'Symfony\Bundle\DoctrineBundle\Tests\DependencyInjection\TestType',
+            ),
         )), $container);
         $loader->ormLoad(array(
             array(
                 'mappings' => array('YamlBundle' => array(
                     'type' => 'yml',
                     'dir' => __DIR__ . "/DependencyInjection/Fixtures/Bundles/YamlBundle/Resources/config/doctrine/metadata/orm",
-                    'prefix' => 'DoctrineBundle\Tests\DependencyInjection\Fixtures\Bundles\YamlBundle',
+                    'prefix' => 'Fixtures\Bundles\YamlBundle',
             )))), $container);
 
         $container->setDefinition('my.platform', new \Symfony\Component\DependencyInjection\Definition('Doctrine\DBAL\Platforms\MySqlPlatform'));

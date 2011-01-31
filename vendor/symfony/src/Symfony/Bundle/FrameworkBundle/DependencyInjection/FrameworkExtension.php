@@ -141,10 +141,6 @@ class FrameworkExtension extends Extension
             $this->registerTestConfiguration($config, $container);
         }
 
-        if (array_key_exists('param_converter', $config) || array_key_exists('param-converter', $config)) {
-            $this->registerParamConverterConfiguration($config, $container);
-        }
-
         if (array_key_exists('session', $config)) {
             $this->registerSessionConfiguration($config, $container);
         }
@@ -190,18 +186,6 @@ class FrameworkExtension extends Extension
             'Symfony\\Component\\Form\\FormContext',
             'Symfony\\Component\\Form\\FormContextInterface',
         ));
-    }
-
-    /**
-     * Loads the parameter converter configuration.
-     *
-     * @param array            $config    An array of configuration settings
-     * @param ContainerBuilder $container A ContainerBuilder instance
-     */
-    protected function registerParamConverterConfiguration(array $config, ContainerBuilder $container)
-    {
-        $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
-        $loader->load('param_converter.xml');
     }
 
     /**
@@ -279,8 +263,30 @@ class FrameworkExtension extends Extension
             throw new \LogicException('You must register at least one templating engine.');
         }
 
+        $this->addClassesToCompile(array(
+            'Symfony\\Bundle\\FrameworkBundle\\Templating\\EngineInterface',
+            'Symfony\\Component\\Templating\\EngineInterface',
+            'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\TemplateLocatorInterface',
+            $container->findDefinition('templating.locator')->getClass(),
+        ));
+
         foreach ($engines as $i => $engine) {
-            $engines[$i] = new Reference('templating.engine.'.(is_array($engine) ? $engine['id'] : $engine));
+            $id = is_array($engine) ? $engine['id'] : $engine;
+            $engines[$i] = new Reference('templating.engine.'.$id);
+
+            if ('php' === $id) {
+                $this->addClassesToCompile(array(
+                    'Symfony\\Component\\Templating\\PhpEngine',
+                    'Symfony\\Component\\Templating\\TemplateNameParserInterface',
+                    'Symfony\\Component\\Templating\\TemplateNameParser',
+                    'Symfony\\Component\\Templating\\Loader\\LoaderInterface',
+                    'Symfony\\Component\\Templating\\Storage\\Storage',
+                    'Symfony\\Component\\Templating\\Storage\\FileStorage',
+                    'Symfony\\Bundle\\FrameworkBundle\\Templating\\PhpEngine',
+                    'Symfony\\Bundle\\FrameworkBundle\\Templating\\TemplateNameParser',
+                    'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\FilesystemLoader',
+                ));
+            }
         }
 
         if (1 === count($engines)) {
@@ -291,13 +297,6 @@ class FrameworkExtension extends Extension
 
             $container->setAlias('templating', 'templating.engine.delegating');
         }
-
-        $this->addClassesToCompile(array(
-            'Symfony\\Bundle\\FrameworkBundle\\Templating\\EngineInterface',
-            'Symfony\\Component\\Templating\\EngineInterface',
-            'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\TemplateLocatorInterface',
-            $container->findDefinition('templating.locator')->getClass(),
-        ));
     }
 
     /**

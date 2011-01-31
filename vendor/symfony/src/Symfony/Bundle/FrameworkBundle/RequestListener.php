@@ -86,7 +86,7 @@ class RequestListener
         // add attributes based on the path info (routing)
         if (false !== $parameters = $this->router->match($request->getPathInfo())) {
             if (null !== $this->logger) {
-                $this->logger->info(sprintf('Matched route "%s" (parameters: %s)', $parameters['_route'], str_replace("\n", '', var_export($parameters, true))));
+                $this->logger->info(sprintf('Matched route "%s" (parameters: %s)', $parameters['_route'], json_encode($parameters)));
             }
 
             $request->attributes->add($parameters);

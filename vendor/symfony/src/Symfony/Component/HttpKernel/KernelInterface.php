@@ -50,11 +50,6 @@ interface KernelInterface extends HttpKernelInterface, \Serializable
 
     /**
      * Boots the current kernel.
-     *
-     * This method boots the bundles, which MUST set
-     * the DI container.
-     *
-     * @throws \LogicException When the Kernel is already booted
      */
     function boot();
 
@@ -64,15 +59,6 @@ interface KernelInterface extends HttpKernelInterface, \Serializable
      * This method is mainly useful when doing functional testing.
      */
     function shutdown();
-
-    /**
-     * Reboots the kernel.
-     *
-     * This method is mainly useful when doing functional testing.
-     *
-     * It is a shortcut for the call to shutdown() and boot().
-     */
-    function reboot();
 
     /**
      * Gets the registered bundle instances.
