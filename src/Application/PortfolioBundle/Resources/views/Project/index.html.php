@@ -8,7 +8,9 @@
             <?php foreach ($projects as $project): ?>
                 <tr>
                     <td>
-                        <?php echo $project['name']; ?>
+                        <a href="<?php echo $view['router']->generate('portfolioProjectView', array('id' => $project['id'])) ?>">
+                            <?php echo $project['name']; ?>
+                        </a>
                     </td>
                     <td>
                         <?php echo $project['description']; ?>

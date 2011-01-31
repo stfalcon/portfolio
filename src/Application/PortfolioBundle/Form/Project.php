@@ -49,7 +49,6 @@ class Project extends Form
                     'value_transformer' => $productTransformer,
                 ));
         $this->add($field);
-//        $field->setData($project->getCategories());
     }
 
 }

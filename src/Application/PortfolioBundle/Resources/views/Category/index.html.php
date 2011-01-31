@@ -8,7 +8,9 @@
             <?php foreach ($categories as $category): ?>
                 <tr>
                     <td>
-                        <?php echo $category['name']; ?>
+                        <a href="<?php echo $view['router']->generate('portfolioCategoryView', array('id' => $category['id'])) ?>">
+                            <?php echo $category['name']; ?>
+                        </a>
                     </td>
                     <td class="currency">
                         <a href="<?php echo $view['router']->generate('portfolioCategoryEdit', array('id' => $category['id'])) ?>">Edit Category</a>

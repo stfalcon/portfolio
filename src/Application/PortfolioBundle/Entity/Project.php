@@ -1,6 +1,7 @@
 <?php
 
 namespace Application\PortfolioBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
