@@ -90,7 +90,7 @@ class Project
         $this->categories[] = $category;
     }
 
-    public function setCategories(\Doctrine\Common\Collections\ArrayCollection $categories)
+    public function setCategories(\Doctrine\Common\Collections\Collection $categories)
     {
         $this->categories = $categories;
     }
