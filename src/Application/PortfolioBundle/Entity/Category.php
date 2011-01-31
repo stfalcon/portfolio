@@ -2,6 +2,8 @@
 
 namespace Application\PortfolioBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Application\PortfolioBundle\Entity\Category
  *

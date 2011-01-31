@@ -19,7 +19,7 @@ class Project extends Form
         // добавляем опцию em в список известных опций
         $this->addOption('em');
         if (!($this->getOption('em') instanceof \Doctrine\ORM\EntityManager)) {
-            throw new InvalidOptionsException('The em option must be instance of \Doctrine\ORM\EntityManager', array('em'));
+            throw new InvalidOptionsException('The em option must be instance of Doctrine\ORM\EntityManager', array('em'));
         }
  
         $em = $this->getOption('em');
@@ -49,7 +49,6 @@ class Project extends Form
                     'value_transformer' => $productTransformer,
                 ));
         $this->add($field);
-//        $field->setData($project->getCategories());
     }
 
 }
