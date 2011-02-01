@@ -5,6 +5,13 @@ app.config:
     router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
     profiler: { only_exceptions: false }
 
+doctrine.dbal:
+    driver:   pdo_mysql
+    dbname:   portfolio_development
+    user:     root
+    password: null
+    logging:  %kernel.debug%
+
 webprofiler.config:
     toolbar: true
     intercept_redirects: true

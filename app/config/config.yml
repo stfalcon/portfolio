@@ -21,7 +21,7 @@ twig.config:
 ## Doctrine Configuration
 doctrine.dbal:
     driver:   pdo_mysql
-    dbname:   symfony2
+    dbname:   portfolio_development
     user:     root
     password: null
     logging:  %kernel.debug%
