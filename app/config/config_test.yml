@@ -3,7 +3,8 @@ imports:
 
 doctrine.dbal:
     driver:   pdo_mysql
-    dbname:   portfolio_testing
+    dbname:   portfolio_development
+#    dbname:   portfolio_testing
     user:     root
     password: null
     logging:  %kernel.debug%

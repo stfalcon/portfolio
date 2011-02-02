@@ -6,10 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ProjectControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testEmptyProjectsList()
     {
-        $crawler = $this->createClient()->request('GET', '/portfolio/projects');
-        $this->assertTrue($crawler->filter('html:contains("preorder")')->count() > 0);
+        $client = $this->createClient();
+
+        $crawler = $client->request('GET', '/portfolio/projects');
+
+        $this->assertTrue($crawler->filter('html:contains("List of projects is empty")')->count() > 0);
+//        var_dump($client->getResponse()->getContent());
+//        exit;
+
+//        $crawler = $this->createClient()->request('GET', '/portfolio/projects');
+//        $this->assertTrue($crawler->filter('html:contains("preorder")')->count() > 0);
     }
 
 //    public function testProjectCreate()
