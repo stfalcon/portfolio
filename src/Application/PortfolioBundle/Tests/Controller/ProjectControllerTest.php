@@ -9,31 +9,22 @@ class ProjectControllerTest extends WebTestCase
     public function testEmptyProjectsList()
     {
         $client = $this->createClient();
-
         $crawler = $client->request('GET', '/portfolio/projects');
 
         $this->assertTrue($crawler->filter('html:contains("List of projects is empty")')->count() > 0);
-//        var_dump($client->getResponse()->getContent());
-//        exit;
-
-//        $crawler = $this->createClient()->request('GET', '/portfolio/projects');
-//        $this->assertTrue($crawler->filter('html:contains("preorder")')->count() > 0);
     }
 
-//    public function testProjectCreate()
+//    public function testCreateValidProject()
 //    {
 //        $client = $this->createClient();
+//        $crawler = $client->request('GET', '/portfolio/project/create');
 //
-//        $crawler = $client->request('GET', '/portfolio/projects/create');
-//        $form = $crawler->selectButton('submit');
+//        $form = $crawler->selectButton('Send');
 //
-//        // set some values
-//        $form['name'] = 'preorder.it';
-//        $form['description'] = 'project description';
+//        $form['project[name]'] = 'preorder.it';
+//        $form['project[description]'] = 'Press-releases and reviews of the latest electronic novelties: mobile phones, cellphones, smartphones, laptops, tablets, netbooks, gadgets, e-books, photo and video cameras. The possibility to leave a pre-order.';
 //
-//        // submit the form
 //        $crawler = $client->submit($form);
-//
-////        $this->assertTrue(count($crawler->filter('h1')) > 0);
 //    }
+
 }
