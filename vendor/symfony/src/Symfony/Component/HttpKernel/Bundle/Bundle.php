@@ -25,6 +25,7 @@ use Symfony\Component\Finder\Finder;
 abstract class Bundle extends ContainerAware implements BundleInterface
 {
     protected $name;
+    protected $reflected;
 
     /**
      * Boots the Bundle.
@@ -38,6 +39,34 @@ abstract class Bundle extends ContainerAware implements BundleInterface
      */
     public function shutdown()
     {
+    }
+
+    /**
+     * Gets the Bundle namespace.
+     *
+     * @return string The Bundle namespace
+     */
+    public function getNamespace()
+    {
+        if (null === $this->reflected) {
+            $this->reflected = new \ReflectionObject($this);
+        }
+
+        return $this->reflected->getNamespaceName();
+    }
+
+    /**
+     * Gets the Bundle directory path.
+     *
+     * @return string The Bundle absolute path
+     */
+    public function getPath()
+    {
+        if (null === $this->reflected) {
+            $this->reflected = new \ReflectionObject($this);
+        }
+
+        return strtr(dirname($this->reflected->getFileName()), '\\', '/');
     }
 
     /**
@@ -61,9 +90,10 @@ abstract class Bundle extends ContainerAware implements BundleInterface
             return $this->name;
         }
 
-        $pos = strrpos(get_class($this), '\\');
+        $name = get_class($this);
+        $pos = strrpos($name, '\\');
 
-        return $this->name = substr(get_class($this), $pos ? $pos + 1 : 0);
+        return $this->name = false === $pos ? $name :  substr($name, $pos + 1);
     }
 
     /**

@@ -97,7 +97,7 @@ abstract class Kernel implements KernelInterface
         // init container
         $this->initializeContainer();
 
-        foreach ($this->bundles as $bundle) {
+        foreach ($this->getBundles() as $bundle) {
             $bundle->setContainer($this->container);
             $bundle->boot();
         }
@@ -114,7 +114,7 @@ abstract class Kernel implements KernelInterface
     {
         $this->booted = false;
 
-        foreach ($this->bundles as $bundle) {
+        foreach ($this->getBundles() as $bundle) {
             $bundle->shutdown();
             $bundle->setContainer(null);
         }
@@ -131,7 +131,17 @@ abstract class Kernel implements KernelInterface
             $this->boot();
         }
 
-        return $this->container->get('http_kernel')->handle($request, $type, $catch);
+        return $this->getHttpKernel()->handle($request, $type, $catch);
+    }
+
+    /**
+     * Gets a http kernel from the container
+     *
+     * @return HttpKernel
+     */
+    protected function getHttpKernel()
+    {
+        return $this->container->get('http_kernel');
     }
 
     /**
@@ -153,7 +163,7 @@ abstract class Kernel implements KernelInterface
      */
     public function isClassInActiveBundle($class)
     {
-        foreach ($this->bundles as $bundle) {
+        foreach ($this->getBundles() as $bundle) {
             $bundleClass = get_class($bundle);
             if (0 === strpos($class, substr($bundleClass, 0, strrpos($bundleClass, '\\')))) {
                 return true;
@@ -343,7 +353,7 @@ abstract class Kernel implements KernelInterface
         $this->bundles = array();
         $topMostBundles = array();
         $directChildren = array();
-        
+
         foreach ($this->registerBundles() as $bundle) {
             $name = $bundle->getName();
             if (isset($this->bundles[$name])) {
@@ -358,11 +368,11 @@ abstract class Kernel implements KernelInterface
                 $directChildren[$parentName] = $name;
             } else {
                 $topMostBundles[$name] = $bundle;
-            }            
+            }
         }
 
         // look for orphans
-        if (count($diff = array_diff(array_keys($directChildren), array_keys($this->bundles)))) {
+        if (count($diff = array_values(array_diff(array_keys($directChildren), array_keys($this->bundles))))) {
             throw new \LogicException(sprintf('Bundle "%s" extends bundle "%s", which is not registered.', $directChildren[$diff[0]], $diff[0]));
         }
 
@@ -377,7 +387,7 @@ abstract class Kernel implements KernelInterface
                 array_unshift($bundleMap, $this->bundles[$name]);
                 $hierarchy[] = $name;
             }
-            
+
             foreach ($hierarchy as $bundle) {
                 $this->bundleMap[$bundle] = $bundleMap;
                 array_pop($bundleMap);

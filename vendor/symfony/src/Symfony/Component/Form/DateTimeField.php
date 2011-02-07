@@ -46,7 +46,7 @@ use Symfony\Component\Form\ValueTransformer\ValueTransformerChain;
  *
  * @author Bernhard Schussek <bernhard.schussek@symfony-project.com>
  */
-class DateTimeField extends FieldGroup
+class DateTimeField extends Form
 {
     const DATETIME = 'datetime';
     const STRING = 'string';
@@ -74,6 +74,19 @@ class DateTimeField extends FieldGroup
         TimeField::CHOICE,
         TimeField::INPUT,
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($key, array $options = array())
+    {
+        // Override parent option
+        // \DateTime objects are never edited by reference, because
+        // we treat them like value objects
+        $this->addOption('by_reference', false);
+
+        parent::__construct($key, $options);
+    }
 
     protected function configure()
     {

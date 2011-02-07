@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\AuthenticationServiceException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Symfony\Component\Security\Http\EntryPoint\NonceExpiredException;
+use Symfony\Component\Security\Core\Exception\NonceExpiredException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
@@ -87,6 +87,7 @@ class DigestAuthenticationListener implements ListenerInterface
                 return;
             }
 
+            // FIXME
             if ($token instanceof UsernamePasswordToken && $token->isAuthenticated() && (string) $token === $username) {
                 return;
             }
@@ -101,7 +102,7 @@ class DigestAuthenticationListener implements ListenerInterface
         try {
             $digestAuth->validateAndDecode($this->authenticationEntryPoint->getKey(), $this->authenticationEntryPoint->getRealmName());
         } catch (BadCredentialsException $e) {
-            $this->fail($request, $e);
+            $this->fail($event, $request, $e);
 
             return;
         }
@@ -115,7 +116,7 @@ class DigestAuthenticationListener implements ListenerInterface
 
             $serverDigestMd5 = $digestAuth->calculateServerDigest($user->getPassword(), $request->getMethod());
         } catch (UsernameNotFoundException $notFound) {
-            $this->fail($request, new BadCredentialsException(sprintf('Username %s not found.', $digestAuth->getUsername())));
+            $this->fail($event, $request, new BadCredentialsException(sprintf('Username %s not found.', $digestAuth->getUsername())));
 
             return;
         }
@@ -125,13 +126,13 @@ class DigestAuthenticationListener implements ListenerInterface
                 $this->logger->debug(sprintf("Expected response: '%s' but received: '%s'; is AuthenticationDao returning clear text passwords?", $serverDigestMd5, $digestAuth->getResponse()));
             }
 
-            $this->fail($request, new BadCredentialsException('Incorrect response'));
+            $this->fail($event, $request, new BadCredentialsException('Incorrect response'));
 
             return;
         }
 
         if ($digestAuth->isNonceExpired()) {
-            $this->fail($request, new NonceExpiredException('Nonce has expired/timed out.'));
+            $this->fail($event, $request, new NonceExpiredException('Nonce has expired/timed out.'));
 
             return;
         }
@@ -143,15 +144,15 @@ class DigestAuthenticationListener implements ListenerInterface
         $this->securityContext->setToken(new UsernamePasswordToken($user, $user->getPassword(), $this->providerKey));
     }
 
-    protected function fail(Request $request, AuthenticationException $failed)
+    protected function fail(EventInterface $event, Request $request, AuthenticationException $authException)
     {
         $this->securityContext->setToken(null);
 
         if (null !== $this->logger) {
-            $this->logger->debug($failed);
+            $this->logger->debug($authException);
         }
 
-        $this->authenticationEntryPoint->start($request, $failed);
+        $this->authenticationEntryPoint->start($event, $request, $authException);
     }
 }
 

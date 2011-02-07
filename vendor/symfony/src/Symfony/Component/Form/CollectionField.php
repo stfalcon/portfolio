@@ -24,30 +24,32 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
  *
  * @author Bernhard Schussek <bernhard.schussek@symfony-project.com>
  */
-class CollectionField extends FieldGroup
+class CollectionField extends Form
 {
     /**
-     * The prototype for the inner fields
-     * @var FieldInterface
-     */
-    protected $prototype;
-
-    /**
-     * Remembers which fields were removed upon binding
+     * Remembers which fields were removed upon submitting
      * @var array
      */
     protected $removedFields = array();
 
     /**
-     * Repeats the given field multiple times based in the internal collection.
-     *
-     * @param FieldInterface $innerField
+     * The prototype field for the collection rows
+     * @var FieldInterface
      */
-    public function __construct(FieldInterface $innerField, array $options = array())
-    {
-        $this->prototype = $innerField;
+    protected $prototype;
 
-        parent::__construct($innerField->getKey(), $options);
+    public function __construct($key, array $options = array())
+    {
+        // This doesn't work with addOption(), because the value of this option
+        // needs to be accessed before Configurable::__construct() is reached
+        // Setting all options in the constructor of the root field
+        // is conceptually flawed
+        if (isset($options['prototype'])) {
+            $this->prototype = $options['prototype'];
+            unset($options['prototype']);
+        }
+
+        parent::__construct($key, $options);
     }
 
     /**
@@ -92,33 +94,33 @@ class CollectionField extends FieldGroup
         parent::setData($collection);
     }
 
-    public function bind($taintedData)
+    public function submit($data)
     {
         $this->removedFields = array();
 
-        if (null === $taintedData) {
-            $taintedData = array();
+        if (null === $data) {
+            $data = array();
         }
 
         foreach ($this as $name => $field) {
-            if (!isset($taintedData[$name]) && $this->getOption('modifiable') && '$$key$$' != $name) {
+            if (!isset($data[$name]) && $this->getOption('modifiable') && '$$key$$' != $name) {
                 $this->remove($name);
                 $this->removedFields[] = $name;
             }
         }
 
-        foreach ($taintedData as $name => $value) {
+        foreach ($data as $name => $value) {
             if (!isset($this[$name]) && $this->getOption('modifiable')) {
                 $this->add($this->newField($name, $name));
             }
         }
 
-        parent::bind($taintedData);
+        parent::submit($data);
     }
 
-    protected function updateObject(&$objectOrArray)
+    protected function writeObject(&$objectOrArray)
     {
-        parent::updateObject($objectOrArray);
+        parent::writeObject($objectOrArray);
 
         foreach ($this->removedFields as $name) {
             unset($objectOrArray[$name]);
@@ -127,9 +129,20 @@ class CollectionField extends FieldGroup
 
     protected function newField($key, $propertyPath)
     {
-        $field = clone $this->prototype;
-        $field->setKey($key);
-        $field->setPropertyPath(null === $propertyPath ? null : '['.$propertyPath.']');
+        if (null !== $propertyPath) {
+            $propertyPath = '['.$propertyPath.']';
+        }
+
+        if ($this->prototype) {
+            $field = clone $this->prototype;
+            $field->setKey($key);
+            $field->setPropertyPath($propertyPath);
+        } else {
+            $field = new TextField($key, array(
+                'property_path' => $propertyPath,
+            ));
+        }
+
         return $field;
     }
 }

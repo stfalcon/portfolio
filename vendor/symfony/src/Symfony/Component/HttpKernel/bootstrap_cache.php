@@ -401,12 +401,13 @@ class HttpCache implements HttpKernelInterface
     protected $kernel;
     protected $traces;
     protected $store;
+    protected $request;
     protected $esi;
-    public function __construct(HttpKernelInterface $kernel, Store $store, Esi $esi = null, array $options = array())
+    public function __construct(HttpKernelInterface $kernel, StoreInterface $store, Esi $esi = null, array $options = array())
     {
         $this->store = $store;
         $this->kernel = $kernel;
-                register_shutdown_function(array($this->store, '__destruct'));
+                register_shutdown_function(array($this->store, 'cleanup'));
         $this->options = array_merge(array(
             'debug'                  => false,
             'default_ttl'            => 0,
@@ -430,10 +431,15 @@ class HttpCache implements HttpKernelInterface
         }
         return implode('; ', $log);
     }
+    public function getRequest()
+    {
+        return $this->request;
+    }
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
                 if (HttpKernelInterface::MASTER_REQUEST === $type) {
             $this->traces = array();
+            $this->request = $request;
         }
         $path = $request->getPathInfo();
         if ($qs = $request->getQueryString()) {
@@ -688,7 +694,23 @@ namespace Symfony\Component\HttpKernel\HttpCache
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\HeaderBag;
-class Store
+interface StoreInterface
+{
+    function lookup(Request $request);
+    function write(Request $request, Response $response);
+    function invalidate(Request $request);
+    function lock(Request $request);
+    function unlock(Request $request);
+    function purge($url);
+    function cleanup();
+}
+}
+namespace Symfony\Component\HttpKernel\HttpCache
+{
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\HeaderBag;
+class Store implements StoreInterface
 {
     protected $root;
     protected $keyCache;
@@ -702,7 +724,7 @@ class Store
         $this->keyCache = new \SplObjectStorage();
         $this->locks = array();
     }
-    public function __destruct()
+    public function cleanup()
     {
                 foreach ($this->locks as $lock) {
             @unlink($lock);
@@ -810,7 +832,7 @@ class Store
             }
         }
     }
-    public function requestsMatch($vary, $env1, $env2)
+    protected function requestsMatch($vary, $env1, $env2)
     {
         if (empty($vary)) {
             return true;
@@ -825,7 +847,7 @@ class Store
         }
         return true;
     }
-    public function getMetadata($key)
+    protected function getMetadata($key)
     {
         if (false === $entries = $this->load($key)) {
             return array();
@@ -840,12 +862,12 @@ class Store
         }
         return false;
     }
-    public function load($key)
+    protected function load($key)
     {
         $path = $this->getPath($key);
         return file_exists($path) ? file_get_contents($path) : false;
     }
-    public function save($key, $data)
+    protected function save($key, $data)
     {
         $path = $this->getPath($key);
         if (!is_dir(dirname($path)) && false === @mkdir(dirname($path), 0777, true)) {
@@ -869,7 +891,7 @@ class Store
     {
         return $this->root.DIRECTORY_SEPARATOR.substr($key, 0, 2).DIRECTORY_SEPARATOR.substr($key, 2, 2).DIRECTORY_SEPARATOR.substr($key, 4, 2).DIRECTORY_SEPARATOR.substr($key, 6);
     }
-    public function getCacheKey(Request $request)
+    protected function getCacheKey(Request $request)
     {
         if (isset($this->keyCache[$request])) {
             return $this->keyCache[$request];
@@ -1076,6 +1098,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FileBag extends ParameterBag
 {
     private $fileKeys = array('error', 'name', 'size', 'tmp_name', 'type');
+    public function __construct(array $parameters = array())
+    {
+                        parent::__construct();
+        $this->replace($parameters);
+    }
     public function replace(array $files = array())
     {
         $this->parameters = array();
@@ -1152,7 +1179,7 @@ class ServerBag extends ParameterBag
     {
         $headers = array();
         foreach ($this->parameters as $key => $value) {
-            if ('http_' === strtolower(substr($key, 0, 5))) {
+            if ('HTTP_' === substr($key, 0, 5)) {
                 $headers[substr($key, 5)] = $value;
             }
         }
@@ -1345,11 +1372,11 @@ class Request
     protected $format;
     protected $session;
     static protected $formats;
-    public function __construct(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array())
+    public function __construct(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
     {
-        $this->initialize($query, $request, $attributes, $cookies, $files, $server);
+        $this->initialize($query, $request, $attributes, $cookies, $files, $server, $content);
     }
-    public function initialize(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array())
+    public function initialize(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
     {
         $this->request = new ParameterBag($request);
         $this->query = new ParameterBag($query);
@@ -1358,7 +1385,7 @@ class Request
         $this->files = new FileBag($files);
         $this->server = new ServerBag($server);
         $this->headers = new HeaderBag($this->server->getHeaders());
-        $this->content = null;
+        $this->content = $content;
         $this->languages = null;
         $this->charsets = null;
         $this->acceptableContentTypes = null;
@@ -1373,7 +1400,7 @@ class Request
     {
         return new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
     }
-    static public function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array())
+    static public function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
     {
         $defaults = array(
             'SERVER_NAME'          => 'localhost',
@@ -1427,7 +1454,7 @@ class Request
             'REQUEST_URI'          => $uri,
             'QUERY_STRING'         => $queryString,
         ));
-        return new static($query, $request, array(), $cookies, $files, $server);
+        return new static($query, $request, array(), $cookies, $files, $server, $content);
     }
     public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
     {
@@ -1891,6 +1918,11 @@ namespace Symfony\Component\HttpFoundation
 class ResponseHeaderBag extends HeaderBag
 {
     protected $computedCacheControl = array();
+    public function __construct(array $parameters = array())
+    {
+                        parent::__construct();
+        $this->replace($parameters);
+    }
     public function replace(array $headers = array())
     {
         parent::replace($headers);
@@ -2353,8 +2385,8 @@ class UniversalClassLoader
 {
     protected $namespaces = array();
     protected $prefixes = array();
-    protected $namespaceFallback;
-    protected $prefixFallback;
+    protected $namespaceFallback = array();
+    protected $prefixFallback = array();
     public function getNamespaces()
     {
         return $this->namespaces;
@@ -2371,29 +2403,33 @@ class UniversalClassLoader
     {
         return $this->prefixFallback;
     }
-    public function registerNamespaceFallback($dir)
+    public function registerNamespaceFallback($dirs)
     {
-        $this->namespaceFallback = $dir;
+        $this->namespaceFallback = (array) $dirs;
     }
-    public function registerPrefixFallback($dir)
+    public function registerPrefixFallback($dirs)
     {
-        $this->prefixFallback = $dir;
+        $this->prefixFallback = (array) $dirs;
     }
     public function registerNamespaces(array $namespaces)
     {
-        $this->namespaces = array_merge($this->namespaces, $namespaces);
+        foreach ($namespaces as $namespace => $locations) {
+            $this->namespaces[$namespace] = (array) $locations;
+        }
     }
-    public function registerNamespace($namespace, $path)
+    public function registerNamespace($namespace, $paths)
     {
-        $this->namespaces[$namespace] = $path;
+        $this->namespaces[$namespace] = (array) $paths;
     }
     public function registerPrefixes(array $classes)
     {
-        $this->prefixes = array_merge($this->prefixes, $classes);
+        foreach ($classes as $prefix => $locations) {
+            $this->prefixes[$prefix] = (array) $locations;
+        }
     }
-    public function registerPrefix($prefix, $path)
+    public function registerPrefix($prefix, $paths)
     {
-        $this->prefixes[$prefix] = $path;
+        $this->prefixes[$prefix] = (array) $paths;
     }
     public function register($prepend = false)
     {
@@ -2402,38 +2438,44 @@ class UniversalClassLoader
     public function loadClass($class)
     {
         $class = ltrim($class, '\\');
-        if (false !== ($pos = strripos($class, '\\'))) {
+        if (false !== ($pos = strrpos($class, '\\'))) {
                         $namespace = substr($class, 0, $pos);
-            foreach ($this->namespaces as $ns => $dir) {
-                if (0 === strpos($namespace, $ns)) {
-                    $className = substr($class, $pos + 1);
-                    $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $namespace).DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $className).'.php';
-                    if (file_exists($file)) {
-                        require $file;
-                        return;
+            foreach ($this->namespaces as $ns => $dirs) {
+                foreach ($dirs as $dir) {
+                    if (0 === strpos($namespace, $ns)) {
+                        $className = substr($class, $pos + 1);
+                        $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $namespace).DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $className).'.php';
+                        if (file_exists($file)) {
+                            require $file;
+                            return;
+                        }
                     }
                 }
             }
-            if (null !== $this->namespaceFallback) {
-                $file = $this->namespaceFallback.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
+            foreach ($this->namespaceFallback as $dir) {
+                $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     require $file;
+                    return;
                 }
             }
         } else {
-                        foreach ($this->prefixes as $prefix => $dir) {
-                if (0 === strpos($class, $prefix)) {
-                    $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
-                    if (file_exists($file)) {
-                        require $file;
-                        return;
+                        foreach ($this->prefixes as $prefix => $dirs) {
+                foreach ($dirs as $dir) {
+                    if (0 === strpos($class, $prefix)) {
+                        $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
+                        if (file_exists($file)) {
+                            require $file;
+                            return;
+                        }
                     }
                 }
             }
-            if (null !== $this->prefixFallback) {
-                $file = $this->prefixFallback.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
+            foreach ($this->prefixFallback as $dir) {
+                $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     require $file;
+                    return;
                 }
             }
         }

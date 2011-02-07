@@ -52,7 +52,7 @@ class GetSetMethodNormalizer extends AbstractNormalizer
 
                 if (null === $propertyMap || isset($propertyMap[$attributeName])) {
                     $attributeValue = $method->invoke($object);
-                    if (!is_scalar($attributeValue)) {
+                    if ($this->serializer->isStructuredType($attributeValue)) {
                         $attributeValue = $this->serializer->normalize($attributeValue, $format);
                     }
 
@@ -75,7 +75,6 @@ class GetSetMethodNormalizer extends AbstractNormalizer
         if ($constructor) {
             $constructorParameters = $constructor->getParameters();
 
-            $attributeNames = array_keys($data);
             $params = array();
             foreach ($constructorParameters as $constructorParameter) {
                 $paramName = strtolower($constructorParameter->getName());

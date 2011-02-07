@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Form\ValueTransformer;
 
+use Symfony\Component\Form\Configurable;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**
@@ -20,7 +21,7 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
  * @author Bernhard Schussek <bernhard.schussek@symfony-project.com>
  * @author Florian Eckerstorfer <florian@eckerstorfer.org>
  */
-class NumberToLocalizedStringTransformer extends BaseValueTransformer
+class NumberToLocalizedStringTransformer extends Configurable implements ValueTransformerInterface
 {
     const ROUND_FLOOR    = \NumberFormatter::ROUND_FLOOR;
     const ROUND_DOWN     = \NumberFormatter::ROUND_DOWN;
@@ -73,7 +74,7 @@ class NumberToLocalizedStringTransformer extends BaseValueTransformer
      *
      * @param string $value
      */
-    public function reverseTransform($value, $originalValue)
+    public function reverseTransform($value)
     {
         if (!is_string($value)) {
             throw new UnexpectedTypeException($value, 'string');
@@ -100,7 +101,7 @@ class NumberToLocalizedStringTransformer extends BaseValueTransformer
      */
     protected function getNumberFormatter()
     {
-        $formatter = new \NumberFormatter($this->locale, \NumberFormatter::DECIMAL);
+        $formatter = new \NumberFormatter(\Locale::getDefault(), \NumberFormatter::DECIMAL);
 
         if ($this->getOption('precision') !== null) {
             $formatter->setAttribute(\NumberFormatter::FRACTION_DIGITS, $this->getOption('precision'));

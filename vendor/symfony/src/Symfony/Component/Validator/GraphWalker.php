@@ -133,7 +133,7 @@ class GraphWalker
         }
     }
 
-    protected function walkReference($value, $group, $propertyPath, $traverse)
+    public function walkReference($value, $group, $propertyPath, $traverse)
     {
         if (null !== $value) {
             if (!is_object($value) && !is_array($value)) {
@@ -142,7 +142,10 @@ class GraphWalker
 
             if ($traverse && (is_array($value) || $value instanceof \Traversable)) {
                 foreach ($value as $key => $element) {
-                    $this->walkReference($element, $group, $propertyPath.'['.$key.']', $traverse);
+                    // Ignore any scalar values in the collection
+                    if (is_object($element) || is_array($element)) {
+                        $this->walkReference($element, $group, $propertyPath.'['.$key.']', $traverse);
+                    }
                 }
             }
 

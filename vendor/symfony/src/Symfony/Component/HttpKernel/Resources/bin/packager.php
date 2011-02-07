@@ -27,9 +27,6 @@ ClassCollectionLoader::load(array(
     'Symfony\\Component\\DependencyInjection\\Container',
     'Symfony\\Component\\DependencyInjection\\ContainerAwareInterface',
     'Symfony\\Component\\DependencyInjection\\ContainerAware',
-    'Symfony\\Component\\DependencyInjection\\ParameterBag\\ParameterBagInterface',
-    'Symfony\\Component\\DependencyInjection\\ParameterBag\\ParameterBag',
-    'Symfony\\Component\\DependencyInjection\\ParameterBag\\FrozenParameterBag',
 
     'Symfony\\Component\\HttpKernel\\Bundle\\BundleInterface',
     'Symfony\\Component\\HttpKernel\\Bundle\\Bundle',
@@ -60,6 +57,7 @@ ClassCollectionLoader::load(array(
     'Symfony\\Component\\HttpKernel\\Kernel',
     'Symfony\\Component\\HttpKernel\\HttpKernelInterface',
     'Symfony\\Component\\HttpKernel\\HttpCache\\HttpCache',
+    'Symfony\\Component\\HttpKernel\\HttpCache\\StoreInterface',
     'Symfony\\Component\\HttpKernel\\HttpCache\\Store',
     'Symfony\\Component\\HttpKernel\\HttpCache\\Esi',
 

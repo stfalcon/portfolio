@@ -30,6 +30,7 @@ class PhpFileLoader extends FileLoader
      */
     public function load($file)
     {
+        // the container and loader variables are exposed to the included file below
         $container = $this->container;
         $loader = $this;
 

@@ -12,7 +12,7 @@
 namespace Symfony\Bundle\TwigBundle\Extension;
 
 use Symfony\Component\Form\Form;
-use Symfony\Component\Form\FieldGroupInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FieldInterface;
 use Symfony\Component\Form\CollectionField;
 use Symfony\Component\Form\HybridField;
@@ -26,8 +26,6 @@ use Symfony\Bundle\TwigBundle\TokenParser\FormThemeTokenParser;
  */
 class FormExtension extends \Twig_Extension
 {
-    static protected $cache = array();
-
     protected $resources;
     protected $templates;
     protected $environment;
@@ -47,9 +45,15 @@ class FormExtension extends \Twig_Extension
         $this->environment = $environment;
     }
 
-    public function setTheme(FieldGroupInterface $group, array $resources)
+    /**
+     * Sets a theme for a given field.
+     *
+     * @param FieldInterface $field     A FieldInterface instance
+     * @param array          $resources An array of resources
+     */
+    public function setTheme(FieldInterface $field, array $resources)
     {
-        $this->themes->attach($group, $resources);
+        $this->themes->attach($field, $resources);
     }
 
     /**
@@ -99,11 +103,7 @@ class FormExtension extends \Twig_Extension
      */
     public function renderRow(FieldInterface $field)
     {
-        if (null === $this->templates) {
-            $this->templates = $this->resolveResources($this->resources);
-        }
-
-        return $this->templates['field_row']->renderBlock('field_row', array(
+        return $this->render($field, 'field_row', array(
             'child'  => $field,
         ));
     }
@@ -129,47 +129,23 @@ class FormExtension extends \Twig_Extension
      */
     public function renderField(FieldInterface $field, array $attributes = array(), array $parameters = array(), $resources = null)
     {
-        if (null === $this->templates) {
-            $this->templates = $this->resolveResources($this->resources);
-        }
-
-        if (null !== $resources) {
-            // The developer provided a custom theme in the filter call
-            $resources = array($resources);
-        } else {
-            // The default theme is used
-            $parent = $field;
-            $resources = array();
-            while ($parent = $parent->getParent()) {
-                if (isset($this->themes[$parent])) {
-                    $resources = $this->themes[$parent];
-                }
-            }
-        }
-
-        list($widget, $template) = $this->getWidget($field, $resources);
-
-        return $template->renderBlock($widget, array(
+        return $this->render($field, 'field', array(
             'field'  => $field,
             'attr'   => $attributes,
             'params' => $parameters,
-        ));
+        ), $resources);
     }
 
     /**
      * Renders all hidden fields of the given field group
      *
-     * @param FieldGroupInterface $group   The field group
+     * @param FormInterface $group   The field group
      * @param array $params                Additional variables passed to the
      *                                     template
      */
-    public function renderHidden(FieldGroupInterface $group, array $parameters = array())
+    public function renderHidden(FormInterface $group, array $parameters = array())
     {
-        if (null === $this->templates) {
-            $this->templates = $this->resolveResources($this->resources);
-        }
-
-        return $this->templates['hidden']->renderBlock('hidden', array(
+        return $this->render($group, 'hidden', array(
             'field'  => $group,
             'params' => $parameters,
         ));
@@ -183,11 +159,7 @@ class FormExtension extends \Twig_Extension
      */
     public function renderErrors(FieldInterface $field, array $parameters = array())
     {
-        if (null === $this->templates) {
-            $this->templates = $this->resolveResources($this->resources);
-        }
-
-        return $this->templates['errors']->renderBlock('errors', array(
+        return $this->render($field, 'errors', array(
             'field'  => $field,
             'params' => $parameters,
         ));
@@ -201,11 +173,7 @@ class FormExtension extends \Twig_Extension
      */
     public function renderLabel(FieldInterface $field, $label = null, array $parameters = array())
     {
-        if (null === $this->templates) {
-            $this->templates = $this->resolveResources($this->resources);
-        }
-
-        return $this->templates['label']->renderBlock('label', array(
+        return $this->render($field, 'label', array(
             'field'  => $field,
             'params' => $parameters,
             'label'  => null !== $label ? $label : ucfirst(strtolower(str_replace('_', ' ', $field->getKey()))),
@@ -222,28 +190,26 @@ class FormExtension extends \Twig_Extension
         return $field->getData();
     }
 
+    protected function render(FieldInterface $field, $name, array $arguments, $resources = null)
+    {
+        if ('field' === $name) {
+            list($name, $template) = $this->getWidget($field, $resources);
+        } else {
+            $template = $this->getTemplate($field, $name);
+        }
+
+        return $template->renderBlock($name, $arguments);
+    }
+
     /**
      * @param FieldInterface $field The field to get the widget for
      * @param array $resources An array of template resources
      * @return array
      */
-    protected function getWidget(FieldInterface $field, array $resources = array())
+    protected function getWidget(FieldInterface $field, array $resources = null)
     {
-        $cacheable = true;
-        $templates = array();
-        if ($resources) {
-            $templates = $this->resolveResources($resources);
-            $cacheable = false;
-        }
-
-        // add "global" templates as fallback
-        $templates = array_merge($this->templates, $templates);
-
         $class = get_class($field);
-
-        if (true === $cacheable && isset(self::$cache[$class])) {
-            return self::$cache[$class];
-        }
+        $templates = $this->getTemplates($field, $resources);
 
         // find a template for the given class or one of its parents
         do {
@@ -254,10 +220,6 @@ class FormExtension extends \Twig_Extension
             $underscore = strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'), array('\\1_\\2', '\\1_\\2'), strtr($c, '_', '.')));
 
             if (isset($templates[$underscore])) {
-                if (true === $cacheable) {
-                    self::$cache[$class] = array($underscore, $templates[$underscore]);
-                }
-
                 return array($underscore, $templates[$underscore]);
             }
         } while (false !== $class = get_parent_class($class));
@@ -265,12 +227,44 @@ class FormExtension extends \Twig_Extension
         throw new \RuntimeException(sprintf('Unable to render the "%s" field.', $field->getKey()));
     }
 
-    protected function resolveResources(array $resources)
+    protected function getTemplate(FieldInterface $field, $name, array $resources = null)
     {
+        $templates = $this->getTemplates($field, $resources);
+
+        return $templates[$name];
+    }
+
+    protected function getTemplates(FieldInterface $field, array $resources = null)
+    {
+        // templates are looked for in the following resources:
+        //   * resources provided directly into the function call
+        //   * resources from the themes (and its parents)
+        //   * default resources
+
+        // defaults
+        $all = $this->resources;
+
+        // themes
+        $parent = $field;
+        do {
+            if (isset($this->themes[$parent])) {
+                $all = array_merge($all, $this->themes[$parent]);
+            }
+        } while ($parent = $parent->getParent());
+
+        // local
+        $all = array_merge($all, null !== $resources ? (array) $resources : array());
+
         $templates = array();
-        foreach ($resources as $resource)
-        {
-            $blocks = $this->resolveTemplate($this->environment->loadTemplate($resource));
+        foreach ($all as $resource) {
+            if (!$resource instanceof \Twig_Template) {
+                $resource = $this->environment->loadTemplate($resource);
+            }
+
+            $blocks = array();
+            foreach ($this->getBlockNames($resource) as $name) {
+                $blocks[$name] = $resource;
+            }
 
             $templates = array_replace($templates, $blocks);
         }
@@ -278,15 +272,15 @@ class FormExtension extends \Twig_Extension
         return $templates;
     }
 
-    protected function resolveTemplate($template)
+    protected function getBlockNames($resource)
     {
-        // an array of blockName => template
-        $blocks = array();
-        foreach ($template->getBlockNames() as $name) {
-            $blocks[$name] = $template;
+        $names = $resource->getBlockNames();
+        $parent = $resource;
+        while (false !== $parent = $parent->getParent(array())) {
+            $names = array_merge($names, $parent->getBlockNames());
         }
 
-        return $blocks;
+        return array_unique($names);
     }
 
     /**

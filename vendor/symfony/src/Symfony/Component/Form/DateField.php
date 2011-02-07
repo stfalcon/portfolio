@@ -89,6 +89,19 @@ class DateField extends HybridField
      */
     protected $formatter;
 
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($key, array $options = array())
+    {
+        // Override parent option
+        // \DateTime objects are never edited by reference, because
+        // we treat them like value objects
+        $this->addOption('by_reference', false);
+
+        parent::__construct($key, $options);
+    }
+
     protected function configure()
     {
         $this->addOption('widget', self::CHOICE, self::$widgets);
@@ -104,7 +117,7 @@ class DateField extends HybridField
         $this->addOption('user_timezone', 'UTC');
 
         $this->formatter = new \IntlDateFormatter(
-            $this->locale,
+            \Locale::getDefault(),
             self::$intlFormats[$this->getOption('format')],
             \IntlDateFormatter::NONE
         );
@@ -149,7 +162,7 @@ class DateField extends HybridField
                 'output_timezone' => $this->getOption('user_timezone'),
             )));
 
-            $this->setFieldMode(self::GROUP);
+            $this->setFieldMode(self::FORM);
 
             $this->addChoiceFields();
         }

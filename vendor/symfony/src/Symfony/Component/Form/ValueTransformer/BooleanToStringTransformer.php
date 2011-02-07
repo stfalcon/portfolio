@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Form\ValueTransformer;
 
+use Symfony\Component\Form\Configurable;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**
@@ -19,7 +20,7 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
  * @author Bernhard Schussek <bernhard.schussek@symfony-project.com>
  * @author Florian Eckerstorfer <florian@eckerstorfer.org>
  */
-class BooleanToStringTransformer extends BaseValueTransformer
+class BooleanToStringTransformer extends Configurable implements ValueTransformerInterface
 {
     /**
      * Transforms a Boolean into a string.
@@ -46,7 +47,7 @@ class BooleanToStringTransformer extends BaseValueTransformer
      * @param  string $value  String value.
      * @return Boolean        Boolean value.
      */
-    public function reverseTransform($value, $originalValue)
+    public function reverseTransform($value)
     {
         if (!is_string($value)) {
             throw new UnexpectedTypeException($value, 'string');

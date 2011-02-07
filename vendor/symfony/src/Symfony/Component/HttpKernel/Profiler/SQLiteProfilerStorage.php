@@ -94,11 +94,11 @@ class SQLiteProfilerStorage implements ProfilerStorageInterface
         );
         try {
             $this->exec($db, 'INSERT INTO data (token, data, ip, url, time, created_at) VALUES (:token, :data, :ip, :url, :time, :created_at)', $args);
+            $this->cleanup();
             $status = true;
         } catch (\Exception $e) {
             $status = false;
         }
-        $this->cleanup();
         $this->close($db);
 
         return $status;
@@ -146,6 +146,11 @@ class SQLiteProfilerStorage implements ProfilerStorageInterface
     protected function exec($db, $query, array $args = array())
     {
         $stmt = $db->prepare($query);
+
+        if (false === $stmt) {
+            throw new \RuntimeException('The database cannot successfully prepare the statement');
+        }
+
         if ($db instanceof \SQLite3) {
             foreach ($args as $arg => $val) {
                 $stmt->bindValue($arg, $val, is_int($val) ? \SQLITE3_INTEGER : \SQLITE3_TEXT);
@@ -157,7 +162,10 @@ class SQLiteProfilerStorage implements ProfilerStorageInterface
             foreach ($args as $arg => $val) {
                 $stmt->bindValue($arg, $val, is_int($val) ? \PDO::PARAM_INT : \PDO::PARAM_STR);
             }
-            $stmt->execute();
+            $success = $stmt->execute();
+            if (!$success) {
+                throw new \RuntimeException(sprintf('Error executing SQLite query "%s"', $query));
+            }
         }
     }
 

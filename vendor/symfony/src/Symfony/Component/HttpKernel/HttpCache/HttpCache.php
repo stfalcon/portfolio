@@ -29,7 +29,9 @@ class HttpCache implements HttpKernelInterface
     protected $kernel;
     protected $traces;
     protected $store;
+    protected $request;
     protected $esi;
+    protected $esiTtls;
 
     /**
      * Constructor.
@@ -67,17 +69,17 @@ class HttpCache implements HttpKernelInterface
      *                            (see RFC 5861).
      *
      * @param HttpKernelInterface $kernel An HttpKernelInterface instance
-     * @param Store               $store  A Store instance
+     * @param StoreInterface      $store  A Store instance
      * @param Esi                 $esi    An Esi instance
      * @param array                                             $options        An array of options
      */
-    public function __construct(HttpKernelInterface $kernel, Store $store, Esi $esi = null, array $options = array())
+    public function __construct(HttpKernelInterface $kernel, StoreInterface $store, Esi $esi = null, array $options = array())
     {
         $this->store = $store;
         $this->kernel = $kernel;
 
         // needed in case there is a fatal error because the backend is too slow to respond
-        register_shutdown_function(array($this->store, '__destruct'));
+        register_shutdown_function(array($this->store, 'cleanup'));
 
         $this->options = array_merge(array(
             'debug'                  => false,
@@ -117,6 +119,16 @@ class HttpCache implements HttpKernelInterface
     }
 
     /**
+     * Gets the Request instance associated with the master request.
+     *
+     * @return Symfony\Component\HttpFoundation\Request A Request instance
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
@@ -124,6 +136,8 @@ class HttpCache implements HttpKernelInterface
         // FIXME: catch exceptions and implement a 500 error page here? -> in Varnish, there is a built-in error page mechanism
         if (HttpKernelInterface::MASTER_REQUEST === $type) {
             $this->traces = array();
+            $this->request = $request;
+            $this->esiTtls = array();
         }
 
         $path = $request->getPathInfo();
@@ -148,7 +162,42 @@ class HttpCache implements HttpKernelInterface
             $response->headers->set('X-Symfony-Cache', $this->getLog());
         }
 
+        if (null !== $this->esi) {
+            $this->addEsiTtl($response);
+
+            if ($request === $this->request) {
+                $this->updateResponseCacheControl($response);
+            }
+        }
+
         return $response;
+    }
+
+    /**
+     * Stores the response's TTL locally.
+     *
+     * @param Response $response
+     */
+    protected function addEsiTtl(Response $response)
+    {
+        $this->esiTtls[] = $response->isValidateable() ? -1 : $response->getTtl();
+    }
+
+    /**
+     * Changes the master response TTL to the smallest TTL received or force validation if
+     * one of the ESI has validation cache strategy.
+     *
+     * @param Response $response
+     */
+    protected function updateResponseCacheControl(Response $response)
+    {
+        $ttl = min($this->esiTtls);
+        if (-1 === $ttl) {
+            $response->headers->set('Cache-Control', 'no-cache, must-revalidate');
+        } else {
+            $response->setSharedMaxAge($ttl);
+            $response->setMaxAge(0);
+        }
     }
 
     /**

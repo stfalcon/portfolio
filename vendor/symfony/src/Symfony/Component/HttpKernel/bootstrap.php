@@ -30,6 +30,10 @@ class Container implements ContainerInterface
 {
     protected $parameterBag;
     protected $services;
+    protected $scopes;
+    protected $scopeChildren;
+    protected $scopedServices;
+    protected $scopeStacks;
     protected $loading = array();
     public function __construct(ParameterBagInterface $parameterBag = null)
     {
@@ -109,7 +113,7 @@ class Container implements ContainerInterface
         $ids = array();
         $r = new \ReflectionClass($this);
         foreach ($r->getMethods() as $method) {
-            if (preg_match('/^get(.+)Service$/', $name = $method->getName(), $match)) {
+            if (preg_match('/^get(.+)Service$/', $method->getName(), $match)) {
                 $ids[] = self::underscore($match[1]);
             }
         }
@@ -174,13 +178,9 @@ class Container implements ContainerInterface
         }
         $this->scopes[$name] = $parentScope;
         $this->scopeChildren[$name] = array();
-                if ($parentScope !== self::SCOPE_CONTAINER) {
+                while ($parentScope !== self::SCOPE_CONTAINER) {
             $this->scopeChildren[$parentScope][] = $name;
-            foreach ($this->scopeChildren as $pName => $childScopes) {
-                if (in_array($parentScope, $childScopes, true)) {
-                    $this->scopeChildren[$pName][] = $name;
-                }
-            }
+            $parentScope = $this->scopes[$parentScope];
         }
     }
     public function hasScope($name)
@@ -219,109 +219,6 @@ class ContainerAware implements ContainerAwareInterface
     }
 }
 }
-namespace Symfony\Component\DependencyInjection\ParameterBag
-{
-interface ParameterBagInterface
-{
-    function clear();
-    function add(array $parameters);
-    function all();
-    function get($name);
-    function set($name, $value);
-    function has($name);
-}
-}
-namespace Symfony\Component\DependencyInjection\ParameterBag
-{
-class ParameterBag implements ParameterBagInterface
-{
-    protected $parameters;
-    public function __construct(array $parameters = array())
-    {
-        $this->parameters = array();
-        $this->add($parameters);
-    }
-    public function clear()
-    {
-        $this->parameters = array();
-    }
-    public function add(array $parameters)
-    {
-        foreach ($parameters as $key => $value) {
-            $this->parameters[strtolower($key)] = $value;
-        }
-    }
-    public function all()
-    {
-        return $this->parameters;
-    }
-    public function get($name)
-    {
-        $name = strtolower($name);
-        if (!array_key_exists($name, $this->parameters)) {
-            throw new \InvalidArgumentException(sprintf('The parameter "%s" must be defined.', $name));
-        }
-        return $this->parameters[$name];
-    }
-    public function set($name, $value)
-    {
-        $this->parameters[strtolower($name)] = $value;
-    }
-    public function has($name)
-    {
-        return array_key_exists(strtolower($name), $this->parameters);
-    }
-    public function resolve()
-    {
-        foreach ($this->parameters as $key => $value) {
-            $this->parameters[$key] = $this->resolveValue($value);
-        }
-    }
-    public function resolveValue($value)
-    {
-        if (is_array($value)) {
-            $args = array();
-            foreach ($value as $k => $v) {
-                $args[$this->resolveValue($k)] = $this->resolveValue($v);
-            }
-            return $args;
-        }
-        if (!is_string($value)) {
-            return $value;
-        }
-        if (preg_match('/^%([^%]+)%$/', $value, $match)) {
-                                    return $this->get(strtolower($match[1]));
-        }
-        return str_replace('%%', '%', preg_replace_callback(array('/(?<!%)%([^%]+)%/'), array($this, 'resolveValueCallback'), $value));
-    }
-    protected function resolveValueCallback($match)
-    {
-        return $this->get(strtolower($match[1]));
-    }
-}
-}
-namespace Symfony\Component\DependencyInjection\ParameterBag
-{
-class FrozenParameterBag extends ParameterBag
-{
-    public function __construct(array $parameters = array())
-    {
-        $this->parameters = $parameters;
-    }
-    public function clear()
-    {
-        throw new \LogicException('Impossible to call clear() on a frozen ParameterBag.');
-    }
-    public function add(array $parameters)
-    {
-        throw new \LogicException('Impossible to call add() on a frozen ParameterBag.');
-    }
-    public function set($name, $value)
-    {
-        throw new \LogicException('Impossible to call set() on a frozen ParameterBag.');
-    }
-}
-}
 namespace Symfony\Component\HttpKernel\Bundle
 {
 interface BundleInterface
@@ -343,11 +240,26 @@ use Symfony\Component\Finder\Finder;
 abstract class Bundle extends ContainerAware implements BundleInterface
 {
     protected $name;
+    protected $reflected;
     public function boot()
     {
     }
     public function shutdown()
     {
+    }
+    public function getNamespace()
+    {
+        if (null === $this->reflected) {
+            $this->reflected = new \ReflectionObject($this);
+        }
+        return $this->reflected->getNamespaceName();
+    }
+    public function getPath()
+    {
+        if (null === $this->reflected) {
+            $this->reflected = new \ReflectionObject($this);
+        }
+        return strtr(dirname($this->reflected->getFileName()), '\\', '/');
     }
     public function getParent()
     {
@@ -358,8 +270,9 @@ abstract class Bundle extends ContainerAware implements BundleInterface
         if (null !== $this->name) {
             return $this->name;
         }
-        $pos = strrpos(get_class($this), '\\');
-        return $this->name = substr(get_class($this), $pos ? $pos + 1 : 0);
+        $name = get_class($this);
+        $pos = strrpos($name, '\\');
+        return $this->name = false === $pos ? $name :  substr($name, $pos + 1);
     }
     public function registerExtensions(ContainerBuilder $container)
     {
@@ -485,9 +398,11 @@ class HttpKernel implements HttpKernelInterface
             throw new \LogicException(sprintf('The controller must be a callable (%s given).', $this->varToString($controller)));
         }
                 $arguments = $this->resolver->getArguments($request, $controller);
-                $retval = call_user_func_array($controller, $arguments);
-                $event = new Event($this, 'core.view', array('request_type' => $type, 'request' => $request));
-        $response = $this->dispatcher->filter($event, $retval);
+                $response = call_user_func_array($controller, $arguments);
+                if (!$response instanceof Response) {
+            $event = new Event($this, 'core.view', array('request_type' => $type, 'request' => $request));
+            $response = $this->dispatcher->filter($event, $response);
+        }
         return $this->filterResponse($response, $request, sprintf('The controller must return a response (%s given).', $this->varToString($response)), $type);
     }
     protected function filterResponse($response, $request, $message, $type)
@@ -967,6 +882,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FileBag extends ParameterBag
 {
     private $fileKeys = array('error', 'name', 'size', 'tmp_name', 'type');
+    public function __construct(array $parameters = array())
+    {
+                        parent::__construct();
+        $this->replace($parameters);
+    }
     public function replace(array $files = array())
     {
         $this->parameters = array();
@@ -1043,7 +963,7 @@ class ServerBag extends ParameterBag
     {
         $headers = array();
         foreach ($this->parameters as $key => $value) {
-            if ('http_' === strtolower(substr($key, 0, 5))) {
+            if ('HTTP_' === substr($key, 0, 5)) {
                 $headers[substr($key, 5)] = $value;
             }
         }
@@ -1236,11 +1156,11 @@ class Request
     protected $format;
     protected $session;
     static protected $formats;
-    public function __construct(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array())
+    public function __construct(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
     {
-        $this->initialize($query, $request, $attributes, $cookies, $files, $server);
+        $this->initialize($query, $request, $attributes, $cookies, $files, $server, $content);
     }
-    public function initialize(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array())
+    public function initialize(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
     {
         $this->request = new ParameterBag($request);
         $this->query = new ParameterBag($query);
@@ -1249,7 +1169,7 @@ class Request
         $this->files = new FileBag($files);
         $this->server = new ServerBag($server);
         $this->headers = new HeaderBag($this->server->getHeaders());
-        $this->content = null;
+        $this->content = $content;
         $this->languages = null;
         $this->charsets = null;
         $this->acceptableContentTypes = null;
@@ -1264,7 +1184,7 @@ class Request
     {
         return new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
     }
-    static public function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array())
+    static public function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
     {
         $defaults = array(
             'SERVER_NAME'          => 'localhost',
@@ -1318,7 +1238,7 @@ class Request
             'REQUEST_URI'          => $uri,
             'QUERY_STRING'         => $queryString,
         ));
-        return new static($query, $request, array(), $cookies, $files, $server);
+        return new static($query, $request, array(), $cookies, $files, $server, $content);
     }
     public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
     {
@@ -1911,8 +1831,8 @@ class UniversalClassLoader
 {
     protected $namespaces = array();
     protected $prefixes = array();
-    protected $namespaceFallback;
-    protected $prefixFallback;
+    protected $namespaceFallback = array();
+    protected $prefixFallback = array();
     public function getNamespaces()
     {
         return $this->namespaces;
@@ -1929,29 +1849,33 @@ class UniversalClassLoader
     {
         return $this->prefixFallback;
     }
-    public function registerNamespaceFallback($dir)
+    public function registerNamespaceFallback($dirs)
     {
-        $this->namespaceFallback = $dir;
+        $this->namespaceFallback = (array) $dirs;
     }
-    public function registerPrefixFallback($dir)
+    public function registerPrefixFallback($dirs)
     {
-        $this->prefixFallback = $dir;
+        $this->prefixFallback = (array) $dirs;
     }
     public function registerNamespaces(array $namespaces)
     {
-        $this->namespaces = array_merge($this->namespaces, $namespaces);
+        foreach ($namespaces as $namespace => $locations) {
+            $this->namespaces[$namespace] = (array) $locations;
+        }
     }
-    public function registerNamespace($namespace, $path)
+    public function registerNamespace($namespace, $paths)
     {
-        $this->namespaces[$namespace] = $path;
+        $this->namespaces[$namespace] = (array) $paths;
     }
     public function registerPrefixes(array $classes)
     {
-        $this->prefixes = array_merge($this->prefixes, $classes);
+        foreach ($classes as $prefix => $locations) {
+            $this->prefixes[$prefix] = (array) $locations;
+        }
     }
-    public function registerPrefix($prefix, $path)
+    public function registerPrefix($prefix, $paths)
     {
-        $this->prefixes[$prefix] = $path;
+        $this->prefixes[$prefix] = (array) $paths;
     }
     public function register($prepend = false)
     {
@@ -1960,38 +1884,44 @@ class UniversalClassLoader
     public function loadClass($class)
     {
         $class = ltrim($class, '\\');
-        if (false !== ($pos = strripos($class, '\\'))) {
+        if (false !== ($pos = strrpos($class, '\\'))) {
                         $namespace = substr($class, 0, $pos);
-            foreach ($this->namespaces as $ns => $dir) {
-                if (0 === strpos($namespace, $ns)) {
-                    $className = substr($class, $pos + 1);
-                    $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $namespace).DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $className).'.php';
-                    if (file_exists($file)) {
-                        require $file;
-                        return;
+            foreach ($this->namespaces as $ns => $dirs) {
+                foreach ($dirs as $dir) {
+                    if (0 === strpos($namespace, $ns)) {
+                        $className = substr($class, $pos + 1);
+                        $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $namespace).DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $className).'.php';
+                        if (file_exists($file)) {
+                            require $file;
+                            return;
+                        }
                     }
                 }
             }
-            if (null !== $this->namespaceFallback) {
-                $file = $this->namespaceFallback.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
+            foreach ($this->namespaceFallback as $dir) {
+                $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     require $file;
+                    return;
                 }
             }
         } else {
-                        foreach ($this->prefixes as $prefix => $dir) {
-                if (0 === strpos($class, $prefix)) {
-                    $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
-                    if (file_exists($file)) {
-                        require $file;
-                        return;
+                        foreach ($this->prefixes as $prefix => $dirs) {
+                foreach ($dirs as $dir) {
+                    if (0 === strpos($class, $prefix)) {
+                        $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
+                        if (file_exists($file)) {
+                            require $file;
+                            return;
+                        }
                     }
                 }
             }
-            if (null !== $this->prefixFallback) {
-                $file = $this->prefixFallback.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
+            foreach ($this->prefixFallback as $dir) {
+                $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     require $file;
+                    return;
                 }
             }
         }

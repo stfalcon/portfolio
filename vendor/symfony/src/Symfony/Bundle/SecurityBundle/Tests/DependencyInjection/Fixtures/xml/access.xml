@@ -6,12 +6,9 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
 
     <config>
-        <access-control>
-            <rule path="/blog/524" role="ROLE_USER" requires-channel="https" />
-            <rule role='IS_AUTHENTICATED_ANONYMOUSLY'>
-                <attribute key="_controller" pattern=".*\\BlogBundle\\.*" />
-                <path pattern="/blog/.*" />
-            </rule>
-        </access-control>
+        <rule path="/blog/524" role="ROLE_USER" requires-channel="https" />
+        <rule role='IS_AUTHENTICATED_ANONYMOUSLY' path="/blog/.*">
+            <attribute key="_controller" pattern=".*\\BlogBundle\\.*" />
+        </rule>
     </config>
 </srv:container>

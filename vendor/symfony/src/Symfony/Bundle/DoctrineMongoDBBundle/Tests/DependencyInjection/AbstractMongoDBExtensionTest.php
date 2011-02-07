@@ -48,7 +48,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
         $this->assertEquals('Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver', $container->getParameter('doctrine.odm.mongodb.metadata.xml_class'));
         $this->assertEquals('Doctrine\ODM\MongoDB\Mapping\Driver\YamlDriver', $container->getParameter('doctrine.odm.mongodb.metadata.yml_class'));
 
-        $this->assertEquals('Symfony\Bundle\DoctrineMongoDBBundle\Validator\Constraints\DoctrineMongoDBUniqueValidator', $container->getParameter('doctrine_odm.mongodb.validator.unique.class'));
+        $this->assertEquals('Symfony\Bundle\DoctrineMongoDBBundle\Validator\Constraints\UniqueValidator', $container->getParameter('doctrine_odm.mongodb.validator.unique.class'));
 
         $config = array(
             'proxy_namespace' => 'MyProxies',
@@ -65,6 +65,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
 
         $definition = $container->getDefinition('doctrine.odm.mongodb.default_document_manager');
         $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getClass());
+        $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getFactoryClass());
         $this->assertEquals('create', $definition->getFactoryMethod());
         $this->assertArrayHasKey('doctrine.odm.mongodb.document_manager', $definition->getTags());
 
@@ -92,6 +93,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
 
         $definition = $container->getDefinition('doctrine.odm.mongodb.default_document_manager');
         $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getClass());
+        $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getFactoryClass());
         $this->assertEquals('create', $definition->getFactoryMethod());
         $this->assertArrayHasKey('doctrine.odm.mongodb.document_manager', $definition->getTags());
 
@@ -126,6 +128,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
 
         $definition = $container->getDefinition('doctrine.odm.mongodb.default_document_manager');
         $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getClass());
+        $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getFactoryClass());
         $this->assertEquals('create', $definition->getFactoryMethod());
         $this->assertArrayHasKey('doctrine.odm.mongodb.document_manager', $definition->getTags());
 
@@ -154,6 +157,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
 
         $definition = $container->getDefinition('doctrine.odm.mongodb.default_document_manager');
         $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getClass());
+        $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getFactoryClass());
         $this->assertEquals('create', $definition->getFactoryMethod());
         $this->assertArrayHasKey('doctrine.odm.mongodb.document_manager', $definition->getTags());
 
@@ -184,6 +188,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
 
         $definition = $container->getDefinition('doctrine.odm.mongodb.dm1_document_manager');
         $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getClass());
+        $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getFactoryClass());
         $this->assertEquals('create', $definition->getFactoryMethod());
         $this->assertArrayHasKey('doctrine.odm.mongodb.document_manager', $definition->getTags());
 
@@ -199,6 +204,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
 
         $definition = $container->getDefinition('doctrine.odm.mongodb.dm2_document_manager');
         $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getClass());
+        $this->assertEquals('%doctrine.odm.mongodb.document_manager_class%', $definition->getFactoryClass());
         $this->assertEquals('create', $definition->getFactoryMethod());
         $this->assertArrayHasKey('doctrine.odm.mongodb.document_manager', $definition->getTags());
 
@@ -334,7 +340,7 @@ abstract class AbstractMongoDBExtensionTest extends TestCase
         $this->assertEquals(array(
             'Namespace1\\',
             'Namespace2\\',
-            'Symfony\Bundle\DoctrineMongoDBBundle\Validator\Constraints\\'
+            'mongodb' => 'Symfony\Bundle\DoctrineMongoDBBundle\Validator\Constraints\\',
         ), $container->getParameter('validator.annotations.namespaces'));
     }
 

@@ -22,9 +22,8 @@ class ServerBag extends ParameterBag
     public function getHeaders()
     {
         $headers = array();
-
         foreach ($this->parameters as $key => $value) {
-            if ('http_' === strtolower(substr($key, 0, 5))) {
+            if ('HTTP_' === substr($key, 0, 5)) {
                 $headers[substr($key, 5)] = $value;
             }
         }

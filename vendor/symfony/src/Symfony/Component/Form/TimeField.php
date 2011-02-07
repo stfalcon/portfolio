@@ -37,7 +37,7 @@ use Symfony\Component\Form\ValueTransformer\ValueTransformerChain;
  *  * data_timezone:  The timezone of the data. Default: UTC.
  *  * user_timezone:  The timezone of the user entering a new value. Default: UTC.
  */
-class TimeField extends FieldGroup
+class TimeField extends Form
 {
     const INPUT = 'input';
     const CHOICE = 'choice';
@@ -58,6 +58,19 @@ class TimeField extends FieldGroup
         self::TIMESTAMP,
         self::RAW,
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($key, array $options = array())
+    {
+        // Override parent option
+        // \DateTime objects are never edited by reference, because
+        // we treat them like value objects
+        $this->addOption('by_reference', false);
+
+        parent::__construct($key, $options);
+    }
 
     /**
      * {@inheritDoc}

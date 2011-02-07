@@ -48,16 +48,8 @@ class ReversedTransformer implements ValueTransformerInterface
     /**
      * {@inheritDoc}
      */
-    public function reverseTransform($value, $originalValue)
+    public function reverseTransform($value)
     {
         return $this->reversedTransformer->transform($value);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLocale($locale)
-    {
-        $this->reversedTransformer->setLocale($locale);
     }
 }

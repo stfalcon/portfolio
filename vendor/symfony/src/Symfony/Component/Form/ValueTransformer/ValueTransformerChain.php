@@ -66,22 +66,12 @@ class ValueTransformerChain implements ValueTransformerInterface
      * @param  mixed $value  The transformed value
      * @return mixed         The reverse-transformed value
      */
-    public function reverseTransform($value, $originalValue)
+    public function reverseTransform($value)
     {
         for ($i = count($this->transformers) - 1; $i >= 0; --$i) {
-            $value = $this->transformers[$i]->reverseTransform($value, $originalValue);
+            $value = $this->transformers[$i]->reverseTransform($value);
         }
 
         return $value;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLocale($locale)
-    {
-        foreach ($this->transformers as $transformer) {
-            $transformer->setLocale($locale);
-        }
     }
 }

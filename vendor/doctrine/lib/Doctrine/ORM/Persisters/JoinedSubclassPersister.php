@@ -20,8 +20,7 @@
 namespace Doctrine\ORM\Persisters;
 
 use Doctrine\ORM\ORMException,
-    Doctrine\ORM\Mapping\ClassMetadata,
-    Doctrine\DBAL\LockMode;
+    Doctrine\ORM\Mapping\ClassMetadata;
 
 /**
  * The joined subclass persister maps a single entity instance to several tables in the
@@ -236,7 +235,7 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
     /**
      * {@inheritdoc}
      */
-    protected function _getSelectEntitiesSQL(array $criteria, $assoc = null, $lockMode = 0, $limit = null, $offset = null)
+    protected function _getSelectEntitiesSQL(array $criteria, $assoc = null, $lockMode = 0)
     {
         $idColumns = $this->_class->getIdentifierColumnNames();
         $baseTableAlias = $this->_getSQLTableAlias($this->_class->name);
@@ -345,18 +344,10 @@ class JoinedSubclassPersister extends AbstractEntityInheritancePersister
             $this->_selectColumnListSql = $columnList;
         }
 
-        $lockSql = '';
-        if ($lockMode == LockMode::PESSIMISTIC_READ) {
-            $lockSql = ' ' . $this->_platform->getReadLockSql();
-        } else if ($lockMode == LockMode::PESSIMISTIC_WRITE) {
-            $lockSql = ' ' . $this->_platform->getWriteLockSql();
-        }
-
-        return $this->_platform->modifyLimitQuery('SELECT ' . $this->_selectColumnListSql
+        return 'SELECT ' . $this->_selectColumnListSql
                 . ' FROM ' . $this->_class->getQuotedTableName($this->_platform) . ' ' . $baseTableAlias
                 . $joinSql
-                . ($conditionSql != '' ? ' WHERE ' . $conditionSql : '') . $orderBySql, $limit, $offset)
-                . $lockSql;
+                . ($conditionSql != '' ? ' WHERE ' . $conditionSql : '') . $orderBySql;
     }
 
     /**

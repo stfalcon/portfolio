@@ -135,15 +135,9 @@ class YamlDriver extends AbstractFileDriver
             }
         }
 
-        $associationIds = array();
         if (isset($element['id'])) {
             // Evaluate identifier settings
             foreach ($element['id'] as $name => $idElement) {
-                if (isset($idElement['associationKey']) && $idElement['associationKey'] == true) {
-                    $associationIds[$name] = true;
-                    continue;
-                }
-
                 if (!isset($idElement['type'])) {
                     throw MappingException::propertyTypeIsRequired($className, $name);
                 }
@@ -240,10 +234,6 @@ class YamlDriver extends AbstractFileDriver
                     'targetEntity' => $oneToOneElement['targetEntity']
                 );
 
-                if (isset($associationIds[$mapping['fieldName']])) {
-                    $mapping['id'] = true;
-                }
-
                 if (isset($oneToOneElement['fetch'])) {
                     $mapping['fetch'] = constant('Doctrine\ORM\Mapping\ClassMetadata::FETCH_' . $oneToOneElement['fetch']);
                 }
@@ -312,10 +302,6 @@ class YamlDriver extends AbstractFileDriver
                     'fieldName' => $name,
                     'targetEntity' => $manyToOneElement['targetEntity']
                 );
-
-                if (isset($associationIds[$mapping['fieldName']])) {
-                    $mapping['id'] = true;
-                }
 
                 if (isset($manyToOneElement['fetch'])) {
                     $mapping['fetch'] = constant('Doctrine\ORM\Mapping\ClassMetadata::FETCH_' . $manyToOneElement['fetch']);

@@ -48,13 +48,10 @@ use Symfony\Component\Form\ValueTransformer\TransformationFailedException;
  */
 class Field extends Configurable implements FieldInterface
 {
-    protected $taintedData = null;
-    protected $locale = null;
-
     private $errors = array();
     private $key = '';
     private $parent = null;
-    private $bound = false;
+    private $submitted = false;
     private $required = null;
     private $data = null;
     private $normalizedData = null;
@@ -64,8 +61,9 @@ class Field extends Configurable implements FieldInterface
     private $propertyPath = null;
     private $transformationSuccessful = true;
 
-    public function __construct($key, array $options = array())
+    public function __construct($key = null, array $options = array())
     {
+        $this->addOption('data');
         $this->addOption('trim', true);
         $this->addOption('required', true);
         $this->addOption('disabled', false);
@@ -74,7 +72,14 @@ class Field extends Configurable implements FieldInterface
         $this->addOption('normalization_transformer');
 
         $this->key = (string)$key;
-        $this->locale = FormContext::getLocale();
+
+        if (isset($options['data'])) {
+            // Populate the field with fixed data
+            // Set the property path to NULL so that the data is not
+            // overwritten by the form's data
+            $this->setData($options['data']);
+            $this->setPropertyPath(null);
+        }
 
         parent::__construct($options);
 
@@ -89,7 +94,9 @@ class Field extends Configurable implements FieldInterface
         $this->normalizedData = $this->normalize($this->data);
         $this->transformedData = $this->transform($this->normalizedData);
 
-        $this->setPropertyPath($this->getOption('property_path'));
+        if (!$this->getOption('data')) {
+            $this->setPropertyPath($this->getOption('property_path'));
+        }
     }
 
     /**
@@ -103,9 +110,9 @@ class Field extends Configurable implements FieldInterface
     /**
      * Returns the data of the field as it is displayed to the user.
      *
-     * @return string|array  When the field is not bound, the transformed
-     *                       default data is returned. When the field is bound,
-     *                       the bound data is returned.
+     * @return string|array  When the field is not submitted, the transformed
+     *                       default data is returned. When the field is submitted,
+     *                       the submitted data is returned.
      */
     public function getDisplayedData()
     {
@@ -242,6 +249,16 @@ class Field extends Configurable implements FieldInterface
     }
 
     /**
+     * Returns whether the field has a parent.
+     *
+     * @return Boolean
+     */
+    public function hasParent()
+    {
+        return null !== $this->parent;
+    }
+
+    /**
      * Returns the root of the form tree
      *
      * @return FieldInterface  The root of the tree
@@ -249,6 +266,16 @@ class Field extends Configurable implements FieldInterface
     public function getRoot()
     {
         return $this->parent ? $this->parent->getRoot() : $this;
+    }
+
+    /**
+     * Returns whether the field is the root of the form tree
+     *
+     * @return Boolean
+     */
+    public function isRoot()
+    {
+        return !$this->hasParent();
     }
 
     /**
@@ -266,14 +293,12 @@ class Field extends Configurable implements FieldInterface
     /**
      * Binds POST data to the field, transforms and validates it.
      *
-     * @param  string|array $taintedData  The POST data
-     * @return Boolean                    Whether the form is valid
-     * @throws AlreadyBoundException      when the field is already bound
+     * @param  string|array $data  The POST data
      */
-    public function bind($taintedData)
+    public function submit($data)
     {
-        $this->transformedData = (is_array($taintedData) || is_object($taintedData)) ? $taintedData : (string)$taintedData;
-        $this->bound = true;
+        $this->transformedData = (is_array($data) || is_object($data)) ? $data : (string)$data;
+        $this->submitted = true;
         $this->errors = array();
 
         if (is_string($this->transformedData) && $this->getOption('trim')) {
@@ -291,7 +316,7 @@ class Field extends Configurable implements FieldInterface
     }
 
     /**
-     * Processes the bound reverse-transformed data.
+     * Processes the submitted reverse-transformed data.
      *
      * This method can be overridden if you want to modify the data entered
      * by the user. Note that the data is already in reverse transformed format.
@@ -319,8 +344,8 @@ class Field extends Configurable implements FieldInterface
     /**
      * Returns the normalized data of the field.
      *
-     * @return mixed  When the field is not bound, the default data is returned.
-     *                When the field is bound, the normalized bound data is
+     * @return mixed  When the field is not submitted, the default data is returned.
+     *                When the field is submitted, the normalized submitted data is
      *                returned if the field is valid, null otherwise.
      */
     protected function getNormalizedData()
@@ -333,23 +358,23 @@ class Field extends Configurable implements FieldInterface
      *
      * @see FieldInterface
      */
-    public function addError(FieldError $error, PropertyPathIterator $pathIterator = null, $type = null)
+    public function addError(Error $error, PropertyPathIterator $pathIterator = null)
     {
         $this->errors[] = $error;
     }
 
     /**
-     * Returns whether the field is bound.
+     * Returns whether the field is submitted.
      *
-     * @return Boolean  true if the form is bound to input values, false otherwise
+     * @return Boolean  true if the form is submitted to input values, false otherwise
      */
-    public function isBound()
+    public function isSubmitted()
     {
-        return $this->bound;
+        return $this->submitted;
     }
 
     /**
-     * Returns whether the bound value could be reverse transformed correctly
+     * Returns whether the submitted value could be reverse transformed correctly
      *
      * @return Boolean
      */
@@ -365,13 +390,13 @@ class Field extends Configurable implements FieldInterface
      */
     public function isValid()
     {
-        return $this->isBound() ? count($this->errors)==0 : false; // TESTME
+        return $this->isSubmitted() && !$this->hasErrors(); // TESTME
     }
 
     /**
      * Returns whether or not there are errors.
      *
-     * @return Boolean  true if form is bound and not valid
+     * @return Boolean  true if form is submitted and not valid
      */
     public function hasErrors()
     {
@@ -385,25 +410,11 @@ class Field extends Configurable implements FieldInterface
     /**
      * Returns all errors
      *
-     * @return array  An array of FieldError instances that occurred during binding
+     * @return array  An array of FieldError instances that occurred during submitting
      */
     public function getErrors()
     {
         return $this->errors;
-    }
-
-    /**
-     * Injects the locale into the given object, if set.
-     *
-     * The locale is injected only if the object implements Localizable.
-     *
-     * @param object $object
-     */
-    protected function injectLocale($object)
-    {
-        if ($object instanceof Localizable) {
-            $object->setLocale($this->locale);
-        }
     }
 
     /**
@@ -413,8 +424,6 @@ class Field extends Configurable implements FieldInterface
      */
     protected function setNormalizationTransformer(ValueTransformerInterface $normalizationTransformer)
     {
-        $this->injectLocale($normalizationTransformer);
-
         $this->normalizationTransformer = $normalizationTransformer;
     }
 
@@ -435,8 +444,6 @@ class Field extends Configurable implements FieldInterface
      */
     protected function setValueTransformer(ValueTransformerInterface $valueTransformer)
     {
-        $this->injectLocale($valueTransformer);
-
         $this->valueTransformer = $valueTransformer;
     }
 
@@ -509,7 +516,7 @@ class Field extends Configurable implements FieldInterface
     /**
      * {@inheritDoc}
      */
-    public function updateFromProperty(&$objectOrArray)
+    public function readProperty(&$objectOrArray)
     {
         // TODO throw exception if not object or array
 
@@ -521,7 +528,7 @@ class Field extends Configurable implements FieldInterface
     /**
      * {@inheritDoc}
      */
-    public function updateProperty(&$objectOrArray)
+    public function writeProperty(&$objectOrArray)
     {
         // TODO throw exception if not object or array
 
