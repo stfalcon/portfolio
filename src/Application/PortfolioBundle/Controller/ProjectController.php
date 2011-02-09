@@ -38,20 +38,24 @@ class ProjectController extends Controller
         $project = new Project();
 
         // project form
-        $form = new \Application\PortfolioBundle\Form\Project(
-                'project', $project, $this->get('validator'), array('em' => $em));
-        
-        if ('POST' === $this->get('request')->getMethod()) {
-            $form->bind($this->get('request')->request->get('project'));
-            if ($form->isValid()) {
-                // create project
-                $em->persist($project);
-                $em->flush();
+        $form = new \Application\PortfolioBundle\Form\Project('project',
+                        array(
+//                            'data_class' => 'Application\PortfolioBundle\Entity\Project',
+                            'data' => $project,
+                            'validator' => $this->get('validator'),
+                            'em' => $em,
+                        ));
 
-                $this->get('request')->getSession()->setFlash('notice',
-                        'Congratulations, your project is successfully created!');
-                return $this->redirect($this->generateUrl('portfolioProjectIndex'));
-            }
+        $form->bind($this->get('request'));
+
+        if ($form->isValid()) {
+            // create project
+            $em->persist($project);
+            $em->flush();
+
+            $this->get('request')->getSession()->setFlash('notice',
+                    'Congratulations, your project is successfully created!');
+            return $this->redirect($this->generateUrl('portfolioProjectIndex'));
         }
 
         return $this->render('PortfolioBundle:Project:create.html.php', array(
@@ -75,23 +79,26 @@ class ProjectController extends Controller
         }
 
         // project form
-        $form = new \Application\PortfolioBundle\Form\Project(
-                'project', $project, $this->get('validator'), array('em' => $em));
+        $form = new \Application\PortfolioBundle\Form\Project('project',
+                        array(
+//                            'data_class' => 'Application\PortfolioBundle\Entity\Project',
+                            'data' => $project,
+                            'validator' => $this->get('validator'),
+                            'em' => $em,
+                        ));
         
-        if ('POST' === $this->get('request')->getMethod()) {
-            $form->bind($this->get('request')->request->get('project'));
+        $form->bind($this->get('request'));
 
-            if ($form->isValid()) {
-                // save project
-                $em->persist($project);
-                $em->flush();
+        if ($form->isValid()) {
+            // save project
+            $em->persist($project);
+            $em->flush();
 
-                $this->get('request')->getSession()->setFlash('notice',
-                        'Congratulations, your project is successfully updated!');
-                return $this->redirect($this->generateUrl('portfolioProjectIndex'));
-            }
+            $this->get('request')->getSession()->setFlash('notice',
+                    'Congratulations, your project is successfully updated!');
+            return $this->redirect($this->generateUrl('portfolioProjectIndex'));
         }
-        
+
         return $this->render('PortfolioBundle:Project:edit.html.php', array(
             'form' => $form,
             'project' => $project

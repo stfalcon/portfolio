@@ -35,19 +35,22 @@ class CategoryController extends Controller
     {
         $category = new Category();
 
-        $form = new \Application\PortfolioBundle\Form\Category('category', $category, $this->get('validator'));
+        $form = new \Application\PortfolioBundle\Form\Category('category',
+                        array(
+                            'data' => $category,
+                            'validator' => $this->get('validator'),
+                        ));
 
-        if ('POST' === $this->get('request')->getMethod()) {
-            $form->bind($this->get('request')->request->get('category'));
+        $form->bind($this->get('request'));
 
-            if ($form->isValid()) {
-                $em = $this->get('doctrine.orm.entity_manager');
-                $em->persist($category);
-                $em->flush();
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            $em->persist($category);
+            $em->flush();
 
-                $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your category is successfully created!');
-                return $this->redirect($this->generateUrl('portfolioCategoryIndex'));
-            }
+            $this->get('request')->getSession()->setFlash('notice',
+                    'Congratulations, your category is successfully created!');
+            return $this->redirect($this->generateUrl('portfolioCategoryIndex'));
         }
 
         return $this->render('PortfolioBundle:Category:create.html.php', array(
@@ -70,20 +73,20 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('The category does not exist.');
         }
 
-        // category form
-        $form = new \Application\PortfolioBundle\Form\Category('category', $category, $this->get('validator'));
+        $form = new \Application\PortfolioBundle\Form\Category('category',
+                        array(
+                            'data' => $category,
+                            'validator' => $this->get('validator'),
+                        ));
 
-        if ('POST' === $this->get('request')->getMethod()) {
-            $form->bind($this->get('request')->request->get('category'));
+        $form->bind($this->get('request'));
+        if ($form->isValid()) {
+            // save category
+            $em->persist($category);
+            $em->flush();
 
-            if ($form->isValid()) {
-                // save category
-                $em->persist($category);
-                $em->flush();
-
-                $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your category is successfully updated!');
-                return $this->redirect($this->generateUrl('portfolioCategoryIndex'));
-            }
+            $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your category is successfully updated!');
+            return $this->redirect($this->generateUrl('portfolioCategoryIndex'));
         }
 
         return $this->render('PortfolioBundle:Category:edit.html.php', array(
