@@ -59,6 +59,12 @@ class Form extends Field implements \IteratorAggregate, FormInterface
     protected $dataClass;
 
     /**
+     * Stores the constructor closure for creating new domain object instances
+     * @var \Closure
+     */
+    protected $dataConstructor;
+
+    /**
      * The context used when creating the form
      * @var FormContext
      */
@@ -86,6 +92,7 @@ class Form extends Field implements \IteratorAggregate, FormInterface
     public function __construct($name = null, array $options = array())
     {
         $this->addOption('data_class');
+        $this->addOption('data_constructor');
         $this->addOption('csrf_field_name', '_token');
         $this->addOption('csrf_provider');
         $this->addOption('field_factory');
@@ -101,6 +108,10 @@ class Form extends Field implements \IteratorAggregate, FormInterface
 
         if (isset($options['data_class'])) {
             $this->dataClass = $options['data_class'];
+        }
+
+        if (isset($options['data_constructor'])) {
+            $this->dataConstructor = $options['data_constructor'];
         }
 
         parent::__construct($name, $options);
@@ -341,6 +352,16 @@ class Form extends Field implements \IteratorAggregate, FormInterface
      */
     public function setData($data)
     {
+        if (empty($data)) {
+            if ($this->dataConstructor) {
+                $constructor = $this->dataConstructor;
+                $data = $constructor();
+            } else if ($this->dataClass) {
+                $class = $this->dataClass;
+                $data = new $class();
+            }
+        }
+
         parent::setData($data);
 
         // get transformed data and pass its values to child fields
@@ -895,7 +916,7 @@ class Form extends Field implements \IteratorAggregate, FormInterface
         // Don't update parent if data is a composite type (object or array)
         // and "by_reference" option is true, because then we expect that
         // we are working with a reference to the parent's data
-        if (!(is_object($data) || is_array($data)) || !$this->getOption('by_reference')) {
+        if (!is_object($data) || !is_object($objectOrArray) || !$this->getOption('by_reference')) {
             parent::writeProperty($objectOrArray);
         }
     }

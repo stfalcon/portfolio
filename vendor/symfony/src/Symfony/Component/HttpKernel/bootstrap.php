@@ -469,8 +469,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Loader\DelegatingLoader;
-use Symfony\Component\DependencyInjection\Loader\LoaderResolver;
 use Symfony\Component\DependencyInjection\Loader\LoaderInterface;
+use Symfony\Component\DependencyInjection\Loader\LoaderResolver;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\IniFileLoader;
@@ -479,6 +479,7 @@ use Symfony\Component\DependencyInjection\Loader\ClosureLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
+use Symfony\Component\HttpKernel\DependencyInjection\Loader\FileLocator;
 abstract class Kernel implements KernelInterface
 {
     protected $bundles;
@@ -521,7 +522,7 @@ abstract class Kernel implements KernelInterface
         }
                 $this->initializeBundles();
                 $this->initializeContainer();
-        foreach ($this->bundles as $bundle) {
+        foreach ($this->getBundles() as $bundle) {
             $bundle->setContainer($this->container);
             $bundle->boot();
         }
@@ -530,7 +531,7 @@ abstract class Kernel implements KernelInterface
     public function shutdown()
     {
         $this->booted = false;
-        foreach ($this->bundles as $bundle) {
+        foreach ($this->getBundles() as $bundle) {
             $bundle->shutdown();
             $bundle->setContainer(null);
         }
@@ -541,7 +542,11 @@ abstract class Kernel implements KernelInterface
         if (false === $this->booted) {
             $this->boot();
         }
-        return $this->container->get('http_kernel')->handle($request, $type, $catch);
+        return $this->getHttpKernel()->handle($request, $type, $catch);
+    }
+    protected function getHttpKernel()
+    {
+        return $this->container->get('http_kernel');
     }
     public function getBundles()
     {
@@ -549,9 +554,8 @@ abstract class Kernel implements KernelInterface
     }
     public function isClassInActiveBundle($class)
     {
-        foreach ($this->bundles as $bundle) {
-            $bundleClass = get_class($bundle);
-            if (0 === strpos($class, substr($bundleClass, 0, strrpos($bundleClass, '\\')))) {
+        foreach ($this->getBundles() as $bundle) {
+            if (0 === strpos($class, $bundle->getNamespace())) {
                 return true;
             }
         }
@@ -651,7 +655,7 @@ abstract class Kernel implements KernelInterface
                 $topMostBundles[$name] = $bundle;
             }
         }
-                if (count($diff = array_diff(array_keys($directChildren), array_keys($this->bundles)))) {
+                if (count($diff = array_values(array_diff(array_keys($directChildren), array_keys($this->bundles))))) {
             throw new \LogicException(sprintf('Bundle "%s" extends bundle "%s", which is not registered.', $directChildren[$diff[0]], $diff[0]));
         }
                 $this->bundleMap = array();
@@ -773,11 +777,11 @@ abstract class Kernel implements KernelInterface
     protected function getContainerLoader(ContainerInterface $container)
     {
         $resolver = new LoaderResolver(array(
-            new XmlFileLoader($container),
-            new YamlFileLoader($container),
-            new IniFileLoader($container),
-            new PhpFileLoader($container),
-            new ClosureLoader($container),
+            new XmlFileLoader($container, new FileLocator($this)),
+            new YamlFileLoader($container, new FileLocator($this)),
+            new IniFileLoader($container, new FileLocator($this)),
+            new PhpFileLoader($container, new FileLocator($this)),
+            new ClosureLoader($container, new FileLocator($this)),
         ));
         return new DelegatingLoader($resolver);
     }
@@ -1243,14 +1247,34 @@ class Request
     public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
     {
         $dup = clone $this;
-        $dup->initialize(
-            null !== $query ? $query : $this->query->all(),
-            null !== $request ? $request : $this->request->all(),
-            null !== $attributes ? $attributes : $this->attributes->all(),
-            null !== $cookies ? $cookies : $this->cookies->all(),
-            null !== $files ? $files : $this->files->all(),
-            null !== $server ? $server : $this->server->all()
-        );
+        if ($query !== null) {
+          $dup->query = new ParameterBag($query);
+        }
+        if ($request !== null) {
+          $dup->request = new ParameterBag($request);
+        }
+        if ($attributes !== null) {
+          $dup->attributes = new ParameterBag($attributes);
+        }
+        if ($cookies !== null) {
+          $dup->cookies = new ParameterBag($cookies);
+        }
+        if ($files !== null) {
+          $dup->files = new FileBag($files);
+        }
+        if ($server !== null) {
+          $dup->server = new ServerBag($server);
+          $dup->headers = new HeaderBag($dup->server->getHeaders());
+        }
+        $this->languages = null;
+        $this->charsets = null;
+        $this->acceptableContentTypes = null;
+        $this->pathInfo = null;
+        $this->requestUri = null;
+        $this->baseUrl = null;
+        $this->basePath = null;
+        $this->method = null;
+        $this->format = null;
         return $dup;
     }
     public function __clone()
