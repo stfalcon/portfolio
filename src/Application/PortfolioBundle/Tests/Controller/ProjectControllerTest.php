@@ -6,12 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ProjectControllerTest extends WebTestCase
 {
-    public function testEmptyProjectsList()
+//    public function testEmptyProjectsList()
+//    {
+//        $client = $this->createClient();
+//        $crawler = $client->request('GET', '/portfolio/projects');
+//
+//        $this->assertTrue($crawler->filter('html:contains("List of projects is empty")')->count() > 0);
+//    }
+    public function testProjectsList()
     {
         $client = $this->createClient();
         $crawler = $client->request('GET', '/portfolio/projects');
 
-        $this->assertTrue($crawler->filter('html:contains("List of projects is empty")')->count() > 0);
+        $this->assertTrue($crawler->filter('html:contains("eprice.kz")')->count() > 0);
     }
 
 //    public function testCreateValidProject()

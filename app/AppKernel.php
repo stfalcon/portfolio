@@ -23,13 +23,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
             //new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
 
+            new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             // register your bundles
             new Application\PortfolioBundle\PortfolioBundle(),
         );
 
-        if ('dev' === $this->getEnvironment()) {
+//        if ('dev' === $this->getEnvironment()) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-        }
+//        }
 
         return $bundles;
     }
