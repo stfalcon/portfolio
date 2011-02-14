@@ -17,10 +17,10 @@ use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Configuration\Processor;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Loader\FileLocator;
-use Symfony\Component\DependencyInjection\Resource\FileResource;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\Config\FileLocator;
 
 /**
  * FrameworkExtension.
@@ -92,7 +92,7 @@ class FrameworkExtension extends Extension
             $container->setParameter('debug.file_link_format', $pattern);
         }
 
-        if (isset($config['test']) && $config['test']) {
+        if (!empty($config['test'])) {
             $loader->load('test.xml');
             $config['session']['storage_id'] = 'array';
         }
@@ -177,7 +177,7 @@ class FrameworkExtension extends Extension
      */
     private function registerEsiConfiguration(array $config, XmlFileLoader $loader)
     {
-        if (isset($config['enabled']) && $config['enabled']) {
+        if (!empty($config['enabled'])) {
             $loader->load('esi.xml');
         }
     }
@@ -222,19 +222,18 @@ class FrameworkExtension extends Extension
      * @param array            $config    A router configuration array
      * @param ContainerBuilder $container A ContainerBuilder instance
      * @param XmlFileLoader    $loader    An XmlFileLoader instance
-     * @throws \InvalidArgumentException if resource option is not set
      */
     private function registerRouterConfiguration(array $config, ContainerBuilder $container, XmlFileLoader $loader)
     {
         $loader->load('routing.xml');
 
-        if (!isset($config['resource'])) {
-            throw new \InvalidArgumentException('Router configuration requires a resource option.');
-        }
-
         $container->setParameter('routing.resource', $config['resource']);
 
-        if (isset($config['cache_warmer']) && $config['cache_warmer']) {
+        if (isset($config['type'])) {
+            $container->setParameter('router.options.resource_type', $config['type']);
+        }
+
+        if (!empty($config['cache_warmer'])) {
             $container->getDefinition('router.cache_warmer')->addTag('kernel.cache_warmer');
             $container->setAlias('router', 'router.cached');
         }
@@ -260,7 +259,7 @@ class FrameworkExtension extends Extension
     {
         $loader->load('session.xml');
 
-        if (isset($config['auto_start']) && $config['auto_start']) {
+        if (!empty($config['auto_start'])) {
             $container->getDefinition('session')->addMethodCall('start');
         }
 
@@ -295,7 +294,6 @@ class FrameworkExtension extends Extension
      * @param array            $config    A templating configuration array
      * @param ContainerBuilder $container A ContainerBuilder instance
      * @param XmlFileLoader    $loader    An XmlFileLoader instance
-     * @throws \LogicException if no engines are defined
      */
     private function registerTemplatingConfiguration(array $config, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -314,7 +312,7 @@ class FrameworkExtension extends Extension
             $container->setParameter('templating.assets.base_urls', $config['assets_base_urls']);
         }
 
-        if (isset($config['loaders']) && $config['loaders']) {
+        if (!empty($config['loaders'])) {
             $loaders = array_map(function($loader) { return new Reference($loader); }, $config['loaders']);
 
             // Use a delegation unless only a single loader was registered
@@ -340,14 +338,10 @@ class FrameworkExtension extends Extension
             $container->setAlias('templating.locator', 'templating.locator.cached');
         }
 
-        if (empty($config['engines'])) {
-            throw new \LogicException('You must register at least one templating engine.');
-        }
-
         $this->addClassesToCompile(array(
             'Symfony\\Bundle\\FrameworkBundle\\Templating\\EngineInterface',
             'Symfony\\Component\\Templating\\EngineInterface',
-            'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\TemplateLocatorInterface',
+            'Symfony\\Component\\Config\\FileLocatorInterface',
             $container->findDefinition('templating.locator')->getClass(),
         ));
 
@@ -365,6 +359,7 @@ class FrameworkExtension extends Extension
             ));
         }
 
+        $container->setParameter('templating.engines', $config['engines']);
         $engines = array_map(function($engine) { return new Reference('templating.engine.'.$engine); }, $config['engines']);
 
         // Use a deligation unless only a single engine was registered
@@ -384,7 +379,7 @@ class FrameworkExtension extends Extension
      */
     private function registerTranslatorConfiguration(array $config, ContainerBuilder $container)
     {
-        if (isset($config['enabled']) && $config['enabled']) {
+        if (!empty($config['enabled'])) {
             // Use the "real" translator instead of the identity default
             $container->setDefinition('translator', $container->findDefinition('translator.real'));
 

@@ -13,7 +13,7 @@ namespace Symfony\Component\Security\Http\Firewall;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolverInterface;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
@@ -41,7 +41,7 @@ class ExceptionListener implements ListenerInterface
     protected $errorPage;
     protected $logger;
 
-    public function __construct(SecurityContext $context, AuthenticationTrustResolverInterface $trustResolver, AuthenticationEntryPointInterface $authenticationEntryPoint = null, $errorPage = null, AccessDeniedHandlerInterface $accessDeniedHandler = null, LoggerInterface $logger = null)
+    public function __construct(SecurityContextInterface $context, AuthenticationTrustResolverInterface $trustResolver, AuthenticationEntryPointInterface $authenticationEntryPoint = null, $errorPage = null, AccessDeniedHandlerInterface $accessDeniedHandler = null, LoggerInterface $logger = null)
     {
         $this->context = $context;
         $this->accessDeniedHandler = $accessDeniedHandler;
@@ -124,12 +124,10 @@ class ExceptionListener implements ListenerInterface
                         }
 
                         $subRequest = Request::create($this->errorPage);
-                        $subRequest->attributes->set(SecurityContext::ACCESS_DENIED_ERROR, $exception->getMessage());
+                        $subRequest->attributes->set(SecurityContextInterface::ACCESS_DENIED_ERROR, $exception->getMessage());
 
                         $response = $event->getSubject()->handle($subRequest, HttpKernelInterface::SUB_REQUEST, true);
                         $response->setStatusCode(403);
-
-                        return $response;
                     }
                 } catch (\Exception $e) {
                     if (null !== $this->logger) {
