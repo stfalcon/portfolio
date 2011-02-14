@@ -35,13 +35,9 @@ class CategoryController extends Controller
     {
         $category = new Category();
 
-        $form = new \Application\PortfolioBundle\Form\Category('category',
-                        array(
-                            'data' => $category,
-                            'validator' => $this->get('validator'),
-                        ));
-
-        $form->bind($this->get('request'));
+        $form = \Application\PortfolioBundle\Form\Category::create(
+                $this->get("form.context"), 'category');
+        $form->bind($this->get('request'), $category);
 
         if ($form->isValid()) {
             $em = $this->get('doctrine.orm.entity_manager');
@@ -72,14 +68,10 @@ class CategoryController extends Controller
         if (!$category) {
             throw new NotFoundHttpException('The category does not exist.');
         }
+        $form = \Application\PortfolioBundle\Form\Category::create(
+                $this->get("form.context"), 'category');
+        $form->bind($this->get('request'), $category);
 
-        $form = new \Application\PortfolioBundle\Form\Category('category',
-                        array(
-                            'data' => $category,
-                            'validator' => $this->get('validator'),
-                        ));
-
-        $form->bind($this->get('request'));
         if ($form->isValid()) {
             // save category
             $em->persist($category);

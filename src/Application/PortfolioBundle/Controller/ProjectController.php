@@ -34,19 +34,11 @@ class ProjectController extends Controller
     public function createAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        
+
         $project = new Project();
-
-        // project form
-        $form = new \Application\PortfolioBundle\Form\Project('project',
-                        array(
-//                            'data_class' => 'Application\PortfolioBundle\Entity\Project',
-                            'data' => $project,
-                            'validator' => $this->get('validator'),
-                            'em' => $em,
-                        ));
-
-        $form->bind($this->get('request'));
+        $form = \Application\PortfolioBundle\Form\Project::create(
+                $this->get("form.context"), 'project', array('em' => $em));
+        $form->bind($this->get('request'), $project);
 
         if ($form->isValid()) {
             // create project
@@ -77,17 +69,9 @@ class ProjectController extends Controller
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
-
-        // project form
-        $form = new \Application\PortfolioBundle\Form\Project('project',
-                        array(
-//                            'data_class' => 'Application\PortfolioBundle\Entity\Project',
-                            'data' => $project,
-                            'validator' => $this->get('validator'),
-                            'em' => $em,
-                        ));
-        
-        $form->bind($this->get('request'));
+        $form = \Application\PortfolioBundle\Form\Project::create(
+                $this->get("form.context"), 'project', array('em' => $em));
+        $form->bind($this->get('request'), $project);
 
         if ($form->isValid()) {
             // save project
