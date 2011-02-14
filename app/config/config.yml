@@ -33,12 +33,6 @@ doctrine.orm:
     mappings:
         PortfolioBundle: ~
 
-#services:
-#    templating.helper.stylesheets:
-#        class: Symfony\Bundle\CompatAssetsBundle\Templating\Helper\StylesheetsHelper
-#        tags:
-#            - { name: templating.helper, alias: stylesheets }
-#
 ## Swiftmailer Configuration
 #swiftmailer.config:
 #    transport:  smtp
@@ -47,3 +41,5 @@ doctrine.orm:
 #    host:       smtp.gmail.com
 #    username:   xxxxxxxx
 #    password:   xxxxxxxx
+
+liip_functionaltest.config: ~

@@ -12,9 +12,9 @@ doctrine.dbal:
     password: null
     logging:  %kernel.debug%
 
-webprofiler.config:
-    toolbar: true
-    intercept_redirects: true
+#webprofiler.config:
+#    toolbar: true
+#    intercept_redirects: true
 
 zend.config:
     logger:
