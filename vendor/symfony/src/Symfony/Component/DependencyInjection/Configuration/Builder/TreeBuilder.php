@@ -19,6 +19,14 @@ class TreeBuilder
     protected $root;
     protected $tree;
 
+    /**
+     * Creates the NodeBuilder for the root node
+     *
+     * @param string $name The name of the node
+     * @param string $type The type of the node
+     *
+     * @return Symfony\Component\DependencyInjection\Configuration\Builder\NodeBuilder
+     */
     public function root($name, $type)
     {
         $this->tree = null;
@@ -26,6 +34,11 @@ class TreeBuilder
         return $this->root = new NodeBuilder($name, $type, $this);
     }
 
+    /**
+     * Builds the tree.
+     *
+     * @return Symfony\Component\DependencyInjection\Configuration\NodeInterface
+     */
     public function buildTree()
     {
         if (null === $this->root) {
@@ -39,6 +52,13 @@ class TreeBuilder
         return $this->tree = $this->createConfigNode($this->root);
     }
 
+    /**
+     * Creates a node.
+     *
+     * @param NodeBuilder $node The builder of the node
+     *
+     * @return Symfony\Component\DependencyInjection\Configuration\NodeInterface
+     */
     protected function createConfigNode(NodeBuilder $node)
     {
         $method = 'create'.$node->type.'ConfigNode';
@@ -49,6 +69,13 @@ class TreeBuilder
         return $this->$method($node);
     }
 
+    /**
+     * Creates a boolean node.
+     *
+     * @param NodeBuilder $node The builder of the node
+     *
+     * @return Symfony\Component\DependencyInjection\Configuration\BooleanNode
+     */
     protected function createBooleanConfigNode(NodeBuilder $node)
     {
         $configNode = new BooleanNode($node->name, $node->parent);
@@ -57,6 +84,13 @@ class TreeBuilder
         return $configNode;
     }
 
+    /**
+     * Creates a scalar node.
+     *
+     * @param NodeBuilder $node the builder of the node
+     *
+     * @return Symfony\Component\DependencyInjection\Configuration\ScalarNode
+     */
     protected function createScalarConfigNode(NodeBuilder $node)
     {
         $configNode = new ScalarNode($node->name, $node->parent);
@@ -65,6 +99,12 @@ class TreeBuilder
         return $configNode;
     }
 
+    /**
+     * Configures a scalar node.
+     *
+     * @param ScalarNode  $configNode The node to configure
+     * @param NodeBuilder $node       The builder of the node
+     */
     protected function configureScalarNode(ScalarNode $configNode, NodeBuilder $node)
     {
         if (null !== $node->normalization) {
@@ -88,8 +128,16 @@ class TreeBuilder
         $configNode->addEquivalentValue(null, $node->nullEquivalent);
         $configNode->addEquivalentValue(true, $node->trueEquivalent);
         $configNode->addEquivalentValue(false, $node->falseEquivalent);
+        $configNode->setRequired($node->required);
     }
 
+    /**
+     * Creates an array node.
+     *
+     * @param NodeBuilder $node The builder of the node
+     *
+     * @return Symfony\Component\DependencyInjection\Configuration\ArrayNode
+     */
     protected function createArrayConfigNode(NodeBuilder $node)
     {
         $configNode = new ArrayNode($node->name, $node->parent);
@@ -99,6 +147,7 @@ class TreeBuilder
         $configNode->addEquivalentValue(true, $node->trueEquivalent);
         $configNode->addEquivalentValue(false, $node->falseEquivalent);
         $configNode->setPerformDeepMerging($node->performDeepMerging);
+        $configNode->setRequired($node->required);
 
         if (null !== $node->key) {
             $configNode->setKeyAttribute($node->key);
@@ -132,9 +181,20 @@ class TreeBuilder
             $configNode->setPrototype($this->createConfigNode($node->prototype));
         }
 
+        if (null !== $node->defaultValue) {
+            $configNode->setDefaultValue($node->defaultValue);
+        }
+
         return $configNode;
     }
 
+    /**
+     * Builds the expressions.
+     *
+     * @param array $expressions An array of ExprBuilder instances to build
+     *
+     * @return array
+     */
     protected function buildExpressions(array $expressions)
     {
         foreach ($expressions as $k => $expr) {

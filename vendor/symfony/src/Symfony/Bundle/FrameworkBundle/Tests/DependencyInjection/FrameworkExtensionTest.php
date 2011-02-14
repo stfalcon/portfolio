@@ -51,12 +51,13 @@ abstract class FrameworkExtensionTest extends TestCase
 
         $this->assertTrue($container->hasDefinition('router.real'), '->registerRouterConfiguration() loads routing.xml');
         $this->assertEquals($container->getParameter('kernel.root_dir').'/config/routing.xml', $container->getParameter('routing.resource'), '->registerRouterConfiguration() sets routing resource');
+        $this->assertEquals('xml', $container->getParameter('router.options.resource_type'), '->registerRouterConfiguration() sets routing resource type');
         $this->assertTrue($container->getDefinition('router.cache_warmer')->hasTag('kernel.cache_warmer'), '->registerRouterConfiguration() tags router cache warmer if cache warming is set');
         $this->assertEquals('router.cached', (string) $container->getAlias('router'), '->registerRouterConfiguration() changes router alias to cached if cache warming is set');
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException Symfony\Component\DependencyInjection\Configuration\Exception\InvalidConfigurationException
      */
     public function testRouterRequiresResourceOption()
     {
@@ -110,6 +111,8 @@ abstract class FrameworkExtensionTest extends TestCase
         $this->assertEquals('templating.engine.delegating', (string) $container->getAlias('templating'), '->registerTemplatingConfiguration() configures delegating loader if multiple engines are provided');
 
         $this->assertEquals('templating.loader.chain', (string) $container->getAlias('templating.loader'), '->registerTemplatingConfiguration() configures loader chain if multiple loaders are provided');
+
+        $this->assertEquals(array('php', 'twig'), $container->getParameter('templating.engines'), '->registerTemplatingConfiguration() sets a templating.engines parameter');
     }
 
     public function testTranslator()
@@ -129,7 +132,7 @@ abstract class FrameworkExtensionTest extends TestCase
     }
 
     /**
-     * @expectedException LogicException
+     * @expectedException Symfony\Component\DependencyInjection\Configuration\Exception\InvalidConfigurationException
      */
     public function testTemplatingRequiresAtLeastOneEngine()
     {

@@ -17,13 +17,13 @@ use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Loader\FileLocator;
-use Symfony\Component\DependencyInjection\Resource\FileResource;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\RequestMatcher;
 
 /**
@@ -66,12 +66,8 @@ class SecurityExtension extends Extension
         $loader->load('collectors.xml');
 
         // set some global scalars
-        if (isset($config['access_denied_url'])) {
-            $container->setParameter('security.access.denied_url', $config['access_denied_url']);
-        }
-        if (isset($config['session_fixation_protection'])) {
-            $container->setParameter('security.authentication.session_strategy.strategy', $config['session_fixation_protection']);
-        }
+        $container->setParameter('security.access.denied_url', $config['access_denied_url']);
+        $container->setParameter('security.authentication.session_strategy.strategy', $config['session_fixation_strategy']);
 
         $this->createFirewalls($config, $container);
         $this->createAuthorization($config, $container);
@@ -470,7 +466,7 @@ class SecurityExtension extends Extension
         $definition = $container->register($name, '%security.user.provider.in_memory.class%');
         $definition->setPublic(false);
         foreach ($provider['users'] as $username => $user) {
-            $userId = $name.'_'.md5(json_encode(array($username, $user['password'], $user['roles'])));
+            $userId = $name.'_'.$username;
 
             $container
                 ->register($userId, 'Symfony\Component\Security\Core\User\User')
@@ -486,7 +482,7 @@ class SecurityExtension extends Extension
 
     protected function getUserProviderId($name)
     {
-        return 'security.authentication.provider.'.$name;
+        return 'security.user.provider.'.$name;
     }
 
     protected function createExceptionListener($container, $config, $id, $defaultEntryPoint)

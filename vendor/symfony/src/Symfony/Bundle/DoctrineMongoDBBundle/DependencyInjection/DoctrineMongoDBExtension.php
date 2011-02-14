@@ -13,12 +13,12 @@ namespace Symfony\Bundle\DoctrineMongoDBBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Loader\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Resource\FileResource;
+use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Bundle\DoctrineAbstractBundle\DependencyInjection\AbstractDoctrineExtension;
 
 /**
@@ -105,6 +105,7 @@ class DoctrineMongoDBExtension extends AbstractDoctrineExtension
             $documentManager['name'] = $name;
             $this->loadDocumentManager($documentManager, $container);
         }
+        $container->setParameter('doctrine.odm.mongodb.document_managers', array_keys($documentManagers));
     }
 
     /**

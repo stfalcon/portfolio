@@ -24,6 +24,7 @@ class XmlEncoder extends AbstractEncoder
 {
     protected $dom;
     protected $format;
+    protected $rootNodeName = 'response';
 
     /**
      * {@inheritdoc}
@@ -38,11 +39,11 @@ class XmlEncoder extends AbstractEncoder
         $this->format = $format;
 
         if ($this->serializer->isStructuredType($data)) {
-            $root = $this->dom->createElement('response');
+            $root = $this->dom->createElement($this->rootNodeName);
             $this->dom->appendChild($root);
             $this->buildXml($root, $data);
         } else {
-            $this->appendNode($this->dom, $data, 'response');
+            $this->appendNode($this->dom, $data, $this->rootNodeName);
         }
         return $this->dom->saveXML();
     }
@@ -57,6 +58,24 @@ class XmlEncoder extends AbstractEncoder
             return (string) $xml;
         }
         return $this->parseXml($xml);
+    }
+
+    /**
+     * Sets the root node name
+     * @param string $name root node name
+     */
+    public function setRootNodeName($name)
+    {
+        $this->rootNodeName = $name;
+    }
+
+    /**
+     * Returns the root node name
+     * @return string
+     */
+    public function getRootNodeName()
+    {
+        return $this->rootNodeName;
     }
 
     /**
@@ -120,7 +139,7 @@ class XmlEncoder extends AbstractEncoder
                 if (!$parentNode->parentNode->parentNode) {
                     $root = $parentNode->parentNode;
                     $root->removeChild($parentNode);
-                    return $this->appendNode($root, $data, 'response');
+                    return $this->appendNode($root, $data, $this->rootNodeName);
                 }
                 return $this->appendNode($parentNode, $data, 'data');
             }
@@ -162,13 +181,13 @@ class XmlEncoder extends AbstractEncoder
     {
         if (is_array($val)) {
             return $this->buildXml($node, $val);
-        } elseif (is_object($val)) {
-            return $this->buildXml($node, $this->serializer->normalizeObject($val, $this->format));
         } elseif ($val instanceof \SimpleXMLElement) {
             $child = $this->dom->importNode(dom_import_simplexml($val), true);
             $node->appendChild($child);
         } elseif ($val instanceof \Traversable) {
             $this->buildXml($node, $val);
+        } elseif (is_object($val)) {
+            return $this->buildXml($node, $this->serializer->normalizeObject($val, $this->format));
         } elseif (is_numeric($val)) {
             return $this->appendText($node, (string) $val);
         } elseif (is_string($val)) {
@@ -248,6 +267,8 @@ class XmlEncoder extends AbstractEncoder
      */
     protected function isElementNameValid($name)
     {
-        return $name && strpos($name, ' ') === false && preg_match('|^\w+$|', $name);
+        return $name &&
+            false === strpos($name, ' ') &&
+            preg_match('#^[\pL_][\pL0-9._-]+$#ui', $name);
     }
 }
