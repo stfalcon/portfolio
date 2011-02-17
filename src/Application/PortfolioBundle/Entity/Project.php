@@ -37,6 +37,13 @@ class Project
     private $description;
 
     /**
+     * @var string $image
+     *
+     * @orm:Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+    /**
      * @var Doctrine\Common\Collections\ArrayCollection
      *
      * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Category")
@@ -81,6 +88,16 @@ class Project
         $this->description = $description;
     }
 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+    
     public function getCategories()
     {
         return $this->categories;

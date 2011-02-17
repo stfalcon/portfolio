@@ -3,6 +3,7 @@
 namespace Application\PortfolioBundle\Form;
 
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FileField;
 use Symfony\Component\Form\TextField;
 use Symfony\Component\Form\TextareaField;
 use Symfony\Component\Form\EntityChoiceField;
@@ -21,6 +22,7 @@ class Project extends Form
 
         $this->add(new TextField('name'));
         $this->add(new TextareaField('description'));
+        $this->add(new FileField('image', array('secret' => md5(time()))));
 
         $this->add(new EntityChoiceField('categories', array(
                     'em' => $em,
@@ -28,7 +30,7 @@ class Project extends Form
                     'multiple' => true,
                     'expanded' => true,
                 )));
-
+        
         parent::configure();
     }
 
