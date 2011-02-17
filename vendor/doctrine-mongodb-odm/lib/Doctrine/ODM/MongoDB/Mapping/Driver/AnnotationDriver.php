@@ -20,6 +20,7 @@
 namespace Doctrine\ODM\MongoDB\Mapping\Driver;
 
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadata,
+    Doctrine\ODM\MongoDB\Mapping\ClassMetadataInfo,
     Doctrine\Common\Annotations\AnnotationReader,
     Doctrine\ODM\MongoDB\MongoDBException;
 
@@ -65,9 +66,9 @@ class AnnotationDriver implements Driver
     /**
      * Initializes a new AnnotationDriver that uses the given AnnotationReader for reading
      * docblock annotations.
-     * 
+     *
      * @param $reader The AnnotationReader to use.
-     * @param string|array $paths One or multiple paths where mapping classes can be found. 
+     * @param string|array $paths One or multiple paths where mapping classes can be found.
      */
     public function __construct(AnnotationReader $reader, $paths = null)
     {
@@ -100,7 +101,7 @@ class AnnotationDriver implements Driver
     /**
      * {@inheritdoc}
      */
-    public function loadMetadataForClass($className, ClassMetadata $class)
+    public function loadMetadataForClass($className, ClassMetadataInfo $class)
     {
         $reflClass = $class->getReflectionClass();
 
@@ -117,9 +118,6 @@ class AnnotationDriver implements Driver
             throw MongoDBException::classIsNotAValidDocument($className);
         }
 
-        if (isset($documentAnnot->db)) {
-            $class->setDatabase($documentAnnot->db);
-        }
         if (isset($documentAnnot->collection)) {
             $class->setCollection($documentAnnot->collection);
         }
@@ -358,7 +356,7 @@ class AnnotationDriver implements Driver
 
     /**
      * Factory method for the Annotation Driver
-     * 
+     *
      * @param array|string $paths
      * @param AnnotationReader $reader
      * @return AnnotationDriver

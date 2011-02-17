@@ -163,7 +163,7 @@ class SchemaManager
         if ($class->isMappedSuperclass || $class->isEmbeddedDocument) {
             throw new InvalidArgumentException('Cannot create document collection for mapped super classes or embedded documents.');
         }
-        $this->dm->getDocumentDatabase($documentName)->createCollection(
+        $this->dm->getDatabase()->createCollection(
             $class->getCollection(),
             $class->getCollectionCapped(),
             $class->getCollectionSize(),
@@ -195,49 +195,17 @@ class SchemaManager
         if ($class->isMappedSuperclass || $class->isEmbeddedDocument) {
             throw new InvalidArgumentException('Cannot delete document indexes for mapped super classes or embedded documents.');
         }
-        $this->dm->getDocumentDatabase($documentName)->dropCollection(
+        $this->dm->getDatabase()->dropCollection(
             $class->getCollection()
         );
     }
 
     /**
-     * Drop all the mapped document databases in the metadata factory.
-     */
-    public function dropDatabases()
-    {
-        foreach ($this->metadataFactory->getAllMetadata() as $class) {
-            if ($class->isMappedSuperclass || $class->isEmbeddedDocument) {
-                continue;
-            }
-            $this->dropDocumentDatabase($class->name);
-        }
-    }
-
-    /**
      * Drop the document database for a mapped class.
-     *
-     * @param string $documentName
      */
-    public function dropDocumentDatabase($documentName)
+    public function dropDatabase()
     {
-        $class = $this->dm->getClassMetadata($documentName);
-        if ($class->isMappedSuperclass || $class->isEmbeddedDocument) {
-            throw new InvalidArgumentException('Cannot drop document database for mapped super classes or embedded documents.');
-        }
-        $this->dm->getDocumentDatabase($documentName)->drop();
-    }
-
-    /**
-     * Create all the mapped document databases in the metadata factory.
-     */
-    public function createDatabases()
-    {
-        foreach ($this->metadataFactory->getAllMetadata() as $class) {
-            if ($class->isMappedSuperclass || $class->isEmbeddedDocument) {
-                continue;
-            }
-            $this->createDocumentDatabase($class->name);
-        }
+        $this->dm->getDatabase()->drop();
     }
 
     /**
@@ -245,12 +213,8 @@ class SchemaManager
      *
      * @param string $documentName
      */
-    public function createDocumentDatabase($documentName)
+    public function createDatabase()
     {
-        $class = $this->dm->getClassMetadata($documentName);
-        if ($class->isMappedSuperclass || $class->isEmbeddedDocument) {
-            throw new InvalidArgumentException('Cannot delete document indexes for mapped super classes or embedded documents.');
-        }
-        $this->dm->getDocumentDatabase($documentName)->execute("function() { return true; }");
+        $this->dm->getDatabase()->execute("function() { return true; }");
     }
 }

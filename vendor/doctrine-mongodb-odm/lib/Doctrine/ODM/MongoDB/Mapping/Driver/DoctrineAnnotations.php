@@ -25,7 +25,6 @@ use Doctrine\Common\Annotations\Annotation;
 
 final class Document extends Annotation
 {
-    public $db;
     public $collection;
     public $repositoryClass;
     public $indexes = array();
@@ -74,6 +73,7 @@ class Field extends Annotation
     public $type = 'string';
     public $nullable = false;
     public $options = array();
+    public $strategy;
 }
 final class Id extends Field
 {

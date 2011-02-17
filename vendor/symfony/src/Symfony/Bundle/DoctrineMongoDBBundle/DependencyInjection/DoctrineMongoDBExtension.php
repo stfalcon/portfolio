@@ -30,7 +30,7 @@ use Symfony\Bundle\DoctrineAbstractBundle\DependencyInjection\AbstractDoctrineEx
  */
 class DoctrineMongoDBExtension extends AbstractDoctrineExtension
 {
-    public function mongodbLoad(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
         foreach ($configs as $config) {
             $this->doMongodbLoad($config, $container);
@@ -163,6 +163,7 @@ class DoctrineMongoDBExtension extends AbstractDoctrineExtension
 
         $odmDmArgs = array(
             new Reference(sprintf('doctrine.odm.mongodb.%s_connection', isset($documentManager['connection']) ? $documentManager['connection'] : $documentManager['name'])),
+            isset($documentManager['database']) ? $documentManager['database'] : $defaultDatabase,
             new Reference(sprintf('doctrine.odm.mongodb.%s_configuration', $documentManager['name'])),
             new Reference($eventManagerId),
         );
@@ -401,6 +402,6 @@ class DoctrineMongoDBExtension extends AbstractDoctrineExtension
      */
     public function getAlias()
     {
-        return 'doctrine_odm';
+        return 'doctrine_mongo_db';
     }
 }

@@ -223,10 +223,12 @@ class ContainerAware implements ContainerAwareInterface
 }
 namespace Symfony\Component\HttpKernel\Bundle
 {
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 interface BundleInterface
 {
     function boot();
     function shutdown();
+    public function build(ContainerBuilder $container);
     function getParent();
     function getName();
     function getNamespace();
@@ -237,6 +239,7 @@ namespace Symfony\Component\HttpKernel\Bundle
 {
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;
 abstract class Bundle extends ContainerAware implements BundleInterface
@@ -248,6 +251,18 @@ abstract class Bundle extends ContainerAware implements BundleInterface
     }
     public function shutdown()
     {
+    }
+    public function build(ContainerBuilder $container)
+    {
+        $class = $this->getNamespace().'\\DependencyInjection\\'.str_replace('Bundle', 'Extension', $this->getName());
+        if (class_exists($class)) {
+            $extension = new $class();
+            $alias = Container::underscore(str_replace('Bundle', '', $this->getName()));
+            if ($alias !== $extension->getAlias()) {
+                throw new \LogicException(sprintf('The extension alias for the default extension of a bundle must be the underscored version of the bundle name ("%s" vs "%s")', $alias, $extension->getAlias()));
+            }
+            $container->registerExtension($extension);
+        }
     }
     public function getNamespace()
     {
@@ -275,19 +290,6 @@ abstract class Bundle extends ContainerAware implements BundleInterface
         $name = get_class($this);
         $pos = strrpos($name, '\\');
         return $this->name = false === $pos ? $name :  substr($name, $pos + 1);
-    }
-    public function registerExtensions(ContainerBuilder $container)
-    {
-        if (!$dir = realpath($this->getPath().'/DependencyInjection')) {
-            return;
-        }
-        $finder = new Finder();
-        $finder->files()->name('*Extension.php')->in($dir);
-        $prefix = $this->getNamespace().'\\DependencyInjection';
-        foreach ($finder as $file) {
-            $class = $prefix.strtr($file->getPath(), array($dir => '', '/' => '\\')).'\\'.$file->getBasename('.php');
-            $container->registerExtension(new $class());
-        }
     }
     public function registerCommands(Application $application)
     {
@@ -392,7 +394,7 @@ class HttpKernel implements HttpKernelInterface
             return $this->filterResponse($response, $request, 'A "core.request" listener returned a non response object.', $type);
         }
                 if (false === $controller = $this->resolver->getController($request)) {
-            throw new NotFoundHttpException(sprintf('Unable to find the controller for "%s", check your route configuration.', $request->getPathInfo()));
+            throw new NotFoundHttpException(sprintf('Unable to find the controller for path "%s". Maybe you forgot to add the matching route in your routing configuration?', $request->getPathInfo()));
         }
         $event = new Event($this, 'core.controller', array('request_type' => $type, 'request' => $request));
         $controller = $this->dispatcher->filter($event, $controller);
@@ -566,7 +568,7 @@ abstract class Kernel implements KernelInterface
     public function getBundle($name, $first = true)
     {
         if (!isset($this->bundleMap[$name])) {
-            throw new \InvalidArgumentException(sprintf('Bundle "%s" does not exist or it is not enabled.', $name));
+            throw new \InvalidArgumentException(sprintf('Bundle "%s" does not exist or it is not enabled. Maybe you forgot to add it in the registerBundles() function of your %s.php file?', $name, get_class($this)));
         }
         if (true === $first) {
             return $this->bundleMap[$name][0];
@@ -727,7 +729,7 @@ abstract class Kernel implements KernelInterface
         $parameterBag = new ParameterBag($this->getKernelParameters());
         $container = new ContainerBuilder($parameterBag);
         foreach ($this->bundles as $bundle) {
-            $bundle->registerExtensions($container);
+            $bundle->build($container);
             if ($this->debug) {
                 $container->addObjectResource($bundle);
             }
@@ -1966,7 +1968,7 @@ class ConfigCache
     }
     public function __toString()
     {
-        return $this->cacheDir.'/'.$this->file.'.php';
+        return $this->getCacheFile();
     }
     public function isFresh()
     {

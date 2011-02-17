@@ -29,15 +29,11 @@ class MergeExtensionConfigurationPass implements CompilerPassInterface
         $definitions = $container->getDefinitions();
         $aliases = $container->getAliases();
 
-        foreach ($container->getExtensionConfigs() as $name => $configs) {
-            list($namespace, $tag) = explode(':', $name);
-
-            $extension = $container->getExtension($namespace);
-
+        foreach ($container->getExtensions() as $name => $extension) {
             $tmpContainer = new ContainerBuilder($container->getParameterBag());
             $tmpContainer->addObjectResource($extension);
 
-            $extension->load($tag, $configs, $tmpContainer);
+            $extension->load($container->getExtensionConfig($name), $tmpContainer);
 
             $container->merge($tmpContainer);
         }

@@ -1,4 +1,4 @@
-app.config:
+framework:
     charset:       UTF-8
     error_handler: null
     csrf_protection:
@@ -14,24 +14,25 @@ app.config:
         auto_start:     true
 
 # Twig Configuration
-twig.config:
+twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
 ## Doctrine Configuration
-doctrine.dbal:
-    driver:   pdo_mysql
-    dbname:   portfolio_development
-    user:     root
-    password: null
-    logging:  %kernel.debug%
-doctrine.orm:
-    default_entity_manager:           default
-    cache_driver:                     apc
-    auto_generate_proxy_classes:      %kernel.debug%
-#    auto_generate_hydrator_classes:   %kernel.debug%
-    mappings:
-        PortfolioBundle: ~
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        dbname:   portfolio_development
+        user:     root
+        password: null
+        logging:  %kernel.debug%
+    orm:
+        default_entity_manager:           default
+        cache_driver:                     apc
+        auto_generate_proxy_classes:      %kernel.debug%
+    #    auto_generate_hydrator_classes:   %kernel.debug%
+        mappings:
+            PortfolioBundle: ~
 
 ## Swiftmailer Configuration
 #swiftmailer.config:
@@ -42,4 +43,4 @@ doctrine.orm:
 #    username:   xxxxxxxx
 #    password:   xxxxxxxx
 
-liip_functionaltest.config: ~
+#liip_functionaltest: ~
