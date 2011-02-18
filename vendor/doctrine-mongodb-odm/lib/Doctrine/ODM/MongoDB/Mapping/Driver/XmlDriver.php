@@ -20,6 +20,7 @@
 namespace Doctrine\ODM\MongoDB\Mapping\Driver;
 
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadata,
+    Doctrine\ODM\MongoDB\Mapping\ClassMetadataInfo,
     SimpleXmlElement;
 
 /**
@@ -43,7 +44,7 @@ class XmlDriver extends AbstractFileDriver
     /**
      * {@inheritdoc}
      */
-    public function loadMetadataForClass($className, ClassMetadata $class)
+    public function loadMetadataForClass($className, ClassMetadataInfo $class)
     {
         $xmlRoot = $this->getElement($className);
         if ( ! $xmlRoot) {
@@ -57,9 +58,6 @@ class XmlDriver extends AbstractFileDriver
             $class->isMappedSuperclass = true;
         } elseif ($xmlRoot->getName() == 'embedded-document') {
             $class->isEmbeddedDocument = true;
-        }
-        if (isset($xmlRoot['db'])) {
-            $class->setDatabase((string) $xmlRoot['db']);
         }
         if (isset($xmlRoot['collection'])) {
             $class->setCollection((string) $xmlRoot['collection']);

@@ -22,7 +22,7 @@ class Configuration
         $tb = new TreeBuilder();
 
         return $tb
-            ->root('security:acl', 'array')
+            ->root('security', 'array')
                 ->scalarNode('connection')->end()
                 ->scalarNode('cache')->end()
             ->end()
@@ -34,7 +34,7 @@ class Configuration
         $tb = new TreeBuilder();
 
         return $tb
-            ->root('security:config', 'array')
+            ->root('security', 'array')
                 ->fixXmlConfig('factory', 'factories')
                 ->arrayNode('factories')
                     ->prototype('scalar')->end()
@@ -46,7 +46,7 @@ class Configuration
     public function getMainConfigTree(array $factories)
     {
         $tb = new TreeBuilder();
-        $rootNode = $tb->root('security:config', 'array');
+        $rootNode = $tb->root('security', 'array');
 
         $rootNode
             ->scalarNode('access_denied_url')->defaultNull()->end()
@@ -141,6 +141,7 @@ class Configuration
                         ->canBeUnset()
                         ->scalarNode('path')->defaultValue('/logout')->end()
                         ->scalarNode('target')->defaultValue('/')->end()
+                        ->scalarNode('success_handler')->end()
                         ->booleanNode('invalidate_session')->defaultTrue()->end()
                         ->fixXmlConfig('delete_cookie')
                         ->arrayNode('delete_cookies')
@@ -159,7 +160,7 @@ class Configuration
                             ->prototype('scalar')->end()
                         ->end()
                     ->end()
-                    ->booleanNode('anonymous')->end()
+                    ->booleanNode('anonymous')->defaultFalse()->end()
                     ->arrayNode('switch_user')
                         ->scalarNode('provider')->end()
                         ->scalarNode('parameter')->defaultValue('_switch_user')->end()

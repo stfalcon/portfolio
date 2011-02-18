@@ -20,6 +20,7 @@
 namespace Doctrine\ODM\MongoDB\Mapping\Driver;
 
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
+use Doctrine\ODM\MongoDB\Mapping\ClassMetadataInfo;
 
 /**
  * The YamlDriver reads the mapping metadata from yaml schema files.
@@ -42,7 +43,7 @@ class YamlDriver extends AbstractFileDriver
     /**
      * {@inheritdoc}
      */
-    public function loadMetadataForClass($className, ClassMetadata $class)
+    public function loadMetadataForClass($className, ClassMetadataInfo $class)
     {
         $element = $this->getElement($className);
         if ( ! $element) {
@@ -50,9 +51,6 @@ class YamlDriver extends AbstractFileDriver
         }
         $element['type'] = isset($element['type']) ? $element['type'] : 'document';
 
-        if (isset($element['db'])) {
-            $class->setDatabase($element['db']);
-        }
         if (isset($element['collection'])) {
             $class->setCollection($element['collection']);
         }

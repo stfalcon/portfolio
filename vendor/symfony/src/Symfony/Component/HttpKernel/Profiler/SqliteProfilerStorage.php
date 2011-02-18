@@ -14,11 +14,11 @@ namespace Symfony\Component\HttpKernel\Profiler;
 use Symfony\Component\HttpKernel\DataCollector\DataCollectorInterface;
 
 /**
- * SQLiteProfilerStorage stores profiling information in a SQLite database.
+ * SqliteProfilerStorage stores profiling information in a SQLite database.
  *
  * @author Fabien Potencier <fabien.potencier@symfony-project.com>
  */
-class SQLiteProfilerStorage implements ProfilerStorageInterface
+class SqliteProfilerStorage implements ProfilerStorageInterface
 {
     protected $store;
     protected $lifetime;
