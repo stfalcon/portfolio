@@ -1,3 +1,0 @@
-[submodule "src/Liip/FunctionalTestBundle"]
-	path = src/Liip/FunctionalTestBundle
-	url = git@github.com:stfalcon/FunctionalTestBundle.git
