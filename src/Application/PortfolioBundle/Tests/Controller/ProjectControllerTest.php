@@ -2,7 +2,8 @@
 
 namespace Application\PortfolioBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class ProjectControllerTest extends WebTestCase
 {
@@ -15,6 +16,8 @@ class ProjectControllerTest extends WebTestCase
 //    }
     public function testProjectsList()
     {
+        $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
+
         $client = $this->createClient();
         $crawler = $client->request('GET', '/portfolio/projects');
 
