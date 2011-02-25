@@ -43,7 +43,7 @@ use Doctrine\ODM\MongoDB\MongoDBException,
  * @author      Jonathan H. Wage <jonwage@gmail.com>
  * @author      Roman Borschel <roman@code-factory.org>
  */
-class ClassMetadataInfo
+class ClassMetadataInfo implements \Doctrine\Common\Persistence\Mapping\ClassMetadata
 {
     /* The Id generator types. */
     /**
@@ -116,6 +116,11 @@ class ClassMetadataInfo
      * the <tt>NotifyPropertyChanged</tt> interface.
      */
     const CHANGETRACKING_NOTIFY = 3;
+
+    /**
+     * READ-ONLY: The name of the mongo database the document is mapped to.
+     */
+    public $db;
 
     /**
      * READ-ONLY: The name of the monge collection the document is mapped to.
@@ -209,13 +214,6 @@ class ClassMetadataInfo
      * @var array
      */
     public $reflFields = array();
-
-    /**
-     * The prototype from which new instances of the mapped class are created.
-     *
-     * @var object
-     */
-    private $prototype;
 
     /**
      * READ-ONLY: The inheritance mapping type used by the class.
@@ -405,11 +403,21 @@ class ClassMetadataInfo
      * INTERNAL:
      * Sets the mapped identifier field of this class.
      *
-     * @param array $identifier
+     * @param string $identifier
      */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+    }
+
+    /**
+     * Gets the mapped identifier field of this class.
+     *
+     * @return string $identifier
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
     }
 
     /**
@@ -693,6 +701,26 @@ class ClassMetadataInfo
     public function getNamespace()
     {
         return $this->namespace;
+    }
+
+    /**
+     * Returns the database this Document is mapped to.
+     *
+     * @return string $db The database name.
+     */
+    public function getDatabase()
+    {
+        return $this->db;
+    }
+
+    /**
+     * Set the database this Document is mapped to.
+     *
+     * @param string $db The database name
+     */
+    public function setDatabase($db)
+    {
+        $this->db = $db;
     }
 
     /**
@@ -1448,18 +1476,5 @@ class ClassMetadataInfo
     public function setLockField($lockField)
     {
         $this->lockField = $lockField;
-    }
-
-    /**
-     * Creates a new instance of the mapped class, without invoking the constructor.
-     *
-     * @return object
-     */
-    public function newInstance()
-    {
-        if ($this->prototype === null) {
-            $this->prototype = unserialize(sprintf('O:%d:"%s":0:{}', strlen($this->name), $this->name));
-        }
-        return clone $this->prototype;
     }
 }

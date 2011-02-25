@@ -494,7 +494,9 @@ class Field extends Configurable implements FieldInterface
     protected function transform($value)
     {
         if (null === $this->valueTransformer) {
-            return null === $value ? '' : $value;
+            // Scalar values should always be converted to strings to
+            // facilitate differentiation between empty ("") and zero (0).
+            return null === $value || is_scalar($value) ? (string)$value : $value;
         }
         return $this->valueTransformer->transform($value);
     }
@@ -535,5 +537,13 @@ class Field extends Configurable implements FieldInterface
         if ($this->propertyPath !== null) {
             $this->propertyPath->setValue($objectOrArray, $this->getData());
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isEmpty()
+    {
+        return null === $this->data || '' === $this->data;
     }
 }

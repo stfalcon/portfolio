@@ -85,8 +85,8 @@ class TimeField extends Form
         $this->addOption('minutes', range(0, 59));
         $this->addOption('seconds', range(0, 59));
 
-        $this->addOption('data_timezone', 'UTC');
-        $this->addOption('user_timezone', 'UTC');
+        $this->addOption('data_timezone', date_default_timezone_get());
+        $this->addOption('user_timezone', date_default_timezone_get());
 
         if ($this->getOption('widget') == self::INPUT) {
             $this->add(new TextField('hour', array('max_length' => 2)));
@@ -195,7 +195,8 @@ class TimeField extends Form
     {
         $date = $this->getNormalizedData();
 
-        return null === $date || in_array($date->format('H'), $this->getOption('hours'));
+        return $this->isEmpty() || $this->get('hour')->isEmpty()
+                || in_array($date->format('H'), $this->getOption('hours'));
     }
 
     /**
@@ -210,7 +211,8 @@ class TimeField extends Form
     {
         $date = $this->getNormalizedData();
 
-        return null === $date || in_array($date->format('i'), $this->getOption('minutes'));
+        return $this->isEmpty() || $this->get('minute')->isEmpty()
+                || in_array($date->format('i'), $this->getOption('minutes'));
     }
 
     /**
@@ -225,6 +227,31 @@ class TimeField extends Form
     {
         $date = $this->getNormalizedData();
 
-        return null === $date || in_array($date->format('s'), $this->getOption('seconds'));
+        return $this->isEmpty() || !$this->has('second') || $this->get('second')->isEmpty()
+                || in_array($date->format('s'), $this->getOption('seconds'));
+    }
+
+    /**
+     * Returns whether the field is neither completely filled (a selected
+     * value in each dropdown) nor completely empty
+     *
+     * @return Boolean
+     */
+    public function isPartiallyFilled()
+    {
+        if ($this->isField()) {
+            return false;
+        }
+
+        if ($this->isEmpty()) {
+            return false;
+        }
+
+        if ($this->get('hour')->isEmpty() || $this->get('minute')->isEmpty()
+                || ($this->isWithSeconds() && $this->get('second')->isEmpty())) {
+            return true;
+        }
+
+        return false;
     }
 }

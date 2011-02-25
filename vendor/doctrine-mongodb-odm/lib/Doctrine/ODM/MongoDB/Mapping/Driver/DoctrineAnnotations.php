@@ -25,11 +25,15 @@ use Doctrine\Common\Annotations\Annotation;
 
 final class Document extends Annotation
 {
+    public $db;
     public $collection;
     public $repositoryClass;
     public $indexes = array();
 }
-final class EmbeddedDocument extends Annotation {}
+final class EmbeddedDocument extends Annotation
+{
+    public $indexes = array();
+}
 final class MappedSuperclass extends Annotation {}
 
 final class Inheritance extends Annotation

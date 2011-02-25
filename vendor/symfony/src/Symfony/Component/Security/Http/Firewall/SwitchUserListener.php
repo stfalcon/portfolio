@@ -21,6 +21,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Role\SwitchUserRole;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -109,9 +110,8 @@ class SwitchUserListener implements ListenerInterface
             }
         }
 
-        $response = new Response();
         $request->server->set('QUERY_STRING', '');
-        $response->setRedirect($request->getUri(), 302);
+        $response = new RedirectResponse($request->getUri(), 302);
 
         $event->setProcessed();
 

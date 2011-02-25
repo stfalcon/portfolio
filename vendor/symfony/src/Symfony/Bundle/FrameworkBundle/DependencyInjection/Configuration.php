@@ -2,8 +2,8 @@
 
 namespace Symfony\Bundle\FrameworkBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Configuration\Builder\NodeBuilder;
-use Symfony\Component\DependencyInjection\Configuration\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Builder\NodeBuilder;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
  * FrameworkExtension configuration structure.
@@ -16,7 +16,7 @@ class Configuration
      * Generates the configuration tree.
      *
      * @param boolean $kernelDebug The kernel.debug DIC parameter
-     * @return \Symfony\Component\DependencyInjection\Configuration\NodeInterface
+     * @return \Symfony\Component\Config\Definition\NodeInterface
      */
     public function getConfigTree($kernelDebug)
     {
@@ -195,6 +195,7 @@ class Configuration
                     ->ifTrue(function($v) { return is_array($v) && !empty($v['annotations']) && !empty($v['namespace']); })
                     ->then(function($v){
                         $v['annotations'] = array('namespace' => $v['namespace']);
+                        unset($v['namespace']);
                         return $v;
                     })
                     ->end()

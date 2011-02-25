@@ -20,7 +20,7 @@ class CategoryControllerTest extends WebTestCase
 
     public function testCategorysList()
     {
-        $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'));
+        $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
 
         $client = $this->createClient();
         $crawler = $client->request('GET', '/portfolio/categories');
