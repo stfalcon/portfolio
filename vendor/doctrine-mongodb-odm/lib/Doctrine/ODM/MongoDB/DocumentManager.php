@@ -23,12 +23,12 @@ use Doctrine\ODM\MongoDB\Mapping\ClassMetadata,
     Doctrine\ODM\MongoDB\Mapping\ClassMetadataFactory,
     Doctrine\ODM\MongoDB\Mapping\Driver\PHPDriver,
     Doctrine\MongoDB\Connection,
-    Doctrine\MongoDB\Database,
     Doctrine\ODM\MongoDB\PersistentCollection,
     Doctrine\ODM\MongoDB\Proxy\ProxyFactory,
     Doctrine\Common\Collections\ArrayCollection,
     Doctrine\Common\EventManager,
-    Doctrine\ODM\MongoDB\Hydrator\HydratorFactory;
+    Doctrine\ODM\MongoDB\Hydrator\HydratorFactory,
+    Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * The DocumentManager class is the central access point for managing the
@@ -45,7 +45,7 @@ use Doctrine\ODM\MongoDB\Mapping\ClassMetadata,
  * @author      Jonathan H. Wage <jonwage@gmail.com>
  * @author      Roman Borschel <roman@code-factory.org>
  */
-class DocumentManager
+class DocumentManager implements ObjectManager
 {
     /**
      * The Doctrine MongoDB connection instance.
@@ -132,31 +132,19 @@ class DocumentManager
     private $cmd;
 
     /**
-     * Database instance
-     *
-     * @var Doctrine\MongoDB\Database
-     */
-    private $db;
-
-    /**
      * Creates a new Document that operates on the given Mongo connection
      * and uses the given Configuration.
      *
-     * @param string|Doctrine\MongoDB\Connection $conn
-     * @param string|Doctrine\ODM\MongoDB\Configuration $config
+     * @param Doctrine\MongoDB\Connection $conn
+     * @param Doctrine\ODM\MongoDB\Configuration $config
      * @param Doctrine\Common\EventManager $eventManager
      */
-    protected function __construct($conn = null, $db = null, Configuration $config = null, EventManager $eventManager = null)
+    protected function __construct(Connection $conn = null, Configuration $config = null, EventManager $eventManager = null)
     {
         $this->config = $config ?: new Configuration();
         $this->eventManager = $eventManager ?: new EventManager();
         $this->cmd = $this->config->getMongoCmd();
-        if (is_string($conn)) {
-            $conn = new Connection($conn, array(), $this->config, $this->eventManager);
-        }
         $this->connection = $conn ?: new Connection(null, array(), $this->config, $this->eventManager);
-
-        $this->db = $db;
 
         $metadataFactoryClassName = $this->config->getClassMetadataFactoryName();
         $this->metadataFactory = new $metadataFactoryClassName();
@@ -201,14 +189,13 @@ class DocumentManager
      * Creates a new Document that operates on the given Mongo connection
      * and uses the given Configuration.
      *
-     * @param string|Doctrine\MongoDB\Connection $conn
-     * @param string|Doctrine\MongoDB\Database   $db
+     * @param Doctrine\MongoDB\Connection $conn
      * @param Doctrine\ODM\MongoDB\Configuration $config
      * @param Doctrine\Common\EventManager $eventManager
      */
-    public static function create($conn = null, $db = null, Configuration $config = null, EventManager $eventManager = null)
+    public static function create(Connection $conn = null, Configuration $config = null, EventManager $eventManager = null)
     {
-        return new DocumentManager($conn, $db, $config, $eventManager);
+        return new DocumentManager($conn, $config, $eventManager);
     }
 
     /**
@@ -283,19 +270,32 @@ class DocumentManager
     }
 
     /**
-     * Gets current Database instance.
+     * Returns the MongoDB instance for a class.
      *
+     * @param string $className The class name.
      * @return Doctrine\MongoDB\Database
      */
-    public function getDatabase()
+    public function getDocumentDatabase($className)
     {
-        if (is_string($this->db)) {
-            $this->db = $this->connection->selectDatabase($this->db);
+        $metadata = $this->metadataFactory->getMetadataFor($className);
+        $db = $metadata->getDatabase();
+        $db = $db ? $db : $this->config->getDefaultDB();
+        $db = $db ? $db : 'doctrine';
+        $db = sprintf('%s%s', $this->config->getEnvironmentPrefix(), $db);
+        if ( ! isset($this->documentDatabases[$className])) {
+            $this->documentDatabases[$className] = $this->connection->selectDatabase($db);
         }
-        if (! $this->db instanceof Database) {
-            $this->db = $this->connection->selectDatabase(null !== $this->config->getDefaultDB() ? $this->config->getDefaultDB() : 'doctrine');
-        }
-        return $this->db;
+        return $this->documentDatabases[$className];
+    }
+
+    /**
+     * Gets the array of instantiated document database instances.
+     *
+     * @return array
+     */
+    public function getDocumentDatabases()
+    {
+        return $this->documentDatabases;
     }
 
     /**
@@ -307,17 +307,19 @@ class DocumentManager
     public function getDocumentCollection($className)
     {
         $metadata = $this->metadataFactory->getMetadataFor($className);
+        $db = $metadata->getDatabase();
         $collection = $metadata->getCollection();
 
         if ( ! $collection) {
             throw MongoDBException::documentNotMappedToCollection($className);
         }
 
+        $db = $this->getDocumentDatabase($className);
         if ( ! isset($this->documentCollections[$className])) {
             if ($metadata->isFile()) {
-                $this->documentCollections[$className] = $this->getDatabase()->getGridFS($collection);
+                $this->documentCollections[$className] = $db->getGridFS($collection);
             } else {
-                $this->documentCollections[$className] = $this->getDatabase()->selectCollection($collection);
+                $this->documentCollections[$className] = $db->selectCollection($collection);
             }
         }
         return $this->documentCollections[$className];
@@ -653,7 +655,7 @@ class DocumentManager
         $dbRef = array(
             $this->cmd . 'ref' => $class->getCollection(),
             $this->cmd . 'id'  => $class->getDatabaseIdentifierValue($id),
-            $this->cmd . 'db'  => $this->getDatabase()->getName(),
+            $this->cmd . 'db'  => $class->getDatabase()
         );
 
         // add a discriminator value if the referenced document is not mapped explicitely to a targetDocument

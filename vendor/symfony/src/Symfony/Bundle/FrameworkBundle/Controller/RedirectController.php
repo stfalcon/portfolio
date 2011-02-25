@@ -13,6 +13,7 @@ namespace Symfony\Bundle\FrameworkBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  *
@@ -38,21 +39,13 @@ class RedirectController extends ContainerAware
     public function redirectAction($route, $permanent = false)
     {
         if (!$route) {
-            $response = $this->container->get('response');
-            $response->setStatusCode(410);
-
-            return $response;
+            return new Response(null, 410);
         }
-
-        $code = $permanent ? 301 : 302;
 
         $attributes = $this->container->get('request')->attributes->all();
         unset($attributes['_route'], $attributes['route'], $attributes['permanent'] );
 
-        $response = $this->container->get('response');
-        $response->setRedirect($this->container->get('router')->generate($route, $attributes), $code);
-
-        return $response;
+        return new RedirectResponse($this->container->get('router')->generate($route, $attributes), $permanent ? 301 : 302);
     }
 
     /**
@@ -72,17 +65,9 @@ class RedirectController extends ContainerAware
     public function urlRedirectAction($url, $permanent = false)
     {
         if (!$url) {
-            $response = $this->container->get('response');
-            $response->setStatusCode(410);
-
-            return $response;
+            return new Response(null, 410);
         }
 
-        $code = $permanent ? 301 : 302;
-
-        $response = $this->container->get('response');
-        $response->setRedirect($url, $code);
-
-        return $response;
+        return new RedirectResponse($url, $permanent ? 301 : 302);
     }
 }

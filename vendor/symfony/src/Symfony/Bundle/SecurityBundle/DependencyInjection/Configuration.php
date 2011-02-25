@@ -2,7 +2,7 @@
 
 namespace Symfony\Bundle\SecurityBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Configuration\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
  * This class contains the configuration information for the following tags:
@@ -17,24 +17,13 @@ use Symfony\Component\DependencyInjection\Configuration\Builder\TreeBuilder;
  */
 class Configuration
 {
-    public function getAclConfigTree()
-    {
-        $tb = new TreeBuilder();
-
-        return $tb
-            ->root('security', 'array')
-                ->scalarNode('connection')->end()
-                ->scalarNode('cache')->end()
-            ->end()
-            ->buildTree();
-    }
-
     public function getFactoryConfigTree()
     {
         $tb = new TreeBuilder();
 
         return $tb
             ->root('security', 'array')
+                ->ignoreExtraKeys()
                 ->fixXmlConfig('factory', 'factories')
                 ->arrayNode('factories')
                     ->prototype('scalar')->end()
@@ -51,8 +40,15 @@ class Configuration
         $rootNode
             ->scalarNode('access_denied_url')->defaultNull()->end()
             ->scalarNode('session_fixation_strategy')->cannotBeEmpty()->defaultValue('migrate')->end()
+
+            // add a faux-entry for factories, so that no validation error is thrown
+            ->fixXmlConfig('factory', 'factories')
+            ->arrayNode('factories')
+                ->ignoreExtraKeys()
+            ->end()
         ;
 
+        $this->addAclSection($rootNode);
         $this->addEncodersSection($rootNode);
         $this->addProvidersSection($rootNode);
         $this->addFirewallsSection($rootNode, $factories);
@@ -60,6 +56,16 @@ class Configuration
         $this->addRoleHierarchySection($rootNode);
 
         return $tb->buildTree();
+    }
+
+    protected function addAclSection($rootNode)
+    {
+        $rootNode
+            ->arrayNode('acl')
+                ->scalarNode('connection')->end()
+                ->scalarNode('cache')->end()
+            ->end()
+        ;
     }
 
     protected function addRoleHierarchySection($rootNode)
@@ -193,6 +199,10 @@ class Configuration
                     ->scalarNode('id')->end()
                     ->fixXmlConfig('provider')
                     ->arrayNode('providers')
+                        ->beforeNormalization()
+                            ->ifString()
+                            ->then(function($v) { return preg_split('/\s*,\s*/', $v); })
+                        ->end()
                         ->prototype('scalar')->end()
                     ->end()
                     ->fixXmlConfig('user')
@@ -207,10 +217,6 @@ class Configuration
                         ->end()
                     ->end()
                     ->arrayNode('entity')
-                        ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
-                        ->scalarNode('property')->defaultNull()->end()
-                    ->end()
-                    ->arrayNode('document')
                         ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
                         ->scalarNode('property')->defaultNull()->end()
                     ->end()

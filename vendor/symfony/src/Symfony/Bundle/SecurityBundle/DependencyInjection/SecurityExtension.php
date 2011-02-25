@@ -11,8 +11,8 @@
 
 namespace Symfony\Bundle\SecurityBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Configuration\Processor;
-use Symfony\Component\DependencyInjection\Configuration\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -47,10 +47,7 @@ class SecurityExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container)
     {
-        $this->aclLoad($configs, $container);
-
-        $tmp = array_filter($configs);
-        if (empty($tmp)) {
+        if (!array_filter($configs)) {
             return;
         }
 
@@ -83,13 +80,35 @@ class SecurityExtension extends Extension
         if ($config['encoders']) {
             $this->createEncoders($config['encoders'], $container);
         }
+
+        // load ACL
+        if (isset($config['acl'])) {
+            $this->aclLoad($config['acl'], $container);
+        }
+
+        // add some required classes for compilation
+        $this->addClassesToCompile(array(
+            'Symfony\\Component\\Security\\Http\\Firewall',
+            'Symfony\\Component\\Security\\Http\\FirewallMapInterface',
+            'Symfony\\Component\\Security\\Core\\SecurityContext',
+            'Symfony\\Component\\Security\\Core\\SecurityContextInterface',
+            'Symfony\\Component\\Security\\Core\\User\\UserProviderInterface',
+            'Symfony\\Component\\Security\\Core\\Authentication\\AuthenticationProviderManager',
+            'Symfony\\Component\\Security\\Core\\Authentication\\AuthenticationManagerInterface',
+            'Symfony\\Component\\Security\\Core\\Authorization\\AccessDecisionManager',
+            'Symfony\\Component\\Security\\Core\\Authorization\\AccessDecisionManagerInterface',
+            'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\VoterInterface',
+
+            'Symfony\\Bundle\\SecurityBundle\\Security\\FirewallMap',
+            'Symfony\\Bundle\\SecurityBundle\\Security\\FirewallContext',
+
+            'Symfony\\Component\\HttpFoundation\\RequestMatcher',
+            'Symfony\\Component\\HttpFoundation\\RequestMatcherInterface',
+        ));
     }
 
-    protected function aclLoad(array $configs, ContainerBuilder $container)
+    protected function aclLoad($config, ContainerBuilder $container)
     {
-        $processor = new Processor();
-        $config = $processor->process($this->configuration->getAclConfigTree(), $configs);
-
         $loader = new XmlFileLoader($container, new FileLocator(array(__DIR__.'/../Resources/config', __DIR__.'/Resources/config')));
         $loader->load('security_acl.xml');
 
@@ -100,26 +119,6 @@ class SecurityExtension extends Extension
         if (isset($config['cache'])) {
             $container->setAlias('security.acl.cache', sprintf('security.acl.cache.%s', $config['cache']));
         }
-    }
-
-    /**
-     * Returns the base path for the XSD files.
-     *
-     * @return string The XSD base path
-     */
-    public function getXsdValidationBasePath()
-    {
-        return __DIR__.'/../Resources/config/schema';
-    }
-
-    public function getNamespace()
-    {
-        return 'http://www.symfony-project.org/schema/dic/security';
-    }
-
-    public function getAlias()
-    {
-        return 'security';
     }
 
     /**
@@ -143,6 +142,14 @@ class SecurityExtension extends Extension
 
     protected function createAuthorization($config, ContainerBuilder $container)
     {
+        if (!$config['access_control']) {
+            return;
+        }
+
+        $this->addClassesToCompile(array(
+            'Symfony\\Component\\Security\\Http\\AccessMap',
+        ));
+
         foreach ($config['access_control'] as $access) {
             $matcher = $this->createRequestMatcher(
                 $container,
@@ -421,8 +428,6 @@ class SecurityExtension extends Extension
     }
 
     // Parses a <provider> tag and returns the id for the related user provider service
-    // FIXME: Replace register() calls in this method with DefinitionDecorator
-    //        and move the actual definition to an xml file
     protected function createUserDaoProvider($name, $provider, ContainerBuilder $container, $master = true)
     {
         $name = $this->getUserProviderId(strtolower($name));
@@ -435,50 +440,39 @@ class SecurityExtension extends Extension
         }
 
         // Chain provider
-        if (count($provider['providers']) > 0) {
-            // FIXME
-            throw new \RuntimeException('Not implemented yet.');
-        }
+        if ($provider['providers']) {
+            $providers = array();
+            foreach ($provider['providers'] as $providerName) {
+                $providers[] = new Reference($this->getUserProviderId(strtolower($providerName)));
+            }
 
-        // Doctrine Entity DAO provider
-        if (isset($provider['entity'])) {
             $container
-                ->register($name, '%security.user.provider.entity.class%')
-                ->setPublic(false)
-                ->setArguments(array(
-                    new Reference('security.user.entity_manager'),
-                    $provider['entity']['class'],
-                    $provider['entity']['property'],
-                ))
+                ->setDefinition($name, new DefinitionDecorator('security.user.provider.chain'))
+                ->addArgument($providers)
             ;
 
             return $name;
         }
 
-        // Doctrine Document DAO provider
-        if (isset($provider['document'])) {
+        // Doctrine Entity DAO provider
+        if (isset($provider['entity'])) {
             $container
-                ->register($name, '%security.user.provider.document.class%')
-                ->setPublic(false)
-                ->setArguments(array(
-                    new Reference('security.user.document_manager'),
-                    $provider['document']['class'],
-                    $provider['document']['property'],
-            ));
+                ->setDefinition($name, new DefinitionDecorator('security.user.provider.entity'))
+                ->addArgument($provider['entity']['class'])
+                ->addArgument($provider['entity']['property'])
+            ;
 
             return $name;
         }
 
         // In-memory DAO provider
-        $definition = $container->register($name, '%security.user.provider.in_memory.class%');
-        $definition->setPublic(false);
+        $definition = $container->setDefinition($name, new DefinitionDecorator('security.user.provider.in_memory'));
         foreach ($provider['users'] as $username => $user) {
             $userId = $name.'_'.$username;
 
             $container
-                ->register($userId, 'Symfony\Component\Security\Core\User\User')
+                ->setDefinition($userId, new DefinitionDecorator('security.user.provider.in_memory.user'))
                 ->setArguments(array($username, $user['password'], $user['roles']))
-                ->setPublic(false)
             ;
 
             $definition->addMethodCall('createUser', array(new Reference($userId)));
@@ -489,7 +483,7 @@ class SecurityExtension extends Extension
 
     protected function getUserProviderId($name)
     {
-        return 'security.user.provider.'.$name;
+        return 'security.user.provider.concrete.'.$name;
     }
 
     protected function createExceptionListener($container, $config, $id, $defaultEntryPoint)
@@ -576,5 +570,21 @@ class SecurityExtension extends Extension
         }
 
         return $this->factories = $factories;
+    }
+
+
+    /**
+     * Returns the base path for the XSD files.
+     *
+     * @return string The XSD base path
+     */
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/schema';
+    }
+
+    public function getNamespace()
+    {
+        return 'http://www.symfony-project.org/schema/dic/security';
     }
 }

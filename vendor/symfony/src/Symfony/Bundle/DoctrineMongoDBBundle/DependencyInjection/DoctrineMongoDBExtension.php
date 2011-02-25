@@ -163,7 +163,6 @@ class DoctrineMongoDBExtension extends AbstractDoctrineExtension
 
         $odmDmArgs = array(
             new Reference(sprintf('doctrine.odm.mongodb.%s_connection', isset($documentManager['connection']) ? $documentManager['connection'] : $documentManager['name'])),
-            isset($documentManager['database']) ? $documentManager['database'] : $defaultDatabase,
             new Reference(sprintf('doctrine.odm.mongodb.%s_configuration', $documentManager['name'])),
             new Reference($eventManagerId),
         );
@@ -391,17 +390,5 @@ class DoctrineMongoDBExtension extends AbstractDoctrineExtension
     public function getXsdValidationBasePath()
     {
         return __DIR__.'/../Resources/config/schema';
-    }
-
-    /**
-     * Returns the recommended alias to use in XML.
-     *
-     * This alias is also the mandatory prefix to use when using YAML.
-     *
-     * @return string The alias
-     */
-    public function getAlias()
-    {
-        return 'doctrine_mongo_db';
     }
 }

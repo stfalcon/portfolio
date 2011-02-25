@@ -32,8 +32,8 @@ class DateTimeToArrayTransformer extends BaseDateTimeTransformer
      */
     protected function configure()
     {
-        $this->addOption('input_timezone', 'UTC');
-        $this->addOption('output_timezone', 'UTC');
+        $this->addOption('input_timezone', date_default_timezone_get());
+        $this->addOption('output_timezone', date_default_timezone_get());
         $this->addOption('pad', false);
         $this->addOption('fields', array('year', 'month', 'day', 'hour', 'minute', 'second'));
 
@@ -112,16 +112,20 @@ class DateTimeToArrayTransformer extends BaseDateTimeTransformer
             return null;
         }
 
-        $dateTime = new \DateTime(sprintf(
-            '%s-%s-%s %s:%s:%s %s',
-            empty($value['year']) ? '1970' : $value['year'],
-            empty($value['month']) ? '1' : $value['month'],
-            empty($value['day']) ? '1' : $value['day'],
-            empty($value['hour']) ? '0' : $value['hour'],
-            empty($value['minute']) ? '0' : $value['minute'],
-            empty($value['second']) ? '0' : $value['second'],
-            $outputTimezone
-        ));
+        try {
+            $dateTime = new \DateTime(sprintf(
+                '%s-%s-%s %s:%s:%s %s',
+                empty($value['year']) ? '1970' : $value['year'],
+                empty($value['month']) ? '1' : $value['month'],
+                empty($value['day']) ? '1' : $value['day'],
+                empty($value['hour']) ? '0' : $value['hour'],
+                empty($value['minute']) ? '0' : $value['minute'],
+                empty($value['second']) ? '0' : $value['second'],
+                $outputTimezone
+            ));
+        } catch (\Exception $e) {
+            throw new TransformationFailedException($e->getMessage(), null, $e);
+        }
 
         if ($inputTimezone != $outputTimezone) {
             $dateTime->setTimezone(new \DateTimeZone($inputTimezone));
