@@ -95,6 +95,8 @@ class Project
 
     public function setImage($image)
     {
+//        $image = new \Symfony\Component\HttpFoundation\File\File($image);
+//        $image->rename('stfalcon.jpg');
         $this->image = $image;
     }
     

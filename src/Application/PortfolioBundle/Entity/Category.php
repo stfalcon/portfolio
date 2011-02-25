@@ -37,16 +37,6 @@ class Category
 
     /**
      * @var Doctrine\Common\Collections\ArrayCollection
-     *
-     * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Project")
-     * @orm:JoinTable(name="portfolio_projects_categories",
-     *   joinColumns={
-     *     @orm:JoinColumn(name="category_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @orm:JoinColumn(name="project_id", referencedColumnName="id")
-     *   }
-     * )
      */
     private $projects;
 

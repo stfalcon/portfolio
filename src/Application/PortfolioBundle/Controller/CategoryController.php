@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Application\PortfolioBundle\Entity\Category;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class CategoryController extends Controller
 {
@@ -46,7 +47,7 @@ class CategoryController extends Controller
 
             $this->get('request')->getSession()->setFlash('notice',
                     'Congratulations, your category is successfully created!');
-            return $this->redirect($this->generateUrl('portfolioCategoryIndex'));
+            return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
         }
 
         return $this->render('PortfolioBundle:Category:create.html.php', array(
@@ -78,7 +79,7 @@ class CategoryController extends Controller
             $em->flush();
 
             $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your category is successfully updated!');
-            return $this->redirect($this->generateUrl('portfolioCategoryIndex'));
+            return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
         }
 
         return $this->render('PortfolioBundle:Category:edit.html.php', array(
@@ -121,6 +122,6 @@ class CategoryController extends Controller
         $em->flush();
 
         $this->get('request')->getSession()->setFlash('notice', 'Your category is successfully delete.');
-        return $this->redirect($this->generateUrl('portfolioCategoryIndex'));
+        return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
     }
 }

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Application\PortfolioBundle\Entity\Project;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ProjectController extends Controller
 {
@@ -47,7 +48,7 @@ class ProjectController extends Controller
 
             $this->get('request')->getSession()->setFlash('notice',
                     'Congratulations, your project is successfully created!');
-            return $this->redirect($this->generateUrl('portfolioProjectIndex'));
+            return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
         }
 
         return $this->render('PortfolioBundle:Project:create.html.php', array(
@@ -80,7 +81,7 @@ class ProjectController extends Controller
 
             $this->get('request')->getSession()->setFlash('notice',
                     'Congratulations, your project is successfully updated!');
-            return $this->redirect($this->generateUrl('portfolioProjectIndex'));
+            return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
         }
 
         return $this->render('PortfolioBundle:Project:edit.html.php', array(
@@ -124,6 +125,6 @@ class ProjectController extends Controller
 
         $this->get('request')->getSession()->setFlash('notice',
                 'Your project is successfully delete.');
-        return $this->redirect($this->generateUrl('portfolioProjectIndex'));
+        return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
     }
 }
