@@ -15,6 +15,7 @@ $loader->registerNamespaces(array(
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine'                       => __DIR__.'/../vendor/doctrine/lib',
     'Zend\\Log'                      => __DIR__.'/../vendor/zend-log',
+    'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
