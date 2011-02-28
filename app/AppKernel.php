@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             //new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
 
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
+            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+
             // register your bundles
             new Application\PortfolioBundle\PortfolioBundle(),
         );

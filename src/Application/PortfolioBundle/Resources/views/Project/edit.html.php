@@ -2,7 +2,7 @@
 
 <h4>Edit project "<?php echo $project->getName(); ?>"</h4>
 
-<form action="#" method="post">
+<form action="#" method="post" enctype="multipart/form-data">
     <fieldset>
         <?php echo $view['form']->render($form) ?>
         <input type="submit" value="Save" />

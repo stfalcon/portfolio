@@ -3,6 +3,7 @@
 namespace Application\PortfolioBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Imagine;
 
 /**
  * Application\PortfolioBundle\Entity\Project
@@ -95,11 +96,20 @@ class Project
 
     public function setImage($image)
     {
-//        $image = new \Symfony\Component\HttpFoundation\File\File($image);
-//        $image->rename('stfalcon.jpg');
-        $this->image = $image;
+        $dir = realpath(__DIR__ . '/../Resources/public/uploads/projects');
+        $filename = uniqid() . '.jpg';
+
+        // @todo: remove old file
+        // @todo: refact
+        $imagine = new Imagine\Gd\Imagine();
+        $image = $imagine->open($image);
+        $image->thumbnail(new Imagine\Box(240, $image->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
+            ->crop(new Imagine\Point(0, 0), new Imagine\Box(240, 198))
+            ->save($dir . '/' . $filename, array('quality' => '97'));
+
+        $this->image = $filename;
     }
-    
+
     public function getCategories()
     {
         return $this->categories;

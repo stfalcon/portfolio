@@ -7,6 +7,7 @@ $loader->registerNamespaces(array(
     'Symfony'                        => __DIR__.'/../vendor/symfony/src',
     'Application'                    => __DIR__.'/../src',
     'Liip'                           => __DIR__.'/../src',
+    'Avalanche'                      => __DIR__.'/../src',
     'Doctrine\\Common\\DataFixtures' => __DIR__.'/../vendor/doctrine-data-fixtures/lib',
     'Doctrine\\Common'               => __DIR__.'/../vendor/doctrine-common/lib',
     'Doctrine\\DBAL\\Migrations'     => __DIR__.'/../vendor/doctrine-migrations/lib',

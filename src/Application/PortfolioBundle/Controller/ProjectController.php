@@ -37,6 +37,7 @@ class ProjectController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         $project = new Project();
+        
         $form = \Application\PortfolioBundle\Form\Project::create(
                 $this->get("form.context"), 'project', array('em' => $em));
         $form->bind($this->get('request'), $project);
@@ -70,6 +71,7 @@ class ProjectController extends Controller
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
+        
         $form = \Application\PortfolioBundle\Form\Project::create(
                 $this->get("form.context"), 'project', array('em' => $em));
         $form->bind($this->get('request'), $project);

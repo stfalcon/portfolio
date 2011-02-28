@@ -44,3 +44,12 @@ doctrine:
 #    password:   xxxxxxxx
 
 #liip_functionaltest: ~
+#
+#avalanche_imagine:
+#    web_root:     %kernel.root_dir%/../web
+#    cache_prefix: imagine
+#    driver:       gd
+#    filters:
+#        thumbnail:
+#            type:    thumbnail
+#            options: { size: [240, 198], mode: outbound }

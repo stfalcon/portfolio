@@ -5,3 +5,6 @@
 <div>
     <?php echo $project->getDescription(); ?>
 </div>
+<div>
+    <img src="<?php echo '/bundles/portfolio/uploads/projects/' . $project->getImage(); //echo $this['imagine']->filter('/bundles/portfolio/uploads/projects/' . $project->getImage(), 'thumbnail') ?>" />
+</div>

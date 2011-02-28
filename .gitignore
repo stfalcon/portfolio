@@ -1,3 +1,4 @@
 app/cache/*
 app/logs/*
+src/Application/PortfolioBundle/Resources/public/uploads/projects/*
 nbproject
