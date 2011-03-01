@@ -19,7 +19,7 @@ class ProjectControllerTest extends WebTestCase
         $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
 
         $client = $this->createClient();
-        $crawler = $client->request('GET', '/portfolio/projects');
+        $crawler = $client->request('GET', '/admin/portfolio/projects');
 
         $this->assertTrue($crawler->filter('html:contains("eprice.kz")')->count() > 0);
     }

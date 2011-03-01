@@ -9,7 +9,7 @@ class Version20110301020914 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
-        $this->addSql("ALTER TABLE portfolio_projects ADD date VARCHAR(255) NOT NULL, CHANGE image image VARCHAR(255) NOT NULL");
+        $this->addSql("ALTER TABLE portfolio_projects ADD date VARCHAR(255) DEFAULT NULL, CHANGE image image VARCHAR(255) NOT NULL");
     }
 
     public function down(Schema $schema)
