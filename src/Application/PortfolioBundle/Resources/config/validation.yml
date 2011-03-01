@@ -3,9 +3,9 @@ Application\PortfolioBundle\Entity\Project:
         name:
             - NotBlank: ~
             - MinLength: 3
-        description:
-            - NotBlank: ~
-            - MinLength: 10
+#        description:
+#            - NotBlank: ~
+#            - MinLength: 10
         url:
             - Url: ~
 #    getters:

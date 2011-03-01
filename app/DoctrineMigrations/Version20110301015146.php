@@ -9,7 +9,7 @@ class Version20110301015146 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
-        $this->addSql("ALTER TABLE portfolio_projects ADD url VARCHAR(255) NOT NULL");
+        $this->addSql("ALTER TABLE portfolio_projects ADD url VARCHAR(255) DEFAULT NULL");
     }
 
     public function down(Schema $schema)

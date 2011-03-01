@@ -1,10 +1,15 @@
 <?php $view->extend('PortfolioBundle::layout.html.php') ?>
 
+
 <?php if ($categories): ?>
     <?php foreach ($categories as $category): ?>
         <?php if (count($category->getProjects())): ?>
             <div>
-                <h4><?php echo $category->getName(); ?></h4>
+                <h4>
+                    <a href="<?php echo $view['router']->generate('portfolioCategoryView', array('id' => $category->getId())) ?>">
+                        <?php echo $category->getName(); ?>
+                    </a>
+                </h4>
 
                 <?php echo $category->getDescription(); ?>
 
@@ -13,6 +18,7 @@
                         <li>
                             <a href="<?php echo $view['router']->generate('portfolioProjectView', array('id' => $project->getId())) ?>">
                                 <?php echo $project->getName(); ?>
+<!--                                <img src="<?php echo '/bundles/portfolio/uploads/projects/' . $project->getImage(); //echo $this['imagine']->filter('/bundles/portfolio/uploads/projects/' . $project->getImage(), 'thumbnail') ?>" />-->
                             </a>
                         </li>
                     <?php endforeach; ?>

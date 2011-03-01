@@ -131,7 +131,7 @@ class Project
     public function setImage($image)
     {
         $dir = realpath(__DIR__ . '/../Resources/public/uploads/projects');
-        $filename = uniqid() . '.jpg';
+        $filename = uniqid() . '.png';
 
         // @todo: remove old file
         // @todo: refact
@@ -139,7 +139,7 @@ class Project
         $image = $imagine->open($image);
         $image->thumbnail(new Imagine\Box(240, $image->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
             ->crop(new Imagine\Point(0, 0), new Imagine\Box(240, 198))
-            ->save($dir . '/' . $filename, array('quality' => '97'));
+            ->save($dir . '/' . $filename);
 
         $this->image = $filename;
     }
