@@ -45,6 +45,13 @@ class Project
     private $url;
 
     /**
+     * @var text $date
+     *
+     * @orm:Column(name="date", type="string", length=255)
+     */
+    private $date;
+
+    /**
      * @var string $image
      *
      * @orm:Column(name="image", type="string", length=255)
@@ -106,7 +113,17 @@ class Project
         $this->url = $url;
     }
 
-    public function getImage()
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+        public function getImage()
     {
         return $this->image;
     }
