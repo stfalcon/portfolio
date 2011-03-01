@@ -24,7 +24,7 @@ class Project extends Form
 
         $this->add(new TextField('name'));
         $this->add(new UrlField('url'));
-        $this->add(new DateField('date', array('widget' => 'choice')));
+        $this->add(new DateField('date', array('widget' => DateField::CHOICE, 'type' => DateField::STRING)));
         $this->add(new TextareaField('description'));
         $this->add(new FileField('image', array('secret' => md5(time()))));
 
