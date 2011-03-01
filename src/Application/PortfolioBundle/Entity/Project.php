@@ -13,7 +13,7 @@ use Imagine;
  */
 class Project
 {
-    
+
     /**
      * @var integer $id
      *
@@ -36,6 +36,13 @@ class Project
      * @orm:Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * @var text $url
+     *
+     * @orm:Column(name="url", type="string", length=255)
+     */
+    private $url;
 
     /**
      * @var string $image
@@ -87,6 +94,16 @@ class Project
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
     }
 
     public function getImage()

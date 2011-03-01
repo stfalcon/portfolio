@@ -6,6 +6,8 @@ Application\PortfolioBundle\Entity\Project:
         description:
             - NotBlank: ~
             - MinLength: 10
+        url:
+            - Url: ~
 #    getters:
 #        tokenValid:
 #            - AssertTrue: { message: "The token is invalid" }
