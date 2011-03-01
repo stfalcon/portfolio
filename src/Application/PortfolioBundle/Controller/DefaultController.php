@@ -2,15 +2,17 @@
 
 namespace Application\PortfolioBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-//use Application\PortfolioBundle\Entity\Project;
 use Application\PortfolioBundle\Entity\Category;
-//use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
 
+    /**
+     * Categories/projects list
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
@@ -20,8 +22,6 @@ class DefaultController extends Controller
         return $this->render('PortfolioBundle:Default:index.html.php', array(
             'categories' => $categories
         ));
-
-
     }
 
 }

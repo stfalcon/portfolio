@@ -6,12 +6,12 @@
     <ul>
         <?php foreach ($categories as $category): ?>
             <li>
-                <a href="<?php echo $view['router']->generate('portfolioCategoryView', array('id' => $category['id'])) ?>">
-                    <?php echo $category['name']; ?>
+                <a href="<?php echo $view['router']->generate('portfolioCategoryView', array('id' => $category->getId())) ?>">
+                    <?php echo $category->getName(); ?>
                 </a>
                 <?php if ($view['security']->vote('ROLE_ADMIN')): ?>
-                    (<a href="<?php echo $view['router']->generate('portfolioCategoryEdit', array('id' => $category['id'])) ?>">Edit Category</a>
-                    / <a href="<?php echo $view['router']->generate('portfolioCategoryDelete', array('id' => $category['id'])) ?>">Delete Category</a>)
+                    (<a href="<?php echo $view['router']->generate('portfolioCategoryEdit', array('id' => $category->getId())) ?>">Edit Category</a>
+                    / <a href="<?php echo $view['router']->generate('portfolioCategoryDelete', array('id' => $category->getId())) ?>">Delete Category</a>)
                 <?php endif; ?>
             </li>
         <?php endforeach; ?>

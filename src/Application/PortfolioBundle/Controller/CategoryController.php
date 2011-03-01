@@ -2,9 +2,8 @@
 
 namespace Application\PortfolioBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Application\PortfolioBundle\Entity\Category;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -18,12 +17,9 @@ class CategoryController extends Controller
      */
     public function indexAction()
     {
-//        $user = $this->get('security.context')->getToken()->getUser();
-//        var_dump($user);
-//        exit;
         $em = $this->get('doctrine.orm.entity_manager');
         $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
-        $categories = $query->getArrayResult();
+        $categories = $query->getResult();
 
         return $this->render('PortfolioBundle:Category:index.html.php', array(
             'categories' => $categories

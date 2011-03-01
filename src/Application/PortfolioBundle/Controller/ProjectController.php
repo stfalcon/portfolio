@@ -20,7 +20,7 @@ class ProjectController extends Controller
     {
         $em = $this->get('doctrine.orm.entity_manager');
         $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p');
-        $projects = $query->getArrayResult();
+        $projects = $query->getResult();
 
         return $this->render('PortfolioBundle:Project:index.html.php', array(
             'projects' => $projects
