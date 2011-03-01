@@ -5,6 +5,6 @@ homepage:
 portfolio:
     resource: @PortfolioBundle/Resources/config/routing.yml
 
-_imagine:
-    resource: .
-    type:     imagine
+#_imagine:
+#    resource: .
+#    type:     imagine

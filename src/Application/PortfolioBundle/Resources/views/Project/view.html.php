@@ -5,6 +5,9 @@
 <div>
     <?php echo $project->getDescription(); ?>
 </div>
+
+<?php if ($project->getImage()): ?>
 <div>
-    <img src="<?php echo '/bundles/portfolio/uploads/projects/' . $project->getImage(); //echo $this['imagine']->filter('/bundles/portfolio/uploads/projects/' . $project->getImage(), 'thumbnail') ?>" />
+    <img src="<?php echo '/bundles/portfolio/uploads/projects/' . $project->getImage(); //echo $this['imagine']->filter('/bundles/portfolio/uploads/projects/' . $project->getImage(), 'thumbnail') ?>" alt="" />
 </div>
+<?php endif; ?>

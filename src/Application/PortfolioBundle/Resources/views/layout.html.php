@@ -20,32 +20,34 @@
                 </h1>
             </div>
             <div class="clear"></div>
-            <div class="grid_12">
-                <ul class="nav main">
-                    <li>
-                        <a href="<?php echo $view['router']->generate('portfolioProjectIndex') ?>">Projects</a>
-                        <ul>
-                            <li>
-                                <a href="<?php echo $view['router']->generate('portfolioProjectCreate') ?>">Create new project</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="<?php echo $view['router']->generate('portfolioCategoryIndex') ?>">Categories</a>
-                        <ul>
-                            <li>
-                                <a href="<?php echo $view['router']->generate('portfolioCategoryCreate') ?>">Create new category</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="clear"></div>
+            <?php if ($view['security']->vote('ROLE_ADMIN')): ?>
+                <div class="grid_12">
+                    <ul class="nav main">
+                        <li>
+                            <a href="<?php echo $view['router']->generate('portfolioProjectIndex') ?>">Projects</a>
+                            <ul>
+                                <li>
+                                    <a href="<?php echo $view['router']->generate('portfolioProjectCreate') ?>">Create new project</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo $view['router']->generate('portfolioCategoryIndex') ?>">Categories</a>
+                            <ul>
+                                <li>
+                                    <a href="<?php echo $view['router']->generate('portfolioCategoryCreate') ?>">Create new category</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            <?php endif; ?>
             <div class="grid_12">
                 &nbsp;
             </div>
             <div class="clear"></div>
-            <div class="grid_8">
+            <div class="grid_12">
                 <?php if ($view['session']->hasFlash('notice')): ?>
                     <div class="notice">
                         <?php echo $view['session']->getFlash('notice'); ?>
@@ -53,37 +55,6 @@
                 <?php endif; ?>
 
                 <?php $view['slots']->output('_content') ?>
-            </div>
-            <div class="grid_4">
-                <div class="box">
-                    <h2>
-                        <a href="#" id="toggle-login-forms">Login Forms</a>
-                    </h2>
-                    <div class="block" id="login-forms">
-                        <form action="">
-                            <fieldset class="login">
-                                <legend>Login</legend>
-                                <p class="notice">Login to complete your purchase.</p>
-                                <p>
-                                    <label>Username: </label>
-                                    <input type="text" name="username">
-                                </p>
-                                <p>
-                                    <label>Password: </label>
-                                    <input type="password" name="password">
-                                </p>
-                                <input class="login button" type="submit" value="Login">
-                            </fieldset>
-                        </form>
-                        <form action="">
-                            <fieldset>
-                                <legend>Register</legend>
-                                <p>If you do not already have an account, please create a new account to register.</p>
-                                <input type="submit" value="Create Account">
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
             </div>
             <div class="clear"></div>
             <div class="grid_12" id="site_info">

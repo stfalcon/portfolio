@@ -1,15 +1,15 @@
 # PortfolioBundle:Project
 
 portfolioProjectIndex:
-    pattern:  /portfolio/projects
+    pattern:  /admin/portfolio/projects
     defaults: { _controller: PortfolioBundle:Project:index }
 
 portfolioProjectCreate:
-    pattern:  /portfolio/project/create
+    pattern:  /admin/portfolio/project/create
     defaults: { _controller: PortfolioBundle:Project:create }
 
 portfolioProjectEdit:
-    pattern:  /portfolio/project/edit/{id}
+    pattern:  /admin/portfolio/project/edit/{id}
     defaults: { _controller: PortfolioBundle:Project:edit }
 
 portfolioProjectView:
@@ -17,22 +17,22 @@ portfolioProjectView:
     defaults: { _controller: PortfolioBundle:Project:view }
 
 portfolioProjectDelete:
-    pattern:  /portfolio/project/delete/{id}
+    pattern:  /admin/portfolio/project/delete/{id}
     defaults: { _controller: PortfolioBundle:Project:delete }
 
 
 # PortfolioBundle:Category
 
 portfolioCategoryIndex:
-    pattern:  /portfolio/categories
+    pattern:  /admin/portfolio/categories
     defaults: { _controller: PortfolioBundle:Category:index }
 
 portfolioCategoryCreate:
-    pattern:  /portfolio/category/create
+    pattern:  /admin/portfolio/category/create
     defaults: { _controller: PortfolioBundle:Category:create }
 
 portfolioCategoryEdit:
-    pattern:  /portfolio/category/edit/{id}
+    pattern:  /admin/portfolio/category/edit/{id}
     defaults: { _controller: PortfolioBundle:Category:edit }
 
 portfolioCategoryView:
@@ -40,5 +40,5 @@ portfolioCategoryView:
     defaults: { _controller: PortfolioBundle:Category:view }
 
 portfolioCategoryDelete:
-    pattern:  /portfolio/category/delete/{id}
+    pattern:  /admin/portfolio/category/delete/{id}
     defaults: { _controller: PortfolioBundle:Category:delete }

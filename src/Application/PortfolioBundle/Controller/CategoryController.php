@@ -18,6 +18,9 @@ class CategoryController extends Controller
      */
     public function indexAction()
     {
+//        $user = $this->get('security.context')->getToken()->getUser();
+//        var_dump($user);
+//        exit;
         $em = $this->get('doctrine.orm.entity_manager');
         $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
         $categories = $query->getArrayResult();
