@@ -41,7 +41,7 @@ input {
 	float:left;
 	width: 16px;
 	height: 18px;
-	background:url(/img/footer/footer-form.png) -195px 0 no-repeat;
+	background:url(../img/footer/footer-form.png) -195px 0 no-repeat;
 	border: none;
 	cursor: pointer;
 	margin-top:1px;
@@ -83,7 +83,7 @@ righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right=
 	color: #fff;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px; 
-	background: url(/img/content/form-sprite.png) 0 -258px no-repeat;
+	background: url(../img/content/form-sprite.png) 0 -258px no-repeat;
 }
 .contentSample table th.first-child{
 	border-right: 1px solid #efe2bc;
@@ -104,7 +104,7 @@ righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right=
 	color: #fff;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px; 
-	background: url(/img/content/form-sprite.png) 0 -258px no-repeat;
+	background: url(../img/content/form-sprite.png) 0 -258px no-repeat;
 }
 .projectPagination{
 	padding-bottom: 0px;
@@ -129,7 +129,7 @@ zoom:1;
 	position:relative;
 	left:50%;
 	overflow:hidden;
-	background: url(/img/content/proj-screen.png) repeat-y;
+	background: url(../img/content/proj-screen.png) repeat-y;
 	padding-bottom: 13px;
 	margin-bottom: 31px;
 }
@@ -153,5 +153,5 @@ dl.zend_form input.formSubmit {
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    background: url(/images/content/form-sprite.png) 0 -258px no-repeat;
+    background: url(../images/content/form-sprite.png) 0 -258px no-repeat;
 }
