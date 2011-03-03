@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -16,12 +17,23 @@
 
             <!--header-->
             <div class="header">
-                <h1>
-                    <a href="<?php echo $view['router']->generate('homepage'); ?>">
-                            Веб-студия stfalcon.com
-                    </a>
-                </h1>
-
+                <a href="<?php echo $view['router']->generate('homepage'); ?>">
+                    <h1>
+                        Веб-студия stfalcon.com
+                    </h1>
+                </a>
+                <ul class="headerLang">
+                    <li>рус</li>
+                    <li><a href="#">eng</a></li>
+                </ul>
+                <!--header menu-->
+                <ul class="headerMenu">
+                    <li><a href="#">Услуги</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Компания</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+                <!--/header menu-->
                 <div class="headerSlogan">
                     <span>
                         Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.
@@ -45,11 +57,11 @@
         <!--/main-->
 
         <!--footer-->
-<!--        <div class="footer indexFooter">-->
+        <div class="footer indexFooter">
+<!--        <br />
         <br />
         <br />
-        <br />
-        <div class="footer">
+        <div class="footer">-->
             <address>
                 <span>
                     Контактный телефон:
@@ -57,12 +69,26 @@
                     e-mail: <a href="mailo:info@stfalcon.com">info@stfalcon.com</a>
                 </span>
                 <span class="copyright">
-                    &copy; 2009 - <?php echo date('Y'); ?> <a href="<?php echo $view['router']->generate('homepage'); ?>">Веб-студия stfalcon.com</a>
+                    &copy; 2009 - <?php echo date('Y'); ?> Веб-студия stfalcon.com
                 </span>
             </address>
 
+            <ul>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Блог</a></li>
+                <li><a href="#">Компания</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
 
-
+            <form action="#">
+                <fieldset>
+                    <label for="footerSearch">Поиск по сайту</label>
+                    <dl>
+                        <dt><input type="text" id="footerSearch" /></dt>
+                        <dd><input type="submit" value="" /></dd>
+                    </dl>
+                </fieldset>
+            </form>
         </div>
         <!--/footer-->
 

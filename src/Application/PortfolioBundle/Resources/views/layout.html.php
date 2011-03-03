@@ -70,5 +70,24 @@
         <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/jquery/jquery-1.4.4.min.js'); ?>"></script>
         <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js'); ?>"></script>
         <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/js/jquery-fluid16.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.stf.carousel.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.wresize.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.mousewheel.min.js'); ?>"></script>
+        <!--[if IE 6]>
+            <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/DD_belatedPNG.js'); ?>"></script>
+        <![endif]-->
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                $("#accordion").accordion({ header: "h2" });
+                $(".indexCarousel").stfCarousel({
+                    scroll: 'auto',
+                    mousewheel: false,
+                    ruler: $("#accordion"),
+                    widthItem: 280,
+                    substract: 144
+                });
+            });
+        </script>
     </body>
 </html>
