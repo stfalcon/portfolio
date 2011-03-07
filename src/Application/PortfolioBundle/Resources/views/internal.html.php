@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -66,7 +65,7 @@
                     </div>
                     <!--/twitter block-->
 
-                    <h2>услуги</h2>
+<!--                    <h2>услуги</h2>
                     <ul class="mainShareListOfServ">
 
                         <li><a href="#">Веб-программирование</a></li>
@@ -115,7 +114,7 @@
                             <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
                         </li>
 
-                    </ul>
+                    </ul>-->
 
                 </div>
 
