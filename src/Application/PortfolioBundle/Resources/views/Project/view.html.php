@@ -6,7 +6,7 @@
 
     <!--pagination for project-->
 
-    <div class="projectPagination">
+<!--    <div class="projectPagination">
 
         <div class="nextProj">
             <a href="#"><span>Следующий проект</span> →</a>
@@ -18,7 +18,7 @@
             									Календарь событий для surlaterre.ru
         </div>
 
-    </div>
+    </div>-->
 
     <!--pagination for project-->
 
@@ -28,7 +28,9 @@
 
     <span class="dateOfProject">
         <span>Дата выпуска: <?php echo $project->getDate(); ?></span>
-        <a href="#"><img src="<?php echo $project->getUrl() . '/favicon.ico'; ?>" alt="" width="12" height="15"><?php echo $project->getUrl(); ?></a>
+        <?php if ($project->getUrl()): ?>
+            <a href="#"><img src="<?php echo $project->getUrl() . '/favicon.ico'; ?>" /><?php echo $project->getUrl(); ?></a>
+        <?php endif; ?>
     </span>
 
     <p>

@@ -22,5 +22,11 @@ $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
     'Twig_'            => __DIR__.'/../vendor/twig/lib',
     'Swift_'           => __DIR__.'/../vendor/swiftmailer/lib/classes',
+    'Zend_'            => __DIR__.'/../vendor/zf/library',
 ));
 $loader->register();
+
+set_include_path(implode(PATH_SEPARATOR, array(
+    realpath(__DIR__.'/../vendor/zf/library'),
+    get_include_path(),
+)));

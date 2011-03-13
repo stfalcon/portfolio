@@ -16,31 +16,25 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-// create a new cURL handle
-$ch = curl_init();
-
-// set RSS URL
-curl_setopt($ch, CURLOPT_URL, 'http://twitter.com/statuses/user_timeline/stfalcon.rss');
-
-// set additional options
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-// get the contents
-$a = curl_exec($ch);
- 
-echo ($a);
-
-// close cURL handle
-curl_close($ch);
-        exit;
-
         $em = $this->get('doctrine.orm.entity_manager');
         $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
         $categories = $query->getResult();
 
+        $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
+
         return $this->render('PortfolioBundle:Default:index.html.php', array(
-            'categories' => $categories
+            'categories' => $categories,
+            'feed' => $feed,
+        ));
+    }
+
+    public function twitterAction($count = 1)
+    {
+        $twitter = new \Zend_Service_Twitter();
+        $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
+
+        return $this->render('PortfolioBundle:Default:twitter.html.php', array(
+            'statuses' => $result->status,
         ));
     }
 

@@ -57,8 +57,7 @@
 
                     <!--twitter block-->
                     <div class="mainShareTwitter">
-                        я програмую. кльово :)
-                        <em>11:50 PM Mar 14th</em>
+                        <?php echo $view['actions']->render('PortfolioBundle:Default:twitter'); ?>
 
                         <p>Следить за <a href="#">@stfalcon</a></p>
                         <div class="mainShareTwitterTop"></div>

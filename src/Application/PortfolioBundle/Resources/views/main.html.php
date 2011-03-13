@@ -49,9 +49,67 @@
             <!--index content-->
             <div class="contentIndex">
                 <?php $view['slots']->output('_content') ?>
+
+                <!--twitter, rss etc.-->
+                <div class="indexSharedBlock">
+                    <!--rss column-->
+                    <div>
+                        <h3><a href="http://blog.stfalcon.com/rss"><span class="rss">Записи в блог</span></a></h3>
+                        <ul>
+                            <?php foreach ($feed as $item): ?>
+                                <li>
+                                    <a href="<?php echo $item->{'feedburner:origLink'}; ?>"><?php echo $item->title(); ?></a>
+                                    <a href="<?php echo $item->{'comments'}[0]; ?>"><span class="counComents"><?php echo $item->{'comments'}[1]; ?></span></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <a href="http://blog.stfalcon.com" class="seeAllPosts">все записи</a>
+                    </div>
+                    <!--/rss column-->
+
+                    <!--articles column-->
+                    <div>
+                        <h3>Статьи</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Статистика по IE на wallpaper.in.ua за останній рік</a>
+                                <strong>Танасийчук С., 7 марта 2010</strong>
+                            </li>
+                            <li>
+                                <a href="#">Clean .svn folders</a>
+                                <strong>Танасийчук С., 7 марта 2010</strong>
+                            </li>
+                            <li>
+                                <a href="#">Конференція присвячена Zend Framework ZFConf 2010</a>
+                                <strong>Танасийчук С., 7 марта 2010</strong>
+                            </li>
+                            <li>
+                                <a href="#">Тюнер для гітари WST-523</a>
+                                <strong>Танасийчук С., 7 марта 2010</strong>
+                            </li>
+                            <li>
+                                <a href="#">Джоэл. И снова о программировании</a>
+                                <strong>Танасийчук С., 7 марта 2010</strong>
+                            </li>
+                        </ul>
+
+                        <a href="#" class="seeAllPosts">все статьи</a>
+                    </div>
+                    <!--/articles column-->
+
+                    <!--twitter column-->
+                    <div>
+                        <h3><a href="http://twitter.com/stfalcon"><span class="twitter">twitter</span></a></h3>
+                        <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 7)); ?>
+                    </div>
+                    <!--/twitter column-->
+
+                </div>
+                <!--/twitter, rss etc.-->
+
             </div>
             <!--/index content-->
-
+            
         </div>
         <!--/main-->
 
