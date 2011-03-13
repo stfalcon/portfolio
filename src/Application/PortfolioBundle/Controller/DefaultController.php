@@ -38,4 +38,9 @@ class DefaultController extends Controller
         ));
     }
 
+    public function contactsAction()
+    {
+        return $this->render('PortfolioBundle:Default:contacts.html.php');
+    }
+
 }

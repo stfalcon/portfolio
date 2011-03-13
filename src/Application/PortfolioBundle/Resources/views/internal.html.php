@@ -30,7 +30,7 @@
                     <li class="active">Услуги<span></span></li>
                     <li><a href="#">Блог</a></li>
                     <li><a href="#">Компания</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="<?php echo $view['router']->generate('portfolioDefaultContacts'); ?>">Контакты</a></li>
 		</ul>
                 <!--/header menu-->
             </div>
@@ -126,7 +126,7 @@
         </div>
 
         <!--footer-->
-        <div class="footer">-->
+        <div class="footer">
             <address>
                 <span>
                     Контактный телефон:

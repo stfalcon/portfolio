@@ -1,3 +1,10 @@
+# PortfolioBundle:Default
+
+portfolioDefaultContacts:
+    pattern:  /contacts
+    defaults: { _controller: PortfolioBundle:Default:contacts }
+
+
 # PortfolioBundle:Project
 
 portfolioProjectIndex:
