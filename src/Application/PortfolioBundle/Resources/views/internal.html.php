@@ -25,13 +25,18 @@
                     <li>рус</li>
                     <li><a href="#">eng</a></li>
 		</ul>
+
+                <!--header menu-->
+                <?php echo $view['menu']->get('main')->render(); ?>
+                <!--/header menu-->
+                
 		<!--header menu-->
-		<ul class="headerMenu">
+<!--		<ul class="headerMenu">
                     <li class="active">Услуги<span></span></li>
                     <li><a href="#">Блог</a></li>
                     <li><a href="#">Компания</a></li>
                     <li><a href="<?php echo $view['router']->generate('portfolioDefaultContacts'); ?>">Контакты</a></li>
-		</ul>
+		</ul>-->
                 <!--/header menu-->
             </div>
             <!--/header-->

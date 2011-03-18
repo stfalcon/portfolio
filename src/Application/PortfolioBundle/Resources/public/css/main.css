@@ -145,7 +145,7 @@ input[type=submit]::-moz-focus-inner {
 		margin-left: 46px;
 		color:#686e75;
 	}
-	.headerMenu li.active{
+	.headerMenu li.current{
 		float:left;
 		cursor:default;
 		position:relative;
@@ -155,7 +155,17 @@ input[type=submit]::-moz-focus-inner {
 		margin-right:-10px;
 		background:url(../images/header/active-menu.png) no-repeat;
 	}
-	.headerMenu li.active span{
+/*	.headerMenu li.active{
+		float:left;
+		cursor:default;
+		position:relative;
+		line-height:16px;
+		top: -1px;
+		padding: 4px 9px 7px 9px;
+		margin-right:-10px;
+		background:url(../images/header/active-menu.png) no-repeat;
+	}*/
+	.headerMenu li.current span{
 		height: 27px;
 		width:4px;
 		position:absolute;
@@ -164,6 +174,15 @@ input[type=submit]::-moz-focus-inner {
 		display:block;
 		background:url(../images/header/active-menu.png) right 0 no-repeat;
 	}
+/*	.headerMenu li.active span{
+		height: 27px;
+		width:4px;
+		position:absolute;
+		top: 0;
+		right: -1px;
+		display:block;
+		background:url(../images/header/active-menu.png) right 0 no-repeat;
+	}*/
 	.headerMenu li a{
 		color:#686e75;
 	}
@@ -618,12 +637,12 @@ dl.contacts dd a{
 	font-size: 18px;
 	font-weight:normal;
 }
-.gMap{
+/*.gMap{
 	width: 450px;
 	height: 398px;
 	overflow: hidden;
 	background: #ababab;
-}
+}*/
 .mainShare{
 	margin: -37px 94px 0 0;
 	display:inline;

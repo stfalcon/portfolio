@@ -1,3 +1,6 @@
 [submodule "src/Liip/FunctionalTestBundle"]
 	path = src/Liip/FunctionalTestBundle
 	url = git://github.com/liip/FunctionalTestBundle.git
+[submodule "src/Knplabs/MenuBundle"]
+	path = src/Knplabs/MenuBundle
+	url = https://github.com/knplabs/MenuBundle.git

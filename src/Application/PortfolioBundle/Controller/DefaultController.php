@@ -5,6 +5,7 @@ namespace Application\PortfolioBundle\Controller;
 use Application\PortfolioBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Client;
+use Knplabs\MenuBundle\MenuItem;
 
 class DefaultController extends Controller
 {

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="menu.main.class">Application\PortfolioBundle\Menu\MainMenu</parameter>
+    </parameters>
+
+    <services>
+        <service id="menu.main" class="%menu.main.class%" scope="request">
+            <tag name="menu" alias="main" />
+            <argument type="service" id="request" />
+            <argument type="service" id="router" />
+        </service>
+    </services>
+
+</container>

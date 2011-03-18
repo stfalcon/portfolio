@@ -72,3 +72,9 @@ security:
     access_control:
         - { path: /admin/.*, role: ROLE_ADMIN }
         - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        
+imports:
+    - { resource: @PortfolioBundle/Resources/config/menu.xml }
+    
+knplabs_menu:
+    templating: true
