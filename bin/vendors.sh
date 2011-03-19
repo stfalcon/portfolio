@@ -105,3 +105,5 @@ cd bundles/JMS
 install_git SecurityExtraBundle git://github.com/schmittjoh/SecurityExtraBundle.git
 cd ../..
 
+# Update assets
+$DIR/app/console assets:install $DIR/web/
