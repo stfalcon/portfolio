@@ -14,26 +14,26 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Symfony\Bundle\TwigBundle\TwigBundle(),
-
-            // enable third-party bundles
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+            new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\ZendBundle\ZendBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
             //new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Knplabs\MenuBundle\KnplabsMenuBundle(),
 
-            // register your bundles
             new Application\PortfolioBundle\PortfolioBundle(),
         );
 
-//        if ('dev' === $this->getEnvironment()) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-//        }
+        }
 
         return $bundles;
     }

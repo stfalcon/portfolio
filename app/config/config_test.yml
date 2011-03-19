@@ -5,13 +5,13 @@ framework:
     error_handler: false
     test: ~
 
-doctrine:
-    dbal:
-      driver:   pdo_mysql
-      dbname:   portfolio_testing
-      user:     root
-      password: null
-      logging:  %kernel.debug%
+#doctrine:
+#    dbal:
+#      driver:   pdo_mysql
+#      dbname:   portfolio_testing
+#      user:     root
+#      password: null
+#      logging:  %kernel.debug%
 
 web_profiler:
     toolbar: false

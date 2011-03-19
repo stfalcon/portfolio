@@ -5,13 +5,13 @@ framework:
     router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
     profiler: { only_exceptions: false }
 
-doctrine:
-    dbal:
-        driver:   pdo_mysql
-        dbname:   portfolio_development
-        user:     root
-        password: null
-        logging:  %kernel.debug%
+#doctrine:
+#    dbal:
+#        driver:   pdo_mysql
+#        dbname:   portfolio_development
+#        user:     root
+#        password: null
+#        logging:  %kernel.debug%
 
 web_profiler:
     toolbar: true
@@ -21,3 +21,6 @@ zend:
     logger:
         priority: debug
         path:     %kernel.logs_dir%/%kernel.environment%.log
+
+assetic:
+    use_controller: true

@@ -2,7 +2,6 @@
 
 DIR=`php -r "echo dirname(dirname(realpath('$0')));"`
 VENDOR="$DIR/vendor"
-VERSION=`cat "$DIR/VERSION"`
 
 # initialization
 if [ "$1" = "--reinstall" -o "$2" = "--reinstall" ]; then
@@ -91,6 +90,18 @@ cd ../..
 mkdir -p zf/library
 cd zf/library
 svn co http://framework.zend.com/svn/framework/standard/tags/release-1.11.4/library/ .
+cd ../..
+
+# FunctionalTestBundle
+mkdir -p bundles/Liip
+cd bundles/Liip
+install_git FunctionalTestBundle git://github.com/liip/FunctionalTestBundle.git
+cd ../..
+
+# MenuBundle
+mkdir -p bundles/Knplabs
+cd bundles/Knplabs
+install_git MenuBundle git://github.com/knplabs/MenuBundle.git
 cd ../..
 
 # FrameworkExtraBundle

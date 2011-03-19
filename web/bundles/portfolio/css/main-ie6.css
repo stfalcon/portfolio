@@ -1,0 +1,157 @@
+.main {
+	height:100%;
+	width:expression(document.body.clientWidth < 1000? "1000px": "auto" );
+}
+.footer{
+width:expression(document.body.clientWidth < 1000? "1000px": "auto" );
+} 
+li {
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : '0'
+)
+}
+.contentSample table th{
+z-index: expression(
+runtimeStyle.zIndex = 1,
+this == parentNode.firstChild ? (className += " first-child") : '0'
+)
+}
+input {
+	z-index: expression( 
+	runtimeStyle.zIndex = 1,
+	type == "text" ? (className += " formText") : 0, 
+	type == "password" ? (className += " formText") : 0, 
+	type == "submit" ? (className += " formSubmit") : 0 
+	)
+}
+.headerLang{
+	width: 80px;
+}
+.headerSlogan{
+	height: 73px;
+}
+.headerSloganRight{
+	bottom: -1px; 
+}
+.indexCarouselWrap ul li a strong{
+	width: 214px;
+}
+.footer form input.formSubmit{
+	float:left;
+	width: 16px;
+	height: 18px;
+	background:url(../img/footer/footer-form.png) -195px 0 no-repeat;
+	border: none;
+	cursor: pointer;
+	margin-top:1px;
+}
+.pagination a{
+	height: 23px;
+}
+.pagination{
+	width: 552px;
+	
+}
+.pagination ul{
+	display:inline;
+}
+.corBR {
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0");
+bottomy:expression(parentNode.offsetHeight % 2 ? style.bottom="-1px" : style.bottom="0");
+}
+.corTR {
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0");
+}
+.corBL {
+bottomy:expression(parentNode.offsetHeight % 2 ? style.bottom="-1px" : style.bottom="0");
+}
+.headerSloganRight{
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0");
+}
+.blogAuthorRight{
+righty:expression(parentNode.offsetWidth % 2 ? style.right="-1px" : style.right="0");
+}
+
+.listOfComments ul li form input.formSubmit{
+	float:left;
+	width: 83px;
+	height: 26px;
+	border: none;
+	margin-left: 120px;
+	cursor:pointer;
+	color: #fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px; 
+	background: url(../img/content/form-sprite.png) 0 -258px no-repeat;
+}
+.contentSample table th.first-child{
+	border-right: 1px solid #efe2bc;
+	width: 65%;
+}
+.indexCarouselWrap ul li.first-child{
+	margin-left: 0;
+}
+.contentSample form input.formSubmit,
+.listOfComments form input.formSubmit{
+	float:left;
+	clear:both;
+	width: 83px;
+	height: 26px;
+	border: none;
+	margin-left: 130px;
+	cursor:pointer;
+	color: #fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px; 
+	background: url(../img/content/form-sprite.png) 0 -258px no-repeat;
+}
+.projectPagination{
+	padding-bottom: 0px;
+}
+.detailsOfProject{
+zoom:1;
+}
+.projectPagination{
+	margin-bottom: 25px;
+}
+.listOfComments ul li form dd textarea{
+	width: 339px;
+}
+.contentSample form dd.inp,
+.listOfComments form dd.inp{
+	height:20px;
+}
+.screenOfProject{
+	text-align:center;
+	width: 390px;
+	margin-left: -195px;
+	position:relative;
+	left:50%;
+	overflow:hidden;
+	background: url(../img/content/proj-screen.png) repeat-y;
+	padding-bottom: 13px;
+	margin-bottom: 31px;
+}
+dl.zend_form dd input.formText {
+    float: left;
+    width: 200px;
+    padding: 2px 0 4px 5px;
+    background: #e9edf2;
+    border: none;
+    border-top: 1px solid #adbdce;
+    font-size: 12px;
+    color: #404448;
+}
+dl.zend_form input.formSubmit {
+    display: block;
+    clear: both;
+    width: 83px;
+    height: 26px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background: url(../images/content/form-sprite.png) 0 -258px no-repeat;
+}
