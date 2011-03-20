@@ -15,17 +15,16 @@ class MainMenuItem extends MenuItem
      *
      * @return string
      */
-    public function renderLink()
+    public function renderLabel()
     {
-        $label = $this->renderLabel();
+        $label = parent::renderLabel();
         $uri = $this->getUri();
 
-        return 2222;
         if (!$uri) {
             return $label;
         }
 
-        return sprintf('<a href="%s"><span></span>%s</a>', $uri, $label);
+        return sprintf('<span></span>%s', $label);
     }
 
 }
