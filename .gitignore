@@ -1,6 +1,6 @@
 app/cache/*
 app/logs/*
-web/bundles/portfolio/uploads/projects/*
+web/bundles/*
 src/Application/PortfolioBundle/Resources/public/uploads/projects/*
 nbproject
 vendor/*

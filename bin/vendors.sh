@@ -120,4 +120,4 @@ install_git SecurityExtraBundle git://github.com/schmittjoh/SecurityExtraBundle.
 cd ../..
 
 # Update assets
-$DIR/app/console assets:install $DIR/web/
+$DIR/app/console assets:install --symlink $DIR/web/
