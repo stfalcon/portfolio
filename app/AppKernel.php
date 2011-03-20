@@ -5,10 +5,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
-    public function registerRootDir()
-    {
-        return __DIR__;
-    }
 
     public function registerBundles()
     {
