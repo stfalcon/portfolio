@@ -80,6 +80,9 @@ install_git twig git://github.com/fabpot/Twig.git
 # Twig Extensions
 install_git twig-extensions git://github.com/fabpot/Twig-extensions.git
 
+# Imagine
+install_git imagine git://github.com/avalanche123/Imagine.git
+
 # Zend Framework Log
 mkdir -p zend-log/Zend
 cd zend-log/Zend

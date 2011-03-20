@@ -20,7 +20,7 @@
                 </h1>
             </div>
             <div class="clear"></div>
-            <?php if ($view['security']->vote('ROLE_ADMIN')): ?>
+            <?php //if ($view['security']->isGranted('ROLE_ADMIN')): ?>
                 <div class="grid_12">
                     <ul class="nav main">
                         <li>
@@ -42,7 +42,7 @@
                     </ul>
                 </div>
                 <div class="clear"></div>
-            <?php endif; ?>
+            <?php //endif; ?>
             <div class="grid_12">
                 &nbsp;
             </div>

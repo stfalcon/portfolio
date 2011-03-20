@@ -9,10 +9,10 @@
                 <a href="<?php echo $view['router']->generate('portfolioProjectView', array('id' => $project->getId())) ?>">
                     <?php echo $project->getName(); ?>
                 </a>
-                <?php if ($view['security']->vote('ROLE_ADMIN')): ?>
+                <?php // if ($view['security']->isGranted('ROLE_ADMIN')): ?>
                     (<a href="<?php echo $view['router']->generate('portfolioProjectEdit', array('id' => $project->getId())) ?>">Edit project</a>
                     / <a href="<?php echo $view['router']->generate('portfolioProjectDelete', array('id' => $project->getId())) ?>">Delete project</a>)
-                <?php endif; ?>
+                <?php // endif; ?>
             </li>
         <?php endforeach; ?>
     </ul>

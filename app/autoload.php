@@ -20,7 +20,7 @@ $loader->registerNamespaces(array(
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine'                       => __DIR__.'/../vendor/doctrine/lib',
     'Zend\\Log'                      => __DIR__.'/../vendor/zend-log',
-    'Assetic'          => __DIR__.'/../vendor/assetic/src',
+    'Assetic'                        => __DIR__.'/../vendor/assetic/src',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
 ));
 $loader->registerPrefixes(array(

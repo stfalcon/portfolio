@@ -9,10 +9,10 @@
                 <a href="<?php echo $view['router']->generate('portfolioCategoryView', array('id' => $category->getId())) ?>">
                     <?php echo $category->getName(); ?>
                 </a>
-                <?php if ($view['security']->vote('ROLE_ADMIN')): ?>
+                <?php // if ($view['security']->isGranted('ROLE_ADMIN')): ?>
                     (<a href="<?php echo $view['router']->generate('portfolioCategoryEdit', array('id' => $category->getId())) ?>">Edit Category</a>
                     / <a href="<?php echo $view['router']->generate('portfolioCategoryDelete', array('id' => $category->getId())) ?>">Delete Category</a>)
-                <?php endif; ?>
+                <?php // endif; ?>
             </li>
         <?php endforeach; ?>
     </ul>

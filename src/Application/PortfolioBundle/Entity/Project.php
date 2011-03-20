@@ -137,8 +137,8 @@ class Project
         // @todo: refact
         $imagine = new Imagine\Gd\Imagine();
         $image = $imagine->open($image);
-        $image->thumbnail(new Imagine\Box(240, $image->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
-            ->crop(new Imagine\Point(0, 0), new Imagine\Box(240, 198))
+        $image->thumbnail(new Imagine\Image\Box(240, $image->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
+            ->crop(new Imagine\Image\Point(0, 0), new Imagine\Image\Box(240, 198))
             ->save($dir . '/' . $filename);
 
         $this->image = $filename;
