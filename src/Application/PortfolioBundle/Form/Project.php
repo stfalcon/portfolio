@@ -23,11 +23,14 @@ class Project extends Form
         $em = $this->getOption('em');
 
         $this->add(new TextField('name'));
-        $this->add(new UrlField('url'));
-        $this->add(new DateField('date', array('widget' => DateField::CHOICE, 'type' => DateField::STRING)));
-        $this->add(new TextareaField('description'));
-        $this->add(new FileField('image', array('secret' => md5(time()))));
-
+        $this->add(new UrlField('url'), array('required' => false));
+        $this->add(new DateField('date', array(
+                    'widget' => DateField::CHOICE, 'type' => DateField::STRING
+                )));
+        $this->add(new TextareaField('description'), array('required' => true));
+        $this->add(new FileField('image', array(
+                    'secret' => md5(time()), 'required' => false
+                )));
         $this->add(new EntityChoiceField('categories', array(
                     'em' => $em,
                     'class' => 'Application\PortfolioBundle\Entity\Category',

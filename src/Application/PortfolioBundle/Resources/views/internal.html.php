@@ -30,14 +30,6 @@
                 <?php echo $view['menu']->get('main')->render(); ?>
                 <!--/header menu-->
                 
-		<!--header menu-->
-<!--		<ul class="headerMenu">
-                    <li class="active">Услуги<span></span></li>
-                    <li><a href="#">Блог</a></li>
-                    <li><a href="#">Компания</a></li>
-                    <li><a href="<?php echo $view['router']->generate('portfolioDefaultContacts'); ?>">Контакты</a></li>
-		</ul>-->
-                <!--/header menu-->
             </div>
             <!--/header-->
 
@@ -45,8 +37,9 @@
             <div class="mainInfo">
                 <!--main info block-->
                 <ul class="navLang">
-                    <li><a href="#">Главная</a></li>
-                    <li class="active"><span>Блог</span></li>
+                    <li><a href="<?php echo $view['router']->generate('homepage'); ?>">Услуги</a></li>
+                    <li><a href="<?php echo $view['router']->generate('homepage'); ?>">Веб-разработка</a></li>
+                    <li class="active"><span><?php echo $currentProject->getName(); ?></span></li>
                 </ul>
 
                 <div class="contentWrap">
@@ -57,8 +50,8 @@
                 <!--/main info block-->
 
                 <!--main share block-->
-                <div class="mainShare">
-                    <h3><a href="#">Подписаться на RSS ленту</a></h3>
+                <div class="mainShare sidebar">
+                    <a href="#" class="rss">Подписаться на RSS ленту</a>
 
                     <!--twitter block-->
                     <div class="mainShareTwitter">
@@ -69,31 +62,10 @@
                     </div>
                     <!--/twitter block-->
 
-<!--                    <h2>услуги</h2>
-                    <ul class="mainShareListOfServ">
-
-                        <li><a href="#">Веб-программирование</a></li>
-                        <li>Администрирование
-
-                            <ul>
-                                <li><a href="#">партнёрская программа для textbroker.ru</a></li>
-                                <li><a href="#">рейтинги персонажей для surlaterre.ru</a></li>
-                                <li><a href="#">выделение ключевых слов - textbroker.ru</a></li>
-                                <li><a href="#">istc.ru - поддержка сайта (Lotus Notes)</a></li>
-                                <li class="active">Сайт «Good Detectives»</li>
-                                <li><a href="#">фильтр коллекций для surlaterre.ru</a></li>
-                                <li><a href="#">рейтинги персонажей для surlaterre.ru</a></li>
-                                <li><a href="#">выделение ключевых слов - textbroker.ru</a></li>
-                                <li><a href="#">istc.ru - поддержка сайта (Lotus Notes)</a></li>
-                            </ul>
-
-                        </li>
-                        <li><a href="#">Веб-дизайн</a></li>
-                        <li><a href="#">Копирайтинг</a></li>
-
-                    </ul>
-
-                    <h2>Над проектом работали</h2>
+                    <?php if (isset($currentProject)): ?>
+                        <?php echo $view['actions']->render('PortfolioBundle:Default:services', array('currentProjectId' => $currentProject->getId())); ?>
+                    <?php endif; ?>
+<!--                    <h2>Над проектом работали</h2>
 
                     <ul class="comandList">
 
@@ -168,6 +140,13 @@
         <!--[if IE 6]>
             <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/DD_belatedPNG.js'); ?>"></script>
         <![endif]-->
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+//                $("#accordion").accordion({ header: "h3", active: 1, autoHeight: false });
+                $("#accordion").accordion({ header: "h3", autoHeight: false, collapsible: true });
+            });
+        </script>
 
         <script type="text/javascript">
 

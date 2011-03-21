@@ -19,8 +19,12 @@ portfolioProjectEdit:
     pattern:  /admin/portfolio/project/edit/{id}
     defaults: { _controller: PortfolioBundle:Project:edit }
 
-portfolioProjectView:
-    pattern:  /portfolio/project/{id}
+#portfolioProjectView:
+#    pattern:  /portfolio/project/{id}
+#    defaults: { _controller: PortfolioBundle:Project:view }
+
+portfolioCategoryProjectView:
+    pattern:  /portfolio/{categoryId}/{projectId}
     defaults: { _controller: PortfolioBundle:Project:view }
 
 portfolioProjectDelete:
@@ -42,8 +46,11 @@ portfolioCategoryEdit:
     pattern:  /admin/portfolio/category/edit/{id}
     defaults: { _controller: PortfolioBundle:Category:edit }
 
+#portfolioCategoryView:
+#    pattern:  /portfolio/category/{id}
+#    defaults: { _controller: PortfolioBundle:Category:view }
 portfolioCategoryView:
-    pattern:  /portfolio/category/{id}
+    pattern:  /portfolio/{id}
     defaults: { _controller: PortfolioBundle:Category:view }
 
 portfolioCategoryDelete:

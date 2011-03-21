@@ -92,18 +92,38 @@ class ProjectController extends Controller
         ));
     }
 
-    public function viewAction($id)
+    public function viewAction($categoryId, $projectId)
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by id
-        $project = $em->find("PortfolioBundle:Project", $id);
-        if (!$project) {
+        $currentProject = $em->find("PortfolioBundle:Project", $projectId);
+        if (!$currentProject) {
             throw new NotFoundHttpException('The project does not exist.');
         }
 
+
+        // get all projects from this category
+        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1');
+        $query->setParameter(1, $categoryId);
+        $projects = $query->getResult();
+
+        // get next and previous projects from category
+        $i = 0; $previousProject = null; $nextProject = null;
+        foreach ($projects as $project) {
+            if ($project->getId() == $currentProject->getId()) {
+                $previousProject = isset($projects[$i-1]) ? $projects[$i-1] : null;
+                $nextProject     = isset($projects[$i+1]) ? $projects[$i+1] : null;
+                break;
+            }
+            $i++;
+        }
+        
         return $this->render('PortfolioBundle:Project:view.html.php', array(
-            'project' => $project
+            'currentProject' => $currentProject,
+            'categoryId' => $categoryId,
+            'previousProject' => $previousProject,
+            'nextProject' => $nextProject
         ));
     }
 
@@ -129,4 +149,5 @@ class ProjectController extends Controller
                 'Your project is successfully delete.');
         return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
     }
+
 }

@@ -74,8 +74,12 @@ doctrine:
 #            options: { size: [240, 198], mode: outbound }
 
 
+# MenuBundle settings
 imports:
     - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
-    
+# MenuBundle enable template helpers
 knplabs_menu:
     templating: true
+
+
+sensio_framework_extra: ~

@@ -94,19 +94,19 @@ input[type=submit]::-moz-focus-inner {
 .main{
 	margin: 0 auto;
 	text-align:left;
-	min-width: 1000px;
+	min-width: 1200px;
 	min-height:100%;
 }
 
 
 /* 3. header ---------------------------*/
 
-.header {
+/*.header {
 	position:relative;
 	height: 144px;
 	background:url(../images/header/back.png) repeat-x ;
 	text-align:left;
-}
+}*/
 	.header h1, .headerLogo{
 		position:absolute;
 		display:block;
@@ -150,21 +150,11 @@ input[type=submit]::-moz-focus-inner {
 		cursor:default;
 		position:relative;
 		line-height:16px;
-		top: -1px;
-		padding: 4px 9px 7px 9px;
+/*		top: -1px;*/
+/*		padding: 4px 9px 7px 9px;*/
 		margin-right:-10px;
 		background:url(../images/header/active-menu.png) no-repeat;
 	}
-/*	.headerMenu li.active{
-		float:left;
-		cursor:default;
-		position:relative;
-		line-height:16px;
-		top: -1px;
-		padding: 4px 9px 7px 9px;
-		margin-right:-10px;
-		background:url(../images/header/active-menu.png) no-repeat;
-	}*/
 	.headerMenu li.current span{
 		height: 27px;
 		width:4px;
@@ -174,15 +164,6 @@ input[type=submit]::-moz-focus-inner {
 		display:block;
 		background:url(../images/header/active-menu.png) right 0 no-repeat;
 	}
-/*	.headerMenu li.active span{
-		height: 27px;
-		width:4px;
-		position:absolute;
-		top: 0;
-		right: -1px;
-		display:block;
-		background:url(../images/header/active-menu.png) right 0 no-repeat;
-	}*/
 	.headerMenu li a{
 		color:#686e75;
 	}
@@ -675,7 +656,7 @@ dl.contacts dd a{
 	text-align:right;
 	padding-top: 31px;
 }
-.mainShare h3{
+/*.mainShare h3{
 	padding-bottom: 20px;
 	font-size: 12px;
 	line-height: 13px;
@@ -684,7 +665,7 @@ dl.contacts dd a{
 .mainShare h3 a{
 	padding-left: 16px;
 	background:url(../images/content/share-twit-sprite.png) -238px -16px no-repeat;
-}
+}*/
 .mainShareListCont li{
 	padding: 0 0 10px 21px;
 	background-repeat:no-repeat;
@@ -1349,7 +1330,7 @@ ul.phtoGallery li{
 .detailsOfProject p{
 	clear:left;
 }
-.screenOfProject{
+/*.screenOfProject{
 	text-align:center;
 	width: 390px;
 	overflow:hidden;
@@ -1381,8 +1362,8 @@ ul.phtoGallery li{
 	font-size:1px;
 	width: 390px;
 	background: url(../images/content/proj-screen-bot.png) no-repeat;
-}
-.detailsOfProject h3{
+}*/
+/*.detailsOfProject h3{
 	font-size: 12px;
 	color:#3e4348;
 	padding-bottom: 20px;
@@ -1410,14 +1391,20 @@ ul.phtoGallery li{
 	height: 7px;
 }
 .detailsOfProject ul.listOfGoods li{
-	//z-index: expression(runtimeStyle.zIndex = 1, this.innerHTML = "<div></div>" + this.innerHTML) /* ��� ��� ��6 � 7 */
+	//z-index: expression(runtimeStyle.zIndex = 1, this.innerHTML = "<div></div>" + this.innerHTML)  ��� ��� ��6 � 7 
+}*/
+/*.detailsOfProject div.screenshot {
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
+.detailsOfProject div.screenshot div.description {
+    margin-top: 1em;
+    font-style: italic;
+    font-size: 12px;
+}*/
 
-
-
-
-.innerCarousel{
+/*.innerCarousel{
 	position:relative;
 	height: 330px;
 }
@@ -1482,7 +1469,7 @@ ul.phtoGallery li{
 }
 .innerCarouselWrap ul li a:hover{
 	text-decoration:underline;
-}
+}*/
 ul.mainShareListOfServ li ul {
 	padding: 19px 0 9px 0;
 	font-size: 12px;
@@ -1879,4 +1866,63 @@ input.sbntClicking{
 .content dl.zend_form ul.errors li {
     list-style-type: none;
     margin: 0;
+}
+
+/* =========================================================================== */
+
+/* 3. header ---------------------------*/
+
+.header {
+    background: url(../images/header/back.png) repeat-x;
+    height: 144px;
+    position: relative;
+    text-align: left;
+}
+
+/* 4. content style ---------------------------*/
+
+.content img {
+    display: block;
+    margin: 0 auto;
+}
+
+.sidebar {
+    font-size: 12px;
+}
+
+.sidebar a.rss {
+    background:url(../images/content/share-twit-sprite.png) -238px -16px no-repeat;
+    display: block;
+    padding: 0 0 20px 16px;
+}
+
+/* servises */
+.sidebar .servises h3 {
+    border-bottom: 1px dotted #7C92CF;
+    clear: left;
+    color: #7C92CF;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.sidebar .servises ul {
+    clear: both;
+    line-height: 18px;
+    padding: 9px 0 9px 0;
+}
+.sidebar .servises ul li {
+    padding: 0 0 10px 19px;
+}
+.sidebar .servises ul li.active {
+    background-color: #F0F4F8;
+    font-weight: bold;
+    margin-bottom: 7px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+.sidebar .servises .clear {
+    border-top: 27px solid #FFFFFF;
+    clear: both;
 }

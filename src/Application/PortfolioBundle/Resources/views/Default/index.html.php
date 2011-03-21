@@ -24,7 +24,7 @@
                             <ul>
                                 <?php foreach ($category->getProjects() as $project): ?>
                                     <li>
-                                        <a href="<?php echo $view['router']->generate('portfolioProjectView', array('id' => $project->getId())) ?>">
+                                        <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $category->getId(), 'projectId' => $project->getId())) ?>">
                                             <span>
                                                 <img src="<?php echo '/bundles/portfolio/uploads/projects/' . $project->getImage(); ?>" width="240" height="198"
                                                      alt="<?php echo $project->getName(); ?>" title="<?php echo $project->getName(); ?>" />

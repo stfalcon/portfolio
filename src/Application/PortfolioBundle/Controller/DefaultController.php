@@ -13,6 +13,7 @@ class DefaultController extends Controller
     /**
      * Categories/projects list
      *
+     * @Cache(expires="tomorrow")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
@@ -36,6 +37,18 @@ class DefaultController extends Controller
 
         return $this->render('PortfolioBundle:Default:twitter.html.php', array(
             'statuses' => $result->status,
+        ));
+    }
+
+    public function servicesAction($currentProjectId)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
+        $categories = $query->getResult();
+        
+        return $this->render('PortfolioBundle:Default:services.html.php', array(
+            'categories' => $categories,
+            'currentProjectId' => $currentProjectId,
         ));
     }
 
