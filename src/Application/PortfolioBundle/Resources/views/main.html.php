@@ -11,146 +11,114 @@
     </head>
 
     <body>
-        <!--main-->
-        <div class="main">
+        <!--header-->
+        <div id="header">
+            <a href="<?php echo $view['router']->generate('homepage'); ?>">
+                <h1 class="logo">
+                    Веб-студия stfalcon.com
+                </h1>
+            </a>
 
-            <!--header-->
-            <div class="header">
-                <a href="<?php echo $view['router']->generate('homepage'); ?>">
-                    <h1>
-                        Веб-студия stfalcon.com
-                    </h1>
-                </a>
-                <ul class="headerLang">
+            <div class="langs">
+                <ul>
                     <li>рус</li>
                     <li><a href="#">eng</a></li>
                 </ul>
+            </div>
 
-                <!--header menu-->
+            <div class="menu">
                 <?php echo $view['menu']->get('main')->render(); ?>
-                <!--/header menu-->
-
-                <!--header menu-->
-<!--                <ul class="headerMenu">
-                    <li><a href="#">Услуги</a></li>
-                    <li><a href="#">Блог</a></li>
-                    <li><a href="#">Компания</a></li>
-                    <li><a href="<?php echo $view['router']->generate('portfolioDefaultContacts'); ?>">Контакты</a></li>
-                </ul>-->
-                <!--/header menu-->
-                <div class="headerSlogan">
-                    <span>
-                        Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.
-                        <br />
-                        Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!
-                    </span>
-
-                    <div class="headerSloganRight"></div>
-                    <div class="headerSloganLeft"></div>
-                </div>
             </div>
-            <!--/header-->
 
-            <!--index content-->
-            <div class="contentIndex">
-                <?php $view['slots']->output('_content') ?>
-
-                <!--twitter, rss etc.-->
-                <div class="indexSharedBlock">
-                    <!--rss column-->
-                    <div>
-                        <h3><a href="http://blog.stfalcon.com/rss"><span class="rss">Записи в блог</span></a></h3>
-                        <ul>
-                            <?php foreach ($feed as $item): ?>
-                                <li>
-                                    <a href="<?php echo $item->{'feedburner:origLink'}; ?>"><?php echo $item->title(); ?></a>
-                                    <a href="<?php echo $item->{'comments'}[0]; ?>"><span class="counComents"><?php echo $item->{'comments'}[1]; ?></span></a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                        <a href="http://blog.stfalcon.com" class="seeAllPosts">все записи</a>
-                    </div>
-                    <!--/rss column-->
-
-                    <!--articles column-->
-                    <div>
-                        <h3>Статьи</h3>
-                        <ul>
-                            <li>
-                                <a href="#">Статистика по IE на wallpaper.in.ua за останній рік</a>
-                                <strong>Танасийчук С., 7 марта 2010</strong>
-                            </li>
-                            <li>
-                                <a href="#">Clean .svn folders</a>
-                                <strong>Танасийчук С., 7 марта 2010</strong>
-                            </li>
-                            <li>
-                                <a href="#">Конференція присвячена Zend Framework ZFConf 2010</a>
-                                <strong>Танасийчук С., 7 марта 2010</strong>
-                            </li>
-                            <li>
-                                <a href="#">Тюнер для гітари WST-523</a>
-                                <strong>Танасийчук С., 7 марта 2010</strong>
-                            </li>
-                            <li>
-                                <a href="#">Джоэл. И снова о программировании</a>
-                                <strong>Танасийчук С., 7 марта 2010</strong>
-                            </li>
-                        </ul>
-
-                        <a href="#" class="seeAllPosts">все статьи</a>
-                    </div>
-                    <!--/articles column-->
-
-                    <!--twitter column-->
-                    <div>
-                        <h3><a href="http://twitter.com/stfalcon"><span class="twitter">twitter</span></a></h3>
-                        <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 7)); ?>
-                    </div>
-                    <!--/twitter column-->
-
-                </div>
-                <!--/twitter, rss etc.-->
-
+            <div class="slogan">
+                <span>
+                    Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.
+                    <br />
+                    Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!
+                </span>
+                <div class="slogan-right"></div>
+                <div class="slogan-left"></div>
             </div>
-            <!--/index content-->
-            
         </div>
-        <!--/main-->
+        <!--/header-->
+
+        <!--index content-->
+        <div id="content-index">
+            <?php $view['slots']->output('_content') ?>
+
+            <div class="shared">
+                <div>
+                    <h3><span class="feed">Записи в блог</span></h3>
+                    <ul>
+                        <?php foreach ($feed as $item): ?>
+                            <li class="feed-item">
+                                <a href="<?php echo $item->{'feedburner:origLink'}; ?>"><?php echo $item->title(); ?></a>
+                                <span class="comments"><a href="<?php echo $item->{'comments'}[0]; ?>"><?php echo $item->{'comments'}[1]; ?></a></span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <a href="http://blog.stfalcon.com" class="all-posts">все записи</a>
+                </div>
+
+                <div>
+                    <h3><span class="feed">Статьи</span></h3>
+                    <ul>
+                        <li>
+                            <a href="#">Статистика по IE на wallpaper.in.ua за останній рік</a>
+                            <strong>Танасийчук С., 7 марта 2010</strong>
+                        </li>
+                        <li>
+                            <a href="#">Clean .svn folders</a>
+                            <strong>Танасийчук С., 7 марта 2010</strong>
+                        </li>
+                        <li>
+                            <a href="#">Конференція присвячена Zend Framework ZFConf 2010</a>
+                            <strong>Танасийчук С., 7 марта 2010</strong>
+                        </li>
+                        <li>
+                            <a href="#">Тюнер для гітари WST-523</a>
+                            <strong>Танасийчук С., 7 марта 2010</strong>
+                        </li>
+                        <li>
+                            <a href="#">Джоэл. И снова о программировании</a>
+                            <strong>Танасийчук С., 7 марта 2010</strong>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="seeAllPosts">все статьи</a>
+                </div>
+
+                <div>
+                    <h3><span class="twitter">Twitter</span></h3>
+                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 7)); ?>
+                </div>
+            </div>
+
+        </div>
+        <!--/index content-->
 
         <!--footer-->
-        <div class="footer indexFooter">
-<!--        <br />
-        <br />
-        <br />
-        <div class="footer">-->
-            <address>
+        <div id="footer" style="background: none;">
+            <div class="contacts">
                 <span>
-                    Контактный телефон:
-                    <strong>+380 97 874-03-42</strong>
-                    e-mail: <a href="mailo:info@stfalcon.com">info@stfalcon.com</a>
-                </span>
-                <span class="copyright">
-                    &copy; 2009 - <?php echo date('Y'); ?> Веб-студия stfalcon.com
-                </span>
-            </address>
+                    Позвонить:
+                    <strong>
+                        +380 97 874-03-42
+                    </strong>
 
-            <ul>
-                <li><a href="#">Услуги</a></li>
-                <li><a href="#">Блог</a></li>
-                <li><a href="#">Компания</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
+                    Написать: <a href="mailo:info@stfalcon.com">info@stfalcon.com</a>
+                </span>
 
-            <form action="#">
-                <fieldset>
-                    <label for="footerSearch">Поиск по сайту</label>
-                    <dl>
-                        <dt><input type="text" id="footerSearch" /></dt>
-                        <dd><input type="submit" value="" /></dd>
-                    </dl>
-                </fieldset>
-            </form>
+                <span>
+                    Адрес:
+                    <br />
+                    Старокостантиновское шоссе 26, офис 308, Хмельницкий, Украина, 29000
+                </span>
+            </div>
+
+            <div class="copyright">
+                &copy; 2009–<?php echo date('Y'); ?> Веб-студия stfalcon.com
+            </div>
         </div>
         <!--/footer-->
 
@@ -166,11 +134,11 @@
 
         <script type="text/javascript">
             jQuery(document).ready(function() {
-                $("#accordion").accordion({ header: "h2" });
-                $(".indexCarousel").stfCarousel({
+                $("#content-index .accordion").accordion({ header: "h2" });
+                $("#content-index .carousel").stfCarousel({
                     scroll: 'auto',
                     mousewheel: false,
-                    ruler: $("#accordion"),
+                    ruler: $("#content-index .accordion"),
                     widthItem: 280,
                     substract: 144
                 });

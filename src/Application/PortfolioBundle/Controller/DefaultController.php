@@ -27,6 +27,7 @@ class DefaultController extends Controller
         return $this->render('PortfolioBundle:Default:index.html.php', array(
             'categories' => $categories,
             'feed' => $feed,
+//            'feed' => array(),
         ));
     }
 

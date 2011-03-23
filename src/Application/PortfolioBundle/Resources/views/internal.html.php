@@ -11,126 +11,111 @@
     </head>
 
     <body>
-        <!--main-->
-        <div class="main">
+        <!--header-->
+        <div id="header">
+            <a href="<?php echo $view['router']->generate('homepage'); ?>">
+                <h1 class="logo">
+                    Веб-студия stfalcon.com
+                </h1>
+            </a>
 
-            <!--header-->
-            <div class="header">
-                <a href="<?php echo $view['router']->generate('homepage'); ?>">
-                    <h1>
-                        Веб-студия stfalcon.com
-                    </h1>
-                </a>
-                <ul class="headerLang">
-                    <li>рус</li>
-                    <li><a href="#">eng</a></li>
-		</ul>
-
-                <!--header menu-->
-                <?php echo $view['menu']->get('main')->render(); ?>
-                <!--/header menu-->
-                
-            </div>
-            <!--/header-->
-
-            <!--content-->
-            <div class="mainInfo">
-                <!--main info block-->
-                <ul class="navLang">
-                    <li><a href="<?php echo $view['router']->generate('homepage'); ?>">Услуги</a></li>
-                    <li><a href="<?php echo $view['router']->generate('homepage'); ?>">Веб-разработка</a></li>
-                    <li class="active"><span><?php echo $currentProject->getName(); ?></span></li>
-                </ul>
-
-                <div class="contentWrap">
-                    <div class="content">
-                        <?php $view['slots']->output('_content') ?>
-                    </div>
-                </div>
-                <!--/main info block-->
-
-                <!--main share block-->
-                <div class="mainShare sidebar">
-                    <a href="#" class="rss">Подписаться на RSS ленту</a>
-
-                    <!--twitter block-->
-                    <div class="mainShareTwitter">
-                        <?php echo $view['actions']->render('PortfolioBundle:Default:twitter'); ?>
-
-                        <p>Следить за <a href="#">@stfalcon</a></p>
-                        <div class="mainShareTwitterTop"></div>
-                    </div>
-                    <!--/twitter block-->
-
-                    <?php if (isset($currentProject)): ?>
-                        <?php echo $view['actions']->render('PortfolioBundle:Default:services', array('currentProjectId' => $currentProject->getId())); ?>
-                    <?php endif; ?>
-<!--                    <h2>Над проектом работали</h2>
-
-                    <ul class="comandList">
-
-                        <li>
-                            <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                            <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                        </li>
-                        <li>
-                            <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                            <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                        </li>
-                        <li>
-                            <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                            <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                        </li>
-                        <li>
-                            <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                            <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                        </li>
-                        <li>
-                            <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                            <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                        </li>
-
-                    </ul>-->
-
-                </div>
-
-                <!--main share block-->
-
-            </div>
-            <!--/content-->
-
-            <!--/main-->
-        </div>
-
-        <!--footer-->
-        <div class="footer">
-            <address>
-                <span>
-                    Контактный телефон:
-                    <strong>+380 97 874-03-42</strong>
-                    e-mail: <a href="mailo:info@stfalcon.com">info@stfalcon.com</a>
-                </span>
-                <span class="copyright">
-                    &copy; 2009 - <?php echo date('Y'); ?> Веб-студия stfalcon.com
-                </span>
-            </address>
-
-            <ul>
-                <li><a href="#">Услуги</a></li>
-                <li><a href="#">Блог</a></li>
-                <li><a href="#">Компания</a></li>
-                <li><a href="#">Контакты</a></li>
+            <ul class="langs">
+                <li>рус</li>
+                <li><a href="#">eng</a></li>
             </ul>
 
-            <form action="#">
-                <fieldset>
-                    <label for="footerSearch">Поиск по сайту</label>
-                    <dl>
-                        <dt><input type="text" id="footerSearch" /></dt>
-                        <dd><input type="submit" value="" /></dd>
-                    </dl>
-                </fieldset>
-            </form>
+            <div class="menu">
+                <?php echo $view['menu']->get('main')->render(); ?>
+            </div>
+        </div>
+        <!--/header-->
+
+        <!--content-->
+        <div id="main">
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="<?php echo $view['router']->generate('homepage'); ?>">Услуги</a></li>
+                    <li class="current"><span>Контакты</span></li>
+                </ul>
+            </div>
+
+            <div id="content">
+                <div class="content-wrapper">
+                    <?php $view['slots']->output('_content') ?>
+                </div>
+            </div>
+
+            <!--sidebar-->
+            <div id="sidebar">
+                <a href="#" class="rss">Подписаться на RSS ленту</a>
+
+                <!--twitter block-->
+                <div class="twitter">
+                    Как установить ff под ubuntu?
+                    <?php // echo $view['actions']->render('PortfolioBundle:Default:twitter'); ?>
+                    <p>Следить за <a href="#">@stfalcon</a></p>
+                    <div class="twitter-top"></div>
+                </div>
+                <!--/twitter block-->
+
+                <?php if (isset($currentProject)): ?>
+                    <?php echo $view['actions']->render('PortfolioBundle:Default:services', array('currentProjectId' => $currentProject->getId())); ?>
+                <?php endif; ?>
+<!--                    <h2>Над проектом работали</h2>
+
+                <ul class="comandList">
+
+                    <li>
+                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
+                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
+                    </li>
+                    <li>
+                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
+                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
+                    </li>
+                    <li>
+                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
+                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
+                    </li>
+                    <li>
+                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
+                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
+                    </li>
+                    <li>
+                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
+                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
+                    </li>
+
+                </ul>-->
+
+            </div>
+            <!--sidebar-->
+
+        </div>
+        <!--/content-->
+
+        <!--footer-->
+        <div id="footer">
+            <div class="contacts">
+                <span>
+                    Позвонить:
+                    <strong>
+                        +380 97 874-03-42
+                    </strong>
+                    
+                    Написать: <a href="mailo:info@stfalcon.com">info@stfalcon.com</a>
+                </span>
+
+                <span>
+                    Адрес:
+                    <br />
+                    Старокостантиновское шоссе 26, офис 308, Хмельницкий, Украина, 29000
+                </span>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2009–<?php echo date('Y'); ?> Веб-студия stfalcon.com
+            </div>
         </div>
         <!--/footer-->
 

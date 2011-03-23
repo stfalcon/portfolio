@@ -17,9 +17,8 @@ class MainMenu extends Menu
     {
         parent::__construct(array(), 'Application\PortfolioBundle\Menu\MainMenuItem');
 
-        // @todo: css refact
-        $this->setAttribute('class', 'headerMenu');
         $this->setCurrentUri($request->getRequestUri());
+        $this->setCurrentAsLink(false);
 
         $this->addChild('Услуги', $router->generate('homepage'));
         $this->addChild('Контакты', $router->generate('portfolioDefaultContacts'));

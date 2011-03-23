@@ -77,9 +77,9 @@
             // прокрутка карусели
             function goTo(indexScrollItem) {
                 if (!running) {
-                    if(indexScrollItem < 0) {
+                    if (indexScrollItem < 0 || indexScrollItem > countAllItems) {
                         indexCurrentItem = 0;
-                    } else if( indexScrollItem > countAllItems - countVisibleItems) {
+                    } else if (indexScrollItem > countAllItems - countVisibleItems) {
                         indexCurrentItem = countAllItems - countVisibleItems;
                     } else {
                         indexCurrentItem = indexScrollItem;

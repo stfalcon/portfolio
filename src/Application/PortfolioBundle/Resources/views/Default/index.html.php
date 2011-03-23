@@ -2,26 +2,36 @@
 
 
 <?php if ($categories): ?>
-    <div id="accordion">
+    <div class="accordion">
         <?php foreach ($categories as $category): ?>
             <?php if (count($category->getProjects())): ?>
-                <!--index tabbed block-->
+                <!--accordion block-->
                 <h2>
                     <?php echo $category->getName(); ?>
                 </h2>
 
-                <div class="indexTabCont">
+                <div class="service">
                     <p>
                         <?php echo $category->getDescription(); ?>
                     </p>
 
-                    <!--BEGIN OF CARUSEL-->
-                    <div class="indexCarousel">
+                    <!--carousel-->
+                    <div class="carousel">
 
                         <div class="btnPrev" title="Назад"></div>
 
-                        <div class="indexCarouselWrap">
+                        <div class="carousel-wrapper">
                             <ul>
+                                <?php foreach ($category->getProjects() as $project): ?>
+                                    <li>
+                                        <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $category->getId(), 'projectId' => $project->getId())) ?>">
+                                            <span>
+                                                <img src="<?php echo '/bundles/portfolio/uploads/projects/' . $project->getImage(); ?>" width="240" height="198"
+                                                     alt="<?php echo $project->getName(); ?>" title="<?php echo $project->getName(); ?>" />
+                                            </span>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
                                 <?php foreach ($category->getProjects() as $project): ?>
                                     <li>
                                         <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $category->getId(), 'projectId' => $project->getId())) ?>">
@@ -37,10 +47,11 @@
 
                         <div class="btnNext" title="Вперед"></div>
                     </div>
-                    <!--/BEGIN OF CARUSEL-->
+                    <!--/carousel-->
 
+                    <a href="#" class="all-projects">Посмотреть все работы</a>
                 </div>
-                <!--/index tabbed block-->
+                <!--/accordion block-->
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
