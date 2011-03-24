@@ -4,10 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php $view['slots']->output('title', 'Веб-студия stfalcon.com'); ?></title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/css/main.css'); ?>" media="screen" />
-        <!--[if IE 6]>
-            <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/css/main-ie6.css'); ?>" media="screen" />
-        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/css/style.css'); ?>" media="screen" />
     </head>
 
     <body>
