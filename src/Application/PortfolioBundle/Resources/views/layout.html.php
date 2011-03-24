@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/960.css'); ?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/layout.css'); ?>" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/nav.css'); ?>" media="screen" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/css/style.css'); ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/css/admin.css'); ?>" media="screen" />
         <!--[if IE 6]><link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/ie6.css'); ?>" media="screen" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/ie.css'); ?>" media="screen" /><![endif]-->
     </head>
