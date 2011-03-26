@@ -82,7 +82,7 @@
                         </li>
                     </ul>
 
-                    <a href="#" class="seeAllPosts">все статьи</a>
+                    <a href="#" class="all-posts">все статьи</a>
                 </div>
 
                 <div>

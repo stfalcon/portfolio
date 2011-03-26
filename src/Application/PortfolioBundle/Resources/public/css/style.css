@@ -1,8 +1,6 @@
 /*
    CSS reset
    http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
 */
 
 html, body, div, span, applet, object, iframe,
@@ -45,16 +43,15 @@ table {
 
 /*
     Site Main Styles
-    Version:  21 March 2011
+    Version:  26 March 2011
 
     Structure
     --------------------------------------------
     1. Base style
-    2. Base wrap
-    3. Header
-    4. Content
-    5. Footer
-    6. Contacts style
+    2. Header
+    3. Content
+    4. Footer
+    5. Contacts style
 */
 
 /* 1. base style ---------------------------*/
@@ -63,7 +60,6 @@ body {
     color: #404448;
     font: 14px Arial, Tahoma, Helvetica, sans-serif;
     min-width: 1000px;
-    /*    text-align:center;*/
 }
 a {
     color: #378ee5;
@@ -73,22 +69,12 @@ a:hover {
     text-decoration: none;
 }
 
-/* 2. base wrap ---------------------------*/
-
-/*.main{
-    margin: 0 auto;
-    min-height: 100%;
-    text-align: left;
-}*/
-
-/* 3. header ---------------------------*/
+/* 2. header ---------------------------*/
 
 #header {
     background: url(../images/header/back.png) repeat-x;
-    /*    height: 125px;*/
     height: 144px;
     position: relative;
-    /*    text-align: left;*/
 }
 
 #header h1.logo {
@@ -131,10 +117,10 @@ a:hover {
     font-size: 16px;
     margin-left: 46px;
 }
-#header .menu li a{
+#header .menu li a {
     color: #686e75;
 }
-#header .menu li a:hover{
+#header .menu li a:hover {
     color: #fa823a;
 }
 #header .menu li.current span {
@@ -185,14 +171,7 @@ a:hover {
     z-index: 1;
 }
 
-/* 4. content style ---------------------------*/
-
-/*.wrapper {
-    padding: 0 0 147px 0;
-    zoom: 1;
-    overflow: hidden;
-    position: relative;
-}*/
+/* 3. content style ---------------------------*/
 
 #main .breadcrumbs {
     background: url(../images/content/nav-lang.png) 0 bottom no-repeat #f0f4f8;
@@ -204,7 +183,6 @@ a:hover {
     overflow: hidden;
     padding-left: 8px;
     position: relative;
-    /*	zoom:1;*/
 }
 
 #main .breadcrumbs li {
@@ -213,12 +191,10 @@ a:hover {
     height: 26px;
     line-height: 26px;
     padding-right: 26px;
-    /*	zoom:1;*/
 }
 #main .breadcrumbs li.current {
     background: url(../images/content/nav-lang-right.png) right bottom no-repeat #f0f4f8;
     float: none;
-    /*    cursor: default;*/
 }
 #main .breadcrumbs span {
     background: url(../images/content/nav-lang-active.png) center bottom no-repeat;
@@ -239,7 +215,6 @@ a:hover {
     margin-left: -373px;
     padding-bottom: 52px;
     width: 100%;
-    /*    zoom: 1;*/
 }
 #content .content-wrapper {
     margin-left: 455px;
@@ -255,8 +230,6 @@ a:hover {
     margin: 0 auto;
 }
 #content p {
-    /*    color: #323538;*/
-    /*    font-size: 12px;*/
     line-height: 18px;
     padding-bottom: 18px;
 }
@@ -279,7 +252,6 @@ a:hover {
     float: left;
     padding-bottom: 25px;
     width: 100%;
-    /*	zoom:1;*/
 }
 #content .next-prev-projects:after {
     content: " ";
@@ -318,18 +290,8 @@ a:hover {
 
 #content-index {
     margin-top: 72px;
-/*    padding: 0 0 147px 0;*/
-    position: relative;
-    /*    zoom: 1;*/
 }
-#content-index:after {
-    clear: both;
-    content: " ";
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-#content-index h2{
+#content-index h2 {
     border-bottom: 1px dotted #7c92cf;
     clear: left;
     color: #7c92cf;
@@ -343,14 +305,13 @@ a:hover {
 #content-index .service {
     clear: both;
     padding-bottom: 17px;
-    /*    zoom: 1;*/
 }
 #content-index .service:after {
-	content: " ";
-	display: block;
-	clear: both;
-	height: 0;
-	visibility: hidden;
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
 #content-index .service p {
     font-size: 24px;
@@ -375,51 +336,17 @@ a:hover {
     position: absolute;
 }
 #content-index .carousel ul li a {
-    background-image: url(../images/content/carousel-item.png);
-    float: left;
-    height: 208px;
     margin: 0 15px;
-    position: relative;
-    text-decoration: none;
-    width: 250px;
 }
-#content-index .carousel ul li a span {
-    cursor: pointer;
-    display: inline;
-    float: left;
-    height: 198px;
-    margin: 5px 0 0 5px;
-    overflow: hidden;
-    text-align: center;
-    width: 240px;
+#content-index .carousel ul li a img {
+    border: 5px #ced3d9 solid;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
 }
-/*
-.indexCarouselWrap ul li a:hover{
-	background-position: 0 -208px;
+#content-index .carousel ul li a img:hover {
+    border-color: #f1e1c0;
 }
-.indexCarouselWrap ul li a strong{
-	position:absolute;
-	top: 50px;
-	left: 50px;
-	font-weight:normal;
-	width: 168px;
-	background:url(../images/content/tooltip.png) no-repeat;
-	font-size:14px;
-	color:#6d5b49;
-	padding: 25px 25px 5px 21px;
-	cursor: pointer;
-}
-.indexCarouselWrap ul li a strong strong{
-	position:absolute;
-	top: 100%;
-	left: 0;
-	font-size:1px;
-	width: 214px;
-	height: 16px;
-	background:url(../images/content/tooltip.png) -214px 0 no-repeat;
-	padding: 0;
-	cursor: pointer;
-}*/
 #content-index .carousel .btnPrev {
     background-image: url(../images/content/index-sprite.png);
     background-position: 0 0px;
@@ -431,9 +358,8 @@ a:hover {
     top: 79px;
     width: 50px;
 }
-#content-index .carousel .btnPrev:hover{
+#content-index .carousel .btnPrev:hover {
     background-position: 0 -50px;
-    /*	cursor:default;*/
 }
 #content-index .carousel .btnPrevDisabled {
     background-image: url(../images/content/index-sprite-button.png);
@@ -445,7 +371,7 @@ a:hover {
     position: absolute;
     width: 50px;
     top: 79px;
-    /*    display: none;*/
+/*    display: none;*/
 }
 #content-index .carousel .btnNext {
     background-image: url(../images/content/index-sprite.png);
@@ -471,10 +397,8 @@ a:hover {
 }
 #content-index .carousel .btnNext:hover {
     background-position: 50px -50px;
-    /*    cursor:default;*/
 }
 #content-index a.all-projects {
-/*    font-size: 12px;*/
     float: right;
     margin-right: 90px;
 }
@@ -484,7 +408,7 @@ a:hover {
     background: #eef3f7;
     padding: 0 0 21px 81px;
     clear: both;
-/*    zoom: 1;*/
+    float: left;
 }
 #content-index .shared:after {
     clear: both;
@@ -587,7 +511,6 @@ a:hover {
     overflow: hidden;
     position: relative;
     padding: 12px 15px 8px;
-    /*    zoom:1;*/
 }
 #sidebar .twitter .twitter-top {
     background: url(../images/content/share-twit-sprite.png) -221px 0 no-repeat;
@@ -637,7 +560,7 @@ a:hover {
     clear: both;
 }
 
-/* 5. footer style ---------------------------*/
+/* 4. footer style ---------------------------*/
 
 #footer {
     background: url(../images/footer/inner-back.png) repeat-x;
@@ -645,8 +568,6 @@ a:hover {
     color: #7c8187;
     font-size: 12px;
     height: 149px;
-    min-width: 1000px;
-    /*    position: relative;*/
 }
 
 #footer .contacts {
