@@ -83,3 +83,25 @@ knplabs_menu:
 
 
 sensio_framework_extra: ~
+
+
+zend_cache:
+    templates:
+        my_template_cache:
+            frontend:
+                name: Core
+                options:
+                    lifetime: 7200
+                    automatic_serialization: true
+            backend:
+                name: File
+                options:
+                    cache_dir: %kernel.root_dir%/cache/%kernel.environment%
+        another_cache:
+            frontend:
+                name: Function
+                options:
+                    lifetime: 3600
+                    cache_by_default: false
+            backend:
+                name: Apc

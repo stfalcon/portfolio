@@ -2,7 +2,7 @@
     <?php foreach ($statuses as $status): ?>
         <li>
         <?php echo $status->text; ?>
-        <em><?php echo $status->created_at; ?></em>
+        <em><?php echo $status->time; ?></em>
     </li>
     <?php endforeach; ?>
 </ul>

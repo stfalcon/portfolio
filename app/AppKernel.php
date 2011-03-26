@@ -23,7 +23,8 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Knplabs\MenuBundle\KnplabsMenuBundle(),
-
+            new Bundle\ZendCacheBundle\ZendCacheBundle(),
+            
             new Application\PortfolioBundle\PortfolioBundle(),
         );
 

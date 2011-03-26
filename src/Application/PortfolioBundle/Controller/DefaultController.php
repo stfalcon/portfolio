@@ -22,22 +22,33 @@ class DefaultController extends Controller
         $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
         $categories = $query->getResult();
 
-        $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
+        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
+        if (false === ($feed = $cache->load('dc_feed'))) {
+            $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
+            $cache->save($feed, 'dc_feed');
+        }
 
         return $this->render('PortfolioBundle:Default:index.html.php', array(
             'categories' => $categories,
             'feed' => $feed,
-//            'feed' => array(),
         ));
     }
 
     public function twitterAction($count = 1)
     {
-        $twitter = new \Zend_Service_Twitter();
-        $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
+        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
+        if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
+            $twitter = new \Zend_Service_Twitter();
+            $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
+            $statuses = array();
+            foreach ($result->status as $status) {
+                $statuses[] = (object) array('text' => (string)$status->text, 'time' => (string)$status->created_at);
+            }
+            $cache->save($statuses, 'dc_twitter_' . $count);
+        }
 
         return $this->render('PortfolioBundle:Default:twitter.html.php', array(
-            'statuses' => $result->status,
+            'statuses' => $statuses,
         ));
     }
 

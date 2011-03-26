@@ -12,6 +12,9 @@ $loader->registerNamespaces(array(
     'Sensio'                         => __DIR__.'/../vendor/bundles',
     'JMS'                            => __DIR__.'/../vendor/bundles',
 
+    // @todo: refact
+    'Bundle'                         => __DIR__.'/../vendor/bundles',
+
     'Doctrine\\Common\\DataFixtures' => __DIR__.'/../vendor/doctrine-data-fixtures/lib',
     'Doctrine\\Common'               => __DIR__.'/../vendor/doctrine-common/lib',
     'Doctrine\\DBAL\\Migrations'     => __DIR__.'/../vendor/doctrine-migrations/lib',
@@ -19,7 +22,8 @@ $loader->registerNamespaces(array(
     'Doctrine\\ODM\\MongoDB'         => __DIR__.'/../vendor/doctrine-mongodb-odm/lib',
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine'                       => __DIR__.'/../vendor/doctrine/lib',
-    'Zend\\Log'                      => __DIR__.'/../vendor/zend-log',
+//    'Zend\\Log'                      => __DIR__.'/../vendor/zend-log',
+    'Zend'                           => __DIR__.'/../vendor/zf2/library',
     'Assetic'                        => __DIR__.'/../vendor/assetic/src',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
 ));
@@ -33,5 +37,6 @@ $loader->register();
 
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(__DIR__.'/../vendor/zf/library'),
+//    realpath(__DIR__.'/../vendor/zf2/library'),
     get_include_path(),
 )));

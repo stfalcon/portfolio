@@ -9,20 +9,20 @@ security:
                 
     firewalls:
         profiler:
-            pattern:  /_profiler.*
+            pattern:  ^/_profiler
             security: false
 
         wdt:
-            pattern:  /_wdt.*
+            pattern:  ^/_wdt
             security: false
 
         backend:
-            pattern: /admin/.*
+            pattern: ^/admin/
             http-basic: true
             logout:     true
 
         public:
-            pattern:  /.*
+            pattern:  ^/
             http-basic: true
 
     access_control:
