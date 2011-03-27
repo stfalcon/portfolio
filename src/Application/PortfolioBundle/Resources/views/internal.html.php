@@ -48,8 +48,7 @@
 
                 <!--twitter block-->
                 <div class="twitter">
-                    Как установить ff под ubuntu?
-                    <?php // echo $view['actions']->render('PortfolioBundle:Default:twitter'); ?>
+                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
                     <p>Следить за <a href="#">@stfalcon</a></p>
                     <div class="twitter-top"></div>
                 </div>

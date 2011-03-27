@@ -5,6 +5,11 @@ homepage:
 portfolio:
     resource: @PortfolioBundle/Resources/config/routing.yml
 
+# ESI
+#_internal:
+#    resource: @FrameworkBundle/Resources/config/routing/internal.xml
+#    prefix:   /_internal
+
 #_imagine:
 #    resource: .
 #    type:     imagine

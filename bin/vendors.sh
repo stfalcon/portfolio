@@ -89,11 +89,14 @@ cd zend-log/Zend
 install_git Log git://github.com/symfony/zend-log.git
 cd ../..
 
-# Zend Framework
+# ZF
 mkdir -p zf/library
 cd zf/library
 svn co http://framework.zend.com/svn/framework/standard/tags/release-1.11.4/library/ .
 cd ../..
+
+# ZF2
+install_git zf2 git://github.com/zendframework/zf2.git
 
 # FunctionalTestBundle
 mkdir -p bundles/Liip
@@ -105,6 +108,12 @@ cd ../..
 mkdir -p bundles/Knplabs
 cd bundles/Knplabs
 install_git MenuBundle git://github.com/knplabs/MenuBundle.git
+cd ../..
+
+# ZendCacheBundle
+mkdir -p bundles/Knplabs
+cd bundles/Knplabs
+install_git ZendCacheBundle git://github.com/knplabs/ZendCacheBundle.git
 cd ../..
 
 # FrameworkExtraBundle
