@@ -16,6 +16,7 @@ framework:
         default_locale: en
         lifetime:       3600
         auto_start:     true
+#    esi: {}
 
 # Twig Configuration
 twig:

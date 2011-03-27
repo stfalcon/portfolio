@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Application\PortfolioBundle\Entity\Project;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProjectController extends Controller
 {
@@ -118,13 +119,18 @@ class ProjectController extends Controller
             }
             $i++;
         }
-        
+
+        $response = new Response();
+        $response->setMaxAge(600);
+        $response->setPublic();
+        $response->setSharedMaxAge(600);
+
         return $this->render('PortfolioBundle:Project:view.html.php', array(
             'currentProject' => $currentProject,
             'categoryId' => $categoryId,
             'previousProject' => $previousProject,
             'nextProject' => $nextProject
-        ));
+        ), $response);
     }
 
     /**

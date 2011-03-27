@@ -15,12 +15,13 @@ class MainMenu extends Menu
      */
     public function __construct(Request $request, Router $router)
     {
-        parent::__construct(array(), 'Application\PortfolioBundle\Menu\MainMenuItem');
+        parent::__construct();
+//        parent::__construct(array(), 'Application\PortfolioBundle\Menu\MainMenuItem');
 
         $this->setCurrentUri($request->getRequestUri());
         $this->setCurrentAsLink(false);
 
-        $this->addChild('Услуги', $router->generate('homepage'));
+        $this->addChild('Портфолио', $router->generate('homepage'));
         $this->addChild('Контакты', $router->generate('portfolioDefaultContacts'));
     }
     

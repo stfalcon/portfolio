@@ -5,7 +5,7 @@ namespace Application\PortfolioBundle\Controller;
 use Application\PortfolioBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Client;
-use Knplabs\MenuBundle\MenuItem;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -28,10 +28,13 @@ class DefaultController extends Controller
             $cache->save($feed, 'dc_feed');
         }
 
-        return $this->render('PortfolioBundle:Default:index.html.php', array(
-            'categories' => $categories,
-            'feed' => $feed,
-        ));
+        $response = new Response();
+        $response->setMaxAge(600);
+        $response->setPublic();
+        $response->setSharedMaxAge(600);
+
+        return $this->render('PortfolioBundle:Default:index.html.php', 
+                array('categories' => $categories, 'feed' => $feed), $response);
     }
 
     public function twitterAction($count = 1)
@@ -42,14 +45,23 @@ class DefaultController extends Controller
             $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
             $statuses = array();
             foreach ($result->status as $status) {
-                $statuses[] = (object) array('text' => (string)$status->text, 'time' => (string)$status->created_at);
+                $statuses[] = (object) array(
+                    'text' => (string) $status->text,
+                    'time' => (string) $status->created_at
+                );
             }
             $cache->save($statuses, 'dc_twitter_' . $count);
         }
 
-        return $this->render('PortfolioBundle:Default:twitter.html.php', array(
-            'statuses' => $statuses,
-        ));
+//        $response = new Response();
+//        $response->setMaxAge(600);
+//        $response->setPublic();
+//        $response->setSharedMaxAge(600);
+
+//        return $this->render('PortfolioBundle:Default:twitter.html.php',
+//                array('statuses' => $statuses), $response);
+        return $this->render('PortfolioBundle:Default:twitter.html.php',
+                array('statuses' => $statuses));
     }
 
     public function servicesAction($currentProjectId)
@@ -58,15 +70,19 @@ class DefaultController extends Controller
         $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
         $categories = $query->getResult();
         
-        return $this->render('PortfolioBundle:Default:services.html.php', array(
-            'categories' => $categories,
-            'currentProjectId' => $currentProjectId,
-        ));
+        return $this->render('PortfolioBundle:Default:services.html.php',
+                array('categories' => $categories, 'currentProjectId' => $currentProjectId));
     }
 
     public function contactsAction()
     {
-        return $this->render('PortfolioBundle:Default:contacts.html.php');
+        $response = new Response();
+        $response->setMaxAge(600);
+        $response->setPublic();
+        $response->setSharedMaxAge(600);
+
+        return $this->render('PortfolioBundle:Default:contacts.html.php',
+                array(), $response);
     }
 
 }
