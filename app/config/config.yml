@@ -39,7 +39,7 @@ doctrine:
                 dbname:   portfolio_development
                 user:     root
                 password: null
-
+                charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%
 #        auto_generate_hydrator_classes:   %kernel.debug%

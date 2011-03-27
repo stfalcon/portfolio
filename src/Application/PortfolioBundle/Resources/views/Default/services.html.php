@@ -11,7 +11,9 @@
                     </li>
                 <?php else: ?>
                     <li>
-                        <a href="#"><?php echo $project->getName(); ?></a>
+                        <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $category->getId(), 'projectId' => $project->getId())) ?>">
+                            <?php echo $project->getName(); ?>
+                        </a>
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>

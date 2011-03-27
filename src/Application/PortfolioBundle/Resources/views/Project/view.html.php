@@ -6,15 +6,13 @@
 
     <!--pagination for project-->
     <div class="next-prev-projects">
-        <div class="next">
-            <?php if (isset($nextProject)): ?>
+        <?php if (isset($nextProject)): ?>
+            <div class="next">
                 <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $categoryId, 'projectId' => $nextProject->getId())) ?>">
                     <span>Следующий проект</span> →</a>
                 <?php echo $nextProject->getName(); ?>
-            <?php else: ?>
-                <span>Следующий проект</span> →
-            <?php endif; ?>
-        </div>
+            </div>
+        <?php endif; ?>
         
         <div class="prev">
             <?php if (isset($previousProject)): ?>
@@ -46,22 +44,8 @@
     </span>-->
 
     <div style="padding-bottom: 30px;">
-<p>
-«Бэби-клуб» — большая сеть детских развивающих клубов в России и странах ближнего зарубежья. На сайте родители узнают о важности раннего развития малышей, знакомятся с книжкой «После трех уже поздно» и выбирают клуб, чтобы отвести туда ребенка.
-</p>
-
-<p>
-<img alt="" src="http://img.artlebedev.ru/everything/baby-club/site/babyclub-site-main-poehali.jpg" width="720" height="1053" border="0">
-</p>
-
-<p>
-Каждый партнерский клуб сети получил свой отдельный мини-сайт — родители прочтут там о преподавателях клуба, найдут расписание, фотографии и видео с занятий.
-</p>
-
-<p>
-<img alt="" src="http://img.artlebedev.ru/everything/baby-club/site/babyclub-site-inner-gorshina.jpg" width="720" height="1053" border="0">
-</p>
-</div>
+        <?php echo $currentProject->getDescription(); ?>
+    </div>
 
 </div>
 
