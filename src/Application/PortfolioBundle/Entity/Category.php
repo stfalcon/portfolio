@@ -47,6 +47,7 @@ class Category
      *     @orm:JoinColumn(name="project_id", referencedColumnName="id")
      *   }
      * )
+     * @orm:OrderBy({"date" = "DESC"})
      */
     private $projects;
 
