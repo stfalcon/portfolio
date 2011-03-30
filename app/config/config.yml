@@ -36,9 +36,9 @@ doctrine:
             default:
                 driver:   pdo_mysql
                 host:     localhost
-                dbname:   portfolio_development
-                user:     root
-                password: null
+                dbname:   production_dbname
+                user:     production_user
+                password: production_password
                 charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%
