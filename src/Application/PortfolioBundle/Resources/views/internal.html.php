@@ -30,10 +30,7 @@
         <!--content-->
         <div id="main">
             <div class="breadcrumbs">
-                <ul>
-                    <li><a href="<?php echo $view['router']->generate('homepage'); ?>">Услуги</a></li>
-                    <li class="current"><span>Контакты</span></li>
-                </ul>
+                <?php echo $view['menu']->get('breadcrumbs')->render(); ?>
             </div>
 
             <div id="content">

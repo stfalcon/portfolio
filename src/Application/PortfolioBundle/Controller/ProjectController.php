@@ -103,6 +103,8 @@ class ProjectController extends Controller
             throw new NotFoundHttpException('The project does not exist.');
         }
 
+        $breadcrumbs = $this->get('menu.breadcrumbs');
+        $breadcrumbs->addChild($currentProject->getName())->setIsCurrent(true);
 
         // get all projects from this category
         $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');

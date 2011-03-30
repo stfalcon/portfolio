@@ -78,6 +78,7 @@ doctrine:
 # MenuBundle settings
 imports:
     - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
+    - { resource: "@PortfolioBundle/Resources/config/breadcrumbs.xml" }
 # MenuBundle enable template helpers
 knplabs_menu:
     templating: true
