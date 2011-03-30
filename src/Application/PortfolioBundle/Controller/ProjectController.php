@@ -20,7 +20,7 @@ class ProjectController extends Controller
     public function indexAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p');
+        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p ORDER BY p.date DESC');
         $projects = $query->getResult();
 
         return $this->render('PortfolioBundle:Project:index.html.php', array(
@@ -105,7 +105,7 @@ class ProjectController extends Controller
 
 
         // get all projects from this category
-        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1');
+        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');
         $query->setParameter(1, $categoryId);
         $projects = $query->getResult();
 
