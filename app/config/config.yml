@@ -74,6 +74,7 @@ doctrine:
 # MenuBundle settings
 imports:
     - { resource: "@Portfolio/Resources/config/menu.xml" }
+    - { resource: "@Portfolio/Resources/config/breadcrumbs.xml" }
 # MenuBundle enable template helpers
 knplabs_menu:
     templating: true
@@ -103,5 +104,5 @@ zend_cache:
             backend:
                 name: Apc
 
-imports:
-    - { resource: security.yml }
+#imports:
+#    - { resource: security.yml }

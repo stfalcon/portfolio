@@ -111,8 +111,8 @@ install_git MenuBundle git://github.com/knplabs/MenuBundle.git
 cd ../..
 
 # ZendCacheBundle
-mkdir -p bundles/Knplabs
-cd bundles/Knplabs
+mkdir -p bundles/Bundle
+cd bundles/Bundle
 install_git ZendCacheBundle git://github.com/knplabs/ZendCacheBundle.git
 cd ../..
 

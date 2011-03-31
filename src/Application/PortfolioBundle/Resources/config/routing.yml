@@ -32,7 +32,7 @@ portfolioProjectDelete:
     defaults: { _controller: Portfolio:Project:delete }
 
 
-# PortfolioBundle:Category
+# Portfolio:Category
 
 portfolioCategoryIndex:
     pattern:  /admin/portfolio/categories

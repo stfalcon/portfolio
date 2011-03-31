@@ -81,6 +81,10 @@ class DefaultController extends Controller
         $response->setPublic();
         $response->setSharedMaxAge(600);
 
+        // @todo: refact
+        $breadcrumbs = $this->get('menu.breadcrumbs');
+        $breadcrumbs->addChild('Контакты')->setIsCurrent(true);
+
         return $this->render('Portfolio:Default:contacts.html.php',
                 array(), $response);
     }
