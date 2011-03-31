@@ -16,10 +16,10 @@
                 </h1>
             </a>
 
-            <ul class="langs">
+<!--            <ul class="langs">
                 <li>рус</li>
                 <li><a href="#">eng</a></li>
-            </ul>
+            </ul>-->
 
             <div class="menu">
                 <?php echo $view['menu']->get('main')->render(); ?>
@@ -44,12 +44,12 @@
 
             <!--sidebar-->
             <div id="sidebar">
-                <a href="#" class="rss">Подписаться на RSS ленту</a>
+<!--                <a href="#" class="rss">Подписаться на RSS ленту</a>-->
 
                 <!--twitter block-->
                 <div class="twitter">
                     <?php echo $view['actions']->render('Portfolio:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <p>Следить за <a href="#">@stfalcon</a></p>
+                    <p>Следить за <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a></p>
                     <div class="twitter-top"></div>
                 </div>
                 <!--/twitter block-->
@@ -111,6 +111,12 @@
             
             <div class="copyright">
                 &copy; 2009–<?php echo date('Y'); ?> Веб-студия stfalcon.com
+                <br />
+                <br />
+                Сайт работает на
+                <a href="http://symfony.com" rel="nofollow">
+                    <img style="vertical-align: middle; padding-left: 5px;" src="/bundles/portfolio/images/footer/symfony-logo.png" alt="Symfony2" title="Symfony2" />
+                </a>
             </div>
         </div>
         <!--/footer-->

@@ -1,7 +1,3 @@
-imports:
-#    - { resource: parameters.ini }
-    - { resource: security.yml }
-
 framework:
     charset:       UTF-8
     error_handler: null
@@ -106,3 +102,6 @@ zend_cache:
                     cache_by_default: false
             backend:
                 name: Apc
+
+imports:
+    - { resource: security.yml }

@@ -39,7 +39,7 @@
                     </div>
                     <!--/carousel-->
 
-                    <a href="#" class="all-projects">Посмотреть все работы</a>
+<!--                    <a href="#" class="all-projects">Посмотреть все работы</a>-->
                 </div>
                 <!--/accordion block-->
             <?php endif; ?>

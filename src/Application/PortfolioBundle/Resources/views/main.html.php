@@ -16,12 +16,12 @@
                 </h1>
             </a>
 
-            <div class="langs">
+            <!--<div class="langs">
                 <ul>
                     <li>рус</li>
                     <li><a href="#">eng</a></li>
                 </ul>
-            </div>
+            </div>-->
 
             <div class="menu">
                 <?php echo $view['menu']->get('main')->render(); ?>
@@ -43,6 +43,7 @@
         <div id="content-index">
             <?php $view['slots']->output('_content') ?>
 
+            <?php /*
             <div class="shared">
                 <div>
                     <h3><span class="feed">Записи в блог</span></h3>
@@ -90,12 +91,16 @@
                     <?php echo $view['actions']->render('Portfolio:Default:twitter', array('count' => 7)); ?>
                 </div>
             </div>
+             
+             *
+             */ ?>
 
         </div>
         <!--/index content-->
 
         <!--footer-->
-        <div id="footer" style="background: none;">
+<!--        <div id="footer" style="background: none;">-->
+        <div id="footer" style="border-top: 34px solid white;">
             <div class="contacts">
                 <span>
                     Позвонить:
@@ -115,6 +120,12 @@
 
             <div class="copyright">
                 &copy; 2009–<?php echo date('Y'); ?> Веб-студия stfalcon.com
+                <br />
+                <br />
+                Сайт работает на
+                <a href="http://symfony.com" rel="nofollow">
+                    <img style="vertical-align: middle; padding-left: 5px;" src="/bundles/portfolio/images/footer/symfony-logo.png" alt="Symfony2" title="Symfony2" />
+                </a>
             </div>
         </div>
         <!--/footer-->

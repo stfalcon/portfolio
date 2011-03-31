@@ -26,5 +26,5 @@ security:
             http-basic: true
 
     access_control:
-        - { path: /admin/.*, role: ROLE_ADMIN }
-        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/.*, role: ROLE_ADMIN }
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
