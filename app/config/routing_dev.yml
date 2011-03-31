@@ -3,11 +3,11 @@ _assetic:
     type:     assetic
 
 _wdt:
-    resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
+    resource: "@WebProfiler/Resources/config/routing/wdt.xml"
     prefix:   /_wdt
 
 _profiler:
-    resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
+    resource: "@WebProfiler/Resources/config/routing/profiler.xml"
     prefix:   /_profiler
 
 _main:

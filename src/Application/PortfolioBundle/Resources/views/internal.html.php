@@ -48,14 +48,14 @@
 
                 <!--twitter block-->
                 <div class="twitter">
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
+                    <?php echo $view['actions']->render('Portfolio:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
                     <p>Следить за <a href="#">@stfalcon</a></p>
                     <div class="twitter-top"></div>
                 </div>
                 <!--/twitter block-->
 
                 <?php if (isset($currentProject)): ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:services', array('currentProjectId' => $currentProject->getId())); ?>
+                    <?php echo $view['actions']->render('Portfolio:Default:services', array('currentProjectId' => $currentProject->getId())); ?>
                 <?php endif; ?>
 <!--                    <h2>Над проектом работали</h2>
 

@@ -1,4 +1,4 @@
-<?php $view->extend('PortfolioBundle::internal.html.php') ?>
+<?php $view->extend('Portfolio::internal.html.php') ?>
 
 <!--details of project-->
 

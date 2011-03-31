@@ -1,58 +1,58 @@
-# PortfolioBundle:Default
+# Portfolio:Default
 
 portfolioDefaultContacts:
     pattern:  /contacts
-    defaults: { _controller: PortfolioBundle:Default:contacts }
+    defaults: { _controller: Portfolio:Default:contacts }
 
 
-# PortfolioBundle:Project
+# Portfolio:Project
 
 portfolioProjectIndex:
     pattern:  /admin/portfolio/projects
-    defaults: { _controller: PortfolioBundle:Project:index }
+    defaults: { _controller: Portfolio:Project:index }
 
 portfolioProjectCreate:
     pattern:  /admin/portfolio/project/create
-    defaults: { _controller: PortfolioBundle:Project:create }
+    defaults: { _controller: Portfolio:Project:create }
 
 portfolioProjectEdit:
     pattern:  /admin/portfolio/project/edit/{id}
-    defaults: { _controller: PortfolioBundle:Project:edit }
+    defaults: { _controller: Portfolio:Project:edit }
 
 portfolioProjectView:
     pattern:  /portfolio/project/{id}
-    defaults: { _controller: PortfolioBundle:Project:view }
+    defaults: { _controller: Portfolio:Project:view }
 
 portfolioCategoryProjectView:
     pattern:  /portfolio/{categoryId}/{projectId}
-    defaults: { _controller: PortfolioBundle:Project:view }
+    defaults: { _controller: Portfolio:Project:view }
 
 portfolioProjectDelete:
     pattern:  /admin/portfolio/project/delete/{id}
-    defaults: { _controller: PortfolioBundle:Project:delete }
+    defaults: { _controller: Portfolio:Project:delete }
 
 
 # PortfolioBundle:Category
 
 portfolioCategoryIndex:
     pattern:  /admin/portfolio/categories
-    defaults: { _controller: PortfolioBundle:Category:index }
+    defaults: { _controller: Portfolio:Category:index }
 
 portfolioCategoryCreate:
     pattern:  /admin/portfolio/category/create
-    defaults: { _controller: PortfolioBundle:Category:create }
+    defaults: { _controller: Portfolio:Category:create }
 
 portfolioCategoryEdit:
     pattern:  /admin/portfolio/category/edit/{id}
-    defaults: { _controller: PortfolioBundle:Category:edit }
+    defaults: { _controller: Portfolio:Category:edit }
 
 #portfolioCategoryView:
 #    pattern:  /portfolio/category/{id}
-#    defaults: { _controller: PortfolioBundle:Category:view }
+#    defaults: { _controller: Portfolio:Category:view }
 portfolioCategoryView:
     pattern:  /portfolio/{id}
-    defaults: { _controller: PortfolioBundle:Category:view }
+    defaults: { _controller: Portfolio:Category:view }
 
 portfolioCategoryDelete:
     pattern:  /admin/portfolio/category/delete/{id}
-    defaults: { _controller: PortfolioBundle:Category:delete }
+    defaults: { _controller: Portfolio:Category:delete }

@@ -1,4 +1,4 @@
-<?php $view->extend('PortfolioBundle::main.html.php') ?>
+<?php $view->extend('Portfolio::main.html.php') ?>
 
 
 <?php if ($categories): ?>

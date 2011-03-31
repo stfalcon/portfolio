@@ -271,10 +271,10 @@ abstract class Bundle extends ContainerAware implements BundleInterface
     }
     public function build(ContainerBuilder $container)
     {
-        $class = $this->getNamespace().'\\DependencyInjection\\'.str_replace('Bundle', 'Extension', $this->getName());
+        $class = $this->getNamespace().'\\DependencyInjection\\'.$this->getName().'Extension';
         if (class_exists($class)) {
             $extension = new $class();
-            $alias = Container::underscore(str_replace('Bundle', '', $this->getName()));
+            $alias = Container::underscore($this->getName());
             if ($alias !== $extension->getAlias()) {
                 throw new \LogicException(sprintf('The extension alias for the default extension of a bundle must be the underscored version of the bundle name ("%s" vs "%s")', $alias, $extension->getAlias()));
             }
@@ -304,9 +304,12 @@ abstract class Bundle extends ContainerAware implements BundleInterface
         if (null !== $this->name) {
             return $this->name;
         }
-        $name = get_class($this);
-        $pos = strrpos($name, '\\');
-        return $this->name = false === $pos ? $name :  substr($name, $pos + 1);
+        $fqcn = get_class($this);
+        $name = false === ($pos = strrpos($fqcn, '\\')) ? $fqcn : substr($fqcn, $pos + 1);
+        if ('Bundle' != substr($name, -6)) {
+            throw new \RuntimeException(sprintf('The bundle class name "%s" must end with "Bundle" to be valid.', $name));
+        }
+        return $this->name = substr($name, 0, -6);
     }
     public function registerCommands(Application $application)
     {
@@ -333,7 +336,7 @@ namespace Symfony\Component\HttpKernel\Debug
 {
 class ErrorHandler
 {
-    protected $levels = array(
+    private $levels = array(
         E_WARNING           => 'Warning',
         E_NOTICE            => 'Notice',
         E_USER_ERROR        => 'User Error',
@@ -342,7 +345,7 @@ class ErrorHandler
         E_STRICT            => 'Runtime Notice',
         E_RECOVERABLE_ERROR => 'Catchable Fatal Error',
     );
-    protected $level;
+    private $level;
     public function __construct($level = null)
     {
         $this->level = null === $level ? error_reporting() : $level;
@@ -405,7 +408,7 @@ class HttpKernel implements HttpKernelInterface
             return $this->handleException($e, $request, $type);
         }
     }
-    protected function handleRaw(Request $request, $type = self::MASTER_REQUEST)
+    private function handleRaw(Request $request, $type = self::MASTER_REQUEST)
     {
                 $event = new GetResponseEvent($this, $request, $type);
         $this->dispatcher->dispatch(Events::onCoreRequest, $event);
@@ -427,18 +430,22 @@ class HttpKernel implements HttpKernelInterface
                 $response = $event->getResponse();
             }
             if (!$response instanceof Response) {
-                throw new \LogicException(sprintf('The controller must return a response (%s given).', $this->varToString($response)));
+                $msg = sprintf('The controller must return a response (%s given).', $this->varToString($response));
+                                if (null === $response) {
+                    $msg .= ' Did you forget to add a return statement somewhere in your controller?';
+                }
+                throw new \LogicException($msg);
             }
         }
         return $this->filterResponse($response, $request, $type);
     }
-    protected function filterResponse(Response $response, Request $request, $type)
+    private function filterResponse(Response $response, Request $request, $type)
     {
         $event = new FilterResponseEvent($this, $request, $type, $response);
         $this->dispatcher->dispatch(Events::onCoreResponse, $event);
         return $event->getResponse();
     }
-    protected function handleException(\Exception $e, $request, $type)
+    private function handleException(\Exception $e, $request, $type)
     {
         $event = new GetResponseForExceptionEvent($this, $request, $type, $e);
         $this->dispatcher->dispatch(Events::onCoreException, $event);
@@ -447,7 +454,7 @@ class HttpKernel implements HttpKernelInterface
         }
         return $this->filterResponse($event->getResponse(), $request, $type);
     }
-    protected function varToString($var)
+    private function varToString($var)
     {
         if (is_object($var)) {
             return sprintf('[object](%s)', get_class($var));
@@ -461,6 +468,9 @@ class HttpKernel implements HttpKernelInterface
         }
         if (is_resource($var)) {
             return '[resource]';
+        }
+        if (null === $var) {
+            return 'null';
         }
         return str_replace("\n", '', var_export((string) $var, true));
     }
@@ -779,10 +789,10 @@ abstract class Kernel implements KernelInterface
             $dir = $container->getParameter(sprintf('kernel.%s_dir', $name));
             if (!is_dir($dir)) {
                 if (false === @mkdir($dir, 0777, true)) {
-                    die(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
+                    exit(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
                 }
             } elseif (!is_writable($dir)) {
-                die(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
+                exit(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
             }
         }
         $container->compile();
@@ -1996,8 +2006,8 @@ namespace Symfony\Component\Config
 {
 class ConfigCache
 {
-    protected $debug;
-    protected $file;
+    private $debug;
+    private $file;
     public function __construct($file, $debug)
     {
         $this->file = $file;

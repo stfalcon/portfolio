@@ -20,10 +20,10 @@ class ProjectController extends Controller
     public function indexAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p ORDER BY p.date DESC');
+        $query = $em->createQuery('SELECT p FROM Portfolio:Project p ORDER BY p.date DESC');
         $projects = $query->getResult();
 
-        return $this->render('PortfolioBundle:Project:index.html.php', array(
+        return $this->render('Portfolio:Project:index.html.php', array(
             'projects' => $projects
         ));
     }
@@ -53,7 +53,7 @@ class ProjectController extends Controller
             return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
         }
 
-        return $this->render('PortfolioBundle:Project:create.html.php', array(
+        return $this->render('Portfolio:Project:create.html.php', array(
             'form' => $form
         ));
     }
@@ -68,7 +68,7 @@ class ProjectController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by id
-        $project = $em->find("PortfolioBundle:Project", $id);
+        $project = $em->find("Portfolio:Project", $id);
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
@@ -87,7 +87,7 @@ class ProjectController extends Controller
             return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
         }
 
-        return $this->render('PortfolioBundle:Project:edit.html.php', array(
+        return $this->render('Portfolio:Project:edit.html.php', array(
             'form' => $form,
             'project' => $project
         ));
@@ -98,14 +98,14 @@ class ProjectController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by id
-        $currentProject = $em->find("PortfolioBundle:Project", $projectId);
+        $currentProject = $em->find("Portfolio:Project", $projectId);
         if (!$currentProject) {
             throw new NotFoundHttpException('The project does not exist.');
         }
 
 
         // get all projects from this category
-        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');
+        $query = $em->createQuery('SELECT p FROM Portfolio:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');
         $query->setParameter(1, $categoryId);
         $projects = $query->getResult();
 
@@ -125,7 +125,7 @@ class ProjectController extends Controller
         $response->setPublic();
         $response->setSharedMaxAge(600);
 
-        return $this->render('PortfolioBundle:Project:view.html.php', array(
+        return $this->render('Portfolio:Project:view.html.php', array(
             'currentProject' => $currentProject,
             'categoryId' => $categoryId,
             'previousProject' => $previousProject,
@@ -143,7 +143,7 @@ class ProjectController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by id
-        $project = $em->find("PortfolioBundle:Project", $id);
+        $project = $em->find("Portfolio:Project", $id);
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }

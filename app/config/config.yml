@@ -47,7 +47,7 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    PortfolioBundle: ~
+                    Portfolio: ~
 
 ## Swiftmailer Configuration
 #swiftmailer.config:
@@ -77,7 +77,7 @@ doctrine:
 
 # MenuBundle settings
 imports:
-    - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
+    - { resource: "@Portfolio/Resources/config/menu.xml" }
 # MenuBundle enable template helpers
 knplabs_menu:
     templating: true

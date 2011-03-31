@@ -18,10 +18,10 @@ class CategoryController extends Controller
     public function indexAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
+        $query = $em->createQuery('SELECT c FROM Portfolio:Category c');
         $categories = $query->getResult();
 
-        return $this->render('PortfolioBundle:Category:index.html.php', array(
+        return $this->render('Portfolio:Category:index.html.php', array(
             'categories' => $categories
         ));
     }
@@ -49,7 +49,7 @@ class CategoryController extends Controller
             return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
         }
 
-        return $this->render('PortfolioBundle:Category:create.html.php', array(
+        return $this->render('Portfolio:Category:create.html.php', array(
             'form' => $form
         ));
     }
@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find category by id
-        $category = $em->find("PortfolioBundle:Category", $id);
+        $category = $em->find("Portfolio:Category", $id);
         if (!$category) {
             throw new NotFoundHttpException('The category does not exist.');
         }
@@ -81,7 +81,7 @@ class CategoryController extends Controller
             return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
         }
 
-        return $this->render('PortfolioBundle:Category:edit.html.php', array(
+        return $this->render('Portfolio:Category:edit.html.php', array(
             'form' => $form,
             'category' => $category
         ));
@@ -92,12 +92,12 @@ class CategoryController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find category by id
-        $category = $em->find("PortfolioBundle:Category", $id);
+        $category = $em->find("Portfolio:Category", $id);
         if (!$category) {
             throw new NotFoundHttpException('The category does not exist.');
         }
 
-        return $this->render('PortfolioBundle:Category:view.html.php', array(
+        return $this->render('Portfolio:Category:view.html.php', array(
             'category' => $category
         ));
     }
@@ -112,7 +112,7 @@ class CategoryController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find category by id
-        $category = $em->find("PortfolioBundle:Category", $id);
+        $category = $em->find("Portfolio:Category", $id);
         if (!$category) {
             throw new NotFoundHttpException('The category does not exist.');
         }

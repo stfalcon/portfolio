@@ -87,7 +87,7 @@
 
                 <div>
                     <h3><span class="twitter">Twitter</span></h3>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 7)); ?>
+                    <?php echo $view['actions']->render('Portfolio:Default:twitter', array('count' => 7)); ?>
                 </div>
             </div>
 
