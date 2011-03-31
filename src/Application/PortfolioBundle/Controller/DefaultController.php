@@ -22,11 +22,11 @@ class DefaultController extends Controller
         $query = $em->createQuery('SELECT c FROM Portfolio:Category c');
         $categories = $query->getResult();
 
-        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
-        if (false === ($feed = $cache->load('dc_feed'))) {
-            $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
-            $cache->save($feed, 'dc_feed');
-        }
+//        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
+//        if (false === ($feed = $cache->load('dc_feed'))) {
+//            $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
+//            $cache->save($feed, 'dc_feed');
+//        }
 
         $response = new Response();
         $response->setMaxAge(600);
@@ -34,7 +34,7 @@ class DefaultController extends Controller
         $response->setSharedMaxAge(600);
 
         return $this->render('Portfolio:Default:index.html.php', 
-                array('categories' => $categories, 'feed' => $feed), $response);
+                array('categories' => $categories, /*'feed' => $feed*/), $response);
     }
 
     public function twitterAction($count = 1)
