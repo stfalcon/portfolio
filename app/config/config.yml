@@ -23,7 +23,13 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-
+    filters:
+        cssrewrite: ~
+        # closure:
+        #     jar: %kernel.root_dir%/java/compiler.jar
+        # yui_css:
+        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+        
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -43,7 +49,7 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    Portfolio: ~
+                    PortfolioBundle: ~
 
 ## Swiftmailer Configuration
 #swiftmailer.config:
@@ -73,8 +79,8 @@ doctrine:
 
 # MenuBundle settings
 imports:
-    - { resource: "@Portfolio/Resources/config/menu.xml" }
-    - { resource: "@Portfolio/Resources/config/breadcrumbs.xml" }
+    - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
+    - { resource: "@PortfolioBundle/Resources/config/breadcrumbs.xml" }
 # MenuBundle enable template helpers
 knplabs_menu:
     templating: true

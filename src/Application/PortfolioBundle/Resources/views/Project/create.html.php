@@ -1,4 +1,4 @@
-<?php $view->extend('Portfolio::layout.html.php') ?>
+<?php $view->extend('PortfolioBundle::layout.html.php') ?>
 
 <h4>Create new project</h4>
 

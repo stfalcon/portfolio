@@ -19,7 +19,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT c FROM Portfolio:Category c');
+        $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
         $categories = $query->getResult();
 
 //        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
@@ -33,7 +33,7 @@ class DefaultController extends Controller
         $response->setPublic();
         $response->setSharedMaxAge(600);
 
-        return $this->render('Portfolio:Default:index.html.php', 
+        return $this->render('PortfolioBundle:Default:index.html.php',
                 array('categories' => $categories, /*'feed' => $feed*/), $response);
     }
 
@@ -42,6 +42,8 @@ class DefaultController extends Controller
         $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
         if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
             $twitter = new \Zend_Service_Twitter();
+
+            // @todo: add try/catch
             $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
             $statuses = array();
             foreach ($result->status as $status) {
@@ -58,19 +60,19 @@ class DefaultController extends Controller
 //        $response->setPublic();
 //        $response->setSharedMaxAge(600);
 
-//        return $this->render('Portfolio:Default:twitter.html.php',
+//        return $this->render('PortfolioBundle:Default:twitter.html.php',
 //                array('statuses' => $statuses), $response);
-        return $this->render('Portfolio:Default:twitter.html.php',
+        return $this->render('PortfolioBundle:Default:twitter.html.php',
                 array('statuses' => $statuses));
     }
 
     public function servicesAction($currentProjectId)
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT c FROM Portfolio:Category c');
+        $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
         $categories = $query->getResult();
         
-        return $this->render('Portfolio:Default:services.html.php',
+        return $this->render('PortfolioBundle:Default:services.html.php',
                 array('categories' => $categories, 'currentProjectId' => $currentProjectId));
     }
 
@@ -85,7 +87,7 @@ class DefaultController extends Controller
         $breadcrumbs = $this->get('menu.breadcrumbs');
         $breadcrumbs->addChild('Контакты')->setIsCurrent(true);
 
-        return $this->render('Portfolio:Default:contacts.html.php',
+        return $this->render('PortfolioBundle:Default:contacts.html.php',
                 array(), $response);
     }
 

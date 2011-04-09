@@ -1,4 +1,4 @@
-<?php $view->extend('Portfolio::layout.html.php') ?>
+<?php $view->extend('PortfolioBundle::layout.html.php') ?>
 
 <h4>Category "<?php echo $category->getName(); ?>"</h4>
 

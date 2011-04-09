@@ -2,7 +2,7 @@
 
 namespace Application\PortfolioBundle\Menu;
 
-use Knplabs\MenuBundle\Menu;
+use Knplabs\Bundle\MenuBundle\Menu;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
 

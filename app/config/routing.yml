@@ -1,9 +1,9 @@
 homepage:
     pattern:  /
-    defaults: { _controller: Portfolio:Default:index }
+    defaults: { _controller: PortfolioBundle:Default:index }
 
 portfolio:
-    resource: @Portfolio/Resources/config/routing.yml
+    resource: @PortfolioBundle/Resources/config/routing.yml
 
 # ESI
 #_internal:

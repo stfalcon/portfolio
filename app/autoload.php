@@ -22,7 +22,7 @@ $loader->registerNamespaces(array(
     'Doctrine\\ODM\\MongoDB'         => __DIR__.'/../vendor/doctrine-mongodb-odm/lib',
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine'                       => __DIR__.'/../vendor/doctrine/lib',
-//    'Zend\\Log'                      => __DIR__.'/../vendor/zend-log',
+    'Monolog'          => __DIR__.'/../vendor/monolog/src',
     'Zend'                           => __DIR__.'/../vendor/zf2/library',
     'Assetic'                        => __DIR__.'/../vendor/assetic/src',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
