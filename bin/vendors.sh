@@ -51,16 +51,17 @@ install_git assetic https://github.com/kriswallsmith/assetic.git
 install_git symfony https://github.com/symfony/symfony.git vPR10
 
 # Doctrine ORM
-install_git doctrine https://github.com/doctrine/doctrine2.git 2.0.2
+install_git doctrine https://github.com/doctrine/doctrine2.git 2.0.4
 
 # Doctrine Data Fixtures Extension
 install_git doctrine-data-fixtures https://github.com/doctrine/data-fixtures.git
 
 # Doctrine DBAL
-install_git doctrine-dbal https://github.com/doctrine/dbal.git 2.0.2
+install_git doctrine-dbal https://github.com/doctrine/dbal.git 2.0.4
 
 # Doctrine Common
-install_git doctrine-common https://github.com/doctrine/common.git 2.0.1
+#install_git doctrine-common https://github.com/doctrine/common.git 2.0.2
+install_git doctrine-common https://github.com/doctrine/common.git
 
 # Doctrine migrations
 install_git doctrine-migrations https://github.com/doctrine/migrations.git
@@ -82,6 +83,9 @@ install_git twig-extensions https://github.com/fabpot/Twig-extensions.git
 
 # Imagine
 install_git imagine https://github.com/avalanche123/Imagine.git
+
+# Imagine
+install_git doctrine-extensions https://github.com/l3pp4rd/DoctrineExtensions.git
 
 
 # ZF
@@ -116,6 +120,11 @@ install_git FrameworkExtraBundle https://github.com/sensio/SensioFrameworkExtraB
 mkdir -p $BUNDLES/JMS
 cd $BUNDLES/JMS
 install_git SecurityExtraBundle https://github.com/schmittjoh/SecurityExtraBundle.git
+
+# DoctrineExtensionsBundle
+mkdir -p $BUNDLES/Stof/DoctrineExtensionsBundle
+cd $BUNDLES/Stof/DoctrineExtensionsBundle
+install_git DoctrineExtensionsBundle https://github.com/stof/DoctrineExtensionsBundle.git
 
 
 # Update the bootstrap files

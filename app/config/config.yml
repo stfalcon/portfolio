@@ -49,6 +49,7 @@ doctrine:
         entity_managers:
             default:
                 mappings:
+#                    StofDoctrineExtensionsBundle: ~
                     PortfolioBundle: ~
 
 ## Swiftmailer Configuration
@@ -112,3 +113,8 @@ zend_cache:
 
 #imports:
 #    - { resource: security.yml }
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default: ~

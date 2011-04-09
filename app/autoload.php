@@ -22,10 +22,13 @@ $loader->registerNamespaces(array(
     'Doctrine\\ODM\\MongoDB'         => __DIR__.'/../vendor/doctrine-mongodb-odm/lib',
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine'                       => __DIR__.'/../vendor/doctrine/lib',
-    'Monolog'          => __DIR__.'/../vendor/monolog/src',
+    
     'Zend'                           => __DIR__.'/../vendor/zf2/library',
     'Assetic'                        => __DIR__.'/../vendor/assetic/src',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
+    'Monolog'                        => __DIR__.'/../vendor/monolog/src',
+    'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',
+    'Stof'                           => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_'               => __DIR__.'/../vendor/twig-extensions/lib',
