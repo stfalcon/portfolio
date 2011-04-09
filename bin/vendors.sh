@@ -51,16 +51,15 @@ install_git assetic https://github.com/kriswallsmith/assetic.git
 install_git symfony https://github.com/symfony/symfony.git vPR10
 
 # Doctrine ORM
-install_git doctrine https://github.com/doctrine/doctrine2.git 2.0.4
+install_git doctrine https://github.com/doctrine/doctrine2.git
 
 # Doctrine Data Fixtures Extension
 install_git doctrine-data-fixtures https://github.com/doctrine/data-fixtures.git
 
 # Doctrine DBAL
-install_git doctrine-dbal https://github.com/doctrine/dbal.git 2.0.4
+install_git doctrine-dbal https://github.com/doctrine/dbal.git
 
 # Doctrine Common
-#install_git doctrine-common https://github.com/doctrine/common.git 2.0.2
 install_git doctrine-common https://github.com/doctrine/common.git
 
 # Doctrine migrations
@@ -90,7 +89,7 @@ install_git doctrine-extensions https://github.com/l3pp4rd/DoctrineExtensions.gi
 
 # ZF
 mkdir -p $VENDOR/zf/library
-svn co http://framework.zend.com/svn/framework/standard/tags/release-1.11.4/library/ $VENDOR/zf/library
+svn co http://framework.zend.com/svn/framework/standard/tags/release-1.11.5/library/ $VENDOR/zf/library
 
 # ZF2
 install_git zf2 https://github.com/zendframework/zf2.git
@@ -102,8 +101,8 @@ cd $BUNDLES/Liip
 install_git FunctionalTestBundle https://github.com/liip/FunctionalTestBundle.git
 
 # MenuBundle
-mkdir -p $BUNDLES/Knplabs
-cd $BUNDLES/Knplabs
+mkdir -p $BUNDLES/Knplabs/Bundle
+cd $BUNDLES/Knplabs/Bundle
 install_git MenuBundle https://github.com/knplabs/MenuBundle.git
 
 # ZendCacheBundle
