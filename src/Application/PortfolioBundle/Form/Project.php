@@ -23,6 +23,7 @@ class Project extends Form
         $em = $this->getOption('em');
 
         $this->add(new TextField('name'));
+        $this->add(new TextField('slug'));
         $this->add(new UrlField('url'), array('required' => false));
         $this->add(new DateField('date', array(
                     'widget' => DateField::CHOICE, 'type' => DateField::DATETIME

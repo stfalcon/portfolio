@@ -26,7 +26,16 @@ class Category
      *
      * @orm:Column(name="name", type="string", length=255)
      */
+//     * @gedmo:Sluggable
     private $name;
+
+    /**
+     * @var string $slug
+     *
+     * @orm:Column(name="slug", type="string", length=128, unique=true)
+     */
+//     * @gedmo:Slug
+    private $slug;
 
     /**
      * @var text $description
@@ -35,20 +44,6 @@ class Category
      */
     private $description;
 
-//    /**
-//     * @var Doctrine\Common\Collections\ArrayCollection
-//     *
-//     * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Project")
-//     * @orm:JoinTable(name="portfolio_projects_categories",
-//     *   joinColumns={
-//     *     @orm:JoinColumn(name="category_id", referencedColumnName="id")
-//     *   },
-//     *   inverseJoinColumns={
-//     *     @orm:JoinColumn(name="project_id", referencedColumnName="id")
-//     *   }
-//     * )
-//     * @orm:OrderBy({"date" = "DESC"})
-//     */
     /**
      * @var Doctrine\Common\Collections\ArrayCollection
      *
@@ -74,6 +69,16 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     public function getDescription()

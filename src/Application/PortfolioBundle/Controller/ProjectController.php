@@ -93,20 +93,50 @@ class ProjectController extends Controller
         ));
     }
 
-    public function viewAction($categoryId, $projectId)
+    public function viewBySlugAction($categorySlug, $projectSlug)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        // try find project by slug
+        $project = $em->getRepository("PortfolioBundle:Project")
+                ->findOneBy(array('slug' => $projectSlug));
+        
+        if (!$project) {
+            throw new NotFoundHttpException('The project does not exist.');
+        }
+
+        // try find category by slug
+        $category = $em->getRepository("PortfolioBundle:Category")
+                ->findOneBy(array('slug' => $categorySlug));
+
+        if (!$project) {
+            throw new NotFoundHttpException('The project does not exist.');
+        }
+
+        return $this->_viewAction($category->getId(), $project);
+    }
+
+    public function viewByIdAction($categoryId, $projectId)
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by id
-        $currentProject = $em->find("PortfolioBundle:Project", $projectId);
-        if (!$currentProject) {
+        $project = $em->find("PortfolioBundle:Project", $projectId);
+        if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
 
+        return $this->_viewAction($categoryId, $project);
+    }
+
+    private function _viewAction($categoryId, $currentProject)
+    {
         $breadcrumbs = $this->get('menu.breadcrumbs');
         $breadcrumbs->addChild('Портфолио', $this->get('router')->generate('homepage'));
         $breadcrumbs->addChild($currentProject->getName())->setIsCurrent(true);
 
+        $em = $this->get('doctrine.orm.entity_manager');
+        
         // get all projects from this category
         $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');
         $query->setParameter(1, $categoryId);
@@ -114,8 +144,8 @@ class ProjectController extends Controller
 
         // get next and previous projects from category
         $i = 0; $previousProject = null; $nextProject = null;
-        foreach ($projects as $project) {
-            if ($project->getId() == $currentProject->getId()) {
+        foreach ($projects as $currentProject) {
+            if ($currentProject->getId() == $currentProject->getId()) {
                 $previousProject = isset($projects[$i-1]) ? $projects[$i-1] : null;
                 $nextProject     = isset($projects[$i+1]) ? $projects[$i+1] : null;
                 break;

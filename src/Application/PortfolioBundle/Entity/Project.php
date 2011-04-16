@@ -28,20 +28,16 @@ class Project
      *
      * @orm:Column(name="name", type="string", length=255)
      */
-    private $name;
 //     * @gedmo:Sluggable
+    private $name;
 
-//    /**
-//     * @var string
-//     *
+    /**
+     * @var string $slug
+     *
+     * @orm:Column(name="slug", type="string", length=128, unique=true)
+     */
 //     * @gedmo:Slug
-//     */
-//    private $slug;
-//
-//    public function getSlug()
-//    {
-//        return $this->slug;
-//    }
+    private $slug;
 
     /**
      * @var text $description
@@ -122,6 +118,16 @@ class Project
         $this->name = $name;
     }
 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+    
     public function getDescription()
     {
         return $this->description;

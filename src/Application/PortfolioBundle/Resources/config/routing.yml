@@ -25,7 +25,13 @@ portfolioProjectView:
 
 portfolioCategoryProjectView:
     pattern:  /portfolio/{categoryId}/{projectId}
-    defaults: { _controller: PortfolioBundle:Project:view }
+    defaults: { _controller: PortfolioBundle:Project:viewById }
+    requirements:
+        projectId:     \d+
+
+portfolioCategoryProjectViewBySlug:
+    pattern:  /portfolio/{categorySlug}/{projectSlug}
+    defaults: { _controller: PortfolioBundle:Project:viewBySlug }
 
 portfolioProjectDelete:
     pattern:  /admin/portfolio/project/delete/{id}

@@ -114,7 +114,13 @@ zend_cache:
 #imports:
 #    - { resource: security.yml }
 
+# DoctrineExtensionsBundle
 stof_doctrine_extensions:
     default_locale: en_US
     orm:
-        default: ~
+        default:
+            loggable: false
+            sluggable: true
+            timestampable: true
+            translatable: false
+            tree: false

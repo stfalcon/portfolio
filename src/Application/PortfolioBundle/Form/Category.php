@@ -12,6 +12,7 @@ class Category extends Form
     public function configure()
     {
         $this->add(new TextField('name'));
+        $this->add(new TextField('slug'));
         $this->add(new TextareaField('description'));
 
         parent::configure();
