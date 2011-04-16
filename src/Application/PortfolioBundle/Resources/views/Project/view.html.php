@@ -44,7 +44,7 @@
     <?php endif; ?>
 
 <!--    <span class="dateOfProject">
-        <span>Дата выпуска: <?php echo $currentProject->getDate(); ?></span>
+        <span>Дата выпуска: <?php //echo $currentProject->getDate(); ?></span>
         <?php if ($currentProject->getUrl()): ?>
             <a href="<?php echo $currentProject->getUrl(); ?>"><img src="<?php echo $currentProject->getUrl() . '/favicon.ico'; ?>" width="16" height="16" /><?php echo $currentProject->getUrl(); ?></a>
         <?php endif; ?>

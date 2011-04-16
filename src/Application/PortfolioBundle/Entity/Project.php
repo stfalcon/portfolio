@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Imagine;
 
 /**
- * Application\PortfolioBundle\Entity\Project
+ * \Application\PortfolioBundle\Entity\Project
  *
  * @orm:Table(name="portfolio_projects")
  * @orm:Entity
@@ -29,6 +29,19 @@ class Project
      * @orm:Column(name="name", type="string", length=255)
      */
     private $name;
+//     * @gedmo:Sluggable
+
+//    /**
+//     * @var string
+//     *
+//     * @gedmo:Slug
+//     */
+//    private $slug;
+//
+//    public function getSlug()
+//    {
+//        return $this->slug;
+//    }
 
     /**
      * @var text $description
@@ -45,11 +58,27 @@ class Project
     private $url;
 
     /**
-     * @var text $date
+     * @var \DateTime $date
      *
-     * @orm:Column(name="date", type="string", length=255)
+     * @orm:Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @var \DateTime $created
+     *
+     * @orm:Column(type="datetime")
+     * @gedmo:Timestampable(on="create")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @orm:Column(type="datetime")
+     * @gedmo:Timestampable(on="update")
+     */
+    private $updated;
 
     /**
      * @var string $image
@@ -59,7 +88,7 @@ class Project
     private $image;
 
     /**
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Category")
      * @orm:JoinTable(name="portfolio_projects_categories",
@@ -118,30 +147,68 @@ class Project
         return $this->date;
     }
 
-    public function setDate($date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
     }
 
-        public function getImage()
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage($image)
+    /**
+     * Create thumbnail image to project
+     * 
+     * @param string $imagePath
+     */
+    public function setImage($imagePath)
     {
-        $dir = realpath(__DIR__ . '/../Resources/public/uploads/projects');
-        $filename = uniqid() . '.png';
+        try {
+            // create thumbnail and save it to new file
+            $filename = uniqid() . '.png';
+            $imagine = new Imagine\Gd\Imagine();
+            $imagePath = $imagine->open($imagePath);
+            $imagePath->thumbnail(new Imagine\Image\Box(240, $imagePath->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
+                    ->crop(new Imagine\Image\Point(0, 0), new Imagine\Image\Box(240, 198))
+                    ->save($this->getPathToUploads() . '/' . $filename);
 
-        // @todo: remove old file
-        // @todo: refact
-        $imagine = new Imagine\Gd\Imagine();
-        $image = $imagine->open($image);
-        $image->thumbnail(new Imagine\Image\Box(240, $image->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
-            ->crop(new Imagine\Image\Point(0, 0), new Imagine\Image\Box(240, 198))
-            ->save($dir . '/' . $filename);
+            // remove old image file
+            // @todo: refact
+            $this->removeImage();
 
-        $this->image = $filename;
+            $this->image = $filename;
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove thumbnail image file
+     *
+     * @return boolean
+     */
+    public function removeImage()
+    {
+        $imagePath = $this->getImage() ?
+                $this->getPathToUploads() . '/' . $this->getImage() : null;
+
+        if ($imagePath && \file_exists($imagePath)) {
+            unlink($imagePath);
+            return true;
+        }
+        
+        return false;
+    }
+
+    /**
+     * Get path to the uploaded files of the project
+     * 
+     * @return string
+     */
+    public function getPathToUploads()
+    {
+        return realpath(__DIR__ . '/../Resources/public/uploads/projects');
     }
 
     public function getCategories()
@@ -157,6 +224,16 @@ class Project
     public function setCategories(\Doctrine\Common\Collections\Collection $categories)
     {
         $this->categories = $categories;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 
 }

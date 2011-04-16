@@ -48,7 +48,7 @@ install_git()
 install_git assetic https://github.com/kriswallsmith/assetic.git
 
 # Symfony
-install_git symfony https://github.com/symfony/symfony.git vPR10
+install_git symfony https://github.com/symfony/symfony.git
 
 # Doctrine ORM
 install_git doctrine https://github.com/doctrine/doctrine2.git
@@ -121,8 +121,8 @@ cd $BUNDLES/JMS
 install_git SecurityExtraBundle https://github.com/schmittjoh/SecurityExtraBundle.git
 
 # DoctrineExtensionsBundle
-mkdir -p $BUNDLES/Stof/DoctrineExtensionsBundle
-cd $BUNDLES/Stof/DoctrineExtensionsBundle
+mkdir -p $BUNDLES/Stof
+cd $BUNDLES/Stof
 install_git DoctrineExtensionsBundle https://github.com/stof/DoctrineExtensionsBundle.git
 
 
