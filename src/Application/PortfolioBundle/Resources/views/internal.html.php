@@ -51,8 +51,8 @@
                 </div>
                 <!--/twitter block-->
 
-                <?php if (isset($currentProject)): ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:services', array('currentProjectId' => $currentProject->getId())); ?>
+                <?php if (isset($project)): ?>
+                    <?php echo $view['actions']->render('PortfolioBundle:Default:services', array('project' => $project)); ?>
                 <?php endif; ?>
 <!--                    <h2>Над проектом работали</h2>
 

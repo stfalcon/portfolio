@@ -93,7 +93,7 @@ class ProjectController extends Controller
         ));
     }
 
-    public function viewBySlugAction($categorySlug, $projectSlug)
+    public function viewAction($categorySlug, $projectSlug)
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
@@ -113,45 +113,9 @@ class ProjectController extends Controller
             throw new NotFoundHttpException('The project does not exist.');
         }
 
-        return $this->_viewAction($category->getId(), $project);
-    }
-
-    public function viewByIdAction($categoryId, $projectId)
-    {
-        $em = $this->get('doctrine.orm.entity_manager');
-
-        // try find project by id
-        $project = $em->find("PortfolioBundle:Project", $projectId);
-        if (!$project) {
-            throw new NotFoundHttpException('The project does not exist.');
-        }
-
-        return $this->_viewAction($categoryId, $project);
-    }
-
-    private function _viewAction($categoryId, $currentProject)
-    {
         $breadcrumbs = $this->get('menu.breadcrumbs');
         $breadcrumbs->addChild('Портфолио', $this->get('router')->generate('homepage'));
-        $breadcrumbs->addChild($currentProject->getName())->setIsCurrent(true);
-
-        $em = $this->get('doctrine.orm.entity_manager');
-        
-        // get all projects from this category
-        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');
-        $query->setParameter(1, $categoryId);
-        $projects = $query->getResult();
-
-        // get next and previous projects from category
-        $i = 0; $previousProject = null; $nextProject = null;
-        foreach ($projects as $currentProject) {
-            if ($currentProject->getId() == $currentProject->getId()) {
-                $previousProject = isset($projects[$i-1]) ? $projects[$i-1] : null;
-                $nextProject     = isset($projects[$i+1]) ? $projects[$i+1] : null;
-                break;
-            }
-            $i++;
-        }
+        $breadcrumbs->addChild($project->getName())->setIsCurrent(true);
 
         $response = new Response();
         $response->setMaxAge(600);
@@ -159,11 +123,43 @@ class ProjectController extends Controller
         $response->setSharedMaxAge(600);
 
         return $this->render('PortfolioBundle:Project:view.html.php', array(
-            'currentProject' => $currentProject,
-            'categoryId' => $categoryId,
-            'previousProject' => $previousProject,
-            'nextProject' => $nextProject
+            'project' => $project,
+            'category' => $category,
         ), $response);
+    }
+
+    /**
+     *
+     * @param Category $category
+     * @param Project $project
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function nearbyProjectsAction($category, $project)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        // get all projects from this category
+        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');
+        $query->setParameter(1, $category->getId());
+        $projects = $query->getResult();
+
+        // get next and previous projects from this category
+        $i = 0; $previousProject = null; $nextProject = null;
+        foreach ($projects as $p) {
+            if ($project->getId() == $p->getId()) {
+                $previousProject = isset($projects[$i-1]) ? $projects[$i-1] : null;
+                $nextProject     = isset($projects[$i+1]) ? $projects[$i+1] : null;
+                break;
+            }
+            $i++;
+        }
+
+        return $this->render('PortfolioBundle:Project:nearby-projects.html.php',
+                array(
+                    'category' => $category,
+                    'previousProject' => $previousProject,
+                    'nextProject' => $nextProject,
+                ));
     }
 
     /**

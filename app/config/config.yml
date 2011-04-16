@@ -38,9 +38,9 @@ doctrine:
             default:
                 driver:   pdo_mysql
                 host:     localhost
-                dbname:   production_dbname
-                user:     production_user
-                password: production_password
+                dbname:   stfalcon_com_development
+                user:     root
+                password: null
                 charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%

@@ -5,13 +5,13 @@
             <h3><?php echo $category->getName(); ?></h3>
             <ul>
             <?php foreach ($category->getProjects() as $project): ?>
-                <?php if ($currentProjectId == $project->getId()): ?>
+                <?php if ($currentProject->getId() == $project->getId()): ?>
                     <li class="active">
                         <?php echo $project->getName(); ?>
                     </li>
                 <?php else: ?>
                     <li>
-                        <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $category->getId(), 'projectId' => $project->getId())) ?>">
+                        <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categorySlug' => $category->getSlug(), 'projectSlug' => $project->getSlug())) ?>">
                             <?php echo $project->getName(); ?>
                         </a>
                     </li>

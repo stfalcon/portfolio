@@ -66,14 +66,14 @@ class DefaultController extends Controller
                 array('statuses' => $statuses));
     }
 
-    public function servicesAction($currentProjectId)
+    public function servicesAction($project)
     {
         $em = $this->get('doctrine.orm.entity_manager');
         $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
         $categories = $query->getResult();
         
         return $this->render('PortfolioBundle:Default:services.html.php',
-                array('categories' => $categories, 'currentProjectId' => $currentProjectId));
+                array('categories' => $categories, 'currentProject' => $project));
     }
 
     public function contactsAction()

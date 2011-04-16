@@ -19,19 +19,13 @@ portfolioProjectEdit:
     pattern:  /admin/portfolio/project/edit/{id}
     defaults: { _controller: PortfolioBundle:Project:edit }
 
-portfolioProjectView:
-    pattern:  /portfolio/project/{id}
-    defaults: { _controller: PortfolioBundle:Project:view }
+#portfolioProjectView:
+#    pattern:  /portfolio/project/{id}
+#    defaults: { _controller: PortfolioBundle:Project:view }
 
 portfolioCategoryProjectView:
-    pattern:  /portfolio/{categoryId}/{projectId}
-    defaults: { _controller: PortfolioBundle:Project:viewById }
-    requirements:
-        projectId:     \d+
-
-portfolioCategoryProjectViewBySlug:
     pattern:  /portfolio/{categorySlug}/{projectSlug}
-    defaults: { _controller: PortfolioBundle:Project:viewBySlug }
+    defaults: { _controller: PortfolioBundle:Project:view }
 
 portfolioProjectDelete:
     pattern:  /admin/portfolio/project/delete/{id}

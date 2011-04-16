@@ -1,86 +1,32 @@
 <?php $view->extend('PortfolioBundle::internal.html.php') ?>
-<?php $view['slots']->set('title', 'Веб-студия stfalcon.com - ' . $currentProject->getName()) ?>
+<?php $view['slots']->set('title', 'Веб-студия stfalcon.com - ' . $project->getName()) ?>
 
 <!--details of project-->
 
 <div class="detailsOfProject">
 
-    <!--pagination for project-->
-    <div class="next-prev-projects">
-        <div class="next">
-            <?php if (isset($nextProject)): ?>
-                <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $categoryId, 'projectId' => $nextProject->getId())) ?>">
-                    Следующий проект →
-                </a>
-                <br />
-                <?php echo $nextProject->getName(); ?>
-            <?php else: ?>
-                Следующий проект →
-            <?php endif; ?>
-        </div>
-        
-        <div class="prev">
-            <?php if (isset($previousProject)): ?>
-                <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $categoryId, 'projectId' => $previousProject->getId())) ?>">
-                    ← Предыдущий проект
-                </a>
-                <br />
-                <?php echo $previousProject->getName(); ?>
-            <?php else: ?>
-                ← Предыдущий проект
-            <?php endif; ?>
-        </div>
-    </div>
-    <!--pagination for project-->
+    <?php echo $view['actions']->render('PortfolioBundle:Project:nearbyProjects', array('category' => $category, 'project' => $project)/*, array('standalone' => true)*/); ?>
 
     <h1>
-        <?php echo $currentProject->getName(); ?>
+        <?php echo $project->getName(); ?>
     </h1>
 
-    <?php if ($currentProject->getUrl()): ?>
+    <?php if ($project->getUrl()): ?>
         <p>
-            <a href="<?php echo $currentProject->getUrl(); ?>"><?php echo $currentProject->getUrl(); ?></a>
+            <a href="<?php echo $project->getUrl(); ?>"><?php echo $project->getUrl(); ?></a>
         </p>
     <?php endif; ?>
 
 <!--    <span class="dateOfProject">
-        <span>Дата выпуска: <?php //echo $currentProject->getDate(); ?></span>
-        <?php if ($currentProject->getUrl()): ?>
-            <a href="<?php echo $currentProject->getUrl(); ?>"><img src="<?php echo $currentProject->getUrl() . '/favicon.ico'; ?>" width="16" height="16" /><?php echo $currentProject->getUrl(); ?></a>
+        <span>Дата выпуска: <?php //echo $project->getDate(); ?></span>
+        <?php if ($project->getUrl()): ?>
+            <a href="<?php echo $project->getUrl(); ?>"><img src="<?php echo $project->getUrl() . '/favicon.ico'; ?>" width="16" height="16" /><?php echo $project->getUrl(); ?></a>
         <?php endif; ?>
     </span>-->
 
     <div style="padding-bottom: 30px;">
-        <?php echo $currentProject->getDescription(); ?>
+        <?php echo $project->getDescription(); ?>
     </div>
-
-    <!--pagination for project-->
-    <div class="next-prev-projects">
-        <div class="next">
-            <?php if (isset($nextProject)): ?>
-                <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $categoryId, 'projectId' => $nextProject->getId())) ?>">
-                    Следующий проект →
-                </a>
-                <br />
-                <?php echo $nextProject->getName(); ?>
-            <?php else: ?>
-                Следующий проект →
-            <?php endif; ?>
-        </div>
-
-        <div class="prev">
-            <?php if (isset($previousProject)): ?>
-                <a href="<?php echo $view['router']->generate('portfolioCategoryProjectView', array('categoryId' => $categoryId, 'projectId' => $previousProject->getId())) ?>">
-                    ← Предыдущий проект
-                </a>
-                <br />
-                <?php echo $previousProject->getName(); ?>
-            <?php else: ?>
-                ← Предыдущий проект
-            <?php endif; ?>
-        </div>
-    </div>
-    <!--pagination for project-->
 
 </div>
 

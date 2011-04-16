@@ -12,7 +12,7 @@ doctrine:
             default:
                 driver:   pdo_mysql
                 host:     localhost
-                dbname:   portfolio_development
+                dbname:   stfalcon_com_development
                 user:     root
                 password: null
                 charset:  UTF8
