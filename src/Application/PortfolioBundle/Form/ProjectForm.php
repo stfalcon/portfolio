@@ -11,9 +11,17 @@ use Symfony\Component\Form\TextareaField;
 use Symfony\Component\Form\EntityChoiceField;
 use Symfony\Component\Form\Exception\InvalidOptionsException;
 
-class Project extends Form
+/**
+ * ProjectForm
+ */
+class ProjectForm extends Form
 {
 
+    /**
+     * Configures the valid options
+     *
+     * @return void
+     */
     public function configure()
     {
         $this->addOption('em');
@@ -27,12 +35,12 @@ class Project extends Form
         $this->add(new UrlField('url'), array('required' => false));
         $this->add(new DateField('date', array(
                     'widget' => DateField::CHOICE, 'type' => DateField::DATETIME
-//                    'widget' => DateField::CHOICE, 'type' => DateField::STRING
                 )));
         $this->add(new TextareaField('description'), array('required' => true));
         $this->add(new FileField('image', array(
                     'secret' => md5(time()), 'required' => false
                 )));
+        // relation with categories
         $this->add(new EntityChoiceField('categories', array(
                     'em' => $em,
                     'class' => 'Application\PortfolioBundle\Entity\Category',

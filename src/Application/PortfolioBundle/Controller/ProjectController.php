@@ -3,12 +3,15 @@
 namespace Application\PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Application\PortfolioBundle\Entity\Project;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Application\PortfolioBundle\Form\ProjectForm;
+use Application\PortfolioBundle\Entity\Project;
 
+/**
+ * ProjectController
+ */
 class ProjectController extends Controller
 {
 
@@ -19,9 +22,8 @@ class ProjectController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p ORDER BY p.date DESC');
-        $projects = $query->getResult();
+        $projects = $this->get('doctrine.orm.entity_manager')
+                ->getRepository("PortfolioBundle:Project")->getAllProjects();
 
         return $this->render('PortfolioBundle:Project:index.html.php', array(
             'projects' => $projects
@@ -39,7 +41,7 @@ class ProjectController extends Controller
 
         $project = new Project();
         
-        $form = \Application\PortfolioBundle\Form\Project::create(
+        $form = ProjectForm::create(
                 $this->get("form.context"), 'project', array('em' => $em));
         $form->bind($this->get('request'), $project);
 
@@ -49,7 +51,10 @@ class ProjectController extends Controller
             $em->flush();
 
             $this->get('request')->getSession()->setFlash('notice',
-                    'Congratulations, your project is successfully created!');
+                    'Congratulations, your project "' . $project->getName()
+                    . '" is successfully created!');
+
+            // redirect to list of projects
             return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
         }
 
@@ -68,12 +73,12 @@ class ProjectController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by id
-        $project = $em->find("PortfolioBundle:Project", $id);
+        $project = $em->getRepository("PortfolioBundle:Project")->find($id);
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
         
-        $form = \Application\PortfolioBundle\Form\Project::create(
+        $form = ProjectForm::create(
                 $this->get("form.context"), 'project', array('em' => $em));
         $form->bind($this->get('request'), $project);
 
@@ -93,6 +98,13 @@ class ProjectController extends Controller
         ));
     }
 
+    /**
+     * View project
+     *
+     * @param string $categorySlug
+     * @param string $projectSlug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction($categorySlug, $projectSlug)
     {
         $em = $this->get('doctrine.orm.entity_manager');
@@ -129,6 +141,7 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display links to prev/next projects
      *
      * @param Category $category
      * @param Project $project
@@ -139,9 +152,8 @@ class ProjectController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // get all projects from this category
-        $query = $em->createQuery('SELECT p FROM PortfolioBundle:Project p JOIN p.categories c WHERE c.id = ?1 ORDER BY p.date DESC');
-        $query->setParameter(1, $category->getId());
-        $projects = $query->getResult();
+        $projects = $em->getRepository("PortfolioBundle:Project")
+                ->getProjectsByCategory($category);
 
         // get next and previous projects from this category
         $i = 0; $previousProject = null; $nextProject = null;
@@ -172,7 +184,7 @@ class ProjectController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by id
-        $project = $em->find("PortfolioBundle:Project", $id);
+        $project = $em->getRepository("PortfolioBundle:Project")->find($id);
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
@@ -181,7 +193,7 @@ class ProjectController extends Controller
         $em->flush();
 
         $this->get('request')->getSession()->setFlash('notice',
-                'Your project is successfully delete.');
+                'Your project "' . $project->getName() . '" is successfully delete.');
         return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
     }
 

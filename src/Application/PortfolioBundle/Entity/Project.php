@@ -9,7 +9,7 @@ use Imagine;
  * \Application\PortfolioBundle\Entity\Project
  *
  * @orm:Table(name="portfolio_projects")
- * @orm:Entity
+ * @orm:Entity(repositoryClass="Application\PortfolioBundle\Repository\ProjectRepository")
  */
 class Project
 {
@@ -28,7 +28,6 @@ class Project
      *
      * @orm:Column(name="name", type="string", length=255)
      */
-//     * @gedmo:Sluggable
     private $name;
 
     /**
@@ -36,7 +35,6 @@ class Project
      *
      * @orm:Column(name="slug", type="string", length=128, unique=true)
      */
-//     * @gedmo:Slug
     private $slug;
 
     /**
