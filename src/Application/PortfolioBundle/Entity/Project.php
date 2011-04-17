@@ -118,6 +118,7 @@ class Project
 
     public function setSlug($slug)
     {
+        // @todo: add filter
         $this->slug = $slug;
     }
 

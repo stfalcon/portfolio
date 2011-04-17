@@ -3,6 +3,7 @@
 namespace Application\PortfolioBundle\Tests\Entity;
 
 use Application\PortfolioBundle\Entity\Category;
+use Application\PortfolioBundle\Entity\Project;
 
 class CategoryEntityTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,6 +32,29 @@ class CategoryEntityTest extends \PHPUnit_Framework_TestCase
         $category->setDescription($description);
 
         $this->assertEquals($category->getDescription(), $description);
+    }
+
+    public function testSetAndGetCategorySlug()
+    {
+        $category = new Category();
+
+        $slug = 'web-development';
+        $category->setSlug($slug);
+
+        $this->assertEquals($category->getSlug(), $slug);
+    }
+
+    public function testGetAndAddCategoryProjects()
+    {
+        $category = new Category();
+
+        $project = new Project();
+
+        $category->addProject($project);
+        $projects = $category->getProjects();
+
+        $this->assertEquals($projects->count(), 1);
+        $this->assertTrue(\is_a($projects, 'Doctrine\Common\Collections\ArrayCollection'), 2);
     }
 
 }

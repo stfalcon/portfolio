@@ -128,7 +128,7 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
 
-        $slug = 'web-development';
+        $slug = 'preorder-it';
         $project->setSlug($slug);
 
         $this->assertEquals($project->getSlug(), $slug);

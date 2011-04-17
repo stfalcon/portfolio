@@ -26,7 +26,6 @@ class Category
      *
      * @orm:Column(name="name", type="string", length=255)
      */
-//     * @gedmo:Sluggable
     private $name;
 
     /**
@@ -34,7 +33,6 @@ class Category
      *
      * @orm:Column(name="slug", type="string", length=128, unique=true)
      */
-//     * @gedmo:Slug
     private $slug;
 
     /**
