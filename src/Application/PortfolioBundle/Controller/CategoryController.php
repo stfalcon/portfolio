@@ -2,10 +2,12 @@
 
 namespace Application\PortfolioBundle\Controller;
 
-use Application\PortfolioBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Application\PortfolioBundle\Entity\Category;
+use Application\PortfolioBundle\Form\CategoryForm;
 
 class CategoryController extends Controller
 {
@@ -35,8 +37,7 @@ class CategoryController extends Controller
     {
         $category = new Category();
 
-        $form = \Application\PortfolioBundle\Form\Category::create(
-                $this->get("form.context"), 'category');
+        $form = CategoryForm::create($this->get("form.context"), 'category');
         $form->bind($this->get('request'), $category);
 
         if ($form->isValid()) {
@@ -68,8 +69,7 @@ class CategoryController extends Controller
         if (!$category) {
             throw new NotFoundHttpException('The category does not exist.');
         }
-        $form = \Application\PortfolioBundle\Form\Category::create(
-                $this->get("form.context"), 'category');
+        $form = CategoryForm::create($this->get("form.context"), 'category');
         $form->bind($this->get('request'), $category);
 
         if ($form->isValid()) {

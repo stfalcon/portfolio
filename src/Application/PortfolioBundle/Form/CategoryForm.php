@@ -7,7 +7,7 @@ use Symfony\Component\Form\TextField;
 use Symfony\Component\Form\TextareaField;
 use Symfony\Component\Form\FileField;
 
-class Category extends Form
+class CategoryForm extends Form
 {
     public function configure()
     {

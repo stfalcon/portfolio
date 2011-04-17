@@ -2,18 +2,23 @@
 
 namespace Application\PortfolioBundle\Tests\Controller;
 
-//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class ProjectControllerTest extends WebTestCase
 {
-//    public function testEmptyProjectsList()
-//    {
-//        $client = $this->createClient();
-//        $crawler = $client->request('GET', '/portfolio/projects');
-//
-//        $this->assertTrue($crawler->filter('html:contains("List of projects is empty")')->count() > 0);
-//    }
+    
+    public function testEmptyProjectsList()
+    {
+        $this->loadFixtures(array(), false);
+        
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/admin/portfolio/projects');
+
+        // @todo: change assert
+        $this->assertTrue($crawler->filter('html:contains("List of projects is empty")')->count() > 0);
+        $this->assertTrue($crawler->filter('html:contains("preorder.it")')->count() == 0);
+    }
+
     public function testProjectsList()
     {
         $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
@@ -21,20 +26,25 @@ class ProjectControllerTest extends WebTestCase
         $client = $this->createClient();
         $crawler = $client->request('GET', '/admin/portfolio/projects');
 
+        $this->assertTrue($crawler->filter('html:contains("preorder.it")')->count() > 0);
         $this->assertTrue($crawler->filter('html:contains("eprice.kz")')->count() > 0);
     }
 
-//    public function testCreateValidProject()
-//    {
-//        $client = $this->createClient();
-//        $crawler = $client->request('GET', '/portfolio/project/create');
-//
-//        $form = $crawler->selectButton('Send');
-//
-//        $form['project[name]'] = 'preorder.it';
-//        $form['project[description]'] = 'Press-releases and reviews of the latest electronic novelties: mobile phones, cellphones, smartphones, laptops, tablets, netbooks, gadgets, e-books, photo and video cameras. The possibility to leave a pre-order.';
-//
-//        $crawler = $client->submit($form);
-//    }
+    public function testCreateValidProject()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/admin/portfolio/project/create');
+
+        $form = $crawler->selectButton('Send')->form();
+
+        $form['project[name]'] = 'wallpaper.in.ua';
+        $form['project[slug]'] = 'wallpaper-in-ua';
+        $form['project[url]'] = 'http://wallpaper.in.ua';
+        $form['project[description]'] = 'Free desktop wallpapers gallery.';
+        $client->submit($form);
+
+        $crawler = $client->followRedirect();
+        $this->assertTrue($crawler->filter('html:contains("wallpaper.in.ua")')->count() > 0);
+    }
 
 }
