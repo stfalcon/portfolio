@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Imagine;
 
 /**
- * \Application\PortfolioBundle\Entity\Project
+ * Application\PortfolioBundle\Entity\Project
  *
  * @orm:Table(name="portfolio_projects")
  * @orm:Entity(repositoryClass="Application\PortfolioBundle\Repository\ProjectRepository")

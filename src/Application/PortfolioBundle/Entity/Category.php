@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Application\PortfolioBundle\Entity\Category
  *
  * @orm:Table(name="portfolio_categories")
- * @orm:Entity
+ * @orm:Entity(repositoryClass="Application\PortfolioBundle\Repository\CategoryRepository")
  */
 class Category
 {
