@@ -3,6 +3,7 @@
 namespace Application\PortfolioBundle\Tests\Entity;
 
 use Application\PortfolioBundle\Entity\Project;
+use Application\PortfolioBundle\Entity\Category;
 
 class ProjectEntityTest extends \PHPUnit_Framework_TestCase
 {
@@ -131,6 +132,33 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
         $project->setSlug($slug);
 
         $this->assertEquals($project->getSlug(), $slug);
+    }
+
+    public function testSetAndGetProjectUrl()
+    {
+        $project = new Project();
+
+        $url = 'http://preorder.it';
+        $project->setUrl($url);
+
+        $this->assertEquals($project->getUrl(), $url);
+    }
+
+    public function testSetAndGetAndAddProjectCategories()
+    {
+        $project = new Project();
+
+        $category = new Category();
+
+        $project->addCategory($category);
+        $categories = $project->getCategories();
+        
+        $this->assertEquals($categories->count(), 1);
+        $this->assertTrue(\is_a($categories, 'Doctrine\Common\Collections\ArrayCollection'), 2);
+
+        $project->setCategories($categories);
+        
+        $this->assertEquals($project->getCategories(), $categories);
     }
 
 }
