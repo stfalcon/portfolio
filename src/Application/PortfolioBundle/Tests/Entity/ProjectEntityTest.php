@@ -123,4 +123,14 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($project->getUpdated(), null);
     }
 
+    public function testSetAndGetProjectSlug()
+    {
+        $project = new Project();
+
+        $slug = 'web-development';
+        $project->setSlug($slug);
+
+        $this->assertEquals($project->getSlug(), $slug);
+    }
+
 }

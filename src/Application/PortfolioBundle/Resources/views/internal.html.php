@@ -46,15 +46,6 @@
                 <!--twitter block-->
                 <div class="twitter">
                     <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
                     <p>Следить за <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a></p>
                     <div class="twitter-top"></div>
                 </div>
