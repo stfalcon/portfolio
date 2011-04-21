@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+
+    /**
+     * Get all categories
+     *
+     * @return array
+     */
+    public function getAllCategories()
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT c FROM PortfolioBundle:Category c');
+
+        return $query->getResult();
+    }
 }
