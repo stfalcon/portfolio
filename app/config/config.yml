@@ -112,9 +112,6 @@ zend_cache:
             backend:
                 name: Apc
 
-#imports:
-#    - { resource: security.yml }
-
 # DoctrineExtensionsBundle
 stof_doctrine_extensions:
     default_locale: en_US
@@ -125,3 +122,34 @@ stof_doctrine_extensions:
             timestampable: true
             translatable: false
             tree: false
+
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    providers:
+        main:
+            users:
+                admin: { password: "qwerty", roles: ROLE_ADMIN }
+
+    firewalls:
+        profiler:
+            pattern:  ^/_profiler
+            security: false
+
+        wdt:
+            pattern:  ^/_wdt
+            security: false
+
+        backend:
+            pattern: ^/admin/
+            http-basic: true
+            logout:     true
+
+        public:
+            pattern:  ^/
+            http-basic: true
+
+    access_control:
+        - { path: ^/admin/.*, role: ROLE_ADMIN }
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

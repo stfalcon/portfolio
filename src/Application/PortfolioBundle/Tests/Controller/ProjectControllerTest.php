@@ -11,7 +11,10 @@ class ProjectControllerTest extends WebTestCase
     {
         $this->loadFixtures(array(), false);
         
-        $client = $this->createClient();
+        $client = $this->createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'qwerty',
+        ));
         $crawler = $client->request('GET', '/admin/portfolio/projects');
 
         // @todo: change assert
@@ -23,7 +26,10 @@ class ProjectControllerTest extends WebTestCase
     {
         $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
 
-        $client = $this->createClient();
+        $client = $this->createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'qwerty',
+        ));
         $crawler = $client->request('GET', '/admin/portfolio/projects');
 
         $this->assertTrue($crawler->filter('html:contains("preorder.it")')->count() > 0);
@@ -32,7 +38,10 @@ class ProjectControllerTest extends WebTestCase
 
     public function testCreateValidProject()
     {
-        $client = $this->createClient();
+        $client = $this->createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'qwerty',
+        ));
         $crawler = $client->request('GET', '/admin/portfolio/project/create');
 
         $form = $crawler->selectButton('Send')->form();

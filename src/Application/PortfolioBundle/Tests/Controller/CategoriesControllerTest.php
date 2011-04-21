@@ -11,7 +11,10 @@ class CategoryControllerTest extends WebTestCase
     {
         $this->loadFixtures(array());
 
-        $client = $this->createClient();
+        $client = $this->createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'qwerty',
+        ));
         $crawler = $client->request('GET', '/admin/portfolio/categories');
 
         // @todo: change assert
@@ -23,7 +26,10 @@ class CategoryControllerTest extends WebTestCase
     {
         $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
 
-        $client = $this->createClient();
+        $client = $this->createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'qwerty',
+        ));
         $crawler = $client->request('GET', '/admin/portfolio/categories');
 
         $this->assertTrue($crawler->filter('html:contains("Web Development")')->count() > 0);
@@ -31,7 +37,10 @@ class CategoryControllerTest extends WebTestCase
 
     public function testCreateValidCategory()
     {
-        $client = $this->createClient();
+        $client = $this->createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'qwerty',
+        ));
         $crawler = $client->request('GET', '/admin/portfolio/category/create');
 
         $form = $crawler->selectButton('Send')->form();
