@@ -10,7 +10,7 @@ class ProjectControllerTest extends WebTestCase
     public function testEmptyProjectsList()
     {
         $this->loadFixtures(array(), false);
-        
+
         $client = $this->createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW'   => 'qwerty',
@@ -24,7 +24,10 @@ class ProjectControllerTest extends WebTestCase
 
     public function testProjectsList()
     {
-        $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
+        $this->loadFixtures(array(
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
+                ));
 
         $client = $this->createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',

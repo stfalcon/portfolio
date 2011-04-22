@@ -24,7 +24,10 @@ class CategoryControllerTest extends WebTestCase
 
     public function testCategoriesList()
     {
-        $this->loadFixtures(array('Application\PortfolioBundle\DataFixtures\ORM\LoadCategoriesAndProjectsData'), false);
+        $this->loadFixtures(array(
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
+                ));
 
         $client = $this->createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
