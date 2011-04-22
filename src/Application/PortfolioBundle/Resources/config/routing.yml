@@ -16,7 +16,7 @@ portfolioProjectCreate:
     defaults: { _controller: PortfolioBundle:Project:create }
 
 portfolioProjectEdit:
-    pattern:  /admin/portfolio/project/edit/{id}
+    pattern:  /admin/portfolio/project/edit/{slug}
     defaults: { _controller: PortfolioBundle:Project:edit }
 
 portfolioProjectView:
@@ -30,7 +30,7 @@ portfolioCategoryProjectView:
     defaults: { _controller: PortfolioBundle:Project:view }
 
 portfolioProjectDelete:
-    pattern:  /admin/portfolio/project/delete/{id}
+    pattern:  /admin/portfolio/project/delete/{slug}
     defaults: { _controller: PortfolioBundle:Project:delete }
 
 

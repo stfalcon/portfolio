@@ -54,5 +54,16 @@ class CategoryControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Web Design")')->count() > 0);
     }
 
+//    public function testCreateInvalidCategory()
+//    {
+//    }
+//
+//    public function testEditCategory()
+//    {
+//    }
+//
+//    public function testDeleteCategory()
+//    {
+//    }
 
 }

@@ -10,8 +10,8 @@
                     <?php echo $project->getName(); ?>
                 </a>
                 <?php // if ($view['security']->isGranted('ROLE_ADMIN')): ?>
-                    (<a href="<?php echo $view['router']->generate('portfolioProjectEdit', array('id' => $project->getId())) ?>">Edit project</a>
-                    / <a href="<?php echo $view['router']->generate('portfolioProjectDelete', array('id' => $project->getId())) ?>">Delete project</a>)
+                    (<a href="<?php echo $view['router']->generate('portfolioProjectEdit', array('slug' => $project->getSlug())) ?>">Edit project</a>
+                    / <a href="<?php echo $view['router']->generate('portfolioProjectDelete', array('slug' => $project->getSlug())) ?>">Delete project</a>)
                 <?php // endif; ?>
             </li>
         <?php endforeach; ?>

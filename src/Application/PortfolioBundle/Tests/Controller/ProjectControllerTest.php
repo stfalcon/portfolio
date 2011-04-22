@@ -56,4 +56,29 @@ class ProjectControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("wallpaper.in.ua")')->count() > 0);
     }
 
+//    public function testCreateInvalidProject()
+//    {
+//    }
+//
+//    public function testEditProject()
+//    {
+//    }
+//
+    public function testDeleteProject()
+    {
+        // delete project
+        $client = $this->createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'qwerty',
+        ));
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/admin/portfolio/project/delete/preorder-it');
+
+        // assertRedirect
+//        $this->assertEquals(1, $client->getRedirectionsCount());
+        // assertProjectsCount
+        $this->assertTrue($crawler->filter('html:contains("preorder.it")')->count() > 0);
+//        $this->assertTrue($crawler->filter('html:contains("eprice.kz")')->count() == 1);
+    }
+
 }

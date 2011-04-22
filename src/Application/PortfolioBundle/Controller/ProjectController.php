@@ -68,12 +68,13 @@ class ProjectController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($id)
+    public function editAction($slug)
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
-        // try find project by id
-        $project = $em->getRepository("PortfolioBundle:Project")->find($id);
+        // try find project by slug
+        $project = $em->getRepository("PortfolioBundle:Project")
+                ->findOneBy(array('slug' => $slug));
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
@@ -177,14 +178,16 @@ class ProjectController extends Controller
     /**
      * Delete project
      *
+     * @param string $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction($id)
+    public function deleteAction($slug)
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
-        // try find project by id
-        $project = $em->getRepository("PortfolioBundle:Project")->find($id);
+        // try find project by slug
+        $project = $em->getRepository("PortfolioBundle:Project")
+                ->findOneBy(array('slug' => $slug));
         if (!$project) {
             throw new NotFoundHttpException('The project does not exist.');
         }
