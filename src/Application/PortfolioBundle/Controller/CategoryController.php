@@ -34,23 +34,27 @@ class CategoryController extends Controller
      */
     public function createAction()
     {
+        $form = $this->get('form.factory')->create(new CategoryForm());
+        
         $category = new Category();
+        $form->setData($category);
 
-        $form = CategoryForm::create($this->get("form.context"), 'category');
-        $form->bind($this->get('request'), $category);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($this->get('request'));
+            if ($form->isValid()) {
+                $em = $this->get('doctrine.orm.entity_manager');
+                $em->persist($category);
+                $em->flush();
 
-        if ($form->isValid()) {
-            $em = $this->get('doctrine.orm.entity_manager');
-            $em->persist($category);
-            $em->flush();
-
-            $this->get('request')->getSession()->setFlash('notice',
-                    'Congratulations, your category is successfully created!');
-            return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
+                $this->get('request')->getSession()->setFlash('notice',
+                        'Congratulations, your category is successfully created!');
+                return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
+            }
         }
 
         return $this->render('PortfolioBundle:Category:create.html.php', array(
-            'form' => $form
+            'form' => $form->createView()
         ));
     }
 
@@ -68,20 +72,25 @@ class CategoryController extends Controller
         if (!$category) {
             throw new NotFoundHttpException('The category does not exist.');
         }
-        $form = CategoryForm::create($this->get("form.context"), 'category');
-        $form->bind($this->get('request'), $category);
+        
+        $form = $this->get('form.factory')->create(new CategoryForm());
+        $form->setData($category);
 
-        if ($form->isValid()) {
-            // save category
-            $em->persist($category);
-            $em->flush();
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($this->get('request'));
+            if ($form->isValid()) {
+                // save category
+                $em->persist($category);
+                $em->flush();
 
-            $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your category is successfully updated!');
-            return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
+                $this->get('request')->getSession()->setFlash('notice', 'Congratulations, your category is successfully updated!');
+                return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
+            }
         }
 
         return $this->render('PortfolioBundle:Category:edit.html.php', array(
-            'form' => $form,
+            'form' => $form->createView(),
             'category' => $category
         ));
     }

@@ -2,19 +2,27 @@
 
 namespace Application\PortfolioBundle\Form;
 
-use Symfony\Component\Form\Form;
-use Symfony\Component\Form\TextField;
-use Symfony\Component\Form\TextareaField;
-use Symfony\Component\Form\FileField;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilder;
 
-class CategoryForm extends Form
+/**
+ * CategoryForm
+ */
+class CategoryForm extends AbstractType
 {
-    public function configure()
-    {
-        $this->add(new TextField('name'));
-        $this->add(new TextField('slug'));
-        $this->add(new TextareaField('description'));
 
-        parent::configure();
+    public function buildForm(FormBuilder $builder, array $options)
+    {
+        $builder->add('name');
+        $builder->add('slug');
+        $builder->add('description', 'textarea');
     }
+
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'Application\PortfolioBundle\Entity\Category',
+        );
+    }
+
 }

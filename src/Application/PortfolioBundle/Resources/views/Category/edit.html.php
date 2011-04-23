@@ -4,7 +4,7 @@
 
 <form action="#" method="post">
     <fieldset>
-        <?php echo $view['form']->render($form) ?>
+        <?php echo $view['form']->widget($form) ?>
         <input type="submit" value="Save" />
     </fieldset>
 </form>

@@ -37,29 +37,33 @@ class ProjectController extends Controller
      */
     public function createAction()
     {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $form = $this->get('form.factory')->create(new ProjectForm());
 
         $project = new Project();
-        
-        $form = ProjectForm::create(
-                $this->get("form.context"), 'project', array('em' => $em));
-        $form->bind($this->get('request'), $project);
+        $form->setData($project);
 
-        if ($form->isValid()) {
-            // create project
-            $em->persist($project);
-            $em->flush();
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($this->get('request'));
 
-            $this->get('request')->getSession()->setFlash('notice',
-                    'Congratulations, your project "' . $project->getName()
-                    . '" is successfully created!');
+            if ($form->isValid()) {
+                $em = $this->get('doctrine.orm.entity_manager');
 
-            // redirect to list of projects
-            return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
+                // create project
+                $em->persist($project);
+                $em->flush();
+
+                $this->get('request')->getSession()->setFlash('notice',
+                        'Congratulations, your project "' . $project->getName()
+                        . '" is successfully created!');
+
+                // redirect to list of projects
+                return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
+            }
         }
 
         return $this->render('PortfolioBundle:Project:create.html.php', array(
-            'form' => $form
+            'form' => $form->createView()
         ));
     }
 
@@ -79,22 +83,26 @@ class ProjectController extends Controller
             throw new NotFoundHttpException('The project does not exist.');
         }
         
-        $form = ProjectForm::create(
-                $this->get("form.context"), 'project', array('em' => $em));
-        $form->bind($this->get('request'), $project);
+        $form = $this->get('form.factory')->create(new ProjectForm());
+        $form->setData($project);
 
-        if ($form->isValid()) {
-            // save project
-            $em->persist($project);
-            $em->flush();
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($this->get('request'));
 
-            $this->get('request')->getSession()->setFlash('notice',
-                    'Congratulations, your project is successfully updated!');
-            return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
+            if ($form->isValid()) {
+                // save project
+                $em->persist($project);
+                $em->flush();
+
+                $this->get('request')->getSession()->setFlash('notice',
+                        'Congratulations, your project is successfully updated!');
+                return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
+            }
         }
 
         return $this->render('PortfolioBundle:Project:edit.html.php', array(
-            'form' => $form,
+            'form' => $form->createView(),
             'project' => $project
         ));
     }

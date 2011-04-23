@@ -45,6 +45,7 @@ class ProjectControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW'   => 'qwerty',
         ));
+//        $client->followRedirects(true);
         $crawler = $client->request('GET', '/admin/portfolio/project/create');
 
         $form = $crawler->selectButton('Send')->form();
