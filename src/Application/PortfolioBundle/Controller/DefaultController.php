@@ -33,7 +33,8 @@ class DefaultController extends Controller
         $response->setPublic();
         $response->setSharedMaxAge(600);
 
-        return $this->render('PortfolioBundle:Default:index.html.php',
+//        return $this->render('PortfolioBundle:Default:index.html.php',
+        return $this->render('PortfolioBundle:Default:index.html.twig',
                 array('categories' => $categories, /*'feed' => $feed*/), $response);
     }
 

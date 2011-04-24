@@ -1,0 +1,598 @@
+/*
+   CSS reset
+   http://meyerweb.com/eric/tools/css/reset/
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+:focus {
+    outline: 0;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+    Site Main Styles
+    Version:  26 March 2011
+
+    Structure
+    --------------------------------------------
+    1. Base style
+    2. Header
+    3. Content
+    4. Footer
+    5. Contacts style
+*/
+
+/* 1. base style ---------------------------*/
+
+body {
+    color: #404448;
+    font: 14px Arial, Tahoma, Helvetica, sans-serif;
+    min-width: 1200px;
+}
+a {
+    color: #378ee5;
+}
+a:hover {
+    color: #fa823a;
+    text-decoration: none;
+}
+
+/* 2. header ---------------------------*/
+
+#header {
+    background: url(../images/header/back.png) repeat-x;
+    height: 144px;
+    position: relative;
+}
+
+#header h1.logo {
+    background: url(../images/header/logo.png) no-repeat;
+    display: block;
+    height: 47px;
+    left: 79px;
+    position: absolute;
+    text-indent: -5000px;
+    top: 34px;
+    width: 170px;
+}
+
+#header .langs {
+    background: url(../images/header/lang.png) no-repeat;
+    color: #686e75;
+    font-size: 11px;
+    font-style: italic;
+    height: 27px;
+    overflow: hidden;
+    padding-left: 16px;
+    position: absolute;
+    right: 77px;
+    top: 0;
+    width: 64px;
+}
+#header .langs li {
+    float: left;
+    padding: 6px 11px 0 0 ;
+}
+
+#header .menu {
+    position:absolute;
+    top: 59px;
+    right: 92px;
+}
+#header .menu li {
+    color: #686e75;
+    float: left;
+    font-size: 16px;
+    margin-left: 46px;
+}
+#header .menu li a {
+    color: #686e75;
+}
+#header .menu li a:hover {
+    color: #fa823a;
+}
+#header .menu li.current span {
+    background-color: #e1ecf8;
+    border: 1px solid #e1ecf8;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    margin-right: -8px;
+    margin-left: -8px;
+    padding: 5px 7px;
+}
+
+#header .slogan {
+    background: url(../images/header/slogan.png) repeat-x;
+    display: inline;
+    float: left;
+    height: 49px;
+    margin: 0 78px;
+    overflow: hidden;
+    padding: 24px 29px 0 18px;
+    position: relative;
+    top: 118px;
+}
+#header .slogan span {
+    float: left;
+    height: 33px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+#header .slogan .slogan-left {
+    background: url(../images/header/slogan-left.png) no-repeat;
+    height: 73px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 42px;
+    z-index: 1;
+}
+#header .slogan .slogan-right {
+    background: url(../images/header/slogan-right.png) no-repeat;
+    bottom: 0;
+    height: 64px;
+    position: absolute;
+    right: 0;
+    width: 8px;
+    z-index: 1;
+}
+
+/* 3. content style ---------------------------*/
+
+#main .breadcrumbs {
+    background: url(../images/content/nav-lang.png) 0 bottom no-repeat #f0f4f8;
+    color: #7c92cf;
+    display: block;
+    font-size: 11px;
+    height: 26px;
+    margin: 0 373px 28px 73px;
+    overflow: hidden;
+    padding-left: 8px;
+    position: relative;
+}
+
+#main .breadcrumbs li {
+    background: url(../images/content/nav-lang-arr.png) right 9px no-repeat;
+    float:left;
+    height: 26px;
+    line-height: 26px;
+    padding-right: 26px;
+}
+#main .breadcrumbs li.current {
+    background: url(../images/content/nav-lang-right.png) right bottom no-repeat #f0f4f8;
+    float: none;
+}
+#main .breadcrumbs span {
+    background: url(../images/content/nav-lang-active.png) center bottom no-repeat;
+    float: left;
+    height: 26px;
+    padding-right: 2px;
+}
+#main .breadcrumbs a {
+    color: #686e75;
+    text-decoration: none;
+}
+#main .breadcrumbs a:hover {
+    color: #fa823a;
+}
+
+#content {
+    float: left;
+    margin-left: -373px;
+    padding-bottom: 52px;
+    width: 100%;
+}
+#content .content-wrapper {
+    margin-left: 455px;
+}
+#content h1 {
+    color: #323538;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 17px;
+}
+#content img {
+    display: block;
+    margin: 0 auto;
+}
+#content p {
+    line-height: 18px;
+    padding-bottom: 18px;
+}
+
+#content dl.contacts {
+    color: #323538;
+    line-height: 18px;
+    padding-right: 91px;
+}
+#content dl.contacts dd {
+    padding-bottom: 21px;
+}
+#content dl.contacts dd strong,
+#content dl.contacts dd a {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+#content .next-prev-projects {
+    float: left;
+    padding-bottom: 25px;
+    width: 100%;
+}
+#content .next-prev-projects:after {
+    content: " ";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+#content .next-prev-projects div {
+    color: #b2b7ba;
+    line-height: 18px;
+    width: 182px;
+}
+#content .next-prev-projects .next {
+    float: right;
+    text-align: right;
+    margin-right: 10px;
+    display: inline;
+}
+#content .next-prev-projects .prev {
+    float: left;
+}
+#content .next-prev-projects .next a {
+    right: -18px;
+}
+#content .next-prev-projects .prev a {
+    left: -18px;
+}
+#content .next-prev-projects a {
+    line-height: 15px;
+    position: relative;
+    text-decoration: none;
+    top: -8px;
+    white-space: nowrap;
+}
+
+#content-index {
+    margin-top: 72px;
+}
+#content-index h2 {
+    border-bottom: 1px dotted #7c92cf;
+    clear: left;
+    color: #7c92cf;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0 50px 10px 88px;
+}
+#content-index .service {
+    clear: both;
+    padding-bottom: 17px;
+}
+#content-index .service:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+#content-index .service p {
+    font-size: 24px;
+    line-height: 30px;
+    padding: 4px 50px 16px 88px;
+}
+#content-index .carousel {
+    height: 230px;
+    position: relative;
+}
+#content-index .carousel .carousel-wrapper {
+    height: 208px;
+    margin: 0 60px 0 84px;
+    overflow: hidden;
+    position: relative;
+}
+#content-index .carousel ul li {
+    float: left;
+    width: 280px;
+}
+#content-index .carousel ul {
+    position: absolute;
+}
+#content-index .carousel ul li a {
+    margin: 0 15px;
+}
+#content-index .carousel ul li a img {
+    border: 5px #ced3d9 solid;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+#content-index .carousel ul li a img:hover {
+    border-color: #f1e1c0;
+}
+#content-index .carousel .btnPrev {
+    background-image: url(../images/content/index-sprite.png);
+    background-position: 0 0px;
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    left: 12px;
+    position: absolute;
+    top: 79px;
+    width: 50px;
+}
+#content-index .carousel .btnPrev:hover {
+    background-position: 0 -50px;
+}
+#content-index .carousel .btnPrevDisabled {
+    background-image: url(../images/content/index-sprite-button.png);
+    background-position: 0 0px;
+    cursor: default;
+    display: block;
+    height: 50px;
+    left: 12px;
+    position: absolute;
+    width: 50px;
+    top: 79px;
+/*    display: none;*/
+}
+#content-index .carousel .btnNext {
+    background-image: url(../images/content/index-sprite.png);
+    background-position: 50px 0;
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    position: absolute;
+    right: 13px;
+    top: 79px;
+    width: 50px;
+}
+#content-index .carousel .btnNextDisabled {
+    background-image: url(../images/content/index-sprite-button.png);
+    background-position: 50px 0;
+    cursor: default;
+    display: block;
+    height: 50px;
+    right: 13px;
+    position:absolute;
+    top: 79px;
+    width: 50px;
+}
+#content-index .carousel .btnNext:hover {
+    background-position: 50px -50px;
+}
+#content-index a.all-projects {
+    float: right;
+    margin-right: 90px;
+}
+
+#content-index .shared {
+    border-top: 34px solid #fff;
+    background: #eef3f7;
+    padding: 0 0 21px 81px;
+    clear: both;
+    float: left;
+}
+#content-index .shared:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+#content-index .shared div {
+    float: left;
+    width: 33%;
+}
+#content-index .shared div h3 {
+    background: url(../images/content/shared-title.png) repeat-x;
+    color: #f0f4f8;
+    font-weight: normal;
+    font-size: 14px;
+    height: 33px;
+    line-height: 31px;
+    overflow: hidden;
+    text-indent: 8px;
+    text-transform: uppercase;
+    width: 151px;
+}
+#content-index .shared div h3 span {
+    float: left;
+    padding-right: 21px;
+}
+#content-index .shared .feed {
+    background: url(../images/content/index-sprite.png) right -105px no-repeat;
+}
+#content-index .shared .twitter {
+    background: url(../images/content/index-sprite.png) right -129px no-repeat;
+}
+#content-index .shared div ul {
+    padding: 17px 46px 0 8px;
+}
+#content-index .shared div ul li {
+    padding-bottom: 20px;
+    line-height: 18px;
+}
+#content-index .shared .feed-item a {
+    padding-right: 5px;
+}
+#content-index .shared div ul li strong {
+    color: #686e75;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 15px;
+}
+#content-index .shared div ul li em {
+    color: #686e75;
+    display: block;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+#content-index .shared .feed-item .comments {
+    padding-left: 17px;
+    background: url(../images/content/index-sprite.png) 0 -163px no-repeat;
+}
+#content-index .shared .all-posts {
+    color: #7ab5f0;
+    font-style: italic;
+    left: 8px;
+    position: relative;
+}
+
+#sidebar {
+    display: inline;
+    float: right;
+    margin: -37px 94px 0 0;
+    width: 221px;
+    font-size: 12px;
+}
+#sidebar h2 {
+    background: url(../images/content/shared-title.png) repeat-x;
+    color: #F0F4F8;
+    font-size: 14px;
+    font-weight: normal;
+    height: 33px;
+    line-height: 31px;
+    margin-bottom: 11px;
+    overflow: hidden;
+    text-indent: 8px;
+    text-transform: uppercase;
+    width: 220px;
+}
+
+#sidebar a.rss {
+    background:url(../images/content/share-twit-sprite.png) -238px -16px no-repeat;
+    display: block;
+    padding: 0 0 20px 16px;
+}
+#sidebar .twitter {
+    background: url(../images/content/share-twit-sprite.png) 0 bottom no-repeat #f0f4f8;
+    line-height: 18px;
+    margin-bottom: 34px;
+    overflow: hidden;
+    position: relative;
+    padding: 12px 15px 8px;
+}
+#sidebar .twitter .twitter-top {
+    background: url(../images/content/share-twit-sprite.png) -221px 0 no-repeat;
+    font-size: 1px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 221px;
+}
+#sidebar .twitter em {
+    color: #868d95;
+    display: block;
+}
+#sidebar .twitter p {
+    padding-top: 31px;
+    text-align: right;
+}
+
+#sidebar .servises h3 {
+    border-bottom: 1px dotted #7C92CF;
+    clear: left;
+    color: #7C92CF;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+#sidebar .servises ul {
+    clear: both;
+    line-height: 18px;
+    padding: 9px 0 9px 0;
+}
+#sidebar .servises ul li {
+    padding: 0 0 10px 19px;
+}
+#sidebar .servises ul li.active {
+    background-color: #F0F4F8;
+    font-weight: bold;
+    margin-bottom: 7px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+#sidebar .servises .clear {
+    border-top: 27px solid #FFFFFF;
+    clear: both;
+}
+
+/* 4. footer style ---------------------------*/
+
+#footer {
+    background: url(../images/footer/inner-back.png) repeat-x;
+    clear: both;
+    color: #7c8187;
+    font-size: 12px;
+    height: 149px;
+}
+
+#footer .contacts {
+    display: inline;
+    float: left;
+    font-style: normal;
+    margin: 31px 0 0 8.7%;
+    width: 57.3%;
+}
+#footer .contacts span {
+    width: 33%;
+    margin-right: 16.6%;
+    float: left;
+    display: inline;
+}
+#footer .contacts span strong {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 14px;
+    padding-bottom: 20px;
+}
+
+#footer .copyright {
+    margin-top: 31px;
+    margin-right: 8.7%;
+    float: right;
+}
