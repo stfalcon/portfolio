@@ -159,7 +159,7 @@ class Project
 
     public function getImage()
     {
-        return $this->image;
+        return $this->getPathToUploads() . '/' . $this->image;
     }
 
     /**
