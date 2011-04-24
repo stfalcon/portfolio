@@ -20,3 +20,6 @@ doctrine:
 web_profiler:
     toolbar: false
     intercept_redirects: false
+
+# FunctionalTestBundle
+liip_functional_test: ~

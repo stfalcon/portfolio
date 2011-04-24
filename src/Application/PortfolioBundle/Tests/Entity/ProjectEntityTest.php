@@ -64,7 +64,7 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(\file_exists($this->_getTestImagePath()));
 
         $project->setImage($this->_getTestImagePath());
-        $this->assertTrue(\file_exists($project->getPathToUploads() . '/' . $project->getImage()));
+        $this->assertTrue(\file_exists($project->getImage()));
 
         // remove test image file
         $project->removeImage();
@@ -79,7 +79,7 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
 
         $project->setImage($this->_getTestImagePath());
 
-        $imagePath = $project->getPathToUploads() . '/' . $project->getImage();
+        $imagePath = $project->getImage();
 
         // try remove exist image
         $this->assertTrue($project->removeImage());
@@ -95,12 +95,12 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
 
         // upload first image
         $project->setImage($this->_getTestImagePath());
-        $firstImagePath = $project->getPathToUploads() . '/' . $project->getImage();
+        $firstImagePath = $project->getImage();
         $this->assertTrue(\file_exists($firstImagePath), 'Image file is not exist');
 
         // upload second image
         $project->setImage($this->_getTestImagePath());
-        $secondImagePath = $project->getPathToUploads() . '/' . $project->getImage();
+        $secondImagePath = $project->getImage();
         // check or old file does not exist
         $this->assertFalse(\file_exists($firstImagePath), 'Old image file is exist');
         // check or new file is exist
