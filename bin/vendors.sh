@@ -28,6 +28,7 @@ install_git()
     SOURCE_URL=$2
     REV=$3
 
+    echo "======================================================================"
     echo "> Installing/Updating " $INSTALL_DIR
 
     if [ -z $REV ]; then
@@ -83,9 +84,8 @@ install_git twig-extensions https://github.com/fabpot/Twig-extensions.git
 # Imagine
 install_git imagine https://github.com/avalanche123/Imagine.git
 
-# Imagine
+# Doctrine Extensions
 install_git doctrine-extensions https://github.com/l3pp4rd/DoctrineExtensions.git
-
 
 # ZF
 mkdir -p $VENDOR/zf/library
@@ -125,6 +125,10 @@ mkdir -p $BUNDLES/Stof
 cd $BUNDLES/Stof
 install_git DoctrineExtensionsBundle https://github.com/stof/DoctrineExtensionsBundle.git
 
+# DoctrineFixturesBundle
+mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
+cd $VENDOR/symfony/src/Symfony/Bundle/
+install_git DoctrineFixturesBundle https://github.com/symfony/DoctrineFixturesBundle.git
 
 # Update the bootstrap files
 $DIR/bin/build_bootstrap.php
