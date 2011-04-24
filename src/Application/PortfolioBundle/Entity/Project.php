@@ -159,7 +159,7 @@ class Project
 
     public function getImage()
     {
-        return $this->getPathToUploads() . '/' . $this->image;
+        return ($this->image) ? $this->getPathToUploads() . '/' . $this->image : null;
     }
 
     /**
@@ -195,11 +195,8 @@ class Project
      */
     public function removeImage()
     {
-        $imagePath = $this->getImage() ?
-                $this->getPathToUploads() . '/' . $this->getImage() : null;
-
-        if ($imagePath && \file_exists($imagePath)) {
-            unlink($imagePath);
+        if ($this->getImage() && \file_exists($this->getImage())) {
+            unlink($this->getImage());
             return true;
         }
         
