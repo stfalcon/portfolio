@@ -162,6 +162,11 @@ class Project
         return ($this->image) ? $this->getPathToUploads() . '/' . $this->image : null;
     }
 
+    public function getImageFilename()
+    {
+        return $this->image;
+    }
+
     /**
      * Create thumbnail image to project
      * 

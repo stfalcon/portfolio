@@ -50,33 +50,42 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-#                    StofDoctrineExtensionsBundle: ~
                     PortfolioBundle: ~
 
-## Swiftmailer Configuration
-#swiftmailer.config:
-#    transport:  smtp
-#    encryption: ssl
-#    auth_mode:  login
-#    host:       smtp.gmail.com
-#    username:   xxxxxxxx
-#    password:   xxxxxxxx
 
-#jms_security_extra:
-#    secure_controllers:  true
-#    secure_all_services: false
+# DoctrineExtensionsBundle
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            loggable: false
+            sluggable: true
+            timestampable: true
+            translatable: false
+            tree: false
+            
 
-
-#liip_functionaltest: ~
-#
-#avalanche_imagine:
-#    web_root:     %kernel.root_dir%/../web
-#    cache_prefix: imagine
-#    driver:       gd
-#    filters:
-#        thumbnail:
-#            type:    thumbnail
-#            options: { size: [240, 198], mode: outbound }
+# SecurityBundle
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    providers:
+        main:
+            users:
+                admin: { password: "qwerty", roles: ROLE_ADMIN }
+    firewalls:
+        profiler:
+            pattern:  ^/_profiler
+            security: false
+        wdt:
+            pattern:  ^/_wdt
+            security: false
+        backend:
+            pattern: ^/admin/
+            http-basic: true
+            logout:     true
+    access_control:
+        - { path: ^/admin/.*, role: ROLE_ADMIN }
 
 
 # MenuBundle settings
@@ -86,11 +95,10 @@ imports:
 # MenuBundle enable template helpers
 knplabs_menu:
     templating: true
+    twig: true
 
 
-sensio_framework_extra: ~
-
-
+# ZendCacheBundle
 zend_cache:
     templates:
         my_template_cache:
@@ -112,44 +120,20 @@ zend_cache:
             backend:
                 name: Apc
 
-# DoctrineExtensionsBundle
-stof_doctrine_extensions:
-    default_locale: en_US
-    orm:
-        default:
-            loggable: false
-            sluggable: true
-            timestampable: true
-            translatable: false
-            tree: false
 
-security:
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+#jms_security_extra:
+#    secure_controllers:  true
+#    secure_all_services: false
 
-    providers:
-        main:
-            users:
-                admin: { password: "qwerty", roles: ROLE_ADMIN }
 
-    firewalls:
-        profiler:
-            pattern:  ^/_profiler
-            security: false
+#avalanche_imagine:
+#    web_root:     %kernel.root_dir%/../web
+#    cache_prefix: imagine
+#    driver:       gd
+#    filters:
+#        thumbnail:
+#            type:    thumbnail
+#            options: { size: [240, 198], mode: outbound }
 
-        wdt:
-            pattern:  ^/_wdt
-            security: false
 
-        backend:
-            pattern: ^/admin/
-            http-basic: true
-            logout:     true
-
-        public:
-            pattern:  ^/
-            http-basic: true
-
-    access_control:
-        - { path: ^/admin/.*, role: ROLE_ADMIN }
-        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#sensio_framework_extra: ~

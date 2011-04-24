@@ -56,7 +56,7 @@ class ProjectControllerTest extends WebTestCase
 
         $crawler = $client->submit($form, array(
             'project[name]' => 'wallpaper.in.ua',
-            'project[slug]' => 'wallpaper-in-ua' . time(),
+            'project[slug]' => 'wallpaper-in-ua',
             'project[url]'  => 'http://wallpaper.in.ua',
             'project[image][file]'  => $this->_getTestImagePath(),
             'project[description]'  => 'Free desktop wallpapers gallery.',
