@@ -37,10 +37,8 @@ class ProjectController extends Controller
      */
     public function createAction()
     {
-        $form = $this->get('form.factory')->create(new ProjectForm());
-
         $project = new Project();
-        $form->setData($project);
+        $form = $this->get('form.factory')->create(new ProjectForm(), $project);
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
@@ -83,8 +81,7 @@ class ProjectController extends Controller
             throw new NotFoundHttpException('The project does not exist.');
         }
         
-        $form = $this->get('form.factory')->create(new ProjectForm());
-        $form->setData($project);
+        $form = $this->get('form.factory')->create(new ProjectForm(), $project);
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {

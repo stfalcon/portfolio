@@ -34,10 +34,8 @@ class CategoryController extends Controller
      */
     public function createAction()
     {
-        $form = $this->get('form.factory')->create(new CategoryForm());
-        
         $category = new Category();
-        $form->setData($category);
+        $form = $this->get('form.factory')->create(new CategoryForm(), $category);
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
@@ -73,8 +71,7 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('The category does not exist.');
         }
         
-        $form = $this->get('form.factory')->create(new CategoryForm());
-        $form->setData($category);
+        $form = $this->get('form.factory')->create(new CategoryForm(), $category);
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
