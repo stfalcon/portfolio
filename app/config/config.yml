@@ -54,6 +54,8 @@ doctrine:
                 mappings:
                     PortfolioBundle: ~
 
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
 
 # DoctrineExtensionsBundle
 stof_doctrine_extensions:
