@@ -51,7 +51,9 @@ doctrine:
             default:
                 mappings:
                     PortfolioBundle: ~
-
+                metadata_cache_driver: memcache
+                query_cache_driver: memcache
+                result_cache_driver: memcache
 
 # DoctrineExtensionsBundle
 stof_doctrine_extensions:
