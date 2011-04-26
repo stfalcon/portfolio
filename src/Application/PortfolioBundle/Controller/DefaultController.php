@@ -18,9 +18,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
-        $categories = $query->getResult();
+        $categories = $this->get('doctrine.orm.entity_manager')
+                ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
 //        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
 //        if (false === ($feed = $cache->load('dc_feed'))) {
