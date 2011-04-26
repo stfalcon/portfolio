@@ -53,7 +53,7 @@ doctrine:
             default:
                 mappings:
                     PortfolioBundle: ~
-
+                
 doctrine_migrations:
     dir_name: %kernel.root_dir%/DoctrineMigrations
 
