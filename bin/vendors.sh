@@ -81,6 +81,9 @@ install_git twig https://github.com/fabpot/Twig.git v1.0.0
 # Twig Extensions
 install_git twig-extensions https://github.com/fabpot/Twig-extensions.git
 
+# Monolog
+install_git monolog http://github.com/Seldaek/monolog.git
+
 # Imagine
 install_git imagine https://github.com/avalanche123/Imagine.git
 

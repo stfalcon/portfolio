@@ -359,7 +359,7 @@ abstract class Kernel implements KernelInterface
             new YamlFileLoader($container, $locator),
             new IniFileLoader($container, $locator),
             new PhpFileLoader($container, $locator),
-            new ClosureLoader($container, $locator),
+            new ClosureLoader($container),
         ));
         return new DelegatingLoader($resolver);
     }
@@ -1302,9 +1302,7 @@ class HeaderBag
     public function set($key, $values, $replace = true)
     {
         $key = strtr(strtolower($key), '_', '-');
-        if (!is_array($values)) {
-            $values = array($values);
-        }
+        $values = (array) $values;
         if (true === $replace || !isset($this->headers[$key])) {
             $this->headers[$key] = $values;
         } else {
@@ -1706,8 +1704,8 @@ class Request
                 }
             }
         }
-                $elements = explode(':', $host);
-        return trim($elements[0]);
+                $host = preg_replace('/:\d+$/', '', $host);
+        return trim($host);
     }
     public function setMethod($method)
     {
