@@ -1,9 +1,9 @@
 framework:
     charset:       UTF-8
     error_handler: null
+    secret: 098v442z8bx31nbu
     csrf_protection:
         enabled: true
-        secret: 098v442z8bx31nbu
     router:        { resource: "%kernel.root_dir%/config/routing.yml" }
     validation:    { enabled: true, annotations: true }
     templating:    { engines: ['php', 'twig'] }
@@ -53,9 +53,15 @@ doctrine:
             default:
                 mappings:
                     PortfolioBundle: ~
-                metadata_cache_driver: memcache
-                query_cache_driver: memcache
-                result_cache_driver: memcache
+#                metadata_cache_driver: memcache
+#                query_cache_driver: memcache
+#                result_cache_driver: memcache
+
+
+# DoctrineMigrationsBundle
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
+
 
 
 # DoctrineMigrationsBundle

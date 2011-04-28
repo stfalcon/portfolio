@@ -77,7 +77,7 @@ class Project
     /**
      * @var string $image
      *
-     * @orm:Column(name="image", type="string", length=255)
+     * @orm:Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -174,23 +174,19 @@ class Project
      */
     public function setImage($imagePath)
     {
-        try {
-            // create thumbnail and save it to new file
-            $filename = uniqid() . '.png';
-            $imagine = new Imagine\Gd\Imagine();
-            $imagePath = $imagine->open($imagePath);
-            $imagePath->thumbnail(new Imagine\Image\Box(240, $imagePath->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
-                    ->crop(new Imagine\Image\Point(0, 0), new Imagine\Image\Box(240, 198))
-                    ->save($this->getPathToUploads() . '/' . $filename);
+        // create thumbnail and save it to new file
+        $filename = uniqid() . '.png';
+        $imagine = new Imagine\Gd\Imagine();
+        $imagePath = $imagine->open($imagePath);
+        $imagePath->thumbnail(new Imagine\Image\Box(240, $imagePath->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
+                ->crop(new Imagine\Image\Point(0, 0), new Imagine\Image\Box(240, 198))
+                ->save($this->getPathToUploads() . '/' . $filename);
 
-            // remove old image file
-            // @todo: refact
-            $this->removeImage();
+        // remove old image file
+        // @todo: refact
+        $this->removeImage();
 
-            $this->image = $filename;
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
-        }
+        $this->image = $filename;
     }
 
     /**

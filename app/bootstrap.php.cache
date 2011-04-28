@@ -247,6 +247,7 @@ interface BundleInterface
     function boot();
     function shutdown();
     function build(ContainerBuilder $container);
+    function getContainerExtension();
     function getParent();
     function getName();
     function getNamespace();
@@ -264,6 +265,7 @@ abstract class Bundle extends ContainerAware implements BundleInterface
 {
     protected $name;
     protected $reflected;
+    protected $extension;
     public function boot()
     {
     }
@@ -272,14 +274,30 @@ abstract class Bundle extends ContainerAware implements BundleInterface
     }
     public function build(ContainerBuilder $container)
     {
-        $class = $this->getNamespace().'\\DependencyInjection\\'.str_replace('Bundle', 'Extension', $this->getName());
-        if (class_exists($class)) {
-            $extension = new $class();
-            $alias = Container::underscore(str_replace('Bundle', '', $this->getName()));
-            if ($alias !== $extension->getAlias()) {
-                throw new \LogicException(sprintf('The extension alias for the default extension of a bundle must be the underscored version of the bundle name ("%s" vs "%s")', $alias, $extension->getAlias()));
+    }
+    public function getContainerExtension()
+    {
+        if (null === $this->extension) {
+            $basename = preg_replace('/Bundle$/', '', $this->getName());
+            $class = $this->getNamespace().'\\DependencyInjection\\'.$basename.'Extension';
+            if (class_exists($class)) {
+                $extension = new $class();
+                                $expectedAlias = Container::underscore($basename);
+                if ($expectedAlias != $extension->getAlias()) {
+                    throw new \LogicException(sprintf(
+                        'The extension alias for the default extension of a '.
+                        'bundle must be the underscored version of the '.
+                        'bundle name ("%s" vs "%s")',
+                        $expectedAlias, $extension->getAlias()
+                    ));
+                }
+                $this->extension = $extension;
+            } else {
+                $this->extension = false;
             }
-            $container->registerExtension($extension);
+        }
+        if ($this->extension) {
+            return $this->extension;
         }
     }
     public function getNamespace()
@@ -792,16 +810,20 @@ abstract class Kernel implements KernelInterface
     }
     protected function buildContainer()
     {
-        $parameterBag = new ParameterBag($this->getKernelParameters());
-        $container = new ContainerBuilder($parameterBag);
-        $container->getCompilerPassConfig()->setMergePass(new MergeExtensionConfigurationPass());
+        $container = new ContainerBuilder(new ParameterBag($this->getKernelParameters()));
+        $extensions = array();
         foreach ($this->bundles as $bundle) {
             $bundle->build($container);
+            if ($extension = $bundle->getContainerExtension()) {
+                $container->registerExtension($extension);
+                $extensions[] = $extension->getAlias();
+            }
             if ($this->debug) {
                 $container->addObjectResource($bundle);
             }
         }
         $container->addObjectResource($this);
+                $container->getCompilerPassConfig()->setMergePass(new MergeExtensionConfigurationPass($extensions));
         if (null !== $cont = $this->registerContainerConfiguration($this->getContainerLoader($container))) {
             $container->merge($cont);
         }
@@ -1029,7 +1051,8 @@ class FileBag extends ParameterBag
         foreach (array_keys($data['name']) as $key) {
             $files[$key] = $this->fixPhpFilesArray(array(
                 'error'    => $data['error'][$key],
-                'name'     => $data['name'][$key], 'type' => $data['type'][$key],
+                'name'     => $data['name'][$key],
+                'type'     => $data['type'][$key],
                 'tmp_name' => $data['tmp_name'][$key],
                 'size'     => $data['size'][$key]
             ));
@@ -1213,7 +1236,6 @@ class HeaderBag
 namespace Symfony\Component\HttpFoundation
 {
 use Symfony\Component\HttpFoundation\SessionStorage\NativeSessionStorage;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Request
 {
     public $attributes;

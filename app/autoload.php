@@ -37,6 +37,9 @@ $loader->registerPrefixes(array(
     'Zend_'                          => __DIR__.'/../vendor/zf/library',
 ));
 $loader->register();
+//$loader->registerPrefixFallback(array(
+//    __DIR__.'/../vendor/symfony/src/Symfony/Component/Locale/Resources/stubs',
+//));
 
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(__DIR__.'/../vendor/zf/library'),
