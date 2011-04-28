@@ -55,6 +55,10 @@ doctrine:
                 query_cache_driver: memcache
                 result_cache_driver: memcache
 
+# DoctrineMigrationsBundle
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
+    
 # DoctrineExtensionsBundle
 stof_doctrine_extensions:
     default_locale: en_US

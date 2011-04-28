@@ -63,7 +63,7 @@ install_git doctrine-dbal http://github.com/doctrine/dbal.git
 # Doctrine Common
 install_git doctrine-common http://github.com/doctrine/common.git
 
-# Doctrine migrations
+# Doctrine Migrations
 install_git doctrine-migrations http://github.com/doctrine/migrations.git
 
 # Doctrine MongoDB
@@ -132,6 +132,11 @@ install_git DoctrineExtensionsBundle http://github.com/stof/DoctrineExtensionsBu
 mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
 cd $VENDOR/symfony/src/Symfony/Bundle/
 install_git DoctrineFixturesBundle http://github.com/symfony/DoctrineFixturesBundle.git
+
+# DoctrineMigrationsBundle
+mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
+cd $VENDOR/symfony/src/Symfony/Bundle/
+install_git DoctrineMigrationsBundle https://github.com/symfony/DoctrineMigrationsBundle.git
 
 # Update the bootstrap files
 $DIR/bin/build_bootstrap.php
