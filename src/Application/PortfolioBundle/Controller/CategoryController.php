@@ -128,4 +128,20 @@ class CategoryController extends Controller
         $this->get('request')->getSession()->setFlash('notice', 'Your category is successfully delete.');
         return new RedirectResponse($this->generateUrl('portfolioCategoryIndex'));
     }
+
+    /**
+     * Services widget
+     *
+     * @param \Application\PortfolioBundle\Entity\Project $project
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function servicesWidgetAction(\Application\PortfolioBundle\Entity\Project $project)
+    {
+        $categories = $this->get('doctrine.orm.entity_manager')
+                ->getRepository("PortfolioBundle:Category")->getAllCategories();
+
+        return $this->render('PortfolioBundle:Category:services.html.php',
+                array('categories' => $categories, 'currentProject' => $project));
+    }
+
 }

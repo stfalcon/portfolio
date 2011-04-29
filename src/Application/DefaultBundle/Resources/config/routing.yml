@@ -1,9 +1,5 @@
 # DefaultBundle:Default
 
-homepage:
-    pattern:  /
-    defaults: { _controller: DefaultBundle:Default:index }
-
 portfolioDefaultContacts:
     pattern:  /contacts
     defaults: { _controller: DefaultBundle:Default:contacts }

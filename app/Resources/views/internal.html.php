@@ -52,7 +52,7 @@
                 <!--/twitter block-->
 
                 <?php if (isset($project)): ?>
-                    <?php echo $view['actions']->render('DefaultBundle:Default:services', array('project' => $project)); ?>
+                    <?php echo $view['actions']->render('PortfolioBundle:Category:servicesWidget', array('project' => $project)); ?>
                 <?php endif; ?>
 <!--                    <h2>Над проектом работали</h2>
 

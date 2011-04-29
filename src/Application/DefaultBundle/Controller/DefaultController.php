@@ -66,15 +66,6 @@ class DefaultController extends Controller
                 array('statuses' => $statuses));
     }
 
-    public function servicesAction($project)
-    {
-        $categories = $this->get('doctrine.orm.entity_manager')
-                ->getRepository("PortfolioBundle:Category")->getAllCategories();
-
-        return $this->render('DefaultBundle:Default:services.html.php',
-                array('categories' => $categories, 'currentProject' => $project));
-    }
-
     public function contactsAction()
     {
         $response = new Response();
