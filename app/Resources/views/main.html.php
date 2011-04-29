@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php $view['slots']->output('title', 'Веб-студия stfalcon.com'); ?></title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/css/style.css'); ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('css/style.css'); ?>" media="screen" />
     </head>
 
     <body>
@@ -124,20 +124,20 @@
                 <br />
                 Сайт работает на
                 <a href="http://symfony.com" rel="nofollow">
-                    <img style="vertical-align: middle; padding-left: 5px;" src="/bundles/portfolio/images/footer/symfony-logo.png" alt="Symfony2" title="Symfony2" />
+                    <img style="vertical-align: middle; padding-left: 5px;" src="/images/footer/symfony-logo.png" alt="Symfony2" title="Symfony2" />
                 </a>
             </div>
         </div>
         <!--/footer-->
 
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/jquery/jquery-1.4.4.min.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.stf.carousel.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.wresize.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.mousewheel.min.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.main.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('vendor/jquery/jquery-1.4.4.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery.stf.carousel.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery.wresize.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery.mousewheel.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery.main.js'); ?>"></script>
         <!--[if IE 6]>
-            <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/DD_belatedPNG.js'); ?>"></script>
+            <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/DD_belatedPNG.js'); ?>"></script>
         <![endif]-->
 
         <script type="text/javascript">

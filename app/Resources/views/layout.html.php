@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php $view['slots']->output('title', 'Hello Application') ?></title>
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/reset.css'); ?>" media="screen" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/text.css'); ?>" media="screen" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/960.css'); ?>" media="screen" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/layout.css'); ?>" media="screen" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/nav.css'); ?>" media="screen" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/css/admin.css'); ?>" media="screen" />
-        <!--[if IE 6]><link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/ie6.css'); ?>" media="screen" /><![endif]-->
-        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/css/ie.css'); ?>" media="screen" /><![endif]-->
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('vendor/fluid960gs/css/reset.css'); ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('vendor/fluid960gs/css/text.css'); ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('vendor/fluid960gs/css/960.css'); ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('vendor/fluid960gs/css/layout.css'); ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('vendor/fluid960gs/css/nav.css'); ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('css/admin.css'); ?>" media="screen" />
+        <!--[if IE 6]><link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('vendor/fluid960gs/css/ie6.css'); ?>" media="screen" /><![endif]-->
+        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('vendor/fluid960gs/css/ie.css'); ?>" media="screen" /><![endif]-->
     </head>
     <body>
         <div class="container_12">
@@ -67,14 +67,14 @@
             <div class="clear"></div>
         </div>
 
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/jquery/jquery-1.4.4.min.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/vendor/fluid960gs/js/jquery-fluid16.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.stf.carousel.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.wresize.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/jquery.mousewheel.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('vendor/jquery/jquery-1.4.4.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('vendor/fluid960gs/js/jquery-fluid16.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery.stf.carousel.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery.wresize.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/jquery.mousewheel.min.js'); ?>"></script>
         <!--[if IE 6]>
-            <script type="text/javascript" src="<?php echo $view['assets']->getUrl('bundles/portfolio/js/DD_belatedPNG.js'); ?>"></script>
+            <script type="text/javascript" src="<?php echo $view['assets']->getUrl('js/DD_belatedPNG.js'); ?>"></script>
         <![endif]-->
 
         <script type="text/javascript">
