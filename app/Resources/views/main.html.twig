@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Веб-студия stfalcon.com{% endblock %}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/portfolio/css/style.css') }}" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="screen" />
     </head>
 
     <body>
@@ -121,25 +121,21 @@
                 <br />
                 Сайт работает на
                 <a href="http://symfony.com" rel="nofollow">
-                    <img style="vertical-align: middle; padding-left: 5px;" src="/bundles/portfolio/images/footer/symfony-logo.png" alt="Symfony2" title="Symfony2" />
+                    <img style="vertical-align: middle; padding-left: 5px;" src="{{ asset('images/footer/symfony-logo.png') }}" alt="Symfony2" title="Symfony2" />
                 </a>
             </div>
         </div>
         <!--/footer-->
 
-        {% javascripts output='js/compressed.js' filter='yui_js'
-                        'bundles/portfolio/vendor/jquery/jquery-1.4.4.min.js'
-                        'bundles/portfolio/vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js'
-                        'bundles/portfolio/js/jquery.stf.carousel.js'
-                        'bundles/portfolio/js/jquery.wresize.js'
-                        'bundles/portfolio/js/jquery.mousewheel.min.js'
-                        'bundles/portfolio/js/jquery.main.js' %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen" />
-        {% endjavascripts %}
+        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-1.4.4.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.stf.carousel.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.wresize.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.main.js') }}"></script>
 
-        {% block javascripts %}{% endblock %}
         <!--[if IE 6]>
-            <script type="text/javascript" src="{{ asset('bundles/portfolio/js/DD_belatedPNG.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/DD_belatedPNG.js') }}"></script>
         <![endif]-->
 
         <script type="text/javascript">
