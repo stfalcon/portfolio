@@ -68,9 +68,8 @@ class DefaultController extends Controller
 
     public function servicesAction($project)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT c FROM DefaultBundle:Category c');
-        $categories = $query->getResult();
+        $categories = $this->get('doctrine.orm.entity_manager')
+                ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
         return $this->render('DefaultBundle:Default:services.html.php',
                 array('categories' => $categories, 'currentProject' => $project));
