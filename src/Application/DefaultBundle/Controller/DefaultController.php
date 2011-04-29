@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\PortfolioBundle\Controller;
+namespace Application\DefaultBundle\Controller;
 
 use Application\PortfolioBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,8 +32,8 @@ class DefaultController extends Controller
         $response->setPublic();
         $response->setSharedMaxAge(600);
 
-//        return $this->render('PortfolioBundle:Default:index.html.php',
-        return $this->render('PortfolioBundle:Default:index.html.twig',
+//        return $this->render('DefaultBundle:Default:index.html.php',
+        return $this->render('DefaultBundle:Default:index.html.twig',
                 array('categories' => $categories, /*'feed' => $feed*/), $response);
     }
 
@@ -60,19 +60,19 @@ class DefaultController extends Controller
 //        $response->setPublic();
 //        $response->setSharedMaxAge(600);
 
-//        return $this->render('PortfolioBundle:Default:twitter.html.php',
+//        return $this->render('DefaultBundle:Default:twitter.html.php',
 //                array('statuses' => $statuses), $response);
-        return $this->render('PortfolioBundle:Default:twitter.html.php',
+        return $this->render('DefaultBundle:Default:twitter.html.php',
                 array('statuses' => $statuses));
     }
 
     public function servicesAction($project)
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $query = $em->createQuery('SELECT c FROM PortfolioBundle:Category c');
+        $query = $em->createQuery('SELECT c FROM DefaultBundle:Category c');
         $categories = $query->getResult();
-        
-        return $this->render('PortfolioBundle:Default:services.html.php',
+
+        return $this->render('DefaultBundle:Default:services.html.php',
                 array('categories' => $categories, 'currentProject' => $project));
     }
 
@@ -87,7 +87,7 @@ class DefaultController extends Controller
         $breadcrumbs = $this->get('menu.breadcrumbs');
         $breadcrumbs->addChild('Контакты')->setIsCurrent(true);
 
-        return $this->render('PortfolioBundle:Default:contacts.html.php',
+        return $this->render('DefaultBundle:Default:contacts.html.php',
                 array(), $response);
     }
 
