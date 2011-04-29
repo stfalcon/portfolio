@@ -1,4 +1,4 @@
-<?php $view->extend('::internal.html.php') ?>
+<?php $view->extend('PortfolioBundle::internal.html.php') ?>
 <?php $view['slots']->set('title', 'Веб-студия stfalcon.com - ' . $project->getName()) ?>
 
 <!--details of project-->

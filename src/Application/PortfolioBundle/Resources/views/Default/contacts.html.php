@@ -1,4 +1,4 @@
-<?php $view->extend('::internal.html.php') ?>
+<?php $view->extend('PortfolioBundle::internal.html.php') ?>
 
 
 <h1>Контактная информация</h1>
