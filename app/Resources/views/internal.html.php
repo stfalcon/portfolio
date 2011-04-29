@@ -45,14 +45,14 @@
 
                 <!--twitter block-->
                 <div class="twitter">
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
+                    <?php echo $view['actions']->render('DefaultBundle:Default:twitter', array('count' => 1)/*, array('standalone' => true)*/); ?>
                     <p>Следить за <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a></p>
                     <div class="twitter-top"></div>
                 </div>
                 <!--/twitter block-->
 
                 <?php if (isset($project)): ?>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:services', array('project' => $project)); ?>
+                    <?php echo $view['actions']->render('DefaultBundle:Default:services', array('project' => $project)); ?>
                 <?php endif; ?>
 <!--                    <h2>Над проектом работали</h2>
 
