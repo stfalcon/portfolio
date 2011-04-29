@@ -1,4 +1,4 @@
-<?php $view->extend('PortfolioBundle::layout.html.php') ?>
+<?php $view->extend('::layout.html.php') ?>
 
 <h4>Projects list</h4>
 
