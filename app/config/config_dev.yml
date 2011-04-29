@@ -7,15 +7,12 @@ framework:
 
 doctrine:
     dbal:
-        default_connection: default
-        connections:
-            default:
-                driver:   pdo_mysql
-                host:     localhost
-                dbname:   stfalcon_com_development
-                user:     root
-                password: null
-                charset:  UTF8
+        driver:   pdo_mysql
+        host:     localhost
+        dbname:   stfalcon_com_development
+        user:     root
+        password: null
+        charset:  UTF8
 
 web_profiler:
     toolbar: true

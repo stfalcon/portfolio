@@ -10,7 +10,6 @@ $loader->registerNamespaces(array(
     'Liip'                           => __DIR__.'/../vendor/bundles',
     'Knplabs'                        => __DIR__.'/../vendor/bundles',
     'Sensio'                         => __DIR__.'/../vendor/bundles',
-    'JMS'                            => __DIR__.'/../vendor/bundles',
 
     // @todo: refact
     'Bundle'                         => __DIR__.'/../vendor/bundles',
@@ -24,7 +23,6 @@ $loader->registerNamespaces(array(
     'Doctrine'                       => __DIR__.'/../vendor/doctrine/lib',
     
     'Zend'                           => __DIR__.'/../vendor/zf2/library',
-    'Assetic'                        => __DIR__.'/../vendor/assetic/src',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
     'Monolog'                        => __DIR__.'/../vendor/monolog/src',
     'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',

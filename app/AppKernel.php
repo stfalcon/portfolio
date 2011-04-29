@@ -12,22 +12,18 @@ class AppKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
-//            new Symfony\Bundle\ZendBundle\ZendBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
             new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
-            //new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
 
-//            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-//            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Knplabs\Bundle\MenuBundle\KnplabsMenuBundle(),
             new Bundle\ZendCacheBundle\ZendCacheBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
             new Application\PortfolioBundle\PortfolioBundle(),
             new Application\DefaultBundle\DefaultBundle(),
         );

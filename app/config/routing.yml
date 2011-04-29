@@ -7,12 +7,3 @@ defaultBundle:
 
 portfolioBundle:
     resource: "@PortfolioBundle/Resources/config/routing.yml"
-
-# ESI
-#_internal:
-#    resource: @Framework/Resources/config/routing/internal.xml
-#    prefix:   /_internal
-
-#_imagine:
-#    resource: .
-#    type:     imagine

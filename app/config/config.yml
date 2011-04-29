@@ -7,61 +7,39 @@ framework:
     router:        { resource: "%kernel.root_dir%/config/routing.yml" }
     validation:    { enabled: true, annotations: true }
     templating:    { engines: ['php', 'twig'] }
-#        escaping:       htmlspecialchars
     session:
         default_locale: en
         lifetime:       3600
         auto_start:     true
-        #storage_id:     filesystem
-#    esi: {}
+
 
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
-# Assetic Configuration
-assetic:
-    debug:          %kernel.debug%
-    use_controller: false
-    filters:
-        cssrewrite: ~
-        # closure:
-        #     jar: %kernel.root_dir%/java/compiler.jar
-        # yui_css:
-        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
-        yui_js:
-            jar: /usr/share/yui-compressor/yui-compressor.jar
-        
+
 # Doctrine Configuration
 doctrine:
     dbal:
-        default_connection: default
-        connections:
-            default:
-                driver:   pdo_mysql
-                host:     localhost
-                dbname:   stfalcon_com_development
-                user:     root
-                password: null
-                charset:  UTF8
+        driver:   pdo_mysql
+        host:     localhost
+        dbname:   stfalcon_com_development
+        user:     root
+        password: null
+        charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-#        auto_generate_hydrator_classes:   %kernel.debug%
         default_entity_manager: default
         entity_managers:
             default:
                 mappings:
                     PortfolioBundle: ~
-#                metadata_cache_driver: memcache
-#                query_cache_driver: memcache
-#                result_cache_driver: memcache
 
 
 # DoctrineMigrationsBundle
 doctrine_migrations:
     dir_name: %kernel.root_dir%/DoctrineMigrations
-
 
 
 # DoctrineMigrationsBundle
@@ -104,14 +82,14 @@ security:
         - { path: ^/admin/.*, role: ROLE_ADMIN }
 
 
-# MenuBundle settings
-imports:
-    - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
-    - { resource: "@PortfolioBundle/Resources/config/breadcrumbs.xml" }
 # MenuBundle enable template helpers
 knplabs_menu:
     templating: true
     twig: true
+# MenuBundle settings
+imports:
+    - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
+    - { resource: "@PortfolioBundle/Resources/config/breadcrumbs.xml" }
 
 
 # ZendCacheBundle
@@ -127,29 +105,3 @@ zend_cache:
                 name: File
                 options:
                     cache_dir: %kernel.root_dir%/cache/%kernel.environment%
-        another_cache:
-            frontend:
-                name: Function
-                options:
-                    lifetime: 3600
-                    cache_by_default: false
-            backend:
-                name: Apc
-
-
-#jms_security_extra:
-#    secure_controllers:  true
-#    secure_all_services: false
-
-
-#avalanche_imagine:
-#    web_root:     %kernel.root_dir%/../web
-#    cache_prefix: imagine
-#    driver:       gd
-#    filters:
-#        thumbnail:
-#            type:    thumbnail
-#            options: { size: [240, 198], mode: outbound }
-
-
-#sensio_framework_extra: ~
