@@ -45,17 +45,11 @@ install_git()
     cd ..
 }
 
-# Assetic
-install_git assetic http://github.com/kriswallsmith/assetic.git
-
 # Symfony
-install_git symfony http://github.com/symfony/symfony.git
+install_git symfony http://github.com/symfony/symfony.git v2.0.0BETA1
 
 # Doctrine ORM
 install_git doctrine http://github.com/doctrine/doctrine2.git
-
-# Doctrine Data Fixtures Extension
-install_git doctrine-data-fixtures http://github.com/doctrine/data-fixtures.git
 
 # Doctrine DBAL
 install_git doctrine-dbal http://github.com/doctrine/dbal.git
@@ -66,14 +60,11 @@ install_git doctrine-common http://github.com/doctrine/common.git
 # Doctrine Migrations
 install_git doctrine-migrations http://github.com/doctrine/migrations.git
 
-# Doctrine MongoDB
-#install_git doctrine-mongodb http://github.com/doctrine/mongodb.git
+# Doctrine Data Fixtures Extension
+install_git doctrine-data-fixtures http://github.com/doctrine/data-fixtures.git
 
-# Doctrine MongoDB
-#install_git doctrine-mongodb-odm http://github.com/doctrine/mongodb-odm.git
-
-# Swiftmailer
-install_git swiftmailer http://github.com/swiftmailer/swiftmailer.git origin/4.1
+# Doctrine Extensions
+install_git doctrine-extensions http://github.com/l3pp4rd/DoctrineExtensions.git
 
 # Twig
 install_git twig http://github.com/fabpot/Twig.git v1.0.0
@@ -86,9 +77,6 @@ install_git monolog http://github.com/Seldaek/monolog.git
 
 # Imagine
 install_git imagine http://github.com/avalanche123/Imagine.git
-
-# Doctrine Extensions
-install_git doctrine-extensions http://github.com/l3pp4rd/DoctrineExtensions.git
 
 # ZF
 mkdir -p $VENDOR/zf/library
@@ -118,25 +106,21 @@ mkdir -p $BUNDLES/Sensio/Bundle
 cd $BUNDLES/Sensio/Bundle
 install_git FrameworkExtraBundle http://github.com/sensio/SensioFrameworkExtraBundle.git
 
-# SecurityExtraBundle
-mkdir -p $BUNDLES/JMS
-cd $BUNDLES/JMS
-install_git SecurityExtraBundle http://github.com/schmittjoh/SecurityExtraBundle.git
-
-# DoctrineExtensionsBundle
-mkdir -p $BUNDLES/Stof
-cd $BUNDLES/Stof
-install_git DoctrineExtensionsBundle http://github.com/stof/DoctrineExtensionsBundle.git
+# DoctrineMigrationsBundle
+mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
+cd $VENDOR/symfony/src/Symfony/Bundle/
+install_git DoctrineMigrationsBundle https://github.com/symfony/DoctrineMigrationsBundle.git
 
 # DoctrineFixturesBundle
 mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
 cd $VENDOR/symfony/src/Symfony/Bundle/
 install_git DoctrineFixturesBundle http://github.com/symfony/DoctrineFixturesBundle.git
 
-# DoctrineMigrationsBundle
-mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
-cd $VENDOR/symfony/src/Symfony/Bundle/
-install_git DoctrineMigrationsBundle https://github.com/symfony/DoctrineMigrationsBundle.git
+# DoctrineExtensionsBundle
+mkdir -p $BUNDLES/Stof
+cd $BUNDLES/Stof
+install_git DoctrineExtensionsBundle http://github.com/stof/DoctrineExtensionsBundle.git
+
 
 # Update the bootstrap files
 $DIR/bin/build_bootstrap.php
