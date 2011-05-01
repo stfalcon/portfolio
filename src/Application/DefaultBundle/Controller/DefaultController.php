@@ -60,9 +60,9 @@ class DefaultController extends Controller
 //        $response->setPublic();
 //        $response->setSharedMaxAge(600);
 
-//        return $this->render('DefaultBundle:Default:twitter.html.php',
+//        return $this->render('DefaultBundle:Default:twitter.html.twig',
 //                array('statuses' => $statuses), $response);
-        return $this->render('DefaultBundle:Default:twitter.html.php',
+        return $this->render('DefaultBundle:Default:twitter.html.twig',
                 array('statuses' => $statuses));
     }
 
@@ -77,7 +77,7 @@ class DefaultController extends Controller
         $breadcrumbs = $this->get('menu.breadcrumbs');
         $breadcrumbs->addChild('Контакты')->setIsCurrent(true);
 
-        return $this->render('DefaultBundle:Default:contacts.html.php',
+        return $this->render('DefaultBundle:Default:contacts.html.twig',
                 array(), $response);
     }
 

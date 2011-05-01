@@ -22,7 +22,7 @@ class CategoryController extends Controller
         $categories = $this->get('doctrine.orm.entity_manager')
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
-        return $this->render('PortfolioBundle:Category:index.html.php', array(
+        return $this->render('PortfolioBundle:Category:index.html.twig', array(
             'categories' => $categories
         ));
     }
@@ -51,7 +51,7 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Category:create.html.php', array(
+        return $this->render('PortfolioBundle:Category:create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -86,7 +86,7 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Category:edit.html.php', array(
+        return $this->render('PortfolioBundle:Category:edit.html.twig', array(
             'form' => $form->createView(),
             'category' => $category
         ));
@@ -102,7 +102,7 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('The category does not exist.');
         }
 
-        return $this->render('PortfolioBundle:Category:view.html.php', array(
+        return $this->render('PortfolioBundle:Category:view.html.twig', array(
             'category' => $category
         ));
     }
@@ -140,7 +140,7 @@ class CategoryController extends Controller
         $categories = $this->get('doctrine.orm.entity_manager')
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
-        return $this->render('PortfolioBundle:Category:services.html.php',
+        return $this->render('PortfolioBundle:Category:services.html.twig',
                 array('categories' => $categories, 'currentProject' => $project));
     }
 

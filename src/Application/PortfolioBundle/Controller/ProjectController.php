@@ -25,7 +25,7 @@ class ProjectController extends Controller
         $projects = $this->get('doctrine.orm.entity_manager')
                 ->getRepository("PortfolioBundle:Project")->getAllProjects();
 
-        return $this->render('PortfolioBundle:Project:index.html.php', array(
+        return $this->render('PortfolioBundle:Project:index.html.twig', array(
             'projects' => $projects
         ));
     }
@@ -60,7 +60,7 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Project:create.html.php', array(
+        return $this->render('PortfolioBundle:Project:create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -98,7 +98,7 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Project:edit.html.php', array(
+        return $this->render('PortfolioBundle:Project:edit.html.twig', array(
             'form' => $form->createView(),
             'project' => $project
         ));
@@ -140,7 +140,7 @@ class ProjectController extends Controller
         $response->setPublic();
         $response->setSharedMaxAge(600);
 
-        return $this->render('PortfolioBundle:Project:view.html.php', array(
+        return $this->render('PortfolioBundle:Project:view.html.twig', array(
             'project' => $project,
             'category' => $category,
         ), $response);
@@ -172,7 +172,7 @@ class ProjectController extends Controller
             $i++;
         }
 
-        return $this->render('PortfolioBundle:Project:nearby-projects.html.php',
+        return $this->render('PortfolioBundle:Project:nearby-projects.html.twig',
                 array(
                     'category' => $category,
                     'previousProject' => $previousProject,
