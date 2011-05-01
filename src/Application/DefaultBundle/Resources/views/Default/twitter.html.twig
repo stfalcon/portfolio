@@ -1,0 +1,8 @@
+<ul>
+    {% for status in statuses %}
+        <li>
+        {{ status.text }}
+        <em>{{ status.time }}</em>
+    </li>
+    {% endfor %}
+</ul>

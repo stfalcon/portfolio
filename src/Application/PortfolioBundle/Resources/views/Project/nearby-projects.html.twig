@@ -1,0 +1,27 @@
+<!--pagination for project-->
+<div class="next-prev-projects">
+    <div class="next">
+        {% if nextProject %}
+            <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': nextProject.slug }) }}">
+                Следующий проект →
+            </a>
+            <br />
+            {{ nextProject.name }}
+        {% else %}
+            Следующий проект →
+        {% endif %}
+    </div>
+
+    <div class="prev">
+        {% if previousProject %}
+            <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': previousProject.slug }) }}">
+                ← Предыдущий проект
+            </a>
+            <br />
+            {{ previousProject.name }}
+        {% else %}
+            ← Предыдущий проект
+        {% endif %}
+    </div>
+</div>
+<!--pagination for project-->

@@ -1,0 +1,25 @@
+{% extends 'PortfolioBundle::internal.html.twig' %}
+
+{% block title %}Веб-студия stfalcon.com - {{ project.name }}{% endblock %}
+
+{% block content %}
+    <!--details of project-->
+    <div class="detailsOfProject">
+        {% render "PortfolioBundle:Project:nearbyProjects" with { 'category': category, 'project': project } %}
+
+        <h1>
+            {{ project.name }}
+        </h1>
+
+        {% if project.url %}
+            <p>
+                <a href="{{ project.url }}">{{ project.url }}</a>
+            </p>
+        {% endif %}
+
+        <div style="padding-bottom: 30px;">
+            {{ project.description | raw }}
+        </div>
+    </div>
+    <!--details of project-->
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'PortfolioBundle::layout.html.twig' %}
+
+{% block content %}
+    <h4>Projects list</h4>
+
+    {% if projects %}
+        <ul>
+            {% for project in projects %}
+                <li>
+                    <a href="{{ path('portfolioProjectView', { 'id': project.id }) }}">
+                        {{ project.name }}
+                    </a>
+                    (<a href="{{ path('portfolioProjectEdit', { 'slug': project.slug }) }}">Edit project</a>
+                    / <a href="{{ path('portfolioProjectDelete', { 'slug': project.slug }) }}">Delete project</a>)
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="info">
+            List of projects is empty
+        </div>
+    {% endif %}
+{% endblock %}

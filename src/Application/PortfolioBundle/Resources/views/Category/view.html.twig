@@ -1,0 +1,23 @@
+{% extends 'PortfolioBundle::layout.html.twig' %}
+
+{% block content %}
+    <h4>Category "{{ category.name }}"</h4>
+
+    {{ category.description }}
+
+    {% if category.projects.count %}
+        <ul>
+            {% for project in category.projects %}
+                <li>
+                    <a href="{{ path('portfolioProjectView', { 'id': project.id }) }}">
+                        {{ project.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="info">
+            This category is empty
+        </div>
+    {% endif %}
+{% endblock %}
