@@ -53,7 +53,7 @@
             <div class="grid_12">
                 {% if app.session.hasFlash('notice') %}
                     <div class="notice">
-                        <?php echo $view['session']->getFlash('notice'); ?>
+                        {{ app.session.flash('notice') }}
                     </div>
                 {% endif %}
 
