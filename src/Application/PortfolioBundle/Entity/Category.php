@@ -46,6 +46,7 @@ class Category
      * @var Doctrine\Common\Collections\ArrayCollection
      *
      * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Project", mappedBy="categories")
+     * @orm:OrderBy({"date" = "DESC"})
      */
     private $projects;
 
