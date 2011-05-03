@@ -7,11 +7,11 @@
         <ul>
             {% for category in categories %}
                 <li>
-                    <a href="{{ path('portfolioCategoryView', { 'id': category.id }) }}">
+                    <a href="{{ path('portfolioCategoryView', { 'slug': category.slug }) }}">
                         {{ category.name }}
                     </a>
-                    (<a href="{{ path('portfolioCategoryEdit', { 'id': category.id }) }}">Edit Category</a>
-                    / <a href="{{ path('portfolioCategoryDelete', { 'id': category.id }) }}">Delete Category</a>)
+                    (<a href="{{ path('portfolioCategoryEdit', { 'slug': category.slug }) }}">Edit Category</a>
+                    / <a href="{{ path('portfolioCategoryDelete', { 'slug': category.slug }) }}">Delete Category</a>)
                 </li>
             {% endfor %}
         </ul>

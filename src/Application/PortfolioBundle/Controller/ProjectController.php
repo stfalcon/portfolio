@@ -45,9 +45,8 @@ class ProjectController extends Controller
             $form->bindRequest($this->get('request'));
 
             if ($form->isValid()) {
-                $em = $this->get('doctrine.orm.entity_manager');
-
                 // create project
+                $em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($project);
                 $em->flush();
 
@@ -68,18 +67,12 @@ class ProjectController extends Controller
     /**
      * Edit project
      *
+     * @param string $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction($slug)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-
-        // try find project by slug
-        $project = $em->getRepository("PortfolioBundle:Project")
-                ->findOneBy(array('slug' => $slug));
-        if (!$project) {
-            throw new NotFoundHttpException('The project does not exist.');
-        }
+        $project = $this->_findProjectBySlug($slug);
         
         $form = $this->get('form.factory')->create(new ProjectForm(), $project);
 
@@ -89,6 +82,7 @@ class ProjectController extends Controller
 
             if ($form->isValid()) {
                 // save project
+                $em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($project);
                 $em->flush();
 
@@ -113,22 +107,17 @@ class ProjectController extends Controller
      */
     public function viewAction($categorySlug, $projectSlug)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-
         // try find project by slug
-        $project = $em->getRepository("PortfolioBundle:Project")
-                ->findOneBy(array('slug' => $projectSlug));
-        
-        if (!$project) {
-            throw new NotFoundHttpException('The project does not exist.');
-        }
+        $project = $this->_findProjectBySlug($projectSlug);
 
+        // @todo: rm categorySlug from url. add it as param
         // try find category by slug
+        $em = $this->get('doctrine.orm.entity_manager');
         $category = $em->getRepository("PortfolioBundle:Category")
                 ->findOneBy(array('slug' => $categorySlug));
 
-        if (!$project) {
-            throw new NotFoundHttpException('The project does not exist.');
+        if (!$category) {
+            throw new NotFoundHttpException('The category does not exist.');
         }
 
         $breadcrumbs = $this->get('menu.breadcrumbs');
@@ -188,6 +177,25 @@ class ProjectController extends Controller
      */
     public function deleteAction($slug)
     {
+        $project = $this->_findProjectBySlug($slug);
+
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->remove($project);
+        $em->flush();
+
+        $this->get('request')->getSession()->setFlash('notice',
+                'Your project "' . $project->getName() . '" is successfully delete.');
+        return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
+    }
+
+    /**
+     * Try find project by slug
+     *
+     * @param string $slug
+     * @return Project
+     */
+    private function _findProjectBySlug($slug)
+    {
         $em = $this->get('doctrine.orm.entity_manager');
 
         // try find project by slug
@@ -197,12 +205,7 @@ class ProjectController extends Controller
             throw new NotFoundHttpException('The project does not exist.');
         }
 
-        $em->remove($project);
-        $em->flush();
-
-        $this->get('request')->getSession()->setFlash('notice',
-                'Your project "' . $project->getName() . '" is successfully delete.');
-        return new RedirectResponse($this->generateUrl('portfolioProjectIndex'));
+        return $project;
     }
 
 }

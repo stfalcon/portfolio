@@ -38,16 +38,13 @@ portfolioCategoryCreate:
     defaults: { _controller: PortfolioBundle:Category:create }
 
 portfolioCategoryEdit:
-    pattern:  /admin/portfolio/category/edit/{id}
+    pattern:  /admin/portfolio/category/edit/{slug}
     defaults: { _controller: PortfolioBundle:Category:edit }
 
-#portfolioCategoryView:
-#    pattern:  /portfolio/category/{id}
-#    defaults: { _controller: PortfolioBundle:Category:view }
 portfolioCategoryView:
-    pattern:  /portfolio/{id}
+    pattern:  /portfolio/{slug}
     defaults: { _controller: PortfolioBundle:Category:view }
 
 portfolioCategoryDelete:
-    pattern:  /admin/portfolio/category/delete/{id}
+    pattern:  /admin/portfolio/category/delete/{slug}
     defaults: { _controller: PortfolioBundle:Category:delete }

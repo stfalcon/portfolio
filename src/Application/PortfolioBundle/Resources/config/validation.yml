@@ -17,6 +17,9 @@ Application\PortfolioBundle\Entity\Category:
         name:
             - NotBlank: ~
             - MinLength: 3
+        slug:
+            - NotBlank: ~
+            - MinLength: 10
         description:
             - NotBlank: ~
             - MinLength: 10

@@ -21,7 +21,7 @@ class DefaultController extends Controller
         $categories = $this->get('doctrine.orm.entity_manager')
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
-//        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
+//        $cache = $this->get('zend.cache_manager')->getCache('slow_cache');
 //        if (false === ($feed = $cache->load('dc_feed'))) {
 //            $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
 //            $cache->save($feed, 'dc_feed');
@@ -39,20 +39,28 @@ class DefaultController extends Controller
 
     public function twitterAction($count = 1)
     {
-        $cache = $this->get('zend.cache_manager')->getCache('my_template_cache');
+        $cache = $this->get('zend.cache_manager')->getCache('slow_cache');
         if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
-            $twitter = new \Zend_Service_Twitter();
+            try {
+                $twitter = new \Zend_Service_Twitter();
 
-            // @todo: add try/catch
-            $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
-            $statuses = array();
-            foreach ($result->status as $status) {
+                // @todo: add try/catch
+                $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
+                $statuses = array();
+                foreach ($result->status as $status) {
+                    $statuses[] = (object) array(
+                        'text' => (string) $status->text,
+                        'time' => (string) $status->created_at
+                    );
+                }
+                $cache->save($statuses, 'dc_twitter_' . $count);
+            } catch (\Zend_Http_Client_Adapter_Exception $e) {
+                $statuses = array();
                 $statuses[] = (object) array(
-                    'text' => (string) $status->text,
-                    'time' => (string) $status->created_at
+                    'text' => (string) 'Unable to Connect to tcp://api.twitter.com:80',
+                    'time' => (string) \time()
                 );
             }
-            $cache->save($statuses, 'dc_twitter_' . $count);
         }
 
 //        $response = new Response();

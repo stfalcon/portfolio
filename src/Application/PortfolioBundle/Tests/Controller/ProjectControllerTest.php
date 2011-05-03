@@ -15,42 +15,32 @@ class ProjectControllerTest extends WebTestCase
     public function testEmptyProjectsList()
     {
         $this->loadFixtures(array(), false);
+        $crawler = $this->fetchCrawler($this->getUrl('portfolioProjectIndex', array()), 'GET', true, true);
 
-        $client = $this->createClient(array(), array(
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'qwerty',
-        ));
-        $crawler = $client->request('GET', '/admin/portfolio/projects');
-
-        // @todo: change assert
-        $this->assertTrue($crawler->filter('html:contains("List of projects is empty")')->count() > 0);
-        $this->assertTrue($crawler->filter('html:contains("preorder.it")')->count() == 0);
+        // check display notice
+        $this->assertEquals(1, $crawler->filter('html:contains("List of projects is empty")')->count());
+        // check don't display projects
+        $this->assertEquals(0, $crawler->filter('ul li:contains("preorder.it")')->count());
     }
 
     public function testProjectsList()
     {
         $this->loadFixtures(array(
-                    'Application\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
                     'Application\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
                 ));
+        $crawler = $this->fetchCrawler($this->getUrl('portfolioProjectIndex', array()), 'GET', true, true);
 
-        $client = $this->createClient(array(), array(
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'qwerty',
-        ));
-        $crawler = $client->request('GET', '/admin/portfolio/projects');
-
-        $this->assertTrue($crawler->filter('html:contains("preorder.it")')->count() > 0);
-        $this->assertTrue($crawler->filter('html:contains("eprice.kz")')->count() > 0);
+        // check display projects
+        $this->assertEquals(1, $crawler->filter('ul li:contains("preorder.it")')->count());
+        $this->assertEquals(1, $crawler->filter('ul li:contains("eprice.kz")')->count());
     }
 
     public function testCreateValidProject()
     {
-        $client = $this->createClient(array(), array(
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'qwerty',
-        ));
-        $crawler = $client->request('GET', '/admin/portfolio/project/create');
+        $this->loadFixtures(array());
+        $client = $this->makeClient(true);
+        $crawler = $client->request('GET', $this->getUrl('portfolioProjectCreate', array()));
 
         $form = $crawler->selectButton('Send')->form();
 
@@ -62,8 +52,18 @@ class ProjectControllerTest extends WebTestCase
             'project[description]'  => 'Free desktop wallpapers gallery.',
         ));
 
+        // check redirect to list of categories
+        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioProjectIndex', array())));
+
         $crawler = $client->followRedirect();
-        $this->assertTrue($crawler->filter('html:contains("wallpaper.in.ua")')->count() > 0);
+
+        // check responce
+        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertFalse($client->getResponse()->isRedirect());
+
+        // check display new category in list
+        $this->assertEquals(1, $crawler->filter('ul li:contains("wallpaper.in.ua")')->count());
     }
 
 //    public function testCreateInvalidProject()
@@ -74,21 +74,66 @@ class ProjectControllerTest extends WebTestCase
 //    {
 //    }
 //
-/*    public function testDeleteProject()
+    public function testDeleteProject()
     {
-        // delete project
-        $client = $this->createClient(array(), array(
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'qwerty',
-        ));
-        $client->followRedirects(true);
-        $crawler = $client->request('GET', '/admin/portfolio/project/delete/preorder-it');
+        $this->loadFixtures(array(
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
+                ));
 
-        // assertRedirect
-//        $this->assertEquals(1, $client->getRedirectionsCount());
-        // assertProjectsCount
-        $this->assertTrue($crawler->filter('html:contains("preorder.it")')->count() > 0);
-//        $this->assertTrue($crawler->filter('html:contains("eprice.kz")')->count() == 1);
+        $client = $this->makeClient(true);
+        // delete project
+        $crawler = $client->request('GET', $this->getUrl('portfolioProjectDelete', array('slug' => 'preorder-it')));
+
+        // check redirect to list of categories
+        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioProjectIndex', array())));
+
+        $crawler = $client->followRedirect();
+
+        // check responce
+        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertFalse($client->getResponse()->isRedirect());
+        // check display notice
+        $this->assertEquals(1, $crawler->filter('div.notice')->count());
+        // check don't display deleting category
+        $this->assertEquals(0, $crawler->filter('ul li:contains("preorder.it")')->count());
     }
-*/
+
+    public function testDeleteNotExistProject()
+    {
+        $this->loadFixtures(array());
+        $client = $this->makeClient(true);
+        $crawler = $client->request('GET', $this->getUrl('portfolioProjectDelete', array('slug' => 'wallpaper-in-ua')));
+
+        // check 404
+        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+    }
+
+    public function testViewProject()
+    {
+        $this->loadFixtures(array(
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
+                    'Application\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
+                ));
+        
+        $crawler = $this->fetchCrawler(
+                $this->getUrl(
+                        'portfolioCategoryProjectView',
+                        array('categorySlug' => 'web-development', 'projectSlug' => 'preorder-it')
+                ), 'GET', true, true);
+
+        $description = "Press-releases and reviews of the latest electronic novelties. The possibility to leave a pre-order.";
+
+        // check display project info
+        $this->assertEquals(1, $crawler->filter('html:contains("preorder.it")')->count());
+        $this->assertEquals(1, $crawler->filter('html:contains("' . $description . '")')->count());
+        $this->assertEquals(1, $crawler->filter('a[href="http://preorder.it"]')->count());
+
+        // check display prev/next project url
+        $this->assertEquals(1, $crawler->filter('#content a[href="/portfolio/web-development/eprice-kz"]')->count());
+
+        // check display projects in services widget
+        $this->assertEquals(1, $crawler->filter('#sidebar a[href="/portfolio/web-development/eprice-kz"]')->count());
+    }
 }

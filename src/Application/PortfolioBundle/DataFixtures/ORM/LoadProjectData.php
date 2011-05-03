@@ -16,7 +16,8 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $preorder->setSlug('preorder-it');
         $preorder->setUrl('http://preorder.it');
         $preorder->setDate(new \DateTime('now'));
-        $preorder->setDescription('Press-releases and reviews of the latest electronic novelties: mobile phones, cellphones, smartphones, laptops, tablets, netbooks, gadgets, e-books, photo and video cameras. The possibility to leave a pre-order.');
+        $preorder->setDescription('Press-releases and reviews of the latest electronic novelties. The possibility to leave a pre-order.');
+        $preorder->addCategory($em->merge($this->getReference('category-development')));
         $em->persist($preorder);
 
         $eprice = new Project();
@@ -25,6 +26,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $eprice->setUrl('http://eprice.kz');
         $eprice->setDate(new \DateTime('now'));
         $eprice->setDescription('Comparison of the prices of mobile phones, computers, monitors, audio and video in Kazakhstan');
+        $eprice->addCategory($em->merge($this->getReference('category-development')));
         $em->persist($eprice);
 
         $em->flush();
@@ -35,6 +37,6 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 1; // the order in which fixtures will be loaded
+        return 2; // the order in which fixtures will be loaded
     }
 }

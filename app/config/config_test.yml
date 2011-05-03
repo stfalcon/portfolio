@@ -22,4 +22,7 @@ web_profiler:
     intercept_redirects: false
 
 # FunctionalTestBundle
-liip_functional_test: ~
+liip_functional_test:
+    authentication:
+        username: admin
+        password: qwerty

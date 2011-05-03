@@ -14,11 +14,8 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $development = new Category();
         $development->setName('Web Development');
         $development->setSlug('web-development');
-        $development->setDescription('In work we use PHP (Zend Framework, Doctrine, Smarty, PEAR), JavaScript (jQuery, YUI, MooTools), SQL (MySQL, PgSQL), HTML/XHTML, CSS, bugtrackers and source control systems.');
+        $development->setDescription('In work we use Symfony2.');
         
-        $development->addProject($em->merge($this->getReference('project-preorder')));
-        $development->addProject($em->merge($this->getReference('project-eprice')));
-
         $em->persist($development);
         $em->flush();
 
@@ -27,6 +24,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
     public function getOrder()
     {
-        return 2; // the order in which fixtures will be loaded
+        return 1; // the order in which fixtures will be loaded
     }
 }

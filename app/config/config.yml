@@ -95,7 +95,7 @@ imports:
 # ZendCacheBundle
 zend_cache:
     templates:
-        my_template_cache:
+        slow_cache:
             frontend:
                 name: Core
                 options:

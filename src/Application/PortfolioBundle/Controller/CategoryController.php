@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
 
     /**
-     * Categories list
+     * List of categories
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -59,18 +59,13 @@ class CategoryController extends Controller
     /**
      * Edit category
      *
+     * @param string $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($id)
+    public function editAction($slug)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-
-        // try find category by id
-        $category = $em->getRepository("PortfolioBundle:Category")->find($id);
-        if (!$category) {
-            throw new NotFoundHttpException('The category does not exist.');
-        }
-        
+        // try find category by slug
+        $category = $this->_findCategoryBySlug($slug);
         $form = $this->get('form.factory')->create(new CategoryForm(), $category);
 
         $request = $this->get('request');
@@ -78,6 +73,7 @@ class CategoryController extends Controller
             $form->bindRequest($this->get('request'));
             if ($form->isValid()) {
                 // save category
+                $em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($category);
                 $em->flush();
 
@@ -92,15 +88,15 @@ class CategoryController extends Controller
         ));
     }
 
-    public function viewAction($id)
+    /**
+     * View category
+     *
+     * @param string $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewAction($slug)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-
-        // try find category by id
-        $category = $em->getRepository("PortfolioBundle:Category")->find($id);
-        if (!$category) {
-            throw new NotFoundHttpException('The category does not exist.');
-        }
+        $category = $this->_findCategoryBySlug($slug);
 
         return $this->render('PortfolioBundle:Category:view.html.twig', array(
             'category' => $category
@@ -110,18 +106,14 @@ class CategoryController extends Controller
     /**
      * Delete category
      *
+     * @param string $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction($id)
+    public function deleteAction($slug)
     {
+        $category = $this->_findCategoryBySlug($slug);
+
         $em = $this->get('doctrine.orm.entity_manager');
-
-        // try find category by id
-        $category = $em->getRepository("PortfolioBundle:Category")->find($id);
-        if (!$category) {
-            throw new NotFoundHttpException('The category does not exist.');
-        }
-
         $em->remove($category);
         $em->flush();
 
@@ -142,6 +134,25 @@ class CategoryController extends Controller
 
         return $this->render('PortfolioBundle:Category:services.html.twig',
                 array('categories' => $categories, 'currentProject' => $project));
+    }
+
+    /**
+     * Try find category by slug
+     * 
+     * @param string $slug
+     * @return Category
+     */
+    private function _findCategoryBySlug($slug)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        $category = $em->getRepository("PortfolioBundle:Category")
+                ->findOneBy(array('slug' => $slug));
+        if (!$category) {
+            throw new NotFoundHttpException('The category does not exist.');
+        }
+
+        return $category;
     }
 
 }
