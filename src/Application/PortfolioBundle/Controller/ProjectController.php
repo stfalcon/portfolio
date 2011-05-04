@@ -121,7 +121,9 @@ class ProjectController extends Controller
         }
 
         $breadcrumbs = $this->get('menu.breadcrumbs');
-        $breadcrumbs->addChild('Портфолио', $this->get('router')->generate('homepage'));
+        $breadcrumbs->addChild(
+                $category->getName(),
+                $this->get('router')->generate('portfolioCategoryView', array('slug' => $category->getSlug())));
         $breadcrumbs->addChild($project->getName())->setIsCurrent(true);
 
         $response = new Response();

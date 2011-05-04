@@ -22,6 +22,10 @@ class DefaultControllerTest extends WebTestCase
         // check links to view projects on homepage
         $this->assertTrue($crawler->filter('a[href="/portfolio/web-development/preorder-it"]')->count() == 1);
         $this->assertTrue($crawler->filter('a[href="/portfolio/web-development/eprice-kz"]')->count() == 1);
+
+        // check link to category view
+        $url = $this->getUrl('portfolioCategoryView', array('slug' => 'web-development'));
+        $this->assertTrue($crawler->filter('a[href="' . $url . '"]')->count() == 0); // count of project < 3
     }
 
     public function testContactPage()

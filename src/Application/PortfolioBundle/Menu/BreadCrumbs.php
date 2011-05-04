@@ -20,7 +20,7 @@ class BreadCrumbs extends Menu
         $this->setCurrentUri($request->getRequestUri());
         $this->setCurrentAsLink(false);
 
-        $this->addChild('Главная', $router->generate('homepage'));
+        $this->addChild('Портфолио', $router->generate('homepage'));
     }
     
 }

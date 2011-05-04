@@ -287,6 +287,23 @@ a:hover {
     top: -8px;
     white-space: nowrap;
 }
+#content ul.projects {
+    margin-left: -29px;
+    padding: 18px 0 22px 0;
+    zoom: 1;
+}
+#content ul.projects:after {
+	content: " ";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+#content ul.projects li {
+    float: left;
+    padding: 0 0 33px 29px;
+    width: 250px;
+}
 
 #content-index {
     margin-top: 72px;
@@ -338,13 +355,13 @@ a:hover {
 #content-index .carousel ul li a {
     margin: 0 15px;
 }
-#content-index .carousel ul li a img {
+a img.project-thumb {
     border: 5px #ced3d9 solid;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
 }
-#content-index .carousel ul li a img:hover {
+a img.project-thumb:hover {
     border-color: #f1e1c0;
 }
 #content-index .carousel .btnPrev {

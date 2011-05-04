@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Application\PortfolioBundle\Entity\Project;
 use Application\PortfolioBundle\Entity\Category;
 use Application\PortfolioBundle\Form\CategoryForm;
 
@@ -98,6 +99,9 @@ class CategoryController extends Controller
     {
         $category = $this->_findCategoryBySlug($slug);
 
+        $breadcrumbs = $this->get('menu.breadcrumbs');
+        $breadcrumbs->addChild($category->getName())->setIsCurrent(true);
+
         return $this->render('PortfolioBundle:Category:view.html.twig', array(
             'category' => $category
         ));
@@ -124,16 +128,21 @@ class CategoryController extends Controller
     /**
      * Services widget
      *
+     * @param \Application\PortfolioBundle\Entity\Category $category
      * @param \Application\PortfolioBundle\Entity\Project $project
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function servicesWidgetAction(\Application\PortfolioBundle\Entity\Project $project)
+    public function servicesWidgetAction(Category $category, $project = null)
     {
         $categories = $this->get('doctrine.orm.entity_manager')
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
         return $this->render('PortfolioBundle:Category:services.html.twig',
-                array('categories' => $categories, 'currentProject' => $project));
+                array(
+                    'categories' => $categories, 
+                    'currentProject' => $project,
+                    'currentCategory' => $category
+                ));
     }
 
     /**

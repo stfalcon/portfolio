@@ -26,7 +26,7 @@
                                         <li>
                                             <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
                                                 <span>
-                                                    <img src="/bundles/portfolio/uploads/projects/{{ project.imageFilename }}" width="240" height="198"
+                                                    <img class="project-thumb" src="/bundles/portfolio/uploads/projects/{{ project.imageFilename }}" width="240" height="198"
                                                          alt="{{ project.name }}" title="{{ project.name }}" />
                                                 </span>
                                             </a>
@@ -39,7 +39,9 @@
                         </div>
                         <!--/carousel-->
 
-    <!--                    <a href="#" class="all-projects">Посмотреть все работы</a>-->
+                        {% if category.projects.count > 3 %}
+                            <a href="{{ path('portfolioCategoryView', {'slug': category.slug}) }}" class="all-projects">Посмотреть все работы</a>
+                        {% endif %}
                     </div>
                     <!--/accordion block-->
                 {% endif %}

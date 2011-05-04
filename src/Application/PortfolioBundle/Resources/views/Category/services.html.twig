@@ -5,7 +5,7 @@
             <h3>{{ category.name }}</h3>
             <ul>
             {% for project in category.projects %}
-                {% if currentProject.id == project.id %}
+                {% if currentProject.id is defined and currentProject.id == project.id %}
                     <li class="active">
                         {{ project.name }}
                     </li>

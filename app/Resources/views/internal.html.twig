@@ -53,9 +53,14 @@
                 </div>
                 <!--/twitter block-->
 
-                {% if project is defined %}
-                    {% render "PortfolioBundle:Category:servicesWidget" with { 'project': project } %}
+                {% if category is defined %}
+                    {% if project is defined %}
+                        {% render "PortfolioBundle:Category:servicesWidget" with { 'category': category, 'project': project } %}
+                    {% else %}
+                        {% render "PortfolioBundle:Category:servicesWidget" with { 'category': category } %}
+                    {% endif %}
                 {% endif %}
+
 <!--                    <h2>Над проектом работали</h2>
 
                 <ul class="comandList">
@@ -129,8 +134,8 @@
 
         <script type="text/javascript">
             jQuery(document).ready(function() {
-//                $("#accordion").accordion({ header: "h3", active: 1, autoHeight: false });
-                $("#accordion").accordion({ header: "h3", autoHeight: false, collapsible: true });
+                // $("#accordion").accordion({ header: "h3", active: 1, autoHeight: false });
+                $("#accordion").accordion({ header: "h3", active: -1, autoHeight: false, collapsible: true });
             });
         </script>
 

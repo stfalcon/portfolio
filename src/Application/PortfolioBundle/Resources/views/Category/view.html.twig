@@ -1,17 +1,22 @@
-{% extends 'PortfolioBundle::layout.html.twig' %}
+{% extends 'PortfolioBundle::internal.html.twig' %}
 
 {% block content %}
-    <h4>Category "{{ category.name }}"</h4>
+    <h1>{{ category.name }}</h1>
 
-    {{ category.description }}
+    <p>
+        {{ category.description }}
+    </p>
 
     {% if category.projects.count %}
-        <ul>
+        <ul class="projects">
             {% for project in category.projects %}
                 <li>
-                    <a href="{{ path('portfolioProjectView', { 'id': project.id }) }}">
-                        {{ project.name }}
-                    </a>
+                        <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
+                            <span>
+                                <img class="project-thumb" src="/bundles/portfolio/uploads/projects/{{ project.imageFilename }}" width="240" height="198"
+                                     alt="{{ project.name }}" title="{{ project.name }}" />
+                            </span>
+                        </a>
                 </li>
             {% endfor %}
         </ul>
