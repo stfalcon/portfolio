@@ -114,7 +114,7 @@ install_git FrameworkExtraBundle http://github.com/sensio/SensioFrameworkExtraBu
 # DoctrineMigrationsBundle
 mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
 cd $VENDOR/symfony/src/Symfony/Bundle/
-install_git DoctrineMigrationsBundle https://github.com/symfony/DoctrineMigrationsBundle.git
+install_git DoctrineMigrationsBundle http://github.com/symfony/DoctrineMigrationsBundle.git
 
 # DoctrineFixturesBundle
 mkdir -p $VENDOR/symfony/src/Symfony/Bundle/
