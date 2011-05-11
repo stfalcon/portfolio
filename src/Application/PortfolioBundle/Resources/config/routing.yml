@@ -44,6 +44,10 @@ portfolioCategoryEdit:
 portfolioCategoryView:
     pattern:  /portfolio/{slug}
     defaults: { _controller: PortfolioBundle:Category:view }
+#    pattern:  /portfolio/{slug}/{page}
+#    defaults: { _controller: PortfolioBundle:Category:view, page: 1 }
+#    requirements:
+#        page:  \d+
 
 portfolioCategoryDelete:
     pattern:  /admin/portfolio/category/delete/{slug}

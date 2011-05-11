@@ -9,7 +9,7 @@
 
     {% if category.projects.count %}
         <ul class="projects">
-            {% for project in category.projects %}
+            {% for project in paginator %}
                 <li>
                         <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
                             <span>
@@ -20,6 +20,8 @@
                 </li>
             {% endfor %}
         </ul>
+
+        {{paginator|paginate}}
     {% else %}
         <div class="info">
             This category is empty

@@ -91,6 +91,8 @@ imports:
     - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
     - { resource: "@PortfolioBundle/Resources/config/breadcrumbs.xml" }
 
+knplabs_paginator:
+    templating: ~ # enables view helper and twig
 
 # ZendCacheBundle
 zend_cache:

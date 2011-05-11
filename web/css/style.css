@@ -266,10 +266,10 @@ a:hover {
     width: 182px;
 }
 #content .next-prev-projects .next {
-    float: right;
-    text-align: right;
-    margin-right: 10px;
     display: inline;
+    float: right;
+    margin-right: 10px;
+    text-align: right;
 }
 #content .next-prev-projects .prev {
     float: left;
@@ -293,16 +293,48 @@ a:hover {
     zoom: 1;
 }
 #content ul.projects:after {
-	content: " ";
-	display: block;
-	clear: both;
-	height: 0;
-	visibility: hidden;
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
 #content ul.projects li {
     float: left;
     padding: 0 0 33px 29px;
     width: 250px;
+}
+#content .pagination {
+    /*clear: both;*/
+    font-size: 12px;
+    text-align: center;
+    /*display: table;*/
+    /*width: auto;*/
+    /*margin: 0 auto;*/
+}
+#content .pagination span {
+    border: 1px solid #ced3d9;
+    color: #404448;
+    float: left;
+    height: 21px;
+    line-height: 20px;
+    margin-left: 6px;
+    padding: 0 7px;
+    text-decoration: none;
+}
+#content .pagination span.current {
+    border: 1px solid #378ee5;
+    background: #378ee5;
+    color: #fff;
+    cursor: default;
+    padding: 0 7px;
+}
+#content .pagination a {
+    color: #404448;
+    text-decoration: none;
+}
+#content .pagination a:hover {
+    color: #fa823a;
 }
 
 #content-index {

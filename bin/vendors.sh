@@ -96,6 +96,11 @@ mkdir -p $BUNDLES/Knplabs/Bundle
 cd $BUNDLES/Knplabs/Bundle
 install_git MenuBundle http://github.com/knplabs/MenuBundle.git
 
+# MenuBundle
+mkdir -p $BUNDLES/Knplabs/Bundle
+cd $BUNDLES/Knplabs/Bundle
+install_git PaginatorBundle http://github.com/knplabs/PaginatorBundle.git
+
 # ZendCacheBundle
 mkdir -p $BUNDLES/Bundle
 cd $BUNDLES/Bundle

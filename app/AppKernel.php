@@ -20,6 +20,7 @@ class AppKernel extends Kernel
 
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Knplabs\Bundle\MenuBundle\KnplabsMenuBundle(),
+            new Knplabs\Bundle\PaginatorBundle\KnplabsPaginatorBundle(),
             new Bundle\ZendCacheBundle\ZendCacheBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),

@@ -99,11 +99,16 @@ class CategoryController extends Controller
     {
         $category = $this->_findCategoryBySlug($slug);
 
+        $paginator = \Zend\Paginator\Paginator::factory($category->getProjects()->toArray());
+        $paginator->setCurrentPageNumber($this->get('request')->query->get('page', 1));
+        $paginator->setItemCountPerPage(6);
+
         $breadcrumbs = $this->get('menu.breadcrumbs');
         $breadcrumbs->addChild($category->getName())->setIsCurrent(true);
 
         return $this->render('PortfolioBundle:Category:view.html.twig', array(
-            'category' => $category
+            'category' => $category,
+            'paginator' => $paginator,
         ));
     }
 
