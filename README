@@ -1,41 +1,23 @@
-README
+Движок портфолио web-студии stfalcon.com
 ======
 
-What is Symfony?
-----------------
+Установка
+---------
 
-Symfony is a PHP 5.3 full-stack web framework. It is written with speed and
-flexibility in mind. It allows developers to built better and easy to maintain
-websites with PHP.
-
-Symfony can be used to develop all kind of websites, from your personal blog
-to high traffic ones like Dailymotion or Yahoo! Answers.
-
-High Performance
-----------------
-
-Built with performance in mind, Symfony 2 is one of the fastest PHP
-frameworks. It is up to 3 times faster than symfony 1.4 or Zend Framework 1.10
-and consumes half the memory.
-
-Requirements
-------------
-
-Symfony is only supported on PHP 5.3.2 and up. To check the compatibility of
-your environment with Symfony, you can run the `web/check.php` script, bundled
-with this sandbox.
-
-Documentation
--------------
-
-Symfony 2.0 is still in the early stages of development, but the "[Quick Tour][1]"
-tutorial can get you started fast.
-
-The "Quick Tour" tutorial barely scratches the surface of Symfony 2.0 but it
-gives you a first feeling of the framework. If, like us, you think that
-Symfony 2.0 can help speed up your development and take the quality of your
-work to the next level, visit the official [Symfony 2 website][2] to learn
-about it.
-
-[1]: http://docs.symfony-reloaded.org/
-[2]: http://symfony-reloaded.org/
+Очередность действий такая:
+1. Копируем проект с репозитория.
+2. В консоли идем в папку с проектом.
+3. Запускаем `bin/vendors.sh`. Этот скрипт автоматически загрузит все необходимые дополнительные библиотеки в папку vendor проекта (вместе с zf2).
+4. Запускаем `bin/build_bootstrap.php`
+5. В файлах `app/config/config.yml` и `app/config/config_dev.yml` меняем параметры коннекта к БД на свои:
+###
+    # Doctrine Configuration
+    doctrine:
+        dbal:
+            driver:   pdo_mysql
+            host:     localhost
+            dbname:   stfalcon_com_development
+            user:     root
+            password: null
+            charset:  UTF8
+6. В консоли набираем `app/console doctrine:database:create` и `app/console doctrine:migration:migrate`
