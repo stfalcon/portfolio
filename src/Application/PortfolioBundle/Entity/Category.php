@@ -24,6 +24,8 @@ class Category
     /**
      * @var string $name
      *
+     * @assert:NotBlank()
+     * @assert:MinLenght(3)
      * @orm:Column(name="name", type="string", length=255)
      */
     private $name;
@@ -31,6 +33,8 @@ class Category
     /**
      * @var string $slug
      *
+     * @assert:NotBlank()
+     * @assert:MinLenght(3)
      * @orm:Column(name="slug", type="string", length=128, unique=true)
      */
     private $slug;
@@ -38,6 +42,8 @@ class Category
     /**
      * @var text $description
      *
+     * @assert:NotBlank()
+     * @assert:MinLenght(10)
      * @orm:Column(name="description", type="text")
      */
     private $description;

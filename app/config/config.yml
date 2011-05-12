@@ -14,6 +14,7 @@ framework:
         fallback: ru
     validation:
         enabled: true
+        annotations: true
 
 # Twig Configuration
 twig:
