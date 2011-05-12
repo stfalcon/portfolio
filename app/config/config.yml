@@ -110,4 +110,9 @@ zend_cache:
                     cache_dir: %kernel.root_dir%/cache/%kernel.environment%
 
 
-default: ~
+sensio_framework_extra:
+    router:  { annotations: false }
+    request: { converters: false }
+    view:    { annotations: true, manager_null_arguments: false }
+    cache:   { annotations: true }
+#default: ~

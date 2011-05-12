@@ -16,22 +16,22 @@ class CategoryController extends Controller
     /**
      * List of categories
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array
+     * @extra:Template()
      */
     public function indexAction()
     {
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
-        return $this->render('PortfolioBundle:Category:index.html.twig', array(
-            'categories' => $categories
-        ));
+        return array('categories' => $categories);
     }
 
     /**
      * Create new category
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array|RedirectResponse
+     * @extra:Template()
      */
     public function createAction()
     {
@@ -52,16 +52,15 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Category:create.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return array('form' => $form->createView());
     }
 
     /**
      * Edit category
      *
      * @param string $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array|RedirectResponse
+     * @extra:Template()
      */
     public function editAction($slug)
     {
@@ -83,17 +82,14 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Category:edit.html.twig', array(
-            'form' => $form->createView(),
-            'category' => $category
-        ));
+        return array('form' => $form->createView(), 'category' => $category);
     }
 
     /**
      * View category
      *
      * @param string $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @extra:Template()
      */
     public function viewAction($slug)
     {
@@ -116,7 +112,7 @@ class CategoryController extends Controller
      * Delete category
      *
      * @param string $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse
      */
     public function deleteAction($slug)
     {
@@ -133,21 +129,17 @@ class CategoryController extends Controller
     /**
      * Services widget
      *
-     * @param \Application\PortfolioBundle\Entity\Category $category
-     * @param \Application\PortfolioBundle\Entity\Project $project
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Category $category
+     * @param Project $project
+     * @return array
+     * @extra:Template()
      */
-    public function servicesWidgetAction(Category $category, $project = null)
+    public function servicesAction(Category $category, $project = null)
     {
         $categories = $this->get('doctrine.orm.entity_manager')
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
-        return $this->render('PortfolioBundle:Category:services.html.twig',
-                array(
-                    'categories' => $categories, 
-                    'currentProject' => $project,
-                    'currentCategory' => $category
-                ));
+        return array('categories' => $categories, 'currentProject' => $project, 'currentCategory' => $category);
     }
 
     /**

@@ -18,22 +18,22 @@ class ProjectController extends Controller
     /**
      * Projects list
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array
+     * @extra:Template()
      */
     public function indexAction()
     {
         $projects = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Project")->getAllProjects();
 
-        return $this->render('PortfolioBundle:Project:index.html.twig', array(
-            'projects' => $projects
-        ));
+        return array('projects' => $projects);
     }
 
     /**
      * Create new project
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array|RedirectResponse
+     * @extra:Template()
      */
     public function createAction()
     {
@@ -59,16 +59,15 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Project:create.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return array('form' => $form->createView());
     }
 
     /**
      * Edit project
      *
      * @param string $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array|RedirectResponse
+     * @extra:Template()
      */
     public function editAction($slug)
     {
@@ -92,10 +91,7 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render('PortfolioBundle:Project:edit.html.twig', array(
-            'form' => $form->createView(),
-            'project' => $project
-        ));
+        return array('form' => $form->createView(), 'project' => $project);
     }
 
     /**
@@ -103,7 +99,8 @@ class ProjectController extends Controller
      *
      * @param string $categorySlug
      * @param string $projectSlug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array
+     * @extra:Template()
      */
     public function viewAction($categorySlug, $projectSlug)
     {
@@ -126,15 +123,7 @@ class ProjectController extends Controller
                 $this->get('router')->generate('portfolioCategoryView', array('slug' => $category->getSlug())));
         $breadcrumbs->addChild($project->getName())->setIsCurrent(true);
 
-        $response = new Response();
-        $response->setMaxAge(600);
-        $response->setPublic();
-        $response->setSharedMaxAge(600);
-
-        return $this->render('PortfolioBundle:Project:view.html.twig', array(
-            'project' => $project,
-            'category' => $category,
-        ), $response);
+        return array('project' => $project, 'category' => $category);
     }
 
     /**
@@ -142,7 +131,8 @@ class ProjectController extends Controller
      *
      * @param Category $category
      * @param Project $project
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array
+     * @extra:Template()
      */
     public function nearbyProjectsAction($category, $project)
     {
@@ -163,19 +153,14 @@ class ProjectController extends Controller
             $i++;
         }
 
-        return $this->render('PortfolioBundle:Project:nearby-projects.html.twig',
-                array(
-                    'category' => $category,
-                    'previousProject' => $previousProject,
-                    'nextProject' => $nextProject,
-                ));
+        return array('category' => $category, 'previousProject' => $previousProject, 'nextProject' => $nextProject);
     }
 
     /**
      * Delete project
      *
      * @param string $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse
      */
     public function deleteAction($slug)
     {

@@ -13,8 +13,9 @@ class DefaultController extends Controller
     /**
      * Categories/projects list
      *
-     * @Cache(expires="tomorrow")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array()
+     * @extra:Cache(expires="tomorrow")
+     * @extra:Template()
      */
     public function indexAction()
     {
@@ -26,17 +27,24 @@ class DefaultController extends Controller
 //            $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
 //            $cache->save($feed, 'dc_feed');
 //        }
+//
+//        $response = new Response();
+//        $response->setMaxAge(600);
+//        $response->setPublic();
+//        $response->setSharedMaxAge(600);
+//        
+//        return $this->render('DefaultBundle:Default:index.html.twig',
+//                array('categories' => $categories, /*'feed' => $feed*/), $response);
 
-        $response = new Response();
-        $response->setMaxAge(600);
-        $response->setPublic();
-        $response->setSharedMaxAge(600);
-
-//        return $this->render('DefaultBundle:Default:index.html.php',
-        return $this->render('DefaultBundle:Default:index.html.twig',
-                array('categories' => $categories, /*'feed' => $feed*/), $response);
+        return array('categories' => $categories);
     }
 
+    /**
+     * Show last twitts
+     *
+     * @return array()
+     * @extra:Template()
+     */
     public function twitterAction($count = 1)
     {
         $cache = $this->get('zend.cache_manager')->getCache('slow_cache');
@@ -63,30 +71,22 @@ class DefaultController extends Controller
             }
         }
 
-//        $response = new Response();
-//        $response->setMaxAge(600);
-//        $response->setPublic();
-//        $response->setSharedMaxAge(600);
-
-//        return $this->render('DefaultBundle:Default:twitter.html.twig',
-//                array('statuses' => $statuses), $response);
-        return $this->render('DefaultBundle:Default:twitter.html.twig',
-                array('statuses' => $statuses));
+        return array('statuses' => $statuses);
     }
 
+    /**
+     * Contacts page
+     *
+     * @return array()
+     * @extra:Template()
+     */
     public function contactsAction()
     {
-        $response = new Response();
-        $response->setMaxAge(600);
-        $response->setPublic();
-        $response->setSharedMaxAge(600);
-
         // @todo: refact
         $breadcrumbs = $this->get('menu.breadcrumbs');
-        $breadcrumbs->addChild($this->get('translator')->trans('Контакты'))->setIsCurrent(true);
+        $breadcrumbs->addChild('Контакты')->setIsCurrent(true);
 
-        return $this->render('DefaultBundle:Default:contacts.html.twig',
-                array(), $response);
+        return array();
     }
 
 }
