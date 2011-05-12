@@ -1,16 +1,19 @@
 framework:
-    charset:       UTF-8
     secret: 098v442z8bx31nbu
     csrf_protection:
         enabled: true
-    router:        { resource: "%kernel.root_dir%/config/routing.yml" }
-    validation:    { enabled: true, annotations: true }
-    templating:    { engines: ['php', 'twig'] }
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
     session:
+        auto_start:     true
         default_locale: ru
         lifetime:       3600
-        auto_start:     true
-    translator: { fallback: ru }
+    templating:
+        engines: ['twig']
+    translator:
+        fallback: ru
+    validation:
+        enabled: true
 
 # Twig Configuration
 twig:
@@ -86,8 +89,8 @@ knplabs_menu:
     twig: true
 # MenuBundle settings
 imports:
-    - { resource: "@PortfolioBundle/Resources/config/menu.xml" }
-    - { resource: "@PortfolioBundle/Resources/config/breadcrumbs.xml" }
+    - { resource: "@DefaultBundle/Resources/config/menu/menu.xml" }
+    - { resource: "@DefaultBundle/Resources/config/menu/breadcrumbs.xml" }
 
 knplabs_paginator:
     templating: ~ # enables view helper and twig

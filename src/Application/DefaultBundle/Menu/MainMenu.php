@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\PortfolioBundle\Menu;
+namespace Application\DefaultBundle\Menu;
 
 use Knplabs\Bundle\MenuBundle\Menu;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,5 +24,5 @@ class MainMenu extends Menu
         $this->addChild('Портфолио', $router->generate('homepage'));
         $this->addChild('Контакты', $router->generate('portfolioDefaultContacts'));
     }
-    
+
 }

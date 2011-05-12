@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\PortfolioBundle\Menu;
+namespace Application\DefaultBundle\Menu;
 
 use Knplabs\Bundle\MenuBundle\Menu;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,5 +22,5 @@ class BreadCrumbs extends Menu
 
         $this->addChild('Портфолио', $router->generate('homepage'));
     }
-    
+
 }
