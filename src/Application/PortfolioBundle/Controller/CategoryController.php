@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function indexAction()
     {
-        $categories = $this->get('doctrine.orm.entity_manager')
+        $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
         return $this->render('PortfolioBundle:Category:index.html.twig', array(
@@ -42,7 +42,7 @@ class CategoryController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($this->get('request'));
             if ($form->isValid()) {
-                $em = $this->get('doctrine.orm.entity_manager');
+                $em = $this->get('doctrine')->getEntityManager();
                 $em->persist($category);
                 $em->flush();
 
@@ -74,7 +74,7 @@ class CategoryController extends Controller
             $form->bindRequest($this->get('request'));
             if ($form->isValid()) {
                 // save category
-                $em = $this->get('doctrine.orm.entity_manager');
+                $em = $this->get('doctrine')->getEntityManager();
                 $em->persist($category);
                 $em->flush();
 
@@ -122,7 +122,7 @@ class CategoryController extends Controller
     {
         $category = $this->_findCategoryBySlug($slug);
 
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
         $em->remove($category);
         $em->flush();
 

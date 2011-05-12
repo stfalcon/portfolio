@@ -4,7 +4,7 @@
 
 homepage:
     pattern:  /{_locale}
-    defaults: { _controller: DefaultBundle:Default:index, locale: ru }
+    defaults: { _controller: DefaultBundle:Default:index, _locale: ru }
     requirements:
         _locale: en|ru
 

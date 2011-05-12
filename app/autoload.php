@@ -25,7 +25,7 @@ $loader->registerNamespaces(array(
     'Zend'                           => __DIR__.'/../vendor/zf2/library',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
     'Monolog'                        => __DIR__.'/../vendor/monolog/src',
-    'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',
+    'Gedmo'                          => __DIR__.'/../vendor/gedmo/lib',
     'Stof'                           => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(

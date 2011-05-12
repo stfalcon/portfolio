@@ -1,6 +1,5 @@
 framework:
     charset:       UTF-8
-    error_handler: null
     secret: 098v442z8bx31nbu
     csrf_protection:
         enabled: true

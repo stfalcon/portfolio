@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function indexAction()
     {
-        $projects = $this->get('doctrine.orm.entity_manager')
+        $projects = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Project")->getAllProjects();
 
         return $this->render('PortfolioBundle:Project:index.html.twig', array(
@@ -46,7 +46,7 @@ class ProjectController extends Controller
 
             if ($form->isValid()) {
                 // create project
-                $em = $this->get('doctrine.orm.entity_manager');
+                $em = $this->get('doctrine')->getEntityManager();
                 $em->persist($project);
                 $em->flush();
 
@@ -82,7 +82,7 @@ class ProjectController extends Controller
 
             if ($form->isValid()) {
                 // save project
-                $em = $this->get('doctrine.orm.entity_manager');
+                $em = $this->get('doctrine')->getEntityManager();
                 $em->persist($project);
                 $em->flush();
 
@@ -112,7 +112,7 @@ class ProjectController extends Controller
 
         // @todo: rm categorySlug from url. add it as param
         // try find category by slug
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
         $category = $em->getRepository("PortfolioBundle:Category")
                 ->findOneBy(array('slug' => $categorySlug));
 
@@ -146,7 +146,7 @@ class ProjectController extends Controller
      */
     public function nearbyProjectsAction($category, $project)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
 
         // get all projects from this category
         $projects = $em->getRepository("PortfolioBundle:Project")
@@ -181,7 +181,7 @@ class ProjectController extends Controller
     {
         $project = $this->_findProjectBySlug($slug);
 
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
         $em->remove($project);
         $em->flush();
 
@@ -198,7 +198,7 @@ class ProjectController extends Controller
      */
     private function _findProjectBySlug($slug)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
 
         // try find project by slug
         $project = $em->getRepository("PortfolioBundle:Project")

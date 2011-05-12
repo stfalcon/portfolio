@@ -362,13 +362,16 @@ class ErrorHandler
         E_RECOVERABLE_ERROR => 'Catchable Fatal Error',
     );
     private $level;
-    public function __construct($level = null)
+    static public function register($level = null)
+    {
+        $handler = new static();
+        $handler->setLevel($level);
+        set_error_handler(array($handler, 'handle'));
+        return $handler;
+    }
+    public function setLevel($level)
     {
         $this->level = null === $level ? error_reporting() : $level;
-    }
-    public function register()
-    {
-        set_error_handler(array($this, 'handle'));
     }
     public function handle($level, $message, $file, $line, $context)
     {
@@ -568,12 +571,9 @@ abstract class Kernel implements KernelInterface
         $this->name = preg_replace('/[^a-zA-Z0-9_]+/', '', basename($this->rootDir));
         $this->classes = array();
         if ($this->debug) {
-            ini_set('display_errors', 1);
-            error_reporting(-1);
             $this->startTime = microtime(true);
-        } else {
-            ini_set('display_errors', 0);
         }
+        $this->init();
     }
     public function __clone()
     {
@@ -582,6 +582,9 @@ abstract class Kernel implements KernelInterface
         }
         $this->booted = false;
         $this->container = null;
+    }
+    public function init()
+    {
     }
     public function boot()
     {
@@ -598,6 +601,9 @@ abstract class Kernel implements KernelInterface
     }
     public function shutdown()
     {
+        if (false === $this->booted) {
+            return;
+        }
         $this->booted = false;
         foreach ($this->getBundles() as $bundle) {
             $bundle->shutdown();
@@ -647,8 +653,11 @@ abstract class Kernel implements KernelInterface
         if (false !== strpos($name, '..')) {
             throw new \RuntimeException(sprintf('File name "%s" contains invalid characters (..).', $name));
         }
-        $name = substr($name, 1);
-        list($bundleName, $path) = explode('/', $name, 2);
+        $bundleName = substr($name, 1);
+        $path = '';
+        if (false !== strpos($bundleName, '/')) {
+            list($bundleName, $path) = explode('/', $bundleName, 2);
+        }
         $isResource = 0 === strpos($path, 'Resources') && null !== $dir;
         $overridePath = substr($path, 9);
         $resourceBundle = null;
@@ -679,7 +688,7 @@ abstract class Kernel implements KernelInterface
         if (count($files) > 0) {
             return $first && $isResource ? $files[0] : $files;
         }
-        throw new \InvalidArgumentException(sprintf('Unable to find file "@%s".', $name));
+        throw new \InvalidArgumentException(sprintf('Unable to find file "%s".', $name));
     }
     public function getName()
     {
@@ -934,14 +943,10 @@ class ParameterBag
     {
         $this->parameters = array_replace($this->parameters, $parameters);
     }
-    public function get($key, $default = null)
+    public function get($path, $default = null, $deep = false)
     {
-        return array_key_exists($key, $this->parameters) ? $this->parameters[$key] : $default;
-    }
-    public function getDeep($path, $default = null)
-    {
-        if (false === $pos = strpos($path, '[')) {
-            return $this->get($path, $default);
+        if (!$deep || false === $pos = strpos($path, '[')) {
+            return array_key_exists($path, $this->parameters) ? $this->parameters[$path] : $default;
         }
         $root = substr($path, 0, $pos);
         if (!array_key_exists($root, $this->parameters)) {
@@ -989,21 +994,21 @@ class ParameterBag
     {
         unset($this->parameters[$key]);
     }
-    public function getAlpha($key, $default = '')
+    public function getAlpha($key, $default = '', $deep = false)
     {
-        return preg_replace('/[^[:alpha:]]/', '', $this->get($key, $default));
+        return preg_replace('/[^[:alpha:]]/', '', $this->get($key, $default, $deep));
     }
-    public function getAlnum($key, $default = '')
+    public function getAlnum($key, $default = '', $deep = false)
     {
-        return preg_replace('/[^[:alnum:]]/', '', $this->get($key, $default));
+        return preg_replace('/[^[:alnum:]]/', '', $this->get($key, $default, $deep));
     }
-    public function getDigits($key, $default = '')
+    public function getDigits($key, $default = '', $deep = false)
     {
-        return preg_replace('/[^[:digit:]]/', '', $this->get($key, $default));
+        return preg_replace('/[^[:digit:]]/', '', $this->get($key, $default, $deep));
     }
-    public function getInt($key, $default = 0)
+    public function getInt($key, $default = 0, $deep = false)
     {
-        return (int) $this->get($key, $default);
+        return (int) $this->get($key, $default, $deep);
     }
 }
 }
@@ -1416,17 +1421,21 @@ class Request
         }
                         $_REQUEST = array_merge($_GET, $_POST);
     }
-                        public function get($key, $default = null)
+                        public function get($key, $default = null, $deep = false)
     {
-        return $this->query->get($key, $this->attributes->get($key, $this->request->get($key, $default)));
+        return $this->query->get($key, $this->attributes->get($key, $this->request->get($key, $default, $deep), $deep), $deep);
     }
     public function getSession()
     {
         return $this->session;
     }
-    public function hasSession()
+    public function hasPreviousSession()
     {
                 return $this->cookies->has(session_name()) && null !== $this->session;
+    }
+    public function hasSession()
+    {
+        return null !== $this->session;
     }
     public function setSession(Session $session)
     {
@@ -1474,7 +1483,7 @@ class Request
     }
     public function getPort()
     {
-        return $this->server->get('SERVER_PORT');
+        return $this->headers->get('X-Forwarded-Port') ?: $this->server->get('SERVER_PORT');
     }
     public function getHttpHost()
     {
@@ -1521,8 +1530,8 @@ class Request
                 $parts[] = $segment;
                 $order[] = $segment;
             } else {
-                $tmp = explode('=', urldecode($segment), 2);
-                $parts[] = urlencode($tmp[0]).'='.urlencode($tmp[1]);
+                $tmp = explode('=', rawurldecode($segment), 2);
+                $parts[] = rawurlencode($tmp[0]).'='.rawurlencode($tmp[1]);
                 $order[] = $tmp[0];
             }
         }

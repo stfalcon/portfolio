@@ -20,7 +20,7 @@ portfolioProjectView:
 
 portfolioCategoryProjectView:
     pattern:  /{_locale}/portfolio/{categorySlug}/{projectSlug}
-    defaults: { _controller: PortfolioBundle:Project:view }
+    defaults: { _controller: PortfolioBundle:Project:view, _locale: ru }
     requirements:
         _locale: en|ru
 
@@ -45,7 +45,7 @@ portfolioCategoryEdit:
 
 portfolioCategoryView:
     pattern:  /{_locale}/portfolio/{slug}
-    defaults: { _controller: PortfolioBundle:Category:view }
+    defaults: { _controller: PortfolioBundle:Category:view, _locale: ru }
     requirements:
         _locale: en|ru
 

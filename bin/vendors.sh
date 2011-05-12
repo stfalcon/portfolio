@@ -46,7 +46,8 @@ install_git()
 }
 
 # Symfony
-install_git symfony http://github.com/symfony/symfony.git v2.0.0BETA1
+#install_git symfony http://github.com/symfony/symfony.git v2.0.0BETA1
+install_git symfony http://github.com/symfony/symfony.git
 
 # Doctrine ORM
 install_git doctrine http://github.com/doctrine/doctrine2.git

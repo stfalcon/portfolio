@@ -18,7 +18,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $categories = $this->get('doctrine.orm.entity_manager')
+        $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
 //        $cache = $this->get('zend.cache_manager')->getCache('slow_cache');

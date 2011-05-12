@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\PortfolioBundle\Tests\Controller;
+namespace Application\DefaultBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
@@ -19,9 +19,15 @@ class DefaultControllerTest extends WebTestCase
 
         // check responce
         $this->assertTrue($client->getResponse()->isSuccessful());
+
         // check links to view projects on homepage
-        $this->assertTrue($crawler->filter('a[href="/portfolio/web-development/preorder-it"]')->count() == 1);
-        $this->assertTrue($crawler->filter('a[href="/portfolio/web-development/eprice-kz"]')->count() == 1);
+        $preorderUrl = $this->getUrl('portfolioCategoryProjectView',
+                array('categorySlug' => 'web-development', 'projectSlug' => 'preorder-it'));
+        $this->assertTrue($crawler->filter('a[href="' . $preorderUrl . '"]')->count() == 1);
+
+        $epriceUrl = $this->getUrl('portfolioCategoryProjectView',
+                array('categorySlug' => 'web-development', 'projectSlug' => 'eprice-kz'));
+        $this->assertTrue($crawler->filter('a[href="' . $epriceUrl . '"]')->count() == 1);
 
         // check link to category view
         $url = $this->getUrl('portfolioCategoryView', array('slug' => 'web-development'));
@@ -31,7 +37,7 @@ class DefaultControllerTest extends WebTestCase
     public function testContactPage()
     {
         $client = $this->createClient();
-        $crawler = $client->request('GET', '/contacts');
+        $crawler = $client->request('GET', $this->getUrl('portfolioDefaultContacts', array()));
 
         // check responce
         $this->assertTrue($client->getResponse()->isSuccessful());

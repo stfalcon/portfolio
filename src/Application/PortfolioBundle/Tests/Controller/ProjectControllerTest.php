@@ -130,10 +130,12 @@ class ProjectControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('html:contains("' . $description . '")')->count());
         $this->assertEquals(1, $crawler->filter('a[href="http://preorder.it"]')->count());
 
+        $epriceUrl = $this->getUrl('portfolioCategoryProjectView',
+                array('categorySlug' => 'web-development', 'projectSlug' => 'eprice-kz'));
         // check display prev/next project url
-        $this->assertEquals(1, $crawler->filter('#content a[href="/portfolio/web-development/eprice-kz"]')->count());
+        $this->assertEquals(1, $crawler->filter('#content a[href="' . $epriceUrl . '"]')->count());
 
         // check display projects in services widget
-        $this->assertEquals(1, $crawler->filter('#sidebar a[href="/portfolio/web-development/eprice-kz"]')->count());
+        $this->assertEquals(1, $crawler->filter('#sidebar a[href="' . $epriceUrl . '"]')->count());
     }
 }
