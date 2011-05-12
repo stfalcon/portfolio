@@ -1,5 +1,7 @@
 # DefaultBundle:Default
 
 portfolioDefaultContacts:
-    pattern:  /contacts
+    pattern:  /{_locale}/contacts
     defaults: { _controller: DefaultBundle:Default:contacts }
+    requirements:
+        _locale: en|ru

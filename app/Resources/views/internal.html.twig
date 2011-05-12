@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block title %}Веб-студия stfalcon.com{% endblock %}</title>
+        <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="screen" />
     </head>
@@ -12,16 +12,28 @@
         <div id="header">
             <a href="{{ path('homepage') }}">
                 <h1 class="logo">
-                    Веб-студия stfalcon.com
+                    {% trans %}Веб-студия{% endtrans %} stfalcon.com
                 </h1>
             </a>
 
-            <!--<div class="langs">
+            <div class="langs">
                 <ul>
-                    <li>рус</li>
-                    <li><a href="#">eng</a></li>
+                    <li>
+                        {% if app.request.get('_locale') == 'ru' %}
+                            рус
+                        {% else %}
+                            <a href="{{ path('homepage', { '_locale': 'ru' }) }}">рус</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if app.request.get('_locale') == 'en' %}
+                            eng
+                        {% else %}
+                            <a href="{{ path('homepage', { '_locale': 'en' }) }}">eng</a>
+                        {% endif %}
+                    </li>
                 </ul>
-            </div>-->
+            </div>
 
             <div class="menu">
                 {{ menu('main') }}
@@ -43,12 +55,16 @@
 
             <!--sidebar-->
             <div id="sidebar">
-                <a href="#" class="rss">Подписаться на RSS ленту</a>
+                <a href="#" class="rss">
+                    {% trans %}Подписаться на RSS ленту{% endtrans %}
+                </a>
 
                 <!--twitter block-->
                 <div class="twitter">
                     {% render "DefaultBundle:Default:twitter" with { 'count': 1 } %}
-                    <p>Следить за <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a></p>
+                    <p>
+                        {% trans %}Следить за{% endtrans %} <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a>
+                    </p>
                     <div class="twitter-top"></div>
                 </div>
                 <!--/twitter block-->
@@ -98,28 +114,32 @@
         <div id="footer">
             <div class="contacts">
                 <span>
-                    Позвонить:
+                    {% trans %}Позвонить{% endtrans %}:
                     <strong>
                         +380 97 874-03-42
                     </strong>
-                    
-                    Написать: <a href="mailo:info@stfalcon.com">info@stfalcon.com</a>
+
+                    {% trans %}Написать{% endtrans %}:
+                    <a href="mailo:info@stfalcon.com">info@stfalcon.com</a>
                 </span>
 
                 <span>
-                    Адрес:
+                    {% trans %}Адрес{% endtrans %}:
                     <br />
-                    Старокостантиновское шоссе 26, офис 308, Хмельницкий, Украина, 29000
+                    {% trans %}Староконстантиновское шоссе{% endtrans %} 26,
+                    {% trans %}офис{% endtrans %} 308,
+                    {% trans %}Хмельницкий{% endtrans %},
+                    {% trans %}Украина{% endtrans %}, 29000
                 </span>
             </div>
-            
+
             <div class="copyright">
-                &copy; 2009–<?php echo date('Y'); ?> Веб-студия stfalcon.com
+                &copy; 2009–{{ "now"|date("Y") }} {% trans %}Веб-студия{% endtrans %} stfalcon.com
                 <br />
                 <br />
-                Сайт работает на
+                {% trans %}Сайт работает на{% endtrans %}
                 <a href="http://symfony.com" rel="nofollow">
-                    <img style="vertical-align: middle; padding-left: 5px;" src="/images/footer/symfony-logo.png" alt="Symfony2" title="Symfony2" />
+                    <img style="vertical-align: middle; padding-left: 5px;" src="{{ asset('images/footer/symfony-logo.png') }}" alt="Symfony2" title="Symfony2" />
                 </a>
             </div>
         </div>

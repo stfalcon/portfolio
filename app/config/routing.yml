@@ -1,6 +1,12 @@
+#homepage:
+#    pattern:  /
+#    defaults: { _controller: DefaultBundle:Default:index }
+
 homepage:
-    pattern:  /
-    defaults: { _controller: DefaultBundle:Default:index }
+    pattern:  /{_locale}
+    defaults: { _controller: DefaultBundle:Default:index, locale: ru }
+    requirements:
+        _locale: en|ru
 
 defaultBundle:
     resource: "@DefaultBundle/Resources/config/routing.yml"

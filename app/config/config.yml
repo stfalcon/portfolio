@@ -8,16 +8,15 @@ framework:
     validation:    { enabled: true, annotations: true }
     templating:    { engines: ['php', 'twig'] }
     session:
-        default_locale: en
+        default_locale: ru
         lifetime:       3600
         auto_start:     true
-
+    translator: { fallback: ru }
 
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-
 
 # Doctrine Configuration
 doctrine:
@@ -107,3 +106,6 @@ zend_cache:
                 name: File
                 options:
                     cache_dir: %kernel.root_dir%/cache/%kernel.environment%
+
+
+default: ~

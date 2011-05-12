@@ -18,7 +18,7 @@
                         <!--carousel-->
                         <div class="carousel">
 
-                            <div class="btnPrev" title="Назад"></div>
+                            <div class="btnPrev" title="{% trans %}Назад{% endtrans %}"></div>
 
                             <div class="carousel-wrapper">
                                 <ul>
@@ -26,7 +26,8 @@
                                         <li>
                                             <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
                                                 <span>
-                                                    <img class="project-thumb" src="/bundles/portfolio/uploads/projects/{{ project.imageFilename }}" width="240" height="198"
+                                                    <img class="project-thumb" width="240" height="198"
+                                                         src="/bundles/portfolio/uploads/projects/{{ project.imageFilename }}"
                                                          alt="{{ project.name }}" title="{{ project.name }}" />
                                                 </span>
                                             </a>
@@ -35,12 +36,14 @@
                                 </ul>
                             </div>
 
-                            <div class="btnNext" title="Вперед"></div>
+                            <div class="btnNext" title="{% trans %}Вперед{% endtrans %}"></div>
                         </div>
                         <!--/carousel-->
 
                         {% if category.projects.count > 3 %}
-                            <a href="{{ path('portfolioCategoryView', {'slug': category.slug}) }}" class="all-projects">Посмотреть все работы</a>
+                            <a href="{{ path('portfolioCategoryView', {'slug': category.slug}) }}" class="all-projects">
+                                {% trans %}Посмотреть все работы{% endtrans %}
+                            </a>
                         {% endif %}
                     </div>
                     <!--/accordion block-->

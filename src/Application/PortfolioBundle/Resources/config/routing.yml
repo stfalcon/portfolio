@@ -13,14 +13,16 @@ portfolioProjectEdit:
     defaults: { _controller: PortfolioBundle:Project:edit }
 
 portfolioProjectView:
-    pattern:  /portfolio/project/{id}
+    pattern:  /admin/portfolio/project/{id}
     defaults: { _controller: PortfolioBundle:Project:view }
     requirements:
         projectId:     \d+
 
 portfolioCategoryProjectView:
-    pattern:  /portfolio/{categorySlug}/{projectSlug}
+    pattern:  /{_locale}/portfolio/{categorySlug}/{projectSlug}
     defaults: { _controller: PortfolioBundle:Project:view }
+    requirements:
+        _locale: en|ru
 
 portfolioProjectDelete:
     pattern:  /admin/portfolio/project/delete/{slug}
@@ -42,12 +44,10 @@ portfolioCategoryEdit:
     defaults: { _controller: PortfolioBundle:Category:edit }
 
 portfolioCategoryView:
-    pattern:  /portfolio/{slug}
+    pattern:  /{_locale}/portfolio/{slug}
     defaults: { _controller: PortfolioBundle:Category:view }
-#    pattern:  /portfolio/{slug}/{page}
-#    defaults: { _controller: PortfolioBundle:Category:view, page: 1 }
-#    requirements:
-#        page:  \d+
+    requirements:
+        _locale: en|ru
 
 portfolioCategoryDelete:
     pattern:  /admin/portfolio/category/delete/{slug}

@@ -83,7 +83,7 @@ class DefaultController extends Controller
 
         // @todo: refact
         $breadcrumbs = $this->get('menu.breadcrumbs');
-        $breadcrumbs->addChild('Контакты')->setIsCurrent(true);
+        $breadcrumbs->addChild($this->get('translator')->trans('Контакты'))->setIsCurrent(true);
 
         return $this->render('DefaultBundle:Default:contacts.html.twig',
                 array(), $response);
