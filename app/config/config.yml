@@ -111,7 +111,7 @@ zend_cache:
 
 
 sensio_framework_extra:
-    router:  { annotations: false }
+    router:  { annotations: true }
     request: { converters: false }
     view:    { annotations: true, manager_null_arguments: false }
     cache:   { annotations: true }

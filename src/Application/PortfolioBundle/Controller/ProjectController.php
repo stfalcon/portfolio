@@ -19,6 +19,7 @@ class ProjectController extends Controller
      * Projects list
      *
      * @return array
+     * @extra:Route("/admin/portfolio/projects", name="portfolioProjectIndex")
      * @extra:Template()
      */
     public function indexAction()
@@ -33,6 +34,7 @@ class ProjectController extends Controller
      * Create new project
      *
      * @return array|RedirectResponse
+     * @extra:Route("/admin/portfolio/project/create", name="portfolioProjectCreate")
      * @extra:Template()
      */
     public function createAction()
@@ -67,6 +69,7 @@ class ProjectController extends Controller
      *
      * @param string $slug
      * @return array|RedirectResponse
+     * @extra:Route("/admin/portfolio/project/edit/{slug}", name="portfolioProjectEdit")
      * @extra:Template()
      */
     public function editAction($slug)
@@ -100,6 +103,8 @@ class ProjectController extends Controller
      * @param string $categorySlug
      * @param string $projectSlug
      * @return array
+     * @extra:Route("/{_locale}/portfolio/{categorySlug}/{projectSlug}", name="portfolioCategoryProjectView",
+     *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
      * @extra:Template()
      */
     public function viewAction($categorySlug, $projectSlug)
@@ -107,7 +112,6 @@ class ProjectController extends Controller
         // try find project by slug
         $project = $this->_findProjectBySlug($projectSlug);
 
-        // @todo: rm categorySlug from url. add it as param
         // try find category by slug
         $em = $this->get('doctrine')->getEntityManager();
         $category = $em->getRepository("PortfolioBundle:Category")
@@ -161,6 +165,7 @@ class ProjectController extends Controller
      *
      * @param string $slug
      * @return RedirectResponse
+     * @extra:Route("/admin/portfolio/project/delete/{slug}", name="portfolioProjectDelete")
      */
     public function deleteAction($slug)
     {

@@ -7,9 +7,7 @@
         <ul>
             {% for project in projects %}
                 <li>
-                    <a href="{{ path('portfolioProjectView', { 'id': project.id }) }}">
-                        {{ project.name }}
-                    </a>
+                    {{ project.name }}
                     (<a href="{{ path('portfolioProjectEdit', { 'slug': project.slug }) }}">Edit project</a>
                     / <a href="{{ path('portfolioProjectDelete', { 'slug': project.slug }) }}">Delete project</a>)
                 </li>

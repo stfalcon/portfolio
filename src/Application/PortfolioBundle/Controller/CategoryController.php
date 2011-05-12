@@ -17,6 +17,7 @@ class CategoryController extends Controller
      * List of categories
      *
      * @return array
+     * @extra:Route("/admin/portfolio/categories", name="portfolioCategoryIndex")
      * @extra:Template()
      */
     public function indexAction()
@@ -31,6 +32,7 @@ class CategoryController extends Controller
      * Create new category
      *
      * @return array|RedirectResponse
+     * @extra:Route("/admin/portfolio/category/create", name="portfolioCategoryCreate")
      * @extra:Template()
      */
     public function createAction()
@@ -60,6 +62,7 @@ class CategoryController extends Controller
      *
      * @param string $slug
      * @return array|RedirectResponse
+     * @extra:Route("/admin/portfolio/category/edit/{slug}", name="portfolioCategoryEdit")
      * @extra:Template()
      */
     public function editAction($slug)
@@ -89,6 +92,8 @@ class CategoryController extends Controller
      * View category
      *
      * @param string $slug
+     * @extra:Route("/{_locale}/portfolio/{slug}", name="portfolioCategoryView",
+     *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
      * @extra:Template()
      */
     public function viewAction($slug)
@@ -113,6 +118,7 @@ class CategoryController extends Controller
      *
      * @param string $slug
      * @return RedirectResponse
+     * @extra:Route("/admin/portfolio/category/delete/{slug}", name="portfolioCategoryDelete")
      */
     public function deleteAction($slug)
     {

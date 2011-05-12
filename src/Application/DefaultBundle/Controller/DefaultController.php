@@ -15,6 +15,7 @@ class DefaultController extends Controller
      *
      * @return array()
      * @extra:Cache(expires="tomorrow")
+     * @extra:Route("/{_locale}", name="homepage", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
      * @extra:Template()
      */
     public function indexAction()
@@ -79,6 +80,7 @@ class DefaultController extends Controller
      *
      * @return array()
      * @extra:Template()
+     * @extra:Route("/{_locale}/contacts", name="portfolioDefaultContacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
      */
     public function contactsAction()
     {
