@@ -362,10 +362,10 @@ abstract class Kernel implements KernelInterface
             $dir = $container->getParameter(sprintf('kernel.%s_dir', $name));
             if (!is_dir($dir)) {
                 if (false === @mkdir($dir, 0777, true)) {
-                    exit(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
+                    throw new \RuntimeException(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
                 }
             } elseif (!is_writable($dir)) {
-                exit(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
+                throw new \RuntimeException(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
             }
         }
         $container->addCompilerPass(new AddClassesToCachePass($this));
@@ -1484,7 +1484,14 @@ class Request
     }
     static public function createFromGlobals()
     {
-        return new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
+        $request = new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
+        if ('application/x-www-form-urlencoded' == $request->server->get('CONTENT_TYPE')
+            && in_array(strtoupper($request->server->get('REQUEST_METHOD', 'GET')), array('PUT', 'DELETE'))
+        ) {
+            parse_str($this->getContent(), $data);
+            $request->request = new ParameterBag($data);
+        }
+        return $request;
     }
     static public function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
     {
@@ -2159,13 +2166,13 @@ class Response
     {
         $content = '';
         $this->fixContentType();
-                $content .= sprintf('HTTP/%s %s %s', $this->version, $this->statusCode, $this->statusText)."\n";
+                $content .= sprintf('HTTP/%s %s %s', $this->version, $this->statusCode, $this->statusText)."\r\n";
                 foreach ($this->headers->all() as $name => $values) {
             foreach ($values as $value) {
-                $content .= "$name: $value\n";
+                $content .= "$name: $value\r\n";
             }
         }
-        $content .= "\n".$this->getContent();
+        $content .= "\r\n".$this->getContent();
         return $content;
     }
     public function __clone()
