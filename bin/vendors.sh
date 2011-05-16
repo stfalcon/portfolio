@@ -50,10 +50,10 @@ install_git()
 install_git symfony http://github.com/symfony/symfony.git
 
 # Doctrine ORM
-install_git doctrine http://github.com/doctrine/doctrine2.git
+install_git doctrine http://github.com/doctrine/doctrine2.git 2.0.5
 
 # Doctrine DBAL
-install_git doctrine-dbal http://github.com/doctrine/dbal.git
+install_git doctrine-dbal http://github.com/doctrine/dbal.git 2.0.5
 
 # Doctrine Common
 install_git doctrine-common http://github.com/doctrine/common.git

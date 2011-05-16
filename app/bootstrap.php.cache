@@ -838,6 +838,15 @@ abstract class Kernel implements KernelInterface
     }
     protected function buildContainer()
     {
+        foreach (array('cache' => $this->getCacheDir(), 'logs' => $this->getLogDir()) as $name => $dir) {
+            if (!is_dir($dir)) {
+                if (false === @mkdir($dir, 0777, true)) {
+                    throw new \RuntimeException(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
+                }
+            } elseif (!is_writable($dir)) {
+                throw new \RuntimeException(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
+            }
+        }
         $container = new ContainerBuilder(new ParameterBag($this->getKernelParameters()));
         $extensions = array();
         foreach ($this->bundles as $bundle) {
@@ -854,16 +863,6 @@ abstract class Kernel implements KernelInterface
                 $container->getCompilerPassConfig()->setMergePass(new MergeExtensionConfigurationPass($extensions));
         if (null !== $cont = $this->registerContainerConfiguration($this->getContainerLoader($container))) {
             $container->merge($cont);
-        }
-        foreach (array('cache', 'logs') as $name) {
-            $dir = $container->getParameter(sprintf('kernel.%s_dir', $name));
-            if (!is_dir($dir)) {
-                if (false === @mkdir($dir, 0777, true)) {
-                    throw new \RuntimeException(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
-                }
-            } elseif (!is_writable($dir)) {
-                throw new \RuntimeException(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
-            }
         }
         $container->addCompilerPass(new AddClassesToCachePass($this));
         $container->compile();
@@ -1119,6 +1118,24 @@ class HeaderBag
             $this->set($key, $values);
         }
     }
+    public function __toString()
+    {
+        if (!$this->headers) {
+            return '';
+        }
+        $beautifier = function ($name) {
+            return preg_replace('/\-(.)/e', "'-'.strtoupper('\\1')", ucfirst($name));
+        };
+        $max = max(array_map('strlen', array_keys($this->headers))) + 1;
+        $content = '';
+        ksort($this->headers);
+        foreach ($this->headers as $name => $values) {
+            foreach ($values as $value) {
+                $content .= sprintf("%-{$max}s %s\r\n", $beautifier($name).':', $value);
+            }
+        }
+        return $content;
+    }
     public function all()
     {
         return $this->headers;
@@ -1310,10 +1327,10 @@ class Request
     static public function createFromGlobals()
     {
         $request = new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
-        if ('application/x-www-form-urlencoded' == $request->server->get('CONTENT_TYPE')
+        if (0 === strpos($request->server->get('CONTENT_TYPE'), 'application/x-www-form-urlencoded')
             && in_array(strtoupper($request->server->get('REQUEST_METHOD', 'GET')), array('PUT', 'DELETE'))
         ) {
-            parse_str($this->getContent(), $data);
+            parse_str($request->getContent(), $data);
             $request->request = new ParameterBag($data);
         }
         return $request;
@@ -1331,6 +1348,7 @@ class Request
             'REMOTE_ADDR'          => '127.0.0.1',
             'SCRIPT_NAME'          => '',
             'SCRIPT_FILENAME'      => '',
+            'SERVER_PROTOCOL'      => 'HTTP/1.1',
         );
         $components = parse_url($uri);
         if (isset($components['host'])) {
@@ -1417,6 +1435,13 @@ class Request
         $this->server     = clone $this->server;
         $this->headers    = clone $this->headers;
     }
+    public function __toString()
+    {
+        return
+            sprintf('%s %s %s', $this->getMethod(), $this->getRequestUri(), $this->server->get('SERVER_PROTOCOL'))."\r\n".
+            $this->headers."\r\n".
+            $this->getContent();
+    }
     public function overrideGlobals()
     {
         $_GET = $this->query->all();
@@ -1494,10 +1519,7 @@ class Request
     }
     public function getHttpHost()
     {
-        $host = $this->headers->get('HOST');
-        if (!empty($host)) {
-            return $host;
-        }
+        $host   = $this->getHost();
         $scheme = $this->getScheme();
         $name   = $this->server->get('SERVER_NAME');
         $port   = $this->getPort();
@@ -1811,14 +1833,14 @@ class Request
     {
         $baseUrl = $this->getBaseUrl();
         if (null === ($requestUri = $this->getRequestUri())) {
-            return '';
+            return '/';
         }
-        $pathInfo = '';
+        $pathInfo = '/';
                 if ($pos = strpos($requestUri, '?')) {
             $requestUri = substr($requestUri, 0, $pos);
         }
         if ((null !== $baseUrl) && (false === ($pathInfo = substr($requestUri, strlen($baseUrl))))) {
-                        return '';
+                        return '/';
         } elseif (null === $baseUrl) {
             return $requestUri;
         }
