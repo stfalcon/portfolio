@@ -127,9 +127,14 @@ mkdir -p $BUNDLES/Stof
 cd $BUNDLES/Stof
 install_git DoctrineExtensionsBundle http://github.com/stof/DoctrineExtensionsBundle.git
 
+# DoctrineExtensionsBundle
+mkdir -p $BUNDLES/Stfalcon
+cd $BUNDLES/Stfalcon
+install_git TinymceBundle http://github.com/stfalcon/TinymceBundle.git
+
 
 # Update the bootstrap files
 $DIR/bin/build_bootstrap.php
 
 # Update assets
-$DIR/app/console assets:install --symlink $DIR/web/
+$DIR/app/console assets:install --symlink $DIR/web

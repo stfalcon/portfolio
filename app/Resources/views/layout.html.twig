@@ -6,7 +6,6 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/reset.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/text.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/960.css') }}" media="screen" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/960.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/layout.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/nav.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}" media="screen" />
@@ -73,6 +72,7 @@
         <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-1.4.4.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/fluid960gs/js/jquery-fluid16.js') }}"></script>
+        {% render "StfalconTinymceBundle:Script:init" %}
 
     </body>
 </html>

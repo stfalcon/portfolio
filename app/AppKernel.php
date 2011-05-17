@@ -39,6 +39,8 @@ class AppKernel extends Kernel
             new Bundle\ZendCacheBundle\ZendCacheBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Bundle\GravatarBundle\GravatarBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
 
             new Application\PortfolioBundle\PortfolioBundle(),
             new Application\DefaultBundle\DefaultBundle(),

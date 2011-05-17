@@ -116,4 +116,5 @@ sensio_framework_extra:
     request: { converters: false }
     view:    { annotations: true, manager_null_arguments: false }
     cache:   { annotations: true }
-#default: ~
+
+stfalcon_tinymce: ~

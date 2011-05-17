@@ -27,3 +27,7 @@ monolog:
         firephp:
             type:  firephp
             level: info
+            
+
+default:
+    transform: upper

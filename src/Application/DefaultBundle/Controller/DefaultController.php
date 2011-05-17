@@ -10,8 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
+//    public function __postConstruct()
+//    {
+//        var_dump(111);
+////    	$this->request = $this->container->get('request');
+////        $this->router = $this->container->get('router');
+////        $this->repository = $this->container->get('jobeet2.category.repository');
+////        $this->templating = $this->container->get('templating');
+////        $this->max_jobs_on_category = $this->container->getParameter('jobeet2.max_jobs_on_category');
+//    }
+
     /**
-     * Categories/projects list
+     * Categories/projects lilowerst
      *
      * @return array()
      * @extra:Cache(expires="tomorrow")
@@ -20,6 +30,14 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+//        $gravatar = new \Bundle\GravatarBundle\GravatarApi();
+//        echo $gravatar->getUrl('stepan.tanasiychuk@gmail.com');
+
+//        var_dump($this->get('templating'));
+//        $toolbox = $this->get('toolbox.string');
+//        var_dump($toolbox->transform('stfalcon'));
+//        exit;
+        
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 

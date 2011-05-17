@@ -10,6 +10,7 @@ $loader->registerNamespaces(array(
     'Liip'                           => __DIR__.'/../vendor/bundles',
     'Knplabs'                        => __DIR__.'/../vendor/bundles',
     'Sensio'                         => __DIR__.'/../vendor/bundles',
+    'Stfalcon'                       => __DIR__.'/../vendor/bundles',
 
     // @todo: refact
     'Bundle'                         => __DIR__.'/../vendor/bundles',
