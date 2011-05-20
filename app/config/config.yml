@@ -37,6 +37,7 @@ doctrine:
             default:
                 mappings:
                     PortfolioBundle: ~
+                    StfalconBlogBundle: ~
 
 
 # DoctrineMigrationsBundle
