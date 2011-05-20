@@ -573,10 +573,11 @@ class HttpCache implements HttpKernelInterface
         $subRequest = clone $request;
                 $subRequest->setMethod('get');
                 $subRequest->headers->set('if_modified_since', $entry->headers->get('Last-Modified'));
-                                $cachedEtags = array($entry->getEtag());
+                                $cachedEtags = $entry->getEtag() ? array($entry->getEtag()) : array();
         $requestEtags = $request->getEtags();
-        $etags = array_unique(array_merge($cachedEtags, $requestEtags));
-        $subRequest->headers->set('if_none_match', $etags ? implode(', ', $etags) : '');
+        if ($etags = array_unique(array_merge($cachedEtags, $requestEtags))) {
+            $subRequest->headers->set('if_none_match', implode(', ', $etags));
+        }
         $response = $this->forward($subRequest, $catch, $entry);
         if (304 == $response->getStatusCode()) {
             $this->record($request, 'valid');
@@ -585,7 +586,8 @@ class HttpCache implements HttpKernelInterface
                 return $response;
             }
             $entry = clone $entry;
-            foreach (array('Expires', 'Cache-Control', 'ETag', 'Last-Modified') as $name) {
+            $entry->headers->remove('Date');
+            foreach (array('Date', 'Expires', 'Cache-Control', 'ETag', 'Last-Modified') as $name) {
                 if ($response->headers->has($name)) {
                     $entry->headers->set($name, $response->headers->get($name));
                 }
@@ -665,7 +667,9 @@ class HttpCache implements HttpKernelInterface
                 $entry->setContent($new->getContent());
                 $entry->setStatusCode($new->getStatusCode());
                 $entry->setProtocolVersion($new->getProtocolVersion());
-                $entry->setCookies($new->getCookies());
+                foreach ($new->headers->getCookies() as $cookie) {
+                    $entry->headers->setCookie($cookie);
+                }
             } else {
                                 $entry->setStatusCode(503);
                 $entry->setContent('503 Service Unavailable');
@@ -1777,7 +1781,7 @@ class Request
         if (null === $this->method) {
             $this->method = strtoupper($this->server->get('REQUEST_METHOD', 'GET'));
             if ('POST' === $this->method) {
-                $this->method = strtoupper($this->request->get('_method', 'POST'));
+                $this->method = strtoupper($this->server->get('X-HTTP-METHOD-OVERRIDE', $this->request->get('_method', 'POST')));
             }
         }
         return $this->method;
@@ -2069,6 +2073,14 @@ class ResponseHeaderBag extends HeaderBag
         if (!isset($this->headers['cache-control'])) {
             $this->set('cache-control', '');
         }
+    }
+    public function __toString()
+    {
+        $cookies = '';
+        foreach ($this->cookies as $cookie) {
+            $cookies .= 'Set-Cookie: '.$cookie."\r\n";
+        }
+        return parent::__toString().$cookies;
     }
     public function replace(array $headers = array())
     {

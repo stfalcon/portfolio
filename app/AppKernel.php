@@ -4,6 +4,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\ClassLoader\DebugUniversalClassLoader;
 use Symfony\Component\HttpKernel\Debug\ErrorHandler;
+use Symfony\Component\HttpKernel\Debug\ExceptionHandler;
 
 class AppKernel extends Kernel
 {
@@ -16,6 +17,7 @@ class AppKernel extends Kernel
 
             DebugUniversalClassLoader::enable();
             ErrorHandler::register();
+            ExceptionHandler::register();
         } else {
             ini_set('display_errors', 0);
         }
@@ -39,7 +41,6 @@ class AppKernel extends Kernel
             new Bundle\ZendCacheBundle\ZendCacheBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Bundle\GravatarBundle\GravatarBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
 
             new Application\PortfolioBundle\PortfolioBundle(),

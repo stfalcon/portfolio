@@ -1,0 +1,12 @@
+assetic origin/HEAD
+symfony origin/HEAD
+doctrine origin/HEAD
+doctrine-dbal origin/HEAD
+doctrine-common origin/HEAD
+swiftmailer origin/4.1
+twig origin/HEAD
+twig-extensions origin/HEAD
+monolog origin/HEAD
+FrameworkExtraBundle origin/HEAD
+SecurityExtraBundle origin/HEAD
+WebConfiguratorBundle origin/HEAD

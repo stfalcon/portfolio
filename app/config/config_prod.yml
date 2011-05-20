@@ -11,3 +11,8 @@ monolog:
             type:         stream
             path:         %kernel.logs_dir%/%kernel.environment%.log
             level:        debug
+
+#doctrine:
+#    metadata_cache_driver: apc
+#    result_cache_driver: apc
+#    query_cache_driver: apc

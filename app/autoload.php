@@ -4,7 +4,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'Symfony'                        => __DIR__.'/../vendor/symfony/src',
+    'Symfony'                        => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
     'Application'                    => __DIR__.'/../src',
 
     'Liip'                           => __DIR__.'/../vendor/bundles',
@@ -17,7 +17,7 @@ $loader->registerNamespaces(array(
 
     'Doctrine\\Common\\DataFixtures' => __DIR__.'/../vendor/doctrine-data-fixtures/lib',
     'Doctrine\\Common'               => __DIR__.'/../vendor/doctrine-common/lib',
-    'Doctrine\\DBAL\\Migrations'     => __DIR__.'/../vendor/doctrine-migrations/lib',
+    'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine\\MongoDB'              => __DIR__.'/../vendor/doctrine-mongodb/lib',
     'Doctrine\\ODM\\MongoDB'         => __DIR__.'/../vendor/doctrine-mongodb-odm/lib',
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
@@ -26,7 +26,7 @@ $loader->registerNamespaces(array(
     'Zend'                           => __DIR__.'/../vendor/zf2/library',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
     'Monolog'                        => __DIR__.'/../vendor/monolog/src',
-    'Gedmo'                          => __DIR__.'/../vendor/gedmo/lib',
+    'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',
     'Stof'                           => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(

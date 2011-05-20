@@ -1,0 +1,25 @@
+/                       assetic                 http://github.com/kriswallsmith/assetic.git
+/                       doctrine                http://github.com/doctrine/doctrine2.git
+/                       doctrine-dbal           http://github.com/doctrine/dbal.git
+/                       doctrine-common         http://github.com/doctrine/common.git
+/                       doctrine-migrations     http://github.com/doctrine/migrations.git
+/                       doctrine-data-fixtures  http://github.com/doctrine/data-fixtures.git
+/                       doctrine-extensions     http://github.com/l3pp4rd/DoctrineExtensions.git
+/                       imagine                 http://github.com/avalanche123/Imagine.git
+/                       monolog                 http://github.com/Seldaek/monolog.git
+/                       symfony                 http://github.com/symfony/symfony.git
+/                       swiftmailer             http://github.com/swiftmailer/swiftmailer.git
+/                       twig                    http://github.com/fabpot/Twig.git
+/                       twig-extensions         http://github.com/fabpot/Twig-extensions.git
+/                       zf2                     http://github.com/zendframework/zf2.git
+
+/bundles/Sensio/Bundle  FrameworkExtraBundle    http://github.com/sensio/SensioFrameworkExtraBundle.git
+/bundles/Liip           FunctionalTestBundle    http://github.com/liip/FunctionalTestBundle.git
+/bundles/Knplabs/Bundle MenuBundle              http://github.com/knplabs/MenuBundle.git
+/bundles/Knplabs/Bundle PaginatorBundle         http://github.com/knplabs/PaginatorBundle.git
+/bundles/Bundle         ZendCacheBundle         http://github.com/knplabs/ZendCacheBundle.git
+/bundles/Symfony/Bundle DoctrineFixturesBundle  http://github.com/symfony/DoctrineFixturesBundle.git
+/bundles/Symfony/Bundle DoctrineMigrationsBundle    http://github.com/symfony/DoctrineMigrationsBundle.git
+/bundles/Stof           DoctrineExtensionsBundle    http://github.com/stof/DoctrineExtensionsBundle.git
+/bundles/Stfalcon/Bundle TinymceBundle           http://github.com/stfalcon/TinymceBundle.git
+
