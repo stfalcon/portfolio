@@ -22,4 +22,5 @@
 /bundles/Symfony/Bundle DoctrineMigrationsBundle    http://github.com/symfony/DoctrineMigrationsBundle.git
 /bundles/Stof           DoctrineExtensionsBundle    http://github.com/stof/DoctrineExtensionsBundle.git
 /bundles/Stfalcon/Bundle TinymceBundle           http://github.com/stfalcon/TinymceBundle.git
+/bundles/Stfalcon/Bundle BlogBundle           http://github.com/stfalcon/BlogBundle.git
 
