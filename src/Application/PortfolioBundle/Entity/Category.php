@@ -3,56 +3,58 @@
 namespace Application\PortfolioBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Application\PortfolioBundle\Entity\Category
  *
- * @orm:Table(name="portfolio_categories")
- * @orm:Entity(repositoryClass="Application\PortfolioBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="portfolio_categories")
+ * @ORM\Entity(repositoryClass="Application\PortfolioBundle\Repository\CategoryRepository")
  */
 class Category
 {
     /**
      * @var integer $id
      *
-     * @orm:Column(name="id", type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string $name
      *
-     * @assert:NotBlank()
-     * @assert:MinLenght(3)
-     * @orm:Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\MinLength(3)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string $slug
      *
-     * @assert:NotBlank()
-     * @assert:MinLenght(3)
-     * @orm:Column(name="slug", type="string", length=128, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\MinLength(3)
+     * @ORM\Column(name="slug", type="string", length=128, unique=true)
      */
     private $slug;
 
     /**
      * @var text $description
      *
-     * @assert:NotBlank()
-     * @assert:MinLenght(10)
-     * @orm:Column(name="description", type="text")
+     * @Assert\NotBlank()
+     * @Assert\MinLength(10)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var Doctrine\Common\Collections\ArrayCollection
      *
-     * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Project", mappedBy="categories")
-     * @orm:OrderBy({"date" = "DESC"})
+     * @ORM\ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Project", mappedBy="categories")
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     private $projects;
 

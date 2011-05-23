@@ -6,38 +6,23 @@ use Application\PortfolioBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
-
-//    public function __postConstruct()
-//    {
-//        var_dump(111);
-////    	$this->request = $this->container->get('request');
-////        $this->router = $this->container->get('router');
-////        $this->repository = $this->container->get('jobeet2.category.repository');
-////        $this->templating = $this->container->get('templating');
-////        $this->max_jobs_on_category = $this->container->getParameter('jobeet2.max_jobs_on_category');
-//    }
 
     /**
      * Categories/projects lilowerst
      *
      * @return array()
-     * @extra:Cache(expires="tomorrow")
-     * @extra:Route("/{_locale}", name="homepage", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
-     * @extra:Template()
+     * @Cache(expires="tomorrow")
+     * @Route("/{_locale}", name="homepage", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
+     * @Template()
      */
     public function indexAction()
     {
-//        $gravatar = new \Bundle\GravatarBundle\GravatarApi();
-//        echo $gravatar->getUrl('stepan.tanasiychuk@gmail.com');
-
-//        var_dump($this->get('templating'));
-//        $toolbox = $this->get('toolbox.string');
-//        var_dump($toolbox->transform('stfalcon'));
-//        exit;
-        
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
@@ -62,7 +47,7 @@ class DefaultController extends Controller
      * Show last twitts
      *
      * @return array()
-     * @extra:Template()
+     * @Template()
      */
     public function twitterAction($count = 1)
     {
@@ -102,8 +87,8 @@ class DefaultController extends Controller
      * Contacts page
      *
      * @return array()
-     * @extra:Template()
-     * @extra:Route("/{_locale}/contacts", name="portfolioDefaultContacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
+     * @Template()
+     * @Route("/{_locale}/contacts", name="portfolioDefaultContacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
      */
     public function contactsAction()
     {

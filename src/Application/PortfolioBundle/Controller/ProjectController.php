@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Application\PortfolioBundle\Form\ProjectForm;
 use Application\PortfolioBundle\Entity\Project;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * ProjectController
@@ -19,8 +22,8 @@ class ProjectController extends Controller
      * Projects list
      *
      * @return array
-     * @extra:Route("/admin/portfolio/projects", name="portfolioProjectIndex")
-     * @extra:Template()
+     * @Route("/admin/portfolio/projects", name="portfolioProjectIndex")
+     * @Template()
      */
     public function indexAction()
     {
@@ -34,8 +37,8 @@ class ProjectController extends Controller
      * Create new project
      *
      * @return array|RedirectResponse
-     * @extra:Route("/admin/portfolio/project/create", name="portfolioProjectCreate")
-     * @extra:Template()
+     * @Route("/admin/portfolio/project/create", name="portfolioProjectCreate")
+     * @Template()
      */
     public function createAction()
     {
@@ -69,8 +72,8 @@ class ProjectController extends Controller
      *
      * @param string $slug
      * @return array|RedirectResponse
-     * @extra:Route("/admin/portfolio/project/edit/{slug}", name="portfolioProjectEdit")
-     * @extra:Template()
+     * @Route("/admin/portfolio/project/edit/{slug}", name="portfolioProjectEdit")
+     * @Template()
      */
     public function editAction($slug)
     {
@@ -103,9 +106,9 @@ class ProjectController extends Controller
      * @param string $categorySlug
      * @param string $projectSlug
      * @return array
-     * @extra:Route("/{_locale}/portfolio/{categorySlug}/{projectSlug}", name="portfolioCategoryProjectView",
+     * @Route("/{_locale}/portfolio/{categorySlug}/{projectSlug}", name="portfolioCategoryProjectView",
      *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
-     * @extra:Template()
+     * @Template()
      */
     public function viewAction($categorySlug, $projectSlug)
     {
@@ -136,7 +139,7 @@ class ProjectController extends Controller
      * @param Category $category
      * @param Project $project
      * @return array
-     * @extra:Template()
+     * @Template()
      */
     public function nearbyProjectsAction($category, $project)
     {
@@ -165,7 +168,7 @@ class ProjectController extends Controller
      *
      * @param string $slug
      * @return RedirectResponse
-     * @extra:Route("/admin/portfolio/project/delete/{slug}", name="portfolioProjectDelete")
+     * @Route("/admin/portfolio/project/delete/{slug}", name="portfolioProjectDelete")
      */
     public function deleteAction($slug)
     {

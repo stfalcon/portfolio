@@ -1,0 +1,3 @@
+[submodule "src/Stfalcon/Bundle/BlogBundle"]
+	path = src/Stfalcon/Bundle/BlogBundle
+	url = git@github.com:stfalcon/BlogBundle.git

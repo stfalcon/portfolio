@@ -2,7 +2,7 @@ assetic origin/HEAD
 symfony origin/HEAD
 doctrine origin/HEAD
 doctrine-dbal origin/HEAD
-doctrine-common origin/HEAD
+doctrine-common origin/3.0.x
 swiftmailer origin/4.1
 twig origin/HEAD
 twig-extensions origin/HEAD

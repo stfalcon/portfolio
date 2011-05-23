@@ -6,7 +6,6 @@ framework:
     csrf_protection: true
     validation:
         enabled: true
-        annotations: true
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     translator:
         fallback: ru

@@ -3,13 +3,16 @@
 namespace Application\PortfolioBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Imagine;
 
 /**
  * Application\PortfolioBundle\Entity\Project
  *
- * @orm:Table(name="portfolio_projects")
- * @orm:Entity(repositoryClass="Application\PortfolioBundle\Repository\ProjectRepository")
+ * @ORM\Table(name="portfolio_projects")
+ * @ORM\Entity(repositoryClass="Application\PortfolioBundle\Repository\ProjectRepository")
  */
 class Project
 {
@@ -17,87 +20,87 @@ class Project
     /**
      * @var integer $id
      *
-     * @orm:Column(name="id", type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string $name
      *
-     * @assert:NotBlank()
-     * @assert:MinLenght(3)
-     * @orm:Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\MinLength(3)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string $slug
      *
-     * @assert:NotBlank()
-     * @assert:MinLenght(3)
-     * @orm:Column(name="slug", type="string", length=128, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\MinLength(3)
+     * @ORM\Column(name="slug", type="string", length=128, unique=true)
      */
     private $slug;
 
     /**
      * @var text $description
      *
-     * @assert:NotBlank()
-     * @assert:MinLenght(10)
-     * @orm:Column(name="description", type="text")
+     * @Assert\NotBlank()
+     * @Assert\MinLength(10)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var text $url
      *
-     * @assert:Url()
-     * @orm:Column(name="url", type="string", length=255)
+     * @Assert\Url()
+     * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
 
     /**
      * @var \DateTime $date
      *
-     * @orm:Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
      * @var \DateTime $created
      *
-     * @orm:Column(type="datetime")
-     * @gedmo:Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
     /**
      * @var \DateTime $updated
      *
-     * @orm:Column(type="datetime")
-     * @gedmo:Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updated;
 
     /**
      * @var string $image
      *
-     * @orm:Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @orm:ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Category")
-     * @orm:JoinTable(name="portfolio_projects_categories",
+     * @ORM\ManyToMany(targetEntity="Application\PortfolioBundle\Entity\Category")
+     * @ORM\JoinTable(name="portfolio_projects_categories",
      *   joinColumns={
-     *     @orm:JoinColumn(name="project_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @orm:JoinColumn(name="category_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      *   }
      * )
      */

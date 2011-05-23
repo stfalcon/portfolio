@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Application\PortfolioBundle\Entity\Project;
 use Application\PortfolioBundle\Entity\Category;
 use Application\PortfolioBundle\Form\CategoryForm;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class CategoryController extends Controller
 {
@@ -17,8 +20,8 @@ class CategoryController extends Controller
      * List of categories
      *
      * @return array
-     * @extra:Route("/admin/portfolio/categories", name="portfolioCategoryIndex")
-     * @extra:Template()
+     * @Route("/admin/portfolio/categories", name="portfolioCategoryIndex")
+     * @Template()
      */
     public function indexAction()
     {
@@ -32,8 +35,8 @@ class CategoryController extends Controller
      * Create new category
      *
      * @return array|RedirectResponse
-     * @extra:Route("/admin/portfolio/category/create", name="portfolioCategoryCreate")
-     * @extra:Template()
+     * @Route("/admin/portfolio/category/create", name="portfolioCategoryCreate")
+     * @Template()
      */
     public function createAction()
     {
@@ -62,8 +65,8 @@ class CategoryController extends Controller
      *
      * @param string $slug
      * @return array|RedirectResponse
-     * @extra:Route("/admin/portfolio/category/edit/{slug}", name="portfolioCategoryEdit")
-     * @extra:Template()
+     * @Route("/admin/portfolio/category/edit/{slug}", name="portfolioCategoryEdit")
+     * @Template()
      */
     public function editAction($slug)
     {
@@ -92,9 +95,9 @@ class CategoryController extends Controller
      * View category
      *
      * @param string $slug
-     * @extra:Route("/{_locale}/portfolio/{slug}", name="portfolioCategoryView",
+     * @Route("/{_locale}/portfolio/{slug}", name="portfolioCategoryView",
      *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
-     * @extra:Template()
+     * @Template()
      */
     public function viewAction($slug)
     {
@@ -118,7 +121,7 @@ class CategoryController extends Controller
      *
      * @param string $slug
      * @return RedirectResponse
-     * @extra:Route("/admin/portfolio/category/delete/{slug}", name="portfolioCategoryDelete")
+     * @Route("/admin/portfolio/category/delete/{slug}", name="portfolioCategoryDelete")
      */
     public function deleteAction($slug)
     {
@@ -138,7 +141,7 @@ class CategoryController extends Controller
      * @param Category $category
      * @param Project $project
      * @return array
-     * @extra:Template()
+     * @Template()
      */
     public function servicesAction(Category $category, $project = null)
     {

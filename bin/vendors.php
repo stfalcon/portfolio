@@ -68,7 +68,7 @@ foreach (file(__DIR__.'/deps') as $line) {
 system($rootDir.'/bin/build_bootstrap.php');
 
 // Update assets
-system($rootDir.'/app/console assets:install --symlink '.$rootDir.'/web/');
+system($rootDir.'/app/console assets:install --symlink '.$rootDir.'/web');
 
-// Clear cache
-system($rootDir.'/app/console cache:clear');
+// Remove the cache
+system($rootDir.'/app/console cache:clear --no-warmup');
