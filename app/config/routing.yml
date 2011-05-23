@@ -9,3 +9,7 @@ _portfolio_categories:
 _portfolio_projects:
     resource: "@PortfolioBundle/Controller/ProjectController.php"
     type:     annotation
+
+_blog_posts:
+    resource: "@StfalconBlogBundle/Controller/PostController.php"
+    type:     annotation
