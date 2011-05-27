@@ -27,3 +27,6 @@ liip_functional_test:
     authentication:
         username: admin
         password: qwerty
+
+swiftmailer:
+    disable_delivery: true

@@ -24,6 +24,7 @@ $loader->registerNamespaces(array(
     'Zend'                           => __DIR__.'/../vendor/zf2/library',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
     'Monolog'                        => __DIR__.'/../vendor/monolog/src',
+    'Metadata'                       => __DIR__.'/../vendor/metadata/src',
     'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',
     'Stof'                           => __DIR__.'/../vendor/bundles',
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
@@ -31,7 +32,6 @@ $loader->registerNamespaces(array(
 $loader->registerPrefixes(array(
     'Twig_Extensions_'               => __DIR__.'/../vendor/twig-extensions/lib',
     'Twig_'                          => __DIR__.'/../vendor/twig/lib',
-    'Swift_'                         => __DIR__.'/../vendor/swiftmailer/lib/classes',
     'Zend_'                          => __DIR__.'/../vendor/zf/library',
 ));
 $loader->register();
@@ -44,3 +44,20 @@ set_include_path(implode(PATH_SEPARATOR, array(
 //    realpath(__DIR__.'/../vendor/zf2/library'),
     get_include_path(),
 )));
+
+// Swiftmailer needs a special autoloader to allow
+// the lazy loading of the init file (which is expensive)
+spl_autoload_register(function ($class) {
+    static $initialized = false;
+
+    $src = __DIR__.'/../vendor/swiftmailer/lib';
+
+    if (0 === strpos($class, 'Swift_') && file_exists($path = $src.'/classes/'.str_replace('_', '/', $class).'.php')) {
+        if (!$initialized) {
+            $initialized = true;
+            require $src.'/swift_init.php';
+        }
+
+        require $path;
+    }
+});

@@ -28,7 +28,7 @@ interface ContainerInterface
 namespace Symfony\Component\DependencyInjection
 {
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
-use Symfony\Component\DependencyInjection\Exception\CircularReferenceException;
+use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
@@ -102,7 +102,7 @@ class Container implements ContainerInterface
             return $this->services[$id];
         }
         if (isset($this->loading[$id])) {
-            throw new CircularReferenceException($id, array_keys($this->loading));
+            throw new ServiceCircularReferenceException($id, array_keys($this->loading));
         }
         if (method_exists($this, $method = 'get'.strtr($id, array('_' => '', '.' => '_')).'Service')) {
             $this->loading[$id] = true;
@@ -1519,14 +1519,12 @@ class Request
     }
     public function getHttpHost()
     {
-        $host   = $this->getHost();
         $scheme = $this->getScheme();
-        $name   = $this->server->get('SERVER_NAME');
         $port   = $this->getPort();
         if (('http' == $scheme && $port == 80) || ('https' == $scheme && $port == 443)) {
-            return $name;
+            return $this->getHost();
         }
-        return $name.':'.$port;
+        return $this->getHost().':'.$port;
     }
     public function getRequestUri()
     {
