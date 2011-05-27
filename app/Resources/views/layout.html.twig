@@ -80,7 +80,7 @@
         <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-1.4.4.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/fluid960gs/js/jquery-fluid16.js') }}"></script>
-        {% render "StfalconTinymceBundle:Script:init" %}
 
+        {{ tinymce_init() }}
     </body>
 </html>

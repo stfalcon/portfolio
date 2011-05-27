@@ -4,8 +4,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="screen" />
-    </head>
+        {% stylesheets 'css/style.css' filter='yui_css' %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+        {% endstylesheets %}    </head>
 
     <body>
         <!--header-->
@@ -145,9 +146,9 @@
         </div>
         <!--/footer-->
 
-        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-1.4.4.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.main.js') }}"></script>
+        {% javascripts filter='yui_js' 'vendor/jquery/jquery-1.4.4.min.js' 'vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js' 'js/jquery.main.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         <!--[if IE 6]>
             <script type="text/javascript" src="{{ asset('js/DD_belatedPNG.js') }}"></script>
         <![endif]-->

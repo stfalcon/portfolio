@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
             new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Knplabs\Bundle\MenuBundle\KnplabsMenuBundle(),

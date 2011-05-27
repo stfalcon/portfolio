@@ -26,6 +26,7 @@ $loader->registerNamespaces(array(
     'Monolog'                        => __DIR__.'/../vendor/monolog/src',
     'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',
     'Stof'                           => __DIR__.'/../vendor/bundles',
+    'Assetic'          => __DIR__.'/../vendor/assetic/src',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_'               => __DIR__.'/../vendor/twig-extensions/lib',
