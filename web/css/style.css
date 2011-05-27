@@ -72,13 +72,13 @@ a:hover {
 /* 2. header ---------------------------*/
 
 #header {
-    background: url(../images/header/back.png) repeat-x;
+    background: url(/images/header/back.png) repeat-x;
     height: 144px;
     position: relative;
 }
 
 #header h1.logo {
-    background: url(../images/header/logo.png) no-repeat;
+    background: url(/images/header/logo.png) no-repeat;
     display: block;
     height: 47px;
     left: 79px;
@@ -89,7 +89,7 @@ a:hover {
 }
 
 #header .langs {
-    background: url(../images/header/lang.png) no-repeat;
+    background: url(/images/header/lang.png) no-repeat;
     color: #686e75;
     font-size: 11px;
     font-style: italic;
@@ -135,7 +135,7 @@ a:hover {
 }
 
 #header .slogan {
-    background: url(../images/header/slogan.png) repeat-x;
+    background: url(/images/header/slogan.png) repeat-x;
     display: inline;
     float: left;
     height: 49px;
@@ -153,7 +153,7 @@ a:hover {
     z-index: 2;
 }
 #header .slogan .slogan-left {
-    background: url(../images/header/slogan-left.png) no-repeat;
+    background: url(/images/header/slogan-left.png) no-repeat;
     height: 73px;
     left: 0;
     position: absolute;
@@ -162,7 +162,7 @@ a:hover {
     z-index: 1;
 }
 #header .slogan .slogan-right {
-    background: url(../images/header/slogan-right.png) no-repeat;
+    background: url(/images/header/slogan-right.png) no-repeat;
     bottom: 0;
     height: 64px;
     position: absolute;
@@ -174,7 +174,7 @@ a:hover {
 /* 3. content style ---------------------------*/
 
 #main .breadcrumbs {
-    background: url(../images/content/nav-lang.png) 0 bottom no-repeat #f0f4f8;
+    background: url(/images/content/nav-lang.png) 0 bottom no-repeat #f0f4f8;
     color: #7c92cf;
     display: block;
     font-size: 11px;
@@ -186,18 +186,18 @@ a:hover {
 }
 
 #main .breadcrumbs li {
-    background: url(../images/content/nav-lang-arr.png) right 9px no-repeat;
+    background: url(/images/content/nav-lang-arr.png) right 9px no-repeat;
     float:left;
     height: 26px;
     line-height: 26px;
     padding-right: 26px;
 }
 #main .breadcrumbs li.current {
-    background: url(../images/content/nav-lang-right.png) right bottom no-repeat #f0f4f8;
+    background: url(/images/content/nav-lang-right.png) right bottom no-repeat #f0f4f8;
     float: none;
 }
 #main .breadcrumbs span {
-    background: url(../images/content/nav-lang-active.png) center bottom no-repeat;
+    background: url(/images/content/nav-lang-active.png) center bottom no-repeat;
     float: left;
     height: 26px;
     padding-right: 2px;
@@ -397,7 +397,7 @@ a img.project-thumb:hover {
     border-color: #f1e1c0;
 }
 #content-index .carousel .btnPrev {
-    background-image: url(../images/content/index-sprite.png);
+    background-image: url(/images/content/index-sprite.png);
     background-position: 0 0px;
     cursor: pointer;
     display: block;
@@ -411,7 +411,7 @@ a img.project-thumb:hover {
     background-position: 0 -50px;
 }
 #content-index .carousel .btnPrevDisabled {
-    background-image: url(../images/content/index-sprite-button.png);
+    background-image: url(/images/content/index-sprite-button.png);
     background-position: 0 0px;
     cursor: default;
     display: block;
@@ -423,7 +423,7 @@ a img.project-thumb:hover {
 /*    display: none;*/
 }
 #content-index .carousel .btnNext {
-    background-image: url(../images/content/index-sprite.png);
+    background-image: url(/images/content/index-sprite.png);
     background-position: 50px 0;
     cursor: pointer;
     display: block;
@@ -434,7 +434,7 @@ a img.project-thumb:hover {
     width: 50px;
 }
 #content-index .carousel .btnNextDisabled {
-    background-image: url(../images/content/index-sprite-button.png);
+    background-image: url(/images/content/index-sprite-button.png);
     background-position: 50px 0;
     cursor: default;
     display: block;
@@ -471,7 +471,7 @@ a img.project-thumb:hover {
     width: 33%;
 }
 #content-index .shared div h3 {
-    background: url(../images/content/shared-title.png) repeat-x;
+    background: url(/images/content/shared-title.png) repeat-x;
     color: #f0f4f8;
     font-weight: normal;
     font-size: 14px;
@@ -487,10 +487,10 @@ a img.project-thumb:hover {
     padding-right: 21px;
 }
 #content-index .shared .feed {
-    background: url(../images/content/index-sprite.png) right -105px no-repeat;
+    background: url(/images/content/index-sprite.png) right -105px no-repeat;
 }
 #content-index .shared .twitter {
-    background: url(../images/content/index-sprite.png) right -129px no-repeat;
+    background: url(/images/content/index-sprite.png) right -129px no-repeat;
 }
 #content-index .shared div ul {
     padding: 17px 46px 0 8px;
@@ -518,7 +518,7 @@ a img.project-thumb:hover {
 
 #content-index .shared .feed-item .comments {
     padding-left: 17px;
-    background: url(../images/content/index-sprite.png) 0 -163px no-repeat;
+    background: url(/images/content/index-sprite.png) 0 -163px no-repeat;
 }
 #content-index .shared .all-posts {
     color: #7ab5f0;
@@ -535,7 +535,7 @@ a img.project-thumb:hover {
     font-size: 12px;
 }
 #sidebar h2 {
-    background: url(../images/content/shared-title.png) repeat-x;
+    background: url(/images/content/shared-title.png) repeat-x;
     color: #F0F4F8;
     font-size: 14px;
     font-weight: normal;
@@ -549,12 +549,12 @@ a img.project-thumb:hover {
 }
 
 #sidebar a.rss {
-    background:url(../images/content/share-twit-sprite.png) -238px -16px no-repeat;
+    background:url(/images/content/share-twit-sprite.png) -238px -16px no-repeat;
     display: block;
     padding: 0 0 20px 16px;
 }
 #sidebar .twitter {
-    background: url(../images/content/share-twit-sprite.png) 0 bottom no-repeat #f0f4f8;
+    background: url(/images/content/share-twit-sprite.png) 0 bottom no-repeat #f0f4f8;
     line-height: 18px;
     margin-bottom: 34px;
     overflow: hidden;
@@ -562,7 +562,7 @@ a img.project-thumb:hover {
     padding: 12px 15px 8px;
 }
 #sidebar .twitter .twitter-top {
-    background: url(../images/content/share-twit-sprite.png) -221px 0 no-repeat;
+    background: url(/images/content/share-twit-sprite.png) -221px 0 no-repeat;
     font-size: 1px;
     height: 3px;
     left: 0;
@@ -612,7 +612,7 @@ a img.project-thumb:hover {
 /* 4. footer style ---------------------------*/
 
 #footer {
-    background: url(../images/footer/inner-back.png) repeat-x;
+    background: url(/images/footer/inner-back.png) repeat-x;
     clear: both;
     color: #7c8187;
     font-size: 12px;
