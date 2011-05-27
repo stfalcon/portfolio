@@ -7,6 +7,7 @@
 /                       doctrine-extensions     http://github.com/l3pp4rd/DoctrineExtensions.git
 /                       imagine                 http://github.com/avalanche123/Imagine.git
 /                       monolog                 http://github.com/Seldaek/monolog.git
+/                       metadata                http://github.com/schmittjoh/metadata.git
 /                       symfony                 http://github.com/symfony/symfony.git
 /                       swiftmailer             http://github.com/swiftmailer/swiftmailer.git
 /                       twig                    http://github.com/fabpot/Twig.git
