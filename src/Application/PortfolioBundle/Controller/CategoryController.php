@@ -108,6 +108,7 @@ class CategoryController extends Controller
         $paginator->setItemCountPerPage(6);
 
         $breadcrumbs = $this->get('menu.breadcrumbs');
+        $breadcrumbs->addChild('Услуги', $this->get('router')->generate('homepage'));
         $breadcrumbs->addChild($category->getName())->setIsCurrent(true);
 
         return $this->render('PortfolioBundle:Category:view.html.twig', array(
