@@ -37,7 +37,7 @@ class DefaultControllerTest extends WebTestCase
     public function testContactPage()
     {
         $client = $this->createClient();
-        $crawler = $client->request('GET', $this->getUrl('portfolioDefaultContacts', array()));
+        $crawler = $client->request('GET', $this->getUrl('contacts', array()));
 
         // check responce
         $this->assertTrue($client->getResponse()->isSuccessful());
