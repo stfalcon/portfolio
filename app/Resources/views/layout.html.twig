@@ -15,6 +15,8 @@
         <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/ie.css') }}" media="screen" />
         <![endif]-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('vendor/markitup/skins/markitup/style.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('vendor/markitup/sets/html/style.css') }}" />
     </head>
     <body>
         <div class="container_12">
@@ -43,10 +45,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ path('blogPostIndex') }}">Posts</a>
+                        <a href="{{ path('blog_post_index') }}">Posts</a>
                         <ul>
                             <li>
-                                <a href="{{ path('blogPostCreate') }}">Create new post</a>
+                                <a href="{{ path('blog_post_create') }}">Create new post</a>
                             </li>
                         </ul>
                     </li>
@@ -80,6 +82,13 @@
         <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-1.4.4.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/fluid960gs/js/jquery-fluid16.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/markitup/jquery.markitup.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/markitup/sets/html/set.js') }}"></script>
+        <script type="text/javascript" >
+           $(document).ready(function() {
+              $("textarea").markItUp(mySettings);
+           });
+        </script>
 
         {{ tinymce_init() }}
     </body>

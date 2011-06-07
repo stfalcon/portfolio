@@ -78,12 +78,11 @@ class ProjectController extends Controller
     public function editAction($slug)
     {
         $project = $this->_findProjectBySlug($slug);
-        
         $form = $this->get('form.factory')->create(new ProjectForm(), $project);
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($this->get('request'));
+            $form->bindRequest($request);
 
             if ($form->isValid()) {
                 // save project
@@ -125,6 +124,7 @@ class ProjectController extends Controller
         }
 
         $breadcrumbs = $this->get('menu.breadcrumbs');
+        $breadcrumbs->addChild('Услуги', $this->get('router')->generate('homepage'));
         $breadcrumbs->addChild(
                 $category->getName(),
                 $this->get('router')->generate('portfolioCategoryView', array('slug' => $category->getSlug())));

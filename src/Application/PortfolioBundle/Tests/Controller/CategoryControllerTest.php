@@ -89,7 +89,16 @@ class CategoryControllerTest extends WebTestCase
         $form['category[description]'] = 'Short text about web design servise.';
         $crawler = $client->submit($form);
 
+        // check redirect to list of categories
+        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioCategoryIndex', array())));
+
         $crawler = $client->followRedirect();
+        
+        // check responce
+        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertFalse($client->getResponse()->isRedirect());
+
         $this->assertEquals(1, $crawler->filter('ul li:contains("Web Design")')->count());
     }
 
