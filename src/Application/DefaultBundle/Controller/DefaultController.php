@@ -88,7 +88,7 @@ class DefaultController extends Controller
      *
      * @return array()
      * @Template()
-     * @Route("/{_locale}/contacts", name="portfolioDefaultContacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
+     * @Route("/{_locale}/contacts", name="contacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
      */
     public function contactsAction()
     {

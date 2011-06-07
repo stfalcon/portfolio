@@ -1,4 +1,4 @@
-/*
+h/*
    CSS reset
    http://meyerweb.com/eric/tools/css/reset/
 */
@@ -335,6 +335,24 @@ a:hover {
 }
 #content .pagination a:hover {
     color: #fa823a;
+}
+#content h3 {
+    color: #969CA3;
+    font-size: 20px;
+    padding-bottom: 16px;
+}
+#content ul.tags {
+    background: url(/images/content/index-sprite.png) 0 -307px no-repeat;
+    clear: both;
+    padding: 0 0 13px 21px;
+    zoom: 1;
+}
+#content ul.tags li {
+    color: #8E9F9F;
+    display: inline;
+    float: none;
+    padding-bottom: 0;
+    width: auto;
 }
 
 #content-index {

@@ -22,8 +22,8 @@ class MainMenu extends Menu
         $this->setCurrentAsLink(false);
 
         $this->addChild('Услуги', $router->generate('homepage'));
-        $this->addChild('Блог', $router->generate('blog_post_index'));
-        $this->addChild('Контакты', $router->generate('portfolioDefaultContacts'));
+        $this->addChild('Блог', $router->generate('blog'));
+        $this->addChild('Контакты', $router->generate('contacts'));
     }
 
 }
