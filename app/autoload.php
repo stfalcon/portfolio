@@ -5,7 +5,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
     'Symfony'                        => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
-    'Application'                    => __DIR__.'/../src',
+//    'Application'                    => __DIR__.'/../src',
 
     'Liip'                           => __DIR__.'/../vendor/bundles',
     'Knplabs'                        => __DIR__.'/../vendor/bundles',
@@ -27,17 +27,20 @@ $loader->registerNamespaces(array(
     'Metadata'                       => __DIR__.'/../vendor/metadata/src',
     'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',
     'Stof'                           => __DIR__.'/../vendor/bundles',
-    'Assetic'          => __DIR__.'/../vendor/assetic/src',
+    'Assetic'                        => __DIR__.'/../vendor/assetic/src',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_'               => __DIR__.'/../vendor/twig-extensions/lib',
     'Twig_'                          => __DIR__.'/../vendor/twig/lib',
     'Zend_'                          => __DIR__.'/../vendor/zf/library',
 ));
-$loader->register();
-//$loader->registerPrefixFallback(array(
+//$loader->registerPrefixFallbacks(array(
 //    __DIR__.'/../vendor/symfony/src/Symfony/Component/Locale/Resources/stubs',
 //));
+$loader->registerNamespaceFallbacks(array(
+    __DIR__.'/../src',
+));
+$loader->register();
 
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(__DIR__.'/../vendor/zf/library'),
@@ -47,17 +50,5 @@ set_include_path(implode(PATH_SEPARATOR, array(
 
 // Swiftmailer needs a special autoloader to allow
 // the lazy loading of the init file (which is expensive)
-spl_autoload_register(function ($class) {
-    static $initialized = false;
-
-    $src = __DIR__.'/../vendor/swiftmailer/lib';
-
-    if (0 === strpos($class, 'Swift_') && file_exists($path = $src.'/classes/'.str_replace('_', '/', $class).'.php')) {
-        if (!$initialized) {
-            $initialized = true;
-            require $src.'/swift_init.php';
-        }
-
-        require $path;
-    }
-});
+require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
+Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');
