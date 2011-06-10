@@ -57,3 +57,7 @@
 .markItUp .preview a {
 	background-image:url(images/preview.png);
 }
+
+.markItUp .mMore a {
+        background-image: url(images/more.png);
+}

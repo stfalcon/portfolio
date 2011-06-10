@@ -18,6 +18,7 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    extensions: ['twig.extension.text']
 
 # Doctrine Configuration
 doctrine:
@@ -123,6 +124,8 @@ sensio_framework_extra:
     request: { converters: false }
     view:    { annotations: true, manager_null_arguments: false }
     cache:   { annotations: true }
+
+stfalcon_blog: ~
 
 #stfalcon_tinymce:
 #    mode: "specific_textareas"
