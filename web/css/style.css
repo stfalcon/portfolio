@@ -223,15 +223,18 @@ a:hover {
     color: #323538;
     font-size: 20px;
     font-weight: bold;
-    padding-bottom: 17px;
+/*    padding-bottom: 17px;*/
 }
 #content img {
     display: block;
     margin: 0 auto;
 }
 #content p {
-    line-height: 18px;
-    padding-bottom: 18px;
+/*    line-height: 18px;
+    padding-bottom: 18px;*/
+    display: block;
+    line-height: 1.5em;
+    margin: 1em 0px;
 }
 
 #content dl.contacts {
@@ -339,11 +342,14 @@ a:hover {
 #content h3 {
     color: #404448;
     font-size: 20px;
-    padding-bottom: 16px;
+/*    padding-bottom: 16px;*/
 }
 /* BlogBundle */
 #content .post {
     padding-bottom: 27px;
+}
+#content pre {
+    margin: 1em 0px;
 }
 /*#content .post h3 {
     font-weight: bold;
