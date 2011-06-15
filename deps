@@ -1,7 +1,7 @@
 /                       assetic                 http://github.com/kriswallsmith/assetic.git
-/                       doctrine                http://github.com/doctrine/doctrine2.git
-/                       doctrine-dbal           http://github.com/doctrine/dbal.git
-/                       doctrine-common         http://github.com/doctrine/common.git
+/                       doctrine                http://github.com/doctrine/doctrine2.git@origin/2.0.x
+/                       doctrine-dbal           http://github.com/doctrine/dbal.git@2.0.5
+/                       doctrine-common         http://github.com/doctrine/common.git@origin/3.0.x
 /                       doctrine-migrations     http://github.com/doctrine/migrations.git
 /                       doctrine-data-fixtures  http://github.com/doctrine/data-fixtures.git
 /                       doctrine-extensions     http://github.com/l3pp4rd/DoctrineExtensions.git
@@ -9,7 +9,7 @@
 /                       monolog                 http://github.com/Seldaek/monolog.git
 /                       metadata                http://github.com/schmittjoh/metadata.git
 /                       symfony                 http://github.com/symfony/symfony.git
-/                       swiftmailer             http://github.com/swiftmailer/swiftmailer.git
+/                       swiftmailer             http://github.com/swiftmailer/swiftmailer.git@origin/4.1
 /                       twig                    http://github.com/fabpot/Twig.git
 /                       twig-extensions         http://github.com/fabpot/Twig-extensions.git
 /                       zf2                     http://github.com/zendframework/zf2.git

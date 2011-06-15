@@ -48,13 +48,13 @@ class ProjectControllerTest extends WebTestCase
             'project[name]' => 'wallpaper.in.ua',
             'project[slug]' => 'wallpaper-in-ua',
             'project[url]'  => 'http://wallpaper.in.ua',
-            'project[image][file]'  => $this->_getTestImagePath(),
+            'project[image]'  => $this->_getTestImagePath(),
             'project[description]'  => 'Free desktop wallpapers gallery.',
         ));
 
         // check redirect to list of categories
-        $this->assertTrue($client->getResponse()->isRedirect());
-        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioProjectIndex', array())));
+//        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('portfolioProjectIndex', array())));
 
         $crawler = $client->followRedirect();
 
@@ -86,8 +86,8 @@ class ProjectControllerTest extends WebTestCase
         $crawler = $client->request('GET', $this->getUrl('portfolioProjectDelete', array('slug' => 'preorder-it')));
 
         // check redirect to list of categories
-        $this->assertTrue($client->getResponse()->isRedirect());
-        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioProjectIndex', array())));
+//        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('portfolioProjectIndex', array())));
 
         $crawler = $client->followRedirect();
 

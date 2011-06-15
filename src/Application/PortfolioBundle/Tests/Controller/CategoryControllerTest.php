@@ -41,8 +41,8 @@ class CategoryControllerTest extends WebTestCase
         $crawler = $client->submit($form);
 
         // check redirect to list of categories
-        $this->assertTrue($client->getResponse()->isRedirect());
-        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioCategoryIndex', array())));
+//        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('portfolioCategoryIndex', array())));
 
         $crawler = $client->followRedirect();
 
@@ -90,8 +90,8 @@ class CategoryControllerTest extends WebTestCase
         $crawler = $client->submit($form);
 
         // check redirect to list of categories
-        $this->assertTrue($client->getResponse()->isRedirect());
-        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioCategoryIndex', array())));
+//        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('portfolioCategoryIndex', array())));
 
         $crawler = $client->followRedirect();
         
@@ -164,8 +164,8 @@ class CategoryControllerTest extends WebTestCase
         $crawler = $client->request('GET', $this->getUrl('portfolioCategoryDelete', array('slug' => 'web-development')));
 
         // check redirect to list of categories
-        $this->assertTrue($client->getResponse()->isRedirect());
-        $this->assertTrue($client->getResponse()->isRedirected($this->getUrl('portfolioCategoryIndex', array())));
+//        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('portfolioCategoryIndex', array())));
 
         $crawler = $client->followRedirect();
 
