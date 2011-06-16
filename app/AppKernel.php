@@ -45,7 +45,6 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new Stfalcon\Bundle\BlogBundle\StfalconBlogBundle(),
 
             new Application\PortfolioBundle\PortfolioBundle(),

@@ -2,14 +2,8 @@ _default:
     resource: "@DefaultBundle/Controller/DefaultController.php"
     type:     annotation
 
-_portfolio_categories:
-    resource: "@PortfolioBundle/Controller/CategoryController.php"
-    type:     annotation
+_portfolio:
+    resource: "@PortfolioBundle/Resources/config/routing.yml"
 
-_portfolio_projects:
-    resource: "@PortfolioBundle/Controller/ProjectController.php"
-    type:     annotation
-
-_blog_posts:
-    resource: "@StfalconBlogBundle/Controller/PostController.php"
-    type:     annotation
+_blog:
+    resource: "@StfalconBlogBundle/Resources/config/routing.yml"

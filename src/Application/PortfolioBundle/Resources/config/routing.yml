@@ -1,0 +1,7 @@
+_portfolio_category:
+    resource: "@PortfolioBundle/Controller/CategoryController.php"
+    type:     annotation
+
+_portfolio_project:
+    resource: "@PortfolioBundle/Controller/ProjectController.php"
+    type:     annotation
