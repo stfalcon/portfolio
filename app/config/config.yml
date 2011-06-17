@@ -123,4 +123,7 @@ sensio_framework_extra:
     view:    { annotations: true, manager_null_arguments: false }
     cache:   { annotations: true }
 
-stfalcon_blog: ~
+stfalcon_blog:
+    rss:
+        title: "Блог веб-студии stfalcon.com"
+        description: "Заметки используемых технологиях, реализованных проектах а также наших трудовых буднях и отдыхе"
