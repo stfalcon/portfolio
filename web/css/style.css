@@ -519,7 +519,7 @@ a img.project-thumb:hover {
     background: #eef3f7;
     padding: 0 0 21px 81px;
     clear: both;
-    float: left;
+/*    float: left;*/
 }
 #content-index .shared:after {
     clear: both;

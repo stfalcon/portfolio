@@ -7,9 +7,6 @@
         {% stylesheets 'css/style.css' filter='yui_css' %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
         {% endstylesheets %}
-{#
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="screen" />
-#}
     </head>
 
     <body>
@@ -60,22 +57,28 @@
         <div id="content-index">
             {% block content %}{% endblock %}
 
-<!--            <div class="shared">
+            <div class="shared">
                 <div>
-                    <h3><span class="feed">Записи в блог</span></h3>
+                    <h3><span   >Это интересно</span></h3>
                     <ul>
-                        <?php foreach ($feed as $item): ?>
+                        {% for item in feed %}
+                            {% if loop.index <= 7 %}
                             <li class="feed-item">
-                                <a href="<?php echo $item->{'feedburner:origLink'}; ?>"><?php echo $item->title(); ?></a>
-                                <span class="comments"><a href="<?php echo $item->{'comments'}[0]; ?>"><?php echo $item->{'comments'}[1]; ?></a></span>
+                                <a href="{{ item.link }}" rel="nofollow">
+                                    {{ item.title }}
+                                </a>
+                                {#<span class="comments"><a href="<?php echo $item->{'comments'}[0]; ?>"><?php echo $item->{'comments'}[1]; ?></a></span>#}
                             </li>
-                        <?php endforeach; ?>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
-                    <a href="http://blog.stfalcon.com" class="all-posts">все записи</a>
+                    <a href="http://www.google.com/reader/shared/stepan.tanasiychuk" class="all-posts" rel="nofollow">
+                        все записи
+                    </a>
                 </div>
 
                 <div>
-                    <h3><span class="feed">Статьи</span></h3>
+                    <h3><span class="feed">Наши заметки</span></h3>
                     <ul>
                         <li>
                             <a href="#">Статистика по IE на wallpaper.in.ua за останній рік</a>
@@ -104,17 +107,17 @@
 
                 <div>
                     <h3><span class="twitter">Twitter</span></h3>
-                    <?php echo $view['actions']->render('PortfolioBundle:Default:twitter', array('count' => 7)); ?>
+                    {% render "DefaultBundle:Default:twitter" with { 'count': 7 } %}
                 </div>
-            </div>-->
+            </div>
              
 
         </div>
         <!--/index content-->
 
         <!--footer-->
-<!--        <div id="footer" style="background: none;">-->
-        <div id="footer" style="border-top: 34px solid white;">
+        <div id="footer" style="background: none;">
+<!--        <div id="footer" style="border-top: 34px solid white;">-->
             <div class="contacts">
                 <span>
                     {% trans %}Позвонить{% endtrans %}:

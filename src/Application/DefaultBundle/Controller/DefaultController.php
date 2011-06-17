@@ -26,21 +26,10 @@ class DefaultController extends Controller
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
-//        $cache = $this->get('zend.cache_manager')->getCache('slow_cache');
-//        if (false === ($feed = $cache->load('dc_feed'))) {
-//            $feed = \Zend_Feed::import('http://feeds.feedburner.com/stfalcon');
-//            $cache->save($feed, 'dc_feed');
-//        }
-//
-//        $response = new Response();
-//        $response->setMaxAge(600);
-//        $response->setPublic();
-//        $response->setSharedMaxAge(600);
-//        
-//        return $this->render('DefaultBundle:Default:index.html.twig',
-//                array('categories' => $categories, /*'feed' => $feed*/), $response);
-
-        return array('categories' => $categories);
+        \Zend\Feed\Reader\Reader::setCache($this->get('zend.cache_manager')->getCache('slow_cache'));
+        $feed = \Zend\Feed\Reader\Reader::import('http://www.google.com/reader/public/atom/user%2F14849984795491019190%2Fstate%2Fcom.google%2Fbroadcast');
+        
+        return array('categories' => $categories, 'feed' => $feed);
     }
 
     /**
@@ -56,29 +45,29 @@ class DefaultController extends Controller
             'time' => (string) \time()
         );
 
-//        $cache = $this->get('zend.cache_manager')->getCache('slow_cache');
-//        if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
-//            try {
-//                $twitter = new \Zend_Service_Twitter();
-//
-//                // @todo: add try/catch
-//                $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
-//                $statuses = array();
-//                foreach ($result->status as $status) {
-//                    $statuses[] = (object) array(
-//                        'text' => (string) $status->text,
-//                        'time' => (string) $status->created_at
-//                    );
-//                }
-//                $cache->save($statuses, 'dc_twitter_' . $count);
-//            } catch (\Zend_Http_Client_Adapter_Exception $e) {
-//                $statuses = array();
-//                $statuses[] = (object) array(
-//                    'text' => (string) 'Unable to Connect to tcp://api.twitter.com:80',
-//                    'time' => (string) \time()
-//                );
-//            }
-//        }
+        $cache = $this->get('zend.cache_manager')->getCache('slow_cache');
+        if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
+            try {
+                $twitter = new \Zend_Service_Twitter();
+
+                // @todo: add try/catch
+                $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
+                $statuses = array();
+                foreach ($result->status as $status) {
+                    $statuses[] = (object) array(
+                        'text' => (string) $status->text,
+                        'time' => (string) $status->created_at
+                    );
+                }
+                $cache->save($statuses, 'dc_twitter_' . $count);
+            } catch (\Zend_Http_Client_Adapter_Exception $e) {
+                $statuses = array();
+                $statuses[] = (object) array(
+                    'text' => (string) 'Unable to Connect to tcp://api.twitter.com:80',
+                    'time' => (string) \time()
+                );
+            }
+        }
 
         return array('statuses' => $statuses);
     }

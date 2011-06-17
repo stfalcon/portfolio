@@ -98,6 +98,9 @@ if ('update' === $command) {
 $interpreter = PHP_OS == 'WINNT' ? 'php.exe' : '';
 
 // Update the bootstrap files
+system(sprintf('svn co http://framework.zend.com/svn/framework/standard/tags/release-1.11.7/library/ %s', escapeshellarg($vendorDir.'/zf/library')));
+
+// Update the bootstrap files
 system(sprintf('%s %s', $interpreter, escapeshellarg($rootDir.'/bin/build_bootstrap')));
 
 // Update assets
