@@ -10,10 +10,8 @@
 
 2. В консоли идем в папку с проектом.
 
-3. Запускаем `bin/vendors.php`. Этот скрипт автоматически загрузит все необходимые дополнительные библиотеки в папку vendor проекта (вместе с zf2).
+3. Запускаем `./bin/vendors install`. Этот скрипт автоматически загрузит все необходимые дополнительные библиотеки в папку vendor проекта (вместе с zf2).
 
-4. Запускаем `bin/build_bootstrap.php`
+4. В файлах `app/config/config.yml` и `app/config/config_dev.yml` меняем параметры коннекта к БД на свои:
 
-5. В файлах `app/config/config.yml` и `app/config/config_dev.yml` меняем параметры коннекта к БД на свои:
-
-6. В консоли набираем `app/console doctrine:database:create` и `app/console doctrine:migration:migrate`
+5. В консоли набираем `./console doctrine:database:create` и `./console doctrine:migration:migrate` эти команды создают БД и накатывают на неё существующие миграции.
