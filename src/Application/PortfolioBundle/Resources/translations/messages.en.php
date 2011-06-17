@@ -5,4 +5,7 @@ return array(
     'Услуги'  => 'Services',
     
     'Портфолио'  => 'Portfolio',
+    
+    'Следующий проект'  => 'Next project',
+    'Предыдущий проект'  => 'Previous project',
 );
