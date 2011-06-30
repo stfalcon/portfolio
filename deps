@@ -3,15 +3,12 @@
 
 [doctrine]
     git=http://github.com/doctrine/doctrine2.git
-    version=origin/2.0.x
 
 [doctrine-common]
     git=http://github.com/doctrine/common.git
-    version=origin/3.0.x
 
 [doctrine-dbal]
     git=http://github.com/doctrine/dbal.git
-    version=origin/2.0.5
 
 [doctrine-migrations]
     git=http://github.com/doctrine/migrations.git
@@ -33,10 +30,11 @@
 
 [swiftmailer]
     git=http://github.com/swiftmailer/swiftmailer.git
-    version=origin/4.1
+    version=v4.1.0
 
 [twig]
     git=http://github.com/fabpot/Twig.git
+    version=v1.1.0
 
 [twig-extensions]
     git=http://github.com/fabpot/Twig-extensions.git
@@ -83,6 +81,10 @@
 [SensioFrameworkExtraBundle]
     git=http://github.com/sensio/SensioFrameworkExtraBundle.git
     target=/bundles/Sensio/Bundle/FrameworkExtraBundle
+
+[SensioGeneratorBundle]
+    git=http://github.com/sensio/SensioGeneratorBundle.git
+    target=/bundles/Sensio/Bundle/GeneratorBundle
 
 [ZendCacheBundle]
     git=http://github.com/knplabs/ZendCacheBundle.git

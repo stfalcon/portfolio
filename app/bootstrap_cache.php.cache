@@ -90,10 +90,13 @@ use Symfony\Component\HttpKernel\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\MergeExtensionConfigurationPass;
 use Symfony\Component\HttpKernel\DependencyInjection\AddClassesToCachePass;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension as DIExtension;
+use Symfony\Component\HttpKernel\Debug\ErrorHandler;
+use Symfony\Component\HttpKernel\Debug\ExceptionHandler;
 use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\ClassLoader\ClassCollectionLoader;
+use Symfony\Component\ClassLoader\DebugUniversalClassLoader;
 
 
 abstract class Kernel implements KernelInterface
@@ -109,7 +112,7 @@ abstract class Kernel implements KernelInterface
     protected $startTime;
     protected $classes;
 
-    const VERSION = '2.0.0-RC1-DEV';
+    const VERSION = '2.0.0-RC4-DEV';
 
     
     public function __construct($environment, $debug)
@@ -128,6 +131,22 @@ abstract class Kernel implements KernelInterface
         $this->init();
     }
 
+    public function init()
+    {
+        if ($this->debug) {
+            ini_set('display_errors', 1);
+            error_reporting(-1);
+
+            DebugUniversalClassLoader::enable();
+            ErrorHandler::register();
+            if ('cli' !== php_sapi_name()) {
+                ExceptionHandler::register();
+            }
+        } else {
+            ini_set('display_errors', 0);
+        }
+    }
+
     public function __clone()
     {
         if ($this->debug) {
@@ -136,10 +155,6 @@ abstract class Kernel implements KernelInterface
 
         $this->booted = false;
         $this->container = null;
-    }
-
-    public function init()
-    {
     }
 
     
@@ -796,7 +811,7 @@ class HttpCache implements HttpKernelInterface
     {
         $subRequest = clone $request;
 
-                $subRequest->setMethod('get');
+                $subRequest->setMethod('GET');
 
                 $subRequest->headers->set('if_modified_since', $entry->headers->get('Last-Modified'));
 
@@ -842,7 +857,7 @@ class HttpCache implements HttpKernelInterface
     {
         $subRequest = clone $request;
 
-                $subRequest->setMethod('get');
+                $subRequest->setMethod('GET');
 
                 $subRequest->headers->remove('if_modified_since');
         $subRequest->headers->remove('if_none_match');
@@ -967,7 +982,7 @@ class HttpCache implements HttpKernelInterface
     
     private function restoreResponseBody(Request $request, Response $response)
     {
-        if ('head' === strtolower($request->getMethod())) {
+        if ('HEAD' === $request->getMethod() || 304 === $response->getStatusCode()) {
             $response->setContent('');
             $response->headers->remove('X-Body-Eval');
             $response->headers->remove('X-Body-File');
@@ -2134,6 +2149,7 @@ class Request
             'SCRIPT_NAME'          => '',
             'SCRIPT_FILENAME'      => '',
             'SERVER_PROTOCOL'      => 'HTTP/1.1',
+            'REQUEST_TIME'         => time(),
         );
 
         $components = parse_url($uri);
@@ -2175,7 +2191,7 @@ class Request
             $query = array_replace($qs, $query);
         }
 
-        $uri = $components['path'] . ($queryString ? '?'.$queryString : '');
+        $uri = $components['path'].($queryString ? '?'.$queryString : '');
 
         $server = array_replace($defaults, $server, array(
             'REQUEST_METHOD'       => strtoupper($method),
@@ -3080,7 +3096,11 @@ class Response
     
     public function setContent($content)
     {
-        $this->content = $content;
+        if (null !== $content && !is_string($content) && !is_numeric($content) && !is_callable(array($content, '__toString'))) {
+            throw new \UnexpectedValueException('The Response content must be a string or object implementing __toString(), "'.gettype($content).'" given.');
+        }
+
+        $this->content = (string) $content;
     }
 
     
