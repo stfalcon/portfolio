@@ -51,7 +51,7 @@ class DefaultController extends Controller
                 $twitter = new \Zend_Service_Twitter();
 
                 // @todo: add try/catch
-                $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count));
+                $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count, 'include_rts' => true));
                 $statuses = array();
                 foreach ($result->status as $status) {
                     $statuses[] = (object) array(
