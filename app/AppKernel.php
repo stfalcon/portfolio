@@ -39,9 +39,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
-            new Knplabs\Bundle\MenuBundle\KnplabsMenuBundle(),
-            new Knplabs\Bundle\PaginatorBundle\KnplabsPaginatorBundle(),
-            new Bundle\ZendCacheBundle\ZendCacheBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\ZendCacheBundle\KnpZendCacheBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 

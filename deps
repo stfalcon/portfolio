@@ -63,24 +63,20 @@
     target=/bundles/Symfony/Bundle/DoctrineMigrationsBundle
 
 [DoctrineExtensionsBundle]
-    git=http://github.com/stof/DoctrineExtensionsBundle.git
-    target=/bundles/Stof/DoctrineExtensionsBundle
-
-[DoctrineExtensionsBundle]
-    git=http://github.com/stof/DoctrineExtensionsBundle.git
+    git=http://github.com/stof/StofDoctrineExtensionsBundle.git
     target=/bundles/Stof/DoctrineExtensionsBundle
 
 [FunctionalTestBundle]
-    git=http://github.com/liip/FunctionalTestBundle.git
+    git=http://github.com/liip/LiipFunctionalTestBundle.git
     target=/bundles/Liip/FunctionalTestBundle
 
 [MenuBundle]
-    git=http://github.com/knplabs/MenuBundle.git
-    target=/bundles/Knplabs/Bundle/MenuBundle
+    git=http://github.com/knplabs/KnpMenuBundle.git
+    target=/bundles/Knp/Bundle/MenuBundle
 
 [PaginatorBundle]
-    git=http://github.com/knplabs/PaginatorBundle.git
-    target=/bundles/Knplabs/Bundle/PaginatorBundle
+    git=http://github.com/knplabs/KnpPaginatorBundle.git
+    target=/bundles/Knp/Bundle/PaginatorBundle
 
 [SensioDistributionBundle]
     git=http://github.com/sensio/SensioDistributionBundle.git
@@ -95,5 +91,5 @@
     target=/bundles/Sensio/Bundle/GeneratorBundle
 
 [ZendCacheBundle]
-    git=http://github.com/knplabs/ZendCacheBundle.git
-    target=/bundles/Bundle/ZendCacheBundle
+    git=http://github.com/knplabs/KnpZendCacheBundle.git
+    target=/bundles/Knp/Bundle/ZendCacheBundle

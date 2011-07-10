@@ -303,47 +303,13 @@ class Container implements ContainerInterface
     
     static public function camelize($id)
     {
-        return preg_replace(array('/(?:^|_)+(.)/e', '/\.(.)/e'), array("strtoupper('\\1')", "'_'.strtoupper('\\1')"), $id);
+        return preg_replace_callback('/(^|_|\.)+(.)/', function ($match) { return ('.' === $match[1] ? '_' : '').strtoupper($match[2]); }, $id);
     }
 
     
     static public function underscore($id)
     {
         return strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'), array('\\1_\\2', '\\1_\\2'), strtr($id, '_', '.')));
-    }
-}
-}
- 
-
-
-
-namespace Symfony\Component\DependencyInjection
-{
-
-
-interface ContainerAwareInterface
-{
-    
-    function setContainer(ContainerInterface $container = null);
-}
-}
- 
-
-
-
-namespace Symfony\Component\DependencyInjection
-{
-
-
-class ContainerAware implements ContainerAwareInterface
-{
-    
-    protected $container;
-
-    
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
     }
 }
 }
@@ -846,7 +812,7 @@ abstract class Kernel implements KernelInterface
     protected $startTime;
     protected $classes;
 
-    const VERSION = '2.0.0-RC4-DEV';
+    const VERSION = '2.0.0-RC5-DEV';
 
     
     public function __construct($environment, $debug)
@@ -1625,7 +1591,7 @@ class HeaderBag
         }
 
         $beautifier = function ($name) {
-            return preg_replace('/\-(.)/e', "'-'.strtoupper('\\1')", ucfirst($name));
+            return preg_replace_callback('/\-(.)/', function ($match) { return '-'.strtoupper($match[1]); }, ucfirst($name));
         };
 
         $max = max(array_map('strlen', array_keys($this->headers))) + 1;
@@ -1845,6 +1811,8 @@ use Symfony\Component\HttpFoundation\SessionStorage\NativeSessionStorage;
 
 class Request
 {
+    static protected $trustProxy = false;
+
     
     public $attributes;
 
@@ -2071,6 +2039,12 @@ class Request
     }
 
     
+    static public function trustProxyData()
+    {
+        self::$trustProxy = true;
+    }
+
+    
     public function get($key, $default = null, $deep = false)
     {
         return $this->query->get($key, $this->attributes->get($key, $this->request->get($key, $default, $deep), $deep), $deep);
@@ -2106,7 +2080,7 @@ class Request
         if ($proxy) {
             if ($this->server->has('HTTP_CLIENT_IP')) {
                 return $this->server->get('HTTP_CLIENT_IP');
-            } elseif ($this->server->has('HTTP_X_FORWARDED_FOR')) {
+            } elseif (self::$trustProxy && $this->server->has('HTTP_X_FORWARDED_FOR')) {
                 return $this->server->get('HTTP_X_FORWARDED_FOR');
             }
         }
@@ -2233,16 +2207,16 @@ class Request
         return (
             (strtolower($this->server->get('HTTPS')) == 'on' || $this->server->get('HTTPS') == 1)
             ||
-            (strtolower($this->headers->get('SSL_HTTPS')) == 'on' || $this->headers->get('SSL_HTTPS') == 1)
+            (self::$trustProxy && strtolower($this->headers->get('SSL_HTTPS')) == 'on' || $this->headers->get('SSL_HTTPS') == 1)
             ||
-            (strtolower($this->headers->get('X_FORWARDED_PROTO')) == 'https')
+            (self::$trustProxy && strtolower($this->headers->get('X_FORWARDED_PROTO')) == 'https')
         );
     }
 
     
     public function getHost()
     {
-        if ($host = $this->headers->get('X_FORWARDED_HOST')) {
+        if (self::$trustProxy && $host = $this->headers->get('X_FORWARDED_HOST')) {
             $elements = explode(',', $host);
 
             $host = trim($elements[count($elements) - 1]);

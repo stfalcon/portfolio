@@ -9,7 +9,7 @@ $loader->registerNamespaces(array(
 //    'Application'                    => __DIR__.'/../src',
 
     'Liip'                           => __DIR__.'/../vendor/bundles',
-    'Knplabs'                        => __DIR__.'/../vendor/bundles',
+    'Knp'                            => __DIR__.'/../vendor/bundles',
     'Sensio'                         => __DIR__.'/../vendor/bundles',
     'Stfalcon'                       => array(__DIR__.'/../vendor/bundles', __DIR__.'/../src'),
 
