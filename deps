@@ -3,12 +3,15 @@
 
 [doctrine]
     git=http://github.com/doctrine/doctrine2.git
+    version=2.1.0
 
 [doctrine-common]
     git=http://github.com/doctrine/common.git
+    version=2.1.0
 
 [doctrine-dbal]
     git=http://github.com/doctrine/dbal.git
+    version=2.1.0
 
 [doctrine-migrations]
     git=http://github.com/doctrine/migrations.git
@@ -27,6 +30,7 @@
 
 [monolog]
     git=http://github.com/Seldaek/monolog.git
+    version=1.0.0
 
 [swiftmailer]
     git=http://github.com/swiftmailer/swiftmailer.git
@@ -77,6 +81,10 @@
 [PaginatorBundle]
     git=http://github.com/knplabs/PaginatorBundle.git
     target=/bundles/Knplabs/Bundle/PaginatorBundle
+
+[SensioDistributionBundle]
+    git=http://github.com/sensio/SensioDistributionBundle.git
+        target=/bundles/Sensio/Bundle/DistributionBundle
 
 [SensioFrameworkExtraBundle]
     git=http://github.com/sensio/SensioFrameworkExtraBundle.git

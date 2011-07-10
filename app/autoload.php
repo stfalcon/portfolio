@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
@@ -34,17 +35,27 @@ $loader->registerPrefixes(array(
     'Twig_'                          => __DIR__.'/../vendor/twig/lib',
     'Zend_'                          => __DIR__.'/../vendor/zf/library',
 ));
-//$loader->registerPrefixFallbacks(array(
-//    __DIR__.'/../vendor/symfony/src/Symfony/Component/Locale/Resources/stubs',
-//));
+
+// intl
+if (!function_exists('intl_get_error_code')) {
+    require_once __DIR__.'/../vendor/symfony/src/Symfony/Component/Locale/Resources/stubs/functions.php';
+
+    $loader->registerPrefixFallbacks(array(__DIR__.'/../vendor/symfony/src/Symfony/Component/Locale/Resources/stubs'));
+}
+
 $loader->registerNamespaceFallbacks(array(
     __DIR__.'/../src',
 ));
 $loader->register();
 
+AnnotationRegistry::registerLoader(function($class) use ($loader) {
+    $loader->loadClass($class);
+    return class_exists($class, false);
+});
+AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
+
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(__DIR__.'/../vendor/zf/library'),
-//    realpath(__DIR__.'/../vendor/zf2/library'),
     get_include_path(),
 )));
 
