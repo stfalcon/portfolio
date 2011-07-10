@@ -36,6 +36,7 @@ class DefaultController extends Controller
     /**
      * Show last twitts
      *
+     * @param int $count
      * @return array()
      * @Template()
      */

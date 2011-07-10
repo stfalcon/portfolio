@@ -79,30 +79,8 @@
 
                 <div>
                     <h3><span class="feed">Наши заметки</span></h3>
-                    <ul>
-                        <li>
-                            <a href="#">Статистика по IE на wallpaper.in.ua за останній рік</a>
-                            <strong>Танасийчук С., 7 марта 2010</strong>
-                        </li>
-                        <li>
-                            <a href="#">Clean .svn folders</a>
-                            <strong>Танасийчук С., 7 марта 2010</strong>
-                        </li>
-                        <li>
-                            <a href="#">Конференція присвячена Zend Framework ZFConf 2010</a>
-                            <strong>Танасийчук С., 7 марта 2010</strong>
-                        </li>
-                        <li>
-                            <a href="#">Тюнер для гітари WST-523</a>
-                            <strong>Танасийчук С., 7 марта 2010</strong>
-                        </li>
-                        <li>
-                            <a href="#">Джоэл. И снова о программировании</a>
-                            <strong>Танасийчук С., 7 марта 2010</strong>
-                        </li>
-                    </ul>
-
-                    <a href="#" class="all-posts">все статьи</a>
+                    {% render "StfalconBlogBundle:Post:last" with { 'count': 7 } %}
+                    <a href="{{ path('blog') }}" class="all-posts">все статьи</a>
                 </div>
 
                 <div>
