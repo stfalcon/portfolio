@@ -24,5 +24,10 @@ class CategoryForm extends AbstractType
             'data_class' => 'Application\PortfolioBundle\Entity\Category',
         );
     }
+    
+    public function getName()
+    {
+        return 'category';
+    }    
 
 }

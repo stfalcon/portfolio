@@ -16,7 +16,6 @@ class MainMenu extends Menu
     public function __construct(Request $request, Router $router)
     {
         parent::__construct();
-//        parent::__construct(array(), 'Application\PortfolioBundle\Menu\MainMenuItem');
 
         $this->setCurrentUri($request->getRequestUri());
         $this->setCurrentAsLink(false);

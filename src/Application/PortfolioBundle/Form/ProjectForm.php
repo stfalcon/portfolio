@@ -30,4 +30,9 @@ class ProjectForm extends AbstractType
             'data_class' => 'Application\PortfolioBundle\Entity\Project',
         );
     }
+    
+    public function getName()
+    {
+        return 'project';
+    }    
 }

@@ -91,7 +91,7 @@ security:
 
 
 # MenuBundle enable template helpers
-knplabs_menu:
+knp_menu:
     templating: true
     twig: true
 # MenuBundle settings
@@ -99,11 +99,11 @@ imports:
     - { resource: "@DefaultBundle/Resources/config/menu/menu.xml" }
     - { resource: "@DefaultBundle/Resources/config/menu/breadcrumbs.xml" }
 
-knplabs_paginator:
+knp_paginator:
     templating: ~ # enables view helper and twig
 
 # ZendCacheBundle
-zend_cache:
+knp_zend_cache:
     templates:
         slow_cache:
             frontend:

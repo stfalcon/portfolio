@@ -26,7 +26,7 @@ class DefaultController extends Controller
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("PortfolioBundle:Category")->getAllCategories();
 
-        \Zend\Feed\Reader\Reader::setCache($this->get('zend.cache_manager')->getCache('slow_cache'));
+        \Zend\Feed\Reader\Reader::setCache($this->get('knp_zend_cache.manager')->getCache('slow_cache'));
         $feed = \Zend\Feed\Reader\Reader::import('http://www.google.com/reader/public/atom/user%2F14849984795491019190%2Fstate%2Fcom.google%2Fbroadcast');
         
         return array('categories' => $categories, 'feed' => $feed);
@@ -45,7 +45,7 @@ class DefaultController extends Controller
             'time' => (string) \time()
         );
 
-        $cache = $this->get('zend.cache_manager')->getCache('slow_cache');
+        $cache = $this->get('knp_zend_cache.manager')->getCache('slow_cache');
         if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
             try {
                 $twitter = new \Zend_Service_Twitter();
