@@ -17,7 +17,7 @@
                 </h1>
             </a>
 
-            <div class="langs">
+            {#<div class="langs">
                 <ul>
                     <li>
                         {% if app.request.get('_locale') == 'ru' %}
@@ -34,7 +34,7 @@
                         {% endif %}
                     </li>
                 </ul>
-            </div>
+            </div>#}
 
             <div class="menu">
                 {{ knp_menu('main') }}

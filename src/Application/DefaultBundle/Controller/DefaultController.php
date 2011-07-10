@@ -18,9 +18,10 @@ class DefaultController extends Controller
      *
      * @return array()
      * @Cache(expires="tomorrow")
-     * @Route("/{_locale}", name="homepage", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
+     * @Route("/", name="homepage")
      * @Template()
      */
+//     * @Route("/{_locale}", name="homepage", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
     public function indexAction()
     {
         $categories = $this->get('doctrine')->getEntityManager()
@@ -77,8 +78,9 @@ class DefaultController extends Controller
      *
      * @return array()
      * @Template()
-     * @Route("/{_locale}/contacts", name="contacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
+     * @Route("/contacts", name="contacts")
      */
+//     * @Route("/{_locale}/contacts", name="contacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
     public function contactsAction()
     {
         // @todo: refact

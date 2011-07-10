@@ -105,10 +105,11 @@ class ProjectController extends Controller
      * @param string $categorySlug
      * @param string $projectSlug
      * @return array
-     * @Route("/{_locale}/portfolio/{categorySlug}/{projectSlug}", name="portfolioCategoryProjectView",
-     *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
+     * @Route("/portfolio/{categorySlug}/{projectSlug}", name="portfolioCategoryProjectView")
      * @Template()
      */
+//     * @Route("/{_locale}/portfolio/{categorySlug}/{projectSlug}", name="portfolioCategoryProjectView",
+//     *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
     public function viewAction($categorySlug, $projectSlug)
     {
         // try find project by slug

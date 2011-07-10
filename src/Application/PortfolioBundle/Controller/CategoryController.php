@@ -95,10 +95,11 @@ class CategoryController extends Controller
      * View category
      *
      * @param string $slug
-     * @Route("/{_locale}/portfolio/{slug}", name="portfolioCategoryView",
-     *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
+     * @Route("/portfolio/{slug}", name="portfolioCategoryView")
      * @Template()
      */
+//     * @Route("/{_locale}/portfolio/{slug}", name="portfolioCategoryView",
+//     *      defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
     public function viewAction($slug)
     {
         $category = $this->_findCategoryBySlug($slug);
