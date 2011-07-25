@@ -1,7 +1,4 @@
 /app/cache
 /app/logs
 /web/bundles
-/src/Application/PortfolioBundle/Resources/public/uploads/projects
-/nbproject
-.idea
 /vendor
