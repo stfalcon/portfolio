@@ -120,7 +120,7 @@ knp_zend_cache:
 sensio_framework_extra:
     router:  { annotations: true }
     request: { converters: false }
-    view:    { annotations: true, manager_null_arguments: false }
+    view:    { annotations: true }
     cache:   { annotations: true }
 
 stfalcon_blog:

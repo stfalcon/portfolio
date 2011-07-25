@@ -188,7 +188,7 @@ class Project
         $filename = uniqid() . '.png';
         $imagine = new Imagine\Gd\Imagine();
         $imagePath = $imagine->open($imagePath);
-        $imagePath->thumbnail(new Imagine\Image\Box(240, $imagePath->getSize()->getHeight()), Imagine\ImageInterface::THUMBNAIL_INSET)
+        $imagePath->thumbnail(new Imagine\Image\Box(240, $imagePath->getSize()->getHeight()), Imagine\Image\ImageInterface::THUMBNAIL_INSET)
                 ->crop(new Imagine\Image\Point(0, 0), new Imagine\Image\Box(240, 198))
                 ->save($this->getPathToUploads() . '/' . $filename);
 
