@@ -1,17 +1,48 @@
-Движок портфолио web-студии stfalcon.com
+It's engine for portfolio of web-studio stfalcon.com
 ========================================
 
-Установка
----------
+1) Download
+--------------------------------
 
-Очередность действий такая:
+### Clone the git Repository
 
-1. Копируем проект с репозитория.
+	$ git clone git://github.com/stfalcon/portfolio.git .
 
-2. В консоли идем в папку с проектом.
+2) Installation
+---------------
 
-3. Запускаем `./bin/vendors install`. Этот скрипт автоматически загрузит все необходимые дополнительные библиотеки в папку vendor проекта (вместе с zf2).
+### a) Check your System Configuration
 
-4. В файлах `app/config/config.yml` и `app/config/config_dev.yml` меняем параметры коннекта к БД на свои:
+Before you begin, make sure that your local system is properly configured
+for Symfony2. To do this, execute the following:
 
-5. В консоли набираем `./console doctrine:database:create` и `./console doctrine:migration:migrate` эти команды создают БД и накатывают на неё существующие миграции.
+	$ ./app/check.php 
+
+If you get any warnings or recommendations, fix these now before moving on.
+
+### b) Initialize and update Submodules
+
+	$ git submodule init
+	$ git submodule update
+
+### c) Install the Vendor Libraries
+
+    $ ./bin/vendors install
+
+Note that you **must** have git installed and be able to execute the `git`
+command to execute this script.
+
+### d) Change DBAL settings, create DB, update it and load fixtures
+
+Change DBAL setting in `app/config/config.yml`, `app/config/config_dev.yml` or 
+`app/config/config_test.yml`. After that execute the following:
+
+    $ ./console doctrine:database:create
+    $ ./console doctrine:migrations:migrate
+    $ ./console doctrine:fixtures:load
+
+You can set environment `test` for command if you add `--env=test` to it.
+
+### e) Install Assets
+
+    ./app/console assets:install web --symlink
