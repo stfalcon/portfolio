@@ -2,7 +2,7 @@
 
 namespace Application\DefaultBundle\Controller;
 
-use Application\PortfolioBundle\Entity\Category;
+use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpFoundation\Response;

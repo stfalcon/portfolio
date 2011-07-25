@@ -10,8 +10,8 @@ class DefaultControllerTest extends WebTestCase
     public function testHomePage()
     {
         $this->loadFixtures(array(
-                    'Application\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
-                    'Application\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
+                    'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
+                    'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
                 ));
 
         $client = $this->createClient();

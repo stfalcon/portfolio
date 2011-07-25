@@ -1,3 +1,6 @@
 [submodule "src/Stfalcon/Bundle/BlogBundle"]
 	path = src/Stfalcon/Bundle/BlogBundle
 	url = git://github.com/stfalcon/BlogBundle.git
+[submodule "src/Stfalcon/Bundle/PortfolioBundle"]
+	path = src/Stfalcon/Bundle/PortfolioBundle
+	url = git://github.com/stfalcon-studio/PortfolioBundle.git

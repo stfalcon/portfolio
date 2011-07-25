@@ -46,8 +46,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new Stfalcon\Bundle\BlogBundle\StfalconBlogBundle(),
+            new Stfalcon\Bundle\PortfolioBundle\PortfolioBundle(),
 
-            new Application\PortfolioBundle\PortfolioBundle(),
             new Application\DefaultBundle\DefaultBundle(),
         );
 
