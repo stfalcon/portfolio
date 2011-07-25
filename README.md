@@ -45,4 +45,4 @@ You can set environment `test` for command if you add `--env=test` to it.
 
 ### e) Install Assets
 
-    ./app/console assets:install web --symlink
+    $ ./console assets:install web
