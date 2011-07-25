@@ -3,4 +3,4 @@
 	url = git://github.com/stfalcon/BlogBundle.git
 [submodule "src/Stfalcon/Bundle/PortfolioBundle"]
 	path = src/Stfalcon/Bundle/PortfolioBundle
-	url = git://github.com/stfalcon-studio/PortfolioBundle.git
+	url = git://github.com/stfalcon/PortfolioBundle.git
