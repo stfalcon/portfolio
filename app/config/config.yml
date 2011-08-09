@@ -33,7 +33,7 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    PortfolioBundle: ~
+                    StfalconPortfolioBundle: ~
                     StfalconBlogBundle: ~
 
 

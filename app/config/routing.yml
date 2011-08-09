@@ -3,7 +3,7 @@ _default:
     type:     annotation
 
 _portfolio:
-    resource: "@PortfolioBundle/Resources/config/routing.yml"
+    resource: "@StfalconPortfolioBundle/Resources/config/routing.yml"
 
 _blog:
     resource: "@StfalconBlogBundle/Resources/config/routing.yml"

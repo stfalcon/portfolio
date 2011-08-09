@@ -2,3 +2,4 @@
 /app/logs
 /web/bundles
 /vendor
+/.rsync_cache

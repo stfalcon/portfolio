@@ -72,9 +72,9 @@
 
                 {% if category is defined %}
                     {% if project is defined %}
-                        {% render "PortfolioBundle:Category:services" with { 'category': category, 'project': project } %}
+                        {% render "StfalconPortfolioBundle:Category:services" with { 'category': category, 'project': project } %}
                     {% else %}
-                        {% render "PortfolioBundle:Category:services" with { 'category': category } %}
+                        {% render "StfalconPortfolioBundle:Category:services" with { 'category': category } %}
                     {% endif %}
                 {% endif %}
 
