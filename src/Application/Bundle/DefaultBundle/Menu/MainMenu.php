@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\DefaultBundle\Menu;
+namespace Application\Bundle\DefaultBundle\Menu;
 
 use Knp\Bundle\MenuBundle\Menu;
 use Symfony\Component\HttpFoundation\Request;

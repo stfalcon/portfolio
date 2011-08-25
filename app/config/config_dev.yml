@@ -5,15 +5,6 @@ framework:
     router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
     profiler: { only_exceptions: false }
 
-doctrine:
-    dbal:
-        driver:   pdo_mysql
-        host:     localhost
-        dbname:   stfalcon_com_development
-        user:     root
-        password: null
-        charset:  UTF8
-
 web_profiler:
     toolbar: true
     intercept_redirects: true

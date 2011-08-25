@@ -1,5 +1,5 @@
 _default:
-    resource: "@DefaultBundle/Controller/DefaultController.php"
+    resource: "@ApplicationDefaultBundle/Controller/DefaultController.php"
     type:     annotation
 
 _portfolio:

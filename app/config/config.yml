@@ -1,15 +1,19 @@
+imports:
+    - { resource: parameters.ini }
+    - { resource: security.yml }
+
 framework:
-    secret:          098v442z8bx31nbu
-    charset:         UTF-8
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
-    form:            true
-    csrf_protection: true
-    validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    translator:
-        fallback: ru
+    #esi:             ~
+    translator:       { fallback: ru }
+    secret:           %secret%
+    charset:          UTF-8
+    router:           { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:             true
+    csrf_protection:  true
+    validation:       { enable_annotations: true }
+    templating:       { engines: ['twig'] } #assets_version: SomeVersionScheme
     session:
-        default_locale: ru
+        default_locale: %locale%
         auto_start:     true
 
 
@@ -18,18 +22,19 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
+
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     localhost
-        dbname:   stfalcon_com_development
-        user:     root
-        password: null
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
         charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        default_entity_manager: default
         entity_managers:
             default:
                 mappings:
@@ -67,37 +72,10 @@ assetic:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
             
 
-# SecurityBundle
-security:
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-    providers:
-        main:
-            users:
-                admin: { password: "qwerty", roles: ROLE_ADMIN }
-    firewalls:
-        profiler:
-            pattern:  ^/_profiler
-            security: false
-        wdt:
-            pattern:  ^/_wdt
-            security: false
-        backend:
-            pattern: ^/admin/
-            http-basic: true
-            logout:     true
-    access_control:
-        - { path: ^/admin/.*, role: ROLE_ADMIN }
-
-
 # MenuBundle enable template helpers
 knp_menu:
     templating: true
     twig: true
-# MenuBundle settings
-imports:
-    - { resource: "@DefaultBundle/Resources/config/menu/menu.xml" }
-    - { resource: "@DefaultBundle/Resources/config/menu/breadcrumbs.xml" }
 
 knp_paginator:
     templating: ~ # enables view helper and twig

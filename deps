@@ -1,5 +1,6 @@
 [assetic]
     git=http://github.com/kriswallsmith/assetic.git
+    version=v1.0.1
 
 [doctrine]
     git=http://github.com/doctrine/doctrine2.git
@@ -27,6 +28,7 @@
 
 [metadata]
     git=http://github.com/schmittjoh/metadata.git
+    version=1.0.0
 
 [monolog]
     git=http://github.com/Seldaek/monolog.git
@@ -38,13 +40,14 @@
 
 [twig]
     git=http://github.com/fabpot/Twig.git
-    version=v1.1.0
+    version=v1.1.1
 
 [twig-extensions]
     git=http://github.com/fabpot/Twig-extensions.git
 
 [symfony]
     git=http://github.com/symfony/symfony.git
+    version=v2.0.0
 
 [zf2]
     git=http://github.com/zendframework/zf2.git

@@ -117,8 +117,6 @@ if ('update' === $command) {
 // php on windows can't use the shebang line from system()
 $interpreter = PHP_OS == 'WINNT' ? 'php.exe' : '';
 
-system(sprintf('svn co http://framework.zend.com/svn/framework/standard/tags/release-1.11.9/library/ %s', escapeshellarg($vendorDir.'/zf/library')));
-
 // Update the bootstrap files
 system(sprintf('%s %s', $interpreter, escapeshellarg($rootDir.'/vendor/bundles/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php')));
 
@@ -127,3 +125,4 @@ system(sprintf('%s %s assets:install %s', $interpreter, escapeshellarg($rootDir.
 
 // Remove the cache
 system(sprintf('%s %s cache:clear --no-warmup', $interpreter, escapeshellarg($rootDir.'/app/console')));
+

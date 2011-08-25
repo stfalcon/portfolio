@@ -48,14 +48,20 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\BlogBundle\StfalconBlogBundle(),
             new Stfalcon\Bundle\PortfolioBundle\StfalconPortfolioBundle(),
 
-            new Application\DefaultBundle\DefaultBundle(),
+            new Application\Bundle\DefaultBundle\ApplicationDefaultBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
+        if ($this->getEnvironment() == 'test') {
+            $bundles[] = new Behat\BehatBundle\BehatBundle();
+            $bundles[] = new Behat\MinkBundle\MinkBundle();
+        }
+        
         return $bundles;
     }
 
