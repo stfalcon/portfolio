@@ -51,7 +51,7 @@
 
 [zf2]
     git=http://github.com/zendframework/zf2.git
-
+    version=e76d9577565a15b009d3fad4d39298f07fd71436
 
 [AsseticBundle]
     git=http://github.com/symfony/AsseticBundle.git

@@ -27,9 +27,8 @@ class DefaultController extends Controller
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("StfalconPortfolioBundle:Category")->getAllCategories();
 
-//        \Zend\Feed\Reader\Reader::setCache($this->get('knp_zend_cache.manager')->getCache('slow_cache'));
-//        $feed = \Zend\Feed\Reader\Reader::import('http://www.google.com/reader/public/atom/user%2F14849984795491019190%2Fstate%2Fcom.google%2Fbroadcast');
-        $feed = array();
+        \Zend\Feed\Reader\Reader::setCache($this->get('knp_zend_cache.manager')->getCache('slow_cache'));
+        $feed = \Zend\Feed\Reader\Reader::import('http://www.google.com/reader/public/atom/user%2F14849984795491019190%2Fstate%2Fcom.google%2Fbroadcast');
         
         return array('categories' => $categories, 'feed' => $feed);
     }
