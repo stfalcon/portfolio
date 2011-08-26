@@ -1,11 +1,15 @@
 # SecurityBundle
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+#        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm:   sha1
+            iterations: 1
+            encode_as_base64: false        
     providers:
         main:
             users:
-                admin: { password: "qwerty", roles: ROLE_ADMIN }
+                admin: { password: %admin_password%, roles: ROLE_ADMIN }
     firewalls:
         profiler:
             pattern:  ^/_profiler
