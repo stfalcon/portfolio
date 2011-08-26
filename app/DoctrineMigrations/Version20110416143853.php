@@ -16,6 +16,7 @@ class Version20110416143853 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
         
         $this->addSql("ALTER TABLE portfolio_categories ADD slug VARCHAR(128) NOT NULL");
+        $this->addSql("UPDATE portfolio_categories SET slug = CONCAT('category', id)");
         $this->addSql("CREATE UNIQUE INDEX UNIQ_8D5821A989D9B62 ON portfolio_categories (slug)");
     }
 
