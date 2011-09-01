@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="stfalcon.com" basedir="." default="build">
+    <property name="builddir" value="./build" />
+    <property name="sourcedir" value="src" />
+    <property name="logsdir" value="${builddir}/logs" />
+
+    <target name="init">
+        <mkdir dir="${builddir}" />
+        <mkdir dir="${logsdir}" />
+	<exec command="${builddir}/portfolio/bin/vendors" escape="false" />
+    </target>
+
+    <target name="clean">
+        <echo msg="Clean..." />
+        <delete dir="${builddir}" />
+    </target>
+
+    <target name="build" depends="clean,init,phpcpd" />
+
+    <!-- PHP copy/paste analysis -->
+    <target name="phpcpd">
+        <phpcpd minLines="2" minTokens="10">
+            <fileset dir="${sourcedir}" id="filestocpd">
+                <include name="**/*.php"/>
+            </fileset>
+            <formatter type="pmd" outfile="${logsdir}/pmd.xml"/>
+        </phpcpd>
+    </target>
+	<exec command="phpcs --standard=ZEND --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
+
+
+</project>
