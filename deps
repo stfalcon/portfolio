@@ -76,6 +76,7 @@
 [MenuBundle]
     git=http://github.com/knplabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
+    version=e5d9c86
 
 [PaginatorBundle]
     git=http://github.com/knplabs/KnpPaginatorBundle.git
@@ -83,7 +84,7 @@
 
 [SensioDistributionBundle]
     git=http://github.com/sensio/SensioDistributionBundle.git
-        target=/bundles/Sensio/Bundle/DistributionBundle
+    target=/bundles/Sensio/Bundle/DistributionBundle
 
 [SensioFrameworkExtraBundle]
     git=http://github.com/sensio/SensioFrameworkExtraBundle.git
