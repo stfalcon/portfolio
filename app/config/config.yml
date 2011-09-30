@@ -61,16 +61,12 @@ stof_doctrine_extensions:
 
 # AsseticBundle
 assetic:
-    debug:          %kernel.debug%
-    use_controller: false
-#    read_from:      %kernel.root_dir%/../web
+#    cssrewrite: ~
     filters:
-        cssrewrite: ~
         yui_css:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
         yui_js:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
-            
 
 # MenuBundle enable template helpers
 knp_menu:
