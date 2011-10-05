@@ -1,7 +1,7 @@
 <ul>
     {% for status in statuses %}
         <li>
-        {{ status.text }}
+        {{ status.text|twit|raw }}
         <em>{{ status.time }}</em>
     </li>
     {% endfor %}
