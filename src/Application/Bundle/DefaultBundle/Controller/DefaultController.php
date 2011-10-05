@@ -57,9 +57,12 @@ class DefaultController extends Controller
                 $result = $twitter->statusUserTimeline(array('id' => 'stfalcon', 'count' => $count, 'include_rts' => true));
                 $statuses = array();
                 foreach ($result->status as $status) {
+                    $time = new \DateTime($status->created_at);
+                    $time->setTimezone(new \DateTimeZone('Europe/Kiev'));
+                    
                     $statuses[] = (object) array(
                         'text' => (string) $status->text,
-                        'time' => (string) $status->created_at
+                        'time' => $time
                     );
                 }
                 $cache->save($statuses, 'dc_twitter_' . $count);
@@ -67,7 +70,7 @@ class DefaultController extends Controller
                 $statuses = array();
                 $statuses[] = (object) array(
                     'text' => (string) 'Unable to Connect to tcp://api.twitter.com:80',
-                    'time' => (string) \time()
+                    'time' => new \DateTime("now")
                 );
             }
         }

@@ -2,7 +2,7 @@
     {% for status in statuses %}
         <li>
         {{ status.text|twit|raw }}
-        <em>{{ status.time }}</em>
+        <em>{{ status.time|date("g:i A M jS") }}</em>
     </li>
     {% endfor %}
 </ul>
