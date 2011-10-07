@@ -149,6 +149,7 @@
         {% javascripts filter='yui_js'
                 'vendor/jquery/jquery-1.4.4.min.js'
                 'vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js'
+                'js/jquery.metadata.js'
                 'js/jquery.main.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -158,8 +159,9 @@
 
         <script type="text/javascript">
             jQuery(document).ready(function() {
-                // $("#accordion").accordion({ header: "h3", active: 1, autoHeight: false });
-                $("#accordion").accordion({ header: "h3", active: -1, autoHeight: false, collapsible: true });
+                var data = $("#accordion ul li.active").metadata();
+                $("#accordion").accordion({ header: "h3", active: data.category_index, autoHeight: false });
+                //$("#accordion").accordion({ header: "h3", active: -1, autoHeight: false, collapsible: true });
             });
         </script>
 
