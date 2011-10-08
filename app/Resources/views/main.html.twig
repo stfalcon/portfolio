@@ -123,7 +123,7 @@
                 <br />
                 {% trans %}Сайт работает на{% endtrans %}
                 <a href="http://symfony.com" rel="nofollow">
-                    <img style="vertical-align: middle; padding-left: 5px;" src="{{ asset('images/footer/symfony-logo.png') }}" alt="Symfony2" title="Symfony2" />
+                    <img weidth="120" height="30" style="vertical-align: middle; padding-left: 5px;" src="{{ asset('images/footer/symfony-logo.png') }}" alt="Symfony2" title="Symfony2" />
                 </a>
             </div>
         </div>
@@ -138,14 +138,6 @@
                 'js/jquery.main.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-{#
-        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-1.4.4.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.stf.carousel.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.wresize.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.main.js') }}"></script>
-#}
         <!--[if IE 6]>
             <script type="text/javascript" src="{{ asset('js/DD_belatedPNG.js') }}"></script>
         <![endif]-->
@@ -164,7 +156,6 @@
         </script>
 
         <script type="text/javascript">
-
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', 'UA-5635962-2']);
           _gaq.push(['_trackPageview']);
@@ -174,7 +165,6 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
-
         </script>
 
     </body>
