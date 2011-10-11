@@ -398,7 +398,7 @@ a:hover {
     padding: 0 4px 0 20px;
     background: url(/images/content/index-sprite.png) 0 -188px no-repeat;
 }
-#content .post ul li {
+#content .post .post-wrapper ul li {
     padding: 0 0 12px 12px;
     background: url(/images/content/cont-bullet.png) no-repeat 0 5px;
     float: left;
