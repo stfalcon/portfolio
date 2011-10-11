@@ -91,11 +91,7 @@ knp_zend_cache:
                     cache_dir: %kernel.root_dir%/cache/%kernel.environment%
 
 
-sensio_framework_extra:
-    router:  { annotations: true }
-    request: { converters: false }
-    view:    { annotations: true }
-    cache:   { annotations: true }
+sensio_framework_extra: ~
 
 stfalcon_blog:
     rss:

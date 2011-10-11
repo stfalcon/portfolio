@@ -5,5 +5,12 @@ _default:
 _portfolio:
     resource: "@StfalconPortfolioBundle/Resources/config/routing.yml"
 
+_blog2:
+    resource: "@StfalconBlogBundle/Controller/PostController.php"
+    type:     annotation
+_blog3:
+    resource: "@StfalconBlogBundle/Controller/TagController.php"
+    type:     annotation
 _blog:
-    resource: "@StfalconBlogBundle/Resources/config/routing.yml"
+    resource: "@StfalconBlogBundle/Controller/CommentController.php"
+    type:     annotation
