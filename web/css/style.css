@@ -73,7 +73,8 @@ a:hover {
 
 #header {
     background: url(/images/header/back.png) repeat-x;
-    height: 144px;
+    background-position: bottom center;
+    height: 100px;
     position: relative;
 }
 
@@ -84,7 +85,7 @@ a:hover {
     left: 79px;
     position: absolute;
     text-indent: -5000px;
-    top: 34px;
+    top: 20px;
     width: 170px;
 }
 
@@ -108,11 +109,11 @@ a:hover {
 
 #header .menu {
     position:absolute;
-    top: 59px;
+    top: 41px;
     right: 92px;
 }
 #header .menu li {
-    color: #686e75;
+    color: #fff;
     float: left;
     font-size: 16px;
     margin-left: 46px;
@@ -124,8 +125,8 @@ a:hover {
     color: #fa823a;
 }
 #header .menu li.current span {
-    background-color: #e1ecf8;
-    border: 1px solid #e1ecf8;
+    background-color: #686e75;
+    border: none;
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -143,7 +144,7 @@ a:hover {
     overflow: hidden;
     padding: 24px 29px 0 18px;
     position: relative;
-    top: 118px;
+    top: 76px;
 }
 #header .slogan span {
     float: left;
