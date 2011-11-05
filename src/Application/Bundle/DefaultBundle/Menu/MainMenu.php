@@ -20,7 +20,7 @@ class MainMenu extends Menu
         $this->setCurrentUri($request->getRequestUri());
         $this->setCurrentAsLink(false);
 
-        $this->addChild('Услуги', $router->generate('homepage'));
+        $this->addChild('Наши работы', $router->generate('homepage'));
         $this->addChild('Блог', $router->generate('blog'));
         $this->addChild('Контакты', $router->generate('contacts'));
     }
