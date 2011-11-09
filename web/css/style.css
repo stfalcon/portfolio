@@ -62,7 +62,7 @@ body {
     min-width: 1200px;
 }
 a {
-    color: #378ee5;
+    color: #0e69c5;
 }
 a:hover {
     color: #fa823a;
@@ -222,20 +222,20 @@ a:hover {
 }
 #content h1 {
     color: #323538;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
 /*    padding-bottom: 17px;*/
 }
 #content img {
     display: block;
-    margin: 0 auto;
+    margin: 1em auto;
 }
 #content p {
-/*    line-height: 18px;
-    padding-bottom: 18px;*/
+    line-height: 140%;
+    margin: 0.5em 0;
     display: block;
-    line-height: 1.5em;
-    margin: 1em 0px;
+/*    line-height: 1.5em;*/
+/*    margin: 1em 0px;*/
 }
 
 #content dl.contacts {
@@ -267,7 +267,8 @@ a:hover {
 #content .next-prev-projects div {
     color: #b2b7ba;
     line-height: 18px;
-    width: 182px;
+    width: 360px;
+    margin-top: -8px;
 }
 #content .next-prev-projects .next {
     display: inline;
@@ -288,7 +289,8 @@ a:hover {
     line-height: 15px;
     position: relative;
     text-decoration: none;
-    top: -8px;
+/*    top: -8px;*/
+    top: 0;
     white-space: nowrap;
 }
 #content ul.projects {
@@ -343,8 +345,20 @@ a:hover {
 #content h3 {
     color: #404448;
     font-size: 20px;
-/*    padding-bottom: 16px;*/
+    margin-top: 1em;
 }
+#content .task {
+    font-style: italic;
+    padding: 0.5em 0;
+}
+#content .task b {
+    font-size: 12px;
+    font-style: italic;
+    background: #7ab5f0;
+    padding: 3px 6px;
+    color: #fff;
+}
+
 /* BlogBundle */
 #content .post {
     padding-bottom: 27px;
@@ -400,12 +414,16 @@ a:hover {
     background: url(/images/content/index-sprite.png) 0 -188px no-repeat;
 }
 #content .post .post-wrapper ul li {
-    padding: 0 0 12px 12px;
+    padding: 0 0 12px 20px;
     background: url(/images/content/cont-bullet.png) no-repeat 0 5px;
     float: left;
     clear: left;
     width: 100%;
 }
+#content .post .post-wrapper p img {
+    max-width:100%;
+}
+
 #content .post ul.info li.share-buttons {
     float: left;
     margin-top: -3px;
@@ -539,7 +557,7 @@ a img.project-thumb:hover {
 
 #content-index .shared {
     border-top: 34px solid #fff;
-    background: #eef3f7;
+    background: #f5f7fa;
     padding: 0 0 21px 81px;
     clear: both;
 /*    float: left;*/
@@ -606,7 +624,8 @@ a img.project-thumb:hover {
     background: url(/images/content/index-sprite.png) 0 -163px no-repeat;
 }
 #content-index .shared .all-posts {
-    color: #7ab5f0;
+    color: #7a8793;
+    font-size: 85%;
     font-style: italic;
     left: 8px;
     position: relative;
@@ -694,6 +713,20 @@ a img.project-thumb:hover {
     clear: both;
 }
 
+#disqus_thread {
+    margin-top: 35px;
+}
+#dsq-content #dsq-global-toolbar {
+    margin: 1em 0;
+}
+#dsq-content h3 {
+    margin: 0 0 0.8em;
+}
+#dsq-content .dsq-avatar img {
+    margin: 0
+}
+
+
 /* 4. footer style ---------------------------*/
 
 #footer {
@@ -708,12 +741,13 @@ a img.project-thumb:hover {
     display: inline;
     float: left;
     font-style: normal;
-    margin: 31px 0 0 8.7%;
-    width: 57.3%;
+    margin: 31px 0 0 81px;
+    width: 61%;
 }
 #footer .contacts span {
-    width: 33%;
-    margin-right: 16.6%;
+    width: 48%;
+    margin-right: 0;
+    padding-left: 10px;
     float: left;
     display: inline;
 }
@@ -727,6 +761,8 @@ a img.project-thumb:hover {
 
 #footer .copyright {
     margin-top: 31px;
-    margin-right: 8.7%;
+    margin-right: 0;
+    width: 31.1%;
+    padding-left: 10px;
     float: right;
 }
