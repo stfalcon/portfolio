@@ -130,8 +130,8 @@ a:hover {
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    margin-right: -8px;
-/*    margin-left: -8px;*/
+/*    margin-right: -8px;*/
+    margin-left: -8px;
     padding: 5px 7px;
 }
 
