@@ -69,7 +69,11 @@
                     <div class="twitter-top"></div>
                 </div>
                 <!--/twitter block-->
-
+                
+                {% if project is defined %}
+                    {% render "StfalconPortfolioBundle:Project:users" with { 'project': project } %}
+                {% endif %}
+                
                 {% if category is defined %}
                     {% if project is defined %}
                         {% render "StfalconPortfolioBundle:Category:services" with { 'category': category, 'project': project } %}
@@ -77,33 +81,6 @@
                         {% render "StfalconPortfolioBundle:Category:services" with { 'category': category } %}
                     {% endif %}
                 {% endif %}
-
-{#                    <h2>Над проектом работали</h2>
-
-                <ul class="comandList">
-
-                    <li>
-                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                    </li>
-                    <li>
-                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                    </li>
-                    <li>
-                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                    </li>
-                    <li>
-                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                    </li>
-                    <li>
-                        <div><img height="60" width="60" src="pic/pic5.png" alt=""></div>
-                        <h5>арт-директор и дизайнер<span>Олег Пащенко</span></h5>
-                    </li>
-
-                </ul>#}
 
             </div>
             <!--sidebar-->
