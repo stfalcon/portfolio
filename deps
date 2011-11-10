@@ -99,3 +99,11 @@
 [ZendCacheBundle]
     git=http://github.com/knplabs/KnpZendCacheBundle.git
     target=/bundles/Knp/Bundle/ZendCacheBundle
+
+[StfalconBlogBundle]
+    git=http://github.com/stfalcon/BlogBundle.git
+    target=bundles/Stfalcon/Bundle/BlogBundle
+
+[StfalconPortfolioBundle]
+    git=http://github.com/stfalcon/PortfolioBundle.git
+    target=bundles/Stfalcon/Bundle/PortfolioBundle
