@@ -3,11 +3,15 @@
     <property name="builddir" value="./build" />
     <property name="sourcedir" value="src" />
     <property name="logsdir" value="${builddir}/logs" />
+    <property name="cachedir" value="./app/cache" />
 
     <target name="init">
         <mkdir dir="${builddir}" />
         <mkdir dir="${logsdir}" />
-	<exec command="${builddir}/portfolio/bin/vendors" escape="false" />
+        <mkdir dir="${cachedir}" />
+        <exec command="${builddir}/portfolio/bin/vendors update" escape="false" />
+        <exec command="cp /var/lib/jenkins/configs/stfalcon_com.yml ./app/config/config_test.yml" escape="false" />
+        <exec command="php app/console cache:clear" escape="false" />
     </target>
 
     <target name="clean">
@@ -15,7 +19,7 @@
         <delete dir="${builddir}" />
     </target>
 
-    <target name="build" depends="clean,init,phpcpd" />
+    <target name="build" depends="clean,init,phpcpd,phpunit,phpcs" />
 
     <!-- PHP copy/paste analysis -->
     <target name="phpcpd">
@@ -26,7 +30,20 @@
             <formatter type="pmd" outfile="${logsdir}/pmd.xml"/>
         </phpcpd>
     </target>
-	<exec command="phpcs --standard=ZEND --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
+
+    <target name="phpcs">
+        <touch file="${logsdir}/reports/checkstyle.xml"/>
+        <exec command="phpcs --standard=symfony2 --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
+    </target>
+
+    <!-- PHPUnit tests -->
+    <target name="phpunit">
+        <mkdir dir="${logsdir}/reports" />
+        <mkdir dir="${logsdir}/reports/coverage" />
+         <exec command="php app/console doctrine:migrations:migrate --no-interaction" escape="false" />
+        <exec command="phpunit -c ./app/ --log-junit ${logsdir}/reports/testsuites.xml --coverage-clover ${logsdir}/reports/coverage/clover.xml -c ./app/ " escape="false" />
+    </target>
+
 
 
 </project>
