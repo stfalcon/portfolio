@@ -2,7 +2,7 @@
 <project name="stfalcon.com" basedir="." default="build">
     <property name="builddir" value="./build" />
     <property name="sourcedir" value="src" />
-    <property name="logsdir" value="./build/logs" />
+    <property name="logsdir" value="${builddir}/logs" />
     <property name="cachedir" value="./app/cache" />
 
     <target name="init">
