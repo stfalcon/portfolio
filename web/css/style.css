@@ -712,18 +712,18 @@ a img.project-thumb:hover {
     border-top: 27px solid #FFFFFF;
     clear: both;
 }
-#sidebar dl {
+#sidebar .users-list dl {
 	line-height: 18px;
     padding: 9px 0 9px 0;
 	font-size: 14px;
 }
-#sidebar dl dt { 
+#sidebar .users-list dl dt { 
 	font-weight: bold;
 }
-#sidebar dl dt:first-letter {
+#sidebar .users-list dl dt:first-letter {
 	text-transform: uppercase;
 }
-#sidebar dl dd {
+#sidebar .users-list dl dd {
 	padding: 0 0 15px 0;
 }
 #disqus_thread {
