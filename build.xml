@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="stfalcon.com" basedir="." default="build">
     <property name="builddir" value="./build" />
-    <property name="sourcedir" value="src" />
+    <property name="sourcedir" value="./src" />
     <property name="logsdir" value="${builddir}/logs" />
     <property name="cachedir" value="./app/cache" />
 
@@ -32,15 +32,15 @@
     </target>
 
     <target name="phpcs">
-        <touch file="${logsdir}/reports/checkstyle.xml"/>
-        <exec command="phpcs --standard=symfony2 --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
+        <touch file="${logsdir}/checkstyle.xml"/>
+        <exec command="phpcs --standard=symfony2 --report=checkstyle ${sourcedir}/bundles --report-file=${logsdir}/checkstyle.xml" escape="false" />
     </target>
 
     <!-- PHPUnit tests -->
     <target name="phpunit">
         <mkdir dir="${logsdir}/reports" />
         <mkdir dir="${logsdir}/reports/coverage" />
-         <exec command="php app/console doctrine:migrations:migrate --no-interaction" escape="false" />
+         <exec command="php app/console doctrine:migrations:migrate --no-interaction -env=test" escape="false" />
         <exec command="phpunit -c ./app/ --log-junit ${logsdir}/reports/testsuites.xml --coverage-clover ${logsdir}/reports/coverage/clover.xml -c ./app/ " escape="false" />
     </target>
 
