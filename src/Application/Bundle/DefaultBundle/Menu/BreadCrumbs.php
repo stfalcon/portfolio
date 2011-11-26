@@ -6,6 +6,9 @@ use Knp\Bundle\MenuBundle\Menu;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
 
+/**
+ * Used for bread crumbs
+ */
 class BreadCrumbs extends Menu
 {
 

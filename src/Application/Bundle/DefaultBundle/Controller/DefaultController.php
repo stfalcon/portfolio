@@ -10,6 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * Default controller. For single actions
+ */
 class DefaultController extends Controller
 {
 
@@ -21,27 +24,27 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      * @Template()
      */
-//     * @Route("/{_locale}", name="homepage", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
     public function indexAction()
     {
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("StfalconPortfolioBundle:Category")->getAllCategories();
 
         \Zend\Feed\Reader\Reader::setCache($this->get('knp_zend_cache.manager')->getCache('slow_cache'));
-        
+
         try {
             $feed = \Zend\Feed\Reader\Reader::import('http://www.google.com/reader/public/atom/user%2F14849984795491019190%2Fstate%2Fcom.google%2Fbroadcast');
         } catch (\Zend\Http\Client\Adapter\Exception\RuntimeException $e) {
             $feed = array();
         }
-        
+
         return array('categories' => $categories, 'feed' => $feed);
     }
 
     /**
-     * Show last twitts
+     * Show last twitter messages
      *
-     * @param int $count
+     * @param int $count count of twitter messages
+     *
      * @return array()
      * @Template()
      */
@@ -63,7 +66,7 @@ class DefaultController extends Controller
                 foreach ($result->status as $status) {
                     $time = new \DateTime($status->created_at);
                     $time->setTimezone(new \DateTimeZone('Europe/Kiev'));
-                    
+
                     $statuses[] = (object) array(
                         'text' => (string) $status->text,
                         'time' => $time
@@ -89,7 +92,6 @@ class DefaultController extends Controller
      * @Template()
      * @Route("/contacts", name="contacts")
      */
-//     * @Route("/{_locale}/contacts", name="contacts", defaults={"_locale"="ru"}, requirements={"_locale"="ru|en"})
     public function contactsAction()
     {
         // @todo: refact
