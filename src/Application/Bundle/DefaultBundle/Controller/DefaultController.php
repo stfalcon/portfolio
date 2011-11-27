@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * Default controller. For single actions
+ * Default controller. For single actions for project
  */
 class DefaultController extends Controller
 {
