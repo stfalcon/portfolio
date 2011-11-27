@@ -14,10 +14,11 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class ApplicationDefaultExtension extends Extension
 {
+
     /**
      * Load configuration from services.xml
      *
-     * @param array            $configs    An array of configuration values
+     * @param array            $configs   An array of configuration values
      * @param ContainerBuilder $container A ContainerBuilder instance
      *
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
@@ -32,4 +33,5 @@ class ApplicationDefaultExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }
+
 }

@@ -16,7 +16,7 @@ class BreadCrumbs extends Menu
      * Use to set request and router objects into this class
      *
      * @param Request $request Symfony Request object
-     * @param Router $router Symfony Router object
+     * @param Router  $router  Symfony Router object
      */
     public function __construct(Request $request, Router $router)
     {
