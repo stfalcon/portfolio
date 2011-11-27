@@ -15,7 +15,14 @@ use Symfony\Component\DependencyInjection\Loader;
 class ApplicationDefaultExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * Load configuration from services.xml
+     *
+     * @param array            $config    An array of configuration values
+     * @param ContainerBuilder $container A ContainerBuilder instance
+     *
+     * @throws \InvalidArgumentException When provided tag is not defined in this extension
+     *
+     * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {

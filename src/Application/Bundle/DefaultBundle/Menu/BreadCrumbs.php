@@ -13,8 +13,10 @@ class BreadCrumbs extends Menu
 {
 
     /**
-     * @param Request $request
-     * @param Router $router
+     * Use to set request and router objects into this class
+     *
+     * @param Request $request object represents an HTTP request
+     * @param Router $router symfony router object
      */
     public function __construct(Request $request, Router $router)
     {
@@ -23,7 +25,7 @@ class BreadCrumbs extends Menu
         $this->setCurrentUri($request->getRequestUri());
         $this->setCurrentAsLink(false);
 
-//        $this->addChild('Главная', $router->generate('homepage'));
+        $this->addChild('Главная', $router->generate('homepage'));
     }
 
 }
