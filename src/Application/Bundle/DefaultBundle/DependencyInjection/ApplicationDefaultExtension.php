@@ -17,7 +17,7 @@ class ApplicationDefaultExtension extends Extension
     /**
      * Load configuration from services.xml
      *
-     * @param array            $config    An array of configuration values
+     * @param array            $configs    An array of configuration values
      * @param ContainerBuilder $container A ContainerBuilder instance
      *
      * @throws \InvalidArgumentException When provided tag is not defined in this extension
