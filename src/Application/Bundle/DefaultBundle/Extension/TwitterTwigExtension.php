@@ -4,6 +4,8 @@ namespace Application\Bundle\DefaultBundle\Extension;
 
 /**
  * Extension to find links in the messages and wrap they to html tags
+ *
+ * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class TwitterTwigExtension extends \Twig_Extension
 {

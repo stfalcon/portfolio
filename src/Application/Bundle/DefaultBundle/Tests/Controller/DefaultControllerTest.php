@@ -4,6 +4,11 @@ namespace Application\Bundle\DefaultBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
+/**
+ * Test cases for DefaultContoller
+ *
+ * @author Stepan Tanasiychuk <ceo@stfalcon.com>
+ */
 class DefaultControllerTest extends WebTestCase
 {
 
@@ -46,4 +51,5 @@ class DefaultControllerTest extends WebTestCase
         // check e-mail
         $this->assertTrue($crawler->filter('html:contains("info@stfalcon.com")')->count() > 0);
     }
+
 }

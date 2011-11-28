@@ -12,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Default controller. For single actions for project
+ *
+ * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class DefaultController extends Controller
 {

@@ -7,7 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
 
 /**
- * Used for bread crumbs
+ * Bread crumbs
+ *
+ * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class BreadCrumbs extends Menu
 {

@@ -6,12 +6,19 @@ use Knp\Bundle\MenuBundle\Menu;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
 
+/**
+ * Main menu
+ *
+ * @author Stepan Tanasiychuk <ceo@stfalcon.com>
+ */
 class MainMenu extends Menu
 {
 
     /**
-     * @param Request $request
-     * @param Router $router
+     * Use to set request and router objects into this class
+     *
+     * @param Request $request Symfony Request object
+     * @param Router  $router  Symfony Router object
      */
     public function __construct(Request $request, Router $router)
     {
