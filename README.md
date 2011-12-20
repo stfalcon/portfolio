@@ -4,7 +4,10 @@ It's engine for portfolio of web-studio stfalcon.com
 1) Download
 --------------------------------
 
-### Clone the git Repository
+### Clone the git Repository from the main repository or fork it to your github account:
+
+Note that you **must** have git installed and be able to execute the `git`
+command.
 
 	$ git clone git://github.com/stfalcon/portfolio.git .
 
@@ -18,21 +21,33 @@ for Symfony2. To do this, execute the following:
 
 	$ ./app/check.php 
 
-If you get any warnings or recommendations, fix these now before moving on.
+If you get any warnings or recommendations, fix these now before moving on. 
 
-### b) Initialize and update Submodules
+**Requirements**
+
+* PHP needs to be a minimum version of PHP 5.3.2
+* Sqlite3 needs to be enabled
+* JSON needs to be enabled
+* ctype needs to be enabled
+* Your PHP.ini needs to have the date.timezone setting
+* Intl needs to be installed with ICU 4+
+* APC 3.0.17+ (or another opcode cache needs to be installed)
+
+
+### b) Change the permissions of the "app/cache/" and "app/logs" directories so that the web server can write into it. 
+
+	$ sudo chmod -R 0777 app/cache/ app/logs
+
+### c) Initialize and update Submodules
 
 	$ git submodule init
 	$ git submodule update
 
-### c) Install the Vendor Libraries
+### d) Install the Vendor Libraries
 
     $ ./bin/vendors install
 
-Note that you **must** have git installed and be able to execute the `git`
-command to execute this script.
-
-### d) Change DBAL settings, create DB, update it and load fixtures
+### e) Change DBAL settings, create DB, update it and load fixtures
 
 Change DBAL setting in `app/config/config.yml`, `app/config/config_dev.yml` or 
 `app/config/config_test.yml`. After that execute the following:
@@ -43,6 +58,6 @@ Change DBAL setting in `app/config/config.yml`, `app/config/config_dev.yml` or
 
 You can set environment `test` for command if you add `--env=test` to it.
 
-### e) Install Assets
+### f) Install Assets (if they hadn't been installed in **d** step or if you want to update them )
 
     $ ./console assets:install web
