@@ -1,5 +1,6 @@
-/app/cache
-/app/logs
-/web/bundles
-/vendor
-/.rsync_cache
+web/bundles/
+app/bootstrap.php.cache
+app/cache/*
+app/logs/*
+vendor
+.rsync_cache

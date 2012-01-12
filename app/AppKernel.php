@@ -32,11 +32,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
-            new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -61,7 +62,7 @@ class AppKernel extends Kernel
 //            $bundles[] = new Behat\BehatBundle\BehatBundle();
 //            $bundles[] = new Behat\MinkBundle\MinkBundle();
 //        }
-        
+
         return $bundles;
     }
 
