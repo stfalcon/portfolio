@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="robots" content="noindex,nofollow" />
+        <title>    SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry &#039;design&#039; for key &#039;UNIQ_8D5821A989D9B62&#039; (500 Internal Server Error)
+</title>
+        <link href="/bundles/framework/css/exception_layout.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/bundles/framework/css/exception.css" rel="stylesheet" type="text/css" media="all" />
+    </head>
+    <body>
+        <div id="content">
+            <div class="header clear_fix">
+                <div class="header_logo">
+                    <img src="/bundles/framework/images/logo_symfony.gif" alt="Symfony" />
+                </div>
+
+                <div class="search">
+                  <form method="get" action="http://symfony.com/search">
+                    <div class="form_row">
+
+                      <label for="search_id">
+                          <img src="/bundles/framework/images/grey_magnifier.png" alt="Search on Symfony website" />
+                      </label>
+
+                      <input name="q" id="search_id" type="search" placeholder="Search on Symfony website" />
+
+                      <button type="submit">
+                        <span class="border_l">
+                          <span class="border_r">
+                            <span class="btn_bg">OK</span>
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                   </form>
+                </div>
+            </div>
+
+                <div class="sf-exceptionreset">
+
+    <div class="block_exception">
+        <div class="block_exception_detected clear_fix">
+            <div class="illustration_exception">
+                <img alt="Exception detected!" src="/bundles/framework/images/exception_detected.gif"/>
+            </div>
+            <div class="text_exception">
+
+                <div class="open_quote">
+                    <img alt="" src="/bundles/framework/images/open_quote.gif"/>
+                </div>
+
+                <h1>
+                    SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry &#039;design&#039; for key &#039;UNIQ_8D5821A989D9B62&#039;
+                </h1>
+
+                <div>
+                    <strong>500</strong> Internal Server Error - <abbr title="PDOException">PDOException</abbr>
+                </div>
+
+                                
+                <div class="close_quote">
+                    <img alt="" src="/bundles/framework/images/close_quote.gif"/>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+            <div class="block">
+            <h2>Stack Trace</h2>
+    
+    <a id="traces_link_0"></a>
+    <ol class="traces list_exception" id="traces_0" style="display: block">
+                    <li>
+                
+    in C:\WebServers\home\portfolio\vendor\doctrine-dbal\lib\Doctrine\DBAL\Statement.php at line 131&nbsp;
+    <a href="#" onclick="toggle('trace_0_0'); switchIcons('icon_0_0_open', 'icon_0_0_close'); return false;"><img class="toggle" id="icon_0_0_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: display" /><img class="toggle" id="icon_0_0_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: hidden; margin-left: -18px" /></a>    <div id="trace_0_0" style="display: block" class="trace">
+        <ol start="128"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getConfiguration</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getSQLLogger</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">startQuery</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_sql</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_params</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$params</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$hasLogger</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getConfiguration</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getSQLLogger</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">stopQuery</span><span style="color: #007700">();</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PDOStatement">PDOStatement</abbr>
+        -&gt;execute
+    </strong>
+    (<em>null</em>)
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\doctrine-dbal\lib\Doctrine\DBAL\Statement.php at line 131&nbsp;
+    <a href="#" onclick="toggle('trace_0_1'); switchIcons('icon_0_1_open', 'icon_0_1_close'); return false;"><img class="toggle" id="icon_0_1_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_1_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_1" style="display: none" class="trace">
+        <ol start="128"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getConfiguration</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getSQLLogger</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">startQuery</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_sql</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_params</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$params</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$hasLogger</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getConfiguration</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">getSQLLogger</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">stopQuery</span><span style="color: #007700">();</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\DBAL\Statement">Statement</abbr>
+        -&gt;execute
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\doctrine\lib\Doctrine\ORM\Persisters\BasicEntityPersister.php at line 236&nbsp;
+    <a href="#" onclick="toggle('trace_0_2'); switchIcons('icon_0_2_open', 'icon_0_2_close'); return false;"><img class="toggle" id="icon_0_2_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_2_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_2" style="display: none" class="trace">
+        <ol start="233"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$isPostInsertId</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$idGen</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">generate</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_em</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$entity</span><span style="color: #007700">);</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\Persisters\BasicEntityPersister">BasicEntityPersister</abbr>
+        -&gt;executeInserts
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\doctrine\lib\Doctrine\ORM\UnitOfWork.php at line 708&nbsp;
+    <a href="#" onclick="toggle('trace_0_3'); switchIcons('icon_0_3_open', 'icon_0_3_close'); return false;"><img class="toggle" id="icon_0_3_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_3_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_3" style="display: none" class="trace">
+        <ol start="705"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$postInsertIds&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$persister</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeInserts</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$postInsertIds</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">//&nbsp;Persister&nbsp;returned&nbsp;post-insert&nbsp;IDs</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\UnitOfWork">UnitOfWork</abbr>
+        -&gt;executeInserts
+    </strong>
+    (<em>object</em>(<abbr title="Doctrine\ORM\Mapping\ClassMetadata">ClassMetadata</abbr>))
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\doctrine\lib\Doctrine\ORM\UnitOfWork.php at line 287&nbsp;
+    <a href="#" onclick="toggle('trace_0_4'); switchIcons('icon_0_4_open', 'icon_0_4_close'); return false;"><img class="toggle" id="icon_0_4_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_4_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_4" style="display: none" class="trace">
+        <ol start="284"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">entityInsertions</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(<span style="color: #0000BB">$commitOrder&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$class</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeInserts</span><span style="color: #007700">(</span><span style="color: #0000BB">$class</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\UnitOfWork">UnitOfWork</abbr>
+        -&gt;commit
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\doctrine\lib\Doctrine\ORM\EntityManager.php at line 334&nbsp;
+    <a href="#" onclick="toggle('trace_0_5'); switchIcons('icon_0_5_open', 'icon_0_5_close'); return false;"><img class="toggle" id="icon_0_5_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_5_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_5" style="display: none" class="trace">
+        <ol start="331"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">flush</span><span style="color: #007700">()</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errorIfClosed</span><span style="color: #007700">();</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unitOfWork</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">commit</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\EntityManager">EntityManager</abbr>
+        -&gt;flush
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\home\portfolio\src\Stfalcon\Bundle\PortfolioBundle\Controller\CategoryController.php at line 58&nbsp;
+    <a href="#" onclick="toggle('trace_0_6'); switchIcons('icon_0_6_open', 'icon_0_6_close'); return false;"><img class="toggle" id="icon_0_6_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_6_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_6" style="display: none" class="trace">
+        <ol start="55"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$form</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">isValid</span><span style="color: #007700">())&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$em&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">'doctrine'</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">getEntityManager</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$em</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">persist</span><span style="color: #007700">(</span><span style="color: #0000BB">$category</span><span style="color: #007700">);</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$em</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flush</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">'request'</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">getSession</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">setFlash</span><span style="color: #007700">(</span><span style="color: #DD0000">'notice'</span><span style="color: #007700">,</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #DD0000">'Congratulations,&nbsp;your&nbsp;category&nbsp;is&nbsp;successfully&nbsp;created!'</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Stfalcon\Bundle\PortfolioBundle\Controller\CategoryController">CategoryController</abbr>
+        -&gt;createAction
+    </strong>
+    ()
+    <br />
+
+    in  at line &nbsp;
+    <a href="#" onclick="toggle('trace_0_7'); switchIcons('icon_0_7_open', 'icon_0_7_close'); return false;"><img class="toggle" id="icon_0_7_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_7_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_7" style="display: none" class="trace">
+        
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title=""></abbr>
+        call_user_func_array
+    </strong>
+    (<em>array</em>(<em>object</em>(<abbr title="Stfalcon\Bundle\PortfolioBundle\Controller\CategoryController">CategoryController</abbr>), 'createAction'), <em>array</em>())
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\symfony\src\Symfony\Component\HttpKernel\HttpKernel.php at line 117&nbsp;
+    <a href="#" onclick="toggle('trace_0_8'); switchIcons('icon_0_8_open', 'icon_0_8_close'); return false;"><img class="toggle" id="icon_0_8_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_8_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_8" style="display: none" class="trace">
+        <ol start="114"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$arguments&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">resolver</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getArguments</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$controller</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">//&nbsp;call&nbsp;controller</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">call_user_func_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$controller</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$arguments</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">//&nbsp;view</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">instanceof&nbsp;</span><span style="color: #0000BB">Response</span><span style="color: #007700">)&nbsp;{</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\HttpKernel">HttpKernel</abbr>
+        -&gt;handleRaw
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1')
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\symfony\src\Symfony\Component\HttpKernel\HttpKernel.php at line 71&nbsp;
+    <a href="#" onclick="toggle('trace_0_9'); switchIcons('icon_0_9_open', 'icon_0_9_close'); return false;"><img class="toggle" id="icon_0_9_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_9_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_9" style="display: none" class="trace">
+        <ol start="68"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">Request&nbsp;$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">HttpKernelInterface</span><span style="color: #007700">::</span><span style="color: #0000BB">MASTER_REQUEST</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handleRaw</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">$e</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\HttpKernel">HttpKernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1', <em>true</em>)
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\symfony\src\Symfony\Bundle\FrameworkBundle\HttpKernel.php at line 44&nbsp;
+    <a href="#" onclick="toggle('trace_0_10'); switchIcons('icon_0_10_open', 'icon_0_10_close'); return false;"><img class="toggle" id="icon_0_10_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_10_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_10" style="display: none" class="trace">
+        <ol start="41"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">container</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #DD0000">'request'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'request'</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">container</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">leaveScope</span><span style="color: #007700">(</span><span style="color: #DD0000">'request'</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Bundle\FrameworkBundle\HttpKernel">HttpKernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1', <em>true</em>)
+    <br />
+
+    in C:\WebServers\home\portfolio\app\bootstrap.php.cache at line 547&nbsp;
+    <a href="#" onclick="toggle('trace_0_11'); switchIcons('icon_0_11_open', 'icon_0_11_close'); return false;"><img class="toggle" id="icon_0_11_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_11_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_11" style="display: none" class="trace">
+        <ol start="544"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">boot</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getHttpKernel</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\Kernel">Kernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>))
+    <br />
+
+    in C:\WebServers\home\portfolio\vendor\symfony\src\Symfony\Component\HttpKernel\Client.php at line 60&nbsp;
+    <a href="#" onclick="toggle('trace_0_12'); switchIcons('icon_0_12_open', 'icon_0_12_close'); return false;"><img class="toggle" id="icon_0_12_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_12_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_12" style="display: none" class="trace">
+        <ol start="57"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">protected&nbsp;function&nbsp;</span><span style="color: #0000BB">doRequest</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">kernel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\Client">Client</abbr>
+        -&gt;doRequest
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Symfony\Component\BrowserKit\Client.php at line 262&nbsp;
+    <a href="#" onclick="toggle('trace_0_13'); switchIcons('icon_0_13_open', 'icon_0_13_close'); return false;"><img class="toggle" id="icon_0_13_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_13_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_13" style="display: none" class="trace">
+        <ol start="259"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insulated</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">doRequestInProcess</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">request</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">doRequest</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">request</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">filterResponse</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">response</span><span style="color: #007700">);</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\BrowserKit\Client">Client</abbr>
+        -&gt;request
+    </strong>
+    ('post', '#', <em>array</em>('category' => <em>array</em>('_token' => '888a71f7a101f23ea2c418e4f4689d65f6b50a22', 'name' => 'Design', 'slug' => 'design', 'description' => 'Our designs are very very cool')))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\Util\Framework.php at line 189&nbsp;
+    <a href="#" onclick="toggle('trace_0_14'); switchIcons('icon_0_14_open', 'icon_0_14_close'); return false;"><img class="toggle" id="icon_0_14_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_14_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_14" style="display: none" class="trace">
+        <ol start="186"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">debugSection</span><span style="color: #007700">(</span><span style="color: #DD0000">'Method'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$method</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">debugSection</span><span style="color: #007700">(</span><span style="color: #DD0000">'Parameters'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">crawler&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">request</span><span style="color: #007700">(</span><span style="color: #0000BB">$method</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$form</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">attr</span><span style="color: #007700">(</span><span style="color: #DD0000">'action'</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">debugResponse</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\Util\Framework">Framework</abbr>
+        -&gt;submitForm
+    </strong>
+    ('form', <em>array</em>('category' => <em>array</em>('name' => 'Design', 'slug' => 'design', 'description' => 'Our designs are very very cool')))
+    <br />
+
+    in  at line &nbsp;
+    <a href="#" onclick="toggle('trace_0_15'); switchIcons('icon_0_15_open', 'icon_0_15_close'); return false;"><img class="toggle" id="icon_0_15_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_15_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_15" style="display: none" class="trace">
+        
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title=""></abbr>
+        call_user_func_array
+    </strong>
+    (<em>array</em>(<em>object</em>(<abbr title="Codeception\Module\Symfony2">Symfony2</abbr>), 'submitForm'), <em>array</em>('form', <em>array</em>('category' => <em>array</em>('name' => 'Design', 'slug' => 'design', 'description' => 'Our designs are very very cool'))))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\TestCase.php at line 104&nbsp;
+    <a href="#" onclick="toggle('trace_0_16'); switchIcons('icon_0_16_open', 'icon_0_16_close'); return false;"><img class="toggle" id="icon_0_16_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_16_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_16" style="display: none" class="trace">
+        <ol start="101"><li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">is_callable</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$activeModule</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$action</span><span style="color: #007700">)))&nbsp;{</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">call_user_func_array</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$activeModule</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$action</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">$arguments</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;\<span style="color: #0000BB">RuntimeException</span><span style="color: #007700">(</span><span style="color: #DD0000">"Action&nbsp;can't&nbsp;be&nbsp;called"</span><span style="color: #007700">);</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\TestCase">TestCase</abbr>
+        -&gt;runStep
+    </strong>
+    (<em>object</em>(<abbr title="Codeception\Step\Action">Action</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\Scenario.php at line 57&nbsp;
+    <a href="#" onclick="toggle('trace_0_17'); switchIcons('icon_0_17_open', 'icon_0_17_close'); return false;"><img class="toggle" id="icon_0_17_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_17_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_17" style="display: none" class="trace">
+        <ol start="54"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">steps&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$k&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$step</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">currentStep&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$k</span><span style="color: #007700">;</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">test</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runStep</span><span style="color: #007700">(</span><span style="color: #0000BB">$step</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\Scenario">Scenario</abbr>
+        -&gt;run
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\TestCase.php at line 74&nbsp;
+    <a href="#" onclick="toggle('trace_0_18'); switchIcons('icon_0_18_open', 'icon_0_18_close'); return false;"><img class="toggle" id="icon_0_18_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_18_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_18" style="display: none" class="trace">
+        <ol start="71"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">testCodecept</span><span style="color: #007700">()</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">scenario</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">run</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">PHPUnit_Framework_ExpectationFailedException&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatcher</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatch</span><span style="color: #007700">(</span><span style="color: #DD0000">'test.fail'</span><span style="color: #007700">,&nbsp;new&nbsp;\</span><span style="color: #0000BB">Codeception</span><span style="color: #007700">\</span><span style="color: #0000BB">Event</span><span style="color: #007700">\</span><span style="color: #0000BB">Fail</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">));</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">$e</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\TestCase">TestCase</abbr>
+        -&gt;testCodecept
+    </strong>
+    ('PortfolioBundle\NewCategoryCept.php', 'C:\WebServers\home\portfolio\tests\functional\PortfolioBundle\NewCategoryCept.php', 'C:\WebServers\home\portfolio\tests\functional\_bootstrap.php')
+    <br />
+
+    in  at line &nbsp;
+    <a href="#" onclick="toggle('trace_0_19'); switchIcons('icon_0_19_open', 'icon_0_19_close'); return false;"><img class="toggle" id="icon_0_19_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_19_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_19" style="display: none" class="trace">
+        
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="ReflectionMethod">ReflectionMethod</abbr>
+        -&gt;invokeArgs
+    </strong>
+    (<em>object</em>(<abbr title="Codeception\TestCase\Cept">Cept</abbr>), <em>array</em>('name' => 'PortfolioBundle\NewCategoryCept.php', 'file' => 'C:\WebServers\home\portfolio\tests\functional\PortfolioBundle\NewCategoryCept.php', 'bootstrap' => 'C:\WebServers\home\portfolio\tests\functional\_bootstrap.php'))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\PHPUnit\Framework\TestCase.php at line 925&nbsp;
+    <a href="#" onclick="toggle('trace_0_20'); switchIcons('icon_0_20_open', 'icon_0_20_close'); return false;"><img class="toggle" id="icon_0_20_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_20_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_20" style="display: none" class="trace">
+        <ol start="922"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$testResult&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$method</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">invokeArgs</span><span style="color: #007700">(</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">array_merge</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dependencyInput</span><span style="color: #007700">)</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch&nbsp;(<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PHPUnit_Framework_TestCase">PHPUnit_Framework_TestCase</abbr>
+        -&gt;runTest
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\PHPUnit\Framework\TestCase.php at line 787&nbsp;
+    <a href="#" onclick="toggle('trace_0_21'); switchIcons('icon_0_21_open', 'icon_0_21_close'); return false;"><img class="toggle" id="icon_0_21_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_21_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_21" style="display: none" class="trace">
+        <ol start="784"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setUp</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testRequirements</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">assertPreConditions</span><span style="color: #007700">();</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testResult&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runTest</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">verifyMockObjects</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">assertPostConditions</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">status&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">PHPUnit_Runner_BaseTestRunner</span><span style="color: #007700">::</span><span style="color: #0000BB">STATUS_PASSED</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PHPUnit_Framework_TestCase">PHPUnit_Framework_TestCase</abbr>
+        -&gt;runBare
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\PHPUnit\Framework\TestResult.php at line 649&nbsp;
+    <a href="#" onclick="toggle('trace_0_22'); switchIcons('icon_0_22_open', 'icon_0_22_close'); return false;"><img class="toggle" id="icon_0_22_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_22_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_22" style="display: none" class="trace">
+        <ol start="646"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$invoker&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PHP_Invoker</span><span style="color: #007700">;</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$invoker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">invoke</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$test</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'runBare'</span><span style="color: #007700">),&nbsp;array(),&nbsp;</span><span style="color: #0000BB">$_timeout</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$test</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runBare</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>
+        -&gt;run
+    </strong>
+    (<em>object</em>(<abbr title="Codeception\TestCase\Cept">Cept</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\PHPUnit\Framework\TestCase.php at line 734&nbsp;
+    <a href="#" onclick="toggle('trace_0_23'); switchIcons('icon_0_23_open', 'icon_0_23_close'); return false;"><img class="toggle" id="icon_0_23_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_23_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_23" style="display: none" class="trace">
+        <ol start="731"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$php&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">PHPUnit_Util_PHP</span><span style="color: #007700">::</span><span style="color: #0000BB">factory</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$php</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runJob</span><span style="color: #007700">(</span><span style="color: #0000BB">$template</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">render</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">run</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">useErrorHandler&nbsp;</span><span style="color: #007700">!==&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">)&nbsp;{</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PHPUnit_Framework_TestCase">PHPUnit_Framework_TestCase</abbr>
+        -&gt;run
+    </strong>
+    (<em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\PHPUnit\Framework\TestSuite.php at line 772&nbsp;
+    <a href="#" onclick="toggle('trace_0_24'); switchIcons('icon_0_24_open', 'icon_0_24_close'); return false;"><img class="toggle" id="icon_0_24_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_24_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_24" style="display: none" class="trace">
+        <ol start="769"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">runTest</span><span style="color: #007700">(</span><span style="color: #0000BB">PHPUnit_Framework_Test&nbsp;$test</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PHPUnit_Framework_TestResult&nbsp;$result</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$test</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">run</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PHPUnit_Framework_TestSuite">PHPUnit_Framework_TestSuite</abbr>
+        -&gt;runTest
+    </strong>
+    (<em>object</em>(<abbr title="Codeception\TestCase\Cept">Cept</abbr>), <em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\PHPUnit\Framework\TestSuite.php at line 745&nbsp;
+    <a href="#" onclick="toggle('trace_0_25'); switchIcons('icon_0_25_open', 'icon_0_25_close'); return false;"><img class="toggle" id="icon_0_25_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_25_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_25" style="display: none" class="trace">
+        <ol start="742"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$test</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setRunTestInSeparateProcess</span><span style="color: #007700">(</span><span style="color: #0000BB">$processIsolation</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runTest</span><span style="color: #007700">(</span><span style="color: #0000BB">$test</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PHPUnit_Framework_TestSuite">PHPUnit_Framework_TestSuite</abbr>
+        -&gt;run
+    </strong>
+    (<em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>), <em>false</em>, <em>array</em>(), <em>array</em>(), <em>false</em>)
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\PHPUnit\Runner.php at line 97&nbsp;
+    <a href="#" onclick="toggle('trace_0_26'); switchIcons('icon_0_26_open', 'icon_0_26_close'); return false;"><img class="toggle" id="icon_0_26_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_26_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_26" style="display: none" class="trace">
+        <ol start="94"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$arguments</span><span style="color: #007700">[</span><span style="color: #DD0000">'groups'</span><span style="color: #007700">],</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$arguments</span><span style="color: #007700">[</span><span style="color: #DD0000">'excludeGroups'</span><span style="color: #007700">],</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$arguments</span><span style="color: #007700">[</span><span style="color: #DD0000">'processIsolation'</span><span style="color: #007700">]</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unset(<span style="color: #0000BB">$suite</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flushListeners</span><span style="color: #007700">();</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\PHPUnit\Runner">Runner</abbr>
+        -&gt;doEnhancedRun
+    </strong>
+    (<em>object</em>(<abbr title="PHPUnit_Framework_TestSuite">PHPUnit_Framework_TestSuite</abbr>), <em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>), <em>array</em>('convertErrorsToExceptions' => <em>true</em>, 'report' => <em>false</em>, 'html' => <em>false</em>, 'colors' => <em>true</em>, 'silent' => <em>false</em>, 'steps' => <em>false</em>, 'debug' => <em>false</em>, 'help' => <em>false</em>, 'quiet' => <em>false</em>, 'verbose' => <em>false</em>, 'version' => <em>false</em>, 'ansi' => <em>false</em>, 'no-ansi' => <em>false</em>, 'no-interaction' => <em>false</em>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\SuiteManager.php at line 130&nbsp;
+    <a href="#" onclick="toggle('trace_0_27'); switchIcons('icon_0_27_open', 'icon_0_27_close'); return false;"><img class="toggle" id="icon_0_27_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_27_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_27" style="display: none" class="trace">
+        <ol start="127"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$runner</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setPrinter</span><span style="color: #007700">(new&nbsp;\</span><span style="color: #0000BB">Codeception</span><span style="color: #007700">\</span><span style="color: #0000BB">PHPUnit</span><span style="color: #007700">\</span><span style="color: #0000BB">ResultPrinter</span><span style="color: #007700">\</span><span style="color: #0000BB">UI</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatcher</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">));</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatcher</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatch</span><span style="color: #007700">(</span><span style="color: #DD0000">'suite.before'</span><span style="color: #007700">,&nbsp;new&nbsp;</span><span style="color: #0000BB">Event</span><span style="color: #007700">\</span><span style="color: #0000BB">Suite</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">suite</span><span style="color: #007700">));</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$runner</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">doEnhancedRun</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">suite</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">array_merge</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'convertErrorsToExceptions'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">));</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatcher</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dispatch</span><span style="color: #007700">(</span><span style="color: #DD0000">'suite.after'</span><span style="color: #007700">,&nbsp;new&nbsp;</span><span style="color: #0000BB">Event</span><span style="color: #007700">\</span><span style="color: #0000BB">Suite</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">suite</span><span style="color: #007700">));</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$runner</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\SuiteManager">SuiteManager</abbr>
+        -&gt;run
+    </strong>
+    (<em>object</em>(<abbr title="PHPUnit_Framework_TestResult">PHPUnit_Framework_TestResult</abbr>), <em>array</em>('report' => <em>false</em>, 'html' => <em>false</em>, 'colors' => <em>true</em>, 'silent' => <em>false</em>, 'steps' => <em>false</em>, 'debug' => <em>false</em>, 'help' => <em>false</em>, 'quiet' => <em>false</em>, 'verbose' => <em>false</em>, 'version' => <em>false</em>, 'ansi' => <em>false</em>, 'no-ansi' => <em>false</em>, 'no-interaction' => <em>false</em>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\Codecept.php at line 89&nbsp;
+    <a href="#" onclick="toggle('trace_0_28'); switchIcons('icon_0_28_open', 'icon_0_28_close'); return false;"><img class="toggle" id="icon_0_28_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_28_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_28" style="display: none" class="trace">
+        <ol start="86"><li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$test&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">$suiteManager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadTest</span><span style="color: #007700">(</span><span style="color: #0000BB">$settings</span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">].</span><span style="color: #0000BB">$test</span><span style="color: #007700">)&nbsp;:&nbsp;</span><span style="color: #0000BB">$suiteManager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadTests</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runner&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$suiteManager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">run</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">options</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">result</span><span style="color: #007700">;</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\Codecept">Codecept</abbr>
+        -&gt;runSuite
+    </strong>
+    ('functional')
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\src\Codeception\Command\Run.php at line 57&nbsp;
+    <a href="#" onclick="toggle('trace_0_29'); switchIcons('icon_0_29_open', 'icon_0_29_close'); return false;"><img class="toggle" id="icon_0_29_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_29_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_29" style="display: none" class="trace">
+        <ol start="54"><li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!<span style="color: #0000BB">$test</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(<span style="color: #0000BB">$suites&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$suite</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$codecept</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runSuite</span><span style="color: #007700">(</span><span style="color: #0000BB">$suite</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Codeception\Command\Run">Run</abbr>
+        -&gt;execute
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\Console\Input\ArgvInput">ArgvInput</abbr>), <em>object</em>(<abbr title="Symfony\Component\Console\Output\ConsoleOutput">ConsoleOutput</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\vendor\Symfony\Component\Console\Command\Command.php at line 227&nbsp;
+    <a href="#" onclick="toggle('trace_0_30'); switchIcons('icon_0_30_open', 'icon_0_30_close'); return false;"><img class="toggle" id="icon_0_30_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_30_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_30" style="display: none" class="trace">
+        <ol start="224"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">call_user_func</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">code</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\Console\Command\Command">Command</abbr>
+        -&gt;run
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\Console\Input\ArgvInput">ArgvInput</abbr>), <em>object</em>(<abbr title="Symfony\Component\Console\Output\ConsoleOutput">ConsoleOutput</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\vendor\Symfony\Component\Console\Application.php at line 188&nbsp;
+    <a href="#" onclick="toggle('trace_0_31'); switchIcons('icon_0_31_open', 'icon_0_31_close'); return false;"><img class="toggle" id="icon_0_31_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_31_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_31" style="display: none" class="trace">
+        <ol start="185"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$command&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runningCommand&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$command</span><span style="color: #007700">;</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$statusCode&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$command</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">run</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runningCommand&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">;</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">is_numeric</span><span style="color: #007700">(</span><span style="color: #0000BB">$statusCode</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #0000BB">$statusCode&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\Console\Application">Application</abbr>
+        -&gt;doRun
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\Console\Input\ArgvInput">ArgvInput</abbr>), <em>object</em>(<abbr title="Symfony\Component\Console\Output\ConsoleOutput">ConsoleOutput</abbr>))
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\vendor\Symfony\Component\Console\Application.php at line 105&nbsp;
+    <a href="#" onclick="toggle('trace_0_32'); switchIcons('icon_0_32_open', 'icon_0_32_close'); return false;"><img class="toggle" id="icon_0_32_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_32_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_32" style="display: none" class="trace">
+        <ol start="102"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$statusCode&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">doRun</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">catchExceptions</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">$e</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\Console\Application">Application</abbr>
+        -&gt;run
+    </strong>
+    ()
+    <br />
+
+    in C:\WebServers\usr\local\php5\PEAR\Codeception\codecept at line 28&nbsp;
+    <a href="#" onclick="toggle('trace_0_33'); switchIcons('icon_0_33_open', 'icon_0_33_close'); return false;"><img class="toggle" id="icon_0_33_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_33_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: display; margin-left: -18px" /></a>    <div id="trace_0_33" style="display: none" class="trace">
+        <ol start="25"><li><code>&nbsp;<span style="color: #0000BB">$app</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">Codeception</span><span style="color: #007700">\</span><span style="color: #0000BB">Command</span><span style="color: #007700">\</span><span style="color: #0000BB">GenerateScenarios</span><span style="color: #007700">(</span><span style="color: #DD0000">'generate:scenarios'</span><span style="color: #007700">));</span></code></li>
+<li><code>&nbsp;<span style="color: #0000BB">$app</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">Codeception</span><span style="color: #007700">\</span><span style="color: #0000BB">Command</span><span style="color: #007700">\</span><span style="color: #0000BB">GenerateCept</span><span style="color: #007700">(</span><span style="color: #DD0000">'generate:test'</span><span style="color: #007700">));</span></code></li>
+<li><code>&nbsp;<span style="color: #0000BB">$app</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">Codeception</span><span style="color: #007700">\</span><span style="color: #0000BB">Command</span><span style="color: #007700">\</span><span style="color: #0000BB">GenerateForClass</span><span style="color: #007700">(</span><span style="color: #DD0000">'generate:for-class'</span><span style="color: #007700">));</span></code></li>
+<li class="selected"><code>&nbsp;<span style="color: #0000BB">$app</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">run</span><span style="color: #007700">();</span>
+</span></code></li></ol>
+    </div>
+            </li>
+            </ol>
+</div>
+    
+            <div class="block">
+            <div class="logs clear_fix">
+                <h2>
+                    Logs&nbsp;
+                    <a href="#" onclick="toggle('logs'); switchIcons('icon_logs_open', 'icon_logs_close'); return false;"><img class="toggle" id="icon_logs_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: hidden" /><img class="toggle" id="icon_logs_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: visible; margin-left: -18px" /></a></h2>
+                                    <div class="error_count">
+                        <span>
+                            1 error
+                        </span>
+                    </div>
+                
+            </div>
+
+            <div id="logs">
+                <ol class="traces">
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onEarlyKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\Security\Http\Firewall::onKernelRequest&quot;.
+        </li>
+            <li>
+            Basic Authentication Authorization header found for user &quot;admin&quot;
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Matched route &quot;portfolioCategoryIndex&quot; (parameters: &quot;_controller&quot;: &quot;Stfalcon\Bundle\PortfolioBundle\Controller\CategoryController::indexAction&quot;, &quot;_route&quot;: &quot;portfolioCategoryIndex&quot;)
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\AsseticBundle\EventListener\RequestListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Knp\Bundle\PaginatorBundle\Templating\Helper\PaginationHelper::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\DataCollector\RequestDataCollector::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelController&quot;.
+        </li>
+            <li>
+            SET NAMES UTF8 ([])
+        </li>
+            <li>
+            SELECT p0_.id AS id0, p0_.name AS name1, p0_.slug AS slug2, p0_.description AS description3 FROM portfolio_categories p0_ ([])
+        </li>
+            <li>
+            Notified event &quot;kernel.view&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelView&quot;.
+        </li>
+            <li>
+            Listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelView&quot; stopped propagation of the event &quot;kernel.view&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Component\Security\Http\Firewall\ContextListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Write SecurityContext in the session
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bundle\SecurityBundle\EventListener\ResponseListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bridge\Monolog\Handler\FirePHPHandler::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ProfilerListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onEarlyKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\Security\Http\Firewall::onKernelRequest&quot;.
+        </li>
+            <li>
+            Read SecurityContext from the session
+        </li>
+            <li>
+            Reloading user from user provider.
+        </li>
+            <li>
+            Username &quot;admin&quot; was reloaded from user provider.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Matched route &quot;portfolioCategoryCreate&quot; (parameters: &quot;_controller&quot;: &quot;Stfalcon\Bundle\PortfolioBundle\Controller\CategoryController::createAction&quot;, &quot;_route&quot;: &quot;portfolioCategoryCreate&quot;)
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\AsseticBundle\EventListener\RequestListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Knp\Bundle\PaginatorBundle\Templating\Helper\PaginationHelper::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\DataCollector\RequestDataCollector::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.view&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelView&quot;.
+        </li>
+            <li>
+            Listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelView&quot; stopped propagation of the event &quot;kernel.view&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Component\Security\Http\Firewall\ContextListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Write SecurityContext in the session
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bundle\SecurityBundle\EventListener\ResponseListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bridge\Monolog\Handler\FirePHPHandler::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ProfilerListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.response&quot; to listener &quot;Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener::onKernelResponse&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onEarlyKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\Security\Http\Firewall::onKernelRequest&quot;.
+        </li>
+            <li>
+            Read SecurityContext from the session
+        </li>
+            <li>
+            Reloading user from user provider.
+        </li>
+            <li>
+            Username &quot;admin&quot; was reloaded from user provider.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Matched route &quot;portfolioCategoryCreate&quot; (parameters: &quot;_controller&quot;: &quot;Stfalcon\Bundle\PortfolioBundle\Controller\CategoryController::createAction&quot;, &quot;_route&quot;: &quot;portfolioCategoryCreate&quot;)
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\AsseticBundle\EventListener\RequestListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Knp\Bundle\PaginatorBundle\Templating\Helper\PaginationHelper::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\DataCollector\RequestDataCollector::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelController&quot;.
+        </li>
+            <li>
+            INSERT INTO portfolio_categories (name, slug, description) VALUES (?, ?, ?) ({&quot;1&quot;:&quot;Design&quot;,&quot;2&quot;:&quot;design&quot;,&quot;3&quot;:&quot;Our designs are very very cool&quot;})
+        </li>
+            <li>
+            Notified event &quot;kernel.exception&quot; to listener &quot;Symfony\Component\Security\Http\Firewall\ExceptionListener::onKernelException&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.exception&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ProfilerListener::onKernelException&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.exception&quot; to listener &quot;Symfony\Component\Security\Http\Firewall\ExceptionListener::onKernelException&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.exception&quot; to listener &quot;Symfony\Component\Security\Http\Firewall\ExceptionListener::onKernelException&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.exception&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException&quot;.
+        </li>
+            <li class="error">
+            PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry &#039;design&#039; for key &#039;UNIQ_8D5821A989D9B62&#039; (uncaught exception) at C:\WebServers\home\portfolio\vendor\doctrine-dbal\lib\Doctrine\DBAL\Statement.php line 131
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onEarlyKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\Security\Http\Firewall::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\RouterListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\AsseticBundle\EventListener\RequestListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.request&quot; to listener &quot;Knp\Bundle\PaginatorBundle\Templating\Helper\PaginationHelper::onKernelRequest&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\DataCollector\RequestDataCollector::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener::onKernelController&quot;.
+        </li>
+            <li>
+            Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelController&quot;.
+        </li>
+    </ol>
+            </div>
+
+        </div>
+    
+            <div class="block">
+            <h2>
+                Content of the Output&nbsp;
+                <a href="#" onclick="toggle('output_content'); switchIcons('icon_content_open', 'icon_content_close'); return false;"><img class="toggle" id="icon_content_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_content_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a></h2>
+            <div id="output_content" style="display: none">
+                Trying to [35;1mcreate new category[0m (PortfolioBundle\NewCategoryCept.php)
+            </div>
+
+            <div style="clear: both"></div>
+        </div>
+    
+</div>
+
+<script type="text/javascript">//<![CDATA[
+    function toggle(id, clazz) {
+        var el = document.getElementById(id),
+            current = el.style.display,
+            i;
+
+        if (clazz) {
+            var tags = document.getElementsByTagName('*');
+            for (i = tags.length - 1; i >= 0 ; i--) {
+                if (tags[i].className === clazz) {
+                    tags[i].style.display = 'none';
+                }
+            }
+        }
+
+        el.style.display = current === 'none' ? 'block' : 'none';
+    }
+
+    function switchIcons(id1, id2) {
+        var icon1, icon2, visibility1, visibility2;
+
+        icon1 = document.getElementById(id1);
+        icon2 = document.getElementById(id2);
+
+        visibility1 = icon1.style.visibility;
+        visibility2 = icon2.style.visibility;
+
+        icon1.style.visibility = visibility2;
+        icon2.style.visibility = visibility1;
+    }
+//]]></script>
+        </div>
+    </body>
+</html>
