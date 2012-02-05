@@ -1,54 +1,116 @@
-[assetic]
-    git=http://github.com/kriswallsmith/assetic.git
-    version=v1.0.2
+;==============================================================================================
+; Symfony2
 
-[doctrine-common]
-    git=http://github.com/doctrine/common.git
-;    version=2.1.4
+[symfony]
+    git=http://github.com/symfony/symfony.git
+;    version=v2.0.9
 
-[doctrine-dbal]
-    git=http://github.com/doctrine/dbal.git
-;    version=2.1.5
-
-[doctrine]
-    git=http://github.com/doctrine/doctrine2.git
-;    version=2.1.5
-
-[doctrine-migrations]
-    git=http://github.com/doctrine/migrations.git
-
-[doctrine-data-fixtures]
-    git=http://github.com/doctrine/data-fixtures.git
-
-[doctrine-extensions]
-    git=http://github.com/l3pp4rd/DoctrineExtensions.git
-
-[imagine]
-    git=http://github.com/avalanche123/Imagine.git
-
-[metadata]
-    git=http://github.com/schmittjoh/metadata.git
-    version=1.0.0
+[twig]
+    git=http://github.com/fabpot/Twig.git
+    version=v1.6.0
 
 [monolog]
     git=http://github.com/Seldaek/monolog.git
     version=1.0.2
 
-[symfony]
-    git=http://github.com/symfony/symfony.git
-;    version=v2.0.9
-;    version=7e7244ea53eb818716e98e753e1a33c6d372243d
+[doctrine-common]
+    git=http://github.com/doctrine/common.git
+    version=2.2.0
+
+[doctrine-dbal]
+    git=http://github.com/doctrine/dbal.git
+    version=2.2.1
 
 [swiftmailer]
     git=http://github.com/swiftmailer/swiftmailer.git
-    version=v4.1.2
+    version=v4.1.5
 
-[twig]
-    git=http://github.com/fabpot/Twig.git
-;    version=v1.5.1
+[assetic]
+    git=http://github.com/kriswallsmith/assetic.git
+    version=v1.0.2
+
+[metadata]
+    git=http://github.com/schmittjoh/metadata.git
+    version=1.1.1
 
 [twig-extensions]
     git=http://github.com/fabpot/Twig-extensions.git
+
+[SensioFrameworkExtraBundle]
+    git=http://github.com/sensio/SensioFrameworkExtraBundle.git
+    target=/bundles/Sensio/Bundle/FrameworkExtraBundle
+;   version=origin/2.0
+
+[SensioDistributionBundle]
+    git=http://github.com/sensio/SensioDistributionBundle.git
+    target=/bundles/Sensio/Bundle/DistributionBundle
+    version=origin/1.0
+
+[SensioGeneratorBundle]
+    git=http://github.com/sensio/SensioGeneratorBundle.git
+    target=/bundles/Sensio/Bundle/GeneratorBundle
+
+[AsseticBundle]
+    git=http://github.com/symfony/AsseticBundle.git
+    target=/bundles/Symfony/Bundle/AsseticBundle
+    version=v1.0.1
+
+;==============================================================================================
+; Doctrine ORM
+
+[doctrine]
+    git=http://github.com/doctrine/doctrine2.git
+    version=2.2.0
+
+[DoctrineBundle]
+    git=http://github.com/doctrine/DoctrineBundle.git
+    target=/bundles/Doctrine/Bundle/DoctrineBundle
+    version=origin/master
+
+;==============================================================================================
+; Doctrine fixtures
+
+[doctrine-fixtures]
+    git=http://github.com/doctrine/data-fixtures.git
+
+[DoctrineFixturesBundle]
+    git=http://github.com/doctrine/DoctrineFixturesBundle.git
+    target=/bundles/Doctrine/Bundle/FixturesBundle
+
+;==============================================================================================
+; Doctrine extensions
+
+[gedmo-doctrine-extensions]
+    git=http://github.com/l3pp4rd/DoctrineExtensions.git
+    version=v2.2.0
+
+[DoctrineExtensionsBundle]
+    git=http://github.com/stof/StofDoctrineExtensionsBundle.git
+    target=/bundles/Stof/DoctrineExtensionsBundle
+
+;==============================================================================================
+; Doctrine migrations
+
+[doctrine-migrations]
+    git=http://github.com/doctrine/migrations.git
+
+[DoctrineMigrationsBundle]
+    git=http://github.com/doctrine/DoctrineMigrationsBundle.git
+    target=/bundles/Doctrine/Bundle/MigrationsBundle
+
+;==============================================================================================
+; Imagine
+
+[Imagine]
+    git=http://github.com/avalanche123/Imagine.git
+    target=imagine
+
+[AvalancheImagineBundle]
+    git=http://github.com/avalanche123/AvalancheImagineBundle.git
+    target=bundles/Avalanche/Bundle/ImagineBundle
+
+;==============================================================================================
+; Zend Framework
 
 [zf]
     git=http://github.com/stfalcon-studio/zf.git
@@ -57,56 +119,40 @@
     git=http://github.com/zendframework/zf2.git
     version=e76d9577565a15b009d3fad4d39298f07fd71436
 
-[AsseticBundle]
-    git=http://github.com/symfony/AsseticBundle.git
-    target=/bundles/Symfony/Bundle/AsseticBundle
-    version=v1.0.1
+[ZendCacheBundle]
+    git=http://github.com/KnpLabs/KnpZendCacheBundle.git
+    target=/bundles/Knp/Bundle/ZendCacheBundle
 
-[DoctrineBundle]
-    git=http://github.com/doctrine/DoctrineBundle.git
-    target=/bundles/Doctrine/Bundle/DoctrineBundle
-    version=origin/master
+;==============================================================================================
+; SonataAdmin
 
-[DoctrineFixturesBundle]
-    git=http://github.com/doctrine/DoctrineFixturesBundle.git
-    target=/bundles/Doctrine/Bundle/FixturesBundle
+[SonataAdminBundle]
+    git=http://github.com/sonata-project/SonataAdminBundle.git
+    target=/bundles/Sonata/AdminBundle
 
-[DoctrineMigrationsBundle]
-    git=http://github.com/doctrine/DoctrineMigrationsBundle.git
-    target=/bundles/Doctrine/Bundle/MigrationsBundle
+[SonatajQueryBundle]
+    git=http://github.com/sonata-project/SonatajQueryBundle.git
+    target=/bundles/Sonata/jQueryBundle
 
-[DoctrineExtensionsBundle]
-    git=http://github.com/stof/StofDoctrineExtensionsBundle.git
-    target=/bundles/Stof/DoctrineExtensionsBundle
-
-[FunctionalTestBundle]
-    git=http://github.com/liip/LiipFunctionalTestBundle.git
-    target=/bundles/Liip/FunctionalTestBundle
+;==============================================================================================
+; KnpMenu
 
 [KnpMenuBundle]
     git=http://github.com/KnpLabs/KnpMenuBundle.git
     target=bundles/Knp/Bundle/MenuBundle
     version=legacy
 
+;==============================================================================================
+; TDD
+
+[FunctionalTestBundle]
+    git=http://github.com/liip/LiipFunctionalTestBundle.git
+    target=/bundles/Liip/FunctionalTestBundle
+
+;==============================================================================================
+; Paginator
+
 [PaginatorBundle]
     git=http://github.com/KnpLabs/KnpPaginatorBundle.git
     target=/bundles/Knp/Bundle/PaginatorBundle
-	version=v1.0
-
-[SensioDistributionBundle]
-    git=http://github.com/sensio/SensioDistributionBundle.git
-    target=/bundles/Sensio/Bundle/DistributionBundle
-    version=origin/1.0
-
-[SensioFrameworkExtraBundle]
-    git=http://github.com/sensio/SensioFrameworkExtraBundle.git
-    target=/bundles/Sensio/Bundle/FrameworkExtraBundle
-;   version=origin/2.0
-
-[SensioGeneratorBundle]
-    git=http://github.com/sensio/SensioGeneratorBundle.git
-    target=/bundles/Sensio/Bundle/GeneratorBundle
-
-[ZendCacheBundle]
-    git=http://github.com/KnpLabs/KnpZendCacheBundle.git
-    target=/bundles/Knp/Bundle/ZendCacheBundle
+    version=v1.0

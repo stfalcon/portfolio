@@ -70,17 +70,24 @@
                 </div>
                 <!--/twitter block-->
                 
+{# start refact this #}
                 {% if project is defined %}
-                    {% render "StfalconPortfolioBundle:Project:users" with { 'project': project } %}
+                    {% if project.users %}
+                    <div class="users-list">
+                        <h2>{% trans %}Над проектом работали{% endtrans %}</h2>
+                        {{ project.users | raw }}
+                    </div>
+                    {% endif %}
                 {% endif %}
                 
-                {% if category is defined %}
+                {#% if category is defined %}
                     {% if project is defined %}
                         {% render "StfalconPortfolioBundle:Category:services" with { 'category': category, 'project': project } %}
                     {% else %}
                         {% render "StfalconPortfolioBundle:Category:services" with { 'category': category } %}
                     {% endif %}
-                {% endif %}
+                {% endif %#}
+{# end refact this #}
 
             </div>
             <!--sidebar-->

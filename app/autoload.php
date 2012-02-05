@@ -17,7 +17,7 @@ $loader->registerNamespaces(array(
     'Bundle'                         => __DIR__.'/../vendor/bundles',
 
     'Doctrine\\Bundle'               => __DIR__.'/../vendor/bundles',
-    'Doctrine\\Common\\DataFixtures' => __DIR__.'/../vendor/doctrine-data-fixtures/lib',
+    'Doctrine\\Common\\DataFixtures' => __DIR__.'/../vendor/doctrine-fixtures/lib',
     'Doctrine\\Common'               => __DIR__.'/../vendor/doctrine-common/lib',
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine\\DBAL\\Migrations'     => __DIR__.'/../vendor/doctrine-migrations/lib',
@@ -27,7 +27,7 @@ $loader->registerNamespaces(array(
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
     'Monolog'                        => __DIR__.'/../vendor/monolog/src',
     'Metadata'                       => __DIR__.'/../vendor/metadata/src',
-    'Gedmo'                          => __DIR__.'/../vendor/doctrine-extensions/lib',
+    'Gedmo'                          => __DIR__.'/../vendor/gedmo-doctrine-extensions/lib',
     'Stof'                           => __DIR__.'/../vendor/bundles',
     'Assetic'                        => __DIR__.'/../vendor/assetic/src',
 ));
