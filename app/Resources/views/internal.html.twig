@@ -6,7 +6,8 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         {% stylesheets 'css/style.css' filter='yui_css' %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-        {% endstylesheets %}    </head>
+        {% endstylesheets %}
+    </head>
 
     <body>
         <!--header-->
@@ -69,26 +70,8 @@
                     <div class="twitter-top"></div>
                 </div>
                 <!--/twitter block-->
-                
-{# start refact this #}
-                {% if project is defined %}
-                    {% if project.users %}
-                    <div class="users-list">
-                        <h2>{% trans %}Над проектом работали{% endtrans %}</h2>
-                        {{ project.users | raw }}
-                    </div>
-                    {% endif %}
-                {% endif %}
-                
-                {#% if category is defined %}
-                    {% if project is defined %}
-                        {% render "StfalconPortfolioBundle:Category:services" with { 'category': category, 'project': project } %}
-                    {% else %}
-                        {% render "StfalconPortfolioBundle:Category:services" with { 'category': category } %}
-                    {% endif %}
-                {% endif %#}
-{# end refact this #}
 
+                {% block sidebar %}{% endblock %}
             </div>
             <!--sidebar-->
 
