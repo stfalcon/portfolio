@@ -60,9 +60,9 @@
             </div>
             <div class="clear"></div>
             <div class="grid_12">
-                {% if app.session.hasFlash('notice') %}
+                {% if app.session.flashbag.has('notice') %}
                     <div class="notice">
-                        {{ app.session.flash('notice') }}
+                        {{ app.session.flashbag.get('notice') }}
                     </div>
                 {% endif %}
 

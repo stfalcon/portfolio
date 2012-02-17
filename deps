@@ -3,6 +3,7 @@
 
 [symfony]
     git=git://github.com/symfony/symfony.git
+    version=3236fc5af3915be5d33ffd469fcf462b420880fd
 
 [twig]
     git=git://github.com/fabpot/Twig.git
@@ -22,53 +23,31 @@
 
 [metadata]
     git=git://github.com/schmittjoh/metadata.git
-    version=1.1.1
+    version=1.1.0
 
 [twig-extensions]
     git=git://github.com/fabpot/Twig-extensions.git
+    version=1dfff8e793f50f651c4f74f796c2c68a4aee3147
 
 [SensioFrameworkExtraBundle]
     git=git://github.com/sensio/SensioFrameworkExtraBundle.git
     target=/bundles/Sensio/Bundle/FrameworkExtraBundle
-;   version=origin/2.0
+    version=1b0ca00361050760f14f70be6f3a31f125211f3d
 
 [SensioDistributionBundle]
     git=git://github.com/sensio/SensioDistributionBundle.git
     target=/bundles/Sensio/Bundle/DistributionBundle
-    version=origin/1.0
+    version=origin/2.0
 
 [SensioGeneratorBundle]
     git=git://github.com/sensio/SensioGeneratorBundle.git
     target=/bundles/Sensio/Bundle/GeneratorBundle
+    version=fe924497677ea41d0d09f0c011e55142bda12cd7
 
 [AsseticBundle]
     git=git://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
-    version=v1.0.1
-
-;==============================================================================================
-; Monolog
-
-[monolog]
-    git=git://github.com/Seldaek/monolog.git
-    version=1.0.2
-
-[MonologBundle]
-    git=git://github.com/symfony/MonologBundle.git
-    target=/bundles/Symfony/Bundle/MonologBundle
-    version=origin/master
-
-;==============================================================================================
-; Swiftmailer
-
-[swiftmailer]
-    git=git://github.com/swiftmailer/swiftmailer.git
-    version=v4.1.5
-
-[SwiftmailerBundle]
-    git=git://github.com/symfony/SwiftmailerBundle.git
-    target=/bundles/Symfony/Bundle/SwiftmailerBundle
-    version=origin/master
+    version=a00affc13d263e6c82d5f6a4f7d057581a3dab4d
 
 ;==============================================================================================
 ; Doctrine ORM
@@ -80,17 +59,45 @@
 [DoctrineBundle]
     git=git://github.com/doctrine/DoctrineBundle.git
     target=/bundles/Doctrine/Bundle/DoctrineBundle
-    version=origin/master
+    version=017eb3f7b2cffdc3c3b399593de7836ad2288e90
+
+;==============================================================================================
+; Monolog
+
+[monolog]
+    git=git://github.com/Seldaek/monolog.git
+    version=1.0.2
+
+[MonologBundle]
+    git=git://github.com/symfony/MonologBundle.git
+    target=/bundles/Symfony/Bundle/MonologBundle
+    version=bc649c0ab6e0f9cba2cac083c8db8c7bb2e65900
+;    version=origin/master
+
+;==============================================================================================
+; Swiftmailer
+
+[swiftmailer]
+    git=git://github.com/swiftmailer/swiftmailer.git
+    version=v4.1.5
+
+[SwiftmailerBundle]
+    git=git://github.com/symfony/SwiftmailerBundle.git
+    target=/bundles/Symfony/Bundle/SwiftmailerBundle
+    version=75f8f95c201922a966274547131b33291d15d51b
+;    version=origin/master
 
 ;==============================================================================================
 ; Doctrine fixtures
 
 [doctrine-fixtures]
     git=git://github.com/doctrine/data-fixtures.git
+    version=ffee818a6e3af526b774de11b690a36512fa6235
 
 [DoctrineFixturesBundle]
     git=git://github.com/doctrine/DoctrineFixturesBundle.git
     target=/bundles/Doctrine/Bundle/FixturesBundle
+    version=0e4e56b1da7981bcc7729e0f301a75195d34df18
 
 ;==============================================================================================
 ; Doctrine extensions
@@ -102,16 +109,19 @@
 [DoctrineExtensionsBundle]
     git=git://github.com/stof/StofDoctrineExtensionsBundle.git
     target=/bundles/Stof/DoctrineExtensionsBundle
+    version=e237d8f008c558f8a82c0d6d41281b0dd8d2ec74
 
 ;==============================================================================================
 ; Doctrine migrations
 
 [doctrine-migrations]
     git=git://github.com/doctrine/migrations.git
+    version=9e81984b0f126b0830d9ac6acc2d1da81aba2b94
 
 [DoctrineMigrationsBundle]
     git=git://github.com/doctrine/DoctrineMigrationsBundle.git
     target=/bundles/Doctrine/Bundle/MigrationsBundle
+    version=9690dfba714fa82f3979fb5fa18750a37ab16e1c
 
 ;==============================================================================================
 ; Imagine
@@ -119,16 +129,19 @@
 [Imagine]
     git=git://github.com/avalanche123/Imagine.git
     target=imagine
+    version=v0.2.8
 
 [AvalancheImagineBundle]
     git=git://github.com/avalanche123/AvalancheImagineBundle.git
     target=bundles/Avalanche/Bundle/ImagineBundle
+    version=2187ee4bd397f7f4de820ec07ffbb28ff00966f8
 
 ;==============================================================================================
 ; Zend Framework
 
 [zf]
     git=git://github.com/stfalcon-studio/zf.git
+    version=79d57b89d38161ed7a32255ec45eb5720e361cb1
 
 [zf2]
     git=git://github.com/zendframework/zf2.git
@@ -137,17 +150,18 @@
 [ZendCacheBundle]
     git=git://github.com/KnpLabs/KnpZendCacheBundle.git
     target=/bundles/Knp/Bundle/ZendCacheBundle
+    version=5a124bfe26938538442c34d10ab181372e9625a9
 
 ;==============================================================================================
 ; SonataAdmin
 
-[SonataAdminBundle]
-    git=git://github.com/sonata-project/SonataAdminBundle.git
-    target=/bundles/Sonata/AdminBundle
+;[SonataAdminBundle]
+;    git=git://github.com/sonata-project/SonataAdminBundle.git
+;    target=/bundles/Sonata/AdminBundle
 
-[SonatajQueryBundle]
-    git=git://github.com/sonata-project/SonatajQueryBundle.git
-    target=/bundles/Sonata/jQueryBundle
+;[SonatajQueryBundle]
+;    git=git://github.com/sonata-project/SonatajQueryBundle.git
+;    target=/bundles/Sonata/jQueryBundle
 
 ;==============================================================================================
 ; KnpMenu
@@ -163,6 +177,7 @@
 [FunctionalTestBundle]
     git=git://github.com/liip/LiipFunctionalTestBundle.git
     target=/bundles/Liip/FunctionalTestBundle
+    version=a2423b07bb26904d8e4136e7c2f298debff7519e
 
 ;==============================================================================================
 ; Paginator

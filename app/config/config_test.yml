@@ -4,19 +4,15 @@ imports:
 framework:
     test: ~
     session:
-        storage_id: session.storage.filesystem
+        storage_id: session.storage.mock_file
 
 doctrine:
     dbal:
         default_connection: default
         connections:
             default:
-                driver:   pdo_mysql
-                host:     localhost
-                dbname:   stfalcon_com_testing
-                user:     root
-                password: null
-                charset:  UTF8
+                driver:   pdo_sqlite
+                path:     %kernel.cache_dir%/test.db
 
 web_profiler:
     toolbar: false
@@ -27,6 +23,7 @@ liip_functional_test:
     authentication:
         username: admin
         password: qwerty
+    cache_sqlite_db: true
 
 swiftmailer:
     disable_delivery: true

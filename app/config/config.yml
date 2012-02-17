@@ -11,10 +11,10 @@ framework:
     form:             true
     csrf_protection:  true
     validation:       { enable_annotations: true }
-    templating:       { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale: %locale%
+    templating:       { engines: ['twig'] }
+    default_locale:   %locale%
     session:
-        auto_start:     true
+        auto_start:   true
 
 
 # Twig Configuration
@@ -61,7 +61,8 @@ stof_doctrine_extensions:
 
 # AsseticBundle
 assetic:
-#    cssrewrite: ~
+    debug:          %kernel.debug%
+    use_controller: false
     filters:
         yui_css:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
