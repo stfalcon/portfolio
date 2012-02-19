@@ -38,7 +38,7 @@
             </div>#}
 
             <div class="menu">
-                {{ knp_menu('main') }}
+                {{ knp_menu_render('main', {'currentAsLink': false}) }}
             </div>
         </div>
         <!--/header-->
@@ -46,7 +46,7 @@
         <!--content-->
         <div id="main">
             <div class="breadcrumbs">
-                {{ knp_menu('breadcrumbs') }}
+                {{ knp_menu_render('breadcrumbs', {'currentAsLink': false}) }}
             </div>
 
             <div id="content">

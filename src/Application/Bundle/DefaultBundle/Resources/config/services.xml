@@ -5,27 +5,38 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="knp_menu.main.class">Application\Bundle\DefaultBundle\Menu\MainMenu</parameter>
-        <parameter key="knp_menu.breadcrumbs.class">Application\Bundle\DefaultBundle\Menu\BreadCrumbs</parameter>
+        <parameter key="application_default.menu_builder.class">Application\Bundle\DefaultBundle\Menu\MenuBuilder</parameter>
     </parameters>
 
     <services>
-        <service id="menu.main" class="%knp_menu.main.class%" scope="request">
+        <service id="application_default.menu_builder" class="%application_default.menu_builder.class%">
+            <argument type="service" id="knp_menu.factory" />
+        </service>
+
+        <!-- main menu -->
+        <service id="application_default.menu.main"
+                 class="Knp\Menu\MenuItem"
+                 scope="request"
+                 factory-service="application_default.menu_builder"
+                 factory-method="createMainMenu">
             <tag name="knp_menu.menu" alias="main" />
             <argument type="service" id="request" />
-            <argument type="service" id="router" />
         </service>
-        <service id="menu.breadcrumbs" class="%knp_menu.breadcrumbs.class%" scope="request">
+
+        <!-- breadcrumbs menu -->
+        <service id="application_default.menu.breadcrumbs"
+                 class="Knp\Menu\MenuItem"
+                 scope="request"
+                 factory-service="application_default.menu_builder"
+                 factory-method="createBreadcrumbsMenu">
             <tag name="knp_menu.menu" alias="breadcrumbs" />
             <argument type="service" id="request" />
-            <argument type="service" id="router" />
         </service>
-        
+
         <service id="twig.extension.twitter" class="Application\Bundle\DefaultBundle\Extension\TwitterTwigExtension">
             <argument type="service" id="service_container"></argument>
             <tag name="twig.extension" alias="twitter" />
         </service>
-        
     </services>
 
 </container>

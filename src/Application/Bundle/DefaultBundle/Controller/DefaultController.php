@@ -97,8 +97,10 @@ class DefaultController extends Controller
     public function contactsAction()
     {
         // @todo: refact
-        $breadcrumbs = $this->get('menu.breadcrumbs');
-        $breadcrumbs->addChild('Контакты')->setIsCurrent(true);
+        if ($this->has('application_default.menu.breadcrumbs')) {
+            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
+            $breadcrumbs->addChild('Контакты')->setCurrent(true);
+        }
 
         return array();
     }

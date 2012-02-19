@@ -9,7 +9,9 @@ $loader->registerNamespaces(array(
 //    'Application'                    => __DIR__.'/../src',
 
     'Liip'                           => __DIR__.'/../vendor/bundles',
-    'Knp'                            => __DIR__.'/../vendor/bundles',
+    'Knp\Bundle'                     => __DIR__.'/../vendor/bundles',
+    'Knp\Menu'                       => __DIR__.'/../vendor/KnpMenu/src',
+
     'Sensio'                         => __DIR__.'/../vendor/bundles',
     'Stfalcon'                       => array(__DIR__.'/../vendor/bundles', __DIR__.'/../src'),
 
@@ -22,7 +24,7 @@ $loader->registerNamespaces(array(
     'Doctrine\\DBAL'                 => __DIR__.'/../vendor/doctrine-dbal/lib',
     'Doctrine\\DBAL\\Migrations'     => __DIR__.'/../vendor/doctrine-migrations/lib',
     'Doctrine'                       => __DIR__.'/../vendor/doctrine/lib',
-    
+
     'Zend'                           => __DIR__.'/../vendor/zf2/library',
     'Imagine'                        => __DIR__.'/../vendor/imagine/lib',
     'Monolog'                        => __DIR__.'/../vendor/monolog/src',

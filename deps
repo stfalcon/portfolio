@@ -166,10 +166,14 @@
 ;==============================================================================================
 ; KnpMenu
 
+[KnpMenu]
+    git=https://github.com/KnpLabs/KnpMenu.git
+    version=799192d6effc52657ca2f5d0ac180ffd1533f083
+
 [KnpMenuBundle]
-    git=git://github.com/KnpLabs/KnpMenuBundle.git
+    git=https://github.com/KnpLabs/KnpMenuBundle.git
     target=bundles/Knp/Bundle/MenuBundle
-    version=legacy
+    version=51598cb53b5f30d194da8c936274457d376fc8a6
 
 ;==============================================================================================
 ; TDD
