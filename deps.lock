@@ -4,13 +4,12 @@ doctrine-dbal 2.2.1
 assetic v1.0.2
 metadata 1.1.0
 SensioDistributionBundle 20b66a408084ad8752f98e50f10533f5245310bf
-AsseticBundle a00affc13d263e6c82d5f6a4f7d057581a3dab4d
 doctrine 2.2.0
+DoctrineBundle 017eb3f7b2cffdc3c3b399593de7836ad2288e90
 monolog 1.0.2
-MonologBundle bc649c0ab6e0f9cba2cac083c8db8c7bb2e65900
 swiftmailer v4.1.5
-SwiftmailerBundle 75f8f95c201922a966274547131b33291d15d51b
 gedmo-doctrine-extensions v2.2.0
 Imagine v0.2.8
+zf2 release-2.0.0dev4~146
 KnpMenuBundle legacy
 PaginatorBundle v1.0
