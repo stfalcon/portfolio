@@ -10,7 +10,6 @@
         <mkdir dir="${logsdir}" />
         <mkdir dir="${cachedir}" />
         <exec command="php bin/vendors update" escape="false" />
-        <exec command="cp /var/lib/jenkins/configs/stfalcon_com.yml ./app/config/config_test.yml" escape="false" />
         <exec command="php app/console cache:clear" escape="false" />
     </target>
 
