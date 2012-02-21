@@ -36,7 +36,7 @@ If you get any warnings or recommendations, fix these now before moving on.
 
 ### b) Change the permissions of the "app/cache/" and "app/logs" directories so that the web server can write into it. 
 
-	$ sudo chmod -R 0777 app/cache/ app/logs
+	$ chmod 777 app/cache/ app/logs
 
 ### c) Initialize and update Submodules
 
