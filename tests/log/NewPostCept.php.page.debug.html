@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Веб студия stfalcon.com</title>
+        <link rel="stylesheet" type="text/css" href="/vendor/fluid960gs/css/reset.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/vendor/fluid960gs/css/text.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/vendor/fluid960gs/css/960.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/vendor/fluid960gs/css/layout.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/vendor/fluid960gs/css/nav.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/css/admin.css" media="screen" />
+        <!--[if IE 6]>
+            <link rel="stylesheet" type="text/css" href="/vendor/fluid960gs/css/ie6.css" media="screen" />
+        <![endif]-->
+        <!--[if IE 7]>
+            <link rel="stylesheet" type="text/css" href="/vendor/fluid960gs/css/ie.css" media="screen" />
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="/vendor/markitup/skins/markitup/style.css" />
+        <link rel="stylesheet" type="text/css" href="/vendor/markitup/sets/html/style.css" />
+    </head>
+    <body>
+        <div class="container_12">
+            <div class="grid_12">
+                <h1 id="branding">
+                    <a href="/">PortfolioBundle</a>
+                </h1>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                <ul class="nav main">
+                    <li>
+                        <a href="/admin/portfolio/projects">Projects</a>
+                        <ul>
+                            <li>
+                                <a href="/admin/portfolio/project/create">Create new project</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/admin/portfolio/categories">Categories</a>
+                        <ul>
+                            <li>
+                                <a href="/admin/portfolio/category/create">Create new category</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/admin/blog/posts">Posts</a>
+                        <ul>
+                            <li>
+                                <a href="/admin/blog/post/create">Create new post</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                &nbsp;
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                
+                    <h4>Create new post</h4>
+
+    <form action="#" method="post">
+        <fieldset>
+            <div id="post"><ul><li>The CSRF token is invalid. Please try to resubmit the form</li></ul><input type="hidden" id="post__token" name="post[_token]" value="ccd0a6d39497a1911d6a8de350b7f65ee9ffe453" /><div><label for="post_title" class=" required">Title</label><input type="text" id="post_title" name="post[title]" required="required" maxlength="255" value="Codeception, a new way of testing!" /></div><div><label for="post_slug" class=" required">Slug</label><input type="text" id="post_slug" name="post[slug]" required="required" maxlength="128" pattern=".{3,128}" value="codeception-testing" /></div><div><label for="post_text" class=" required">Text</label><textarea id="post_text" name="post[text]" required="required">Codeception is new testing frameework for testing</textarea></div><div><label for="post_tags" class=" required">Tags</label><input type="text" id="post_tags" name="post[tags]" required="required" value="php testing" /></div></div>
+            <input type="submit" value="Send" />
+        </fieldset>
+    </form>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" id="site_info">
+                <div class="box">
+                    <p>
+                        Powered by <a href="http://symfony-reloaded.org/">Symfony2 PHP framework</a>
+                    </p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <script type="text/javascript" src="/vendor/jquery/jquery-1.4.4.min.js"></script>
+        <script type="text/javascript" src="/vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js"></script>
+        <script type="text/javascript" src="/vendor/fluid960gs/js/jquery-fluid16.js"></script>
+        <script type="text/javascript" src="/vendor/markitup/jquery.markitup.js"></script>
+        <script type="text/javascript" src="/vendor/markitup/sets/html/set.js"></script>
+        <script type="text/javascript" >
+           $(document).ready(function() {
+              $("textarea").markItUp(mySettings);
+           });
+        </script>
+
+    </body>
+</html>
