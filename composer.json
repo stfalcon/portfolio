@@ -1,0 +1,164 @@
+{
+    "name": "stfalcon.com",
+    "description": "",
+    "keywords": ["framework"],
+    "homepage": "http://stfalcon.com",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "behat.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "zendframework/zend-cache",
+                "version": "2.0.0beta1",
+                "dist": {
+                    "url": "http://github.com/KnpLabs/zend-cache/zipball/master",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "git://github.com/KnpLabs/zend-cache.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "psr-0": {
+                        "Zend\\Cache": ""
+                    }
+                },
+                "target-dir": "Zend/Cache"
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "zendframework/zend-filter",
+                "version": "2.0.0beta1",
+                "dist": {
+                    "url": "http://github.com/KnpLabs/zend-filter/zipball/master",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "git://github.com/KnpLabs/zend-filter.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "psr-0": {
+                        "Zend\\Filter": ""
+                    }
+                },
+                "target-dir": "Zend/Filter"
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "zendframework/zf1",
+                "version": "1.11",
+                "autoload": { "psr-0": { "Zend_": "library" } },
+                "dist": {
+                    "url": "http://github.com/stfalcon-studio/zf/zipball/master",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "git://github.com/stfalcon-studio/zf.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "zendframework/zf2",
+                "version": "2.0.0",
+                "autoload": { "psr-0": { "Zend": "library" } },
+                "dist": {
+                    "url": "http://github.com/zendframework/zf2/zipball/master",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "git://github.com/zendframework/zf2.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "doctrine/doctrine-bundle": "dev-master",
+        "doctrine/orm": "2.2-dev",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "symfony/assetic-bundle": "dev-master",
+        "kriswallsmith/assetic": "dev-master",
+        "sensio/distribution-bundle": "dev-master",
+        "sensio/framework-extra-bundle": "dev-master",
+        "sensio/generator-bundle": "dev-master",
+        "symfony/swiftmailer-bundle": "dev-master",
+        "symfony/monolog-bundle": "dev-master",
+        "gedmo/doctrine-extensions": "dev-master",
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "avalanche123/imagine-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "knplabs/knp-zend-cache-bundle": "*",
+        "zendframework/zend-filter": "2.0.0beta1",
+        "twig/twig": ">=1.1,<2.0-dev",
+        "twig/extensions": "dev-master",
+        "liip/functional-test-bundle": "dev-master",
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/jquery-bundle": "dev-master",
+        "zendframework/zf1": "1.11",
+        "zendframework/zf2": "2.0.0"
+    },
+    "replace": {
+        "symfony/doctrine-bridge": "self.version",
+        "symfony/monolog-bridge": "self.version",
+        "symfony/twig-bridge": "self.version",
+        "symfony/framework-bundle": "self.version",
+        "symfony/security-bundle": "self.version",
+        "symfony/twig-bundle": "self.version",
+        "symfony/web-profiler-bundle": "self.version",
+        "symfony/browser-kit": "self.version",
+        "symfony/class-loader": "self.version",
+        "symfony/config": "self.version",
+        "symfony/console": "self.version",
+        "symfony/css-selector": "self.version",
+        "symfony/dependency-injection": "self.version",
+        "symfony/dom-crawler": "self.version",
+        "symfony/event-dispatcher": "self.version",
+        "symfony/filesystem": "self.version",
+        "symfony/finder": "self.version",
+        "symfony/form": "self.version",
+        "symfony/http-foundation": "self.version",
+        "symfony/http-kernel": "self.version",
+        "symfony/locale": "self.version",
+        "symfony/process": "self.version",
+        "symfony/routing": "self.version",
+        "symfony/security": "self.version",
+        "symfony/serializer": "self.version",
+        "symfony/templating": "self.version",
+        "symfony/translation": "self.version",
+        "symfony/validator": "self.version",
+        "symfony/yaml": "self.version"
+    },
+    "suggest": {
+        "doctrine/data-fixtures": "1.0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Symfony": "src/",
+            "SessionHandlerInterface": "src/Symfony/Component/HttpFoundation/Resources/stubs",
+            "Application": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.1-dev"
+        }
+    }
+}
