@@ -445,7 +445,7 @@ use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\ClassLoader\ClassCollectionLoader;
-use Symfony\Component\ClassLoader\DebugUniversalClassLoader;
+use Symfony\Component\ClassLoader\DebugClassLoader;
 
 
 abstract class Kernel implements KernelInterface, TerminableInterface
@@ -460,6 +460,7 @@ abstract class Kernel implements KernelInterface, TerminableInterface
     protected $name;
     protected $startTime;
     protected $classes;
+    protected $errorReportingLevel;
 
     const VERSION = '2.1.0-DEV';
 
@@ -486,8 +487,8 @@ abstract class Kernel implements KernelInterface, TerminableInterface
             ini_set('display_errors', 1);
             error_reporting(-1);
 
-            DebugUniversalClassLoader::enable();
-            ErrorHandler::register();
+            DebugClassLoader::enable();
+            ErrorHandler::register($this->errorReportingLevel);
             if ('cli' !== php_sapi_name()) {
                 ExceptionHandler::register();
             }
@@ -1179,9 +1180,21 @@ class UniversalClassLoader
     }
 
     
+    public function registerNamespaceFallback($dir)
+    {
+        $this->namespaceFallbacks[] = $dir;
+    }
+
+    
     public function registerPrefixFallbacks(array $dirs)
     {
         $this->prefixFallbacks = $dirs;
+    }
+
+    
+    public function registerPrefixFallback($dir)
+    {
+        $this->prefixFallbacks[] = $dir;
     }
 
     
