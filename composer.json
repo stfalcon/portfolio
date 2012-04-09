@@ -1,8 +1,9 @@
 {
     "name": "stfalcon.com",
     "description": "",
-    "keywords": ["framework"],
-    "homepage": "http://stfalcon.com",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
     "repositories": [
         {
             "type": "composer",
@@ -89,76 +90,50 @@
     ],
     "require": {
         "php": ">=5.3.2",
+        "symfony/symfony": "2.1.*",
+        "doctrine/orm": "2.2.0",
         "doctrine/doctrine-bundle": "dev-master",
-        "doctrine/orm": "2.2-dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
+        "twig/extensions": "dev-master",
         "symfony/assetic-bundle": "dev-master",
-        "kriswallsmith/assetic": "dev-master",
+        "symfony/swiftmailer-bundle": "dev-master",
+        "symfony/monolog-bundle": "dev-master",
         "sensio/distribution-bundle": "dev-master",
         "sensio/framework-extra-bundle": "dev-master",
         "sensio/generator-bundle": "dev-master",
-        "symfony/swiftmailer-bundle": "dev-master",
-        "symfony/monolog-bundle": "dev-master",
+        "jms/security-extra-bundle": "1.1.0",
+        "jms/di-extra-bundle": "1.0.1",
+        "kriswallsmith/assetic": "dev-master",
         "gedmo/doctrine-extensions": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
         "avalanche123/imagine-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-zend-cache-bundle": "*",
-        "zendframework/zend-filter": "2.0.0beta1",
-        "twig/twig": ">=1.1,<2.0-dev",
-        "twig/extensions": "dev-master",
         "liip/functional-test-bundle": "dev-master",
         "sonata-project/admin-bundle": "dev-master",
         "sonata-project/jquery-bundle": "dev-master",
         "zendframework/zf1": "1.11",
         "zendframework/zf2": "2.0.0"
     },
-    "replace": {
-        "symfony/doctrine-bridge": "self.version",
-        "symfony/monolog-bridge": "self.version",
-        "symfony/twig-bridge": "self.version",
-        "symfony/framework-bundle": "self.version",
-        "symfony/security-bundle": "self.version",
-        "symfony/twig-bundle": "self.version",
-        "symfony/web-profiler-bundle": "self.version",
-        "symfony/browser-kit": "self.version",
-        "symfony/class-loader": "self.version",
-        "symfony/config": "self.version",
-        "symfony/console": "self.version",
-        "symfony/css-selector": "self.version",
-        "symfony/dependency-injection": "self.version",
-        "symfony/dom-crawler": "self.version",
-        "symfony/event-dispatcher": "self.version",
-        "symfony/filesystem": "self.version",
-        "symfony/finder": "self.version",
-        "symfony/form": "self.version",
-        "symfony/http-foundation": "self.version",
-        "symfony/http-kernel": "self.version",
-        "symfony/locale": "self.version",
-        "symfony/process": "self.version",
-        "symfony/routing": "self.version",
-        "symfony/security": "self.version",
-        "symfony/serializer": "self.version",
-        "symfony/templating": "self.version",
-        "symfony/translation": "self.version",
-        "symfony/validator": "self.version",
-        "symfony/yaml": "self.version"
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
+        ]
     },
-    "suggest": {
-        "doctrine/data-fixtures": "1.0.*"
-    },
-    "autoload": {
-        "psr-0": {
-            "Symfony": "src/",
-            "SessionHandlerInterface": "src/Symfony/Component/HttpFoundation/Resources/stubs",
-            "Application": "src/"
-        }
+    "config": {
+        "bin-dir": "bin"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "2.1-dev"
-        }
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web"
     }
 }

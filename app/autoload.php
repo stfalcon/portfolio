@@ -27,7 +27,6 @@ if (!function_exists('intl_get_error_code')) {
     $loader->add('Stfalcon', __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/stubs');
 }
 
-$loader->add('Stfalcon', __DIR__.'/../src');
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(__DIR__.'/../vendor/zendframework/zf1/library'),
     get_include_path(),
