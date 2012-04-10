@@ -75,7 +75,9 @@ knp_menu:
     twig: true
 
 knp_paginator:
-    templating: ~ # enables view helper and twig
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
 
 # ZendCacheBundle
 knp_zend_cache:
