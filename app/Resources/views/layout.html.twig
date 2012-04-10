@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/layout.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/nav.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}" media="screen" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/fileuploader.css') }}" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/InlineUpload.css') }}" media="screen" />
         <!--[if IE 6]>
             <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fluid960gs/css/ie6.css') }}" media="screen" />
         <![endif]-->
@@ -81,12 +81,19 @@
         </div>
 
         <script type="text/javascript" src="{{ asset('vendor/jquery/jquery-1.4.4.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery.measure.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery.pulse.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery.place.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery.loading.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/jquery/jquery.json-2.3.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/fluid960gs/js/jquery-fluid16.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/markitup/jquery.markitup.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('vendor/markitup/sets/html/set.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/InlineUpload.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/markItUpSettings.js') }}"></script>
         <script type="text/javascript" >
            $(document).ready(function() {
+              InlineUpload.options.action = '{{ path('blog_post_upload_image') }}';
               $("textarea").markItUp(mySettings);
            });
         </script>
