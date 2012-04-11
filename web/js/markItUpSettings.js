@@ -24,7 +24,7 @@ mySettings = {
 		{
 			name:'Picture',
 			key:'P',
-			beforeInsert: function(markItUp) { InlineUpload.display(markItUp) },
+			beforeInsert: function(markItUp) { InlineUpload.display(markItUp) }
 		},
 
 		{name:'Link', key:'L', openWith:'<a href="[![Link:!:http://]!]"(!( title="[![Title]!]")!)>', closeWith:'</a>', placeHolder:'Your text to link...' },
