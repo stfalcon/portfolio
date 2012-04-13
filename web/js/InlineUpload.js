@@ -12,7 +12,7 @@ var InlineUpload = {
         // Create invisible form and iframe
         this.dialog = $([
             '<div style="opacity:0;position:absolute;" class="inline_upload_container"><form class="',this.options.form_class,'" action="',this.options.action,'" target="',this.options.iframe,'" method="post" enctype="multipart/form-data">',
-            '<input name="inline_upload_file" type="file" /></form>' +
+            '<input name="uploadForm[inlineUploadFile]" type="file" /></form>' +
             '<iframe id="',this.options.iframe,'" name="',this.options.iframe,'" class="',this.options.iframe,'" src="about:blank" width="0" height="0"></iframe></div>',
         ].join(''));
         if ($(document).find(".inline_upload_container").length == 0) {
@@ -23,11 +23,11 @@ var InlineUpload = {
 
         // make 'click' action on file element right after 'Picture' selection on markItUp menu
         // to show system dialog
-        $("input[name='inline_upload_file']").focus();
-        $("input[name='inline_upload_file']").click();
+        $("input[name='uploadForm[inlineUploadFile]']").focus();
+        $("input[name='uploadForm[inlineUploadFile]']").click();
 
         // submit hidden form after file was selected in system dialog
-        $("input[name='inline_upload_file']").live('change', function(){
+        $("input[name='uploadForm[inlineUploadFile]']").live('change', function(){
             if ($(this).val() != '') $('.' + pointer.options.form_class).submit();
         });
 
@@ -46,7 +46,7 @@ var InlineUpload = {
         });
     },
     cleanUp: function() {
-        $("input[name='inline_upload_file']").die('change');
+        $("input[name='uploadForm[inlineUploadFile]']").die('change');
         this.dialog.remove();
     }
 };
