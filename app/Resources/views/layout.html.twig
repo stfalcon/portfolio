@@ -83,9 +83,11 @@
         <script type="text/javascript" src="{{ asset('vendor/jquery-ui/jquery-ui-1.8.9.custom.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/fluid960gs/js/jquery-fluid16.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/markitup/jquery.markitup.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('vendor/markitup/sets/html/set.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/InlineUpload.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/markItUpSettings.js') }}"></script>
         <script type="text/javascript" >
            $(document).ready(function() {
+              InlineUpload.options.action = '{{ path('blog_post_upload_image') }}';
               $("textarea").markItUp(mySettings);
            });
         </script>
