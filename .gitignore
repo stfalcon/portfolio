@@ -3,4 +3,5 @@ app/bootstrap.php.cache
 app/cache/*
 app/logs/*
 vendor
+composer.lock
 .rsync_cache
