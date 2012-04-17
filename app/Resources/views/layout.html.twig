@@ -94,7 +94,7 @@
                         update: function(event, ui) {
                             var array = [];
                             $(this).find('li').each(function(index){
-                                array.push({id: $(this).attr('id'), index: index});
+                                array.push({id: $(this).attr('data-id'), index: index});
                             });
                             $.post('{{ path('portfolioProjectsApplyOrder') }}', {projects: array}, function(response){});
                         }
