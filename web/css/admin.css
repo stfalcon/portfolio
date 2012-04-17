@@ -62,3 +62,4 @@ fieldset div div select {
 {
 	color: #205791;
 }
+.ui-state-highlight { border: 1px solid red;}

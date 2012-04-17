@@ -22,7 +22,7 @@
 
                             <div class="carousel-wrapper">
                                 <ul>
-                                    {% for project in category.projects %}
+                                    {% for project in projects[category.getId] %}
                                         <li>
                                             <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
                                                 <span>

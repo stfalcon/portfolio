@@ -87,8 +87,19 @@
         <script type="text/javascript" src="{{ asset('js/markItUpSettings.js') }}"></script>
         <script type="text/javascript" >
            $(document).ready(function() {
-              InlineUpload.options.action = '{{ path('blog_post_upload_image') }}';
-              $("textarea").markItUp(mySettings);
+                InlineUpload.options.action = '{{ path('blog_post_upload_image') }}';
+                $("textarea").markItUp(mySettings);
+                $( ".sortable" ).sortable({
+                        placeholder: "ui-state-highlight",
+                        update: function(event, ui) {
+                            var array = [];
+                            $(this).find('li').each(function(index){
+                                array.push({id: $(this).attr('data-id'), index: index});
+                            });
+                            $.post('{{ path('portfolioProjectsApplyOrder') }}', {projects: array}, function(response){});
+                        }
+                });
+                $( ".sortable" ).disableSelection();
            });
         </script>
 
