@@ -11,7 +11,8 @@
         <mkdir dir="${cachedir}" />
         <exec command="php composer.phar self-update" escape="false" />
         <exec command="php composer.phar install" escape="false" />
-        <exec command="git submodule init && git submodule update" escape="false" />
+        <exec command="git submodule init" escape="false" />
+        <exec command="git submodule update" escape="false" />
         <exec command="php app/console cache:clear" escape="false" />
     </target>
 
