@@ -5,60 +5,72 @@
 /* forms
 ----------------------------------------------- */
 fieldset div div label {
-	width:98%;
+    width:98%;
 }
 fieldset div div input {
-	width:98%;
+    width:98%;
 }
 fieldset div div textarea {
-	width:98%;
+    width:98%;
 }
 fieldset div div select {
-	width:99%;
+    width:99%;
 }
 
 /* info messages
 ----------------------------------------------- */
 .error, .alert, .notice, .success, .info {
-        padding:0.8em;
-        margin-bottom:1em;
-        border:2px solid #ddd;
+    padding:0.8em;
+    margin-bottom:1em;
+    border:2px solid #ddd;
 }
 .error, .alert {
-        background:#fbe3e4;
-        color:#8a1f11;
-        border-color:#fbc2c4;
+    background:#fbe3e4;
+    color:#8a1f11;
+    border-color:#fbc2c4;
 }
 .notice {
-        background:#fff6bf;
-        color:#514721;
-        border-color:#ffd324;
+    background:#fff6bf;
+    color:#514721;
+    border-color:#ffd324;
 }
 .success
 {
-	background: #e6efc2;
-	border-color: #c6d880;
-	color: #264409;
+    background: #e6efc2;
+    border-color: #c6d880;
+    color: #264409;
 }
 .info
 {
-	background: #d5edf8;
-	border-color: #92cae4;
-	color: #205791;
+    background: #d5edf8;
+    border-color: #92cae4;
+    color: #205791;
 }
 .error a, .alert a
 {
-	color: #8a1f11;
+    color: #8a1f11;
 }
 .notice a
 {
-	color: #514721;
+    color: #514721;
 }
 .success a
 {
-	color: #264409;
+    color: #264409;
 }
 .info a
 {
-	color: #205791;
+    color: #205791;
+}
+
+/* jquery-ui sortable */
+#projects-sortable li {
+    background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAICAMAAAAGL8UJAAAAAXNSR0IArs4c6QAAAOpQTFRFJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkJCIkzE4MxAAAAAF0Uk5TAEDm2GYAAAABYktHRACIBR1IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AQSBwQXREgZZgAAAB9JREFUCNdjYGDwZQACX19fEMsXzAOLQFlgEbAsWAQAc7AE0SKTFlUAAAAASUVORK5CYII=) no-repeat 3px 50%;
+    list-style-type: none;
+    padding: 0px 0px 0px 15px;
+    margin-left: 15px;
+}
+#projects-sortable li.ui-state-highlight  {
+    background: #ffe45c;
+    border: 1px solid #fed22f;
 }

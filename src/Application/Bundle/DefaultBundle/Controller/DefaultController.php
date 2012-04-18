@@ -30,7 +30,11 @@ class DefaultController extends Controller
     {
         $categories = $this->get('doctrine')->getEntityManager()
                 ->getRepository("StfalconPortfolioBundle:Category")->getAllCategories();
-
+        $projects = array();
+        foreach ($categories as $category) {
+            $projects[$category->getId()] = $this->get('doctrine')->getEntityManager()
+                    ->getRepository("StfalconPortfolioBundle:Project")->getIndexPageProjectsForCategory($category);
+        }
         //\Zend\Feed\Reader\Reader::setCache($this->get('knp_zend_cache.manager')->getCache('slow_cache'));
 
         try {
@@ -39,7 +43,7 @@ class DefaultController extends Controller
             $feed = array();
         }
 
-        return array('categories' => $categories, 'feed' => $feed);
+        return array('categories' => $categories, 'feed' => $feed, 'projects' => $projects);
     }
 
     /**

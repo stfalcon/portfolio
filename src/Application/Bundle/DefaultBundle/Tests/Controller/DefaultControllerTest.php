@@ -29,7 +29,7 @@ class DefaultControllerTest extends WebTestCase
         $preorderUrl = $this->getUrl('portfolioCategoryProjectView',
             array('categorySlug' => 'web-development', 'projectSlug' => 'preorder-it')
         );
-        $this->assertTrue($crawler->filter('a[href="' . $preorderUrl . '"]')->count() == 1);
+        $this->assertFalse($crawler->filter('a[href="' . $preorderUrl . '"]')->count() == 1);
 
         $epriceUrl = $this->getUrl('portfolioCategoryProjectView',
             array('categorySlug' => 'web-development', 'projectSlug' => 'eprice-kz')
