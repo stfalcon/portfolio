@@ -1,1 +1,13 @@
 {% extends '::internal.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% if post is defined %}
+        <style>
+            .twitter {
+                display: none !important;
+            }
+        </style>
+    {% endif %}
+{% endblock %}

@@ -417,8 +417,6 @@ a:hover {
 #content .post .post-wrapper ul li {
     padding: 0 0 12px 20px;
     background: url(/images/content/cont-bullet.png) no-repeat 0 5px;
-    float: left;
-    clear: left;
     width: 100%;
 }
 #content .post .post-wrapper p img {
@@ -779,4 +777,110 @@ a img.project-thumb:hover {
     width: 31.1%;
     padding-left: 10px;
     float: right;
+}
+
+/* improve blog styles */
+
+#content .post-wrapper {
+    font: 16px/1.4em Helvetica, Arial, sans-serif;
+    margin-bottom: 1.5em;
+}
+
+#content .post-wrapper h1 {
+    font-size: 2em;
+}
+
+
+#content .post-wrapper img {
+    margin: 0;
+}
+
+#content .post-wrapper img.float-left {
+    float: left;
+    margin: 0 30px 20px 0;
+}
+
+#content .post-wrapper .post-wrapper h2 {
+    font-size: 1.7em;
+}
+
+#content .post-wrapper h2 {
+    font-size: 1.7em;
+    margin: 1.5em 0 1em;
+}
+
+#content .post-wrapper h3 {
+    color: #6F7B9B;
+    font-size: 1.3em;
+    margin: 1em 0 .7em;
+}
+
+#content .post-wrapper h4 {
+    font-weight: bold;
+    color: #6F7B9B;
+}
+
+#content .post-wrapper aside {
+    font: .72em/1.5em Verdana, sans-serif;
+    float: right;
+    margin-right: -295px;
+    width: 235px;
+}
+
+#content .post-wrapper p {
+    margin: .5em 0 1em;
+}
+
+#content .post-wrapper .menu {
+    background: #F2F1F0;
+    padding: 2px 5px;
+    font: .9em/1.4em Tahoma, Arial, sans-serif;
+    box-shadow: 0 1px 0 #C7C4C1;
+    border-radius: 3px;
+}
+
+#content .post-wrapper .hotkey span {
+    background: #E5E5E5;
+    padding: 2px 4px;
+    border: 1px solid #AAA;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #ddd;
+    text-shadow: 0 1px 0 white;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+#content .post-wrapper ul li {
+    background: url(/images/content/cont-bullet.png) no-repeat 6px 9px;
+    padding: 0 0 .5em 1.4em;
+    float:none;
+}
+
+#content .post-wrapper ul {
+    margin: .5em 0 1em;
+}
+
+#content .post-wrapper code {
+    color: #7A412E;
+    font-family: monospace;
+}
+
+#content .post-wrapper pre {
+    font-family: monospace;
+    font-size: 1em;
+    margin-left: 2em;
+}
+
+#content .post-wrapper .inline {
+    display: inline !important;
+}
+
+#content .post-wrapper p + ul {
+    margin-top: -.5em;
+}
+
+#content .post-wrapper .tips {
+    background: #f6f3e0;
+    padding: .1em 1em;
+    margin-top: 1em;
 }
