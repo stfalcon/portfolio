@@ -1,7 +1,17 @@
-web/bundles/
-app/bootstrap.php.cache
-app/cache/*
-app/logs/*
-vendor
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+web/cache/*
+
+# Configuration files
+app/config/parameters.ini
+
+# etc
 composer.lock
 .rsync_cache

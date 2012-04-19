@@ -4,9 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Веб-студия stfalcon.com{% endblock %}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        {% stylesheets 'css/style.css' filter='yui_css' %}
-            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-        {% endstylesheets %}
+        {% block stylesheets %}
+            {% stylesheets 'css/style.css' filter='yui_css' output='cache/css/*.css' %}
+                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
     </head>
 
     <body>
@@ -113,37 +115,35 @@
         </div>
         <!--/footer-->
 
-        {% javascripts filter='yui_js'
-                'vendor/jquery/jquery-1.6.4.min.js'
-                'vendor/jquery-ui/jquery-ui-1.8.16.custom.min.js'
-                'js/jquery.metadata.js'
-                'js/jquery.main.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        <!--[if IE 6]>
-            <script type="text/javascript" src="{{ asset('js/DD_belatedPNG.js') }}"></script>
-        <![endif]-->
+        {% block javascripts %}
+            {% javascripts filter='yui_js' output='cache/js/*.js'
+                    'vendor/jquery/jquery-1.7.2.min.js'
+                    'vendor/jquery/jquery.metadata.js'
+                    'vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js' %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
 
-        <script type="text/javascript">
-            jQuery(document).ready(function() {
-                if ($("#accordion").length > 0) {
-                    var data = $("#accordion ul li.active").metadata();
-                    $("#accordion").accordion({ header: "h3", active: data.category_index, autoHeight: false, collapsible: true });
-                }
-            });
-        </script>
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    if ($("#accordion").length > 0) {
+                        var data = $("#accordion ul li.active").metadata();
+                        $("#accordion").accordion({ header: "h3", active: data.category_index, autoHeight: false, collapsible: true });
+                    }
+                });
+            </script>
 
-        <script type="text/javascript">
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-5635962-2']);
-          _gaq.push(['_trackPageview']);
+            <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-5635962-2']);
+            _gaq.push(['_trackPageview']);
 
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-        </script>
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+            </script>
+        {% endblock %}
 
     </body>
 </html>
