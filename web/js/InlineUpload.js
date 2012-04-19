@@ -34,8 +34,9 @@ var InlineUpload = {
 
         // response will be sent to the hidden iframe
         $('.' + this.options.iframe).bind('load', function() {
-            if ($(this).contents().find('body').html() != '') {
-                var response = $.parseJSON($(this).contents().find('body').html());
+            var responseJSONStr = $(this).contents().find('body').html();
+            if (responseJSONStr != '') {
+                var response = $.parseJSON(responseJSONStr);
                 if (response.status == 'success') {
                     var block = ['<img src="' + response.src + '" width="' + response.width + '" height="' + response.height + '" alt="" class=""/>'];
                     $.markItUp({replaceWith: block.join('')} );
