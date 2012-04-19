@@ -57,6 +57,7 @@ table {
 /* 1. base style ---------------------------*/
 
 body {
+    background-color: white;
     color: #404448;
     font: 14px Arial, Tahoma, Helvetica, sans-serif;
     min-width: 1200px;
@@ -717,7 +718,7 @@ a img.project-thumb:hover {
     padding: 9px 0 9px 0;
     font-size: 14px;
 }
-#sidebar .users-list dl dt { 
+#sidebar .users-list dl dt {
     font-weight: bold;
 }
 #sidebar .users-list dl dt:first-letter {
