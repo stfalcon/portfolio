@@ -113,9 +113,10 @@
         "knplabs/knp-zend-cache-bundle": "*",
         "liip/functional-test-bundle": "dev-master",
         "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/jquery-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "zendframework/zf1": "1.11",
-        "zendframework/zf2": "2.0.0"
+        "zendframework/zf2": "2.0.0",
+        "vich/uploader-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
