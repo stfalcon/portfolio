@@ -84,7 +84,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 
-class Container implements ContainerInterface
+class Container implements IntrospectableContainerInterface
 {
     protected $parameterBag;
     protected $services;
@@ -205,6 +205,12 @@ class Container implements ContainerInterface
         if (self::EXCEPTION_ON_INVALID_REFERENCE === $invalidBehavior) {
             throw new ServiceNotFoundException($id);
         }
+    }
+    
+    
+    public function initialized($id)
+    {
+        return isset($this->services[strtolower($id)]);
     }
 
     
@@ -1097,7 +1103,7 @@ class ClassCollectionLoader
     {
         $tmpFile = tempnam(dirname($file), basename($file));
         if (false !== @file_put_contents($tmpFile, $content) && @rename($tmpFile, $file)) {
-            chmod($file, 0644);
+            chmod($file, 0666 & ~umask());
 
             return;
         }
@@ -1538,7 +1544,7 @@ class ConfigCache
 
         $tmpFile = tempnam(dirname($this->file), basename($this->file));
         if (false !== @file_put_contents($tmpFile, $content) && @rename($tmpFile, $this->file)) {
-            chmod($this->file, 0666);
+            chmod($this->file, 0666 & ~umask());
         } else {
             throw new \RuntimeException(sprintf('Failed to write cache file "%s".', $this->file));
         }
@@ -1547,7 +1553,7 @@ class ConfigCache
             $file = $this->file.'.meta';
             $tmpFile = tempnam(dirname($file), basename($file));
             if (false !== @file_put_contents($tmpFile, serialize($metadata)) && @rename($tmpFile, $file)) {
-                chmod($file, 0666);
+                chmod($file, 0666 & ~umask());
             }
         }
     }

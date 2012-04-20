@@ -46,6 +46,14 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            new Sonata\CacheBundle\SonataCacheBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+
+            new Vich\UploaderBundle\VichUploaderBundle(),
+
             new Stfalcon\Bundle\BlogBundle\StfalconBlogBundle(),
             new Stfalcon\Bundle\PortfolioBundle\StfalconPortfolioBundle(),
 
