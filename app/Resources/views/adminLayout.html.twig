@@ -1,0 +1,22 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('vendor/markitup/skins/markitup/style.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('vendor/markitup/sets/html/style.css') }}" />
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts filter='yui_js' output='cache/js/*.js'
+            'vendor/markitup/jquery.markitup.js'
+            'js/InlineUpload.js'
+            'js/markItUpSettings.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript" >
+    $(document).ready(function() {
+            InlineUpload.options.action = '{{ path('blog_post_upload_image') }}';
+            $("textarea").markItUp(mySettings);
+    });
+    </script>
+{% endblock %}
