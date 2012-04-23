@@ -103,3 +103,20 @@ stfalcon_blog:
     rss:
         title: "Блог веб-студии stfalcon.com"
         description: "Заметки о используемых технологиях, реализованных проектах, трудовых буднях и отдыхе :)"
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        project_image:
+            upload_dir: %kernel.root_dir%/../web/uploads/portfolio/projects
+            namer: stfalcon_portfolio.namer.project
+
+sonata_admin:
+    templates:
+          layout:    ::adminLayout.html.twig
