@@ -16,7 +16,10 @@ class MenuBuilder
     private $factory;
 
     /**
+     * Constructor injection
+     *
      * @param FactoryInterface $factory
+     *
      * @return void
      */
     public function __construct(FactoryInterface $factory)
@@ -27,7 +30,8 @@ class MenuBuilder
     /**
      * Main menu
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
+     *
      * @return mixed
      */
     public function createMainMenu(Request $request)
@@ -46,7 +50,8 @@ class MenuBuilder
     /**
      * Breadcrumbs
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
+     *
      * @return mixed
      */
     public function createBreadcrumbsMenu(Request $request)
