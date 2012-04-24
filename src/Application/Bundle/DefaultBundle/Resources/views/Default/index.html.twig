@@ -22,16 +22,18 @@
 
                             <div class="carousel-wrapper">
                                 <ul>
-                                    {% for project in projects[category.getId] %}
-                                        <li>
-                                            <a href="{{ path('portfolioCategoryProjectView', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
-                                                <span>
-                                                    <img class="project-thumb" width="240" height="198"
-                                                         src="/uploads/portfolio/projects/{{ project.image }}"
-                                                         alt="{{ project.name }}" title="{{ project.name }}" />
-                                                </span>
-                                            </a>
-                                        </li>
+                                    {% for project in category.projects %}
+                                        {% if project.onFrontPage %}
+                                            <li>
+                                                <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
+                                                    <span>
+                                                        <img class="project-thumb" width="240" height="198"
+                                                            src="/uploads/portfolio/projects/{{ project.image }}"
+                                                            alt="{{ project.name }}" title="{{ project.name }}" />
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -41,7 +43,7 @@
                         <!--/carousel-->
 
                         {% if category.projects.count > 3 %}
-                            <a href="{{ path('portfolioCategoryView', {'slug': category.slug}) }}" class="all-projects">
+                            <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="all-projects">
                                 {% trans %}Посмотреть все работы{% endtrans %}
                             </a>
                         {% endif %}
