@@ -35,7 +35,7 @@
 
     <target name="phpcs">
         <touch file="${logsdir}/checkstyle.xml"/>
-        <exec command="phpcs --standard=symfony2 --ignore=*/Tests/* --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
+        <exec command="phpcs --standard=symfony2 --ignore=*/Tests/*,*/Admin/* --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
     </target>
 
     <!-- PHPUnit tests -->
