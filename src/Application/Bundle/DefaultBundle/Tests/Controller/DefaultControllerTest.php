@@ -26,18 +26,18 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         // check links to view projects on homepage
-        $preorderUrl = $this->getUrl('portfolioCategoryProjectView',
+        $preorderUrl = $this->getUrl('portfolio_project_view',
             array('categorySlug' => 'web-development', 'projectSlug' => 'preorder-it')
         );
         $this->assertFalse($crawler->filter('a[href="' . $preorderUrl . '"]')->count() == 1);
 
-        $epriceUrl = $this->getUrl('portfolioCategoryProjectView',
+        $epriceUrl = $this->getUrl('portfolio_project_view',
             array('categorySlug' => 'web-development', 'projectSlug' => 'eprice-kz')
         );
         $this->assertTrue($crawler->filter('a[href="' . $epriceUrl . '"]')->count() == 1);
 
         // check link to category view
-        $url = $this->getUrl('portfolioCategoryView', array('slug' => 'web-development'));
+        $url = $this->getUrl('portfolio_category_view', array('slug' => 'web-development'));
         $this->assertTrue($crawler->filter('a[href="' . $url . '"]')->count() == 1); // count of project > 3
     }
 
