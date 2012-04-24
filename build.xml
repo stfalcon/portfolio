@@ -10,7 +10,7 @@
         <mkdir dir="${logsdir}" />
         <mkdir dir="${cachedir}" />
         <exec command="php composer.phar self-update" escape="false" />
-        <exec command="php composer.phar install" escape="false" />
+        <exec command="php composer.phar update" escape="false" />
         <exec command="git submodule init" escape="false" />
         <exec command="git submodule update" escape="false" />
         <exec command="php app/console cache:clear" escape="false" />
@@ -35,7 +35,7 @@
 
     <target name="phpcs">
         <touch file="${logsdir}/checkstyle.xml"/>
-        <exec command="phpcs --standard=symfony2 --ignore=*/Tests/* --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
+        <exec command="phpcs --standard=symfony2 --ignore=*/Tests/*,*/Admin/* --report=checkstyle ${sourcedir} --report-file=${logsdir}/checkstyle.xml" escape="false" />
     </target>
 
     <!-- PHPUnit tests -->
