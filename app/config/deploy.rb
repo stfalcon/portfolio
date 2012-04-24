@@ -13,13 +13,14 @@ role :db,         domain, :primary => true       # This is where Rails migration
 
 default_run_options[:pty] = true 
 
-set  :keep_releases,  3
-set  :user,       "stfalcon-com"
-set  :use_sudo,   false
+set  :keep_releases,    3
+set  :user,             "stfalcon-com"
+set  :use_sudo,         false
 
-set :update_vendors, true
+#set :update_vendors, true
+set  :use_composer,     true
 #set :deploy_via, :rsync_with_remote_cache
 
-set :shared_files,	["app/config/parameters.ini"]
+set :shared_files,        ["app/config/parameters.ini"]
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", web_path + "/bundles", "vendor"]
 set :dump_assetic_assets, true
