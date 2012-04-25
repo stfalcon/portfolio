@@ -415,8 +415,9 @@ a:hover {
     background: url(/images/content/index-sprite.png) 0 -188px no-repeat;
 }
 #content .post .post-wrapper ul li {
-    padding: 0 0 12px 20px;
-    background: url(/images/content/cont-bullet.png) no-repeat 0 5px;
+    background: url(/images/content/cont-bullet.png) no-repeat 6px 9px;
+    float: none;
+    padding: 0 0 .5em 1.4em;
     width: 100%;
 }
 #content .post .post-wrapper p img {
@@ -790,7 +791,6 @@ a img.project-thumb:hover {
     font-size: 2em;
 }
 
-
 #content .post-wrapper img {
     margin: 0;
 }
@@ -848,12 +848,6 @@ a img.project-thumb:hover {
     text-shadow: 0 1px 0 white;
     margin-right: 3px;
     margin-left: 3px;
-}
-
-#content .post-wrapper ul li {
-    background: url(/images/content/cont-bullet.png) no-repeat 6px 9px;
-    padding: 0 0 .5em 1.4em;
-    float:none;
 }
 
 #content .post-wrapper ul {
