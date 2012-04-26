@@ -119,4 +119,4 @@ vich_uploader:
 
 sonata_admin:
     templates:
-          layout:    ::adminLayout.html.twig
+        layout: "::admin.html.twig"

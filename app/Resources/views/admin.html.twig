@@ -1,8 +1,15 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
 {% block stylesheets %}
+    {{ parent() }}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('vendor/markitup/skins/markitup/style.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('vendor/markitup/sets/html/style.css') }}" />
-    {{ parent() }}
+
+    <style>
+        textarea.sonata-medium {
+            width: 98%;
+        }
+    </style>
 {% endblock %}
 
 {% block javascripts %}
