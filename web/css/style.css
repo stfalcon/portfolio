@@ -726,19 +726,6 @@ a img.project-thumb:hover {
 #sidebar .users-list dl dd {
     padding: 0 0 15px 0;
 }
-#disqus_thread {
-    margin-top: 35px;
-}
-#dsq-content #dsq-global-toolbar {
-    margin: 1em 0;
-}
-#dsq-content h3 {
-    margin: 0 0 0.8em;
-}
-#dsq-content .dsq-avatar img {
-    margin: 0
-}
-
 
 /* 4. footer style ---------------------------*/
 
@@ -778,6 +765,24 @@ a img.project-thumb:hover {
     width: 31.1%;
     padding-left: 10px;
     float: right;
+}
+
+/* disqus fixes */
+
+#disqus_thread {
+    margin-top: 35px;
+}
+#dsq-content #dsq-global-toolbar {
+    margin: 1em 0;
+}
+#dsq-content h3 {
+    margin: 0 0 0.8em;
+}
+#dsq-content .dsq-avatar img {
+    margin: 0;
+}
+#dsq-content .dsq-like-faces li img {
+    margin: 0;
 }
 
 /* improve blog styles */
