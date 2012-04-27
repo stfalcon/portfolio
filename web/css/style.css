@@ -423,6 +423,9 @@ a:hover {
 #content .post .post-wrapper p img {
     max-width:100%;
 }
+#content .post-wrapper pre {
+    overflow: auto;
+}
 
 #content .post ul.info li.share-buttons {
     float: left;
