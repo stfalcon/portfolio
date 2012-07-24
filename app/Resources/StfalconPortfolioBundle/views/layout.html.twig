@@ -1,6 +1,8 @@
 {% extends '::layout.html.twig' %}
 
 {% block sidebar %}
+    {{ parent() }}
+
     {# start refact this #}
         {% if project is defined %}
             {% if project.users %}

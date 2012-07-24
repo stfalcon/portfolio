@@ -1,56 +1,34 @@
-{% extends 'ApplicationDefaultBundle::main.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block content %}
-    {% if categories %}
-        <div class="accordion">
-            {% for category in categories %}
-                {% if category.projects.count %}
-                    <!--accordion block-->
-                    <h2>
-                        {{ category.name }}
-                    </h2>
+{% block stylesheets %}
+    {{ parent () }}
 
-                    <div class="service">
-                        <p>
-                            {{ category.description }}
-                        </p>
+    <style>
+        #footer {
+            background: none;
+        }
+    </style>
+{% endblock %}
 
-                        <!--carousel-->
-                        <div class="carousel">
+{% block content_wrapper %}
+    <div id="content-index">
+        {% include 'ApplicationDefaultBundle:Default:_categories_accordion.html.twig'
+                with {'categories': categories} %}
 
-                            <div class="btnPrev" title="{% trans %}Назад{% endtrans %}"></div>
+        {% include 'ApplicationDefaultBundle:Default:_shared.html.twig' %}
+    </div>
+{% endblock %}
 
-                            <div class="carousel-wrapper">
-                                <ul>
-                                    {% for project in category.projects %}
-                                        {% if project.onFrontPage %}
-                                            <li>
-                                                <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
-                                                    <span>
-                                                        <img class="project-thumb" width="240" height="198"
-                                                            src="/uploads/portfolio/projects/{{ project.image }}"
-                                                            alt="{{ project.name }}" title="{{ project.name }}" />
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
+{% block header %}
+    {{ parent() }}
 
-                            <div class="btnNext" title="{% trans %}Вперед{% endtrans %}"></div>
-                        </div>
-                        <!--/carousel-->
-
-                        {% if category.projects.count > 3 %}
-                            <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="all-projects">
-                                {% trans %}Посмотреть все работы{% endtrans %}
-                            </a>
-                        {% endif %}
-                    </div>
-                    <!--/accordion block-->
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endif %}
+    <div class="slogan">
+        <span>
+            {% trans %}Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.{% endtrans %}
+            <br />
+            {% trans %}Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!{% endtrans %}
+        </span>
+        <div class="slogan-right"></div>
+        <div class="slogan-left"></div>
+    </div>
 {% endblock %}

@@ -5,7 +5,7 @@
         <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         {% block stylesheets %}
-            {% stylesheets 'css/style.css' filter='yui_css' output='cache/css/*.css' %}
+            {% stylesheets 'css/style.css' %}
                 <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
@@ -14,71 +14,56 @@
     <body>
         <!--header-->
         <div id="header">
-            <a href="{{ path('homepage') }}">
-                <h1 class="logo">
-                    {% trans %}Веб-студия{% endtrans %} stfalcon.com
-                </h1>
-            </a>
+            {% block header %}
+                <a href="{{ path('homepage') }}">
+                    <h1 class="logo">
+                        {% trans %}Веб-студия{% endtrans %} stfalcon.com
+                    </h1>
+                </a>
 
-            {#<div class="langs">
-                <ul>
-                    <li>
-                        {% if app.request.get('_locale') == 'ru' %}
-                            рус
-                        {% else %}
-                            <a href="{{ path('homepage', { '_locale': 'ru' }) }}">рус</a>
-                        {% endif %}
-                    </li>
-                    <li>
-                        {% if app.request.get('_locale') == 'en' %}
-                            eng
-                        {% else %}
-                            <a href="{{ path('homepage', { '_locale': 'en' }) }}">eng</a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>#}
-
-            <div class="menu">
-                {{ knp_menu_render('main', {'currentAsLink': false}) }}
-            </div>
+                <div class="menu">
+                    {{ knp_menu_render('main', {'currentAsLink': false}) }}
+                </div>
+            {% endblock %}
         </div>
         <!--/header-->
 
-        <!--content-->
-        <div id="main">
-            <div class="breadcrumbs">
-                {{ knp_menu_render('breadcrumbs', {'currentAsLink': false}) }}
-            </div>
-
-            <div id="content">
-                <div class="content-wrapper">
-                    {% block content %}{% endblock %}
+        {% block content_wrapper %}
+            <!--content-->
+            <div id="main">
+                <div class="breadcrumbs">
+                    {{ knp_menu_render('breadcrumbs', {'currentAsLink': false}) }}
                 </div>
-            </div>
 
-            <!--sidebar-->
-            <div id="sidebar">
-                <a href="{{ path('blog_rss') }}" class="rss">
-                    {% trans %}Подписаться на RSS ленту{% endtrans %}
-                </a>
-
-                <!--twitter block-->
-                <div class="twitter">
-                    {% render "ApplicationDefaultBundle:Default:twitter" with { 'count': 1 } %}
-                    <p>
-                        {% trans %}Следить за{% endtrans %} <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a>
-                    </p>
-                    <div class="twitter-top"></div>
+                <div id="content">
+                    <div class="content-wrapper">
+                        {% block content %}{% endblock %}
+                    </div>
                 </div>
-                <!--/twitter block-->
 
-                {% block sidebar %}{% endblock %}
+                <!--sidebar-->
+                <div id="sidebar">
+                    {% block sidebar %}
+                        <a href="{{ path('blog_rss') }}" class="rss">
+                            {% trans %}Подписаться на RSS ленту{% endtrans %}
+                        </a>
+
+                        <!--twitter block-->
+                        <div class="twitter">
+                            {% render "ApplicationDefaultBundle:Default:twitter" with { 'count': 1 } %}
+                            <p>
+                                {% trans %}Следить за{% endtrans %} <a href="http://twitter.com/#!/stfalcon" rel="nofollow">@stfalcon</a>
+                            </p>
+                            <div class="twitter-top"></div>
+                        </div>
+                        <!--/twitter block-->
+                    {% endblock %}
+                </div>
+                <!--sidebar-->
+
             </div>
-            <!--sidebar-->
-
-        </div>
-        <!--/content-->
+            <!--/content-->
+        {% endblock %}
 
         <!--footer-->
         <div id="footer">
@@ -116,15 +101,29 @@
         <!--/footer-->
 
         {% block javascripts %}
-            {% javascripts filter='yui_js' output='cache/js/*.js'
+            {% javascripts
                     'vendor/jquery/jquery-1.7.2.min.js'
                     'vendor/jquery/jquery.metadata.js'
-                    'vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js' %}
+                    'vendor/jquery/jquery.wresize.js'
+                    'vendor/jquery/jquery.mousewheel.min.js'
+                    'vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js'
+                    'js/jquery.stf.carousel.js' %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
 
             <script type="text/javascript">
                 jQuery(document).ready(function() {
+                    if ($("#content-index").length > 0) {
+                        $("#content-index .accordion").accordion({ header: "h2", autoHeight: false });
+                        $("#content-index .carousel").stfCarousel({
+                            scroll: 'auto',
+                            mousewheel: false,
+                            ruler: $("#content-index .accordion"),
+                            widthItem: 280,
+                            substract: 144
+                        });
+                    }
+
                     if ($("#accordion").length > 0) {
                         var data = $("#accordion ul li.active").metadata();
                         $("#accordion").accordion({ header: "h3", active: data.category_index, autoHeight: false, collapsible: true });
