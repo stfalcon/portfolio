@@ -6,16 +6,13 @@ framework:
     #esi:             ~
     translator:       { fallback: ru }
     secret:           %secret%
-    charset:          UTF-8
     router:           { resource: "%kernel.root_dir%/config/routing.yml" }
     form:             true
     csrf_protection:  true
     validation:       { enable_annotations: true }
     templating:       { engines: ['twig'] }
     default_locale:   %locale%
-    session:
-        auto_start:   true
-
+    session:          ~
 
 # Twig Configuration
 twig:
@@ -83,18 +80,18 @@ knp_paginator:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
 
 # ZendCacheBundle
-knp_zend_cache:
-    templates:
-        slow_cache:
-            frontend:
-                name: Core
-                options:
-                    lifetime: 7200
-                    automatic_serialization: true
-            backend:
-                name: File
-                options:
-                    cache_dir: %kernel.root_dir%/cache/%kernel.environment%
+#knp_zend_cache:
+#    templates:
+#        slow_cache:
+#            frontend:
+#                name: Core
+#                options:
+#                    lifetime: 7200
+#                    automatic_serialization: true
+#            backend:
+#                name: File
+#                options:
+#                    cache_dir: %kernel.root_dir%/cache/%kernel.environment%
 
 
 sensio_framework_extra: ~

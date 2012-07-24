@@ -57,9 +57,10 @@ class DefaultController extends Controller
             'time' => (string) \time()
         );
 
-        $cache = $this->get('knp_zend_cache.manager')->getCache('slow_cache');
-        if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
-            try {
+//        $cache = $this->get('knp_zend_cache.manager')->getCache('slow_cache');
+//        if (false === ($statuses = $cache->load('dc_twitter_' . $count))) {
+//            try {
+         
                 $twitter = new \Zend_Service_Twitter();
 
                 // @todo: add try/catch
@@ -74,15 +75,15 @@ class DefaultController extends Controller
                         'time' => $time
                     );
                 }
-                $cache->save($statuses, 'dc_twitter_' . $count);
-            } catch (\Zend_Http_Client_Adapter_Exception $e) {
-                $statuses = array();
-                $statuses[] = (object) array(
-                    'text' => (string) 'Unable to Connect to tcp://api.twitter.com:80',
-                    'time' => new \DateTime("now")
-                );
-            }
-        }
+//                $cache->save($statuses, 'dc_twitter_' . $count);
+//            } catch (\Zend_Http_Client_Adapter_Exception $e) {
+//                $statuses = array();
+//                $statuses[] = (object) array(
+//                    'text' => (string) 'Unable to Connect to tcp://api.twitter.com:80',
+//                    'time' => new \DateTime("now")
+//                );
+//            }
+//        }
 
         return array('statuses' => $statuses);
     }
