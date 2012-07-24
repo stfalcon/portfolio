@@ -4,16 +4,6 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "behat.org"
-        },
-        {
-            "type": "composer",
-            "url": "http://packages.zendframework.com/"
-        }
-    ],
     "require": {
         "php": ">=5.3.2",
         "symfony/symfony": "2.1.0-BETA4",
@@ -23,8 +13,8 @@
         "doctrine/doctrine-migrations-bundle": "dev-master#3792aa78445773387754c6853bbd7f4dcb31f486",
         "twig/extensions": "dev-master#feb6d3f10c411e2631997c0a905aa581c80305c1",
         "symfony/assetic-bundle": "dev-master#e5e9a56a872d9e1f305d14cd8296bf77888388af",
-        "symfony/swiftmailer-bundle": "dev-master#65e6079443c3cd413012e146aa74307f18671f42",
-        "symfony/monolog-bundle": "dev-master#7fe7f711bb04b86ad7f45a9e11a7f8cbaf9bc1a5",
+        "symfony/swiftmailer-bundle": "dev-master",
+        "symfony/monolog-bundle": "dev-master",
         "sensio/distribution-bundle": "dev-master#5886adae1613c0a72fbb95259a83ae798e86c0d3",
         "sensio/framework-extra-bundle": "dev-master#e9ac8f1a911ed29e30296c7f1549f53d4c94eddf",
         "sensio/generator-bundle": "dev-master#c17dbddefe517e3adfcbeaa1ab7cef3e572d29c6",
@@ -38,9 +28,7 @@
         "liip/functional-test-bundle": "dev-master#0b9ae009973ddc9aac98db077f4528bdf56eff61",
         "sonata-project/doctrine-orm-admin-bundle": "dev-master#385bbb221492a4f80e05f5f55260398e998fe6e1",
         "vich/uploader-bundle": "0.4.0",
-        "zendframework/zendframework1": "1.11.12",
-        "zendframework/zend-feed": "2.0.0-beta5",
-        "zendframework/zend-http": "2.0.0-beta5"
+        "zendframework/zendframework": "2.0.0beta5"
     },
     "scripts": {
         "post-install-cmd": [
