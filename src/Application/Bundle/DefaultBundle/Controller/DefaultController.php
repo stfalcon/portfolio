@@ -52,13 +52,15 @@ class DefaultController extends Controller
      */
     public function twitterAction($count = 1)
     {
-        $statuses[] = (object) array(
-            'text' => (string) 'Unable to Connect to tcp://api.twitter.com:80',
-            'time' => (string) \time()
-        );
-
-        $twitter = new \Zend\Service\Twitter\Search();
-        $response = $twitter->execute('from:stfalcon', array('rpp' => $count));
+        try {
+            $twitter = new \Zend\Service\Twitter\Search();
+            $response = $twitter->execute('from:stfalcon', array('rpp' => $count));
+        } catch (\Zend\Http\Client\Adapter\Exception\RuntimeException $e) {
+            $response['results'][] = array(
+                'text' => 'Unable to Connect to tcp://api.twitter.com:80',
+                'created_at' => (string) \time()
+            );
+        }
          
         return array('results' => $response['results']);
     }
