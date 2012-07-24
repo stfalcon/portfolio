@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block title %}Веб-студия stfalcon.com{% endblock %}</title>
+        <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         {% block stylesheets %}
             {% stylesheets 'css/style.css' filter='yui_css' output='cache/css/*.css' %}
