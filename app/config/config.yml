@@ -65,14 +65,11 @@ assetic:
     filters:
         yui_css:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
-            apply_to: "\.css$"
         yui_js:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
-            apply_to: "\.js$"
-    twig:
-        functions:
-            yui_css: { output: cache/css/*.css }
-            yui_js: { output: cache/js/*.js }
+    assets:
+        jquery: vendor/jquery/jquery-1.7.2.min.js
+        jquery_ui: vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js
 
 # MenuBundle enable template helpers
 knp_menu:

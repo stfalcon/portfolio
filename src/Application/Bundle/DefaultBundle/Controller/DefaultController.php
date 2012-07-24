@@ -61,7 +61,7 @@ class DefaultController extends Controller
                 'created_at' => (string) \time()
             );
         }
-         
+
         return array('results' => $response['results']);
     }
 

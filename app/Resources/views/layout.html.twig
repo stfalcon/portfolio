@@ -5,7 +5,8 @@
         <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         {% block stylesheets %}
-            {% stylesheets 'css/style.css' %}
+            {% stylesheets filter='yui_css' output='cache/css/*.css'
+                    'css/style.css' %}
                 <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
@@ -100,38 +101,9 @@
         </div>
         <!--/footer-->
 
-        {% block javascripts %}
-            {% javascripts
-                    'vendor/jquery/jquery-1.7.2.min.js'
-                    'vendor/jquery/jquery.metadata.js'
-                    'vendor/jquery/jquery.wresize.js'
-                    'vendor/jquery/jquery.mousewheel.min.js'
-                    'vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js'
-                    'js/jquery.stf.carousel.js' %}
-                <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+        {% block javascripts %}{% endblock %}
 
-            <script type="text/javascript">
-                jQuery(document).ready(function() {
-                    if ($("#content-index").length > 0) {
-                        $("#content-index .accordion").accordion({ header: "h2", autoHeight: false });
-                        $("#content-index .carousel").stfCarousel({
-                            scroll: 'auto',
-                            mousewheel: false,
-                            ruler: $("#content-index .accordion"),
-                            widthItem: 280,
-                            substract: 144
-                        });
-                    }
-
-                    if ($("#accordion").length > 0) {
-                        var data = $("#accordion ul li.active").metadata();
-                        $("#accordion").accordion({ header: "h3", active: data.category_index, autoHeight: false, collapsible: true });
-                    }
-                });
-            </script>
-
-            <script type="text/javascript">
+        <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-5635962-2']);
             _gaq.push(['_trackPageview']);
@@ -141,8 +113,6 @@
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-            </script>
-        {% endblock %}
-
+        </script>
     </body>
 </html>

@@ -14,7 +14,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts
+    {% javascripts filter='yui_js' output='cache/js/*.js'
             'vendor/markitup/jquery.markitup.js'
             'js/InlineUpload.js'
             'js/markItUpSettings.js' %}
