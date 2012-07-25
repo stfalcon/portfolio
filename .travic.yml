@@ -3,6 +3,9 @@ php:
   - 5.3
   - 5.4
 before_script:
-  - wget http://getcomposer.org/composer.phar
+  - wget -nc http://getcomposer.org/composer.phar
   - php composer.phar install
 script: phpunit -c app/
+notifications:
+  email:
+      - stepan.tanasiychuk@gmail.com
