@@ -1,0 +1,7 @@
+_application_default_default:
+    resource: "@ApplicationDefaultBundle/Controller/DefaultController.php"
+    type:     annotation
+
+_application_default_upload:
+    resource: "@ApplicationDefaultBundle/Controller/UploadController.php"
+    type:     annotation
