@@ -2,10 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
-use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Client;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;

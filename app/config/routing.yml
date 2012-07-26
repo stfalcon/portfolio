@@ -1,6 +1,5 @@
-_default:
-    resource: "@ApplicationDefaultBundle/Controller/DefaultController.php"
-    type:     annotation
+_application_default:
+    resource: "@ApplicationDefaultBundle/Resources/config/routing.yml"
 
 _stfalcon_portfolio:
     resource: "@StfalconPortfolioBundle/Resources/config/routing.yml"
