@@ -26,6 +26,7 @@
         "avalanche123/imagine-bundle": "dev-master#4faa253231cb42a231311eaa314e88479517be1a",
         "knplabs/knp-paginator-bundle": "2.2",
         "liip/functional-test-bundle": "dev-master#0b9ae009973ddc9aac98db077f4528bdf56eff61",
+        "sonata-project/admin-bundle": "dev-master#7018d7cf861cc5814142343939de06cfeadd8065",
         "sonata-project/doctrine-orm-admin-bundle": "dev-master#385bbb221492a4f80e05f5f55260398e998fe6e1",
         "vich/uploader-bundle": "0.4.0",
         "zendframework/zendframework": "2.0.0beta5"
