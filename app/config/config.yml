@@ -54,7 +54,7 @@ stof_doctrine_extensions:
             loggable: false
             sluggable: true
             timestampable: true
-            translatable: false
+            translatable: true
             tree: false
 
 
