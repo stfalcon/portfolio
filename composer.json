@@ -6,7 +6,7 @@
     },
     "require": {
         "php": ">=5.3.2",
-        "symfony/symfony": "2.1.0-BETA4 as dev-master",
+        "symfony/symfony": "dev-master#6f32078b1a59f12777eaff89da8c370bc966123e",
         "doctrine/orm": "2.2.2",
         "doctrine/doctrine-bundle": "dev-master#c9ea46d1f0c48bb88bb87b44214fe44e03c0c692",
         "doctrine/doctrine-fixtures-bundle": "dev-master#a5103a71bcd9b2f851ca6c16519a077784a3184a",
@@ -26,7 +26,7 @@
         "avalanche123/imagine-bundle": "dev-master#4faa253231cb42a231311eaa314e88479517be1a",
         "knplabs/knp-paginator-bundle": "2.2",
         "liip/functional-test-bundle": "dev-master#0b9ae009973ddc9aac98db077f4528bdf56eff61",
-        "sonata-project/admin-bundle": "dev-master#7018d7cf861cc5814142343939de06cfeadd8065",
+        "sonata-project/admin-bundle": "dev-master#1f45890cc86ff6b8dc69612b5c0832f89fd8997c",
         "sonata-project/doctrine-orm-admin-bundle": "dev-master#385bbb221492a4f80e05f5f55260398e998fe6e1",
         "vich/uploader-bundle": "0.4.0",
         "zendframework/zendframework": "2.0.0beta5"
