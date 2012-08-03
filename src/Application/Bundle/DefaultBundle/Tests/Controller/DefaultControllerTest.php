@@ -3,6 +3,7 @@
 namespace Application\Bundle\DefaultBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 /**
  * Test cases for DefaultContoller
@@ -27,17 +28,17 @@ class DefaultControllerTest extends WebTestCase
 
         // check links to view projects on homepage
         $preorderUrl = $this->getUrl('portfolio_project_view',
-            array('categorySlug' => 'web-development', 'projectSlug' => 'preorder-it')
+            array('categorySlug' => 'web-development', 'projectSlug' => 'preorder-it', '_locale' => 'ru')
         );
         $this->assertFalse($crawler->filter('a[href="' . $preorderUrl . '"]')->count() == 1);
 
         $epriceUrl = $this->getUrl('portfolio_project_view',
-            array('categorySlug' => 'web-development', 'projectSlug' => 'eprice-kz')
+            array('categorySlug' => 'web-development', 'projectSlug' => 'eprice-kz', '_locale' => 'ru')
         );
         $this->assertTrue($crawler->filter('a[href="' . $epriceUrl . '"]')->count() == 1);
 
         // check link to category view
-        $url = $this->getUrl('portfolio_category_view', array('slug' => 'web-development'));
+        $url = $this->getUrl('portfolio_category_view', array('slug' => 'web-development', '_locale' => 'ru'));
         $this->assertTrue($crawler->filter('a[href="' . $url . '"]')->count() == 1); // count of project > 3
     }
 

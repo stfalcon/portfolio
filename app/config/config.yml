@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: doctrine_extensions.yml }
 
 framework:
     #esi:             ~
@@ -39,6 +40,12 @@ doctrine:
                 mappings:
                     StfalconPortfolioBundle: ~
                     StfalconBlogBundle: ~
+#                    translatable:
+#                        type: annotation
+#                        alias: Gedmo
+#                        prefix: Gedmo\Translatable\Entity
+#                        # make sure vendor library location is correct
+#                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
 
 
 # DoctrineMigrationsBundle
@@ -54,7 +61,7 @@ stof_doctrine_extensions:
             loggable: false
             sluggable: true
             timestampable: true
-            translatable: false
+            translatable: true
             tree: false
 
 
