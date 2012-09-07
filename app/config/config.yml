@@ -77,7 +77,7 @@ knp_menu:
     twig: true
 
 knp_paginator:
-    page_range: 5                      # default page range used in pagination control
+    page_range: %page_range%           # default page range used in pagination control
     default_options:
         page_name: page                # page query parameter name
         distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
