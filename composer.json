@@ -19,15 +19,15 @@
         "jms/security-extra-bundle": "1.2.0",
         "jms/di-extra-bundle": "1.1.0",
 
-        "doctrine/doctrine-fixtures-bundle": "dev-master#a5103a71bcd9b2f851ca6c16519a077784a3184a",
+        "doctrine/doctrine-fixtures-bundle": "dev-master#186d605aa6b592bd577e07e0e9a2c420b02b2492",
         "doctrine/doctrine-migrations-bundle": "dev-master#3792aa78445773387754c6853bbd7f4dcb31f486",
         "gedmo/doctrine-extensions": "2.3.2",
-        "stof/doctrine-extensions-bundle": "dev-master#f31a0861de08b6594f09430a4cbaf0618e5e11ad",
+        "stof/doctrine-extensions-bundle": "dev-master#0247e6f1658d76292c8ffe2c5106090bd36bd799",
 
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
 
         "kriswallsmith/assetic": "1.1.*",
-        "avalanche123/imagine-bundle": "dev-master#4faa253231cb42a231311eaa314e88479517be1a",
+        "avalanche123/imagine-bundle": "dev-master#eb03645887f732410127a2b3d992befe0f175277",
         "knplabs/knp-paginator-bundle": "2.2",
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
         "vich/uploader-bundle": "0.5.1",
