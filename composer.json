@@ -26,13 +26,13 @@
 
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
 
-        "zendframework/zendframework": "2.0.0",
-
         "kriswallsmith/assetic": "1.1.*",
         "avalanche123/imagine-bundle": "dev-master#4faa253231cb42a231311eaa314e88479517be1a",
         "knplabs/knp-paginator-bundle": "2.2",
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
-        "vich/uploader-bundle": "0.5.1"
+        "vich/uploader-bundle": "0.5.1",
+
+        "zendframework/zendframework": "2.0.0beta5"
     },
     "scripts": {
         "post-install-cmd": [
