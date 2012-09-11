@@ -809,6 +809,10 @@ a img.project-thumb:hover {
     margin: 0 30px 20px 0;
 }
 
+#content .post-wrapper .post-wrapper h2 {
+    font-size: 1.7em;
+}
+
 #content .post-wrapper h2 {
     font-size: 1.7em;
     line-height: 1em;
