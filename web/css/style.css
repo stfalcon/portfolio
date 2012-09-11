@@ -1,4 +1,4 @@
-line-height: 1.2em;/*
+/*
    CSS reset
    http://meyerweb.com/eric/tools/css/reset/
 */
@@ -815,7 +815,6 @@ a img.project-thumb:hover {
 
 #content .post-wrapper h2 {
     font-size: 1.7em;
-    line-height: 1em;
     margin: 1.5em 0 1em;
 }
 
