@@ -47,7 +47,7 @@ If you get any warnings or recommendations, fix these now before moving on.
 
 ### d) Install the Vendor Libraries
 
-    $ ./bin/vendors install
+    $ php composer.phar install
 
 ### e) Change DBAL settings, create DB, update it and load fixtures
 
