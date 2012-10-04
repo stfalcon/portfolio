@@ -39,6 +39,8 @@ doctrine:
                 mappings:
                     StfalconPortfolioBundle: ~
                     StfalconBlogBundle: ~
+                    StfalconPageBundle: ~
+                    StfalconNewsBundle: ~
 
 
 # DoctrineMigrationsBundle
