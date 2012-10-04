@@ -79,7 +79,6 @@ knp_menu:
     twig: true
 
 knp_paginator:
-    page_range: %page_range%           # default page range used in pagination control
     default_options:
         page_name: page                # page query parameter name
         distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
@@ -118,7 +117,7 @@ vich_uploader:
     db_driver: orm
     mappings:
         project_image:
-            upload_dir: %kernel.root_dir%/../web/uploads/portfolio/projects
+            upload_destination: %kernel.root_dir%/../web/uploads/portfolio/projects
             namer: stfalcon_portfolio.namer.project
 
 sonata_admin:
