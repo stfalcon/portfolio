@@ -7,6 +7,16 @@ _stfalcon_portfolio:
 _stfalcon_blog:
     resource: "@StfalconBlogBundle/Resources/config/routing.yml"
 
+StfalconPageBundle:
+    resource: "@StfalconPageBundle/Controller/"
+    type:     annotation
+    prefix:   /page
+
+StfalconNewsBundle:
+    resource: "@StfalconNewsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

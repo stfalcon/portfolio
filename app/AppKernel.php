@@ -40,6 +40,8 @@ class AppKernel extends Kernel
 
             new Stfalcon\Bundle\BlogBundle\StfalconBlogBundle(),
             new Stfalcon\Bundle\PortfolioBundle\StfalconPortfolioBundle(),
+            new Stfalcon\Bundle\PageBundle\StfalconPageBundle(),
+            new Stfalcon\Bundle\NewsBundle\StfalconNewsBundle(),
 
             new Application\Bundle\DefaultBundle\ApplicationDefaultBundle(),
         );
