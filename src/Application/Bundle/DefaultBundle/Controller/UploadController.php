@@ -23,12 +23,14 @@ class UploadController extends Controller
     /**
      * Upload photo
      *
-     * @return string
+     * @return Response
      * @Route("/admin/blog/uploadImage", name="blog_post_upload_image")
      * @Method({"POST"})
      */
     public function uploadImageAction()
     {
+        $config = $this->container->getParameter('stfalcon_blog.config');
+
         $collectionConstraint = new Collection(array(
             'inlineUploadFile' => new Image(array('mimeTypes' => array("image/png", "image/jpeg", "image/gif"))),
         ));
@@ -44,21 +46,21 @@ class UploadController extends Controller
             $file = $form->get('inlineUploadFile')->getData();
             $ext = $file->guessExtension();
 
-            if ($ext == '') {
+            if (!$ext) {
                 $response = array(
                     'msg' => 'Your file is not valid!',
                 );
             } else {
-                $uploadDir = realpath($this->get('kernel')->getRootDir() . '/../web/uploads/images');
+                $uploadDir = $config['upload_dir'];
                 $newName = uniqid() . '.' . $ext;
                 $file->move($uploadDir, $newName);
-                $info = getImageSize($uploadDir . '/' . $newName);
+                list($width, $height, $type, $attr) = getImageSize($uploadDir . '/' . $newName);
 
                 $response = array(
                     'status' => 'success',
                     'src' => '/uploads/images/' . $newName,
-                    'width' => $info[0],
-                    'height' => $info[1],
+                    'width' => $width,
+                    'height' => $height,
                 );
             }
         } else {
