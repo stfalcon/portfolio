@@ -8,8 +8,9 @@ framework:
 
 doctrine:
     dbal:
-        driver:   pdo_sqlite
-        path:     %kernel.cache_dir%/test.db
+        dbname:   stfalcon_com_testing
+#        driver:   pdo_sqlite
+#        path:     %kernel.cache_dir%/test.db
 
 web_profiler:
     toolbar: false
