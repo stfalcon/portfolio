@@ -29,7 +29,7 @@ class UploadController extends Controller
      */
     public function uploadImageAction()
     {
-        $config = $this->container->getParameter('stfalcon_blog.config');
+        $config = $this->container->getParameter('application_default.config');
 
         $collectionConstraint = new Collection(array(
             'inlineUploadFile' => new Image(array('mimeTypes' => array("image/png", "image/jpeg", "image/gif"))),
