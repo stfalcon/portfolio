@@ -100,7 +100,11 @@ knp_paginator:
 
 sensio_framework_extra: ~
 
+application_default:
+    upload_dir: %kernel.root_dir%/../web/uploads/images
+
 stfalcon_blog:
+    disqus_shortname: "stfalcon-studio"
     rss:
         title: "Блог веб-студии stfalcon.com"
         description: "Заметки о используемых технологиях, реализованных проектах, трудовых буднях и отдыхе :)"

@@ -23,48 +23,46 @@ class UploadController extends Controller
     /**
      * Upload photo
      *
-     * @return string
+     * @return Response
      * @Route("/admin/blog/uploadImage", name="blog_post_upload_image")
      * @Method({"POST"})
      */
     public function uploadImageAction()
     {
+        $config = $this->container->getParameter('application_default.config');
+
         $collectionConstraint = new Collection(array(
             'inlineUploadFile' => new Image(array('mimeTypes' => array("image/png", "image/jpeg", "image/gif"))),
         ));
-        $form = $this->createFormBuilder(null, array(
-            'csrf_protection' => false,
-            'validation_constraint' => $collectionConstraint
-            ))
-                ->add('inlineUploadFile', 'file')
-                ->getForm();
 
-        $form->bindRequest($this->get('request'));
-        if ($form->isValid()) {
-            $file = $form->get('inlineUploadFile')->getData();
-            $ext = $file->guessExtension();
+        if (isset($_FILES)) {
+        $fileContainer = $this->getRequest()->files->get('form');
 
-            if ($ext == '') {
+        $file = $fileContainer['inlineUploadFile'];
+
+        $errors = $this->container->get('validator')->validateValue(array('inlineUploadFile' => $file), $collectionConstraint);
+            if ($errors->count()) {
                 $response = array(
                     'msg' => 'Your file is not valid!',
                 );
             } else {
-                $uploadDir = realpath($this->get('kernel')->getRootDir() . '/../web/uploads/images');
-                $newName = uniqid() . '.' . $ext;
+                $uploadDir = $config['upload_dir'];
+                $newName = uniqid() . '.' . $file->guessExtension();
                 $file->move($uploadDir, $newName);
-                $info = getImageSize($uploadDir . '/' . $newName);
+                list($width, $height, $type, $attr) = getImageSize($uploadDir . '/' . $newName);
 
                 $response = array(
                     'status' => 'success',
                     'src' => '/uploads/images/' . $newName,
-                    'width' => $info[0],
-                    'height' => $info[1],
+                    'width' => $width,
+                    'height' => $height,
                 );
             }
+
         } else {
             $response = array(
-                'msg' => 'Your file is not valid!',
-            );
+                    'msg' => 'Your file is not valid!',
+                );
         }
 
         return new Response(json_encode($response));
