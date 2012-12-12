@@ -6,43 +6,81 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Test cases for UploadContoller
+ * Test cases for UploadController
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class UploadControllerTest extends WebTestCase
 {
 
-    public function testUploadValidImage()
+    /**
+     * @param $imageName
+     * @param $responseCode
+     * @param $responseData
+     *
+     * @dataProvider imageUploadProvider
+     */
+    public function testUploadValidImage($imageName, $responseCode, $responseData)
     {
-        $validImageFile = tempnam(sys_get_temp_dir(), 'image_valid.jpg');
-        copy(realpath(__DIR__ . '/../_files/image_valid.jpg'), $validImageFile);
+        $path = tempnam(sys_get_temp_dir(), $imageName);
+        copy(realpath(__DIR__ . '/../_files/' . $imageName), $path);
 
-        $photo = new UploadedFile($validImageFile, 'image_valid.jpg', null, null, null, true);
+        $uploadFile = new UploadedFile($path, $imageName, null, null, null, true);
 
         $client = $this->makeClient(true);
-        $crawler = $client->request(
+        $client->request(
             'POST', $this->getUrl('blog_post_upload_image'), array(),
-            array('form' => array('inlineUploadFile' => $photo))
+            array('upload_file' => $uploadFile)
         );
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertEquals(1, $crawler->filter('html:contains("success")')->count());
+        $this->assertEquals(
+            $responseCode,
+            $client->getResponse()->getStatusCode()
+        );
+        $this->assertTrue(
+            $client->getResponse()->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
+
+        $actualResponseData = json_decode($client->getResponse()->getContent(), true);
+        unset($actualResponseData['src']);
+        $this->assertEquals(
+            $responseData,
+            $actualResponseData
+        );
     }
 
-    public function testUploadInvalidImage()
+    /**
+     * Provider for the image upload test
+     *
+     * @return array
+     */
+    public static function imageUploadProvider()
     {
-        $invalidImageFile = tempnam(sys_get_temp_dir(), 'image_invalid.jpg');
-        copy(realpath(__DIR__ . '/../_files/image_invalid.jpg'), $invalidImageFile);
+        $dataSets = array();
 
-        $photo = new UploadedFile($invalidImageFile, 'image_invalid.jpg', null, null, null, true);
+        // Valid image
+        $dataSets[] = array(
+            'image_valid.jpg',
+            200,
+            array(
+                'status' => 'success',
+                'width' => '600',
+                'height' => '800',
+            )
+        );
 
-        $client = $this->makeClient(true);
-        $crawler = $client->request(
-            'POST', $this->getUrl('blog_post_upload_image'), array(),
-            array('form' => array('inlineUploadFile' => $photo)));
+        // Invalid image
+        $dataSets[] = array(
+            'image_invalid.jpg',
+            400,
+            array(
+                'msg' => 'Your file is not valid!',
+            )
+        );
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertEquals(1, $crawler->filter('html:contains("Your file is not valid")')->count());
+        return $dataSets;
     }
 }

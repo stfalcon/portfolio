@@ -23,6 +23,17 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('application_default');
+        $rootNode
+            ->children()
+                ->scalarNode('upload_root')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('upload_dir')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+            ->end();
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

@@ -3,14 +3,14 @@
 namespace Application\Bundle\DefaultBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\Validator\Constraints\Collection;
+use Application\Bundle\DefaultBundle\Model\UploadImage;
 
 /**
  * UploadController
@@ -19,54 +19,45 @@ use Symfony\Component\Validator\Constraints\Collection;
  */
 class UploadController extends Controller
 {
+    const RESPONSE_SUCCESS = 'success';
 
     /**
      * Upload photo
      *
-     * @return string
+     * @param Request $request
+     *
+     * @return JsonResponse
      * @Route("/admin/blog/uploadImage", name="blog_post_upload_image")
      * @Method({"POST"})
      */
-    public function uploadImageAction()
+    public function uploadImageAction(Request $request)
     {
-        $collectionConstraint = new Collection(array(
-            'inlineUploadFile' => new Image(array('mimeTypes' => array("image/png", "image/jpeg", "image/gif"))),
-        ));
-        $form = $this->createFormBuilder(null, array(
-            'csrf_protection' => false,
-            'validation_constraint' => $collectionConstraint
-            ))
-                ->add('inlineUploadFile', 'file')
-                ->getForm();
-
-        $form->bindRequest($this->get('request'));
-        if ($form->isValid()) {
-            $file = $form->get('inlineUploadFile')->getData();
-            $ext = $file->guessExtension();
-
-            if ($ext == '') {
-                $response = array(
-                    'msg' => 'Your file is not valid!',
-                );
-            } else {
-                $uploadDir = realpath($this->get('kernel')->getRootDir() . '/../web/uploads/images');
-                $newName = uniqid() . '.' . $ext;
-                $file->move($uploadDir, $newName);
-                $info = getImageSize($uploadDir . '/' . $newName);
-
-                $response = array(
-                    'status' => 'success',
-                    'src' => '/uploads/images/' . $newName,
-                    'width' => $info[0],
-                    'height' => $info[1],
-                );
-            }
-        } else {
-            $response = array(
-                'msg' => 'Your file is not valid!',
-            );
+        $uploadImage = new UploadImage();
+        if ($request->files->has('upload_file')) {
+            $uploadImage->setFile($request->files->get('upload_file'));
         }
 
-        return new Response(json_encode($response));
+        /** @var $errors \Symfony\Component\Validator\ConstraintViolationList */
+        $errors = $this->get('validator')->validate($uploadImage);
+        if ($errors->count() > 0) {
+            return new JsonResponse(array('msg' => 'Your file is not valid!'), 400);
+        }
+
+        /** @var $uploadService \Application\Bundle\DefaultBundle\Service\UploadService */
+        $uploadService = $this->get('application_default.service.uploader');
+        try {
+            $uploadService->upload($uploadImage->getFile());
+        } catch (FileException $e) {
+            return new JsonResponse(array('msg' => $e->getMessage()), 400);
+        }
+
+        return new JsonResponse(
+            $response = array(
+                'status' => self::RESPONSE_SUCCESS,
+                'src' => $uploadService->getWebPath(),
+                'width' => $uploadImage->getWidth(),
+                'height' => $uploadImage->getHeight(),
+            )
+        );
     }
 }
