@@ -2,28 +2,23 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\Validator\Constraints\Collection;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Validator\Constraints\NotBlank,
+    Symfony\Component\Validator\Constraints\Image,
+    Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\File\Exception\FileException,
+    Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * UploadController
- *
- * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class UploadController extends Controller
 {
-    const RESPONSE_SUCCESS = 'success';
-
     /**
-     * Upload photo
+     * Upload image (for markitup plugin)
      *
      * @param Request $request
      *
@@ -39,7 +34,7 @@ class UploadController extends Controller
         $fileConstraint = new Collection(array(
              'file' => array(
                  new NotBlank(),
-                 new Image()
+                 new Image(),
              ),
          ));
 
@@ -68,7 +63,7 @@ class UploadController extends Controller
 
         return new JsonResponse(
             $response = array(
-                'status' => self::RESPONSE_SUCCESS,
+                'status' => 'success',
                 'src' => $config['upload_dir'] . '/' . $newFileName,
                 'width' => $width,
                 'height' => $height,
