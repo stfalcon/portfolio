@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('application_default');
         $rootNode
             ->children()
-                ->scalarNode('upload_root')
+                ->scalarNode('web_root')
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()

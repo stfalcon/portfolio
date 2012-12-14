@@ -101,7 +101,7 @@ knp_paginator:
 sensio_framework_extra: ~
 
 application_default:
-    upload_root: %kernel.root_dir%/../web
+    web_root: %kernel.root_dir%/../web
     upload_dir: /uploads/images
 
 stfalcon_blog:

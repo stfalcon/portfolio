@@ -3,14 +3,15 @@
 namespace Application\Bundle\DefaultBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
-use Application\Bundle\DefaultBundle\Model\UploadImage;
 
 /**
  * UploadController
@@ -32,31 +33,45 @@ class UploadController extends Controller
      */
     public function uploadImageAction(Request $request)
     {
-        $uploadImage = new UploadImage();
-        if ($request->files->has('upload_file')) {
-            $uploadImage->setFile($request->files->get('upload_file'));
-        }
+        /** @var $file \Symfony\Component\HttpFoundation\File\UploadedFile|null */
+        $file = $request->files->get('upload_file');
 
+        $fileConstraint = new Collection(array(
+             'file' => array(
+                 new NotBlank(),
+                 new Image()
+             ),
+         ));
+
+        // Validate
         /** @var $errors \Symfony\Component\Validator\ConstraintViolationList */
-        $errors = $this->get('validator')->validate($uploadImage);
+        $errors = $this->get('validator')->validateValue(array('file' => $file), $fileConstraint);
         if ($errors->count() > 0) {
             return new JsonResponse(array('msg' => 'Your file is not valid!'), 400);
         }
 
-        /** @var $uploadService \Application\Bundle\DefaultBundle\Service\UploadService */
-        $uploadService = $this->get('application_default.service.uploader');
+        $config = $this->container->getParameter('application_default.config');
+
+        // Move uploaded file
+        $newFileName = uniqid() . '.' . $file->guessExtension();
+        $path = $config['web_root'] . $config['upload_dir'];
         try {
-            $uploadService->upload($uploadImage->getFile());
+            $file->move($path, $newFileName);
         } catch (FileException $e) {
             return new JsonResponse(array('msg' => $e->getMessage()), 400);
         }
 
+        // Get image width/height
+        list($width, $height, $type, $attr) = getimagesize(
+            $path . DIRECTORY_SEPARATOR . $newFileName
+        );
+
         return new JsonResponse(
             $response = array(
                 'status' => self::RESPONSE_SUCCESS,
-                'src' => $uploadService->getWebPath(),
-                'width' => $uploadImage->getWidth(),
-                'height' => $uploadImage->getHeight(),
+                'src' => $config['upload_dir'] . '/' . $newFileName,
+                'width' => $width,
+                'height' => $height,
             )
         );
     }
