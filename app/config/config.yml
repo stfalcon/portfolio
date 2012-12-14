@@ -100,6 +100,10 @@ knp_paginator:
 
 sensio_framework_extra: ~
 
+application_default:
+    web_root: %kernel.root_dir%/../web
+    upload_dir: /uploads/images
+
 stfalcon_blog:
     rss:
         title: "Блог веб-студии stfalcon.com"

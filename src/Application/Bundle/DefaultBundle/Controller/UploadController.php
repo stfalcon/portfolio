@@ -3,14 +3,15 @@
 namespace Application\Bundle\DefaultBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * UploadController
@@ -19,54 +20,59 @@ use Symfony\Component\Validator\Constraints\Collection;
  */
 class UploadController extends Controller
 {
+    const RESPONSE_SUCCESS = 'success';
 
     /**
      * Upload photo
      *
-     * @return string
+     * @param Request $request
+     *
+     * @return JsonResponse
      * @Route("/admin/blog/uploadImage", name="blog_post_upload_image")
      * @Method({"POST"})
      */
-    public function uploadImageAction()
+    public function uploadImageAction(Request $request)
     {
-        $collectionConstraint = new Collection(array(
-            'inlineUploadFile' => new Image(array('mimeTypes' => array("image/png", "image/jpeg", "image/gif"))),
-        ));
-        $form = $this->createFormBuilder(null, array(
-            'csrf_protection' => false,
-            'validation_constraint' => $collectionConstraint
-            ))
-                ->add('inlineUploadFile', 'file')
-                ->getForm();
+        /** @var $file \Symfony\Component\HttpFoundation\File\UploadedFile|null */
+        $file = $request->files->get('upload_file');
 
-        $form->bindRequest($this->get('request'));
-        if ($form->isValid()) {
-            $file = $form->get('inlineUploadFile')->getData();
-            $ext = $file->guessExtension();
+        $fileConstraint = new Collection(array(
+             'file' => array(
+                 new NotBlank(),
+                 new Image()
+             ),
+         ));
 
-            if ($ext == '') {
-                $response = array(
-                    'msg' => 'Your file is not valid!',
-                );
-            } else {
-                $uploadDir = realpath($this->get('kernel')->getRootDir() . '/../web/uploads/images');
-                $newName = uniqid() . '.' . $ext;
-                $file->move($uploadDir, $newName);
-                $info = getImageSize($uploadDir . '/' . $newName);
-
-                $response = array(
-                    'status' => 'success',
-                    'src' => '/uploads/images/' . $newName,
-                    'width' => $info[0],
-                    'height' => $info[1],
-                );
-            }
-        } else {
-            $response = array(
-                'msg' => 'Your file is not valid!',
-            );
+        // Validate
+        /** @var $errors \Symfony\Component\Validator\ConstraintViolationList */
+        $errors = $this->get('validator')->validateValue(array('file' => $file), $fileConstraint);
+        if ($errors->count() > 0) {
+            return new JsonResponse(array('msg' => 'Your file is not valid!'), 400);
         }
 
-        return new Response(json_encode($response));
+        $config = $this->container->getParameter('application_default.config');
+
+        // Move uploaded file
+        $newFileName = uniqid() . '.' . $file->guessExtension();
+        $path = $config['web_root'] . $config['upload_dir'];
+        try {
+            $file->move($path, $newFileName);
+        } catch (FileException $e) {
+            return new JsonResponse(array('msg' => $e->getMessage()), 400);
+        }
+
+        // Get image width/height
+        list($width, $height, $type, $attr) = getimagesize(
+            $path . DIRECTORY_SEPARATOR . $newFileName
+        );
+
+        return new JsonResponse(
+            $response = array(
+                'status' => self::RESPONSE_SUCCESS,
+                'src' => $config['upload_dir'] . '/' . $newFileName,
+                'width' => $width,
+                'height' => $height,
+            )
+        );
     }
 }
