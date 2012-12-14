@@ -19,8 +19,8 @@
                  scope="request"
                  factory-service="application_default.menu_builder"
                  factory-method="createMainMenu">
-            <tag name="knp_menu.menu" alias="main" />
             <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="main" />
         </service>
 
         <!-- breadcrumbs menu -->
@@ -29,14 +29,15 @@
                  scope="request"
                  factory-service="application_default.menu_builder"
                  factory-method="createBreadcrumbsMenu">
-            <tag name="knp_menu.menu" alias="breadcrumbs" />
             <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="breadcrumbs" />
         </service>
 
         <service id="twig.extension.twitter" class="Application\Bundle\DefaultBundle\Extension\TwitterTwigExtension">
-            <argument type="service" id="service_container"></argument>
+            <argument type="service" id="service_container" />
             <tag name="twig.extension" alias="twitter" />
         </service>
+
     </services>
 
 </container>
