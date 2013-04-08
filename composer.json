@@ -24,15 +24,15 @@
         "gedmo/doctrine-extensions": "2.3.2",
         "stof/doctrine-extensions-bundle": "dev-master#0247e6f1658d76292c8ffe2c5106090bd36bd799",
 
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "2.2.x-dev",
         "sonata-project/cache-bundle": "dev-master#39b3e0de003ac5541e6b0f55a6c56550b32d0ff7",
 
         "kriswallsmith/assetic": "1.1.*",
         "avalanche123/imagine-bundle": "dev-master#eb03645887f732410127a2b3d992befe0f175277",
-        "knplabs/knp-paginator-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "2.3.2",
         "knplabs/knp-components": "1.2.2",
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
-        "vich/uploader-bundle": "dev-master",
+        "vich/uploader-bundle": "0.8.0",
 
         "zendframework/zendframework": "2.0.0beta5"
     },
