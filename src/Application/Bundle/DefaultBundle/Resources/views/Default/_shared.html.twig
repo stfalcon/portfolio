@@ -20,12 +20,12 @@
 
     <div>
         <h3><span class="feed">Наши заметки</span></h3>
-        {% render "StfalconBlogBundle:Post:last" with { 'count': 7 } %}
+        {% render controller("StfalconBlogBundle:Post:last", { 'count': 7 }) %}
         <a href="{{ path('blog') }}" class="all-posts">все статьи</a>
     </div>
 
     <div>
         <h3><span class="twitter">Twitter</span></h3>
-        {% render "ApplicationDefaultBundle:Default:twitter" with { 'count': 6 } %}
+        {% render controller("ApplicationDefaultBundle:Default:twitter", { 'count': 6 }) %}
     </div>
 </div>
