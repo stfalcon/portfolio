@@ -122,6 +122,8 @@ vich_uploader:
         project_image:
             upload_destination: %kernel.root_dir%/../web/uploads/portfolio/projects
             namer: stfalcon_portfolio.namer.project
+            delete_on_update: true
+            delete_on_remove: true
 
 sonata_admin:
     templates:
