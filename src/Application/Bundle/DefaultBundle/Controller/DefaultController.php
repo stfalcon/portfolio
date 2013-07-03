@@ -25,42 +25,13 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $categories = $this->get('doctrine')->getEntityManager()
+        $categories = $this->getDoctrine()->getManager()
                 ->getRepository("StfalconPortfolioBundle:Category")->getAllCategories();
 
-        //\Zend\Feed\Reader\Reader::setCache($this->get('knp_zend_cache.manager')->getCache('slow_cache'));
 
-        try {
-            $feed = \Zend\Feed\Reader\Reader::import('http://www.google.com/reader/public/atom/user%2F14849984795491019190%2Fstate%2Fcom.google%2Fbroadcast');
-        } catch (\Zend\Http\Client\Adapter\Exception\RuntimeException $e) {
-            $feed = array();
-        }
-
-        return array('categories' => $categories, 'feed' => $feed);
+        return array('categories' => $categories);
     }
 
-    /**
-     * Show last twitter messages
-     *
-     * @param int $count count of twitter messages
-     *
-     * @return array()
-     * @Template()
-     */
-    public function twitterAction($count = 1)
-    {
-        try {
-            $twitter = new \Zend\Service\Twitter\Search();
-            $response = $twitter->execute('from:stfalcon', array('rpp' => $count));
-        } catch (\Zend\Http\Client\Adapter\Exception\RuntimeException $e) {
-            $response['results'][] = array(
-                'text' => 'Unable to Connect to tcp://api.twitter.com:80',
-                'created_at' => (string) \time()
-            );
-        }
-
-        return array('results' => $response['results']);
-    }
 
     /**
      * Contacts page

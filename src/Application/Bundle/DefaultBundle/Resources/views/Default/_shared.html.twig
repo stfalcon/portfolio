@@ -1,31 +1,7 @@
 <div class="shared">
     <div>
-        <h3><span>Это интересно</span></h3>
-        <ul>
-            {% for item in feed %}
-                {% if loop.index <= 7 %}
-                <li class="feed-item">
-                    <a href="{{ item.link }}" rel="nofollow">
-                        {{ item.title }}
-                    </a>
-                    {#<span class="comments"><a href="<?php echo $item->{'comments'}[0]; ?>"><?php echo $item->{'comments'}[1]; ?></a></span>#}
-                </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-        <a href="http://www.google.com/reader/shared/stepan.tanasiychuk" class="all-posts" rel="nofollow">
-            все записи
-        </a>
-    </div>
-
-    <div>
         <h3><span class="feed">Наши заметки</span></h3>
         {% render controller("StfalconBlogBundle:Post:last", { 'count': 7 }) %}
         <a href="{{ path('blog') }}" class="all-posts">все статьи</a>
-    </div>
-
-    <div>
-        <h3><span class="twitter">Twitter</span></h3>
-        {% render controller("ApplicationDefaultBundle:Default:twitter", { 'count': 6 }) %}
     </div>
 </div>
