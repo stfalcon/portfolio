@@ -32,7 +32,10 @@
         "knplabs/knp-paginator-bundle": "2.3.2",
         "knplabs/knp-components": "1.2.2",
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
-        "vich/uploader-bundle": "0.8.0"
+        "vich/uploader-bundle": "0.8.1",
+
+        "stfalcon/blog-bundle": "*",
+        "stfalcon/portfolio-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [
