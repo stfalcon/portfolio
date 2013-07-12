@@ -3,6 +3,7 @@ php:
   - 5.3
   - 5.4
 before_script:
+  - echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
   - curl -s https://getcomposer.org/installer | php -- --quiet 
   - php composer.phar install
 script: phpunit -c app/
