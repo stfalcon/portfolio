@@ -3,7 +3,7 @@ php:
   - 5.3
   - 5.4
 before_script:
-  - sudo apt-get remove php5-xdebug
+  - sudo pecl uninstall xdebug
   - curl -s https://getcomposer.org/installer | php -- --quiet 
   - php composer.phar install
 script: phpunit -c app/
