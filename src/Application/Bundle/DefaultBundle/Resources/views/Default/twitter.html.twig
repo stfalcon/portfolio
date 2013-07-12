@@ -1,0 +1,8 @@
+<ul>
+    {% for status in results %}
+        <li>
+            {{ status.text|twit|raw }}
+            <em>{{ status.created_at|date("g:i A M jS") }}</em>
+        </li>
+    {% endfor %}
+</ul>
