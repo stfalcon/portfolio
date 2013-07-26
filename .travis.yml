@@ -12,6 +12,7 @@ before_script:
   - cd Stfalcon/Bundle/
   - ln -s ../../../vendor/stfalcon/blog-bundle/Stfalcon/Bundle/BlogBundle/ BlogBundle
   - ln -s ../../../vendor/stfalcon/portfolio-bundle/Stfalcon/Bundle/PortfolioBundle/ PortfolioBundle
+  - cd ../..
 script: phpunit -c app/
 notifications:
   email:
