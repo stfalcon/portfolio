@@ -6,6 +6,12 @@ before_script:
   - echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
   - curl -s https://getcomposer.org/installer | php -- --quiet 
   - php composer.phar install
+  - cd src/
+  - mkdir Stfalcon
+  - mkdir Stfalcon/Bundle
+  - cd Stfalcon/Bundle/
+  - ln -s ../../../vendor/stfalcon/blog-bundle/Stfalcon/Bundle/BlogBundle/ BlogBundle
+  - ln -s ../../../vendor/stfalcon/portfolio-bundle/Stfalcon/Bundle/PortfolioBundle/ PortfolioBundle
 script: phpunit -c app/
 notifications:
   email:
