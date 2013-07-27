@@ -8,8 +8,8 @@ before_script:
   - php composer.phar install
   # hack for testing bundles
   - mkdir -p src/Stfalcon/Bundle
-  - ln -s vendor/stfalcon/blog-bundle/Stfalcon/Bundle/BlogBundle/ src/Stfalcon/Bundle/BlogBundle
-  - ln -s vendor/stfalcon/portfolio-bundle/Stfalcon/Bundle/PortfolioBundle/ src/Stfalcon/Bundle/PortfolioBundle
+  - ln -s ../../../vendor/stfalcon/blog-bundle/Stfalcon/Bundle/BlogBundle/ src/Stfalcon/Bundle/BlogBundle
+  - ln -s ../../../vendor/stfalcon/portfolio-bundle/Stfalcon/Bundle/PortfolioBundle/ src/Stfalcon/Bundle/PortfolioBundle
 script: phpunit -c app/
 notifications:
   email:
