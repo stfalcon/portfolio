@@ -10,26 +10,27 @@
     </style>
 {% endblock %}
 
-{% block header %}
-    {{ parent() }}
-
-    <div class="slogan">
-        <span>
-            {% trans %}Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.{% endtrans %}
-            <br />
-            {% trans %}Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!{% endtrans %}
-        </span>
-        <div class="slogan-right"></div>
-        <div class="slogan-left"></div>
-    </div>
-{% endblock %}
-
 {% block content_wrapper %}
+    <section class="teaser">
+        <h1>Дизайн сайтов, мобильные приложения и&nbsp;веб-разработка</h1>
+        <p>Мы не просто рисуем красивые картинки. Мы&nbsp;проектируем и&nbspразрабатываем сложные сайты.</p>
+    </section>
+    <section class="promo-banner">
+        <div class="promo-banner-wrapper">
+            <div class="img-wrapper">    <!--use class-->
+                <img src="img/fish/banner1.png" alt=""/>
+            </div>
+            <aside>
+                <h2>Социальный сервис взаимопомощи водителей</h2>
+                <p>MegaS.O.S. — это место, где можно спросить как починить эту *уйню, чтоб заработала вот та *уйня.</p>
+                <a class="more" href="#">подробно о проекте</a>
+            </aside>
+        </div>
+    </section>
+    <p class="slogan">«Первое впечатление — визуальная эстетика. Второе — удобство повторения действий.»</p>
     <div id="content-index">
         {% include 'ApplicationDefaultBundle:Default:_categories_accordion.html.twig'
                 with {'categories': categories} %}
-
-        {% include 'ApplicationDefaultBundle:Default:_shared.html.twig' %}
     </div>
 {% endblock %}
 
