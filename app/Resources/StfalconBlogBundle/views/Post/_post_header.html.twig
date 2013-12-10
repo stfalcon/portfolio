@@ -1,0 +1,21 @@
+<header>
+    <h1><a href="{{ path('blog_post_view', { 'slug': post.slug }) }}">{{ post.title }}</a></h1>
+
+    <div class="post-info">
+        <time pubdate="pubdate">{{ post.created|date("d M Y") }}</time>
+        <img src="/img/fish/workon2.png" alt="Valera R."/>
+        <span>Велара Рабиевский</span>
+        <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#disqus_thread" data-disqus-identifier="{{ post.id }}">{{ 'Комментировать'|trans }}</a>
+    </div>
+</header>
+<script type="text/javascript">
+    var disqus_shortname = '{{ disqus_shortname }}';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>

@@ -1,0 +1,21 @@
+<div class="posts-list">
+    {% for post in posts %}
+        <article class="blog-post">
+            {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post} %}
+            <div class="post-content">
+                <div class="post-preview">
+                    <a href="#"><img src="/img/fish/post-img.png" alt="post image"/></a>
+                </div>
+                <p>
+                    {{ post.textAsHtml|cutMore|raw }}
+                </p>
+                {% if hasMore(post.text) %}
+                    <a class="read-more  next-page" href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">
+                        {{ 'Читать дальше'|trans }}
+                    </a>
+                {% endif %}
+            </div>
+            {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
+        </article>
+    {% endfor %}
+</div>

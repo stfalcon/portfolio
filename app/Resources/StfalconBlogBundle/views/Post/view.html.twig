@@ -1,0 +1,41 @@
+{% extends 'StfalconBlogBundle::layout.html.twig' %}
+{% block title %}{{ parent() }} / {% trans %} Блог {% endtrans %} / {{ post.title }}{% endblock %}
+{% block content_wrapper %}
+    <article class="blog-post">
+        {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post} %}
+        <div class="post-content">
+            <div class="post-preview">
+                <img src="/img/fish/post-img.png" alt="post image"/>
+            </div>
+            {{ post.textAsHtml|moreToSpan|raw }}
+            <a class="read-more prev-page" href="#"><span>Вернуться к списку записей</span>
+                <span>К списку записей</span></a>
+        </div>
+        {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
+        <p>
+            <div id="disqus_thread"></div>
+        </p>
+        <script type="text/javascript">
+            var disqus_shortname = '{{ disqus_shortname }}';
+            var disqus_identifier = '{{ post.id }}';
+            var disqus_url = '{{ url('blog_post_view', {'slug': post.slug}) }}';
+            var disqus_title = '{{ post.title }}';
+            // var disqus_developer = 1; // developer mode is on
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            function disqus_config() {
+                this.callbacks.onNewComment = [function () {
+                    $.ajax({  url: '{{ url('blog_post_disqus_sync', {'slug': post.slug}) }}' });
+                }];
+            }
+        </script>
+    </article>
+{% endblock %}
