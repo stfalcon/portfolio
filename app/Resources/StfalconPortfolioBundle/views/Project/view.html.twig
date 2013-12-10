@@ -1,0 +1,50 @@
+{% extends '::layout.html.twig' %}
+{% block content_wrapper %}
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+
+    <div class="project-wrapper clearfix">
+        <aside class="project-info">
+            <h2>{{ project.name }}</h2>
+            {% if project.url %}
+                <a href="{{ project.url }}">{{ project.url }}</a>
+            {% endif %}
+
+            <span>дизайн сайта, верстка шаблонов</span>
+            <p>
+                Сайт инди-журналистов и авторов. Кроме текста, на сайте много инфографики на актуальные темы.
+                {#{{ project.description | raw }}#}
+            </p>
+            <section class="work-on-project">
+                <h2>Над проектом работали</h2>
+                {% if project.users %}
+
+                    {{ project.users | raw }}
+                {% endif %}
+                {#<ul class="team-list  team-list-small">#}
+                    {#<li>#}
+                        {#<img src="img/fish/workon.png" alt="Степан Танасійчук"/>#}
+                        {#<span>Степан Танасийчук</span>#}
+                        {#<p>CEO, Co-founder</p>#}
+                    {#</li>                    #}
+                {#</ul>#}
+            </section>
+        </aside>
+        <div class="project-slider-wrapper">
+            <div class="project-slider-cnt">
+                <a class="prev-slide"></a>
+                <a class="next-slide"></a>
+                <div class="slider-pages"></div>
+                <div class="project-slider">
+                    {{ project.description | raw }}
+                    {#<ul>#}
+                        {#<li><img src="img/fish/pslider1.png" alt="alt"/></li>#}
+                        {#<li><img src="img/fish/pslider1.png" alt="alt"/></li>#}
+                        {#<li><img src="img/fish/pslider1.png" alt="alt"/></li>#}
+                        {#<li><img src="img/fish/pslider1.png" alt="alt"/></li>#}
+                    {#</ul>#}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+{% endblock %}

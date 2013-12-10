@@ -1,0 +1,24 @@
+{% extends '::layout.html.twig' %}
+
+{% block content_wrapper %}
+<section>
+    <h2 class="hidden">Список проектов</h2>
+    <ul class="projects">
+    {% if category.projects.count %}
+            {% for project in paginator %}
+                <li>
+                    <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
+                        <img src="/uploads/portfolio/projects/{{ project.image }}" alt="{{ project.name }}" title="{{ project.name }}" />
+                        <h3>{{ project.name }}</h3>
+                    </a>
+                    <p>логотип, дизайн сайта, верстка, программирование, на основе движка OpenCart</p>
+                </li>
+            {% endfor %}
+    {% else %}
+            This category is empty
+    {% endif %}
+
+    </ul>
+</section>
+    {{ knp_pagination_render(paginator) }}
+{% endblock %}
