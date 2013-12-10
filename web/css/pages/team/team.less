@@ -1,0 +1,280 @@
+/* amount-projects */
+.amount-projects {
+  width: 335px;
+  text-align: center;
+  font-size: 0.786rem;
+  margin: 48px 0 92px;
+  float: left;
+
+  span {
+    position: relative;
+    font-size: 1.714rem;
+  }
+  .years-count {
+     vertical-align: top;
+     font-size: 5.357rem;
+    font-family: 'museo_sans_cyrl', @global-font;
+
+    &+span {
+      top: 15px;
+    }
+  }
+  p {
+    width: 140px;
+    margin: -12px auto 24px;
+  }
+}
+
+.year-slider-wrapp {
+  width: 334px;
+  height: 9px;
+  background: #e6e8e8;
+  border-radius: 5px;
+
+  ul {
+    margin: 0 12px 0 14px;
+    text-align: justify;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      height: 0;
+      overflow: hidden;
+      width: 100%;
+    }
+    li {
+      position: relative;
+      display: inline-block;
+      padding-top: 11px;
+      color: #919699;
+      font-size: 0.786rem;
+      
+      &:nth-child(3) {
+        left: 2px;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -1px;
+        width: 1px;
+        height: 11px;
+        background: #dadcdc;
+      }
+    }
+  }
+}
+
+#year-slider {
+  position: relative;
+  margin-left: 24px;
+  width: 284px;
+  height: 9px;
+  
+  &:before {
+    content: "";
+    height: 33px;
+    left: -10px;
+    position: absolute;
+    top: 0;
+    width: 309px;
+    z-index: 1;
+  }
+  .ui-slider-range {
+    position: relative;
+    top: 4px;
+    height: 1px;
+    background-color: rgba(145,150,153,0);
+    background-image: -webkit-linear-gradient(right, #bdc1c3, #e5e7e7);
+    background-image: -moz-linear-gradient(right, #bdc1c3, #e5e7e7);
+    background-image: -o-linear-gradient(right, #bdc1c3, #e5e7e7);
+    background-image: linear-gradient(to left, #bdc1c3, #e5e7e7);
+    .transition(all 0.2s ease-in-out);
+  }
+  .ui-slider-handle {
+    display: block;
+    position: absolute;
+    margin: -5px 0 0 -12px;
+    width: 26px;
+    height: 19px;
+    border-radius: 4px;
+    background: ~"url(../img/bg/years-slider.png)" 4px 6px no-repeat #687277;
+    -webkit-box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.49) inset, 0 6px 7px -3px rgba(25, 33, 58, 0.5);
+    -moz-box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.49) inset, 0 6px 7px -3px rgba(25, 33, 58, 0.5);
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.49) inset, 0 6px 7px -3px rgba(25, 33, 58, 0.5);
+    outline: 0px solid transparent;
+    z-index: 1;
+    .transition(all 0.2s ease-in-out);
+
+    &:after {
+      content: "";
+      position: absolute;
+      height: 31px;
+      left: -6px;
+      position: absolute;
+      top: -6px;
+      width: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 713px) {
+  .amount-projects {
+    display: none;
+  }
+}
+
+/* amount-projects */
+
+/* interests */
+
+.interests {
+  text-align: center; 
+  margin-bottom: 59px;
+
+  li {
+    display: inline-block;
+    margin: 0 11px 18px;  
+  }
+  a {
+    color: #6a84d1;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px dotted #6a84d1;
+  }
+}
+
+@media screen and (max-width: 713px) {
+  .interests {
+    display: none;
+  }
+}
+
+/* interests */
+
+/* team-info */
+
+.team-info {
+  float: left;
+  width: 38.9583%;
+  margin: 0 11.7708% 28px 7.8083%;
+
+  h2 {
+    font-size: 2.571rem;
+    margin-bottom: 8px;
+  }
+  p {
+    font-size: 1.143rem;
+  }
+} 
+
+@media screen and (max-width:900px) {
+  .team-info {
+    width: 38.758%;
+    margin-left: 26px;
+    margin-right: 6%;
+  }
+}   
+
+@media screen and (max-width: 713px) {
+  .team-info {
+    margin: 0 26px 30px;
+    width: auto;
+  }
+}
+
+/* team-info */
+
+/* team-list */
+
+.team-list {
+  margin-bottom: 30px;
+  
+   li {
+     display: inline-block;
+
+     text-align: center;
+     margin: 0 2.7083% 0 0;
+     margin-bottom: 26px;
+
+     div {
+       position: relative;
+       margin-bottom: 15px;
+       width: 134px;
+       height: 134px;
+       cursor: pointer;
+
+       &:hover {
+        .overlay {
+          opacity: 1;
+        }
+       }
+     }
+     img {
+      border-radius: 50%;
+      max-width: 100%;
+     }
+   }
+  .drinks {
+   display: none;
+   position: absolute;
+   left: 0;
+   top: 5px;
+   z-index: 1;
+  }
+  .overlay {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    .transition(all ease-in-out 0.2s);
+  }
+  span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  p {
+    margin: 0;
+    color: #919699;
+    font-size: 0.857rem;
+  }
+}
+
+.team-list-small {
+  li {
+     display: block;
+     overflow: hidden;
+     text-align: left;
+     margin: 0 26px 15px 26px;
+
+     span {
+       font-size: 1.143rem;
+       margin: 5px 0 1px 60px;
+       color: @global-text-color;
+     }
+     p {
+       margin: 0 0  0 60px;
+       font-size: 1rem;
+     }
+     div {
+      width: 48px;
+      height: 48px;
+      float: left;
+      margin-right: 12px;
+     }
+   }
+   img {
+    max-width: 100%;
+   }
+}
+
+@media screen and (max-width:503px){
+  .team-list {
+     .team-list-small;
+   }
+}
+
+/* team-list */

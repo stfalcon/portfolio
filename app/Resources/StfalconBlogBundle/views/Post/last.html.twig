@@ -1,0 +1,8 @@
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}"><h4>{{ post.title }}</h4></a>
+            <time>{{ post.created|date("d M Y") }}</time>
+        </li>
+    {% endfor %}
+</ul>
