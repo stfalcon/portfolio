@@ -34,11 +34,12 @@ doctrine:
         charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        entity_managers:
-            default:
-                mappings:
-                    StfalconPortfolioBundle: ~
-                    StfalconBlogBundle: ~
+        auto_mapping: true
+#        entity_managers:
+#            default:
+#                mappings:
+#                    StfalconPortfolioBundle: ~
+#                    StfalconBlogBundle: ~
 
 
 # DoctrineMigrationsBundle
@@ -129,3 +130,8 @@ vich_uploader:
 sonata_admin:
     templates:
         layout: "::admin.html.twig"
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Application\Bundle\UserBundle\Entity\User
