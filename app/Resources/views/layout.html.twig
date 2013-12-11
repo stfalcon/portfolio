@@ -17,73 +17,82 @@
         'css/normalize.min.css'
         'css/main.css'
         %}
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
         {% endstylesheets %}
     {% endblock %}
 
     <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
 </head>
 <body>
-<div class="header-fixed">
-    <header>
-        {% block header %}
+    <div class="header-fixed">
+        <header>
             <a class="logo" href="{{ path('homepage') }}" title="Stfalcon.com"></a>
             <h1>Веб-студия stfalcon</h1>
             <nav>
                 <h2 class="hidden">Навигация</h2>
-                    {{ knp_menu_render('main') }}
+                {{ knp_menu_render('main') }}
                 <svg viewBox="0 0 20 20" class="close-mobile-nav">
                     <path class="icon-close-nav" d="M19.5303301,18.4696699 L20.0606602,19 L19,20.0606602 L18.4696699,19.5303301 L10,11.0606602 L1.53033009,19.5303301 L1,20.0606602 L-0.0606601718,19 L0.469669914,18.4696699 L8.93933983,10 L0.469669914,1.53033009 L-0.0606601718,1 L1,-0.0606601718 L1.53033009,0.469669914 L10,8.93933983 L18.4696699,0.469669914 L19,-0.0606601718 L20.0606602,1 L19.5303301,1.53033009 L11.0606602,10 L19.5303301,18.4696699 Z M19.5303301,18.4696699"></path>
                 </svg>
             </nav>
+            <span class="show-mobile-nav"><img src="{{ asset('img/bg/menu_icon.svg') }}" alt="Open menu"/></span>
+        </header>
+    </div>
+    <div class="content">
+        {% block content_wrapper %}
         {% endblock %}
-        <span class="show-mobile-nav"><img src="{{ asset('img/bg/menu_icon.svg') }}" alt="Open menu"/></span>
-    </header>
-</div>
-<div class="content">
-    {% block content_wrapper %}
+    </div>
+    <footer>
+        <section class="blog-posts">
+            <h3>Свежее из блога <i class="icon icon-share"></i></h3>
+            {% render controller("StfalconBlogBundle:Post:last", { 'count': 3 }) %}
+        </section>
+        <section class="contacts">
+            <h3>На связи</h3>
+            <ul class="address-list">
+                <li>
+                    <span>{% trans %}Позвонить{% endtrans %}:</span >
+                    <abbr title="+ 380 (97) 874-03-42" class="tel">+380 97 874-03-42</abbr>
+                </li>
+                <li>
+                    <small>{% trans %}Написать{% endtrans %}:</small>
+                    <a class="email" href="mailto:info@stfalcon.com">info@stfalcon.com</a>
+                </li>
+                <li>
+                    <small>Зайти в гости:</small>
+                    <span class="adr"><span class="street-address">{% trans %}ул. Камeнецкая{% endtrans %} 38,</span>
+                    <span class="locality">{% trans %}Хмельницкий{% endtrans %},</span>
+                    <span class="country-name">{% trans %}Украина{% endtrans %}</span></span>
+                </li>
+            </ul>
+        </section>
+        <section class="link-cnt">
+            <ul class="socials">
+                <li><a href="#" class="icon icon-facebook"></a></li>
+                <li><a href="#" class="icon icon-twitter"></a></li>
+                <li><a href="#" class="icon icon-github"></a></li>
+            </ul>
+            <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
+                <span class="category">{% trans %}Веб-студия{% endtrans %}</span>
+                <a href="http://stfalcon.com" title="stfalcon" class="fn org">stfalcon.com</a>
+            </div>
+        </section>
+    </footer>
+    {% block javascripts %}
+        {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/main.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-5635962-2']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
     {% endblock %}
-</div>
-<footer>
-    <section class="blog-posts">
-        <h3>Свежее из блога <i class="icon icon-share"></i></h3>
-        {% render controller("StfalconBlogBundle:Post:last", { 'count': 3 }) %}
-    </section>
-    <section class="contacts">
-        <h3>На связи</h3>
-        <ul class="address-list">
-            <li>
-                <span>{% trans %}Позвонить{% endtrans %}:</span >
-                <abbr title="+ 380 (97) 874-03-42" class="tel">+380 97 874-03-42</abbr>
-            </li>
-            <li>
-                <small>{% trans %}Написать{% endtrans %}:</small>
-                <a class="email" href="mailto:info@stfalcon.com">info@stfalcon.com</a>
-            </li>
-            <li>
-                <small>Зайти в гости:</small>
-                <span class="adr"><span class="street-address">{% trans %}ул. Камeнецкая{% endtrans %} 38,</span>
-                <span class="locality">{% trans %}Хмельницкий{% endtrans %},</span>
-                <span class="country-name">{% trans %}Украина{% endtrans %}</span></span>
-            </li>
-        </ul>
-    </section>
-    <section class="link-cnt">
-        <ul class="socials">
-            <li><a href="#" class="icon icon-facebook"></a></li>
-            <li><a href="#" class="icon icon-twitter"></a></li>
-            <li><a href="#" class="icon icon-github"></a></li>
-        </ul>
-        <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
-            <span class="category">{% trans %}Веб-студия{% endtrans %}</span>
-            <a href="http://stfalcon.com" title="stfalcon" class="fn org">stfalcon.com</a>
-        </div>
-    </section>
-</footer>
-{% block javascripts %}
-    {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/main.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
 </body>
 </html>
