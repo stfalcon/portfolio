@@ -42,7 +42,9 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\PortfolioBundle\StfalconPortfolioBundle(),
 
             new Application\Bundle\DefaultBundle\ApplicationDefaultBundle(),
+            new Application\Bundle\UserBundle\ApplicationUserBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
