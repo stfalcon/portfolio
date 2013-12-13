@@ -56,13 +56,13 @@ Change DBAL setting in `app/config/config.yml`, `app/config/config_dev.yml` or
 
     $ ./console doctrine:database:create
     $ ./console doctrine:migrations:migrate
+    $ ./console init:acl
     $ ./console doctrine:fixtures:load
 
 You can set environment `test` for command if you add `--env=test` to it.
 
 ### f) Enable ACL
 
-    $ ./console init:acl
     $ ./console sonata:admin:setup-acl
     $ ./console sonata:admin:generate-object-acl
 
