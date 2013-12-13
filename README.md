@@ -60,6 +60,12 @@ Change DBAL setting in `app/config/config.yml`, `app/config/config_dev.yml` or
 
 You can set environment `test` for command if you add `--env=test` to it.
 
-### f) Install Assets (if they hadn't been installed in **d** step or if you want to update them )
+### f) Enable ACL
+
+    $ ./console init:acl
+    $ ./console sonata:admin:setup-acl
+    $ ./console sonata:admin:generate-object-acl
+
+### g) Install Assets (if they hadn't been installed in **d** step or if you want to update them )
 
     $ ./console assets:install web
