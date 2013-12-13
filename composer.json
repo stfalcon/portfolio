@@ -35,8 +35,12 @@
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
         "vich/uploader-bundle": "0.8.1",
 
+
         "stfalcon/blog-bundle": "*",
-        "stfalcon/portfolio-bundle": "*"
+        "stfalcon/portfolio-bundle": "*",
+
+        "sonata-project/user-bundle": "2.2.*@dev",
+        "sonata-project/easy-extends-bundle": "2.1.4"
     },
     "scripts": {
         "post-install-cmd": [
