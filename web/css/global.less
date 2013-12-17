@@ -47,7 +47,7 @@ html {
 
 body {
   margin: 0 auto;
-  padding: 132px 0 0 0 ;
+  padding: 138px 0 0 0 ;
   min-height: 100%;
   max-width: 1290px;
   width: 93.71%;
@@ -139,7 +139,7 @@ a {
   }
 }
 
-.touch {
+/*.touch {
     body {
       padding-top: 107px;
     }
@@ -156,7 +156,7 @@ a {
       }
     }
 }
-
+*/
 .logo {
   display: inline-block;
   position: relative;
@@ -624,6 +624,10 @@ header nav {
   li {
     display: inline-block;
     margin-left: 6.5891%;
+
+    &.current a {
+      color: #ed002d;
+    }
   }
 
   a {
@@ -633,10 +637,6 @@ header nav {
     font-size: 1.071em;
     color: #2c373c;
     font-family: 'museo_sans_cyrl', @global-font;
-    
-    &.active {
-      color: #ed002d;
-    }
   }
 }
 

@@ -42,7 +42,7 @@
         {% block content_wrapper %}
         {% endblock %}
     </div>
-    <footer>
+    <footer class="vcard">
         <section class="blog-posts">
             <h3>Свежее из блога <i class="icon icon-share"></i></h3>
             {% render controller("StfalconBlogBundle:Post:last", { 'count': 3 }) %}
