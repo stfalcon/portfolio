@@ -1,4 +1,21 @@
-/* header */
+/*.touch {
+    body {
+      padding-top: 107px;
+    }
+
+    .header-inside {
+      padding: 15px 0 9px;
+    }
+
+    .main-nav {
+      top: 26px;
+
+      a {
+        font-size: 12px;
+      }
+    }
+}
+*/
 @font-face {
   font-family: 'museo_sans_cyrl';
   src: url('../fonts/museosanscyrl_500-webfont.eot');
@@ -30,7 +47,7 @@ html {
 }
 body {
   margin: 0 auto;
-  padding: 132px 0 0 0 ;
+  padding: 138px 0 0 0 ;
   min-height: 100%;
   max-width: 1290px;
   width: 93.71%;
@@ -108,18 +125,24 @@ a:hover {
 .clearfix:after {
   clear: both;
 }
-.touch body {
-  padding-top: 107px;
+/*.touch {
+    body {
+      padding-top: 107px;
+    }
+
+    .header-inside {
+      padding: 15px 0 9px;
+    }
+
+    .main-nav {
+      top: 26px;
+
+      a {
+        font-size: 12px;
+      }
+    }
 }
-.touch .header-inside {
-  padding: 15px 0 9px;
-}
-.touch .main-nav {
-  top: 26px;
-}
-.touch .main-nav a {
-  font-size: 12px;
-}
+*/
 .logo {
   display: inline-block;
   position: relative;
@@ -511,6 +534,9 @@ header nav li {
   display: inline-block;
   margin-left: 6.5891%;
 }
+header nav li.current a {
+  color: #ed002d;
+}
 header nav a {
   padding: 10px 0;
   text-decoration: none;
@@ -518,9 +544,6 @@ header nav a {
   font-size: 1.071em;
   color: #2c373c;
   font-family: 'museo_sans_cyrl', Helvetica, Arial, serif;
-}
-header nav a.active {
-  color: #ed002d;
 }
 .close-mobile-nav {
   display: none;
@@ -2320,5 +2343,109 @@ header nav a.active {
   }
   .accordion-wrapper {
     display: none;
+  }
+}
+.contacts-wrapper {
+  margin: 32px auto 20px;
+  width: 88.372%;
+  overflow: hidden;
+}
+.contacts-wrapper h1 {
+  font-size: 2.471rem;
+}
+.contacts-wrapper .col {
+  float: left;
+  width: 28.5067%;
+  font-size: 1.143rem;
+}
+.contacts-wrapper .info-group {
+  margin-bottom: 30px;
+}
+.contacts-wrapper .info-group span {
+  display: block;
+  color: #969897;
+}
+.contacts-wrapper a {
+  color: #2c373c;
+}
+.contacts-wrapper a:hover {
+  color: #ed002d;
+}
+.contacts-wrapper .address {
+  width: 37.3303%;
+}
+.contacts-wrapper .socials li {
+  float: none;
+  margin: 0 0 13px 0;
+}
+.contacts-wrapper .socials a {
+  font-size: 1.143rem;
+  color: #2c373c;
+  text-decoration: none;
+}
+.contacts-wrapper .socials a span:last-child {
+  display: inline-block;
+  height: 18px;
+  border-bottom: solid 1px #797e81;
+  font-weight: bold;
+}
+.contacts-wrapper .socials a:hover {
+  color: #ed002d;
+}
+.contacts-wrapper .socials a:hover span {
+  border-color: #ed002d;
+}
+.contacts-wrapper .socials .icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+.map-wrapper {
+  margin-bottom: 40px;
+}
+.map-wrapper iframe {
+  height: 480px;
+}
+@media screen and (max-width: 1080px) {
+  .contacts-wrapper {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 905px) {
+  .contacts-wrapper h1 {
+    line-height: 1em;
+  }
+  .contacts-wrapper .col {
+    width: 50%;
+  }
+  .contacts-wrapper .col:last-child {
+    width: 100%;
+  }
+  .contacts-wrapper .socials li {
+    display: inline-block;
+    margin-right: 25px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .contacts-wrapper h1 {
+    font-size: 1.571rem;
+  }
+  .contacts-wrapper .socials {
+    margin: 10px 0 0 0;
+    width: 100%;
+    text-align: center;
+  }
+  .contacts-wrapper .socials a span:last-child {
+    display: none;
+  }
+  .contacts-wrapper .info-group {
+    margin-bottom: 20px;
+  }
+  .map-wrapper iframe {
+    height: 360px;
+  }
+}
+@media screen and (max-width: 410px) {
+  .contacts-wrapper .col {
+    width: 100%;
   }
 }
