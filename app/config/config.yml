@@ -162,3 +162,9 @@ sonata_user:
     admin:                  # Admin Classes
         user:
             class: Application\Bundle\UserBundle\Admin\UserAdmin
+
+avalanche_imagine:
+    filters:
+        avatar:
+            type:    thumbnail
+            options: { size: [134, 134], mode: outbound }

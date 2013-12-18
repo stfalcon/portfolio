@@ -29,6 +29,7 @@ class UserAdmin extends Admin
 
         $formMapper
             ->with('Profile')
+                ->add('position', NULL, array('required' => false))
                 ->add('image', 'file', array('required' => false))
             ->end()
         ;

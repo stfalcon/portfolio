@@ -1,0 +1,57 @@
+{% extends '::layout.html.twig' %}
+
+{% block content_wrapper %}
+    <div class="clearfix">
+        <section class="team-info">
+            <h2>Команда</h2>
+            <p>
+                Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на
+                качественный результат. Формирование имиджа на тщательном анализе данных.
+            </p>
+            <p>Повышение жизненных стандартов парадоксально экономит фирменный стиль, расширяя долю рынка.</p>
+        </section>
+        <section class="amount-projects">
+            <div class="projects-counter">
+                {% set firstYear = years|first %}
+                <span class="years-count">{{ firstYear.counter }}</span><span>+</span>
+                <p>проектов мы запустили к концу <time id="view-year">{{ firstYear.year }}</time> года</p>
+            </div>
+            <div class="year-slider-wrapp">
+                <div id="year-slider"></div>
+                <ul>
+                    {% for year in years %}
+                    <li data-val="{{ year.counter }}">{{ year.year }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+    <ul class="team-list">
+        {% for user in users %}
+        <li>
+            <div>
+                <img src="{{ vich_uploader_asset(user, 'image') | apply_filter('avatar') }}" alt="{{ user.firstname~' '~user.lastname }}" class="avatar"
+                     data-interests="['games', 'books', 'movies']"/>
+                <img src="img/bg/coffe.png" alt="Beer" class='drinks'>
+                <img src="img/bg/igor.png" class="overlay">
+            </div>
+            <span>{{ user.firstname~' '~user.lastname }}</span>
+            <p>{{ user.position }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <ul class="interests">
+        <li><a data-filter="musics-lover">Меломаны</a></li>
+        <li><a data-filter="games">Геймеры</a></li>
+        <li><a data-filter="books">Книголюбы</a></li>
+        <li><a data-filter="movies">Киноманы</a></li>
+        <li><a data-filter="sportsman">Спортсмены</a></li>
+        <li><a data-filter="art">Ценители искусства</a></li>
+        <li><a data-filter="adventures">Искатели приключений</a></li>
+        <li><a data-filter="ironman">Вжелезкахковырялы</a></li>
+        <li><a data-filter="cyclists">Велосипедисты</a></li>
+        <li><a data-filter="detectives">Детективы</a></li>
+        <li><a data-filter="unusual-hobbies">Необычные увлечения</a></li>
+        <li><a data-filter="drinks">Напитки</a></li>
+    </ul>
+{% endblock %}

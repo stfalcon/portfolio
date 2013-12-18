@@ -41,6 +41,13 @@ class User extends BaseUser
     protected $imageName;
 
     /**
+     * @ORM\Column(type="string", length=255, name="company_position")
+     *
+     * @var string $position
+     */
+    protected $position;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -80,5 +87,19 @@ class User extends BaseUser
         return $this->imageName;
     }
 
+    /**
+     * @param string $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
 
+    /**
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
 }
