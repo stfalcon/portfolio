@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\UserBundle\Controller;
 
+use Application\Bundle\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,6 +46,8 @@ class DefaultController extends Controller
 
         $projectYears = array_slice($projectYears, -4);
 
-        return array('users' => $users, 'years' => $projectYears);
+        $interestsList = User::getInterestsList();
+
+        return array('users' => $users, 'years' => $projectYears, 'interestsList' => $interestsList, );
     }
 }
