@@ -130,6 +130,10 @@ vich_uploader:
             uri_prefix: /uploads/avatar
             upload_destination: %kernel.root_dir%/../web/uploads/avatar
             namer: vich_uploader.namer_uniqid
+        user_caricature:
+            uri_prefix: /uploads/avatar/caricature
+            upload_destination: %kernel.root_dir%/../web/uploads/avatar/caricature
+            namer: vich_uploader.namer_uniqid
 
 sonata_admin:
     templates:

@@ -31,7 +31,12 @@ class UserAdmin extends Admin
             ->with('Profile')
                 ->add('position', NULL, array('required' => false))
                 ->add('image', 'file', array('required' => false))
+                ->add('caricature', 'file', array('required' => false))
             ->end()
         ;
+    }
+
+    public function preUpdate($entity){
+        $entity->setUpdatedAt(new \DateTime());
     }
 }

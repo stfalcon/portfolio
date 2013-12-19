@@ -41,6 +41,24 @@ class User extends BaseUser
     protected $imageName;
 
     /**
+     * @Assert\File(
+     *     maxSize="1M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
+     * @Vich\UploadableField(mapping="user_caricature", fileNameProperty="caricatureName")
+     *
+     * @var File $caricature
+     */
+    protected $caricature;
+
+    /**
+     * @ORM\Column(type="string", length=255, name="caricature_name" )
+     *
+     * @var string $caricatureName
+     */
+    protected $caricatureName;
+
+    /**
      * @ORM\Column(type="string", length=255, name="company_position")
      *
      * @var string $position
@@ -101,5 +119,37 @@ class User extends BaseUser
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\File $caricature
+     */
+    public function setCaricature($caricature)
+    {
+        $this->caricature = $caricature;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
+    public function getCaricature()
+    {
+        return $this->caricature;
+    }
+
+    /**
+     * @param string $caricatureName
+     */
+    public function setCaricatureName($caricatureName)
+    {
+        $this->caricatureName = $caricatureName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCaricatureName()
+    {
+        return $this->caricatureName;
     }
 }

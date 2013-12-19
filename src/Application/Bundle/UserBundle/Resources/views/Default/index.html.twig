@@ -30,13 +30,17 @@
         {% for user in users %}
         <li>
             <div>
+                {% if user.imageName %}
                 <img src="{{ vich_uploader_asset(user, 'image') | apply_filter('avatar') }}" alt="{{ user.firstname~' '~user.lastname }}" class="avatar"
                      data-interests="['games', 'books', 'movies']"/>
+                {% endif %}
                 <img src="img/bg/coffe.png" alt="Beer" class='drinks'>
-                <img src="img/bg/igor.png" class="overlay">
+                {% if user.caricatureName %}
+                    <img src="{{ vich_uploader_asset(user, 'caricature') | apply_filter('avatar') }}" class="overlay">
+                {% endif %}
             </div>
             <span>{{ user.firstname~' '~user.lastname }}</span>
-            <p>{{ user.position }}</p>
+            <p>{{ user.position }}&nbsp;</p>
         </li>
         {% endfor %}
     </ul>
