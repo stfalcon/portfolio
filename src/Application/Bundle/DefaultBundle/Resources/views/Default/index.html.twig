@@ -1,15 +1,5 @@
 {% extends '::layout.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent () }}
-
-    <style>
-        #footer {
-            background: none;
-        }
-    </style>
-{% endblock %}
-
 {% block content_wrapper %}
     <section class="teaser">
         <h1>Дизайн сайтов, мобильные приложения и&nbsp;веб-разработка</h1>
@@ -29,29 +19,7 @@
     </section>
     <p class="slogan">«Первое впечатление — визуальная эстетика. Второе — удобство повторения действий.»</p>
     <div id="content-index">
-        {% include 'ApplicationDefaultBundle:Default:_categories_accordion.html.twig'
+        {% include 'ApplicationDefaultBundle:Default:_portfolio_items_list.html.twig'
                 with {'categories': categories} %}
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {% javascripts filter='yui_js' output='cache/js/*.js'
-            '@jquery'
-            '@jquery_ui'
-            'vendor/jquery/jquery.wresize.js'
-            'vendor/jquery/jquery.mousewheel.min.js'
-            'js/jquery.stf.carousel.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
-    <script type="text/javascript">
-        $("#content-index .accordion").accordion({ header: "h2", autoHeight: false });
-        $("#content-index .carousel").stfCarousel({
-            scroll: 'auto',
-            mousewheel: false,
-            ruler: $("#content-index .accordion"),
-            widthItem: 280,
-            substract: 144
-        });
-    </script>
 {% endblock %}

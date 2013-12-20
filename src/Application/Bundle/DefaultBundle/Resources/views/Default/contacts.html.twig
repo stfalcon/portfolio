@@ -1,44 +1,37 @@
 {% extends '::layout.html.twig' %}
 
-{% block content %}
-    <h1>
-        {% trans %}Контактная информация{% endtrans %}
-    </h1>
-
-    <!--list of contacts-->
-    <dl class="contacts">
-        <dt>
-            {% trans %}Позвонить{% endtrans %}:
-        </dt>
-        <dd>
-            <strong>+380 97 874-03-42</strong>
-        </dd>
-
-        <dt>
-            {% trans %}Написать{% endtrans %}:
-        </dt>
-        <dd>
-            <a href="mailto:info@stfalcon.com">info@stfalcon.com</a>
-        </dd>
-
-        <dt>
-            {% trans %}Адрес{% endtrans %}:
-        </dt>
-        <dd>
-            {% trans %}Камeнецкая{% endtrans %} 38,
-            <br />
-            {% trans %}Хмельницкий{% endtrans %}, {% trans %}Украина{% endtrans %}, 29000
-        </dd>
-    </dl>
-    <!--/list of contacts-->
-
+{% block content_wrapper %}
+    <section class="contacts-wrapper">
+        <h1>
+            {% trans %}Контактная информация{% endtrans %}
+        </h1>
+        <div class="col">
+            <div class="info-group">
+                <span>{% trans %}Позвонить{% endtrans %}:</span>
+                <a href="tel:+380 97 874-03-42"><b>+380 97 874-03-42</b></a>
+            </div>
+            <div class="info-group">
+                <span>{% trans %}Написать{% endtrans %}:</span>
+                <a href="mailto:info@stfalcon.com"><b>info@stfalcon.com</b></a>
+            </div>
+        </div> 
+        <div class="col address">
+            <div class="info-group">
+                <span>{% trans %}Зайти в гости{% endtrans %}:</span>
+                <b>{% trans %}Камeнецкая{% endtrans %} 38, <br> {% trans %}Хмельницкий{% endtrans %}, {% trans %}Украина{% endtrans %}, 29000</b>
+            </div>
+        </div> 
+        <div class="col">
+            <ul class="socials">
+                <li><a href="#"><span class="icon icon-facebook"></span> <span>Facebook</span></a></li>
+                <li><a href="#"><span class="icon icon-twitter"></span> <span>Twitter</span></a></li>
+                <li><a href="#"><span class="icon icon-github"></span> <span>GitHub</span></a></li>
+            </ul>
+        </div>
+    </section>
     <!--google map-->
-    <div>
-        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.ua/maps/ms?ie=UTF8&amp;hl=uk&amp;msa=0&amp;msid=206670551419898039551.00049e630c18ed6cc61ad&amp;ll=52.908902,30.9375&amp;spn=75.865986,149.414063&amp;z=2&amp;output=embed"></iframe>
-        <br />
-        <a href="http://maps.google.com.ua/maps/ms?ie=UTF8&amp;msa=0&amp;msid=206670551419898039551.00049e630c18ed6cc61ad&amp;ll=52.908902,30.9375&amp;spn=75.865986,149.414063&amp;z=2&amp;source=embed" style="color:#0000FF;text-align:left">
-            {% trans %}Посмотреть на большой карте{% endtrans %}
-        </a>
+    <div class="map-wrapper">
+        <iframe width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.ua/maps/ms?ie=UTF8&amp;hl=uk&amp;msa=0&amp;msid=206670551419898039551.00049e630c18ed6cc61ad&amp;ll=52.908902,30.9375&amp;spn=75.865986,149.414063&amp;z=2&amp;output=embed"></iframe>
     </div>
     <!--/google map-->
 {% endblock %}

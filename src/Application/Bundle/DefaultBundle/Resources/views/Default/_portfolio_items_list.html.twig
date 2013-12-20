@@ -1,13 +1,6 @@
 <section>
     <h2 class="hidden">Список проектов</h2>
     <ul class="projects">
-        <li>
-            <a href="#">
-                <img src="img/fish/prev1.png" alt=""/>
-                <h3>Radialka</h3>
-            </a>
-            <p>логотип, дизайн сайта, верстка, программирование, на основе движка OpenCart</p>
-        </li>
         {% if categories %}
             {% for category in categories %}
                 {% if category.projects.count %}

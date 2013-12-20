@@ -42,8 +42,15 @@ a:active,a:hover {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 3rem; /* 42px */
 	margin: 0 0 .67em
+}
+
+@media screen and (max-width:1024px) {
+	h1 {
+		font-size: 2.571rem;
+		margin: 0 0 .67em
+	}
 }
 
 h2 {
