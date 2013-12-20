@@ -1,3 +1,18 @@
+application_media:
+    resource: "@ApplicationMediaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+application_blog:
+    resource: "@ApplicationBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+application_portfolio:
+    resource: "@ApplicationPortfolioBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 _application_default:
     resource: "@ApplicationDefaultBundle/Resources/config/routing.yml"
 
@@ -38,3 +53,15 @@ fos_user_change_password:
 sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
+
+_imagine:
+    resource: .
+    type:     imagine
+
+gallery:
+    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    prefix: /media/gallery
+
+media:
+    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    prefix: /media

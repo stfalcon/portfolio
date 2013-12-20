@@ -4,6 +4,16 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:lensky84/PortfolioBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:lensky84/BlogBundle.git"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.2.0",
@@ -40,7 +50,7 @@
         "stfalcon/portfolio-bundle": "*",
 
         "sonata-project/user-bundle": "2.2.*@dev",
-        "sonata-project/easy-extends-bundle": "2.1.4"
+        "sonata-project/media-bundle": "2.2.5"
     },
     "scripts": {
         "post-install-cmd": [
