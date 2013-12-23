@@ -17,8 +17,6 @@
   h1 {
     min-height: 72px;
     margin-right: 260px;
-    font-size: 3rem;
-    line-height: 1.073em;
 
     a {
       color: @global-text-color;
@@ -131,19 +129,14 @@
   }
   h2, h3 {
     margin: 59px 7.8125% 18px 7.8125%;
-    line-height: 1.1em;
 
     &:first-child {
       margin-top: 0;
     }
   }
 
-  h2 {
-    font-size: 2.143rem;
-    
-    &+h3 {
-      margin-top: 0;
-    }
+  h2+h3 {
+    margin-top: 0;
   }
   h3 {
     font-size: 1.714rem;
@@ -257,9 +250,6 @@
   .blog-post {
     width: 84.375%;
 
-    h1 {
-      font-size: 2.571rem;
-    }
     .read-more, .tags {
       margin-left: 11.1111%;
     }
