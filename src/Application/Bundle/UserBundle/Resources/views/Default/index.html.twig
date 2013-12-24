@@ -1,0 +1,52 @@
+{% extends '::layout.html.twig' %}
+
+{% block content_wrapper %}
+    <div class="clearfix">
+        <section class="team-info">
+            <h2>Команда</h2>
+            <p>
+                Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на
+                качественный результат. Формирование имиджа на тщательном анализе данных.
+            </p>
+            <p>Повышение жизненных стандартов парадоксально экономит фирменный стиль, расширяя долю рынка.</p>
+        </section>
+        <section class="amount-projects">
+            <div class="projects-counter">
+                {% set firstYear = years|first %}
+                <span class="years-count">{{ firstYear.counter }}</span><span>+</span>
+                <p>проектов мы запустили к концу <time id="view-year">{{ firstYear.year }}</time> года</p>
+            </div>
+            <div class="year-slider-wrapp">
+                <div id="year-slider"></div>
+                <ul>
+                    {% for year in years %}
+                    <li data-val="{{ year.counter }}">{{ year.year }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+    <ul class="team-list">
+        {% for user in users %}
+        <li>
+            <div class="login-{{ user.username }} {% if user.drink %}drink-{{ user.drink }}{% endif %}">
+                {% if user.imageName %}
+                <img src="{{ vich_uploader_asset(user, 'image') | apply_filter('avatar') }}" alt="{{ user.firstname~' '~user.lastname }}" class="avatar"
+                     data-interests="{{ user.interests|json_encode() }}"/>
+                {% endif %}
+                {% if user.caricatureName %}
+                    <img src="{{ vich_uploader_asset(user, 'caricature') | apply_filter('avatar') }}" class="overlay">
+                {% endif %}
+            </div>
+            <span>{{ user.firstname~' '~user.lastname }}</span>
+            <p>{{ user.position }}&nbsp;</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <ul class="interests">
+        {% for key, interest in interestsList %}
+        <li><a data-filter="{{ key }}">{{ interest }}</a></li>
+        {% endfor %}
+        <li><a data-filter="drinks">Напитки</a></li>
+    </ul>
+{% endblock %}

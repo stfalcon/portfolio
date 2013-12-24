@@ -42,7 +42,13 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\PortfolioBundle\StfalconPortfolioBundle(),
 
             new Application\Bundle\DefaultBundle\ApplicationDefaultBundle(),
+
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Application\Bundle\UserBundle\ApplicationUserBundle(),
+            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
