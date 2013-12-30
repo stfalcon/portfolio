@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -27,18 +28,18 @@ class User extends BaseUser
      *     maxSize="1M",
      *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
      * )
-     * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatarName")
      *
      * @var File $image
      */
-    protected $image;
+    protected $avatar;
 
     /**
-     * @ORM\Column(type="string", length=255, name="image_name")
+     * @ORM\Column(type="string", length=255, name="avatar_name", nullable=true)
      *
      * @var string $imageName
      */
-    protected $imageName;
+    protected $avatarName;
 
     /**
      * @Assert\File(
@@ -52,32 +53,43 @@ class User extends BaseUser
     protected $caricature;
 
     /**
-     * @ORM\Column(type="string", length=255, name="caricature_name" )
+     * @ORM\Column(type="string", length=255, name="caricature_name", nullable=true )
      *
      * @var string $caricatureName
      */
     protected $caricatureName;
 
     /**
-     * @ORM\Column(type="string", length=255, name="company_position")
+     * @ORM\Column(type="string", length=255, name="company_position", nullable=true)
      *
      * @var string $position
      */
     protected $position;
 
     /**
-     * @ORM\Column(type="string", length=500, name="interests")
+     * @ORM\Column(type="string", length=500, name="interests", nullable=true)
      *
      * @var string $interests
      */
     protected $interests;
 
     /**
-     * @ORM\Column(type="string", length=100, name="drink")
+     * @ORM\Column(type="string", length=100, name="drink", nullable=true)
      *
      * @var string $drink
      */
     protected $drink;
+
+    /**
+     * @var ArrayCollection
+     *
+     *  @ORM\ManyToMany(targetEntity="Group")
+     *  @ORM\JoinTable(name="users_users_groups",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $groups;
 
     /**
      * @var array $interestsList
@@ -106,44 +118,18 @@ class User extends BaseUser
         'water' => 'Вода',
     );
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->groups = new ArrayCollection();
+    }
+
     /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\File $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\File\File
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param string $imageName
-     */
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageName()
-    {
-        return $this->imageName;
     }
 
     /**
@@ -246,5 +232,53 @@ class User extends BaseUser
     public static function getDrinksList()
     {
         return self::$drinksList;
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\File $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatarName
+     */
+    public function setAvatarName($avatarName)
+    {
+        $this->avatarName = $avatarName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarName()
+    {
+        return $this->avatarName;
+    }
+
+    /**
+     * @param \Application\Bundle\UserBundle\Entity\ArrayCollection $groups
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
+    /**
+     * @return \Application\Bundle\UserBundle\Entity\ArrayCollection
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

@@ -4,20 +4,17 @@ namespace Application\Bundle\UserBundle\Controller;
 
 use Application\Bundle\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * Default controller. For single actions for project
- *
- * @author Stepan Tanasiychuk <ceo@stfalcon.com>
+ * Default controller.
  */
 class DefaultController extends Controller
 {
 
     /**
-     * Categories/projects lilowerst
+     * Team page
      *
      * @return array()
      * @Route("/", name="team")
@@ -28,6 +25,19 @@ class DefaultController extends Controller
         $users = $this->getDoctrine()->getManager()
                 ->getRepository("ApplicationUserBundle:User")->findBy(array('enabled' => true));
 
+        $interestsList = User::getInterestsList();
+
+        return array('users' => $users, 'interestsList' => $interestsList);
+    }
+
+    /**
+     * Projects counter widget
+     *
+     * @return array()
+     * @Template("ApplicationUserBundle:Default:_projects_counter.html.twig")
+     */
+    public function projectsCounterAction()
+    {
         $projects = $this->getDoctrine()->getManager()
             ->getRepository("StfalconPortfolioBundle:Project")->findBy(array(), array('date' => 'asc'));
 
@@ -46,8 +56,6 @@ class DefaultController extends Controller
 
         $projectYears = array_slice($projectYears, -4);
 
-        $interestsList = User::getInterestsList();
-
-        return array('users' => $users, 'years' => $projectYears, 'interestsList' => $interestsList, );
+        return array('years' => $projectYears);
     }
 }

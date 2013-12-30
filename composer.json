@@ -39,8 +39,7 @@
         "stfalcon/blog-bundle": "*",
         "stfalcon/portfolio-bundle": "*",
 
-        "sonata-project/user-bundle": "2.2.*@dev",
-        "sonata-project/easy-extends-bundle": "2.1.4"
+        "sonata-project/user-bundle": "2.2.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
