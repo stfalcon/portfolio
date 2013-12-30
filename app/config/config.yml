@@ -134,6 +134,14 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             delete_on_update: true
             delete_on_remove: true
+        user_avatar:
+            uri_prefix: /uploads/avatar
+            upload_destination: %kernel.root_dir%/../web/uploads/avatar
+            namer: vich_uploader.namer_uniqid
+        user_caricature:
+            uri_prefix: /uploads/avatar/caricature
+            upload_destination: %kernel.root_dir%/../web/uploads/avatar/caricature
+            namer: vich_uploader.namer_uniqid
 
 sonata_admin:
     templates:
@@ -203,4 +211,13 @@ sonata_media:
     filesystem:
         local:
             directory:  %kernel.root_dir%/../web/uploads/media
-            create:     true
+            create:     true        group: Application\Bundle\UserBundle\Entity\Group
+    admin:                  # Admin Classes
+        user:
+            class: Application\Bundle\UserBundle\Admin\UserAdmin
+
+avalanche_imagine:
+    filters:
+        avatar:
+            type:    thumbnail
+            options: { size: [134, 134], mode: outbound }

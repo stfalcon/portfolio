@@ -1,0 +1,15 @@
+<section class="amount-projects">
+    <div class="projects-counter">
+        {% set firstYear = years|first %}
+        <span class="years-count">{{ firstYear.counter }}</span><span>+</span>
+        <p>проектов мы запустили к концу <time id="view-year">{{ firstYear.year }}</time> года</p>
+    </div>
+    <div class="year-slider-wrapp">
+        <div id="year-slider"></div>
+        <ul>
+            {% for year in years %}
+            <li data-val="{{ year.counter }}">{{ year.year }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

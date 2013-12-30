@@ -65,3 +65,8 @@ gallery:
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
+
+team_route:
+    resource: "@ApplicationUserBundle/Controller"
+    prefix: /team
+    type: annotation

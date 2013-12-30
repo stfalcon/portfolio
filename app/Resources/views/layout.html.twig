@@ -14,6 +14,9 @@
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="/blog/rss" />
 
     {% block stylesheets %}
+        <!--[if gte IE 8]>
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/ie.css') }}"/>
+        <![endif]-->
         {% stylesheets filter='cssrewrite' output='cache/css/*.css'
         'css/normalize.min.css'
         'css/main.css'
@@ -56,11 +59,11 @@
                     <abbr title="+ 380 (97) 874-03-42" class="tel">+380 97 874-03-42</abbr>
                 </li>
                 <li>
-                    <small>{% trans %}Написать{% endtrans %}:</small>
+                    <span>{% trans %}Написать{% endtrans %}:</span>
                     <a class="email" href="mailto:info@stfalcon.com">info@stfalcon.com</a>
                 </li>
                 <li>
-                    <small>Зайти в гости:</small>
+                    <span>Зайти в гости:</span>
                     <span class="adr"><span class="street-address">{% trans %}ул. Камeнецкая{% endtrans %} 38,</span>
                     <span class="locality">{% trans %}Хмельницкий{% endtrans %},</span>
                     <span class="country-name">{% trans %}Украина{% endtrans %}</span></span>

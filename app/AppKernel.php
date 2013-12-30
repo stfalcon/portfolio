@@ -43,7 +43,6 @@ class AppKernel extends Kernel
 
             new Application\Bundle\DefaultBundle\ApplicationDefaultBundle(),
 
-            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new FOS\UserBundle\FOSUserBundle(),

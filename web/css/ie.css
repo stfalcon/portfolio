@@ -1,0 +1,140 @@
+h1 {
+	font-size: 36px
+}
+
+h2 {
+	font-size: 28px
+}
+
+h3 {
+	font-size: 17px
+}
+
+h4 {
+	font-size: 16px
+}
+
+h5, h6, p {
+	font-size: 14px
+}
+
+.slogan {
+	font-size: 21px
+}
+
+.address-list li > span:first-child {
+	font-size: 12px
+}
+
+footer time {
+	font-size: 12px
+}
+
+footer h3 {
+	font-size: 17px
+}
+
+.pagination li, .pagination a {
+	font-size: 21px
+}
+
+.projects p {
+	font-size: 11px
+}
+
+.show-all-projects {
+	font-size: 17px
+}
+
+.blog-post .read-more {
+	font-size: 11px
+}
+
+.blog-post .tags a {
+	font-size: 13px
+}
+
+.post-content aside {
+	font-size: 15px
+}
+
+.post-content h3 {
+	font-size: 24px
+}
+
+.post-content p, .post-content li {
+	font-size: 21px
+}
+
+.post-content pre {
+	font-size: 19px
+}
+
+.post-content .menu {
+	font-size: 14px
+}
+
+.hotkey {
+	font-size: 14px
+}
+
+.promo-banner h2 {
+	font-size: 24px
+}
+
+.promo-banner a {
+	font-size: 13px
+}
+
+.promo-banner p {
+	font-size: 15px
+}
+
+.project-info>h2 {
+	font-size: 22px
+}
+
+.project-info>a {
+	font-size: 15px
+}
+
+.project-info span {
+	font-size: 11px
+}
+
+.project-info span {
+	font-size: 13px
+}
+
+.work-on-project h2 {
+	font-size: 12px
+}
+
+.work-on-project .team-list li span {
+	font-size: 14px
+}
+
+.work-on-project .team-list li p {
+	font-size: 12px
+}
+
+.services-tabs .tab-nav h2 {
+	font-size: 14px
+}
+
+.services-tabs .tab-nav a {
+	font-size: 21px
+}
+
+.amount-projects {
+	font-size: 11px
+}
+
+.amount-projects span {
+	font-size: 24px
+}
+
+.amount-projects .years-count {
+	font-size: 74px
+}
+

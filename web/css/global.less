@@ -47,11 +47,10 @@ html {
 
 body {
   margin: 0 auto;
-  padding: 138px 0 0 0 ;
+  padding: 132px 0 0 0 ;
   min-height: 100%;
   max-width: 1290px;
   width: 93.71%;
-//  width: 91.2097%;
   height: auto !important;
   line-height: 1.4;
   font-size: 1em;
@@ -96,6 +95,86 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'museo_sans_cyrl', @global-font;
   font-weight: normal;
+  line-height: 1.1em;
+  text-shadow: 0 1px #fff;
+}   
+
+h4, h5, h6 {
+  font-family: @global-font;
+}
+
+h1 {
+  font-size: 3rem; 
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 2.571rem; 
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 1.5rem; 
+  font-weight: normal;
+}
+
+h4 {
+  font-size: 1.214rem;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: normal;
+  text-transform: uppercase; 
+}
+
+p {
+  font-size: 1.5rem; 
+  line-height: 1.429em;
+}
+
+@media screen and (max-width:1360px){
+  h1 {
+    font-size: 2.571rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+  
+  p {
+    font-size: 1.143rem;
+    line-height: 1.5em;
+  }
+}
+
+@media screen and (max-width:1360px) {
+  h3 {
+    font-size: 1.214rem;
+  }
+
+  h4 {
+    font-size: 1.143rem;
+  }
+}
+
+@media screen and (max-width:1023px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.714rem;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.643em;
+  }
 }
 
 ul {
@@ -139,8 +218,8 @@ a {
   }
 }
 
-/*.touch {
-    body {
+.touch {
+/*    body {
       padding-top: 107px;
     }
 
@@ -154,9 +233,9 @@ a {
       a {
         font-size: 12px;
       }
-    }
+    }*/
 }
-*/
+
 .logo {
   display: inline-block;
   position: relative;
@@ -280,11 +359,11 @@ footer {
   time {
     border: none;
     color: #919699;
-    font-size: 0.857em;
+    font-size: 0.857rem;
   }
   h3 {
     margin: 0 0 23px;
-    font-size: 1.214em;
+    font-size: 1.214rem;
   }
 }
 
@@ -321,7 +400,7 @@ footer {
   }
   h4 {
     margin: 0;
-    font-family: @global-font;
+    font-weight: normal;
   }
 }
 
@@ -337,7 +416,7 @@ footer {
     }
     .copyright {
       float: left;
-      margin-top: 6px;
+      margin-top: 10px;
     }
   }
   .socials {
@@ -361,7 +440,7 @@ footer {
 
     .copyright {
       float: none;
-      font-size: 0.875em;
+      font-size: 0.875rem;
     }
   }
   .socials {
@@ -402,7 +481,7 @@ footer {
     height: 60px;
     min-width: 60px;
     line-height: 60px;
-    font-size: 1.500em;
+    font-size: 1.500rem;
   }
   a {
     display: block;
@@ -410,6 +489,7 @@ footer {
     padding: 0 5px;
     height: 60px;
     min-width: 50px;
+    font-size: 21px;
     font-size: 1.714rem;
     color: @global-text-color;
     text-decoration: none;
@@ -528,7 +608,7 @@ footer {
     display: block;
     margin: 8px 0 0 ;
     color: #919699;
-    font-size: 0.786em;
+    font-size: 0.786rem;
     line-height: 1.363em;
   }
   img {
@@ -545,7 +625,7 @@ footer {
   display: block;
   margin-bottom: 40px ;
   height: 60px;
-  font-size: 1.500em;
+  font-size: 1.5rem;
   text-decoration: none;
   line-height: 60px;
   color: @global-text-color;
@@ -571,14 +651,14 @@ footer {
   .show-all-projects {
     height: 48px;
     line-height: 48px;
-    font-size: 1.214em;
+    font-size: 1.214rem;
   }
 }
 
 @media screen and (max-width:777px) { 
   .show-all-projects {
     margin-bottom: 23px;
-    font-size: 1.214em;
+    font-size: 1.214rem;
   }
 }
 
@@ -733,7 +813,7 @@ header nav {
 
         a {
           display: block;
-          font-size: 1em;
+          font-size: 1rem;
           color: #fff;
           width: 100%;
           height: 44px;
@@ -775,13 +855,14 @@ header nav {
   section.contacts {
     margin-bottom: 38px;
     width: 100%;
+
     h3 {
-      font-size: 1.714em;
+      font-size: 1.714rem;
     }
     li {
       &>span:first-child {
         margin-bottom: -2px;
-        font-size: 0.75em;
+        font-size: 0.75rem;
       }
     }
   }
@@ -818,7 +899,7 @@ header nav {
   }
 
   .slogan {
-    font-size: 0.929em;
+    font-size: 0.929rem;
     margin: 0 0 29px 0;
   }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpmycar\Bundle\UserBundle\DataFixtures\ORM;
+namespace Application\Bundle\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
