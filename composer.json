@@ -18,6 +18,7 @@
         "sensio/generator-bundle": "2.2.0",
         "jms/security-extra-bundle": "1.4.0",
         "jms/di-extra-bundle": "1.3.0",
+        "friendsofsymfony/user-bundle": "v1.3.3",
 
         "doctrine/doctrine-fixtures-bundle": "dev-master#186d605aa6b592bd577e07e0e9a2c420b02b2492",
         "doctrine/doctrine-migrations-bundle": "dev-master#3792aa78445773387754c6853bbd7f4dcb31f486",
@@ -34,8 +35,11 @@
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
         "vich/uploader-bundle": "0.8.1",
 
+
         "stfalcon/blog-bundle": "*",
-        "stfalcon/portfolio-bundle": "*"
+        "stfalcon/portfolio-bundle": "*",
+
+        "sonata-project/user-bundle": "2.2.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

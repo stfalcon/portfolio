@@ -32,13 +32,12 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        entity_managers:
-            default:
-                mappings:
-                    StfalconPortfolioBundle: ~
-                    StfalconBlogBundle: ~
+        auto_mapping: true
+
 
 
 # DoctrineMigrationsBundle
@@ -116,6 +115,8 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
+        sonata.user.block.menu:
+        sonata.user.block.account:
 
 vich_uploader:
     db_driver: orm
@@ -125,7 +126,49 @@ vich_uploader:
             namer: stfalcon_portfolio.namer.project
             delete_on_update: true
             delete_on_remove: true
+        user_avatar:
+            uri_prefix: /uploads/avatar
+            upload_destination: %kernel.root_dir%/../web/uploads/avatar
+            namer: vich_uploader.namer_uniqid
+        user_caricature:
+            uri_prefix: /uploads/avatar/caricature
+            upload_destination: %kernel.root_dir%/../web/uploads/avatar/caricature
+            namer: vich_uploader.namer_uniqid
 
 sonata_admin:
     templates:
         layout: "::admin.html.twig"
+
+sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.acl
+        # acl security information
+        information:
+            STAFF:    [LIST, CREATE]
+            ADMIN:    [MASTER]
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Application\Bundle\UserBundle\Entity\User
+    group:
+        group_class: Application\Bundle\UserBundle\Entity\Group
+
+sonata_user:
+    class:
+        user: Application\Bundle\UserBundle\Entity\User
+        group: Application\Bundle\UserBundle\Entity\Group
+    admin:                  # Admin Classes
+        user:
+            class: Application\Bundle\UserBundle\Admin\UserAdmin
+
+avalanche_imagine:
+    filters:
+        avatar:
+            type:    thumbnail
+            options: { size: [134, 134], mode: outbound }
