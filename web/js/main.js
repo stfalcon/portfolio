@@ -58,31 +58,29 @@ $(function () {
             yearsCnt.html(i);
         }, 20);
     }
-});
+    var filter;
+    var teamList = $('.avatar'),
+        drinks = $('.drinks');
 
-var filter;
-var teamList = $('.avatar'),
-    drinks = $('.drinks');
+    $('.interests a').hover(function () {
+        filter = $(this).data('filter');
+        if (filter === "drinks") {
+            $(teamList).stop(true, true).animate({opacity: '0.2'}, 400);
+            drinks.fadeIn(400);
+        }
+        teamList.each(function (index, value) {
+            var interests = eval($(value).data('interests'));
+            if ($.inArray(filter, interests) < 0) {
+                $(value).stop(true, true).animate({opacity: '0.2'}, 200);
+            }
+        });
 
-$('.interests a').hover(function () {
-    filter = $(this).data('filter');
-    if (filter === "drinks") {
-        $(teamList).stop(true, true).animate({opacity: '0.2'}, 400);
-        drinks.fadeIn(400);
-    }
-    teamList.each(function (index, value) {
-        var interests = eval($(value).data('interests'));
-        if ($.inArray(filter, interests) < 0) {
-            $(value).stop(true, true).animate({opacity: '0.2'}, 200);
+    }, function () {
+        teamList.stop(true, true).animate({opacity: '1'}, 200);
+        if (filter === "drinks") {
+            drinks.stop(true, true).fadeOut(200);
         }
     });
-
-}, function () {
-    teamList.stop(true, true).animate({opacity: '1'}, 200);
-    if (filter === "drinks") {
-        drinks.stop(true, true).fadeOut(200);
-    }
-});
     if (!$('html').hasClass('lt-ie10')) {
         enquire.register("screen and (min-width:620px)", {
             match: function () {
@@ -190,4 +188,4 @@ $('.interests a').hover(function () {
                 });
         }
     }
-})
+});

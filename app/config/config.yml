@@ -171,6 +171,9 @@ sonata_user:
     class:
         user: Application\Bundle\UserBundle\Entity\User
         group: Application\Bundle\UserBundle\Entity\Group
+    admin:                  # Admin Classes
+        user:
+            class: Application\Bundle\UserBundle\Admin\UserAdmin
 
 stfalcon_portfolio:
     project:
@@ -187,6 +190,9 @@ avalanche_imagine:
         project_thumb:
             type:    thumbnail
             options: { size: [300, 264], mode: outbound }
+        avatar:
+            type:    thumbnail
+            options: { size: [134, 134], mode: outbound }
 
 sonata_media:
     class:
@@ -212,12 +218,3 @@ sonata_media:
         local:
             directory:  %kernel.root_dir%/../web/uploads/media
             create:     true        group: Application\Bundle\UserBundle\Entity\Group
-    admin:                  # Admin Classes
-        user:
-            class: Application\Bundle\UserBundle\Admin\UserAdmin
-
-avalanche_imagine:
-    filters:
-        avatar:
-            type:    thumbnail
-            options: { size: [134, 134], mode: outbound }
