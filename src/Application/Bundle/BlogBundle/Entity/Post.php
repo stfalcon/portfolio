@@ -15,13 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Post extends BasePost
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * Tags for post
      *
      * @var ArrayCollection
@@ -48,14 +41,6 @@ class Post extends BasePost
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

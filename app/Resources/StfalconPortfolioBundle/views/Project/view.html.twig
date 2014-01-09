@@ -18,9 +18,11 @@
                 <ul class="team-list  team-list-small">
                     {% for participant in project.participants %}
                         <li>
-                            <img src="img/fish/workon.png" alt="Степан Танасійчук"/>
-                            <span>{{ participant.firstname | default ~ ' ' ~ participant.lastname | default }}</span>
-                            <p>CEO, Co-founder</p>
+                            {% if participant.avatarName %}
+                                <img src="{{ vich_uploader_asset(participant, 'avatar') | apply_filter('avatar_small') }}" alt="{{ participant.firstname ~ ' ' ~ participant.lastname }}"/>
+                            {% endif %}
+                            <span>{{ participant.firstname ~ ' ' ~ participant.lastname }}</span>
+                            <p>{{ participant.position }}</p>
                         </li>
                     {% endfor %}
                 </ul>

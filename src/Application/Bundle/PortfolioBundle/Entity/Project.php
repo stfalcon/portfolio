@@ -18,13 +18,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Project extends BaseProject
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Application\Bundle\PortfolioBundle\Entity\Category")
@@ -88,15 +81,6 @@ class Project extends BaseProject
         $this->categories = new ArrayCollection();
         $this->media = new ArrayCollection();
     }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
 
     /**
      * Set imageFile

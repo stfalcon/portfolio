@@ -193,6 +193,9 @@ avalanche_imagine:
         avatar:
             type:    thumbnail
             options: { size: [134, 134], mode: outbound }
+        avatar_small:
+            type:    thumbnail
+            options: { size: [48, 48], mode: outbound }
 
 sonata_media:
     class:

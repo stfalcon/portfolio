@@ -14,13 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Tag extends BaseTag
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags")
@@ -36,14 +29,6 @@ class Tag extends BaseTag
     {
         $this->text = $text;
         $this->posts = new ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

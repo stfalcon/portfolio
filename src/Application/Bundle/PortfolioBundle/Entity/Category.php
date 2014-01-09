@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Category extends BaseCategory
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @var ArrayCollection $projects
      *
      * @ORM\ManyToMany(
@@ -44,14 +37,6 @@ class Category extends BaseCategory
     public function __construct()
     {
         $this->projects = new ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
