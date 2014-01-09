@@ -9,5 +9,12 @@ use Stfalcon\Bundle\PortfolioBundle\Repository\ProjectRepository as BaseReposito
  */
 class ProjectRepository extends BaseRepository
 {
+    public function findAllProjectsOrderingByDate()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
 }

@@ -38,9 +38,10 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $menu->setCurrentUri($request->getRequestUri());
+        $menu->setUri($request->getRequestUri());
 
         $menu->addChild('Наши работы', array('route' => 'homepage'));
+        $menu->addChild('Команда', array('route' => 'team'));
         $menu->addChild('Блог', array('route' => 'blog'));
         $menu->addChild('Контакты', array('route' => 'contacts'));
 
@@ -58,7 +59,7 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $menu->setCurrentUri($request->getRequestUri());
+        $menu->setUri($request->getRequestUri());
 
         $menu->addChild('Главная', array('route' => 'homepage'));
 
