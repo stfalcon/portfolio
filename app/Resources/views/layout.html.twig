@@ -11,6 +11,8 @@
     <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="/blog/rss" />
+
     {% block stylesheets %}
         <!--[if gte IE 8]>
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/ie.css') }}"/>
@@ -70,9 +72,9 @@
         </section>
         <section class="link-cnt">
             <ul class="socials">
-                <li><a href="#" class="icon icon-facebook"></a></li>
-                <li><a href="#" class="icon icon-twitter"></a></li>
-                <li><a href="#" class="icon icon-github"></a></li>
+                <li><a href="https://www.facebook.com/stfalconcom" class="icon icon-facebook" target="_blank"></a></li>
+                <li><a href="https://twitter.com/stfalcon" class="icon icon-twitter" target="_blank"></a></li>
+                <li><a href="https://github.com/stfalcon-studio" class="icon icon-github" target="_blank"></a></li>
             </ul>
             <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
                 <span class="category">{% trans %}Веб-студия{% endtrans %}</span>

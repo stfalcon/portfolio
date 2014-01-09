@@ -8,7 +8,9 @@
                         {% if project.onFrontPage %}
                             <li>
                                 <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
-                                    <img src="/uploads/portfolio/projects/{{ project.image }}" alt="{{ project.name }}" title="{{ project.name }}" />
+                                    {% if project.image %}
+                                        <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ project.name }}" title="{{ project.name }}" />
+                                    {% endif %}
                                     <h3>{{ project.name }}</h3>
                                 </a>
                                 <p>логотип, дизайн сайта, верстка, программирование, на основе движка OpenCart</p>
@@ -20,4 +22,4 @@
         {% endif %}
     </ul>
 </section>
-<a class="show-all-projects" href="#">Все проекты</a>
+<a class="show-all-projects" href="{{ url('portfolio_all_projects') }}">Все проекты</a>
