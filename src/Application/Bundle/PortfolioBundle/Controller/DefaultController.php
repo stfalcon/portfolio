@@ -24,4 +24,32 @@ class DefaultController extends BaseController
 
         return array('projects' => $projectsWithPaginator);
     }
+
+    /**
+     * Projects counter widget
+     *
+     * @return array()
+     * @Template("ApplicationPortfolioBundle:Default:_projects_counter.html.twig")
+     */
+    public function projectsCounterAction()
+    {
+        $projects = $this->get('stfalcon_portfolio.project.repository')->findAllProjectsOrderingByDate();
+
+        $projectYears = array();
+        $projectBefore = 1;
+        foreach ($projects as $project) {
+            $year = (int) $project->getDate()->format('Y');
+            if (isset($projectYears[$year]['counter'])) {
+                $projectYears[$year]['counter']++;
+            } else {
+                $projectYears[$year] = array('year' => $year, 'counter' => $projectBefore);
+            }
+
+            $projectBefore ++;
+        }
+
+        $projectYears = array_slice($projectYears, -4);
+
+        return array('years' => $projectYears);
+    }
 }

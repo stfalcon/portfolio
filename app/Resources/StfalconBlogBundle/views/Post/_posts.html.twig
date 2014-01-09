@@ -3,9 +3,6 @@
         <article class="blog-post">
             {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': true} %}
             <div class="post-content">
-                <div class="post-preview">
-                    <a href="#"><img src="/img/fish/post-img.png" alt="post image"/></a>
-                </div>
                 <p>
                     {{ post.textAsHtml|cutMore|raw }}
                 </p>
