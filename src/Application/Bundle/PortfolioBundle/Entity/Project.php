@@ -4,7 +4,7 @@ namespace Application\Bundle\PortfolioBundle\Entity;
 
 use Application\Bundle\MediaBundle\Entity\Media;
 use Doctrine\Common\Collections\ArrayCollection;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Project as BaseProject;
+use Stfalcon\Bundle\PortfolioBundle\Entity\BaseProject;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;

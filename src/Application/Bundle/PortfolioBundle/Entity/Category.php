@@ -3,7 +3,7 @@
 namespace Application\Bundle\PortfolioBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Category as BaseCategory;
+use Stfalcon\Bundle\PortfolioBundle\Entity\BaseCategory;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
