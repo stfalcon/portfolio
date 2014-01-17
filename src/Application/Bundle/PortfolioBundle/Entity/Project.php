@@ -4,7 +4,7 @@ namespace Application\Bundle\PortfolioBundle\Entity;
 
 use Application\Bundle\MediaBundle\Entity\Media;
 use Doctrine\Common\Collections\ArrayCollection;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Project as BaseProject;
+use Stfalcon\Bundle\PortfolioBundle\Entity\BaseProject;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -17,13 +17,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Project extends BaseProject
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
     /**
      * @var ArrayCollection
      *
@@ -88,15 +81,6 @@ class Project extends BaseProject
         $this->categories = new ArrayCollection();
         $this->media = new ArrayCollection();
     }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
 
     /**
      * Set imageFile

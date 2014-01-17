@@ -30,14 +30,14 @@ class User extends BaseUser
      * )
      * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatarName")
      *
-     * @var File $image
+     * @var File $avatar
      */
     protected $avatar;
 
     /**
      * @ORM\Column(type="string", length=255, name="avatar_name", nullable=true)
      *
-     * @var string $imageName
+     * @var string $avatarName
      */
     protected $avatarName;
 

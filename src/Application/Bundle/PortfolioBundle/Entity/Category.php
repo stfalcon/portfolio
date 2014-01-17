@@ -3,7 +3,7 @@
 namespace Application\Bundle\PortfolioBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Category as BaseCategory;
+use Stfalcon\Bundle\PortfolioBundle\Entity\BaseCategory;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,13 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category extends BaseCategory
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
     /**
      * @var ArrayCollection $projects
      *
@@ -44,14 +37,6 @@ class Category extends BaseCategory
     public function __construct()
     {
         $this->projects = new ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

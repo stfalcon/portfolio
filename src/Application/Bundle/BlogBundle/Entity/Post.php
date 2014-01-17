@@ -4,7 +4,7 @@ namespace Application\Bundle\BlogBundle\Entity;
 
 use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-use Stfalcon\Bundle\BlogBundle\Entity\Post as BasePost;
+use Stfalcon\Bundle\BlogBundle\Entity\BasePost;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,18 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Post extends BasePost
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * Tags for post
      *
      * @var ArrayCollection
      * @Assert\NotBlank()
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\Tag")
      * @ORM\JoinTable(name="blog_posts_tags",
      *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
@@ -48,14 +41,6 @@ class Post extends BasePost
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

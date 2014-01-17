@@ -38,8 +38,6 @@ doctrine:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
 
-
-
 # DoctrineMigrationsBundle
 doctrine_migrations:
     dir_name: %kernel.root_dir%/DoctrineMigrations
@@ -114,9 +112,6 @@ stfalcon_blog:
         repository: Application\Bundle\BlogBundle\Repository\PostRepository
         admin:
             class: Application\Bundle\BlogBundle\Admin\PostAdmin
-    tag:
-        entity: Application\Bundle\BlogBundle\Entity\Tag
-        repository: Application\Bundle\BlogBundle\Repository\TagRepository
 
 sonata_block:
     default_contexts: [cms]
@@ -193,6 +188,9 @@ avalanche_imagine:
         avatar:
             type:    thumbnail
             options: { size: [134, 134], mode: outbound }
+        avatar_small:
+            type:    thumbnail
+            options: { size: [48, 48], mode: outbound }
 
 sonata_media:
     class:
