@@ -1,7 +1,7 @@
-application_portfolio:
-    resource: "@ApplicationPortfolioBundle/Controller/"
-    type:     annotation
-    prefix:   /
+#application_portfolio:
+#    resource: "@ApplicationPortfolioBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
 
 _application_default:
     resource: "@ApplicationDefaultBundle/Resources/config/routing.yml"
