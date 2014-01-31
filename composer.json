@@ -4,16 +4,6 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:lensky84/PortfolioBundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:lensky84/BlogBundle.git"
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.2.0",
@@ -44,11 +34,6 @@
         "knplabs/knp-components": "1.2.2",
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
         "vich/uploader-bundle": "0.8.1",
-
-
-        "stfalcon/blog-bundle": "*",
-        "stfalcon/portfolio-bundle": "*",
-
         "sonata-project/user-bundle": "2.2.*@dev",
         "sonata-project/media-bundle": "2.2.5"
     },

@@ -1,0 +1,24 @@
+{% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            $(".content table tbody").sortable({
+                helper: function(e, ui) {
+                    ui.children().each(function() {
+                        $(this).width($(this).width());
+                    });
+                    return ui;
+                },
+                update: function(event, ui) {
+                    var array = [];
+                    $("input[name='idx[]']").each(function(index){
+                        array.push({id: $(this).val(), index: index});
+                    });
+                    $.post('{{ path('portfolioProjectsApplyOrder') }}', {projects: array}, function(response){});
+                }
+            }).disableSelection();
+        });
+    </script>
+{% endblock %}

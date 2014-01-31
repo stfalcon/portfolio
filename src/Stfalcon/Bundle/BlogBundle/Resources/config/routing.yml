@@ -1,0 +1,11 @@
+_stfalcon_blog_post:
+    resource: "@StfalconBlogBundle/Controller/PostController.php"
+    type:     annotation
+
+_stfalcon_blog_tag:
+    resource: "@StfalconBlogBundle/Controller/TagController.php"
+    type:     annotation
+
+_stfalcon_comment:
+    resource: "@StfalconBlogBundle/Controller/CommentController.php"
+    type:     annotation

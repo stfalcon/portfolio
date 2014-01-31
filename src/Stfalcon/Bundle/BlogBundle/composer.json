@@ -1,0 +1,42 @@
+{
+    "name": "stfalcon/blog-bundle",
+    "description": "Simple blog module.",
+    "keywords": ["blog"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stepan Tanasiychuk",
+            "homepage": "http://blog.stfalcon.com",
+            "email": "ceo@stfalcon.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.2.*",
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "sonata-project/admin-bundle": "2.2.*@dev",
+        "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
+        "sonata-project/cache-bundle": "2.1.*@dev",
+        "knplabs/knp-paginator-bundle": "2.3.*",
+        "zendframework/zend-feed": "2.0.*"
+    },
+    "suggest": {
+        "liip/functional-test-bundle": "functional testing bundle",
+        "doctrine/doctrine-fixtures-bundle": "required for functional testing",
+        "doctrine/data-fixtures": "required for functional testing"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.zendframework.com/"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Stfalcon\\Bundle\\BlogBundle": ""
+        }
+    },
+    "target-dir": "Stfalcon/Bundle/BlogBundle"
+}
