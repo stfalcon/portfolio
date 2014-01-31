@@ -1,25 +1,17 @@
 <section>
     <h2 class="hidden">Список проектов</h2>
     <ul class="projects">
-        {% if categories %}
-            {% for category in categories %}
-                {% if category.projects.count %}
-                    {% for project in category.projects %}
-                        {% if project.onFrontPage %}
-                            <li>
-                                <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
-                                    {% if project.image %}
-                                        <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ project.name }}" title="{{ project.name }}" />
-                                    {% endif %}
-                                    <h3>{{ project.name }}</h3>
-                                </a>
-                                <p>логотип, дизайн сайта, верстка, программирование, на основе движка OpenCart</p>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+        {% for project in projects %}
+            <li>
+                <a href="{{ path('portfolio_project_view', { 'categorySlug': project.categories[0].slug, 'projectSlug': project.slug }) }}">
+                    {% if project.image %}
+                        <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ project.name }}" title="{{ project.name }}" />
+                    {% endif %}
+                    <h3>{{ project.name }}</h3>
+                </a>
+                <p>{{ project.tags }}</p>
+            </li>
+        {% endfor %}
     </ul>
 </section>
 <a class="show-all-projects" href="{{ url('portfolio_all_projects') }}">Все проекты</a>

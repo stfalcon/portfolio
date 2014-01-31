@@ -25,10 +25,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
-        $categories = $repository->getAllCategories();
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
+        $projects = $repository->findBy(array('onFrontPage' => true));
 
-        return array('categories' => $categories);
+        return array('projects' => $projects);
     }
 
 
