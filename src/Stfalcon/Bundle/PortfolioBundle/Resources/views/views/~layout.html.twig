@@ -1,0 +1,39 @@
+{% extends '::layout.html.twig' %}
+
+{% block sidebar %}
+    {{ parent() }}
+
+    {# start refact this #}
+        {% if project is defined %}
+            {% if project.users %}
+            <div class="users-list">
+                <h2>{% trans %}Над проектом работали{% endtrans %}</h2>
+                {{ project.users | raw }}
+            </div>
+            {% endif %}
+        {% endif %}
+
+        {#{% if category is defined %}
+            {% if project is defined %}
+                {% render "StfalconPortfolioBundle:Category:services" with { 'category': category, 'project': project } %}
+            {% else %}
+                {% render "StfalconPortfolioBundle:Category:services" with { 'category': category } %}
+            {% endif %}
+        {% endif %}#}
+    {# end refact this #}
+{% endblock %}
+
+{#{% block javascripts %}
+    {% javascripts filter='yui_js' output='cache/js/*.js' '@jquery' '@jquery_ui' 'vendor/jquery/jquery.metadata.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            if ($("#accordion").length > 0) {
+                var data = $("#accordion ul li.active").metadata();
+                $("#accordion").accordion({ header: "h3", active: data.category_index, autoHeight: false, collapsible: true });
+            }
+        });
+    </script>
+{% endblock %}#}
