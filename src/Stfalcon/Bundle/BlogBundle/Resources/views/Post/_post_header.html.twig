@@ -9,7 +9,9 @@
 
     <div class="post-info">
         <time pubdate="pubdate">{{ post.created|date("d M Y") }}</time>
-        <img src="/img/fish/workon2.png" alt="Valera R."/>
+        {% if post.author and post.author.avatarName %}
+            <img src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar_small') }}" alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}"/>
+        {% endif %}
         <span>{{ post.author.firstname | default('') ~ ' ' ~  post.author.lastname | default('') }}</span>
         <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#disqus_thread" data-disqus-identifier="{{ post.id }}">{{ 'Комментировать'|trans }}</a>
     </div>

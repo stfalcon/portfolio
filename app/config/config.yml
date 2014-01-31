@@ -83,21 +83,6 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
 
-# ZendCacheBundle
-#knp_zend_cache:
-#    templates:
-#        slow_cache:
-#            frontend:
-#                name: Core
-#                options:
-#                    lifetime: 7200
-#                    automatic_serialization: true
-#            backend:
-#                name: File
-#                options:
-#                    cache_dir: %kernel.root_dir%/cache/%kernel.environment%
-
-
 sensio_framework_extra: ~
 
 application_default:
@@ -109,14 +94,6 @@ stfalcon_blog:
     rss:
         title: "Блог веб-студии stfalcon.com"
         description: "Заметки о используемых технологиях, реализованных проектах, трудовых буднях и отдыхе :)"
-#    post:
-#        entity: Application\Bundle\BlogBundle\Entity\Post
-#        repository: Application\Bundle\BlogBundle\Repository\PostRepository
-#        admin:
-#            class: Application\Bundle\BlogBundle\Admin\PostAdmin
-#    tag:
-#        entity: Application\Bundle\BlogBundle\Entity\Tag
-#        repository: Application\Bundle\BlogBundle\Repository\TagRepository
 
 sonata_block:
     default_contexts: [cms]
@@ -175,16 +152,6 @@ sonata_user:
         user:
             class: Application\Bundle\UserBundle\Admin\UserAdmin
 
-#stfalcon_portfolio:
-#    project:
-#        entity: Application\Bundle\PortfolioBundle\Entity\Project
-#        repository: Application\Bundle\PortfolioBundle\Repository\ProjectRepository
-#        admin:
-#            class: Application\Bundle\PortfolioBundle\Admin\ProjectAdmin
-#    category:
-#        entity: Application\Bundle\PortfolioBundle\Entity\Category
-#        repository: Application\Bundle\PortfolioBundle\Repository\CategoryRepository
-
 avalanche_imagine:
     filters:
         project_thumb:
@@ -193,6 +160,9 @@ avalanche_imagine:
         avatar:
             type:    thumbnail
             options: { size: [134, 134], mode: outbound }
+        avatar_small:
+            type:    thumbnail
+            options: { size: [48, 48], mode: outbound }
 
 sonata_media:
     class:

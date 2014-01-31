@@ -30,12 +30,29 @@ class ProjectAdmin extends Admin
             ->add('slug')
             ->add('url')
             ->add('description')
+            ->add('tags')
             ->add('imageFile', 'file', array('required' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
             ->add('date', 'date')
             ->add('categories')
             ->add('users')
             ->add('onFrontPage', 'checkbox', array('required' => false))
-        ;
+            ->add('participants', 'entity', array(
+                'required' => false,
+                'label' => 'Учасники',
+                'class' => 'Application\Bundle\UserBundle\Entity\User',
+                'multiple' => true
+            ))
+            ->with('Media')
+                ->add('media', 'sonata_type_collection', array(
+                    'cascade_validation' => true,
+                ), array(
+                    'edit'              => 'inline',
+                    'inline'            => 'table',
+                    'sortable'          => 'position',
+                    'link_parameters'   => array('context' => 'default'),
+                    'admin_code'        => 'sonata.media.admin.gallery_has_media'
+                ))
+            ->end();
     }
 
     // @todo с sortable проблемы начиная со второй страницы (проекты перемещаются на первую страницу)

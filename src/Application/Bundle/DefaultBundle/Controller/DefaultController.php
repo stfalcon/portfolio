@@ -25,7 +25,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $categories = $this->get('stfalcon_portfolio.category.repository')->getAllCategories();
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
+        $categories = $repository->getAllCategories();
 
         return array('categories' => $categories);
     }

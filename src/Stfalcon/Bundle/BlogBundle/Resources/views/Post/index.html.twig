@@ -1,6 +1,6 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
 
-{% block content %}
+{% block content_wrapper %}
     {% if posts %}
         {% include 'StfalconBlogBundle:Post:_posts.html.twig' with {'posts': posts} %}
 

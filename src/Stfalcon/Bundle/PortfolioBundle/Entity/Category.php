@@ -43,7 +43,7 @@ class Category
     private $slug;
 
     /**
-     * @var text $description
+     * @var string $description
      *
      * @Assert\NotBlank()
      * @Assert\MinLength(10)
@@ -52,7 +52,7 @@ class Category
     private $description;
 
     /**
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(
      *      targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Project",
@@ -72,8 +72,6 @@ class Category
 
     /**
      * Initialization properties for new category entity
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -169,11 +167,11 @@ class Category
     /**
      * Add project to category
      *
-     * @param \Stfalcon\Bundle\PortfolioBundle\Entity\Project $project Project object
+     * @param Project $project Project object
      *
      * @return void
      */
-    public function addProject(\Stfalcon\Bundle\PortfolioBundle\Entity\Project $project)
+    public function addProject(Project $project)
     {
         $this->projects[] = $project;
     }
