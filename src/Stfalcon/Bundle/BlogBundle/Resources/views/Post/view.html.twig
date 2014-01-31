@@ -1,0 +1,44 @@
+{% extends 'StfalconBlogBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} / {% trans %} Блог {% endtrans %} / {{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="post">
+        <div class="post-wrapper">
+            <h1>
+                {{ post.title }}
+            </h1>
+
+            <p>
+                {{ post.textAsHtml|moreToSpan|raw }}
+            </p>
+        </div>
+
+        {% include 'StfalconBlogBundle:Post:_post_info.html.twig' with {'post': post, 'share_buttons': true} %}
+
+        <p>
+            <div id="disqus_thread"></div>
+        </p>
+
+        <script type="text/javascript">
+            var disqus_shortname = '{{ disqus_shortname }}';
+            var disqus_identifier = '{{ post.id }}';
+            var disqus_url = '{{ url('blog_post_view', {'slug': post.slug}) }}';
+            var disqus_title = '{{ post.title }}';   
+            // var disqus_developer = 1; // developer mode is on
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            function disqus_config() {
+                this.callbacks.onNewComment = [function() {
+                    $.ajax({  url: '{{ url('blog_post_disqus_sync', {'slug': post.slug}) }}' });
+                }];
+            }
+        </script>
+    </div>
+{% endblock %}

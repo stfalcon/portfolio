@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="stfalcon_blog.admin.post.class">Stfalcon\Bundle\BlogBundle\Admin\PostAdmin</parameter>
+        <parameter key="stfalcon_blog.admin.post.entity">Stfalcon\Bundle\BlogBundle\Entity\Post</parameter>
+
+        <parameter key="stfalcon_blog.admin.tag.class">Stfalcon\Bundle\BlogBundle\Admin\TagAdmin</parameter>
+        <parameter key="stfalcon_blog.admin.tag.entity">Stfalcon\Bundle\BlogBundle\Entity\Tag</parameter>
+    </parameters>
+
+    <services>
+        <service id="stfalcon_blog.admin.post" class="%stfalcon_blog.admin.post.class%">
+            <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Posts" />
+            <argument />
+            <argument>%stfalcon_blog.admin.post.entity%</argument>
+            <argument />
+        </service>
+        <service id="stfalcon_blog.admin.tag" class="%stfalcon_blog.admin.tag.class%">
+            <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Tags" />
+            <argument />
+            <argument>%stfalcon_blog.admin.tag.entity%</argument>
+            <argument />
+        </service>
+
+        <service id="twig.extension.read_more" class="Stfalcon\Bundle\BlogBundle\Extension\ReadMoreTwigExtension">
+            <argument type="service" id="service_container"></argument>
+            <tag name="twig.extension" alias="read_more" />
+        </service>
+
+        <service id="form.type.tags" class="Stfalcon\Bundle\BlogBundle\Bridge\Doctrine\Form\Type\TagsType">
+            <tag name="form.type" alias="tags" />
+            <argument type="service" id="doctrine" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="stfalcon_portfolio.admin.category.class">Stfalcon\Bundle\PortfolioBundle\Admin\CategoryAdmin</parameter>
+        <parameter key="stfalcon_portfolio.admin.category.entity">Stfalcon\Bundle\PortfolioBundle\Entity\Category</parameter>
+
+        <parameter key="stfalcon_portfolio.admin.project.class">Stfalcon\Bundle\PortfolioBundle\Admin\ProjectAdmin</parameter>
+        <parameter key="stfalcon_portfolio.admin.project.entity">Stfalcon\Bundle\PortfolioBundle\Entity\Project</parameter>
+    </parameters>
+
+    <services>
+        <service id="stfalcon_portfolio.admin.category" class="%stfalcon_portfolio.admin.category.class%">
+            <tag name="sonata.admin" manager_type="orm" group="PortfolioBundle" label="Categories" />
+            <argument />
+            <argument>%stfalcon_portfolio.admin.category.entity%</argument>
+            <argument />
+        </service>
+
+        <service id="stfalcon_portfolio.admin.project" class="%stfalcon_portfolio.admin.project.class%">
+            <tag name="sonata.admin" manager_type="orm" group="PortfolioBundle" label="Projects" />
+            <argument />
+            <argument>%stfalcon_portfolio.admin.project.entity%</argument>
+            <argument />
+        </service>
+
+        <service id="stfalcon_portfolio.namer.project" class="Stfalcon\Bundle\PortfolioBundle\Naming\ProjectNaming">
+            <argument />
+            <argument />
+        </service>
+    </services>
+
+</container>
