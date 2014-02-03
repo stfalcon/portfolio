@@ -16,6 +16,54 @@ use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 class ProjectController extends Controller
 {
     /**
+     * @param int $page
+     *
+     * @return array
+     * @Route("/portfolio/{page}",
+     *  name="portfolio_all_projects",
+     *  requirements={"page" = "\d+"},
+     *  defaults={"page"=1})
+     * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
+     */
+    public function allProjectsAction($page)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
+        $projects = $repository->findAll();
+        $projectsWithPaginator = $this->get('knp_paginator')->paginate($projects, $page, 12);
+
+        return array('projects' => $projectsWithPaginator);
+    }
+
+    /**
+     * Projects counter widget
+     *
+     * @return array()
+     * @Template("StfalconPortfolioBundle:Project:_projects_counter.html.twig")
+     */
+    public function projectsCounterAction()
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
+        $projects = $repository->findAllProjectsOrderingByDate();
+
+        $projectYears = array();
+        $projectBefore = 1;
+        foreach ($projects as $project) {
+            $year = (int) $project->getDate()->format('Y');
+            if (isset($projectYears[$year]['counter'])) {
+                $projectYears[$year]['counter']++;
+            } else {
+                $projectYears[$year] = array('year' => $year, 'counter' => $projectBefore);
+            }
+
+            $projectBefore ++;
+        }
+
+        $projectYears = array_slice($projectYears, -4);
+
+        return array('years' => $projectYears);
+    }
+
+    /**
      * View project
      *
      * @param string $categorySlug Slug of category
@@ -93,10 +141,11 @@ class ProjectController extends Controller
      * @param string $slug Slug of category
      *
      * @return Category
+     * @throws NotFoundHttpException
      */
     private function _findCategoryBySlug($slug)
     {
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")
                 ->findOneBy(array('slug' => $slug));
 
@@ -113,10 +162,11 @@ class ProjectController extends Controller
      * @param string $slug Slug of project
      *
      * @return Project
+     * @throws NotFoundHttpException
      */
     private function _findProjectBySlug($slug)
     {
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository("StfalconPortfolioBundle:Project")
                 ->findOneBy(array('slug' => $slug));
 

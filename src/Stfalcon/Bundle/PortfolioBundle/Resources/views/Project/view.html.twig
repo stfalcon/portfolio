@@ -1,25 +1,49 @@
-{% extends 'StfalconPortfolioBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
+{% block content_wrapper %}
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
 
-{% block title %}{{ parent() }} / {{ project.name }}{% endblock %}
+    <div class="project-wrapper clearfix">
+        <aside class="project-info">
+            <h2>{{ project.name }}</h2>
+            {% if project.url %}
+                <a href="{{ project.url }}" target="_blank">{{ project.url }}</a>
+            {% endif %}
 
-{% block content %}
-    <!--details of project-->
-    <div class="detailsOfProject">
-        {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
-
-        <h1>
-            {{ project.name }}
-        </h1>
-
-        {% if project.url %}
+            <span>{{ project.tags }}</span>
             <p>
-                <a href="{{ project.url }}">{{ project.url }}</a>
+                {{ project.description | raw }}
             </p>
-        {% endif %}
-
-        <div style="padding-bottom: 30px;">
-            {{ project.description | raw }}
+            <section class="work-on-project">
+                <h2>Над проектом работали</h2>
+                <ul class="team-list  team-list-small">
+                    {% for participant in project.participants %}
+                        <li>
+                            {% if participant.avatarName %}
+                                <img src="{{ vich_uploader_asset(participant, 'avatar') | apply_filter('avatar_small') }}" alt="{{ participant.firstname ~ ' ' ~ participant.lastname }}"/>
+                            {% endif %}
+                            <span>{{ participant.firstname ~ ' ' ~ participant.lastname }}</span>
+                            <p>{{ participant.position }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </aside>
+        <div class="project-slider-wrapper">
+            <div class="project-slider-cnt">
+                <a class="prev-slide"></a>
+                <a class="next-slide"></a>
+                <div class="slider-pages"></div>
+                <div class="project-slider">
+                    {% if project.media|length %}
+                        <ul>
+                            {% for mediaGallery in project.media %}
+                                <li><img src="{% path mediaGallery.media, 'slide' %}" alt="alt"/></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
-    <!--details of project-->
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
 {% endblock %}

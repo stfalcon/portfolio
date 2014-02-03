@@ -1,9 +1,0 @@
-<div class="projects-nav">
-    {% if previousProject %}
-        <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': previousProject.slug }) }}" class="prev-page">{{ "Предыдущий проект"|trans }}</a>
-    {% endif %}
-
-    {% if nextProject %}
-        <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': nextProject.slug }) }}" class="next-page">{{ "Следующий проект"|trans }}</a>
-    {% endif %}
-</div>

@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Entity;
 
+use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -47,7 +48,7 @@ class Post
     /**
      * Post text
      *
-     * @var text $text
+     * @var string $text
      * @Assert\NotBlank()
      * @ORM\Column(name="text", type="text")
      */
@@ -56,7 +57,7 @@ class Post
     /**
      * Post text as HTML code
      *
-     * @var text $textAsHtml
+     * @var string $textAsHtml
      * @ORM\Column(name="text_as_html", type="text")
      */
     private $textAsHtml;
@@ -98,9 +99,15 @@ class Post
     private $commentsCount = 0;
 
     /**
-     * Initialization properties for new post entity
+     * @var User $author
      *
-     * @return void
+     * @ORM\ManyToOne(targetEntity="Application\Bundle\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
+    protected $author;
+
+    /**
+     * Initialization properties for new post entity
      */
     public function __construct()
     {
@@ -120,9 +127,7 @@ class Post
     /**
      * Set tags to post
      *
-     * @param $tags Tags collection
-     *
-     * @return void
+     * @param ArrayCollection $tags
      */
     public function setTags($tags)
     {
@@ -233,6 +238,7 @@ class Post
             '/<pre lang="(.*?)">\r?\n?(.*?)\r?\n?\<\/pre>/is',
             function($data) {
                 $geshi = new \GeSHi($data[2], $data[1]);
+
                 return $geshi->parse_code();
             }, $text
         );
@@ -314,5 +320,21 @@ class Post
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

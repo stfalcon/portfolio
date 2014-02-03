@@ -28,14 +28,14 @@ class Tag
     /**
      * Tag text
      *
-     * @var text $text
+     * @var string $text
      * @Assert\NotBlank()
      * @ORM\Column(name="text", type="string", length=255)
      */
     private $text = '';
 
     /**
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\Post", mappedBy="tags")
      */
@@ -45,8 +45,6 @@ class Tag
      * Entity constructor
      *
      * @param string $text A tag text
-     *
-     * @return void
      */
     public function  __construct($text = null)
     {

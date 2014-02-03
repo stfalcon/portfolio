@@ -1,7 +1,7 @@
-_portfolio_category:
-    resource: "@StfalconPortfolioBundle/Controller/CategoryController.php"
-    type:     annotation
-
 _portfolio_project:
     resource: "@StfalconPortfolioBundle/Controller/ProjectController.php"
+    type:     annotation
+
+_portfolio_category:
+    resource: "@StfalconPortfolioBundle/Controller/CategoryController.php"
     type:     annotation

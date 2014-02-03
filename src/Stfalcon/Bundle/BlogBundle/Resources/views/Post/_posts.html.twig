@@ -1,35 +1,18 @@
-<ul>
+<div class="posts-list">
     {% for post in posts %}
-        <li>
-            <div class="post">
-                <div class="post-wrapper">
-                    <h3>
-                        <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}">{{ post.title }}</a>
-                    </h3>
-
-                    <p>
-                        {{ post.textAsHtml|cutMore|raw }}
-
-                        {% if hasMore(post.text) %}
-                            <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">
-                                {{ 'Читать далее'|trans }} →
-                            </a>
-                        {% endif %}
-                    </p>
-                </div>
-                {% include 'StfalconBlogBundle:Post:_post_info.html.twig' with {'post': post} %}
+        <article class="blog-post">
+            {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': true} %}
+            <div class="post-content">
+                <p>
+                    {{ post.textAsHtml|cutMore|raw }}
+                </p>
+                {% if hasMore(post.text) %}
+                    <a class="read-more  next-page" href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">
+                        {{ 'Читать дальше'|trans }}
+                    </a>
+                {% endif %}
             </div>
-        </li>
+            {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
+        </article>
     {% endfor %}
-
-    <script type="text/javascript">
-        var disqus_shortname = '{{ disqus_shortname }}';
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-</ul>
+</div>

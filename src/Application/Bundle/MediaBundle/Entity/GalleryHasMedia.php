@@ -18,6 +18,20 @@ class GalleryHasMedia extends BaseGalleryHasMedia
     protected $id;
 
     /**
+     * @var Media
+     * @ORM\ManyToOne(targetEntity="Media", inversedBy="galleryHasMedias")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     */
+    protected $media;
+
+    /**
+     * @var Gallery
+     * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="galleryHasMedias")
+     * @ORM\JoinColumn(name="galery_id", referencedColumnName="id")
+     */
+    protected $gallery;
+
+    /**
      * @return mixed
      */
     public function getId()

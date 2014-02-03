@@ -19,8 +19,6 @@ class MenuBuilder
      * Constructor injection
      *
      * @param FactoryInterface $factory
-     *
-     * @return void
      */
     public function __construct(FactoryInterface $factory)
     {

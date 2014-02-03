@@ -1,25 +1,9 @@
-<div class="next-prev-projects">
-    <div class="next">
-        {% if nextProject %}
-            <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': nextProject.slug }) }}">
-                {{ "Следующий проект"|trans }} →
-            </a>
-            <br />
-            {{ nextProject.name }}
-        {% else %}
-            {{ "Следующий проект"|trans }} →
-        {% endif %}
-    </div>
+<div class="projects-nav">
+    {% if previousProject %}
+        <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': previousProject.slug }) }}" class="prev-page">{{ "Предыдущий проект"|trans }}</a>
+    {% endif %}
 
-    <div class="prev">
-        {% if previousProject %}
-            <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': previousProject.slug }) }}">
-                ← {{ "Предыдущий проект"|trans }}
-            </a>
-            <br />
-            {{ previousProject.name }}
-        {% else %}
-            ← {{ "Предыдущий проект"|trans }}
-        {% endif %}
-    </div>
+    {% if nextProject %}
+        <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': nextProject.slug }) }}" class="next-page">{{ "Следующий проект"|trans }}</a>
+    {% endif %}
 </div>

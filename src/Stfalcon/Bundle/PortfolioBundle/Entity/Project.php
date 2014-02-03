@@ -2,9 +2,10 @@
 
 namespace Stfalcon\Bundle\PortfolioBundle\Entity;
 
+use Application\Bundle\MediaBundle\Entity\Media;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -123,7 +124,7 @@ class Project
     private $onFrontPage = true;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Category")
      * @ORM\JoinTable(name="portfolio_projects_categories",
@@ -145,13 +146,49 @@ class Project
     private $users;
 
     /**
-     * Initialization properties for new project entity
+     * @var ArrayCollection
      *
-     * @return void
+     * @ORM\ManyToMany(targetEntity="Application\Bundle\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="projects_participants",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    protected $participants;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Bundle\MediaBundle\Entity\GalleryHasMedia",cascade={"persist"})
+     * @ORM\JoinTable(name="projects_media",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    protected $media;
+
+    /**
+     * @var string
+     * @ORM\Column(name="tags", type="string", nullable=true, length=255)
+     */
+    protected $tags;
+
+    /**
+     * Initialization properties for new project entity
      */
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->participants = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
     /**
@@ -178,8 +215,6 @@ class Project
      * Add category to project
      *
      * @param Category $category Category entity
-     *
-     * @return void
      */
     public function addCategory(Category $category)
     {
@@ -189,11 +224,9 @@ class Project
     /**
      * Set categories collection to project
      *
-     * @param \Doctrine\Common\Collections\Collection $categories Categories collection
-     *
-     * @return void
+     * @param ArrayCollection $categories Categories collection
      */
-    public function setCategories(\Doctrine\Common\Collections\Collection $categories)
+    public function setCategories(ArrayCollection $categories)
     {
         $this->categories = $categories;
     }
@@ -201,9 +234,7 @@ class Project
     /**
      * Set project name
      *
-     * @param type $name A text of project name
-     *
-     * @return void
+     * @param string $name A text of project name
      */
     public function setName($name)
     {
@@ -224,8 +255,6 @@ class Project
      * Set project slug
      *
      * @param string $slug Unique text identifier
-     *
-     * @return void
      */
     public function setSlug($slug)
     {
@@ -246,8 +275,6 @@ class Project
      * Set project description
      *
      * @param string $description A text of description
-     *
-     * @return void
      */
     public function setDescription($description)
     {
@@ -268,8 +295,6 @@ class Project
      * Set project url
      *
      * @param string $url A url for project
-     *
-     * @return void
      */
     public function setUrl($url)
     {
@@ -290,8 +315,6 @@ class Project
      * Set date when project has been realized
      *
      * @param \DateTime $date Date when project has been realized
-     *
-     * @return void
      */
     public function setDate(\DateTime $date)
     {
@@ -322,28 +345,10 @@ class Project
      * Set image and create thumbnail
      *
      * @param string $image Full path to image file
-     *
-     * @return void
      */
     public function setImage($image)
     {
         $this->image = $image;
-    }
-
-    /**
-     * Remove thumbnail image file
-     *
-     * @return boolean
-     */
-    public function removeImage()
-    {
-        if ($this->getImagePath() && \file_exists($this->getImagePath())) {
-            unlink($this->getImagePath());
-
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -360,8 +365,6 @@ class Project
      * Set list of users who worked on the project (as html)
      *
      * @param string $users A list in html format
-     *
-     * @return void
      */
     public function setUsers($users)
     {
@@ -372,8 +375,6 @@ class Project
      * Set time when project created
      *
      * @param \DateTime $created A time when project created
-     *
-     * @return void
      */
     public function setCreated(\DateTime $created)
     {
@@ -394,8 +395,6 @@ class Project
      * Set time when project updated
      *
      * @param \DateTime $updated A time when project updated
-     *
-     * @return void
      */
     public function setUpdated(\DateTime $updated)
     {
@@ -416,8 +415,6 @@ class Project
      * Set project ordernum
      *
      * @param int $ordernum
-     *
-     * @return void
      */
     public function setOrdernum($ordernum)
     {
@@ -438,8 +435,6 @@ class Project
      * Set onFrontPage
      *
      * @param bool $onFrontPage
-     *
-     * @return void
      */
     public function setOnFrontPage($onFrontPage)
     {
@@ -460,23 +455,11 @@ class Project
      * Set imageFile
      *
      * @param File $imageFile
-     *
-     * @return void
      */
     public function setImageFile($imageFile)
     {
-        if (null === $imageFile) {
-            return;
-        }
-
-        $this->imageFile = $imageFile;
-        $imagine = new Imagine\Gd\Imagine();
-        $imagePath = $imagine->open($this->imageFile->getPathName());
-        $imagePath->thumbnail(new Imagine\Image\Box(240, $imagePath->getSize()->getHeight()), Imagine\Image\ImageInterface::THUMBNAIL_INSET)
-                ->crop(new Imagine\Image\Point(0, 0), new Imagine\Image\Box(240, 198))
-                ->save($this->imageFile->getPathName(), array('format' => 'png'));
-
         $this->setUpdated(new \DateTime());
+        $this->imageFile = $imageFile;
     }
 
     /**
@@ -497,5 +480,69 @@ class Project
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @param ArrayCollection $participants
+     */
+    public function setParticipants($participants)
+    {
+        $this->participants = $participants;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
+    /**
+     * @param ArrayCollection $media
+     */
+    public function setMedia($media)
+    {
+        $this->media = $media;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param Media $media
+     */
+    public function addMedia($media)
+    {
+        $this->media->add($media);
+    }
+
+    /**
+     * @param Media $media
+     */
+    public function removeMedia( $media)
+    {
+        $this->media->removeElement($media);
+    }
+
+    /**
+     * @param string $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

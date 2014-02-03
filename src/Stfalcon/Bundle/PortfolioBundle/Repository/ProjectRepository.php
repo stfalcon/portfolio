@@ -3,6 +3,7 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 
 /**
@@ -16,7 +17,7 @@ class ProjectRepository extends EntityRepository
      *
      * @param Category $category
      *
-     * @return Doctrine\ORM\Query
+     * @return Query
      */
     public function getQueryForSelectProjectsByCategory(Category $category)
     {
@@ -40,5 +41,16 @@ class ProjectRepository extends EntityRepository
     {
         return $this->getQueryForSelectProjectsByCategory($category)
                 ->getResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllProjectsOrderingByDate()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.date', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

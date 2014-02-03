@@ -18,6 +18,13 @@ class Media extends BaseMedia
     protected $id;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="GalleryHasMedia", mappedBy="media")
+     */
+    protected $galleryHasMedias;
+
+    /**
      * @return mixed
      */
     public function getId()
