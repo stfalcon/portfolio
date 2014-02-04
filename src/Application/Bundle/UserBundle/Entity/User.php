@@ -113,7 +113,7 @@ class User extends BaseUser
      */
     static protected $drinksList = array(
         'beer' => 'Пиво',
-        'tee' => 'Чай',
+        'tea' => 'Чай',
         'coffee' => 'Кофе',
         'water' => 'Вода',
     );

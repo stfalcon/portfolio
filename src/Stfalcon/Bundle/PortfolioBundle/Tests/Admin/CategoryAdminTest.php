@@ -3,162 +3,171 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Symfony\Component\HttpKernel\Client;
 
 /**
  * Test cases for CategoryAdmin
  */
 class CategoryAdminTest extends WebTestCase
 {
+    /** @var Client */
+    protected $client;
+
+    public function __construct()
+    {
+        $this->client = $this->makeClient();
+    }
 
     public function testEmptyCategoriesList()
     {
-        $this->loadFixtures(array());
-        $crawler = $this->fetchCrawler($this->getUrl('admin_bundle_portfolio_category_list', array()), 'GET', true, true);
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+        ));
+        $this->doLogin();
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_list', array()));
 
         // check display notice
-        $this->assertEquals(0, $crawler->filter('table tbody tr')->count());
+        $this->assertEquals(1, $crawler->filter('div.sonata-ba-list:contains("Нет результатов")')->count());
     }
 
     public function testCategoriesList()
     {
-        $this->loadFixtures(array('Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'));
-        $crawler = $this->fetchCrawler($this->getUrl('admin_bundle_portfolio_category_list', array()), 'GET', true, true);
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+            'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'
+        ));
+        $this->doLogin();
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_list', array()));
 
         // check display categories list
-        $this->assertEquals(1, $crawler->filter('table tbody tr td:contains("web-development")')->count());
+        $this->assertEquals(1, $crawler->filter('table.table tbody tr td:contains("web-development")')->count());
     }
 
     public function testCreateValidCategory()
     {
-        $this->loadFixtures(array());
-        $client = $this->makeClient(true);
-        $crawler = $client->request('GET', $this->getUrl('admin_bundle_portfolio_category_create', array()));
-
-        $inputs = $crawler->filter('form input');
-        $inputs->first();
-        $formId = str_replace("_slug", "", $inputs->current()->getAttribute('id'));
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+        ));
+        $this->doLogin();
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_create', array()));
 
         $form = $crawler->selectButton('btn_create_and_edit')->form();
+        $formId = substr($form->getUri(), -14);
 
         $form[$formId . '[name]'] = 'Web Design';
         $form[$formId . '[slug]'] = 'web-design';
         $form[$formId . '[description]'] = 'Short text about web design servise.';
-        $crawler = $client->submit($form);
-
-        // check redirect to list of categories
-        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('admin_bundle_portfolio_category_edit', array('id' => 1))));
-
-        $crawler = $client->followRedirect();
+        $crawler = $this->client->submit($form);
 
         // check responce
-        $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertFalse($client->getResponse()->isRedirect());
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $this->assertFalse($this->client->getResponse()->isRedirect());
 
-        $crawler = $this->fetchCrawler($this->getUrl('admin_bundle_portfolio_category_list', array()), 'GET', true, true);
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_list', array()));
 
         // check display new category in list
-        $this->assertEquals(1, $crawler->filter('table tbody tr td:contains("web-design")')->count());
+        $this->assertEquals(1, $crawler->filter('table.table tbody tr td:contains("web-design")')->count());
     }
 
     public function testCreateInvalidCategory()
     {
-        $this->loadFixtures(array());
-        $client = $this->makeClient(true);
-        $crawler = $client->request('GET', $this->getUrl('admin_bundle_portfolio_category_create', array()));
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+        ));
+        $this->doLogin();
 
-        $inputs = $crawler->filter('form input');
-        $inputs->first();
-        $formId = str_replace("_slug", "", $inputs->current()->getAttribute('id'));
-
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_create', array()));
         $form = $crawler->selectButton('btn_create_and_edit')->form();
+        $formId = substr($form->getUri(), -14);
 
         $form[$formId . '[name]'] = ''; // should not be blank
         $form[$formId . '[slug]'] = ''; // should not be blank
         $form[$formId . '[description]'] = ''; // should not be blank
-        $crawler = $client->submit($form);
+        $crawler = $this->client->submit($form);
 
         // check redirect to list of categories
-        $this->assertFalse($client->getResponse()->isRedirect());
+        $this->assertCount(1, $crawler->filter('.alert-error:contains("При создании элемента произошла ошибка.")'));
     }
 
     public function testEditCategory()
     {
-        $this->loadFixtures(array('Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'));
-        $client = $this->makeClient(true);
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+            'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'
+        ));
+        $this->doLogin();
 
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
-        $crawler = $client->request('GET', $this->getUrl('admin_bundle_portfolio_category_edit', array('id' => $category->getId())));
-
-        $inputs = $crawler->filter('form input');
-        $inputs->first();
-        $formId = str_replace("_slug", "", $inputs->current()->getAttribute('id'));
-
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_edit', array('id' => $category->getId())));
         $form = $crawler->selectButton('btn_update_and_edit')->form();
+        $formId = substr($form->getUri(), -14);
 
         $form[$formId . '[name]'] = 'Web Design';
         $form[$formId . '[slug]'] = 'web-design';
         $form[$formId . '[description]'] = 'Short text about web design servise.';
-        $crawler = $client->submit($form);
-
-        // check redirect to list of categories
-        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('admin_bundle_portfolio_category_edit', array('id' => $category->getId()))));
-
-        $crawler = $client->followRedirect();
+        $crawler = $this->client->submit($form);
 
         // check responce
-        $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertFalse($client->getResponse()->isRedirect());
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $this->assertFalse($this->client->getResponse()->isRedirect());
 
-        $crawler = $this->fetchCrawler($this->getUrl('admin_bundle_portfolio_category_list', array()), 'GET', true, true);
-        $this->assertEquals(1, $crawler->filter('table tbody tr td:contains("web-design")')->count());
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_list', array()));
+        $this->assertEquals(1, $crawler->filter('table.table tbody tr td:contains("web-design")')->count());
     }
 
     public function testEditInvalidCategory()
     {
-        $this->loadFixtures(array('Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'));
-        $client = $this->makeClient(true);
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+            'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'
+        ));
+        $this->doLogin();
 
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
-        $crawler = $client->request('GET', $this->getUrl('admin_bundle_portfolio_category_edit', array('id' => $category->getId())));
-
-        $inputs = $crawler->filter('form input');
-        $inputs->first();
-        $formId = str_replace("_slug", "", $inputs->current()->getAttribute('id'));
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_edit', array('id' => $category->getId())));
 
         $form = $crawler->selectButton('btn_update_and_edit')->form();
+        $formId = substr($form->getUri(), -14);
 
         $form[$formId . '[name]'] = 'Web Design';
         $form[$formId . '[slug]'] = 'web-design';
         $form[$formId . '[description]'] = '';
-        $crawler = $client->submit($form);
+        $crawler = $this->client->submit($form);
 
-        // check redirect to list of categories
-        $this->assertFalse($client->getResponse()->isRedirect());
+        $this->assertCount(1, $crawler->filter('.alert-error:contains("Во время обновления элемента произошла ошибка.")'));
     }
 
     public function testEditNonExistCategory()
     {
-        $this->loadFixtures(array());
-        $client = $this->makeClient(true);
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+        ));
+        $this->doLogin();
 
-        $crawler = $client->request('GET', $this->getUrl('admin_bundle_portfolio_category_edit', array('id' => 0)));
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_edit', array('id' => 0)));
 
         // check 404
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
     }
 
     public function testDeleteCategory()
     {
-        $this->loadFixtures(array('Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'));
-
-        $client = $this->makeClient(true);
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+            'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
+        ));
+        $this->doLogin();
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
         // delete category
-        $crawler = $client->request('POST', $this->getUrl('admin_bundle_portfolio_category_delete', array('id' => $category->getId())), array('_method' => 'DELETE'));
+        $crawler = $this->client->request('GET',
+            $this->getUrl('admin_stfalcon_portfolio_category_delete', array('id' => $category->getId()))
+        );
+        $form = $crawler->selectButton('Да, удалить')->form();
+        $this->client->submit($form);
 
         // check if category was removed from DB
         $em->detach($category);
@@ -168,12 +177,30 @@ class CategoryAdminTest extends WebTestCase
 
     public function testDeleteNotExistCategory()
     {
-        $this->loadFixtures(array());
-        $client = $this->makeClient(true);
-        $crawler = $client->request('POST', $this->getUrl('admin_bundle_portfolio_category_delete', array('id' => 0)));
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+        ));
+        $this->doLogin();
+        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_delete', array('id' => 0)));
 
         // check 404
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
     }
 
+    /**
+     * Do login with username
+     *
+     * @param string $username
+     */
+    private function doLogin($username = 'admin')
+    {
+        $crawler = $this->client->request('GET', $this->getUrl('fos_user_security_login', array()));
+        $form = $crawler->selectButton('_submit')->form(array(
+            '_username' => $username,
+            '_password' => 'qwerty'
+        ));
+        $this->client->submit($form);
+        $this->assertTrue($this->client->getResponse()->isRedirect());
+        $crawler = $this->client->followRedirects();
+    }
 }

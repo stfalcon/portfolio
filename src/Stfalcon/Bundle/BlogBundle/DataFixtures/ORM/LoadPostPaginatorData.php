@@ -18,21 +18,23 @@ class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInt
     /**
      * Create and load posts fixtures to database
      *
-     * @param Doctrine\ORM\EntityManager $manager Entity manager object
-     *
-     * @return void
+     * @param ObjectManager $manager Entity manager object
      */
     public function load(ObjectManager $manager)
     {
-        for ($i=1; $i<=12; $i++)
-        {
+        $phpTag = $this->getReference('tag-php');
+        $firstUser = $this->getReference('user-first');
+
+        for ($i=1; $i<=12; $i++) {
             $post = new Post();
             $post->setTitle('Post for paginator #'.$i);
             $post->setSlug('post-for-paginator-'.$i);
             $post->setText('Generally this bundle is based on Knp Pager component. This component introduces a different way for pagination handling. You can read more about the internal logic on the given documentation link.'.$i);
-            $post->setTags(array($manager->merge($this->getReference('tag-php'))));
+            $post->addTag($phpTag);
+            $post->setAuthor($firstUser);
 
             $manager->persist($post);
+            $manager->merge($phpTag);
         }
 
         $manager->flush();

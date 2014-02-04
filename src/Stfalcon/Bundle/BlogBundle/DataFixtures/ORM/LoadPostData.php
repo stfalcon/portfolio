@@ -18,37 +18,42 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * Create and load posts fixtures to database
      *
-     * @param Doctrine\ORM\EntityManager $manager Entity manager object
-     *
-     * @return void
+     * @param ObjectManager $manager Entity manager object
      */
     public function load(ObjectManager $manager)
     {
-        // posts
-        $postfirst = new Post();
-        $postfirst->setTitle('My first post');
-        $postfirst->setSlug('my-first-post');
-        $postfirst->setText('In work we use Symfony2.<!--more-->And text after cut');
-        $postfirst->setTags(array(
-            $manager->merge($this->getReference('tag-symfony2')),
-            $manager->merge($this->getReference('tag-doctrine2')),
-        ));
-        $manager->persist($postfirst);
+        $adminUser = $this->getReference('user-admin');
+        $secondUser = $this->getReference('user-second');
 
-        $postaboutphp = new Post();
-        $postaboutphp->setTitle('Post about php');
-        $postaboutphp->setSlug('post-about-php');
-        $postaboutphp->setText('The PHP development team would like to announce the immediate availability of PHP 5.3.6.');
-        $postaboutphp->setTags(array(
-            $manager->merge($this->getReference('tag-symfony2')),
-            $manager->merge($this->getReference('tag-php')))
-        );
-        $manager->persist($postaboutphp);
+        $symfonyTag = $this->getReference('tag-symfony2');
+        $doctrine2Tag = $this->getReference('tag-doctrine2');
+        // posts
+        $postFirst = new Post();
+        $postFirst->setTitle('My first post');
+        $postFirst->setSlug('my-first-post');
+        $postFirst->setText('In work we use Symfony2.<!--more-->And text after cut');
+        $postFirst->addTag($symfonyTag);
+        $postFirst->addTag($doctrine2Tag);
+        $postFirst->setAuthor($adminUser);
+        $manager->persist($postFirst);
+        $manager->merge($symfonyTag);
+        $manager->merge($doctrine2Tag);
+
+        $postAboutPhp = new Post();
+        $postAboutPhp->setTitle('Post about php');
+        $postAboutPhp->setSlug('post-about-php');
+        $postAboutPhp->setText('The PHP development team would like to announce the immediate availability of PHP 5.3.6.');
+        $postAboutPhp->addTag($symfonyTag);
+        $postAboutPhp->addTag($doctrine2Tag);
+        $postAboutPhp->setAuthor($secondUser);
+        $manager->persist($postAboutPhp);
+        $manager->merge($symfonyTag);
+        $manager->merge($doctrine2Tag);
 
         $manager->flush();
 
-        $this->addReference('post-first', $postfirst);
-        $this->addReference('post-about-php', $postaboutphp);
+        $this->addReference('post-first', $postFirst);
+        $this->addReference('post-about-php', $postAboutPhp);
     }
 
     /**

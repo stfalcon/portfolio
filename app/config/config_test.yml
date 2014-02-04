@@ -8,19 +8,11 @@ framework:
 
 doctrine:
     dbal:
-        driver:   pdo_sqlite
-        path:     %kernel.cache_dir%/test.db
+        dbname:  %database_name%_test
 
 web_profiler:
     toolbar: false
     intercept_redirects: false
-
-# FunctionalTestBundle
-liip_functional_test:
-    authentication:
-        username: admin
-        password: qwerty
-    cache_sqlite_db: true
 
 swiftmailer:
     disable_delivery: true
