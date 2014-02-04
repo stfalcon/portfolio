@@ -47,7 +47,7 @@ class AccessTest extends WebTestCase
      */
     protected function _testReturnCode($code, $url)
     {
-        $crawler = $this->client->request('GET', $url);
+        $this->client->request('GET', $url);
 
         $this->assertEquals($code, $this->client->getResponse()->getStatusCode());
     }
@@ -66,6 +66,6 @@ class AccessTest extends WebTestCase
         ));
         $this->client->submit($form);
         $this->assertTrue($this->client->getResponse()->isRedirect());
-        $crawler = $this->client->followRedirects();
+        $this->client->followRedirects();
     }
 }

@@ -57,7 +57,7 @@ class UploadController extends Controller
         }
 
         // Get image width/height
-        list($width, $height, $type, $attr) = getimagesize(
+        list($width, $height) = getimagesize(
             $path . DIRECTORY_SEPARATOR . $newFileName
         );
 

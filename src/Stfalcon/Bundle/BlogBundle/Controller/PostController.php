@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
+use Zend\Feed\Writer\Entry;
+use Zend\Feed\Writer\Feed;
 
 /**
  * PostController
@@ -85,7 +87,7 @@ class PostController extends AbstractController
      */
     public function rssAction()
     {
-        $feed = new \Zend\Feed\Writer\Feed();
+        $feed = new Feed();
 
         $config = $this->container->getParameter('stfalcon_blog.config');
 
@@ -96,7 +98,7 @@ class PostController extends AbstractController
         $posts = $this->get('doctrine')->getEntityManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         foreach ($posts as $post) {
-            $entry = new \Zend\Feed\Writer\Entry();
+            $entry = new Entry();
             $entry->setTitle($post->getTitle());
             $entry->setLink($this->generateUrl('blog_post_view', array('slug' => $post->getSlug()), true));
 
@@ -109,11 +111,11 @@ class PostController extends AbstractController
     /**
      * Show last blog posts
      *
-     * @Template()
-     *
      * @param int $count A count of posts
      *
      * @return array()
+     *
+     * @Template()
      */
     public function lastAction($count = 1)
     {

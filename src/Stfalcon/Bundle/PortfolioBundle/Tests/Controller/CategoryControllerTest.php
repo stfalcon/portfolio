@@ -31,7 +31,7 @@ class CategoryControllerTest extends WebTestCase{
             'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
         ));
         $client = $this->makeClient(true);
-        $crawler = $client->request('GET', $this->getUrl('portfolio_category_view', array('slug' => 'web-design')));
+        $client->request('GET', $this->getUrl('portfolio_category_view', array('slug' => 'web-design')));
 
         // check 404
         $this->assertEquals(404, $client->getResponse()->getStatusCode());

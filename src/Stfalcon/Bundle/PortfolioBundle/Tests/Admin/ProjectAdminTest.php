@@ -80,7 +80,7 @@ class ProjectAdminTest extends WebTestCase
         $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
-        $crawler = $this->client->submit($form);
+        $this->client->submit($form);
 
         // check responce
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -147,7 +147,7 @@ class ProjectAdminTest extends WebTestCase
         $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
-        $crawler = $this->client->submit($form);
+        $this->client->submit($form);
 
         // check responce
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -210,7 +210,7 @@ class ProjectAdminTest extends WebTestCase
 
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
         $project = $em->getRepository("StfalconPortfolioBundle:Project")->findOneBy(array('name' => 'preorder.it'));
-        $crawler = $this->client->request('POST', $this->getUrl('portfolioProjectsApplyOrder'), array(
+        $this->client->request('POST', $this->getUrl('portfolioProjectsApplyOrder'), array(
             'projects' => array(array('id' => $project->getId(), 'index' => 200))
             ));
         $this->assertEquals('good', $this->client->getResponse()->getContent());
@@ -235,6 +235,6 @@ class ProjectAdminTest extends WebTestCase
         ));
         $this->client->submit($form);
         $this->assertTrue($this->client->getResponse()->isRedirect());
-        $crawler = $this->client->followRedirects();
+        $this->client->followRedirects();
     }
 }

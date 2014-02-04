@@ -4,7 +4,6 @@ namespace StfalconBundle\Bundle\BlogBundle\Tests\Admin;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Client;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Test cases for PostAdmin
@@ -50,7 +49,7 @@ class PostAdminTest extends WebTestCase
         $form[$formId . '[slug]'] = 'post-slug';
         $form[$formId . '[text]'] = 'Post text';
         $form[$formId . '[tags]'] = 'Post,tags';
-        $crawler = $this->client->submit($form);
+        $this->client->submit($form);
 
         // check responce
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -95,7 +94,7 @@ class PostAdminTest extends WebTestCase
         $form[$formId . '[slug]'] = 'new-post-slug';
         $form[$formId . '[text]'] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..';
         $form[$formId . '[tags]'] = 'php, symfony2, etc';
-        $crawler = $this->client->submit($form);
+        $this->client->submit($form);
 
         // check responce
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -140,6 +139,6 @@ class PostAdminTest extends WebTestCase
         ));
         $this->client->submit($form);
         $this->assertTrue($this->client->getResponse()->isRedirect());
-        $crawler = $this->client->followRedirects();
+        $this->client->followRedirects();
     }
 }

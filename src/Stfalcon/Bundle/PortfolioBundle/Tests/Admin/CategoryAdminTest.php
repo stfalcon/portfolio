@@ -57,7 +57,7 @@ class CategoryAdminTest extends WebTestCase
         $form[$formId . '[name]'] = 'Web Design';
         $form[$formId . '[slug]'] = 'web-design';
         $form[$formId . '[description]'] = 'Short text about web design servise.';
-        $crawler = $this->client->submit($form);
+        $this->client->submit($form);
 
         // check responce
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -106,7 +106,7 @@ class CategoryAdminTest extends WebTestCase
         $form[$formId . '[name]'] = 'Web Design';
         $form[$formId . '[slug]'] = 'web-design';
         $form[$formId . '[description]'] = 'Short text about web design servise.';
-        $crawler = $this->client->submit($form);
+        $this->client->submit($form);
 
         // check responce
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -146,7 +146,7 @@ class CategoryAdminTest extends WebTestCase
         ));
         $this->doLogin();
 
-        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_edit', array('id' => 0)));
+        $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_edit', array('id' => 0)));
 
         // check 404
         $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
@@ -181,7 +181,7 @@ class CategoryAdminTest extends WebTestCase
             'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
         ));
         $this->doLogin();
-        $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_delete', array('id' => 0)));
+        $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_delete', array('id' => 0)));
 
         // check 404
         $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
@@ -201,6 +201,6 @@ class CategoryAdminTest extends WebTestCase
         ));
         $this->client->submit($form);
         $this->assertTrue($this->client->getResponse()->isRedirect());
-        $crawler = $this->client->followRedirects();
+        $this->client->followRedirects();
     }
 }

@@ -14,9 +14,6 @@ namespace Application\Bundle\UserBundle\Admin;
 use Application\Bundle\UserBundle\Entity\User;
 use Sonata\UserBundle\Admin\Model\UserAdmin as Admin;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 
 
 class UserAdmin extends Admin
@@ -30,11 +27,11 @@ class UserAdmin extends Admin
 
         $formMapper
             ->with('Profile')
-                ->add('position', NULL, array('required' => false, 'label'     => 'Должность'))
+                ->add('position', null, array('required' => false, 'label'     => 'Должность'))
                 ->add('avatar', 'file', array('required' => false, 'label'     => 'Аватарка'))
                 ->add('caricature', 'file', array('required' => false, 'label'     => 'Карикатура'))
             ->end()
-            ->with('Interests',  array('label' => 'Интересы'))
+            ->with('Interests', array('label' => 'Интересы'))
                 ->add('interests', 'choice', array(
                     'choices'   => User::getInterestsList(),
                     'multiple'  => true,
@@ -46,8 +43,7 @@ class UserAdmin extends Admin
                     'required'  => false,
                     'label'     => 'Любимый напиток',
                 ))
-            ->end()
-        ;
+            ->end();
     }
 
     public function preUpdate($entity){

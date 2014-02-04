@@ -105,6 +105,6 @@ class UploadControllerTest extends WebTestCase
         ));
         $this->client->submit($form);
         $this->assertTrue($this->client->getResponse()->isRedirect());
-        $crawler = $this->client->followRedirects();
+        $this->client->followRedirects();
     }
 }
