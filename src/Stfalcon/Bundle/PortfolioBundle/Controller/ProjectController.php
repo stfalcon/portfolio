@@ -19,10 +19,10 @@ class ProjectController extends Controller
      * @param int $page
      *
      * @return array
-     * @Route("/portfolio/{page}",
+     * @Route("/portfolio/{text}/{page}",
      *  name="portfolio_all_projects",
      *  requirements={"page" = "\d+"},
-     *  defaults={"page"=1})
+     *  defaults={"page"=1, "text"="page"})
      * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
      */
     public function allProjectsAction($page)

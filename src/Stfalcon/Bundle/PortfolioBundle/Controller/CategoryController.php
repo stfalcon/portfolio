@@ -17,6 +17,24 @@ use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 class CategoryController extends Controller
 {
     /**
+     * List of categories
+     *
+     * @return array
+     *
+     * @Route(
+     *      "/services",
+     *      name="portfolio_categories_list"
+     * )
+     * @Template()
+     */
+    public function servicesAction()
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
+        $categories = $repository->getAllCategories();
+
+        return array('categories' => $categories);
+    }
+    /**
      * View category
      *
      * @param Category $category Category object
@@ -24,21 +42,21 @@ class CategoryController extends Controller
      *
      * @return array
      * @Route(
-     *      "/portfolio/{slug}/{page}",
+     *      "/portfolio/{slug}/{text}/{page}",
      *      name="portfolio_category_view",
      *      requirements={"page" = "\d+"},
-     *      defaults={"page" = "1"}
+     *      defaults={"page" = "1", "text" = "page"}
      * )
      * @Template()
      */
     public function viewAction(Category $category, $page = 1)
     {
-        $query = $this->get('doctrine.orm.entity_manager')
+        $query = $this->getDoctrine()
             ->getRepository("StfalconPortfolioBundle:Project")
             ->getQueryForSelectProjectsByCategory($category);
 
-        $paginator = $this->get('knp_paginator')->paginate($query, $page, 6);
-        $paginator->setUsedRoute('portfolio_category_view');
+        $projectsWithPaginator = $this->get('knp_paginator')->paginate($query, $page, 12);
+        $projectsWithPaginator->setUsedRoute('portfolio_category_view');
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
@@ -47,26 +65,8 @@ class CategoryController extends Controller
 
         return array(
             'category' => $category,
-            'paginator' => $paginator, // @todo переименовать переменную
+            'projectsWithPaginator' => $projectsWithPaginator, // @todo переименовать переменную
         );
-    }
-
-    /**
-     * Services widget
-     *
-     * @param Category $category Category object
-     * @param Project  $project  Project object
-     *
-     * @return array
-     * @Template()
-     */
-    public function servicesAction(Category $category, $project = null)
-    {
-        // @todo помоему этот блок отключен
-        $categories = $this->get('doctrine.orm.entity_manager')
-                ->getRepository("StfalconPortfolioBundle:Category")->getAllCategories();
-
-        return array('categories' => $categories, 'currentProject' => $project, 'currentCategory' => $category);
     }
 
     /**
