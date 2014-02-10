@@ -14,6 +14,7 @@ class CategoryAdmin extends Admin
         $formMapper
             ->add('slug')
             ->add('name')
+            ->add('cost')
             ->add('description')
             // @todo сделать сортировку через sortable (по аналогии с проектами)
             ->add('ordernum')

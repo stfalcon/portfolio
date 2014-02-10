@@ -42,10 +42,10 @@ class CategoryController extends Controller
      *
      * @return array
      * @Route(
-     *      "/portfolio/{slug}/{text}/{page}",
+     *      "/portfolio/{slug}/{page_prefix}/{page}",
      *      name="portfolio_category_view",
-     *      requirements={"page" = "\d+"},
-     *      defaults={"page" = "1", "text" = "page"}
+     *      requirements={"page" = "\d+", "page_prefix" = "page"},
+     *      defaults={"page_prefix" = "page", "page" = "1"}
      * )
      * @Template()
      */
@@ -55,8 +55,8 @@ class CategoryController extends Controller
             ->getRepository("StfalconPortfolioBundle:Project")
             ->getQueryForSelectProjectsByCategory($category);
 
-        $projectsWithPaginator = $this->get('knp_paginator')->paginate($query, $page, 12);
-        $projectsWithPaginator->setUsedRoute('portfolio_category_view');
+        $paginatedProjects = $this->get('knp_paginator')->paginate($query, $page, 12);
+        $paginatedProjects->setUsedRoute('portfolio_category_view');
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
@@ -65,7 +65,7 @@ class CategoryController extends Controller
 
         return array(
             'category' => $category,
-            'projectsWithPaginator' => $projectsWithPaginator, // @todo переименовать переменную
+            'projects' => $paginatedProjects
         );
     }
 

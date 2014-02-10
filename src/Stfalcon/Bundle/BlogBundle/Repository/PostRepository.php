@@ -19,41 +19,29 @@ class PostRepository extends EntityRepository
      */
     public function getAllPosts()
     {
-        $query = $this->getEntityManager()->createQuery('
-            SELECT
-                p
-            FROM
-                StfalconBlogBundle:Post p
-            ORDER BY
-                p.created DESC
-            ');
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy('p.created', 'DESC');
 
-        return $query->getResult();
+        return $qb->getQuery()->getResult();
     }
 
     /**
      * Get last posts
      *
-     * @param integer $count Max count of returned posts
+     * @param int $count Max count of returned posts
      *
      * @return array
      */
     public function getLastPosts($count = null)
     {
-        $query = $this->getEntityManager()->createQuery('
-            SELECT
-                p
-            FROM
-                StfalconBlogBundle:Post p
-            ORDER BY
-                p.created DESC
-            ');
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy('p.created', 'DESC');
 
         if ((int) $count) {
-            $query->setMaxResults($count);
+            $qb->setMaxResults($count);
         }
 
-        return $query->getResult();
+        return $qb->getQuery()->getResult();
     }
 
 }

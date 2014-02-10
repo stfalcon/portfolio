@@ -19,7 +19,7 @@
                         </div>
                         <div class="price">
                             Стоимость проекта
-                            <span>от {{ loop.index }}0 000 $</span>
+                            <span>от {{ category.cost }} $</span>
                         </div>
                         <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
                             <span class="arrow-btn"></span>

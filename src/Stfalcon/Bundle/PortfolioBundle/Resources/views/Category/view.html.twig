@@ -4,12 +4,12 @@
     <section>
         <h2>{{ category.name }}</h2>
         <ul class="projects">
-            {% for project in projectsWithPaginator %}
+            {% for project in projects %}
                 {% include 'StfalconPortfolioBundle:Project:_projects_list_item.html.twig' with {'project':project, 'category': project.categories.first} %}
             {% endfor %}
         </ul>
     </section>
     <nav class="pagination">
-        {{ knp_pagination_render(projectsWithPaginator) }}
+        {{ knp_pagination_render(projects) }}
     </nav>
 {% endblock %}
