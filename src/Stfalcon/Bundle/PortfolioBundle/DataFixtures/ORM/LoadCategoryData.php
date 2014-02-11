@@ -18,9 +18,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     /**
      * Create and load categories fixtures to database
      *
-     * @param Doctrine\ORM\EntityManager $manager Entity manager object
-     *
-     * @return void
+     * @param ObjectManager $manager Entity manager object
      */
     public function load(ObjectManager $manager)
     {

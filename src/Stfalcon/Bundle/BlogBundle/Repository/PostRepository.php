@@ -56,4 +56,14 @@ class PostRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function findPostsByTagAsQuery($tag)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $qb->leftJoin('p.tags', 't')
+            ->where('t.id = :tagId')
+            ->setParameter('tagId', $tag->getId())
+            ->getQuery();
+    }
+
 }

@@ -15,12 +15,9 @@ web_profiler:
     toolbar: false
     intercept_redirects: false
 
-# FunctionalTestBundle
-liip_functional_test:
-    authentication:
-        username: admin
-        password: qwerty
-    cache_sqlite_db: true
-
 swiftmailer:
     disable_delivery: true
+
+# FunctionalTestBundle
+liip_functional_test:
+    cache_sqlite_db: false

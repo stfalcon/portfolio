@@ -3,6 +3,7 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Entity;
 
 use Application\Bundle\MediaBundle\Entity\Media;
+use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -496,6 +497,22 @@ class Project
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * @param User $participant
+     */
+    public function addParticipant(User $participant)
+    {
+        $this->participants->add($participant);
+    }
+
+    /**
+     * @param User $participant
+     */
+    public function removeParticipant(User $participant)
+    {
+        $this->participants->removeElement($participant);
     }
 
     /**

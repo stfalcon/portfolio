@@ -30,8 +30,10 @@ class TagController extends AbstractController
      */
     public function viewAction(Tag $tag, $page)
     {
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
+        $query = $repository->findPostsByTagAsQuery($tag);
         $posts = $this->get('knp_paginator')
-            ->paginate($tag->getPosts(), $page, 10);
+            ->paginate($query, $page, 10);
 
         if ($this->has('menu.breadcrumbs')) {
             $breadcrumbs = $this->get('menu.breadcrumbs');

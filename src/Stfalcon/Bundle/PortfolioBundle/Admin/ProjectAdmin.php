@@ -3,8 +3,6 @@ namespace Stfalcon\Bundle\PortfolioBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
 class ProjectAdmin extends Admin
@@ -61,8 +59,7 @@ class ProjectAdmin extends Admin
         $listMapper
             ->addIdentifier('slug')
             ->add('name')
-            ->add('date')
-        ;
+            ->add('date');
     }
 
     public function setTemplates(array $templates)

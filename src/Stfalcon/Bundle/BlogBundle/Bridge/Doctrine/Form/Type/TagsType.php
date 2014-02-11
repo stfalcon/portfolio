@@ -21,8 +21,6 @@ class TagsType extends AbstractType
      * Constructor injection
      *
      * @param RegistryInterface $registry Doctrine registry object
-     *
-     * @return void
      */
     public function __construct(RegistryInterface $registry)
     {

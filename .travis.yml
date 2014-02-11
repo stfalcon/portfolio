@@ -7,9 +7,9 @@ before_script:
   - curl -s https://getcomposer.org/installer | php -- --quiet 
   - php composer.phar install
   # hack for testing bundles
-  - mkdir -p src/Stfalcon/Bundle
-  - ln -s ../../../vendor/stfalcon/blog-bundle/Stfalcon/Bundle/BlogBundle/ src/Stfalcon/Bundle/BlogBundle
-  - ln -s ../../../vendor/stfalcon/portfolio-bundle/Stfalcon/Bundle/PortfolioBundle/ src/Stfalcon/Bundle/PortfolioBundle
+#  - mkdir -p src/Stfalcon/Bundle
+#  - ln -s ../../../vendor/stfalcon/blog-bundle/Stfalcon/Bundle/BlogBundle/ src/Stfalcon/Bundle/BlogBundle
+#  - ln -s ../../../vendor/stfalcon/portfolio-bundle/Stfalcon/Bundle/PortfolioBundle/ src/Stfalcon/Bundle/PortfolioBundle
 script: phpunit -c app/
 notifications:
   email:
