@@ -39,6 +39,7 @@ class MenuBuilder
         $menu->setUri($request->getRequestUri());
 
         $menu->addChild('Наши работы', array('route' => 'homepage'));
+        $menu->addChild('Услуги', array('route' => 'portfolio_categories_list'));
         $menu->addChild('Команда', array('route' => 'team'));
         $menu->addChild('Блог', array('route' => 'blog'));
         $menu->addChild('Контакты', array('route' => 'contacts'));

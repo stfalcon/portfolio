@@ -58,6 +58,7 @@ $(function () {
             yearsCnt.html(i);
         }, 20);
     }
+
     var filter;
     var teamList = $('.avatar'),
         drinks = $('.drinks');
@@ -187,5 +188,80 @@ $(function () {
                     }
                 });
         }
+    }
+    var images = $('.services-tabs .img'),
+        accordionTabs = $('.accordion-wrapper'),
+        isVisible = true,
+        activeTab = 0;
+
+    if (!$('html').hasClass('lt-ie10')) {
+        enquire.register("screen and (min-width:670px)", {
+            match: function () {
+                accordionTabs.show();
+                $(".services-tabs").tabs({
+                    active: 0,
+                    create: function (event, ui) {
+                        if (window.innerWidth > 1005) {
+                            console.log('init ', window.innerWidth)
+                            $(images[0]).fadeIn(200);
+                        }
+                    },
+                    activate: function (event, ui) {
+                        console.log(ui);
+                        images.fadeOut(100);
+                        if (isVisible) {
+                            switch (ui.newPanel.selector) {
+                                case "#development":
+                                    $(images[0]).fadeIn(200);
+                                    break;
+                                case "#design":
+                                    $(images[1]).fadeIn(200);
+                                    break;
+                                case "#mobile":
+                                    $(images[2]).fadeIn(200);
+                                    break;
+                                case "#games":
+                                    $(images[3]).fadeIn(200);
+                                    break;
+                            }
+                        }
+                    }
+                });
+            },
+            unmatch: function () {
+                $(".services-tabs").tabs("destroy");
+                closeAccordion(0)
+            }
+        }).register("screen and (max-width:1005px)", {
+                match: function () {
+                    isVisible = false;
+                    images.hide();
+                },
+                unmatch: function () {
+                    isVisible = true;
+                    activeTab = $(".services-tabs").tabs("option", "active");
+                    $(images[activeTab]).show();
+                }
+            });
+    }
+    ;
+
+    $('.tab-title').on('click', function (event) {
+        var tab = $(this).parent();
+        if ($(tab).hasClass('open')) {
+            closeAccordion(200)
+        } else {
+            closeAccordion(200)
+            tab.find('.accordion-wrapper').slideDown(200);
+            tab.addClass('open');
+        }
+        console.log('click');
+    });
+
+    function closeAccordion(speed) {
+        accordionTabs.slideUp(speed);
+        accordionTabs.each(function (index, value) {
+            $(value).parent().removeClass('open');
+        });
     }
 });

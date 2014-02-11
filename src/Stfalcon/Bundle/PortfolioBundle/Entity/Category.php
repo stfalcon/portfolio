@@ -71,6 +71,12 @@ class Category
     private $ordernum = 0;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=10)
+     */
+    private $cost;
+
+    /**
      * Initialization properties for new category entity
      */
     public function __construct()
@@ -206,4 +212,19 @@ class Category
         $this->ordernum = $ordernum;
     }
 
+    /**
+     * @param string $cost
+     */
+    public function setCost($cost)
+    {
+        $this->cost = $cost;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCost()
+    {
+        return $this->cost;
+    }
 }

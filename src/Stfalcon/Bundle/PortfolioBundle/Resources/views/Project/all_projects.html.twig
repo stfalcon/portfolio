@@ -5,15 +5,7 @@
         <h2 class="hidden">Список проектов</h2>
         <ul class="projects">
             {% for project in projects %}
-            <li>
-                <a href="{{ path('portfolio_project_view', { 'categorySlug': project.categories.first.slug, 'projectSlug': project.slug }) }}">
-                    {% if project.image %}
-                    <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ project.name }}" />
-                    {% endif %}
-                    <h3>{{ project.name }}</h3>
-                </a>
-                <p>логотип, дизайн сайта, верстка, программирование, на основе движка OpenCart</p>
-            </li>
+                {% include 'StfalconPortfolioBundle:Project:_projects_list_item.html.twig' with {'project':project, 'category': project.categories.first} %}
             {% endfor %}
         </ul>
     </section>

@@ -1,28 +1,33 @@
-<h2>
-    {% trans %}Услуги{% endtrans %}
-</h2>
+{% extends '::layout.html.twig' %}
 
-<div id="accordion" class="servises">
-    {% for category in categories %}
-        {% if category.projects.count %}
-            <h3>{{ category.name }}</h3>
-            <ul>
-            {% for project in category.projects %}
-                {% if currentProject.id is defined and currentProject.id == project.id
-                   and currentCategory.id is defined and currentCategory.id == category.id %}
-                    <li class="active {category_index:{{ loop.parent.loop.index0 }} }">
-                        {{ project.name }}
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{{ path('portfolio_project_view', {'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
-                            {{ project.name }}
-                        </a>
-                    </li>
-                {% endif %}
+{% block content_wrapper %}
+    <section class="services-tabs">
+        <h1>Чем мы занимаемся</h1>
+        <ul class="tab-nav">
+            {% for category in categories %}
+                <li><h2><a href="#{{ category.slug }}" {{ loop.index == 1?'class="active"':'' }}>{{ category.name }}</a></h2></li>
             {% endfor %}
-            </ul>
-        {% endif %}
-    {% endfor %}
-    <div class="clear"></div>
-</div>
+        </ul>
+        <div class="tab-content-wrapper">
+            {% for category in categories %}
+                <img src="img/bg/figure{{ loop.index }}.png" class="img" alt="{{ category.name }}"/>
+                <div id="{{ category.slug }}" class="tab-content">
+                    <a class="tab-title">{{ category.name }}</a>
+                    <div class="accordion-wrapper">
+                        <div class="tab-text">
+                            {{ category.description | raw }}
+                        </div>
+                        <div class="price">
+                            Стоимость проекта
+                            <span>от {{ category.cost }} $</span>
+                        </div>
+                        <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
+                            <span class="arrow-btn"></span>
+                            <span>посмотреть примеры проектов веб-разработки</span>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
