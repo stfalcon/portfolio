@@ -57,6 +57,7 @@ class CategoryAdminTest extends WebTestCase
         $form[$formId . '[name]'] = 'Web Design';
         $form[$formId . '[slug]'] = 'web-design';
         $form[$formId . '[description]'] = 'Short text about web design servise.';
+        $form[$formId . '[cost]'] = '20 000';
         $this->client->submit($form);
 
         // check responce

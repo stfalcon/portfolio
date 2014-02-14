@@ -27,6 +27,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $development->setName('Web Development');
         $development->setSlug('web-development');
         $development->setDescription('In work we use Symfony2.');
+        $development->setCost('20 000');
 
         $manager->persist($development);
         $manager->flush();

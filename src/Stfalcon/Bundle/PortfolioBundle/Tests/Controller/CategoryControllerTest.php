@@ -21,7 +21,7 @@ class CategoryControllerTest extends WebTestCase{
                 $this->getUrl('portfolio_category_view', array('slug' => 'web-development')), 'GET'
         );
 
-        $this->assertEquals(0, $crawler->filter('html:contains("Web Development")')->count());
+        $this->assertEquals(1, $crawler->filter('html:contains("Web Development")')->count());
         $description = "In work we use Symfony2.";
         $this->assertEquals(0, $crawler->filter('html:contains("' . $description . '")')->count());
     }
