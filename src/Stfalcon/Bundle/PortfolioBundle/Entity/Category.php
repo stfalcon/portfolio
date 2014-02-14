@@ -82,6 +82,7 @@ class Category
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->cost = '';
     }
 
     /**
