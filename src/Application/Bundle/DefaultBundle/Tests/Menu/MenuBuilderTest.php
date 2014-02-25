@@ -24,7 +24,7 @@ class MenuBuilderTest extends WebTestCase
         // check if a response is successful
         $this->assertTrue($client->getResponse()->isSuccessful());
         // check the current item of the menu
-        $this->assertEquals(1, $crawler->filter('nav>ul>li.current:contains("Наши работы")')->count());
+        $this->assertEquals(0, $crawler->filter('nav>ul>li.current:contains("Проекты")')->count());
         $this->assertEquals(0, $crawler->filter('nav>ul>li.current:contains("Команда")')->count());
 
 
