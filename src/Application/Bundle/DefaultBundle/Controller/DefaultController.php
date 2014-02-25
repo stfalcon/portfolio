@@ -14,9 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class DefaultController extends Controller
 {
-
     /**
-     * Categories/projects lilowerst
+     * Categories/projects list
      *
      * @return array()
      * @Cache(expires="tomorrow")
@@ -26,7 +25,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projects = $repository->findBy(array('onFrontPage' => true));
+        $projects = $repository->findProjectsForHomePage();
 
         return array('projects' => $projects);
     }
