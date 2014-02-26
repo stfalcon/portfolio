@@ -121,10 +121,6 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
 
 sonata_admin:
-    templates:
-        layout: "::admin.html.twig"
-
-sonata_admin:
     security:
         handler: sonata.admin.security.handler.acl
         # acl security information
@@ -136,6 +132,8 @@ sonata_admin:
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
         # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+    templates:
+        layout: "::admin.html.twig"
 
 fos_user:
     db_driver: orm
