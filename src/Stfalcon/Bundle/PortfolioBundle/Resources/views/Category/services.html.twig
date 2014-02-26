@@ -23,7 +23,7 @@
                         </div>
                         <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
                             <span class="arrow-btn"></span>
-                            <span>посмотреть примеры проектов веб-разработки</span>
+                            <span>посмотреть примеры проектов {{ linkTexts[category.slug] | default('') }}</span>
                         </a>
                     </div>
                 </div>
