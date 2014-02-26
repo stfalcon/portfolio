@@ -188,3 +188,9 @@ sonata_media:
         local:
             directory:  %kernel.root_dir%/../web/uploads/media
             create:     true        group: Application\Bundle\UserBundle\Entity\Group
+
+services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
