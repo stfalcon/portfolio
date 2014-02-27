@@ -25,8 +25,9 @@
         "gedmo/doctrine-extensions": "2.3.2",
         "stof/doctrine-extensions-bundle": "dev-master#0247e6f1658d76292c8ffe2c5106090bd36bd799",
 
-        "sonata-project/doctrine-orm-admin-bundle": "2.2.x-dev",
-        "sonata-project/cache-bundle": "2.2.*@dev",
+        "sonata-project/doctrine-orm-admin-bundle": "2.2.7",
+        "sonata-project/admin-bundle": "2.2.11",
+        "sonata-project/cache-bundle": "2.1.6",
 
         "kriswallsmith/assetic": "1.1.*",
         "avalanche123/imagine-bundle": "dev-master#eb03645887f732410127a2b3d992befe0f175277",
@@ -34,7 +35,7 @@
         "knplabs/knp-components": "1.2.2",
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
         "vich/uploader-bundle": "0.8.1",
-        "sonata-project/user-bundle": "2.2.*@dev",
+        "sonata-project/user-bundle": "2.2.4",
         "sonata-project/media-bundle": "2.2.5"
     },
     "scripts": {
