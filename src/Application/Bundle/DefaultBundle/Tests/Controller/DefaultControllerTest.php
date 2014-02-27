@@ -28,7 +28,7 @@ class DefaultControllerTest extends WebTestCase
 
         // check link to category view
         $url = $this->getUrl('portfolio_all_projects');
-        $this->assertCount(1, $crawler->filter('a[href="' . $url . '"]'));
+        $this->assertCount(2, $crawler->filter('a[href="' . $url . '"]'));
 
         // check links to view projects on homepage
         $preorderUrl = $this->getUrl('portfolio_project_view',

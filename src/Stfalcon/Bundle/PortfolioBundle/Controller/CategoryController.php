@@ -32,7 +32,14 @@ class CategoryController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
         $categories = $repository->getAllCategories();
 
-        return array('categories' => $categories);
+        $linkTexts = array(
+            'development' => 'веб-разработки',
+            'design'      => 'дизайна',
+            'mobile'      => 'мобильных приложений',
+            'games'       => 'игор'
+        );
+
+        return array('categories' => $categories, 'linkTexts' => $linkTexts);
     }
     /**
      * View category
