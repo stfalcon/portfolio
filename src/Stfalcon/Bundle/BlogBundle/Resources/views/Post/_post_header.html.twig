@@ -8,7 +8,7 @@
     </h1>
 
     <div class="post-info">
-        <time pubdate="pubdate">{{ post.created|date("d M Y") }}</time>
+        <time pubdate="pubdate">{{ post.created|localizeddate('long', 'none', app.request.locale) }}</time>
         {% if post.author and post.author.avatarName %}
             <img src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar_small') }}" alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}"/>
         {% endif %}
@@ -26,4 +26,7 @@
         s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
+    function disqus_config() {
+        this.language = "ru";
+    }
 </script>
