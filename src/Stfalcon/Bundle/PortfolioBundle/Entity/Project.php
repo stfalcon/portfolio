@@ -183,6 +183,12 @@ class Project
     protected $tags;
 
     /**
+     * @var boolean
+     * @ORM\Column(name="published", type="boolean")
+     */
+    protected $published;
+
+    /**
      * Initialization properties for new project entity
      */
     public function __construct()
@@ -190,6 +196,7 @@ class Project
         $this->categories = new ArrayCollection();
         $this->participants = new ArrayCollection();
         $this->media = new ArrayCollection();
+        $this->published = true;
     }
 
     /**
@@ -561,5 +568,21 @@ class Project
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * @param boolean $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->published;
     }
 }

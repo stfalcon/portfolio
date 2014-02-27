@@ -26,7 +26,7 @@ class ProjectRepository extends EntityRepository
         $qb = $this->getQueryBuilderWithOrdering($orderBy, $orderDirection);
 
         return $qb->join('p.categories', 'c')
-                ->where('c.id = :category')
+                ->andWhere('c.id = :category')
                 ->setParameter('category', $category->getId())
                 ->getQuery();
     }
@@ -55,6 +55,8 @@ class ProjectRepository extends EntityRepository
     private function getQueryBuilderWithOrdering($orderBy = 'p.date', $orderDirection = 'ASC')
     {
         return $this->createQueryBuilder('p')
+            ->andWhere('p.published = :published')
+            ->setParameter('published', true)
             ->orderBy($orderBy, $orderDirection);
     }
 
@@ -92,7 +94,7 @@ class ProjectRepository extends EntityRepository
     {
         $qb = $this->getQueryBuilderWithOrdering($orderBy, $orderDirection);
 
-        return $qb->where('p.onFrontPage = :onFrontPage')
+        return $qb->andWhere('p.onFrontPage = :onFrontPage')
             ->setParameter('onFrontPage', true)
             ->getQuery()
             ->getResult();

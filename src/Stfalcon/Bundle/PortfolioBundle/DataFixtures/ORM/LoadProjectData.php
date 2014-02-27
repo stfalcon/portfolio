@@ -48,6 +48,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $preOrder->addCategory($webCategory);
         $preOrder->addParticipant($adminUser);
         $preOrder->addParticipant($secondUser);
+        $preOrder->setPublished(true);
         $preOrder->setImageFile($this->copyFile($files[array_rand($files)]));
         $manager->persist($preOrder);
         $manager->merge($webCategory);
@@ -60,6 +61,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $ePrice->setDescription('Comparison of the prices of mobile phones, computers, monitors, audio and video in Kazakhstan');
         $ePrice->setTags('design');
         $ePrice->setOnFrontPage(1);
+        $ePrice->setPublished(true);
         $ePrice->setOrdernum(1);
         $ePrice->addCategory($webCategory);
 //        $ePrice->addParticipant($adminUser);
@@ -87,6 +89,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             $example->addParticipant($adminUser);
             $example->addParticipant($firstUser);
             $example->addParticipant($secondUser);
+            $example->setPublished(true);
             $example->setImageFile($this->copyFile($files[array_rand($files)]));
             $manager->persist($example);
             $manager->merge($webCategory);
