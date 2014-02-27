@@ -581,14 +581,6 @@ class Project
     /**
      * @return boolean
      */
-    public function getPublished()
-    {
-        return $this->published;
-    }
-
-    /**
-     * @return boolean
-     */
     public function isPublished()
     {
         return $this->published;
