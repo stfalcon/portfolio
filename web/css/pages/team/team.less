@@ -22,6 +22,7 @@
   p {
     width: 140px;
     margin: -12px auto 24px;
+    font-size: 0.786rem;
   }
 }
 
@@ -191,12 +192,18 @@
 .team-list {
   margin-bottom: 30px;
   
+   &.show-drinks {
+    li div:after {
+        opacity: 1;
+      }
+   }
    li {
      display: inline-block;
-
+     width: 155px;
      text-align: center;
-     margin: 0 2.7083% 0 0;
+     margin: 0 5px 0 0;
      margin-bottom: 26px;
+     vertical-align: top;
 
      div {
        position: relative;
@@ -209,6 +216,30 @@
         .overlay {
           opacity: 1;
         }
+       }
+       &:after {
+          content: "";
+          position: absolute;
+          border-radius: 49%;
+          left: 0;
+          top: 0;
+          width: 134px;
+          height: 134px;
+          background: ~"url(../img/bg/empty.png)" rgba(255,255,255,.9) no-repeat center center;
+          .transition(all 0.2s ease-in-out); 
+          opacity: 0;
+       }
+       &.drink-beer:after {
+          background-image: ~"url(../img/bg/beer.png)"; 
+       }
+       &.drink-tea:after {
+          background-image: ~"url(../img/bg/tea.png)"; 
+       }
+       &.drink-atmark-tea:after {
+          background-image: ~"url(../img/bg/atmark-tea.png)"; 
+       }
+       &.drink-coffe:after {
+          background-image: ~"url(../img/bg/coffe.png)"; 
        }
      }
      img {

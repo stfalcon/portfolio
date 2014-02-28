@@ -61,27 +61,29 @@ $(function () {
 
     var filter;
     var teamList = $('.avatar'),
-        drinks = $('.drinks');
+        teamCnt = $('.team-list');
 
-    $('.interests a').hover(function () {
+    $('.interests a').hover(function(){
         filter = $(this).data('filter');
-        if (filter === "drinks") {
-            $(teamList).stop(true, true).animate({opacity: '0.2'}, 400);
-            drinks.fadeIn(400);
+        if(filter === "drinks") {
+            teamCnt.addClass('show-drinks');
+        } else {
+            teamList.each(function(index, value){
+                var interests = eval($(value).data('interests'));
+                if ($.inArray(filter, interests) < 0) {
+                    $(value).stop(true, true).animate({opacity: '0.2'}, 50);
+                }
+            });
         }
-        teamList.each(function (index, value) {
-            var interests = eval($(value).data('interests'));
-            if ($.inArray(filter, interests) < 0) {
-                $(value).stop(true, true).animate({opacity: '0.2'}, 200);
-            }
-        });
 
-    }, function () {
-        teamList.stop(true, true).animate({opacity: '1'}, 200);
-        if (filter === "drinks") {
-            drinks.stop(true, true).fadeOut(200);
+    }, function(){
+        teamList.stop(true, true).animate({opacity: '1'}, 50);
+        if(filter === "drinks") {
+            teamCnt.removeClass('show-drinks');
         }
     });
+
+
     if (!$('html').hasClass('lt-ie10')) {
         enquire.register("screen and (min-width:620px)", {
             match: function () {
@@ -211,16 +213,16 @@ $(function () {
                         images.fadeOut(100);
                         if (isVisible) {
                             switch (ui.newPanel.selector) {
-                                case "#development":
+                                case "#web-development":
                                     $(images[0]).fadeIn(200);
                                     break;
-                                case "#design":
+                                case "#web-design":
                                     $(images[1]).fadeIn(200);
                                     break;
-                                case "#mobile":
+                                case "#mobile-development":
                                     $(images[2]).fadeIn(200);
                                     break;
-                                case "#games":
+                                case "#game-development":
                                     $(images[3]).fadeIn(200);
                                     break;
                             }
