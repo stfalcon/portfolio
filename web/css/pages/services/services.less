@@ -7,14 +7,14 @@
   }
   .tab-nav {
     overflow: hidden;
-    margin-bottom: 57px;
-    padding-top: 33px;
+    margin-bottom: 47px;
+    padding: 42px 0 10px;
 
     h2 {
-      display: inline;
+      width: 150px;
       margin: 0;
-      font-size: 1rem;
-      border-bottom:  dotted 1px #6a84d1;
+      font-size: 1.714rem;
+      line-height: 1em;
     }
     li {
       float: left;
@@ -27,13 +27,11 @@
       &.ui-tabs-active {
         a {
           color: @global-text-color;
+          border-color: transparent;
 
           &:before {
             .opacity(0);
           }
-        }
-        h2 {
-          border-color: transparent;
         }
       }
     }
@@ -44,6 +42,7 @@
       text-decoration: none;
       font-family: 'museo_sans_cyrl', @global-font;
       outline: solid 0px transparent;
+      border-bottom:  dotted 1px #6a84d1;
 
       &:before {
         content: "";
@@ -53,28 +52,28 @@
         left: 0;
         .transition(all 150ms ease-in-out);
       }
-      &[href="#development"] {
+      &[href="#web-development"] {
         &:before {
           width: 17px;
           height: 16px;
           background-position: -164px -37px;
         }
       }
-      &[href="#design"] {
+      &[href="#web-design"] {
         &:before {
           width: 19px;
           height: 18px;
           background-position: -182px -37px;
         }
       }
-      &[href="#mobile"] {
+      &[href="#mobile-development"] {
         &:before {
           width: 15px;
           height: 15px;
           background-position: -204px -37px;
         }
       }
-      &[href="#games"] {
+      &[href="#game-development"] {
         &:before {
           width: 15px;
           height: 15px;

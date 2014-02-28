@@ -306,20 +306,23 @@ a {
 /* header */
 
 .header-fixed header {
+  .box-sizing(border-box);
+  height: 95px;
   position: relative;
   margin: 0 auto 38px;
   max-width: 1290px;
   border-bottom: solid 1px #c3c7c8;
   border-bottom: solid 1px rgba(0, 0, 0, .2);
-  padding: 29px 0 26px;
+  padding: 27px 0 26px;
   
   h1 {
     display: none;
   }
 }
 
-@media screen and (max-width:1089px) {
+@media screen and (max-width:1024px) {
   .header-fixed header {
+    height: 71px;
     padding: 15px 0 9px;
   }
 }
@@ -345,6 +348,160 @@ a {
 }
 
 /* header */
+
+/* top navigation */
+
+header nav {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  width: 100%;
+  text-align: right;
+
+  ul {
+    overflow: hidden;
+  }
+
+  li {
+    display: inline-block;
+    margin-left: 5.7%;
+
+    &.current a {
+      color: #ed002d;
+    }
+  }
+
+  a {
+    padding: 10px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.071em;
+    color: #2c373c;
+    font-family: 'museo_sans_cyrl', @global-font;
+    letter-spacing: 0.161em;
+  }
+}
+
+.close-mobile-nav {
+  display: none;
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+
+  &:active {
+    fill: #ec1b43;
+  }
+}
+
+.show-mobile-nav {
+  display: none;
+  position: absolute;
+  right: 2px;
+  top: 24px;
+  .sq(28px);
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+
+  img {
+    margin-top: 7px;
+    width: 16px;
+    height: 15px;
+  }
+}
+
+@media screen and (max-width:1330px) {
+  header {
+    nav {
+      top: 40px;
+      
+      a {
+        font-size: 0.857rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:1024px) {
+
+  body {
+    padding-top: 107px;
+  }
+
+  .slogan {
+    margin: 0 35px 28px;
+  }
+
+  .slogan {
+    font-size: 1.214em;
+  }
+  header {
+    nav {
+      top: 26px;
+    }
+  }
+}
+
+@media screen and (max-width:620px) {
+  header {
+    nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(23,27,29,.97);
+      z-index: 999;
+
+      ul {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 186px;
+        height: 266px;
+        li {
+          display: block;
+          text-align: center;
+          float: none;
+          margin: 0;
+          &:last-child {
+            a {
+              border-bottom: solid 1px rgba(255, 255, 255, .13);
+            }
+          }
+        }
+
+        a {
+          display: block;
+          font-size: 1rem;
+          color: #fff;
+          width: 100%;
+          height: 44px;
+          line-height: 44px;
+          outline: solid 0px transparent;
+          border-top: solid 1px rgba(255, 255, 255, .13);
+          
+          &:hover {
+            border-color: rgba(255, 255, 255, .13);
+          }
+        }
+      }
+    }
+  }
+  .show-mobile-nav, .close-mobile-nav {
+    display: block;
+  }
+}
+
+/* top navigation */
 
 /* footer */
 
@@ -614,10 +771,13 @@ footer {
   img {
     margin-bottom: 11px;
     width: 100%;
+    border-radius: 4px;
   }
   h3 {
     display: inline-block;
     margin: 0;
+    font-size: 1em;
+    font-weight: bold;
   }
 }
 
@@ -688,152 +848,6 @@ footer {
 }
 
 /* project-list */
-
-/* top navigation */
-
-header nav {
-  position: absolute;
-  top: 42px;
-  right: 0;
-  width: 100%;
-  text-align: right;
-  ul {
-    overflow: hidden;
-  }
-
-  li {
-    display: inline-block;
-    margin-left: 6.5891%;
-
-    &.current a {
-      color: #ed002d;
-    }
-  }
-
-  a {
-    padding: 10px 0;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1.071em;
-    color: #2c373c;
-    font-family: 'museo_sans_cyrl', @global-font;
-  }
-}
-
-.close-mobile-nav {
-  display: none;
-  position: absolute;
-  top: 28px;
-  right: 20px;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  fill: #fff;
-
-  &:active {
-    fill: #ec1b43;
-  }
-}
-
-.show-mobile-nav {
-  display: none;
-  position: absolute;
-  right: 2px;
-  top: 24px;
-  .sq(28px);
-  background: #fff;
-  text-align: center;
-  cursor: pointer;
-
-  img {
-    margin-top: 7px;
-    width: 16px;
-    height: 15px;
-  }
-}
-
-@media screen and (max-width:1089px) {
-
-  body {
-    padding-top: 107px;
-  }
-
-  .slogan {
-    margin: 0 35px 28px;
-  }
-
-  .slogan {
-    font-size: 1.214em;
-  }
-}
-
-@media screen and (max-width:1089px) {
-  header {
-    nav {
-      top: 26px;
-      a {
-        font-size: 12px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width:620px) {
-  header {
-    nav {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(23,27,29,.97);
-      z-index: 999;
-
-      ul {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        width: 186px;
-        height: 266px;
-        li {
-          display: block;
-          text-align: center;
-          float: none;
-          margin: 0;
-          &:last-child {
-            a {
-              border-bottom: solid 1px rgba(255, 255, 255, .13);
-            }
-          }
-        }
-
-        a {
-          display: block;
-          font-size: 1rem;
-          color: #fff;
-          width: 100%;
-          height: 44px;
-          line-height: 44px;
-          outline: solid 0px transparent;
-          border-top: solid 1px rgba(255, 255, 255, .13);
-          
-          &:hover {
-            border-color: rgba(255, 255, 255, .13);
-          }
-        }
-      }
-    }
-  }
-  .show-mobile-nav, .close-mobile-nav {
-    display: block;
-  }
-}
-
-/* top navigation */
 
 @media screen and (max-width:715px){
   .icon-facebook {

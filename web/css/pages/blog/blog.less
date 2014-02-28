@@ -111,9 +111,9 @@
       background: #c3c7c8;
     }
     .float-left {
-    float: left;
-    margin: 11px 25px 25px -9.259%;
-  }
+      float: left;
+      margin: 11px 25px 25px -9.259%;
+    }
   aside {
     position: relative;
     float: right;
@@ -121,6 +121,21 @@
     width: 21.46%;
     font-size: 1.071rem;
     line-height: 1.6em;
+    
+    ul {
+      margin-top: 10px; 
+    }
+    li {
+      font-size: 1em;
+      margin-left: 21px;
+      margin-right: 0;
+
+      &:before {
+        width: 12px;
+        left: -20px;
+        top: 12px; 
+      }
+    }
   }
    img {
     display: block;
@@ -238,6 +253,19 @@
   }
 }
 
+@media screen and (max-width:1330px) {
+  .post-content {
+      p, li {
+        font-size: 1.214rem;
+
+        .big-img {
+          width: 128.627%;
+          margin-left: -14.3%;
+        }
+      }
+    }
+}
+
 @media screen and (max-width:1089px) {
   .posts-list {
     .blog-post {
@@ -255,14 +283,6 @@
     }
   }
   .post-content {
-    p, li {
-      font-size: 1.214rem;
-
-      .big-img {
-        width: 128.627%;
-        margin-left: -14.3%;
-      }
-    }
     .tags a {
       font-size: 0.786rem;
     }
@@ -345,8 +365,14 @@
         height: 24px;
         vertical-align: middle;
       }
+      time, span, img {
+        float: left;
+      }
+      img {
+        margin: 0 7px 0 16px;
+      }
       time, span {
-        display: inline;
+        margin-top: 3px;
       }
       a {
         float: right;
@@ -425,11 +451,14 @@
         display: block;
         margin-bottom: 4px;
       }
+      time, span {
+        float: none;
+      }
       time, span, a {
         font-size: 0.929rem;
       }
       a {
-        margin-top: -11px;
+        margin-top: -29px;
       }
     }
     .tags, .read-more {
@@ -462,7 +491,7 @@
     }
     .tips p {
       padding-left: 20px;
-      padding-right: 20px;
+      padding-right: 20px; 
     }
     aside {
       float: none;
