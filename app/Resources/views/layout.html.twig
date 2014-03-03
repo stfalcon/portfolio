@@ -17,9 +17,8 @@
         <!--[if gte IE 8]>
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/ie.css') }}"/>
         <![endif]-->
-        {% stylesheets filter='cssrewrite' output='cache/css/*.css'
-        'css/normalize.min.css'
-        'css/main.css'
+        {% stylesheets filter='less, cssrewrite' output='cache/css/*.css'
+        'css/main.less'
         %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
         {% endstylesheets %}
@@ -83,7 +82,7 @@
         </section>
     </footer>
     {% block javascripts %}
-        {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/main.js' %}
+        {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/main.js'  output='cache/js/*.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <script type="text/javascript">
