@@ -33,10 +33,10 @@ class CategoryController extends Controller
         $categories = $repository->getAllCategories();
 
         $linkTexts = array(
-            'web-development' => 'веб-разработки',
-            'web-design'      => 'дизайна',
-            'mobile-development'      => 'мобильных приложений',
-            'game-development'       => 'игор'
+            'web-development'    => 'веб-разработки',
+            'web-design'         => 'дизайна',
+            'mobile-development' => 'мобильных приложений',
+            'game-development'   => 'игор'
         );
 
         return array('categories' => $categories, 'linkTexts' => $linkTexts);
