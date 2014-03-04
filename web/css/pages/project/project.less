@@ -5,7 +5,12 @@
   margin: 10px 0 0 0;
   width: 68.2291%;
   text-align: center;
-
+  
+  .no-controls {
+    .prev-slide, .next-slide, .slider-pages {
+      visibility: hidden;
+    }
+  }
   .prev-slide, .next-slide {
     display: block;
     position: relative;
@@ -264,7 +269,16 @@
    }
    .team-list {
      li {
+      width: auto;
       margin: 0 0 26px 0;
+      
+      span {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      p {
+        font-size: 0.857rem;
+      }
      }
      img {
        float: left;
@@ -323,6 +337,11 @@
 }
 
 @media screen and (max-width:1023px){
+  .no-controls {
+    .prev-slide, .next-slide, .slider-pages {
+      display: none;
+    }
+  }
   .prev-page, .next-page {
     position: relative;
     display: inline-block;

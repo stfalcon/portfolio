@@ -11,12 +11,14 @@
     font-size: 1.714rem;
   }
   .years-count {
-     vertical-align: top;
-     font-size: 5.357rem;
+    right: -14px;
+    vertical-align: top;
+    font-size: 5.357rem;
     font-family: 'museo_sans_cyrl', @global-font;
 
     &+span {
       top: 15px;
+      left: 14px;
     }
   }
   p {
@@ -193,8 +195,9 @@
   margin-bottom: 30px;
   
    &.show-drinks {
-    li div:after {
+    li div::after {
         opacity: 1;
+        display: block;
       }
    }
    li {
@@ -206,10 +209,11 @@
      vertical-align: top;
 
      div {
+       display: inline-block;
        position: relative;
        margin-bottom: 15px;
-       width: 134px;
-       height: 134px;
+       width: 135px;
+       height: 135px;
        cursor: pointer;
 
        &:hover {
@@ -218,13 +222,14 @@
         }
        }
        &:after {
+          display: none;
           content: "";
           position: absolute;
           border-radius: 49%;
           left: 0;
           top: 0;
-          width: 134px;
-          height: 134px;
+          width: 135px;
+          height: 135px;
           background: ~"url(../img/bg/empty.png)" rgba(255,255,255,.9) no-repeat center center;
           .transition(all 0.2s ease-in-out); 
           opacity: 0;
