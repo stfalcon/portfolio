@@ -65,11 +65,6 @@ class CategoryController extends Controller
         $paginatedProjects = $this->get('knp_paginator')->paginate($query, $page, 12);
         $paginatedProjects->setUsedRoute('portfolio_category_view');
 
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild($category->getName())->setCurrent(true);
-        }
-
         return array(
             'category' => $category,
             'projects' => $paginatedProjects

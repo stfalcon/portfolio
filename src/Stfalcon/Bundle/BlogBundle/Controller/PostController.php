@@ -21,6 +21,7 @@ class PostController extends AbstractController
     private function _getRequestArrayWithDisqusShortname($array)
     {
         $config = $this->container->getParameter('stfalcon_blog.config');
+
         return array_merge(
             $array,
             array('disqus_shortname' => $config['disqus_shortname'])
@@ -45,11 +46,6 @@ class PostController extends AbstractController
                 ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         $posts= $this->get('knp_paginator')->paginate($allPosts, $page, 10);
 
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild('Блог')->setCurrent(true);
-        }
-
         return $this->_getRequestArrayWithDisqusShortname(array(
             'posts' => $posts
         ));
@@ -67,12 +63,6 @@ class PostController extends AbstractController
      */
     public function viewAction(Post $post)
     {
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild('Блог', array('route' => 'blog'));
-            $breadcrumbs->addChild($post->getTitle())->setCurrent(true);
-        }
-
         return $this->_getRequestArrayWithDisqusShortname(array(
             'post' => $post
         ));
