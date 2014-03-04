@@ -32,7 +32,7 @@
   .post-info {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 7px;
     width: 250px;
     text-align: right;
 
@@ -129,6 +129,7 @@
       font-size: 1em;
       margin-left: 21px;
       margin-right: 0;
+      padding-left: 0;
 
       &:before {
         width: 12px;
@@ -178,7 +179,7 @@
     line-height: 2.143em;
     background: #fff;
     border-radius: 4px;
-    font-family: 'Consolas', @global-font;
+    font-family: 'Consolas', monospace;
   }
   .tips {
     p {
@@ -264,6 +265,10 @@
           margin-left: -14.3%;
         }
       }
+      pre {
+        font-size: 1rem;
+        line-height: 1.714em;
+      }
     }
 }
 
@@ -312,10 +317,6 @@
     }
     .float-left {
       margin-left: -14.3%;
-    }
-    pre {
-      font-size: 1rem;
-      line-height: 1.714em;
     }
   }
 }

@@ -61,27 +61,58 @@ $(function () {
 
     var filter;
     var teamList = $('.avatar'),
-        teamCnt = $('.team-list');
+        teamCnt = $('.team-list'),
+        interestsList = $('.interests a');
 
-    $('.interests a').hover(function(){
-        filter = $(this).data('filter');
-        if(filter === "drinks") {
-            teamCnt.addClass('show-drinks');
-        } else {
-            teamList.each(function(index, value){
-                var interests = eval($(value).data('interests'));
-                if ($.inArray(filter, interests) < 0) {
-                    $(value).stop(true, true).animate({opacity: '0.2'}, 50);
+        if($('.team-list').length){
+            (function() {
+                $('.interests a').click(function(){
+                    filter = $(this).data('filter');
+                    if(filter === "drinks") {
+                        teamCnt.addClass('show-drinks');
+                        showItems();
+                    } else {
+                        teamList.each(function(index, value){
+                            var el = $(value);
+                            var interests = eval(el.data('interests'));
+
+                            teamCnt.removeClass('show-drinks');
+                            if(el.hasClass('disabled')) {
+                                if($.inArray(filter, interests) >= 0) {
+                                    el.removeClass('disabled').animate({opacity: '1'}, 0);
+                                }
+                            } else {
+                                if($.inArray(filter, interests) < 0) {
+                                    el.addClass('disabled').animate({opacity: '0.2'}, 0);
+                                }
+                            }
+                        });
+                    }
+
+                });
+
+                $(document).click(function(e){
+                    if($.inArray(e.target, interestsList) < 0) {
+                        teamCnt.removeClass('show-drinks');
+                        showItems();
+                    }
+                });
+
+                function showItems() {
+                    teamList.each(function(index, value){
+                        $(value).stop(true, true).animate({opacity: '1'}, 50);
+                    }); 
                 }
-            });
-        }
+            })();
 
-    }, function(){
-        teamList.stop(true, true).animate({opacity: '1'}, 50);
-        if(filter === "drinks") {
-            teamCnt.removeClass('show-drinks');
-        }
-    });
+        };
+
+    //  function(){
+    //     teamList.stop(true, true).animate({opacity: '1'}, 50);
+    //     if(filter === "drinks") {
+    //         teamCnt.removeClass('show-drinks');
+    //     }
+    // }
 
 
     if (!$('html').hasClass('lt-ie10')) {
@@ -119,7 +150,11 @@ $(function () {
             prev: '.prev-slide',
             next: '.next-slide'
         });
-        
+
+        projectSlider.on('active', function(){
+            projectSliderCnt.height(projectSliderCnt.find('li.active').height());
+        });
+
         projectSlider.init();
 
         if (projectSlider.items.length > 1) {
