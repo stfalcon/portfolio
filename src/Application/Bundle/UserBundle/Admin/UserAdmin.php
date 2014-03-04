@@ -26,10 +26,13 @@ class UserAdmin extends Admin
         parent::configureFormFields($formMapper);
 
         $formMapper
+            ->with('General')
+                ->add('ordering', null, array('required' => false, 'label' => 'Сортировка'))
+            ->end()
             ->with('Profile')
-                ->add('position', null, array('required' => false, 'label'     => 'Должность'))
-                ->add('avatar', 'file', array('required' => false, 'label'     => 'Аватарка'))
-                ->add('caricature', 'file', array('required' => false, 'label'     => 'Карикатура'))
+                ->add('position', null, array('required' => false, 'label' => 'Должность'))
+                ->add('avatar', 'file', array('required' => false, 'label' => 'Аватарка'))
+                ->add('caricature', 'file', array('required' => false, 'label' => 'Карикатура'))
             ->end()
             ->with('Interests', array('label' => 'Интересы'))
                 ->add('interests', 'choice', array(

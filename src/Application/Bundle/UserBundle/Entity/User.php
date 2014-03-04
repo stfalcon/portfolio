@@ -10,7 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Bundle\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="users")
  * @Vich\Uploadable
  */
@@ -90,6 +90,12 @@ class User extends BaseUser
      *      )
      */
     protected $groups;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    protected $ordering;
 
     /**
      * @var array $interestsList
@@ -280,5 +286,21 @@ class User extends BaseUser
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * @param int $ordering
+     */
+    public function setOrdering($ordering)
+    {
+        $this->ordering = $ordering;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrdering()
+    {
+        return $this->ordering;
     }
 }
