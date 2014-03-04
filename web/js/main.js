@@ -118,7 +118,14 @@ $(function () {
             // Buttons
             prev: '.prev-slide',
             next: '.next-slide'
-        }).init();
+        });
+        
+        projectSlider.init();
+
+        if (projectSlider.items.length > 1) {
+            $('.project-slider-cnt').removeClass('no-controls');
+        }
+
 
         projectSlider.on('moveStart', function () {
             projectSliderCnt.addClass('moving');
