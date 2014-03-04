@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 {% block content_wrapper %}
-    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", {'project': project }) %}
 
     <div class="project-wrapper clearfix">
         <aside class="project-info">
@@ -47,5 +47,5 @@
             </div>
         </div>
     </div>
-    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", {'project': project }) %}
 {% endblock %}

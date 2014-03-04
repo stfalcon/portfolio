@@ -101,25 +101,18 @@ class ProjectController extends Controller
     /**
      * Display links to prev/next projects
      *
-     * @param string $categorySlug Object of category
-     * @param string $projectSlug  Object of project
+     * @param Project $project Object of project
      *
      * @return array
      * @Template()
      */
-    public function nearbyProjectsAction($categorySlug, $projectSlug)
+    public function nearbyProjectsAction($project)
     {
-        // try find category by slug
-        $category = $this->_findCategoryBySlug($categorySlug);
-
-        // try find project by slug
-        $project = $this->_findProjectBySlug($projectSlug);
-
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
 
         // get all projects from this category
         $projects = $em->getRepository("StfalconPortfolioBundle:Project")
-                ->getProjectsByCategory($category);
+                ->findAllProjectsOrderingByDate('p.date', 'DESC');
 
         // get next and previous projects from this category
         $i = 0; $previousProject = null; $nextProject = null;
@@ -132,7 +125,7 @@ class ProjectController extends Controller
             $i++;
         }
 
-        return array('category' => $category, 'previousProject' => $previousProject, 'nextProject' => $nextProject);
+        return array('previousProject' => $previousProject, 'nextProject' => $nextProject);
     }
 
     /**

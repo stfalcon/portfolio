@@ -41,7 +41,7 @@ class PostController extends AbstractController
      */
     public function indexAction($page)
     {
-        $allPosts = $this->get('doctrine')->getEntityManager()
+        $allPosts = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         $posts= $this->get('knp_paginator')->paginate($allPosts, $page, 10);
 
@@ -95,7 +95,7 @@ class PostController extends AbstractController
         $feed->setDescription($config['rss']['description']);
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
-        $posts = $this->get('doctrine')->getEntityManager()
+        $posts = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         foreach ($posts as $post) {
             $entry = new Entry();
@@ -119,7 +119,7 @@ class PostController extends AbstractController
      */
     public function lastAction($count = 1)
     {
-        $posts = $this->get('doctrine')->getEntityManager()
+        $posts = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
 
         return array('posts' => $posts);

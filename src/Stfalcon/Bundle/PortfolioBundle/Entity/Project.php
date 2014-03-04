@@ -35,7 +35,9 @@ class Project
      * @var string $name
      *
      * @Assert\NotBlank()
-     * @Assert\MinLength(3)
+     * @Assert\Length(
+     *      min = "3"
+     * )
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name = '';
@@ -44,7 +46,9 @@ class Project
      * @var string $slug
      *
      * @Assert\NotBlank()
-     * @Assert\MinLength(3)
+     * @Assert\Length(
+     *      min = "3"
+     * )
      * @ORM\Column(name="slug", type="string", length=128, unique=true)
      */
     private $slug;
@@ -53,7 +57,9 @@ class Project
      * @var string $description
      *
      * @Assert\NotBlank()
-     * @Assert\MinLength(10)
+     * @Assert\Length(
+     *      min = "10"
+     * )
      * @ORM\Column(name="description", type="text")
      */
     private $description;

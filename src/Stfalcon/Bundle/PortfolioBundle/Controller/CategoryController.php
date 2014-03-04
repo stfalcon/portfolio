@@ -88,7 +88,7 @@ class CategoryController extends Controller
         // @todo переименовать метод и роут
         // @todo перенести сортировку проектов в админку
         $projects = $this->getRequest()->get('projects');
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         foreach ($projects as $projectInfo) {
             $project = $em->getRepository("StfalconPortfolioBundle:Project")->find($projectInfo['id']);
             $project->setOrdernum($projectInfo['index']);
