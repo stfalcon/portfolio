@@ -83,18 +83,6 @@ class ProjectController extends Controller
         // try find project by slug
         $project = $this->_findProjectBySlug($projectSlug);
 
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild(
-                $category->getName(),
-                array(
-                    'route' => 'portfolio_category_view',
-                    'routeParameters' => array('slug' => $category->getSlug())
-                )
-            );
-            $breadcrumbs->addChild($project->getName())->setCurrent(true);
-        }
-
         return array('project' => $project, 'category' => $category);
     }
 
