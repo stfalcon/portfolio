@@ -9,7 +9,6 @@ class PostAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
         $formMapper
             ->add('title')
             ->add('slug')
