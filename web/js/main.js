@@ -1,4 +1,21 @@
 $(function () {
+    
+    // Unpined header
+    var headroom  = new Headroom($('body')[0], {
+            "tolerance": 0,
+            "offset": 75,
+            "classes": {
+                "initial": "pin-mod-header",
+                "pinned": "header-pinned",
+                "unpinned": "header-unpined",
+                "top": "header-top",
+                "notTop": "header-not-top"
+            }
+            }
+        );
+    
+    headroom.init(); 
+
     var nav = $('header nav');
 
     // show mobile navigation
