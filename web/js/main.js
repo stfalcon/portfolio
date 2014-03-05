@@ -87,19 +87,15 @@ $(function () {
 
                     if($(this).hasClass('active')){
                         toDefaultState();
-                        console.log('off')
                     } else {
                         teamCnt.addClass('active-filter');
                         interestsList.removeClass('active');
                         $(this).addClass('active');
                         filter = $(this).data('filter');
 
-                        console.clear();
-
                         if(filter === "drinks") {
                             teamCnt.addClass('show-drinks');
                             showItems();
-                            console.log('drinks')
                         } else {
                             teamCnt.removeClass('show-drinks');
                             teamList.each(function(index, value){
@@ -107,14 +103,12 @@ $(function () {
                                 var interests = eval(el.data('interests'));   
 
                                 if(el.hasClass('disabled')) {
-                                    console.log(1, filter, interests, ($.inArray(filter, interests) >= 0));
                                     if($.inArray(filter, interests) >= 0) {
                                         el.removeClass('disabled').animate({opacity: '1'}, 0);                                        
                                     } else {
                                         el.addClass('disabled').animate({opacity: '0.2'}, 0);
                                     }
                                 } else {
-                                    console.log(2, filter, interests, ($.inArray(filter, interests) < 0));
                                     if($.inArray(filter, interests) < 0) {
                                         el.addClass('disabled').animate({opacity: '0.2'}, 0);
                                     } else {
@@ -275,16 +269,18 @@ $(function () {
         enquire.register("screen and (min-width:670px)", {
             match: function () {
                 accordionTabs.show();
+                activeIndex = $('.tab-nav [aria-controls='+window.location.hash.split("#")[1]+']').index();
+
                 $(".services-tabs").tabs({
-                    active: 0,
+                    active: activeIndex,
                     create: function (event, ui) {
                         if (window.innerWidth > 1005) {
-                            console.log('init ', window.innerWidth)
                             $(images[0]).fadeIn(200);
                         }
+                        console.log(activeIndex);
                     },
                     activate: function (event, ui) {
-                        console.log(ui);
+                        window.location.hash = ui.newPanel.selector;
                         images.fadeOut(100);
                         if (isVisible) {
                             switch (ui.newPanel.selector) {
@@ -332,7 +328,6 @@ $(function () {
             tab.find('.accordion-wrapper').slideDown(200);
             tab.addClass('open');
         }
-        console.log('click');
     });
 
     function closeAccordion(speed) {
