@@ -305,6 +305,25 @@ a {
 
 /* header */
 
+.header-fixed {
+  &.pinned {
+    position: absolute;
+  }
+  .transition(all .2s ease-in-out);
+}
+
+.header-pinned {
+  .header-fixed {
+    top: 0;
+  }
+}
+
+.header-unpined {
+  .header-fixed {
+    top: -95px;
+  }
+}
+
 .header-fixed header {
   .box-sizing(border-box);
   height: 95px;
@@ -314,6 +333,7 @@ a {
   border-bottom: solid 1px #c3c7c8;
   border-bottom: solid 1px rgba(0, 0, 0, .2);
   padding: 27px 0 26px;
+  .transition(all .2s ease-in-out);
   
   h1 {
     display: none;
