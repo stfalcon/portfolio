@@ -15,7 +15,11 @@ class PostAdmin extends Admin
             ->add('slug')
             ->add('text')
             ->add('tags', 'tags')
-            ->add('author', null, array('data' => $user));
+            ->add('author', null, array(
+                    'required' => true,
+                    'empty_value' => 'Choose an user'
+                )
+            );
     }
 
     protected function configureListFields(ListMapper $listMapper)
