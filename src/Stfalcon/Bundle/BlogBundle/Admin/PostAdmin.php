@@ -9,13 +9,16 @@ class PostAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
         $formMapper
             ->add('title')
             ->add('slug')
             ->add('text')
             ->add('tags', 'tags')
-            ->add('author', null, array('data' => $user));
+            ->add('author', null, array(
+                    'required' => true,
+                    'empty_value' => 'Choose an user'
+                )
+            );
     }
 
     protected function configureListFields(ListMapper $listMapper)
