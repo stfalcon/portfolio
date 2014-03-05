@@ -145,6 +145,11 @@
     text-decoration: none;
     cursor: pointer;
     border-bottom: 1px dotted #6a84d1;
+
+    &.active {
+      border-color: transparent;
+      color: @link-hover-color;
+    }
   }
 }
 
@@ -192,12 +197,21 @@
 /* team-list */
 
 .team-list {
-  margin-bottom: 30px;
-  
+  margin: 0 -10px 30px;
+    
+    &.active-filter {
+      li div {
+        pointer-events: none;
+      }
+    }
    &.show-drinks {
-    li div::after {
-        opacity: 1;
-        display: block;
+      li {
+        div {
+          &:after {
+            opacity: 1;
+            display: block;    
+          }
+        }
       }
    }
    li {
@@ -215,7 +229,6 @@
        width: 135px;
        height: 135px;
        cursor: pointer;
-       pointer-events: none;
 
        &:hover {
         .overlay {
@@ -231,7 +244,7 @@
           top: 0;
           width: 135px;
           height: 135px;
-          background: ~"url(../img/bg/empty.png)" rgba(255,255,255,.9) no-repeat center center;
+          background: ~"url(../img/bg/empty.png)" rgba(245,247,247,.9) no-repeat center center;
           .transition(all 0.2s ease-in-out); 
           opacity: 0;
        }
@@ -281,6 +294,9 @@
 }
 
 .team-list-small {
+  margin-left: 0;
+  margin-right: 0;
+  
   li {
      display: block;
      overflow: hidden;
