@@ -11,11 +11,11 @@ class UserRepository extends EntityRepository
 {
 
     /**
-     * Get all users
+     * Get all active users
      *
      * @return array
      */
-    public function findAllUsers()
+    public function findAllActiveUsers()
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.enabled = :enable')

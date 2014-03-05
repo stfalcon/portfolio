@@ -23,7 +23,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $users = $this->getDoctrine()->getManager()
-                ->getRepository("ApplicationUserBundle:User")->findAllUsers();
+                ->getRepository("ApplicationUserBundle:User")->findAllActiveUsers();
 
         $interestsList = User::getInterestsList();
 
