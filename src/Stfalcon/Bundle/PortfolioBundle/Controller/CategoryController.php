@@ -36,7 +36,7 @@ class CategoryController extends Controller
             'web-development'    => 'веб-разработки',
             'web-design'         => 'дизайна',
             'mobile-development' => 'мобильных приложений',
-            'game-development'   => 'игор'
+            'game-development'   => 'игр'
         );
 
         return array('categories' => $categories, 'linkTexts' => $linkTexts);
