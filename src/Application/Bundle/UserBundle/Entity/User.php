@@ -95,7 +95,7 @@ class User extends BaseUser
      * @var int
      * @ORM\Column(type="integer")
      */
-    protected $ordering;
+    protected $ordering = 0;
 
     /**
      * @var array $interestsList
