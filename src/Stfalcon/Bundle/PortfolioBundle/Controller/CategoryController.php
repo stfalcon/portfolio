@@ -65,11 +65,6 @@ class CategoryController extends Controller
         $paginatedProjects = $this->get('knp_paginator')->paginate($query, $page, 12);
         $paginatedProjects->setUsedRoute('portfolio_category_view');
 
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild($category->getName())->setCurrent(true);
-        }
-
         return array(
             'category' => $category,
             'projects' => $paginatedProjects
@@ -88,7 +83,7 @@ class CategoryController extends Controller
         // @todo переименовать метод и роут
         // @todo перенести сортировку проектов в админку
         $projects = $this->getRequest()->get('projects');
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         foreach ($projects as $projectInfo) {
             $project = $em->getRepository("StfalconPortfolioBundle:Project")->find($projectInfo['id']);
             $project->setOrdernum($projectInfo['index']);

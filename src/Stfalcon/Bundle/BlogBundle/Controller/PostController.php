@@ -21,6 +21,7 @@ class PostController extends AbstractController
     private function _getRequestArrayWithDisqusShortname($array)
     {
         $config = $this->container->getParameter('stfalcon_blog.config');
+
         return array_merge(
             $array,
             array('disqus_shortname' => $config['disqus_shortname'])
@@ -41,14 +42,9 @@ class PostController extends AbstractController
      */
     public function indexAction($page)
     {
-        $allPosts = $this->get('doctrine')->getEntityManager()
+        $allPosts = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         $posts= $this->get('knp_paginator')->paginate($allPosts, $page, 10);
-
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild('Блог')->setCurrent(true);
-        }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
             'posts' => $posts
@@ -67,12 +63,6 @@ class PostController extends AbstractController
      */
     public function viewAction(Post $post)
     {
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild('Блог', array('route' => 'blog'));
-            $breadcrumbs->addChild($post->getTitle())->setCurrent(true);
-        }
-
         return $this->_getRequestArrayWithDisqusShortname(array(
             'post' => $post
         ));
@@ -95,7 +85,7 @@ class PostController extends AbstractController
         $feed->setDescription($config['rss']['description']);
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
-        $posts = $this->get('doctrine')->getEntityManager()
+        $posts = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         foreach ($posts as $post) {
             $entry = new Entry();
@@ -119,7 +109,7 @@ class PostController extends AbstractController
      */
     public function lastAction($count = 1)
     {
-        $posts = $this->get('doctrine')->getEntityManager()
+        $posts = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
 
         return array('posts' => $posts);

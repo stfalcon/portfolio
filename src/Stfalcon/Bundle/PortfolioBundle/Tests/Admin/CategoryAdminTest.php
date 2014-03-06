@@ -98,7 +98,7 @@ class CategoryAdminTest extends WebTestCase
         ));
         $this->doLogin();
 
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_edit', array('id' => $category->getId())));
         $form = $crawler->selectButton('btn_update_and_edit')->form();
@@ -125,7 +125,7 @@ class CategoryAdminTest extends WebTestCase
         ));
         $this->doLogin();
 
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_edit', array('id' => $category->getId())));
 
@@ -160,7 +160,7 @@ class CategoryAdminTest extends WebTestCase
             'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
         ));
         $this->doLogin();
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
         // delete category
