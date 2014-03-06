@@ -270,13 +270,16 @@ $(function () {
     var images = $('.services-tabs .img'),
         accordionTabs = $('.accordion-wrapper'),
         isVisible = true,
-        activeTab = 0;
+        activeIndex = 0;
 
     if (!$('html').hasClass('lt-ie10')) {
         enquire.register("screen and (min-width:670px)", {
             match: function () {
                 accordionTabs.show();
-                activeIndex = $('.tab-nav a[href="'+window.location.hash+'"]').closest('li').index();
+                var hash = window.location.hash;
+                if(hash != "") {
+                    activeIndex = $('.tab-nav a[href="'+hash+'"]').closest('li').index();
+                }
 
                 $(".services-tabs").tabs({
                     active: activeIndex,
