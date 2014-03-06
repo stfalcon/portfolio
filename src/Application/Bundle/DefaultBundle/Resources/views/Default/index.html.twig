@@ -7,11 +7,11 @@
     </section>
     <section class="promo-banner" style="background-color: #274564;">
         <div class="promo-banner-wrapper">
-            <div class="img-wrapper">    <!--use class-->
-                <img src="img/fish/banner1.png" alt=""/>
+            <div class="img-wrapper"> <!--use class-->
+                <a href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net'}) }}"><img src="img/fish/banner1.png" alt=""/></a>
             </div>
             <aside>
-                <h2>Радиалка</h2>
+                <h2><a href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net'}) }}">Радиалка</a></h2>
                 <p>Интернет-магазин снаряжения для туризма, экстремального спорта и отдыха.</p>
                 <a class="more" href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net'}) }}">подробно о проекте</a>
             </aside>

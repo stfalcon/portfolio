@@ -49,7 +49,7 @@ $(function () {
     $("#year-slider").slider({
         min: 0,
         max: yearList.length - 1,
-        value: 0,
+        value: yearList.length - 1,
         step: 1,
         range: 'min',
         start: function (event, ui) {
@@ -83,37 +83,54 @@ $(function () {
 
         if($('.team-list').length){
             (function() {
-                $('.interests a').click(function(){
-                    filter = $(this).data('filter');
-                    if(filter === "drinks") {
-                        teamCnt.addClass('show-drinks');
-                        showItems();
+                interestsList.click(function(){
+
+                    if($(this).hasClass('active')){
+                        toDefaultState();
                     } else {
-                        teamList.each(function(index, value){
-                            var el = $(value);
-                            var interests = eval(el.data('interests'));
+                        teamCnt.addClass('active-filter');
+                        interestsList.removeClass('active');
+                        $(this).addClass('active');
+                        filter = $(this).data('filter');
 
+                        if(filter === "drinks") {
+                            teamCnt.addClass('show-drinks');
+                            showItems();
+                        } else {
                             teamCnt.removeClass('show-drinks');
-                            if(el.hasClass('disabled')) {
-                                if($.inArray(filter, interests) >= 0) {
-                                    el.removeClass('disabled').animate({opacity: '1'}, 0);
-                                }
-                            } else {
-                                if($.inArray(filter, interests) < 0) {
-                                    el.addClass('disabled').animate({opacity: '0.2'}, 0);
-                                }
-                            }
-                        });
-                    }
+                            teamList.each(function(index, value){
+                                var el = $(value);                                
+                                var interests = eval(el.data('interests'));   
 
+                                if(el.hasClass('disabled')) {
+                                    if($.inArray(filter, interests) >= 0) {
+                                        el.removeClass('disabled').animate({opacity: '1'}, 0);                                        
+                                    } else {
+                                        el.addClass('disabled').animate({opacity: '0.2'}, 0);
+                                    }
+                                } else {
+                                    if($.inArray(filter, interests) < 0) {
+                                        el.addClass('disabled').animate({opacity: '0.2'}, 0);
+                                    } else {
+                                        el.removeClass('disabled').animate({opacity: '1'}, 0);                                        
+                                    }
+                                }
+                            });
+                        }
+                    }
                 });
 
                 $(document).click(function(e){
                     if($.inArray(e.target, interestsList) < 0) {
-                        teamCnt.removeClass('show-drinks');
-                        showItems();
+                        toDefaultState();
                     }
                 });
+
+                function toDefaultState(){
+                    teamCnt.removeClass('show-drinks').removeClass('active-filter');
+                    showItems();
+                    interestsList.removeClass('active');
+                }
 
                 function showItems() {
                     teamList.each(function(index, value){
@@ -123,13 +140,6 @@ $(function () {
             })();
 
         };
-
-    //  function(){
-    //     teamList.stop(true, true).animate({opacity: '1'}, 50);
-    //     if(filter === "drinks") {
-    //         teamCnt.removeClass('show-drinks');
-    //     }
-    // }
 
 
     if (!$('html').hasClass('lt-ie10')) {
@@ -259,16 +269,18 @@ $(function () {
         enquire.register("screen and (min-width:670px)", {
             match: function () {
                 accordionTabs.show();
+                activeIndex = $('.tab-nav [aria-controls='+window.location.hash.split("#")[1]+']').index();
+
                 $(".services-tabs").tabs({
-                    active: 0,
+                    active: activeIndex,
                     create: function (event, ui) {
                         if (window.innerWidth > 1005) {
-                            console.log('init ', window.innerWidth)
                             $(images[0]).fadeIn(200);
                         }
+                        console.log(activeIndex);
                     },
                     activate: function (event, ui) {
-                        console.log(ui);
+                        window.location.hash = ui.newPanel.selector;
                         images.fadeOut(100);
                         if (isVisible) {
                             switch (ui.newPanel.selector) {
@@ -316,7 +328,6 @@ $(function () {
             tab.find('.accordion-wrapper').slideDown(200);
             tab.addClass('open');
         }
-        console.log('click');
     });
 
     function closeAccordion(speed) {
