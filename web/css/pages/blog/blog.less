@@ -67,7 +67,11 @@
     border-radius: 4px;
     text-align: center;
     overflow: hidden;
-
+      
+    &.img-center {
+      height: 250px;
+      line-height: 250px;
+    }
     img {
       display: inline;
       margin: 0;
@@ -136,6 +140,9 @@
         left: -20px;
         top: 12px; 
       }
+    }
+    img {
+      margin: 0 0 12px;
     }
   }
    img {
@@ -317,6 +324,10 @@
     h2, h3 {
       margin: 50px 11.1111% 15px;
     }
+    h4, h5, h6 {
+      margin-left: 11.1111%;
+      margin-right: 11.1111%;
+    }
     h2 {
       font-size: 1.571rem;
     }
@@ -450,7 +461,13 @@
       font-size: 1.571rem;
     }
     .post-preview {
-      margin-bottom: 13px;    
+      margin-bottom: 13px;  
+
+      &.img-center {
+        height: auto;
+        line-height: 1em;
+        padding: 20px 0;
+      }  
     }
     .post-info {
       margin-bottom: 16px;
