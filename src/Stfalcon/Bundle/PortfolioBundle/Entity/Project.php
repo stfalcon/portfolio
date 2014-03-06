@@ -158,6 +158,7 @@ class Project
      *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *   }
      * )
+     * @ORM\OrderBy({"ordering" = "ASC"})
      */
     protected $participants;
 
