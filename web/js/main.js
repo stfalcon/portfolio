@@ -278,7 +278,7 @@ $(function () {
                 accordionTabs.show();
                 var hash = window.location.hash;
                 if(hash != "") {
-                    activeIndex = $('.tab-nav a[href="'+window.location.hash+'"]').closest('li').index();
+                    activeIndex = $('.tab-nav a[href="'+hash+'"]').closest('li').index();
                 }
 
                 $(".services-tabs").tabs({
