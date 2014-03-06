@@ -179,7 +179,7 @@ $(function () {
         });
 
         projectSlider.on('active', function(){
-            projectSliderCnt.height(projectSliderCnt.find('li.active').height());
+            projectSliderCnt.height(projectSliderCnt.find('li.active img').height());
         });
 
         projectSlider.init();
@@ -269,7 +269,7 @@ $(function () {
         enquire.register("screen and (min-width:670px)", {
             match: function () {
                 accordionTabs.show();
-                activeIndex = $('.tab-nav [aria-controls='+window.location.hash.split("#")[1]+']').index();
+                activeIndex = $('.tab-nav a[href="'+window.location.hash+'"]').closest('li').index();
 
                 $(".services-tabs").tabs({
                     active: activeIndex,
@@ -277,10 +277,11 @@ $(function () {
                         if (window.innerWidth > 1005) {
                             $(images[0]).fadeIn(200);
                         }
-                        console.log(activeIndex);
                     },
                     activate: function (event, ui) {
-                        window.location.hash = ui.newPanel.selector;
+                        tabs = ui;
+                        console.log(ui)
+                        history.pushState('', '', ui.newPanel.selector);
                         images.fadeOut(100);
                         if (isVisible) {
                             switch (ui.newPanel.selector) {
@@ -303,7 +304,7 @@ $(function () {
             },
             unmatch: function () {
                 $(".services-tabs").tabs("destroy");
-                closeAccordion(0)
+                closeAccordion(0);
             }
         }).register("screen and (max-width:1005px)", {
                 match: function () {
@@ -318,7 +319,9 @@ $(function () {
             });
     }
     ;
-
+    $('.tab-content').click(function(){
+        history.pushState('','', '#'+$(this).attr('id'));
+    });
     $('.tab-title').on('click', function (event) {
         var tab = $(this).parent();
         if ($(tab).hasClass('open')) {
