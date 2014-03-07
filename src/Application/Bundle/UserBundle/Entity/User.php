@@ -101,7 +101,7 @@ class User extends BaseUser
      * @var array $interestsList
      */
     static protected $interestsList = array(
-        'musics-lover' => 'Меломаны',
+        'musics_lover' => 'Меломаны',
         'games' => 'Геймеры',
         'books' => 'Книголюбы',
         'movies' => 'Киноманы',
@@ -111,7 +111,7 @@ class User extends BaseUser
         'ironman' => 'Вжелезкахковырялы',
         'cyclists' => 'Велосипедисты',
         'detectives' => 'Детективы',
-        'unusual-hobbies' => 'Необычные увлечения',
+        'unusual_hobbies' => 'Необычные увлечения',
     );
 
     /**
