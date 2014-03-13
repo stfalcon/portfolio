@@ -134,7 +134,7 @@ $(function () {
 
                 function showItems() {
                     teamList.each(function(index, value){
-                        $(value).stop(true, true).animate({opacity: '1'}, 50);
+                        $(value).stop(true, true).animate({opacity: '1'}, 0);
                     }); 
                 }
             })();
