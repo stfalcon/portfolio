@@ -25,6 +25,10 @@ class DefaultController extends Controller
         $users = $this->getDoctrine()->getManager()
                 ->getRepository("ApplicationUserBundle:User")->findAllActiveUsers();
 
+        foreach ($users as $user) {
+            $user->setInterests(array_values($user->getInterests()));
+        }
+
         $interestsList = User::getInterestsList();
 
         return array('users' => $users, 'interestsList' => $interestsList);
