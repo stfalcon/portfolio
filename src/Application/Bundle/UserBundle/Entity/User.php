@@ -187,10 +187,11 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $interests
+     * @param array $interests
      */
     public function setInterests($interests)
     {
+        sort($interests);
         $this->interests = serialize($interests);
     }
 
