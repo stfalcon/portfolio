@@ -67,9 +67,9 @@ class User extends BaseUser
     protected $position;
 
     /**
-     * @ORM\Column(type="string", length=500, name="interests", nullable=true)
+     * @ORM\Column(type="array", length=500, name="interests", nullable=true)
      *
-     * @var string $interests
+     * @var array $interests
      */
     protected $interests;
 
@@ -187,25 +187,27 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $interests
+     * @param array $interests
      */
     public function setInterests($interests)
     {
-        $this->interests = serialize($interests);
+        $this->interests = $interests;
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getInterests()
     {
-        $result = unserialize($this->interests);
+        return $this->interests;
+    }
 
-        if (!$result) {
-            return array();
-        }
-
-        return $result;
+    /**
+     * @return array
+     */
+    public function getInterestsValues()
+    {
+        return array_values($this->interests);
     }
 
     /**
