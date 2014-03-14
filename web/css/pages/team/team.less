@@ -218,8 +218,7 @@
      display: inline-block;
      width: 155px;
      text-align: center;
-     margin: 0 2px 0 0;
-     margin-bottom: 26px;
+     margin: 0 2px 26px 0;
      vertical-align: top;
 
      div {
@@ -289,6 +288,7 @@
     margin: 0;
     color: #919699;
     font-size: 0.857rem;
+    line-height: 1em;
   }
 }
 
@@ -326,7 +326,19 @@
 @media screen and (max-width:503px){
   .team-list {
      .team-list-small;
-   }
+
+     li {
+      margin: 0 0 15px;
+      width: auto;
+     }
+  }
+  .team-info {
+    margin: 0 0 15px;
+
+    h2 {
+      margin-top: 0;
+    }
+  }
 }
 
 /* team-list */
