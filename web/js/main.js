@@ -268,6 +268,23 @@ $(function () {
         }
     }
 
+    enquire.register("screen and (max-width: 481px)", {
+        match: function(){
+            var promoBannerCnt = $('.promo-banner-wrapper');
+            if(promoBannerCnt.length) {
+                var bannerImg = promoBannerCnt.find('.img-wrapper');
+                promoBannerCnt.append(bannerImg);
+            }
+        },
+        unmatch: function(){
+            var promoBannerCnt = $('.promo-banner-wrapper');
+            if(promoBannerCnt.length) {
+                var bannerImg = promoBannerCnt.find('.img-wrapper');
+                promoBannerCnt.prepend(bannerImg);
+            }
+        }
+    });
+
     if($('.services-tabs').length) {
         (function(){
             var images = $('.services-tabs .img'),
