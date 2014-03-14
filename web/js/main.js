@@ -270,21 +270,18 @@ $(function () {
 
     enquire.register("screen and (max-width: 481px)", {
         match: function(){
-                promoBannerCnt = $('.promo-banner-wrapper');
-                if(promoBannerCnt.length) {
-                    var bannerImg = promoBannerCnt.find('.img-wrapper');
-                    promoBannerCnt.append(bannerImg);
-                console.log(1)
-                }
-                console.log(1)
+            var promoBannerCnt = $('.promo-banner-wrapper');
+            if(promoBannerCnt.length) {
+                var bannerImg = promoBannerCnt.find('.img-wrapper');
+                promoBannerCnt.append(bannerImg);
+            }
         },
         unmatch: function(){
+            var promoBannerCnt = $('.promo-banner-wrapper');
             if(promoBannerCnt.length) {
                 var bannerImg = promoBannerCnt.find('.img-wrapper');
                 promoBannerCnt.prepend(bannerImg);
-            console.log(2)
             }
-            console.log(2)
         }
     });
 
