@@ -203,6 +203,14 @@ class User extends BaseUser
     }
 
     /**
+     * @return array
+     */
+    public function getInterestsValues()
+    {
+        return array_values($this->interests);
+    }
+
+    /**
      * @param string $drink
      */
     public function setDrink($drink)
