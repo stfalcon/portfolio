@@ -28,12 +28,12 @@ $(function () {
     });
 
     if (!$('html').hasClass('lt-ie10')) {
-        enquire.register("screen and (min-width:620px)", {
+        enquire.register("screen and (max-width:764px)", {
             match: function () {
-                nav.show();
+                nav.hide();
             },
             unmatch: function () {
-                nav.hide();
+                nav.show();
             }
         })
     }
@@ -142,16 +142,6 @@ $(function () {
         };
 
 
-    if (!$('html').hasClass('lt-ie10')) {
-        enquire.register("screen and (min-width:620px)", {
-            match: function () {
-                nav.show();
-            },
-            unmatch: function () {
-                nav.hide();
-            }
-        })
-    }
     var projectSlider = false,
         projectSliderCnt = $('.project-slider');
 
