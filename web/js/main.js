@@ -207,54 +207,42 @@ $(function () {
         var forSliderWidth = $('.project-info'),
             slides = projectSliderCnt.find('li');
 
-// reload project slider when mediaqueries breakpoint
+        // reload project slider when mediaqueries breakpoint
         if (!$('html').hasClass('lt-ie10')) {
-            var teamList = $('.team-list');
-            enquire.register("screen and (max-width:1222px)", {
-                match: function () {
-                    projectSlider.reload();
-                },
-                unmatch: function () {
-                    projectSlider.reload();
-                }
-            }).register("screen and (max-width:1184px) and (min-width:1024px)", {
-                    match: function () {
-                        projectSlider.reload();
-                    },
-                    unmatch: function () {
-                        projectSlider.reload();
-                    }
-                }).register("screen and (max-width:840px)", {
-                    match: function () {
-                        var sliderWidth = $('.project-info').width();
-                        resizeSliderItems(forSliderWidth);
-                        projectSlider.reload();
-
-                        $(window).bind('resize', function () {
+            (function(){
+                var teamList = $('.team-list');
+                enquire.register("screen and (max-width:840px)", {
+                        match: function () {
+                            var sliderWidth = $('.project-info').width();
                             resizeSliderItems(forSliderWidth);
-                        });
-                    },
-                    unmatch: function () {
-                        $(window).unbind('resize');
+
+                            $(window).bind('resize', function () {
+                                resizeSliderItems(forSliderWidth);
+                            });
+                        },
+                        unmatch: function () {
+                            $(window).unbind('resize');
+                            projectSliderCnt[0].style.width = '';
+                            slides.each(function (idnex, value) {
+                                value.style.width = '';
+                            });
+                        }
+                    }).register("screen and (max-width:620px)", {
+                        match: function () {
+                            $('.work-on-project h2').bind('click', function () {
+                                teamList.slideToggle(100);
+                            });
+                            teamList.hide();
+                        },
+                        unmatch: function () {
+                            $('.work-on-project h2').unbind('click');
+                            teamList.show();
+                        }
+                    });
+                    $(window).resize(function(){
                         projectSlider.reload();
-                        projectSliderCnt[0].style.width = '';
-                        slides.each(function (idnex, value) {
-                            value.style.width = '';
-                        });
-                    }
-                }).register("screen and (max-width:620px)", {
-                    match: function () {
-                        $('.work-on-project h2').bind('click', function () {
-                            teamList.slideToggle(100);
-                        });
-                        teamList.hide();
-                    },
-                    unmatch: function () {
-                        $('.work-on-project h2').unbind('click');
-                        teamList.show();
-                        projectSlider.reload();
-                    }
-                });
+                    });
+            })();
         }
     }
 
