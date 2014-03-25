@@ -239,7 +239,7 @@ $(function () {
                             teamList.show();
                         }
                     });
-                    $(window).resize(function(){
+                    $(window).on("resize orientationchange", function(){
                         projectSlider.reload();
                     });
             })();
