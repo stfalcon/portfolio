@@ -178,8 +178,8 @@ sonata_media:
                 - sonata.media.provider.image
 
             formats:
-                small: { width: 100 , quality: 70}
-                slide:   { width: 720 , quality: 70}
+                small: { width: 100 , quality: 95}
+                slide:   { width: 720 , quality: 95}
 
     cdn:
         server:
