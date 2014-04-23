@@ -70,8 +70,10 @@ class ProjectController extends Controller
      * @param string $projectSlug  Slug of project
      *
      * @return array
+     *
      * @Route("/portfolio/{categorySlug}/{projectSlug}", name="portfolio_project_view")
      * @Template()
+     * @throws NotFoundHttpException
      */
     public function viewAction($categorySlug, $projectSlug)
     {
@@ -82,6 +84,10 @@ class ProjectController extends Controller
 
         // try find project by slug
         $project = $this->_findProjectBySlug($projectSlug);
+
+        if (!$project->getCategories()->contains($category)) {
+            throw new NotFoundHttpException('The project does not exist.');
+        }
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
