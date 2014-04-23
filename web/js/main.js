@@ -246,7 +246,7 @@ $(function () {
         }
     }
 
-    enquire.register("screen and (max-width: 481px)", {
+    enquire.register("screen and (max-width: 670px)", {
         match: function(){
             var promoBannerCnt = $('.promo-banner-wrapper');
             if(promoBannerCnt.length) {
