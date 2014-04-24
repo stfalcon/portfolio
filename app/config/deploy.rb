@@ -21,5 +21,5 @@ set :use_composer,  true
 #set :deploy_via,    :rsync_with_remote_cache
 
 set :shared_files,        ["app/config/parameters.ini"]
-set :shared_children,     [app_path + "/logs", web_path + "/uploads", web_path + "/bundles", "vendor"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", web_path + "/bundles", web_path + "/media"]
 set :dump_assetic_assets, true
