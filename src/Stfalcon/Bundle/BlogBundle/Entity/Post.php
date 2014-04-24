@@ -79,7 +79,6 @@ class Post
      * @var \DateTime $created
      *
      * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
@@ -119,6 +118,7 @@ class Post
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->created = new \DateTime();
     }
 
     /**
