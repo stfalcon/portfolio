@@ -36,7 +36,9 @@
         "liip/functional-test-bundle": "dev-master#31d286f84c29d3d415c757fd4943342b88538c68",
         "vich/uploader-bundle": "0.8.1",
         "sonata-project/user-bundle": "2.2.4",
-        "sonata-project/media-bundle": "2.2.8"
+        "sonata-project/media-bundle": "2.2.8",
+        "zendframework/zend-feed": "2.3.1",
+        "zendframework/zend-servicemanager": "2.3.1"
     },
     "scripts": {
         "post-install-cmd": [
