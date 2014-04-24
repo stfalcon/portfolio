@@ -3,6 +3,8 @@
 namespace Stfalcon\Bundle\BlogBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
+use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 
 /**
  * PostRepository
@@ -15,14 +17,25 @@ class PostRepository extends EntityRepository
     /**
      * Get all posts
      *
-     * @return array
+     * @return Query
      */
-    public function getAllPosts()
+    public function getAllPublishedPostsAsQuery()
     {
         $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.published = 1')
             ->orderBy('p.created', 'DESC');
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery();
+    }
+
+    /**
+     * Get all posts
+     *
+     * @return array
+     */
+    public function getAllPublishedPosts()
+    {
+        return $this->getAllPublishedPostsAsQuery()->getResult();
     }
 
     /**
@@ -34,22 +47,27 @@ class PostRepository extends EntityRepository
      */
     public function getLastPosts($count = null)
     {
-        $qb = $this->createQueryBuilder('p')
-            ->orderBy('p.created', 'DESC');
+        $query = $this->getAllPublishedPostsAsQuery();
 
         if ((int) $count) {
-            $qb->setMaxResults($count);
+            $query->setMaxResults($count);
         }
 
-        return $qb->getQuery()->getResult();
+        return $query->getResult();
     }
 
+    /**
+     * @param Tag $tag
+     *
+     * @return Query
+     */
     public function findPostsByTagAsQuery($tag)
     {
         $qb = $this->createQueryBuilder('p');
 
         return $qb->leftJoin('p.tags', 't')
             ->where('t.id = :tagId')
+            ->andWhere('p.published = 1')
             ->setParameter('tagId', $tag->getId())
             ->getQuery();
     }

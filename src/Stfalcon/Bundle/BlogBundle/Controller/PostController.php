@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Zend\Feed\Writer\Entry;
 use Zend\Feed\Writer\Feed;
 
@@ -30,20 +31,20 @@ class PostController extends AbstractController
     /**
      * List of posts for admin
      *
+     * @param int $page Page number
+     *
+     * @return array
+     *
      * @Route("/blog/{title}/{page}", name="blog",
      *      requirements={"page"="\d+", "title"="page"},
      *      defaults={"page"="1", "title"="page"})
      * @Template()
-     *
-     * @param int $page Page number
-     *
-     * @return array
      */
     public function indexAction($page)
     {
-        $allPosts = $this->get('doctrine')->getEntityManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
-        $posts= $this->get('knp_paginator')->paginate($allPosts, $page, 10);
+        $allPostsQuery = $this->get('doctrine')->getManager()
+                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery();
+        $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
@@ -58,15 +59,20 @@ class PostController extends AbstractController
     /**
      * View post
      *
-     * @Route("/blog/post/{slug}", name="blog_post_view")
-     * @Template()
-     *
      * @param Post $post
      *
      * @return array
+     *
+     * @throws NotFoundHttpException
+     *
+     * @Route("/blog/post/{slug}", name="blog_post_view")
+     * @Template()
      */
     public function viewAction(Post $post)
     {
+        if (!$post->isPublished()) {
+            throw new NotFoundHttpException('Post not found');
+        }
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
             $breadcrumbs->addChild('Блог', array('route' => 'blog'));
@@ -95,8 +101,8 @@ class PostController extends AbstractController
         $feed->setDescription($config['rss']['description']);
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
-        $posts = $this->get('doctrine')->getEntityManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
+        $posts = $this->get('doctrine')->getManager()
+                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPosts();
         foreach ($posts as $post) {
             $entry = new Entry();
             $entry->setTitle($post->getTitle());
@@ -119,7 +125,7 @@ class PostController extends AbstractController
      */
     public function lastAction($count = 1)
     {
-        $posts = $this->get('doctrine')->getEntityManager()
+        $posts = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
 
         return array('posts' => $posts);
