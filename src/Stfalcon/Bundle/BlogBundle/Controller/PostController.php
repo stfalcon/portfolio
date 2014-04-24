@@ -105,7 +105,10 @@ class PostController extends AbstractController
             $feed->addEntry($entry);
         }
 
-        return new Response($feed->export('rss'));
+        $response = new Response($feed->export('rss'));
+        $response->headers->add(array('Content-Type' => 'application/xml'));
+
+        return $response;
     }
 
     /**
