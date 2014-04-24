@@ -47,7 +47,7 @@
     </div>
     <footer class="vcard">
         <section class="blog-posts">
-            <h3>Свежее из блога <i class="icon icon-share"></i></h3>
+            <h3>Свежее из блога <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-share"></i></a></h3>
             {% render controller("StfalconBlogBundle:Post:last", { 'count': 3 }) %}
         </section>
         <section class="contacts">
