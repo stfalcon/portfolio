@@ -1,5 +1,7 @@
 {% extends '::layout.html.twig' %}
 
+{% block title %}{{ category.name }} / {{ parent() }}{% endblock %}
+
 {% block content_wrapper %}
     <section>
         <h2>{{ category.name }}</h2>

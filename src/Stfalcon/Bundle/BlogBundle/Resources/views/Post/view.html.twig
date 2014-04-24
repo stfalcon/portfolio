@@ -1,5 +1,5 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
-{% block title %}{{ parent() }} / {% trans %} Блог {% endtrans %} / {{ post.title }}{% endblock %}
+{% block title %}{{ post.title }} / {% trans %} Блог {% endtrans %} / {{ parent() }}{% endblock %}
 {% block content_wrapper %}
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}

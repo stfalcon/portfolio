@@ -1,5 +1,7 @@
 {% extends '::layout.html.twig' %}
 
+{% block title %}{% trans %}Проекты{% endtrans %} / {{ parent() }}{% endblock %}
+
 {% block content_wrapper %}
     <section>
         <h2 class="hidden">Список проектов</h2>
