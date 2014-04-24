@@ -18,16 +18,6 @@ use Zend\Feed\Writer\Feed;
  */
 class PostController extends AbstractController
 {
-
-    private function _getRequestArrayWithDisqusShortname($array)
-    {
-        $config = $this->container->getParameter('stfalcon_blog.config');
-        return array_merge(
-            $array,
-            array('disqus_shortname' => $config['disqus_shortname'])
-        );
-    }
-
     /**
      * List of posts for admin
      *
@@ -132,5 +122,20 @@ class PostController extends AbstractController
                 ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
 
         return array('posts' => $posts);
+    }
+
+    /**
+     * @param array $array
+     *
+     * @return array
+     */
+    private function _getRequestArrayWithDisqusShortname($array)
+    {
+        $config = $this->container->getParameter('stfalcon_blog.config');
+
+        return array_merge(
+            $array,
+            array('disqus_shortname' => $config['disqus_shortname'])
+        );
     }
 }
