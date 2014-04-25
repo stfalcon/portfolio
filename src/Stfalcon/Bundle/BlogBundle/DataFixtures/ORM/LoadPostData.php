@@ -35,6 +35,7 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
         $postFirst->addTag($symfonyTag);
         $postFirst->addTag($doctrine2Tag);
         $postFirst->setAuthor($adminUser);
+        $postFirst->setPublished(true);
         $manager->persist($postFirst);
         $manager->merge($symfonyTag);
         $manager->merge($doctrine2Tag);
@@ -46,6 +47,7 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
         $postAboutPhp->addTag($symfonyTag);
         $postAboutPhp->addTag($doctrine2Tag);
         $postAboutPhp->setAuthor($secondUser);
+        $postAboutPhp->setPublished(true);
         $manager->persist($postAboutPhp);
         $manager->merge($symfonyTag);
         $manager->merge($doctrine2Tag);

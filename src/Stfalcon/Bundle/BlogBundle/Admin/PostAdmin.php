@@ -18,7 +18,12 @@ class PostAdmin extends Admin
                     'required' => true,
                     'empty_value' => 'Choose an user'
                 )
-            );
+            )
+        ->add('created', 'date', array(
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy'
+                ))
+        ->add('published', null, array('required' => false));
     }
 
     protected function configureListFields(ListMapper $listMapper)

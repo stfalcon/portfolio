@@ -49,6 +49,7 @@ class PostAdminTest extends WebTestCase
         $form[$formId . '[slug]'] = 'post-slug';
         $form[$formId . '[text]'] = 'Post text';
         $form[$formId . '[tags]'] = 'Post,tags';
+        $form[$formId . '[author]'] = 1;
         $this->client->submit($form);
 
         // check responce

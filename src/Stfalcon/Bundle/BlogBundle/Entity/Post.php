@@ -79,7 +79,6 @@ class Post
      * @var \DateTime $created
      *
      * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
@@ -107,11 +106,19 @@ class Post
     protected $author;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $published = true;
+
+    /**
      * Initialization properties for new post entity
      */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->created = new \DateTime();
     }
 
     /**
@@ -352,5 +359,26 @@ class Post
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @param boolean $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    public function isPublished()
+    {
+        return (bool) $this->published;
     }
 }
