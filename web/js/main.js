@@ -173,7 +173,7 @@ $(function () {
         projectSlider.init();
 
         $(window).load(function(){
-            projectSliderCnt.height(projectSliderCnt.find('li.active img').height());
+            projectSliderCnt.height(projectSliderCnt.find('li.active img').height()).addClass('loaded');
         });
 
         if (projectSlider.items.length > 1) {

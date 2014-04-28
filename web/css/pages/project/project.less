@@ -128,9 +128,19 @@
     background: linear-gradient(to right, rgba(245,247,247,0) 0%,rgba(245,247,247,1) 100%); /* W3C */
   }
   li {
+    display: none;
     width: 720px;
     float: left;
     margin-right: 50px;
+
+    &:first-child {
+      display: block;
+    }
+  }
+  &.loaded {
+    li {
+      display: block;
+    }
   }
   img {
     max-width: 100%;
