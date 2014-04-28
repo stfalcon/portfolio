@@ -8,6 +8,7 @@
   .tab-nav {
     overflow: hidden;
     margin-bottom: 47px;
+    margin: 0 0 47px 7.7083%;
     padding: 42px 0 10px;
 
     h2 {
@@ -84,6 +85,7 @@
   }
   .tab-content-wrapper {
     position: relative;
+    margin: 0 0 0 7.7083%;
 
     .img {
       display: none;
@@ -176,6 +178,14 @@
         height: 19px;
         background: @sprite -226px -8px;
       }
+    }
+  }
+}
+
+@media screen and (max-width:1023px) {
+  .services-tabs {
+    .tab-content-wrapper, .tab-nav {
+      margin-left: 0;
     }
   }
 }
