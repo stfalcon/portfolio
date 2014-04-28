@@ -25,6 +25,7 @@ class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInt
         $phpTag = $this->getReference('tag-php');
         $firstUser = $this->getReference('user-first');
 
+        $createdAt = new \DateTime();
         for ($i=1; $i<=12; $i++) {
             $post = new Post();
             $post->setTitle('Post for paginator #'.$i);
@@ -32,6 +33,7 @@ class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInt
             $post->setText('Generally this bundle is based on Knp Pager component. This component introduces a different way for pagination handling. You can read more about the internal logic on the given documentation link.'.$i);
             $post->addTag($phpTag);
             $post->setAuthor($firstUser);
+            $post->setCreated(clone $createdAt->modify("+$i day"));
             $post->setPublished(true);
 
             $manager->persist($post);
