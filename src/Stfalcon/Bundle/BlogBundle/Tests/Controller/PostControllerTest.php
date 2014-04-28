@@ -89,7 +89,7 @@ class PostControllerTest extends WebTestCase
         $this->assertCount(1, $crawlerFirstPage->filter('nav.pagination'));
         $this->assertCount(10, $crawlerFirstPage->filter('article.blog-post'));
         $this->assertCount(1, $crawlerFirstPage->filter('article.blog-post')->first()
-            ->filter('h1 a:contains("Post for paginator #1")'));
+            ->filter('h1 a:contains("Post for paginator #12")'));
 
         // click link to second page and check posts on second page
         $crawlerSecondPage = $client->click($crawlerFirstPage->filter('nav.pagination li a:contains("2")')->link());
@@ -97,7 +97,7 @@ class PostControllerTest extends WebTestCase
             $client->getRequest()->getRequestUri());
         $this->assertCount(2, $crawlerSecondPage->filter('article.blog-post'));
         $this->assertCount(1, $crawlerSecondPage->filter('article.blog-post')->first()
-            ->filter('h1 a:contains("Post for paginator #11")'));
+            ->filter('h1 a:contains("Post for paginator #2")'));
     }
 
 }
