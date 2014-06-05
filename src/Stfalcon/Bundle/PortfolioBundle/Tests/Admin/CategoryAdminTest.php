@@ -86,8 +86,7 @@ class CategoryAdminTest extends WebTestCase
         $form[$formId . '[description]'] = ''; // should not be blank
         $crawler = $this->client->submit($form);
 
-        // check redirect to list of categories
-        $this->assertCount(1, $crawler->filter('.alert-error:contains("При создании элемента произошла ошибка.")'));
+        $this->assertFalse($this->client->getResponse()->isRedirect());
     }
 
     public function testEditCategory()
@@ -137,7 +136,7 @@ class CategoryAdminTest extends WebTestCase
         $form[$formId . '[description]'] = '';
         $crawler = $this->client->submit($form);
 
-        $this->assertCount(1, $crawler->filter('.alert-error:contains("Во время обновления элемента произошла ошибка.")'));
+        $this->assertFalse($this->client->getResponse()->isRedirect());
     }
 
     public function testEditNonExistCategory()

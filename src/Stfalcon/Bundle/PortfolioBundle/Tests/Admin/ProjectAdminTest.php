@@ -117,7 +117,7 @@ class ProjectAdminTest extends WebTestCase
         $form[$formId . '[onFrontPage]'] = 1;
         $crawler = $this->client->submit($form);
 
-        $this->assertEquals(1, $crawler->filter('.alert-error:contains("При создании элемента произошла ошибка.")')->count());
+        $this->assertFalse($this->client->getResponse()->isRedirect());
     }
 
     public function testEditProject()
