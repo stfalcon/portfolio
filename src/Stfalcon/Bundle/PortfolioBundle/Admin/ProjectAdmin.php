@@ -34,6 +34,7 @@ class ProjectAdmin extends Admin
             ->add('categories')
             ->add('users')
             ->add('published', 'checkbox', array('required' => false))
+            ->add('shadow', 'checkbox', array('required' => false))
             ->add('onFrontPage', 'checkbox', array('required' => false))
             ->add('participants', 'entity', array(
                 'required' => false,

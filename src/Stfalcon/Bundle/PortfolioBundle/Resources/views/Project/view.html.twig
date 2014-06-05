@@ -41,8 +41,9 @@
                 <div class="project-slider">
                     {% if project.media|length %}
                         <ul>
+                            {% set filter = project.shadow?'slide':'reference' %}
                             {% for mediaGallery in project.media %}
-                                <li><img src="{% path mediaGallery.media, 'slide' %}" alt="alt"/></li>
+                                <li {{ not project.shadow?'class="no-shadow"' }}><img src="{% path mediaGallery.media, filter %}" alt="alt"/></li>
                             {% endfor %}
                         </ul>
                     {% endif %}
