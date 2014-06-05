@@ -190,6 +190,12 @@ class Project
     protected $published;
 
     /**
+     * @var boolean
+     * @ORM\Column(name="shadow", type="boolean")
+     */
+    protected $shadow = true;
+
+    /**
      * Initialization properties for new project entity
      */
     public function __construct()
@@ -585,5 +591,29 @@ class Project
     public function isPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * @param boolean $shadow
+     */
+    public function setShadow($shadow)
+    {
+        $this->shadow = $shadow;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getShadow()
+    {
+        return $this->shadow;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasShadow()
+    {
+        return $this->shadow;
     }
 }
