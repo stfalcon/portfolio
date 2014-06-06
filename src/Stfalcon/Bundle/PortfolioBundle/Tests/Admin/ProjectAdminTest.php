@@ -68,7 +68,7 @@ class ProjectAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_create_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
 
@@ -103,7 +103,7 @@ class ProjectAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_create_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
 
@@ -128,14 +128,14 @@ class ProjectAdminTest extends WebTestCase
             'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadProjectData'
         ));
         $this->doLogin();
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $project = $em->getRepository("StfalconPortfolioBundle:Project")->findOneBy(array('slug' => 'preorder-it'));
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_project_edit', array('id' => $project->getId())));
 
         $form = $crawler->selectButton('btn_update_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
 
@@ -166,7 +166,7 @@ class ProjectAdminTest extends WebTestCase
             'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
         ));
         $this->doLogin();
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $project = $em->getRepository("StfalconPortfolioBundle:Project")->findOneBy(array('slug' => 'preorder-it'));
 
         // delete project
@@ -208,7 +208,7 @@ class ProjectAdminTest extends WebTestCase
         $tds->first();
         $this->assertContains('preorder.it', $tds->current()->textContent);
 
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $project = $em->getRepository("StfalconPortfolioBundle:Project")->findOneBy(array('name' => 'preorder.it'));
         $this->client->request('POST', $this->getUrl('portfolioProjectsApplyOrder'), array(
             'projects' => array(array('id' => $project->getId(), 'index' => 200))
