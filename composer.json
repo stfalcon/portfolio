@@ -19,8 +19,8 @@
         "jms/security-extra-bundle": "1.5.1",
         "friendsofsymfony/user-bundle": "v1.3.3",
 
-        "doctrine/doctrine-fixtures-bundle": "dev-master#186d605aa6b592bd577e07e0e9a2c420b02b2492",
-        "doctrine/doctrine-migrations-bundle": "dev-master#3792aa78445773387754c6853bbd7f4dcb31f486",
+        "doctrine/doctrine-fixtures-bundle": "v2.2.0",
+        "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
         "gedmo/doctrine-extensions": "2.3.9",
         "stof/doctrine-extensions-bundle": "1.1.*@dev",
 
