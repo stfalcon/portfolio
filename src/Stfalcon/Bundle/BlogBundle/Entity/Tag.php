@@ -6,14 +6,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
+
 /**
  * Stfalcon\Bundle\BlogBundle\Entity\Tag
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  * @ORM\Table(name="blog_tags")
  * @ORM\Entity
+ * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\BlogBundle\Entity\TagTranslation")
  */
-class Tag
+class Tag implements Translatable
 {
     /**
      * Tag id
@@ -29,7 +33,7 @@ class Tag
      * Tag text
      *
      * @var string $text
-     * @Assert\NotBlank()
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="text", type="string", length=255)
      */
     private $text = '';
@@ -42,6 +46,20 @@ class Tag
     private $posts;
 
     /**
+     * @ORM\OneToMany(
+     *   targetEntity="TagTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
+
+    /**
      * Entity constructor
      *
      * @param string $text A tag text
@@ -50,6 +68,7 @@ class Tag
     {
         $this->text = $text;
         $this->posts = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -102,5 +121,54 @@ class Tag
     public function __toString()
     {
         return $this->getText();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param TagTranslation $t
+     */
+    public function addTranslation(TagTranslation $t)
+    {
+        $this->translations->add($t);
+        $t->setObject($this);
+    }
+
+    /**
+     * @param TagTranslation $t
+     */
+    public function removeTranslation(TagTranslation $t)
+    {
+        $this->translations->removeElement($t);
+    }
+
+    /**
+     * @param $translations
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
     }
 }

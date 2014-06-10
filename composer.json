@@ -25,6 +25,10 @@
         "gedmo/doctrine-extensions": "2.3.9",
         "stof/doctrine-extensions-bundle": "dev-master#0247e6f1658d76292c8ffe2c5106090bd36bd799",
 
+        "jms/i18n-routing-bundle": "1.1.1",
+        "jms/translation-bundle": "1.1.0",
+        "a2lix/translation-form-bundle": "0.*@dev",
+
         "sonata-project/doctrine-orm-admin-bundle": "2.2.7",
         "sonata-project/admin-bundle": "2.2.11",
         "sonata-project/cache-bundle": "2.1.6",
