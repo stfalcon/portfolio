@@ -121,7 +121,7 @@ class ProjectController extends Controller
         // try find project by slug
         $project = $this->_findProjectBySlug($projectSlug);
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         // get all projects from this category
         $projects = $em->getRepository("StfalconPortfolioBundle:Project")
