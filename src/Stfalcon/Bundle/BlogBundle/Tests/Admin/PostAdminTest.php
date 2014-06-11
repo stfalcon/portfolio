@@ -83,7 +83,7 @@ class PostAdminTest extends WebTestCase
             'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
 
         $this->doLogin();
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $post = $em->getRepository("StfalconBlogBundle:Post")->findOneBy(array('slug' => 'post-about-php'));
 
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_blog_post_edit', array('id' => $post->getId())));
@@ -113,7 +113,7 @@ class PostAdminTest extends WebTestCase
             'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
 
         $this->doLogin();
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $post = $em->getRepository("StfalconBlogBundle:Post")->findOneBy(array('slug' => 'post-about-php'));
 
         // delete post
