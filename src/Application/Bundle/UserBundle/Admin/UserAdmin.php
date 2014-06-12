@@ -16,6 +16,9 @@ use Sonata\UserBundle\Admin\Model\UserAdmin as Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 
 
+/**
+ * Class UserAdmin
+ */
 class UserAdmin extends Admin
 {
     /**
@@ -25,12 +28,54 @@ class UserAdmin extends Admin
     {
         parent::configureFormFields($formMapper);
 
+        $formMapper->remove('firstname');
+        $formMapper->remove('lastname');
+
         $formMapper
             ->with('General')
                 ->add('ordering', null, array('required' => false, 'label' => 'Сортировка'))
             ->end()
             ->with('Profile')
-                ->add('position', null, array('required' => false, 'label' => 'Должность'))
+                ->add('translations', 'a2lix_translations_gedmo', array(
+                        'translatable_class' => 'Application\Bundle\UserBundle\Entity\User',
+                        'fields' => array(
+                            'firstname' => array(
+                                'label' => 'Имя',
+                                'locale_options' => array(
+                                    'ru' => array(
+                                        'required' => true
+                                    ),
+                                    'en' => array(
+                                        'required' => false
+                                    )
+                                )
+                            ),
+                            'lastname' => array(
+                                'label' => 'Фамилия',
+                                'locale_options' => array(
+                                    'ru' => array(
+                                        'required' => true
+                                    ),
+                                    'en' => array(
+                                        'required' => false
+                                    )
+                                )
+                            ),
+                            'position' => array(
+                                'label' => 'Должность',
+                                'locale_options' => array(
+                                    'ru' => array(
+                                        'required' => true
+                                    ),
+                                    'en' => array(
+                                        'required' => false
+                                    )
+                                )
+                            )
+                        ),
+                        'label' => 'Перевод'
+                    )
+                )
                 ->add('avatar', 'file', array('required' => false, 'label' => 'Аватарка'))
                 ->add('caricature', 'file', array('required' => false, 'label' => 'Карикатура'))
             ->end()
@@ -49,7 +94,11 @@ class UserAdmin extends Admin
             ->end();
     }
 
-    public function preUpdate($entity){
+    /**
+     * @param mixed $entity
+     */
+    public function preUpdate($entity)
+    {
         $entity->setUpdatedAt(new \DateTime());
     }
 }

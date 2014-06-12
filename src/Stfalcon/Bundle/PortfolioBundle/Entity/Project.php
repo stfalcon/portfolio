@@ -6,6 +6,7 @@ use Application\Bundle\MediaBundle\Entity\Media;
 use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Translatable\Translatable;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -17,9 +18,10 @@ use Imagine;
  *
  * @ORM\Table(name="portfolio_projects")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\PortfolioBundle\Repository\ProjectRepository")
+ * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\PortfolioBundle\Entity\ProjectTranslation")
  * @Vich\Uploadable
  */
-class Project
+class Project implements Translatable
 {
 
     /**
@@ -38,6 +40,7 @@ class Project
      * @Assert\Length(
      *      min = "3"
      * )
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name = '';
@@ -60,6 +63,7 @@ class Project
      * @Assert\Length(
      *      min = "10"
      * )
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -197,9 +201,23 @@ class Project
 
     /**
      * @var boolean
-     * @ORM\Column(name="shadow", type="boolean")
+     * @ORM\Column(name="shadow", type="boolean", options={"default" = true})
      */
     protected $shadow = true;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="ProjectTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
 
     /**
      * Initialization properties for new project entity
@@ -210,6 +228,7 @@ class Project
         $this->participants = new ArrayCollection();
         $this->media = new ArrayCollection();
         $this->published = true;
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -621,5 +640,74 @@ class Project
     public function hasShadow()
     {
         return $this->shadow;
+    }
+
+    /**
+     * @param ProjectTranslation $projectTranslation
+     */
+    public function addTranslations(ProjectTranslation $projectTranslation)
+    {
+        if (!$this->translations->contains($projectTranslation)) {
+            $this->translations->add($projectTranslation);
+            $projectTranslation->setObject($this);
+        }
+    }
+    /**
+     * @param ProjectTranslation $projectTranslation
+     */
+    public function addTranslation(ProjectTranslation $projectTranslation)
+    {
+        if (!$this->translations->contains($projectTranslation)) {
+            $this->translations->add($projectTranslation);
+            $projectTranslation->setObject($this);
+        }
+    }
+
+    /**
+     * @param ProjectTranslation $projectTranslation
+     */
+    public function removeTranslation(ProjectTranslation $projectTranslation)
+    {
+        $this->translations->removeElement($projectTranslation);
+    }
+
+    /**
+     * @param ArrayCollection $translations
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param mixed $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 }

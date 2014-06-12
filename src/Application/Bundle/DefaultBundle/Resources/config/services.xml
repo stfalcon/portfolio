@@ -11,6 +11,7 @@
     <services>
         <service id="application_default.menu_builder" class="%application_default.menu_builder.class%">
             <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="translator" />
         </service>
 
         <!-- main menu -->

@@ -32,13 +32,14 @@ class PostController extends AbstractController
      */
     public function indexAction($page)
     {
+        $translator = $this->get('translator');
         $allPostsQuery = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery();
         $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild('Блог')->setCurrent(true);
+            $breadcrumbs->addChild($translator->trans('Блог'))->setCurrent(true);
         }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
@@ -60,12 +61,13 @@ class PostController extends AbstractController
      */
     public function viewAction(Post $post)
     {
+        $translator = $this->get('translator');
         if (!$post->isPublished()) {
             throw new NotFoundHttpException('Post not found');
         }
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild('Блог', array('route' => 'blog'));
+            $breadcrumbs->addChild($translator->trans('Блог'), array('route' => 'blog'));
             $breadcrumbs->addChild($post->getTitle())->setCurrent(true);
         }
 

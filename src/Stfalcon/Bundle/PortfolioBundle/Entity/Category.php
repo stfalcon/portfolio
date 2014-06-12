@@ -4,6 +4,8 @@ namespace Stfalcon\Bundle\PortfolioBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Translatable\Translatable;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,8 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="portfolio_categories")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\PortfolioBundle\Repository\CategoryRepository")
+ * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\PortfolioBundle\Entity\CategoryTranslation")
  */
-class Category
+class Category implements Translatable
 {
 
     /**
@@ -31,6 +34,7 @@ class Category
      * @Assert\Length(
      *      min = "3"
      * )
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name = '';
@@ -53,6 +57,7 @@ class Category
      * @Assert\Length(
      *      min = "3"
      * )
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -83,12 +88,27 @@ class Category
     private $cost;
 
     /**
+     * @ORM\OneToMany(
+     *   targetEntity="CategoryTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
+
+    /**
      * Initialization properties for new category entity
      */
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->cost = '';
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -233,5 +253,74 @@ class Category
     public function getCost()
     {
         return $this->cost;
+    }
+
+    /**
+     * @param CategoryTranslation $categoryTranslation
+     */
+    public function addTranslations(CategoryTranslation $categoryTranslation)
+    {
+        if (!$this->translations->contains($categoryTranslation)) {
+            $this->translations->add($categoryTranslation);
+            $categoryTranslation->setObject($this);
+        }
+    }
+    /**
+     * @param CategoryTranslation $categoryTranslation
+     */
+    public function addTranslation(CategoryTranslation $categoryTranslation)
+    {
+        if (!$this->translations->contains($categoryTranslation)) {
+            $this->translations->add($categoryTranslation);
+            $categoryTranslation->setObject($this);
+        }
+    }
+
+    /**
+     * @param CategoryTranslation $categoryTranslation
+     */
+    public function removeTranslation(CategoryTranslation $categoryTranslation)
+    {
+        $this->translations->removeElement($categoryTranslation);
+    }
+
+    /**
+     * @param ArrayCollection $translations
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param mixed $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 }

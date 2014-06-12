@@ -27,6 +27,6 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
     function disqus_config() {
-        this.language = "ru";
+        this.language = "{{ app.request.locale }}";
     }
 </script>

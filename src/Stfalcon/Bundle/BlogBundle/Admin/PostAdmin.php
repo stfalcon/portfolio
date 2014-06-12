@@ -5,14 +5,44 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
+/**
+ * Class PostAdmin
+ */
 class PostAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
+            ->add('translations', 'a2lix_translations_gedmo', array(
+                    'translatable_class' => 'Stfalcon\Bundle\BlogBundle\Entity\Post',
+                    'fields' => array(
+                        'title' => array(
+                            'label' => 'title',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'text' => array(
+                            'label' => 'text',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                    ),
+                    'label' => 'Перевод'
+                )
+            )
             ->add('slug')
-            ->add('text')
             ->add('tags', 'tags')
             ->add('author', null, array(
                     'required' => true,

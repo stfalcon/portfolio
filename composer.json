@@ -26,7 +26,7 @@
 
         "jms/i18n-routing-bundle": "1.1.1",
         "jms/translation-bundle": "1.1.0",
-        "a2lix/translation-form-bundle": "0.*@dev",
+        "a2lix/translation-form-bundle": "1.2",
 
         "sonata-project/doctrine-orm-admin-bundle": "2.2.7",
         "sonata-project/admin-bundle": "2.2.11",

@@ -8,10 +8,15 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Translatable\Translatable;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
+ * User Class
+ *
  * @ORM\Entity(repositoryClass="Application\Bundle\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="users")
+ * @Gedmo\TranslationEntity(class="Application\Bundle\UserBundle\Entity\UserTranslation")
  * @Vich\Uploadable
  */
 class User extends BaseUser
@@ -61,6 +66,7 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255, name="company_position", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
      *
      * @var string $position
      */
@@ -124,10 +130,40 @@ class User extends BaseUser
         'water' => 'Вода',
     );
 
+    /**
+     * @Gedmo\Translatable(fallback=true)
+     * @var string
+     */
+    protected $firstname;
+
+    /**
+     * @Gedmo\Translatable(fallback=true)
+     * @var string
+     */
+    protected $lastname;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="UserTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $userLocale;
+
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
         $this->groups = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -304,5 +340,74 @@ class User extends BaseUser
     public function getOrdering()
     {
         return $this->ordering;
+    }
+
+    /**
+     * @param UserTranslation $userTranslation
+     */
+    public function addTranslations(UserTranslation $userTranslation)
+    {
+        if (!$this->translations->contains($userTranslation)) {
+            $this->translations->add($userTranslation);
+            $userTranslation->setObject($this);
+        }
+    }
+    /**
+     * @param UserTranslation $userTranslation
+     */
+    public function addTranslation(UserTranslation $userTranslation)
+    {
+        if (!$this->translations->contains($userTranslation)) {
+            $this->translations->add($userTranslation);
+            $userTranslation->setObject($this);
+        }
+    }
+
+    /**
+     * @param UserTranslation $userTranslation
+     */
+    public function removeTranslation(UserTranslation $userTranslation)
+    {
+        $this->translations->removeElement($userTranslation);
+    }
+
+    /**
+     * @param ArrayCollection $translations
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param mixed $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->userLocale = $locale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->userLocale;
     }
 }

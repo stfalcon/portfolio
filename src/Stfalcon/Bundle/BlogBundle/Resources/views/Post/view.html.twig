@@ -1,12 +1,12 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
-{% block title %}{{ post.title }} / {% trans %} Блог {% endtrans %} / {{ parent() }}{% endblock %}
+{% block title %}{{ post.title }} / {{ 'Блог'|trans }} / {{ parent() }}{% endblock %}
 {% block content_wrapper %}
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}
         <div class="post-content">
             {{ post.textAsHtml|moreToSpan|raw }}
-            <a class="read-more prev-page" href="{{ path('blog') }}"><span>Вернуться к списку записей</span>
-                <span>К списку записей</span></a>
+            <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
+                <span>{{ 'К списку записей'|trans }}</span></a>
         </div>
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
         <p>
@@ -29,7 +29,7 @@
             })();
 
             function disqus_config() {
-                this.language = "ru";
+                this.language = "{{ app.request.locale }}";
                 this.callbacks.onNewComment = [function () {
                     $.ajax({  url: '{{ url('blog_post_disqus_sync', {'slug': post.slug}) }}' });
                 }];

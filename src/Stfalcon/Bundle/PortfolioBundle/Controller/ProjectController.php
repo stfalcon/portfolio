@@ -77,6 +77,7 @@ class ProjectController extends Controller
      */
     public function viewAction($categorySlug, $projectSlug)
     {
+        $translator = $this->get('translator');
         // @todo упростить когда что-то разрулят с этим PR https://github.com/sensio/SensioFrameworkExtraBundle/pull/42
 
         // try find category by slug
@@ -86,7 +87,7 @@ class ProjectController extends Controller
         $project = $this->_findProjectBySlug($projectSlug);
 
         if (!$project->getCategories()->contains($category)) {
-            throw new NotFoundHttpException('The project does not exist.');
+            throw new NotFoundHttpException($translator->trans('Проект не существует.'));
         }
 
         if ($this->has('application_default.menu.breadcrumbs')) {
@@ -151,12 +152,13 @@ class ProjectController extends Controller
      */
     private function _findCategoryBySlug($slug)
     {
+        $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")
                 ->findOneBy(array('slug' => $slug));
 
         if (!$category) {
-            throw new NotFoundHttpException('The category does not exist.');
+            throw new NotFoundHttpException($translator->trans('Категория не существует.'));
         }
 
         return $category;
@@ -172,12 +174,13 @@ class ProjectController extends Controller
      */
     private function _findProjectBySlug($slug)
     {
+        $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository("StfalconPortfolioBundle:Project")
                 ->findOneBy(array('slug' => $slug));
 
         if (!$project) {
-            throw new NotFoundHttpException('The project does not exist.');
+            throw new NotFoundHttpException($translator->trans('Проект не существует.'));
         }
 
         return $project;

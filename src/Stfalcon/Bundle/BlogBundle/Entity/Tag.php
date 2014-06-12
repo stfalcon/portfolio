@@ -15,7 +15,6 @@ use Gedmo\Translatable\Translatable;
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  * @ORM\Table(name="blog_tags")
  * @ORM\Entity
- * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\BlogBundle\Entity\TagTranslation")
  */
 class Tag implements Translatable
 {
@@ -33,7 +32,7 @@ class Tag implements Translatable
      * Tag text
      *
      * @var string $text
-     * @Gedmo\Translatable(fallback=true)
+     * @Assert\NotBlank()
      * @ORM\Column(name="text", type="string", length=255)
      */
     private $text = '';
@@ -46,20 +45,6 @@ class Tag implements Translatable
     private $posts;
 
     /**
-     * @ORM\OneToMany(
-     *   targetEntity="TagTranslation",
-     *   mappedBy="object",
-     *   cascade={"persist", "remove"}
-     * )
-     */
-    private $translations;
-
-    /**
-     * @Gedmo\Locale
-     */
-    private $locale;
-
-    /**
      * Entity constructor
      *
      * @param string $text A tag text
@@ -68,7 +53,6 @@ class Tag implements Translatable
     {
         $this->text = $text;
         $this->posts = new ArrayCollection();
-        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -121,54 +105,5 @@ class Tag implements Translatable
     public function __toString()
     {
         return $this->getText();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLocale()
-    {
-        return $this->locale;
-    }
-
-    /**
-     * @param $locale
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getTranslations()
-    {
-        return $this->translations;
-    }
-
-    /**
-     * @param TagTranslation $t
-     */
-    public function addTranslation(TagTranslation $t)
-    {
-        $this->translations->add($t);
-        $t->setObject($this);
-    }
-
-    /**
-     * @param TagTranslation $t
-     */
-    public function removeTranslation(TagTranslation $t)
-    {
-        $this->translations->removeElement($t);
-    }
-
-    /**
-     * @param $translations
-     */
-    public function setTranslations($translations)
-    {
-        $this->translations = $translations;
     }
 }

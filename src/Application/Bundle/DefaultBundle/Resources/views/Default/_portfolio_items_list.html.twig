@@ -1,9 +1,9 @@
 <section>
-    <h2 class="hidden">Список проектов</h2>
+    <h2 class="hidden">{{ 'Список проектов'|trans }}</h2>
     <ul class="projects">
         {% for project in projects %}
             {% include 'StfalconPortfolioBundle:Project:_projects_list_item.html.twig' with {'project':project, 'category': project.categories.first} %}
         {% endfor %}
     </ul>
 </section>
-<a class="show-all-projects" href="{{ path('portfolio_all_projects') }}">Все проекты</a>
+<a class="show-all-projects" href="{{ path('portfolio_all_projects') }}">{{ 'Все проекты'|trans }}</a>

@@ -1,10 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}Услуги / {{ parent() }}{% endblock %}
+{% block title %}{{ "Услуги"|trans }} / {{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
     <section class="services-tabs">
-        <h1>Чем мы занимаемся</h1>
+        <h1>{{ "Чем мы занимаемся"|trans }}</h1>
         <ul class="tab-nav">
             {% for category in categories %}
                 <li><h2><a href="#{{ category.slug }}" {{ loop.index == 1?'class="active"':'' }}>{{ category.name }}</a></h2></li>
@@ -22,12 +22,12 @@
                             {{ category.description | raw }}
                         </div>
                         <div class="price">
-                            Стоимость проекта
-                            <span>от {{ category.cost }} $</span>
+                            {{ "Стоимость проекта"|trans }}
+                            <span>{{ "от"|trans }} {{ category.cost }} $</span>
                         </div>
                         <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
                             <span class="arrow-btn"></span>
-                            <span>посмотреть примеры проектов {{ linkTexts[category.slug] | default('') }}</span>
+                            <span>{{ "посмотреть примеры проектов"|trans }} {{ linkTexts[category.slug] | default('') | trans }}</span>
                         </a>
                     </div>
                 </div>

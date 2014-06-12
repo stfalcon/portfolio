@@ -30,6 +30,7 @@ class TagController extends AbstractController
      */
     public function viewAction(Tag $tag, $page)
     {
+        $translator = $this->get('translator');
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
         $query = $repository->findPostsByTagAsQuery($tag);
         $posts = $this->get('knp_paginator')
@@ -37,7 +38,7 @@ class TagController extends AbstractController
 
         if ($this->has('menu.breadcrumbs')) {
             $breadcrumbs = $this->get('menu.breadcrumbs');
-            $breadcrumbs->addChild('Блог', $this->get('router')->generate('blog'));
+            $breadcrumbs->addChild($translator->trans('Блог'), $this->get('router')->generate('blog'));
             $breadcrumbs->addChild($tag->getText())->setIsCurrent(true);
         }
 

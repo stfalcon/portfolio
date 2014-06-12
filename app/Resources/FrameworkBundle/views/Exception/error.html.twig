@@ -1,8 +1,13 @@
+{# @todo update error page #}
 {% extends '::internal.html.twig' %}
 
-{% block title %}An Error Occurred: {{ status_text }}{% endblock %}
+{% block title %}
+    {{ 'An Error Occurred: %status_text%'|trans({'%status_text%': {{ status_text }}}) }}
+{% endblock %}
 
 {% block content %}
-        <h1>Oops! An Error Occurred</h1>
-        <p>The server returned a "{{ exception.statuscode }} {{ exception.statustext }}".</p>
+    <h1>{{ 'Oops! An Error Occurred'|trans }}</h1>
+    <p>
+        {{ 'The server returned a "%statuscode% %statustext%".'|trans({'%statuscode%': {{ exception.statuscode }}, '%statustext%': {{ exception.statustext }}}) }}
+    </p>
 {% endblock %}

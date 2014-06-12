@@ -30,9 +30,9 @@
     <div class="header-fixed {{ (app.request.attributes.get('_route') == 'blog_post_view')?"pinned":"" }}">
         <header>
             <a class="logo" href="{{ path('homepage') }}" title="Stfalcon.com"></a>
-            <h1>Веб-студия stfalcon</h1>
+            <h1>{{ 'Веб-студия stfalcon'|trans }}</h1>
             <nav>
-                <h2 class="hidden">Навигация</h2>
+                <h2 class="hidden">{{ 'Навигация'|trans }}</h2>
                 {{ knp_menu_render('main') }}
                 <svg viewBox="0 0 20 20" class="close-mobile-nav">
                     <path class="icon-close-nav" d="M19.5303301,18.4696699 L20.0606602,19 L19,20.0606602 L18.4696699,19.5303301 L10,11.0606602 L1.53033009,19.5303301 L1,20.0606602 L-0.0606601718,19 L0.469669914,18.4696699 L8.93933983,10 L0.469669914,1.53033009 L-0.0606601718,1 L1,-0.0606601718 L1.53033009,0.469669914 L10,8.93933983 L18.4696699,0.469669914 L19,-0.0606601718 L20.0606602,1 L19.5303301,1.53033009 L11.0606602,10 L19.5303301,18.4696699 Z M19.5303301,18.4696699"></path>
@@ -47,25 +47,27 @@
     </div>
     <footer class="vcard">
         <section class="blog-posts">
-            <h3>Свежее из блога <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-share"></i></a></h3>
+            <h3>{{ 'Свежее из блога'|trans }} <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-share"></i></a></h3>
             {% render controller("StfalconBlogBundle:Post:last", { 'count': 3 }) %}
         </section>
         <section class="contacts">
-            <h3>На связи</h3>
+            <h3>{{ 'На связи'|trans }}</h3>
             <ul class="address-list">
                 <li>
-                    <span>{% trans %}Позвонить{% endtrans %}:</span >
+                    <span>{{ 'Позвонить'|trans }}:</span >
                     <abbr title="+ 380 (97) 874-03-42" class="tel">+380 97 874-03-42</abbr>
                 </li>
                 <li>
-                    <span>{% trans %}Написать{% endtrans %}:</span>
+                    <span>{{ 'Написать'|trans }}:</span>
                     <a class="email" href="mailto:info@stfalcon.com">info@stfalcon.com</a>
                 </li>
                 <li>
-                    <span>Зайти в гости:</span>
-                    <span class="adr"><span class="street-address">{% trans %}ул. Заречанская{% endtrans %} 3/2,</span>
-                    <span class="locality">{% trans %}Хмельницкий{% endtrans %},</span>
-                    <span class="country-name">{% trans %}Украина{% endtrans %}</span></span>
+                    <span>{{ 'Зайти в гости'|trans }}</span>
+                    <span class="adr">
+                        <span class="street-address">{{ 'ул. Заречанская'|trans }} 3/2,</span>
+                        <span class="locality">{{ 'Хмельницкий'|trans }},</span>
+                        <span class="country-name">{{ 'Украина'|trans }}</span>
+                    </span>
                 </li>
             </ul>
         </section>
@@ -76,7 +78,7 @@
                 <li><a href="https://github.com/stfalcon-studio" class="icon icon-github" target="_blank"></a></li>
             </ul>
             <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
-                <span class="category">{% trans %}веб-студия{% endtrans %}</span>
+                <span class="category">{{ 'веб-студия'|trans }}</span>
                 <a href="http://stfalcon.com" title="stfalcon" class="fn org">stfalcon.com</a>
             </div>
         </section>
