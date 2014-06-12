@@ -8,7 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{% trans %}Веб-студия{% endtrans %} stfalcon.com{% endblock %}</title>
+    <title>{% block title %}{{ 'Веб-студия'|trans }} stfalcon.com{% endblock %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="/blog/rss" />
@@ -30,7 +30,7 @@
     <div class="header-fixed {{ (app.request.attributes.get('_route') == 'blog_post_view')?"pinned":"" }}">
         <header>
             <a class="logo" href="{{ path('homepage') }}" title="Stfalcon.com"></a>
-            <h1>{{ 'Веб-студия stfalcon'|trans }}</h1>
+            <h1>{{ 'Веб-студия'|trans }} stfalcon</h1>
             <nav>
                 <h2 class="hidden">{{ 'Навигация'|trans }}</h2>
                 {{ knp_menu_render('main') }}
@@ -38,6 +38,7 @@
                     <path class="icon-close-nav" d="M19.5303301,18.4696699 L20.0606602,19 L19,20.0606602 L18.4696699,19.5303301 L10,11.0606602 L1.53033009,19.5303301 L1,20.0606602 L-0.0606601718,19 L0.469669914,18.4696699 L8.93933983,10 L0.469669914,1.53033009 L-0.0606601718,1 L1,-0.0606601718 L1.53033009,0.469669914 L10,8.93933983 L18.4696699,0.469669914 L19,-0.0606601718 L20.0606602,1 L19.5303301,1.53033009 L11.0606602,10 L19.5303301,18.4696699 Z M19.5303301,18.4696699"></path>
                 </svg>
             </nav>
+            {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
             <span class="show-mobile-nav"><img src="{{ asset('img/bg/menu_icon.svg') }}" alt="Open menu"/></span>
         </header>
     </div>

@@ -12,7 +12,7 @@
         </ul>
         <div class="tab-content-wrapper">
             {% for category in categories %}
-                <img src="img/bg/figure{{ loop.index }}.png" class="img" alt="{{ category.name }}"/>
+                <img src="/img/bg/figure{{ loop.index }}.png" class="img" alt="{{ category.name }}"/>
             {% endfor %}
             {% for category in categories %}
                 <div id="{{ category.slug }}" class="tab-content">
