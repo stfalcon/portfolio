@@ -371,19 +371,18 @@ a {
 /* top navigation */
 
 header nav {
-  position: absolute;
-  top: 42px;
-  right: 0;
-  width: 100%;
-  text-align: right;
+  position: relative;
+  float: right;
+  top: 13px;
+  margin-right: 44px;
 
   ul {
     overflow: hidden;
   }
 
   li {
-    display: inline-block;
-    margin-left: 5.7%;
+    float: left;
+    margin-left: 50px;
 
     &.current a {
       color: #ed002d;
@@ -398,6 +397,18 @@ header nav {
     color: #2c373c;
     font-family: 'museo_sans_cyrl', @global-font;
     letter-spacing: 0.161em;
+  }
+}
+
+.locales {
+  margin: 0;
+
+  li {
+    margin-left: 12px;
+  }
+  .active a {
+    color: #99A2A6;
+    cursor: default;
   }
 }
 
@@ -418,7 +429,8 @@ header nav {
 
 .show-mobile-nav {
   display: none;
-  position: absolute;
+  float: right;
+  margin: 9px 2px 0 8px;
   right: 2px;
   top: 24px;
   .sq(28px);
@@ -426,6 +438,11 @@ header nav {
   text-align: center;
   cursor: pointer;
 
+  &.current-language {
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 29px;
+  }
   img {
     margin-top: 7px;
     width: 16px;
@@ -436,10 +453,18 @@ header nav {
 @media screen and (max-width:1330px) {
   header {
     nav {
-      top: 40px;
-      
+       margin-right: 29px;
+
       a {
         font-size: 0.857rem;
+      }
+      li {
+        margin-left: 37px;
+      }
+    }
+    .locales {
+      li {
+        margin-left: 7px;
       }
     }
   }
@@ -460,7 +485,24 @@ header nav {
   }
   header {
     nav {
-      top: 26px;
+      top: 14px;
+    }
+  }
+}
+
+@media screen and (max-width:900px) {
+  header {
+    nav {
+      margin-right: 22px;
+
+      li {
+        margin-left: 19px;
+      }
+    }
+    .locales {
+      li {
+        margin-left: 5px;
+      }
     }
   }
 }
@@ -492,6 +534,7 @@ header nav {
           text-align: center;
           float: none;
           margin: 0;
+
           &:last-child {
             a {
               border-bottom: solid 1px rgba(255, 255, 255, .13);
@@ -508,12 +551,21 @@ header nav {
           line-height: 44px;
           outline: solid 0px transparent;
           border-top: solid 1px rgba(255, 255, 255, .13);
+          letter-spacing: 0.1em;
           
           &:hover {
             border-color: rgba(255, 255, 255, .13);
           }
         }
       }
+    }
+  }
+  .locales {
+    ul {
+      height: 196px;
+    }
+    .active a {
+      color: @link-hover-color;
     }
   }
   .show-mobile-nav, .close-mobile-nav {

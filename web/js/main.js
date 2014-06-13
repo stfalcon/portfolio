@@ -16,24 +16,31 @@ $(function () {
     
     headroom.init(); 
 
-    var nav = $('header nav');
+    var nav = $('header nav'),
+        locales = $('.locales');
 
     // show mobile navigation
-    $('.show-mobile-nav').on('click', function () {
+    $('.show-nav').on('click', function () {
         nav.fadeIn(200);
+    });
+    $('.current-language').on('click', function () {
+        locales.fadeIn(200);
     });
 
     $('.close-mobile-nav').on('click', function () {
         nav.fadeOut(200);
+        locales.fadeOut(200);
     });
 
     if (!$('html').hasClass('lt-ie10')) {
         enquire.register("screen and (max-width:764px)", {
             match: function () {
                 nav.hide();
+                locales.hide();
             },
             unmatch: function () {
                 nav.show();
+                locales.show();
             }
         })
     }
