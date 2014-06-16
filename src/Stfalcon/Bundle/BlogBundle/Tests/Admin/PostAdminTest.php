@@ -45,9 +45,9 @@ class PostAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_create_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $form[$formId . '[title]'] = 'Post title';
+        $form[$formId . '[translations][defaultLocale][ru][title]'] = 'Post title';
+        $form[$formId . '[translations][defaultLocale][ru][text]'] = 'Post text';
         $form[$formId . '[slug]'] = 'post-slug';
-        $form[$formId . '[text]'] = 'Post text';
         $form[$formId . '[tags]'] = 'Post,tags';
         $form[$formId . '[author]'] = 1;
         $this->client->submit($form);
@@ -91,9 +91,9 @@ class PostAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_update_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $form[$formId . '[title]'] = 'New post title';
+        $form[$formId . '[translations][defaultLocale][ru][title]'] = 'New post title';
+        $form[$formId . '[translations][defaultLocale][ru][text]'] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..';
         $form[$formId . '[slug]'] = 'new-post-slug';
-        $form[$formId . '[text]'] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..';
         $form[$formId . '[tags]'] = 'php, symfony2, etc';
         $this->client->submit($form);
 

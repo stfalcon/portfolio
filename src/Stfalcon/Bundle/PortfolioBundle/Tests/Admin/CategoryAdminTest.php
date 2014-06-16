@@ -54,9 +54,9 @@ class CategoryAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_create_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $form[$formId . '[name]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][name]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Short text about web design servise.';
         $form[$formId . '[slug]'] = 'web-design';
-        $form[$formId . '[description]'] = 'Short text about web design servise.';
         $form[$formId . '[cost]'] = '20 000';
         $this->client->submit($form);
 
@@ -81,9 +81,9 @@ class CategoryAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_create_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $form[$formId . '[name]'] = ''; // should not be blank
+        $form[$formId . '[translations][defaultLocale][ru][name]'] = ''; // should not be blank
+        $form[$formId . '[translations][defaultLocale][ru][description]'] = ''; // should not be blank
         $form[$formId . '[slug]'] = ''; // should not be blank
-        $form[$formId . '[description]'] = ''; // should not be blank
         $crawler = $this->client->submit($form);
 
         $this->assertFalse($this->client->getResponse()->isRedirect());
@@ -103,9 +103,9 @@ class CategoryAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_update_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $form[$formId . '[name]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][name]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Short text about web design servise.';
         $form[$formId . '[slug]'] = 'web-design';
-        $form[$formId . '[description]'] = 'Short text about web design servise.';
         $this->client->submit($form);
 
         // check responce
@@ -131,9 +131,9 @@ class CategoryAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_update_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
-        $form[$formId . '[name]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][name]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][description]'] = '';
         $form[$formId . '[slug]'] = 'web-design';
-        $form[$formId . '[description]'] = '';
         $crawler = $this->client->submit($form);
 
         $this->assertFalse($this->client->getResponse()->isRedirect());
