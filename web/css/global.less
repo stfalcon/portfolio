@@ -498,6 +498,9 @@ header nav {
       li {
         margin-left: 19px;
       }
+      a {
+        letter-spacing: 0.1em;
+      }
     }
     .locales {
       li {
@@ -534,7 +537,6 @@ header nav {
           text-align: center;
           float: none;
           margin: 0;
-
           &:last-child {
             a {
               border-bottom: solid 1px rgba(255, 255, 255, .13);
@@ -551,7 +553,6 @@ header nav {
           line-height: 44px;
           outline: solid 0px transparent;
           border-top: solid 1px rgba(255, 255, 255, .13);
-          letter-spacing: 0.1em;
           
           &:hover {
             border-color: rgba(255, 255, 255, .13);
@@ -871,6 +872,30 @@ footer {
   color: @global-text-color;
   text-align: center;
   background: #fff;
+}
+
+.error-page {
+  text-align: center;
+  margin: 33px auto 89px;
+  width: 60.625%;
+
+  h2 {
+    font-size: 1.714rem;
+    line-height: 1em;
+  }
+  img {
+    margin: 0 0 26px;
+    border-radius: 12px;
+    max-width: 100%;
+    .box-shadow(0 11px 20px rgba(44,55,60,.07));
+  }
+}
+
+@media screen and (max-width:764px) {
+  .error-page {
+    width: 90%;
+    margin: 0 auto 58px;
+  }
 }
 
 @media screen and (max-width:1089px) {
