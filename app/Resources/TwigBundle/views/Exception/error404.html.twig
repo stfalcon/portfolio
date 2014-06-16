@@ -1,0 +1,16 @@
+{% extends '::layout.html.twig' %}
+
+{% block content_wrapper %}
+    <div class="error-page">
+        <p>
+            <img src="{{ asset('img/error.png') }}" alt="Error"/>
+        </p>
+        <h1>{{ 'Нет сигнала!'|trans }}</h1>
+        <h2>{{ 'Ошибка 404. Страница не найдена.'|trans }}</h2>
+        <p>
+            {{ 'Видимо, вы неправильно набрали адрес или такой страницы больше не существует. Вы можете продолжить с'|trans }}
+            <a href="{{ path('homepage') }}" title="">{{ 'главной страницы'|trans }}</a>
+            {{ 'либо посмотреть наши крутые'|trans }} <a href="{{ path('portfolio_all_projects') }}" title="">{{ 'проекты'|trans }}</a>.
+        </p>
+    </div>
+{% endblock %}
