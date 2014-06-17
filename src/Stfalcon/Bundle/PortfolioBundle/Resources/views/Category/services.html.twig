@@ -22,9 +22,7 @@
                             {{ category.description | raw }}
                         </div>
                         <div class="price">
-                            {{ "Стоимость проекта <span>от %price% $</span>"|trans({'%price%': category.cost})|raw }}
-                            {#{{ "Стоимость проекта"|trans }}#}
-                            {#<span>{{ "от"|trans }} {{ category.cost }} $</span>#}
+                            {{ "Стоимость проекта %wrap_start%от %price% $%wrap_end%"|trans({'%price%': category.cost, '%wrap_start%': '<span>', '%wrap_end%': '</span>'})|raw }}
                         </div>
                         <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
                             <span class="arrow-btn"></span>
