@@ -23,8 +23,14 @@ class WidgetsController extends Controller
     {
         $locales = array(
 //            'uk' => array($this->localizeRoute($request, 'uk'), 'uk'),
-            'ru' => array($this->localizeRoute($request, 'ru'), 'ру'),
-            'en' => array($this->localizeRoute($request, 'en'), 'en')
+            'ru' => array(
+                'link' => $this->localizeRoute($request, 'ru'),
+                'lang' => 'ру'
+            ),
+            'en' => array(
+                'link' => $this->localizeRoute($request, 'en'),
+                'lang' => 'en'
+            )
         );
 
         return array('locales' => $locales);

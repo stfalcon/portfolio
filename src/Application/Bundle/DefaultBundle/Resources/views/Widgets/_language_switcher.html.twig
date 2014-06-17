@@ -2,8 +2,8 @@
     <ul>
         {% set currentLang = '' %}
         {% for key, locale in locales %}
-            <li {% if key == app.request.locale %}class="active" {% set currentLang = locale[1] %}{% endif %}>
-                <a href="{{ locale[0] }}">{{ locale[1] }}</a>
+            <li {% if key == app.request.locale %}class="active" {% set currentLang = locale['lang'] %}{% endif %}>
+                <a href="{{ locale['link'] }}">{{ locale['lang'] }}</a>
             </li>
         {% endfor %}
     </ul>
