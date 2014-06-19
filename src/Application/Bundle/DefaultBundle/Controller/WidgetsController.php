@@ -51,6 +51,11 @@ class WidgetsController extends Controller
         // Set/override locale
         $attributes['_locale'] = $locale;
 
-        return $this->generateUrl($request->attributes->get('_route'), $attributes);
+        $route = $request->attributes->get('_route');
+        if (is_null($route)) {
+            $route = 'homepage';
+        }
+
+        return $this->generateUrl($route, $attributes);
     }
 }
