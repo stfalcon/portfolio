@@ -26,7 +26,7 @@
                         </div>
                         <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
                             <span class="arrow-btn"></span>
-                            <span>{{ "посмотреть примеры проектов"|trans }} {{ linkTexts[category.slug] | default('') | trans }}</span>
+                            <span>{{ "посмотреть примеры проектов %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</span>
                         </a>
                     </div>
                 </div>

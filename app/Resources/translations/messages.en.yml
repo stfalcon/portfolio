@@ -71,13 +71,13 @@ title: __title   # FIXME
 'года': ''   # FIXME
 'Стоимость проекта %wrap_start%от %price% $%wrap_end%': 'Project charge %wrap_start%from %price% $%wrap_end%'
 'подробно о проекте': 'project details'   # FIXME
-'посмотреть примеры проектов': 'view examples of the projects'   # FIXME
+'посмотреть примеры проектов %project%': 'view examples of %project% projects'   # FIXME
 'проектов мы запустили к концу': 'projects we released till the end of'   # FIXME
 
 'ул. Заречанская 3/2': '3/2 Zarechanskaya str.'   # FIXME
 
 'Свежее из блога': 'Fresh from blog'   # FIXME
-'На связи': 'in touch'   # FIXME
+'На связи': 'Contact us'   # FIXME
 'Веб-студия': 'web studio'   # FIXME
 'веб-студия': 'web studio'   # FIXME
 'Навигация': 'Navigation'   # FIXME
@@ -91,7 +91,7 @@ title: __title   # FIXME
 'Искатели приключений': 'Adventurers'   # FIXME
 'Вжелезкахковырялы': 'Hardwareexplorers'   # FIXME
 'Велосипедисты': 'Cyclists'   # FIXME
-'Детективы': 'detectives'   # FIXME
+'Детективы': 'Detectives'   # FIXME
 'Необычные увлечения': 'Unusual hobbies'   # FIXME
 
 'веб-разработки': 'web development'   # FIXME

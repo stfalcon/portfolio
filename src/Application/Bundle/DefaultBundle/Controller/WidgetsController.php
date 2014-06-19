@@ -46,7 +46,11 @@ class WidgetsController extends Controller
      */
     protected function localizeRoute($request, $locale)
     {
-        $attributes = array_merge($request->query->all(), $request->attributes->get('_route_params'));
+        $routeParams = $request->attributes->get('_route_params');
+        $attributes = $request->query->all();
+        if (!is_null($routeParams)) {
+            $attributes = array_merge($attributes, $routeParams);
+        }
 
         // Set/override locale
         $attributes['_locale'] = $locale;
