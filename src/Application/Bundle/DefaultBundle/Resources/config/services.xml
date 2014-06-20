@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="application_default.menu_builder.class">Application\Bundle\DefaultBundle\Menu\MenuBuilder</parameter>
+        <parameter key="application_default.controller.exception.class">Application\Bundle\DefaultBundle\Controller\ExceptionController</parameter>
     </parameters>
 
     <services>
@@ -37,6 +38,12 @@
         <service id="twig.extension.twitter" class="Application\Bundle\DefaultBundle\Extension\TwitterTwigExtension">
             <argument type="service" id="service_container" />
             <tag name="twig.extension" alias="twitter" />
+        </service>
+
+        <service id="application_default.controller.exception" class="%application_default.controller.exception.class%">
+            <argument type="service" id="twig" />
+            <argument>%kernel.debug%</argument>
+            <argument>%locales%</argument>
         </service>
 
     </services>
