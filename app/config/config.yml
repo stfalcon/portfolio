@@ -20,8 +20,6 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    exception_controller: application_default.controller.exception:ShowAction
-
 
 # Doctrine Configuration
 doctrine:
