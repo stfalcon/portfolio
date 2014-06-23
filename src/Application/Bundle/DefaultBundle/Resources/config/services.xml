@@ -39,7 +39,7 @@
             <tag name="twig.extension" alias="twitter" />
         </service>
 
-        <service id="kernel.listener.your_listener_name" class="Application\Bundle\DefaultBundle\EventListener\ApplicationExceptionListener">
+        <service id="kernel.listener.locale_for_exception" class="Application\Bundle\DefaultBundle\EventListener\LocaleForExceptionListener">
             <argument>%locales%</argument>
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
