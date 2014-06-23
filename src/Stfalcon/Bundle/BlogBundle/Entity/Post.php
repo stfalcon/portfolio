@@ -6,6 +6,7 @@ use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Translatable\Translatable;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -14,8 +15,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  * @ORM\Table(name="blog_posts")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\BlogBundle\Repository\PostRepository")
+ * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\BlogBundle\Entity\PostTranslation")
  */
-class Post
+class Post implements Translatable
 {
     /**
      * Post id
@@ -32,6 +34,7 @@ class Post
      *
      * @var string $title
      * @Assert\NotBlank()
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title = '';
@@ -52,6 +55,7 @@ class Post
      *
      * @var string $text
      * @Assert\NotBlank()
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="text", type="text")
      */
     private $text;
@@ -115,12 +119,27 @@ class Post
     protected $published = true;
 
     /**
+     * @ORM\OneToMany(
+     *   targetEntity="PostTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
+
+    /**
      * Initialization properties for new post entity
      */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->created = new \DateTime();
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -379,8 +398,80 @@ class Post
         return $this->published;
     }
 
+    /**
+     * @return bool
+     */
     public function isPublished()
     {
         return (bool) $this->published;
+    }
+
+    /**
+     * @param PostTranslation $postTranslation
+     */
+    public function addTranslations(PostTranslation $postTranslation)
+    {
+        if (!$this->translations->contains($postTranslation)) {
+            $this->translations->add($postTranslation);
+            $postTranslation->setObject($this);
+        }
+    }
+    /**
+     * @param PostTranslation $postTranslation
+     */
+    public function addTranslation(PostTranslation $postTranslation)
+    {
+        if (!$this->translations->contains($postTranslation)) {
+            $this->translations->add($postTranslation);
+            $postTranslation->setObject($this);
+        }
+    }
+
+    /**
+     * @param PostTranslation $postTranslation
+     */
+    public function removeTranslation(PostTranslation $postTranslation)
+    {
+        $this->translations->removeElement($postTranslation);
+    }
+
+    /**
+     * @param ArrayCollection $translations
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param mixed $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 }

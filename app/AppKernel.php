@@ -49,6 +49,10 @@ class AppKernel extends Kernel
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Application\Bundle\MediaBundle\ApplicationMediaBundle(),
+
+            new JMS\TranslationBundle\JMSTranslationBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

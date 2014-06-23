@@ -5,8 +5,16 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
+/**
+ * Class ProjectAdmin
+ */
 class ProjectAdmin extends Admin
 {
+    /**
+     * @param string $code
+     * @param string $class
+     * @param string $baseControllerName
+     */
     public function __construct($code, $class, $baseControllerName)
     {
         parent::__construct($code, $class, $baseControllerName);
@@ -24,10 +32,37 @@ class ProjectAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
+            ->add('translations', 'a2lix_translations_gedmo', array(
+                    'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
+                    'fields' => array(
+                        'name' => array(
+                            'label' => 'name',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'description' => array(
+                            'label' => 'description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                    ),
+                    'label' => 'Перевод'
+                )
+            )
             ->add('slug')
             ->add('url')
-            ->add('description')
             ->add('tags')
             ->add('imageFile', 'file', array('required' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
             ->add('date', 'date')
@@ -64,6 +99,9 @@ class ProjectAdmin extends Admin
             ->add('date');
     }
 
+    /**
+     * @param array $templates
+     */
     public function setTemplates(array $templates)
     {
         $templates['list'] = 'StfalconPortfolioBundle:ProjectAdmin:list.html.twig';

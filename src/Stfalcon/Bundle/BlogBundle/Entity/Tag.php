@@ -6,6 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
+
 /**
  * Stfalcon\Bundle\BlogBundle\Entity\Tag
  *
@@ -13,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="blog_tags")
  * @ORM\Entity
  */
-class Tag
+class Tag implements Translatable
 {
     /**
      * Tag id

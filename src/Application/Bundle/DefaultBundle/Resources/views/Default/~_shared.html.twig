@@ -18,9 +18,9 @@
         </a>
     </div>#}
     <div>
-        <h3><span class="feed">Наши заметки</span></h3>
+        <h3><span class="feed">{% trans %}Наши заметки{% endtrans %}</span></h3>
         {% render controller("StfalconBlogBundle:Post:last", { 'count': 7 }) %}
-        <a href="{{ path('blog') }}" class="all-posts">все статьи</a>
+        <a href="{{ path('blog') }}" class="all-posts">{{ 'все статьи'|trans }}</a>
     </div>
 
     {#<div>

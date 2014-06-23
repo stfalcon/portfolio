@@ -2,22 +2,22 @@
 
 {% block content_wrapper %}
     <section class="teaser">
-        <h1>Дизайн сайтов, мобильные приложения и&nbsp;веб-разработка</h1>
-        <p>Мы не просто рисуем красивые картинки. Мы&nbsp;проектируем и&nbspразрабатываем сложные сайты.</p>
+        <h1>{{ 'Дизайн сайтов, мобильные приложения и веб-разработка'|trans }}</h1>
+        <p>{{ 'Мы не просто рисуем красивые картинки. Мы проектируем и разрабатываем сложные сайты.'|trans }}</p>
     </section>
     <section class="promo-banner" style="background-color: #274564;">
         <div class="promo-banner-wrapper">
             <div class="img-wrapper"> <!--use class-->
-                <a href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net-v2'}) }}"><img src="img/fish/banner1.png" alt=""/></a>
+                <a href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net-v2'}) }}"><img src="/img/fish/banner1.png" alt=""/></a>
             </div>
             <aside>
-                <h2><a href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net-v2'}) }}">Радиалка</a></h2>
-                <p>Интернет-магазин снаряжения для туризма, экстремального спорта и отдыха.</p>
-                <a class="more" href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net-v2'}) }}">подробно о проекте</a>
+                <h2><a href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net-v2'}) }}">{{ 'Радиалка'|trans }}</a></h2>
+                <p>{{ 'Интернет-магазин снаряжения для туризма, экстремального спорта и отдыха.'|trans }}</p>
+                <a class="more" href="{{ path('portfolio_project_view', {'categorySlug': 'web-development', 'projectSlug': 'radialka-net-v2'}) }}">{{ 'подробно о проекте'|trans }}</a>
             </aside>
         </div>
     </section>
-    <p class="slogan">«Первое впечатление — визуальная эстетика. Второе — удобство повторения действий.»</p>
+    <p class="slogan">{{ '«Первое впечатление — визуальная эстетика. Второе — удобство повторения действий.»'|trans }}</p>
     <div id="content-index">
         {% include 'ApplicationDefaultBundle:Default:_portfolio_items_list.html.twig'
                 with {'projects': projects} %}

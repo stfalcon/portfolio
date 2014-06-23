@@ -2,7 +2,7 @@
     <div class="projects-counter">
         {% set lastYear = years|last %}
         <span class="years-count">{{ lastYear.counter }}</span><span>+</span>
-        <p>проектов мы запустили к концу <time id="view-year">{{ lastYear.year }}</time> года</p>
+        <p>{{ "проектов мы запустили к концу"|trans }} <time id="view-year">{{ lastYear.year }}</time> {{ "года"|trans }}</p>
     </div>
     <div class="year-slider-wrapp">
         <div id="year-slider"></div>

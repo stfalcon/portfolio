@@ -11,6 +11,7 @@
     <services>
         <service id="application_default.menu_builder" class="%application_default.menu_builder.class%">
             <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="translator" />
         </service>
 
         <!-- main menu -->
@@ -36,6 +37,11 @@
         <service id="twig.extension.twitter" class="Application\Bundle\DefaultBundle\Extension\TwitterTwigExtension">
             <argument type="service" id="service_container" />
             <tag name="twig.extension" alias="twitter" />
+        </service>
+
+        <service id="kernel.listener.locale_for_exception" class="Application\Bundle\DefaultBundle\EventListener\LocaleForExceptionListener">
+            <argument>%locales%</argument>
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
 
     </services>

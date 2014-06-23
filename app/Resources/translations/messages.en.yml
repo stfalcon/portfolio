@@ -1,0 +1,107 @@
+'Choose an user': '__Choose an user'   # FIXME
+description: __description   # FIXME
+name: __name   # FIXME
+text: __text   # FIXME
+title: __title   # FIXME
+
+'«Первое впечатление — визуальная эстетика':
+    ' Второе — удобство повторения действий':
+        »: '«First impression is a visual aesthetics. Second - convenience of repeating actions»'   # FIXME
+
+Аватарка: Avatar   # FIXME
+Блог: Blog   # FIXME
+
+'Веб-студия stfalcon':
+    'com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат':
+        '': 'Web studio Stfalcon.com is a team of professionals, who like their job and is focused on quality result.'   # FIXME
+
+'Вернуться к списку записей': 'Return to list'   # FIXME
+'Все проекты': 'All projects'   # FIXME
+Главная: Main Page   # FIXME
+'Дизайн сайтов, мобильные приложения и веб-разработка': 'Web design, mobile apps and web-development'   # FIXME
+Должность: Position   # FIXME
+'Зайти в гости': 'Drop in'   # FIXME
+Имя: Name   # FIXME
+Интересы: Interests   # FIXME
+
+'Интернет-магазин снаряжения для туризма, экстремального спорта и отдыха':
+    '': 'E-comerce store of equipment for tourism, extreme sports and recreation'   # FIXME
+
+'К списку записей': 'Return to list'   # FIXME
+Карикатура: Caricature   # FIXME
+
+'Категория не существует':
+    '': 'Category does not exist.'   # FIXME
+
+Команда: Team   # FIXME
+Комментировать: Comment   # FIXME
+'Контактная информация': 'Contact info'   # FIXME
+Контакты: Contacts   # FIXME
+'Любимый напиток': 'Favorite beverage'   # FIXME
+
+'Мы не просто рисуем красивые картинки':
+    ' Мы проектируем и разрабатываем сложные сайты':
+        '': 'We do not just draw pretty pictures. We design and develop complex websites.'   # FIXME
+
+'Над проектом работали': 'Cast'   # FIXME
+Написать: Write   # FIXME
+Напитки: Beverage   # FIXME
+'Наши заметки': 'Our notes'   # FIXME
+Перевод: Translation   # FIXME
+Позвонить: Call   # FIXME
+'Предыдущий проект': 'Previous project'   # FIXME
+
+'Проект не существует':
+    '': 'Project does not exist.'   # FIXME
+
+Проекты: Projects   # FIXME
+Радиалка: Radialka   # FIXME
+'Следующий проект': 'Next project'   # FIXME
+Сортировка: Sort   # FIXME
+'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'By cooperating with us you choose reliable business partner!'   # FIXME
+'Список проектов': 'List of projects'   # FIXME
+Украина: Ukraine   # FIXME
+Услуги: Services   # FIXME
+Учасники: Participants   # FIXME
+Фамилия: Surname   # FIXME
+Хмельницкий: Khmelnitsky   # FIXME
+'Чем мы занимаемся': 'What we do'   # FIXME
+'Читать дальше': 'Read more'   # FIXME
+'все статьи': 'All articles'   # FIXME
+'года': ''   # FIXME
+'Стоимость проекта %wrap_start%от %price% $%wrap_end%': 'Project charge %wrap_start%from %price% $%wrap_end%'
+'подробно о проекте': 'project details'   # FIXME
+'посмотреть примеры проектов %project%': 'view examples of %project% projects'   # FIXME
+'проектов мы запустили к концу': 'projects we released till the end of'   # FIXME
+
+'ул. Заречанская 3/2': '3/2 Zarechanskaya str.'   # FIXME
+
+'Свежее из блога': 'Fresh from blog'   # FIXME
+'На связи': 'Contact us'   # FIXME
+'Веб-студия': 'web studio'   # FIXME
+'веб-студия': 'web studio'   # FIXME
+'Навигация': 'Navigation'   # FIXME
+
+'Меломаны': 'Audiophiles'   # FIXME
+'Геймеры': 'Gamers'   # FIXME
+'Книголюбы': 'Bibliophiles'   # FIXME
+'Киноманы': 'Moviegoers'   # FIXME
+'Спортсмены': 'Athletes'   # FIXME
+'Ценители искусства': 'Art lovers'   # FIXME
+'Искатели приключений': 'Adventurers'   # FIXME
+'Вжелезкахковырялы': 'Hardwareexplorers'   # FIXME
+'Велосипедисты': 'Cyclists'   # FIXME
+'Детективы': 'Detectives'   # FIXME
+'Необычные увлечения': 'Unusual hobbies'   # FIXME
+
+'веб-разработки': 'web development'   # FIXME
+'дизайна': 'design'   # FIXME
+'мобильных приложений': 'mobile apps'   # FIXME
+'игр': 'games'   # FIXME
+
+'Нет сигнала!': 'No signal!'
+'Ошибка 404. Страница не найдена.': 'Error 404. Page not found.'
+'Видимо, вы неправильно набрали адрес или такой страницы больше не существует. Вы можете продолжить с': 'Apparently, you misstyped an url adress or this page does not exist. You can continue from'
+'главной страницы': 'main page'
+'либо посмотреть наши крутые': 'or you can view our awesome'
+'проекты': 'projects'

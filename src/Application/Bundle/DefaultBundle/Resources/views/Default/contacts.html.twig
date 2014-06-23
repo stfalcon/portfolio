@@ -1,26 +1,26 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}{% trans %}Контактная информация{% endtrans %} / {{ parent() }}{% endblock %}
+{% block title %}{{ 'Контактная информация'|trans }} / {{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
     <section class="contacts-wrapper">
         <h1>
-            {% trans %}Контактная информация{% endtrans %}
+            {{ 'Контактная информация'|trans }}
         </h1>
         <div class="col">
             <div class="info-group">
-                <span>{% trans %}Позвонить{% endtrans %}:</span>
+                <span>{{ 'Позвонить'|trans }}:</span>
                 <a href="tel:+380 97 874-03-42"><b>+380 97 874-03-42</b></a>
             </div>
             <div class="info-group">
-                <span>{% trans %}Написать{% endtrans %}:</span>
+                <span>{{ 'Написать'|trans }}:</span>
                 <a href="mailto:info@stfalcon.com"><b>info@stfalcon.com</b></a>
             </div>
         </div> 
         <div class="col address">
             <div class="info-group">
-                <span>{% trans %}Зайти в гости{% endtrans %}:</span>
-                <b>{% trans %}ул. Заречанская{% endtrans %} 3/2, <br> {% trans %}Хмельницкий{% endtrans %}, {% trans %}Украина{% endtrans %}, 29000</b>
+                <span>{{ 'Зайти в гости'|trans }}:</span>
+                <b>{{ 'ул. Заречанская 3/2'|trans }}, <br> {{ 'Хмельницкий'|trans }}, {{ 'Украина'|trans }}, 29000</b>
             </div>
         </div> 
         <div class="col">

@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    translator:       { fallback: ru }
+    translator:       { fallback: %locale% }
     secret:           %secret%
     router:           { resource: "%kernel.root_dir%/config/routing.yml" }
     form:             true
@@ -20,7 +20,6 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-
 
 # Doctrine Configuration
 doctrine:
@@ -47,13 +46,13 @@ doctrine_migrations:
 
 # DoctrineExtensionsBundle
 stof_doctrine_extensions:
-    default_locale: en_US
+    default_locale: %locale%
     orm:
         default:
             loggable: false
             sluggable: true
             timestampable: true
-            translatable: false
+            translatable: true
             tree: false
 
 
@@ -195,3 +194,13 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
+
+jms_i18n_routing:
+    default_locale: %locale%
+    locales: %locales%
+    strategy: prefix_except_default
+
+a2lix_translation_form:
+    locales: %locales%
+    default_required: true
+    manager_registry: doctrine

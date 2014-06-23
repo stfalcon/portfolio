@@ -3,6 +3,7 @@
 namespace Application\Bundle\DefaultBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -13,16 +14,26 @@ use Symfony\Component\HttpFoundation\Request;
 class MenuBuilder
 {
 
+    /**
+     * @var FactoryInterface
+     */
     private $factory;
+
+    /**
+     * @var Translator
+     */
+    private $translator;
 
     /**
      * Constructor injection
      *
      * @param FactoryInterface $factory
+     * @param Translator       $translator
      */
-    public function __construct(FactoryInterface $factory)
+    public function __construct(FactoryInterface $factory, Translator $translator)
     {
         $this->factory = $factory;
+        $this->translator = $translator;
     }
 
     /**
@@ -38,11 +49,11 @@ class MenuBuilder
 
         $menu->setUri($request->getRequestUri());
 
-        $menu->addChild('Проекты', array('route' => 'portfolio_all_projects'));
-        $menu->addChild('Услуги', array('route' => 'portfolio_categories_list'));
-        $menu->addChild('Команда', array('route' => 'team'));
-        $menu->addChild('Блог', array('route' => 'blog'));
-        $menu->addChild('Контакты', array('route' => 'contacts'));
+        $menu->addChild($this->translator->trans('Проекты'), array('route' => 'portfolio_all_projects'));
+        $menu->addChild($this->translator->trans('Услуги'), array('route' => 'portfolio_categories_list'));
+        $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));
+        $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
+        $menu->addChild($this->translator->trans('Контакты'), array('route' => 'contacts'));
 
         return $menu;
     }
@@ -60,7 +71,7 @@ class MenuBuilder
 
         $menu->setUri($request->getRequestUri());
 
-        $menu->addChild('Главная', array('route' => 'homepage'));
+        $menu->addChild($this->translator->trans('Главная'), array('route' => 'homepage'));
 
         return $menu;
     }

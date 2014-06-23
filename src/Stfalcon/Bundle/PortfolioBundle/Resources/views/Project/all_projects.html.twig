@@ -1,10 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}{% trans %}Проекты{% endtrans %} / {{ parent() }}{% endblock %}
+{% block title %}{{ "Проекты"|trans }} / {{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
     <section>
-        <h2 class="hidden">Список проектов</h2>
+        <h2 class="hidden">{{ "Список проектов"|trans }}</h2>
         <ul class="projects">
             {% for project in projects %}
                 {% include 'StfalconPortfolioBundle:Project:_projects_list_item.html.twig' with {'project':project, 'category': project.categories.first} %}

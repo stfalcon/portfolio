@@ -1,10 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}Услуги / {{ parent() }}{% endblock %}
+{% block title %}{{ "Услуги"|trans }} / {{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
     <section class="services-tabs">
-        <h1>Чем мы занимаемся</h1>
+        <h1>{{ "Чем мы занимаемся"|trans }}</h1>
         <ul class="tab-nav">
             {% for category in categories %}
                 <li><h2><a href="#{{ category.slug }}" {{ loop.index == 1?'class="active"':'' }}>{{ category.name }}</a></h2></li>
@@ -12,7 +12,7 @@
         </ul>
         <div class="tab-content-wrapper">
             {% for category in categories %}
-                <img src="img/bg/figure{{ loop.index }}.png" class="img" alt="{{ category.name }}"/>
+                <img src="/img/bg/figure{{ loop.index }}.png" class="img" alt="{{ category.name }}"/>
             {% endfor %}
             {% for category in categories %}
                 <div id="{{ category.slug }}" class="tab-content">
@@ -22,12 +22,11 @@
                             {{ category.description | raw }}
                         </div>
                         <div class="price">
-                            Стоимость проекта
-                            <span>от {{ category.cost }} $</span>
+                            {{ "Стоимость проекта %wrap_start%от %price% $%wrap_end%"|trans({'%price%': category.cost, '%wrap_start%': '<span>', '%wrap_end%': '</span>'})|raw }}
                         </div>
                         <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
                             <span class="arrow-btn"></span>
-                            <span>посмотреть примеры проектов {{ linkTexts[category.slug] | default('') }}</span>
+                            <span>{{ "посмотреть примеры проектов %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</span>
                         </a>
                     </div>
                 </div>

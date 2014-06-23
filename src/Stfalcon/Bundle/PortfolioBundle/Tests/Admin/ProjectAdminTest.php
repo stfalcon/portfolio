@@ -72,11 +72,11 @@ class ProjectAdminTest extends WebTestCase
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
 
-        $form[$formId . '[name]'] = 'wallpaper.in.ua';
+        $form[$formId . '[translations][defaultLocale][ru][name]'] = 'wallpaper.in.ua';
+        $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Free desktop wallpapers gallery.';
         $form[$formId . '[slug]'] = 'wallpaper-in-ua';
         $form[$formId . '[url]'] = 'http://wallpaper.in.ua';
         $form[$formId . '[imageFile]'] = $this->_getTestImagePath();
-        $form[$formId . '[description]'] = 'Free desktop wallpapers gallery.';
         $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
@@ -107,11 +107,11 @@ class ProjectAdminTest extends WebTestCase
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
 
-        $form[$formId . '[name]'] = '';
+        $form[$formId . '[translations][defaultLocale][ru][name]'] = '';
+        $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Free desktop wallpapers gallery.';
         $form[$formId . '[slug]'] = '';
         $form[$formId . '[url]'] = 'http://wallpaper.in.ua';
         $form[$formId . '[imageFile]'] = $this->_getTestImagePath();
-        $form[$formId . '[description]'] = 'Free desktop wallpapers gallery.';
         $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
@@ -139,11 +139,11 @@ class ProjectAdminTest extends WebTestCase
         $category = $em->getRepository("StfalconPortfolioBundle:Category")->findOneBy(array('slug' => 'web-development'));
 
 
-        $form[$formId . '[name]'] = 'wallpaper.in.ua';
+        $form[$formId . '[translations][defaultLocale][ru][name]'] = 'wallpaper.in.ua';
+        $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Free desktop wallpapers gallery.';
         $form[$formId . '[slug]'] = 'wallpaper-in-ua';
         $form[$formId . '[url]'] = 'http://wallpaper.in.ua';
         $form[$formId . '[imageFile]'] = $this->_getTestImagePath();
-        $form[$formId . '[description]'] = 'Free desktop wallpapers gallery.';
         $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
