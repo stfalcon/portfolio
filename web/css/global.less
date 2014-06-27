@@ -1,5 +1,6 @@
 // global variables
 @sprite : url(../img/sprite.png);
+@spriteSVG : url(../img/svg/sprite.svg);
 @global-font: Helvetica, Arial, serif;
 @bg-color: #f5f7f7;
 @global-text-color: #2c373c;
@@ -243,6 +244,10 @@ a {
   background: url(../img/bg/logo.png) no-repeat;
   background-size: 100%;
   z-index: 2;
+
+  .svg & {
+    background-image: url(../img/svg/logo.svg);
+  }
 }
 
 .slogan {
@@ -274,6 +279,10 @@ a {
 .icon {
   display: inline-block;
   background: @sprite no-repeat;
+
+  .svg & {
+    background-image: @spriteSVG;
+  }
 }
 
 .icon-share {
@@ -958,17 +967,31 @@ footer {
   .icon-facebook {
     .sq(32px);
     background-position: -105px -3px;
+
+    .svg & {
+      background-position: -28px -3px;
+      background-size: 390px auto;
+    }
   }
   .icon-twitter {
     .sq(32px);
     background-position: -140px -3px;
+
+    .svg & {
+      background-position: -63px -3px;
+      background-size: 390px auto;
+    }
   }
   .icon-github {
     .sq(32px);
     background-position: -175px -3px;
+
+    .svg & {
+      background-position: -99px -3px;
+      background-size: 390px auto;
+    }
   }
 }
-
 
 @media screen and (max-width:410px){
   section.contacts {
@@ -989,14 +1012,29 @@ footer {
   .icon-facebook {
     .sq(48px);
     background-position: -3px -37px;
+
+    .svg & {
+      background-position: -39px -3px;
+      background-size: 563px auto;
+    }
   }
   .icon-twitter {
     .sq(48px);
     background-position: -55px -37px;
+
+    .svg & {
+      background-position: -90px -3px;
+      background-size: 563px auto;
+    }
   }
   .icon-github {
     .sq(48px);
     background-position: -107px -37px;
+
+    .svg & {
+      background-position: -141px -3px;
+      background-size: 563px auto;
+    }
   }
 }
 

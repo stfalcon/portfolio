@@ -95,6 +95,11 @@
     background-image: linear-gradient(to left, #bdc1c3, #e5e7e7);
     .transition(all 0.2s ease-in-out);
   }
+  .svg & {
+    .ui-slider-handle {
+      background-image: ~"url(../img/svg/years-slider.svg)";
+    }
+  }
   .ui-slider-handle {
     display: block;
     position: absolute;
@@ -291,6 +296,26 @@
     line-height: 1em;
   }
 }
+
+.svg .team-list {
+  li {
+    div {
+      &.drink-beer:after {
+        background-image: ~"url(../img/svg/beer.svg)";
+      }
+      &.drink-tea:after {
+        background-image: ~"url(../img/svg/tea.svg)";
+      }
+      &.drink-atmark-tea:after {
+        background-image: ~"url(../img/svg/atmark-tea.svg)";
+      }
+      &.drink-coffee:after {
+        background-image: ~"url(../img/svg/coffe.svg)";
+      }
+    }
+  }
+}
+
 
 .team-list-small {
   margin-left: 0;

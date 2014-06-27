@@ -272,7 +272,7 @@ $(function () {
 
     if($('.services-tabs').length) {
         (function(){
-            var images = $('.services-tabs .img'),
+            var images = $('.services-tabs .services-img'),
                 accordionTabs = $('.accordion-wrapper'),
                 isVisible = true,
                 activeIndex = 0;
