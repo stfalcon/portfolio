@@ -45,7 +45,7 @@ class ShowCodeTwigExtension extends \Twig_Extension
         require_once __DIR__ . '/../Resources/vendor/geshi/geshi.php';
 
         $text = preg_replace_callback(
-            '/<pre lang="(.*?)">\r?\n?(.*?)\r?\n?\<\/pre>/is',
+            self::$pattern,
             function($data) {
                 $geshi = new \GeSHi($data[2], $data[1]);
 
