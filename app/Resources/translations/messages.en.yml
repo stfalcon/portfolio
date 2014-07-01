@@ -72,7 +72,7 @@ title: __title   # FIXME
 'Стоимость проекта %wrap_start%от %price% $%wrap_end%': 'Project charge %wrap_start%from %price% $%wrap_end%'
 'подробно о проекте': 'project details'   # FIXME
 'посмотреть примеры проектов %project%': 'view examples of %project% projects'   # FIXME
-'проект мы запустили к концу|проекта мы запустили к концу|проектов мы запустили к концу': 'project we released till the end of|projects we released till the end of|projects we released till the end of'   # FIXME
+'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'project we released till the end of %year%|projects we released till the end of %year%|projects we released till the end of %year%'   # FIXME
 
 'ул. Заречанская 3/2': '3/2 Zarechanskaya str.'   # FIXME
 
