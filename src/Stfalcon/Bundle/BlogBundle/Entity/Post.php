@@ -61,14 +61,6 @@ class Post implements Translatable
     private $text;
 
     /**
-     * Post text as HTML code
-     *
-     * @var string $textAsHtml
-     * @ORM\Column(name="text_as_html", type="text")
-     */
-    private $textAsHtml;
-
-    /**
      * Tags for post
      *
      * @var ArrayCollection
@@ -242,7 +234,6 @@ class Post implements Translatable
     public function setText($text)
     {
         $this->text = $text;
-        $this->textAsHtml = $this->_transformTextAsHtml($text);
     }
 
     /**
@@ -253,41 +244,6 @@ class Post implements Translatable
     public function getText()
     {
         return $this->text;
-    }
-
-    /**
-     * Get post text as HTML code
-     *
-     * @return string
-     */
-    public function getTextAsHtml()
-    {
-        return $this->textAsHtml;
-    }
-
-
-    /**
-     * Transform post text to html
-     *
-     * @param string $text Source post text
-     *
-     * @return string Post text as html
-     */
-    private function _transformTextAsHtml($text)
-    {
-        // update text html code
-        require_once __DIR__ . '/../Resources/vendor/geshi/geshi.php';
-
-        $text = preg_replace_callback(
-            '/<pre lang="(.*?)">\r?\n?(.*?)\r?\n?\<\/pre>/is',
-            function($data) {
-                $geshi = new \GeSHi($data[2], $data[1]);
-
-                return $geshi->parse_code();
-            }, $text
-        );
-
-        return $text;
     }
 
     /**
