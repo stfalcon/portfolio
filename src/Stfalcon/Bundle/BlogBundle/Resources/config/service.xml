@@ -31,8 +31,8 @@
             <tag name="twig.extension" alias="read_more" />
         </service>
 
-        <service id="twig.extension.show_code" class="Stfalcon\Bundle\BlogBundle\Extension\ShowCodeTwigExtension">
-            <tag name="twig.extension" alias="show_code" />
+        <service id="twig.extension.highlight_code" class="Stfalcon\Bundle\BlogBundle\Extension\HighlightCodeTwigExtension">
+            <tag name="twig.extension" alias="highlight_code" />
         </service>
 
         <service id="form.type.tags" class="Stfalcon\Bundle\BlogBundle\Bridge\Doctrine\Form\Type\TagsType">

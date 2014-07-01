@@ -41,7 +41,8 @@
         "sonata-project/user-bundle": "2.2.4",
         "sonata-project/media-bundle": "2.2.8",
         "zendframework/zend-feed": "2.3.1",
-        "zendframework/zend-servicemanager": "2.3.1"
+        "zendframework/zend-servicemanager": "2.3.1",
+        "geshi/geshi": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

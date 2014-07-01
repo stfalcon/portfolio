@@ -3,9 +3,9 @@
 namespace Stfalcon\Bundle\BlogBundle\Extension;
 
 /**
- * Show code with style
+ * Highlight code with style
  */
-class ShowCodeTwigExtension extends \Twig_Extension
+class HighlightCodeTwigExtension extends \Twig_Extension
 {
 
     public static $pattern = '/<pre lang="(.*?)">\r?\n?(.*?)\r?\n?\<\/pre>/is';
@@ -18,7 +18,7 @@ class ShowCodeTwigExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'showCode' => new \Twig_Filter_Method($this, 'showCode'),
+            'highlightCode' => new \Twig_Filter_Method($this, 'highlightCode'),
         );
     }
 
@@ -29,21 +29,18 @@ class ShowCodeTwigExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'show_code';
+        return 'highlight_code';
     }
 
     /**
-     * Show code with style
+     * Highlight code with style
      *
      * @param string $value Full source text
      *
      * @return string
      */
-    public function showCode($value)
+    public function highlightCode($value)
     {
-        // update text html code
-        require_once __DIR__ . '/../Resources/vendor/geshi/geshi.php';
-
         $text = preg_replace_callback(
             self::$pattern,
             function($data) {

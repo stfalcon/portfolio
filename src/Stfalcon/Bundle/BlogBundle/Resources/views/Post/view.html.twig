@@ -4,7 +4,7 @@
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}
         <div class="post-content">
-            {{ post.text|moreToSpan|showCode|raw }}
+            {{ post.text|moreToSpan|highlightCode|raw }}
             <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
                 <span>{{ 'К списку записей'|trans }}</span></a>
         </div>
