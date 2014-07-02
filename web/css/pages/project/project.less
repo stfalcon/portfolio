@@ -11,6 +11,13 @@
       visibility: hidden;
     }
   }
+  .svg & {
+    .prev-slide, .next-slide {
+      &:after {
+        background-image: @spriteSVG;
+      }
+    }
+  }
   .prev-slide, .next-slide {
     display: block;
     position: relative;
