@@ -189,6 +189,7 @@ class Project implements Translatable
 
     /**
      * @var string
+     * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="tags", type="string", nullable=true, length=255)
      */
     protected $tags;

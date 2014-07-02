@@ -2,13 +2,13 @@
     <div class="projects-counter">
         {% set lastYear = years|last %}
         <span class="years-count">{{ lastYear.counter }}</span><span>+</span>
-        <p>{{ "проектов мы запустили к концу"|trans }} <time id="view-year">{{ lastYear.year }}</time> {{ "года"|trans }}</p>
+        <p id="view-year">{{ "проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года"|transchoice(lastYear.counter, {'%year%':lastYear.year}) }}</time> {{ ""|trans }}</p>
     </div>
     <div class="year-slider-wrapp">
         <div id="year-slider"></div>
         <ul>
             {% for year in years %}
-            <li data-val="{{ year.counter }}">{{ year.year }}</li>
+            <li data-val="{{ year.counter }}" data-text="{{ "проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года"|transchoice(year.counter, {'%year%':year.year}) }}">{{ year.year }}</li>
             {% endfor %}
         </ul>
     </div>
