@@ -20,7 +20,7 @@ title: __title
 Главная: Main Page
 'Дизайн сайтов, мобильные приложения и веб-разработка': 'Web design, mobile apps and web development'
 Должность: Position
-'Зайти в гости': 'Drop in:'
+'Зайти в гости': 'Drop in'
 Имя: Name
 Интересы: Interests
 
@@ -58,7 +58,7 @@ title: __title
 Радиалка: Radialka
 'Следующий проект': 'Next project'
 Сортировка: Sort
-'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us you choose a reliable business partner!'
+'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us, you choose a reliable business partner!'
 'Список проектов': 'List of projects'
 Украина: Ukraine
 Услуги: Services
@@ -73,6 +73,7 @@ title: __title
 'подробно о проекте': 'project details'
 'посмотреть примеры проектов %project%': 'view examples of %project% projects'
 'проектов мы запустили к концу': 'projects we released till the end of'
+'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
 
 'ул. Заречанская 3/2': '3/2 Zarichanska str.'
 
