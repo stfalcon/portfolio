@@ -1,103 +1,104 @@
-'Choose an user': '__Choose an user'   # FIXME
-description: __description   # FIXME
-name: __name   # FIXME
-text: __text   # FIXME
-title: __title   # FIXME
+'Choose an user': '__Choose an user'
+description: __description
+name: __name
+text: __text
+title: __title
 
 '«Первое впечатление — визуальная эстетика':
     ' Второе — удобство повторения действий':
-        »: '«First impression is a visual aesthetics. Second - convenience of repeating actions»'   # FIXME
+        »: '«First impression is visual aesthetics. Second - convenience of actions repetition»'
 
-Аватарка: Avatar   # FIXME
-Блог: Blog   # FIXME
+Аватарка: Avatar
+Блог: Blog
 
 'Веб-студия stfalcon':
     'com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат':
-        '': 'Web studio Stfalcon.com is a team of professionals, who like their job and is focused on quality result.'   # FIXME
+        '': 'Web studio Stfalcon.com is a team of professionals. We like our job and focus on high-quality results.'
 
-'Вернуться к списку записей': 'Return to list'   # FIXME
-'Все проекты': 'All projects'   # FIXME
-Главная: Main Page   # FIXME
-'Дизайн сайтов, мобильные приложения и веб-разработка': 'Web design, mobile apps and web-development'   # FIXME
-Должность: Position   # FIXME
-'Зайти в гости': 'Drop in'   # FIXME
-Имя: Name   # FIXME
-Интересы: Interests   # FIXME
+'Вернуться к списку записей': 'Return to list'
+'Все проекты': 'All projects'
+Главная: Main Page
+'Дизайн сайтов, мобильные приложения и веб-разработка': 'Web design, mobile apps and web development'
+Должность: Position
+'Зайти в гости': 'Drop in'
+Имя: Name
+Интересы: Interests
 
 'Интернет-магазин снаряжения для туризма, экстремального спорта и отдыха':
-    '': 'E-comerce store of equipment for tourism, extreme sports and recreation'   # FIXME
+    '': 'E-comerce store of equipment for tourism, extreme sports and recreation'
 
-'К списку записей': 'Return to list'   # FIXME
-Карикатура: Caricature   # FIXME
+'К списку записей': 'Return to list'
+Карикатура: Caricature
 
 'Категория не существует':
-    '': 'Category does not exist.'   # FIXME
+    '': 'Category does not exist.'
 
-Команда: Team   # FIXME
-Комментировать: Comment   # FIXME
-'Контактная информация': 'Contact info'   # FIXME
-Контакты: Contacts   # FIXME
-'Любимый напиток': 'Favorite beverage'   # FIXME
+Команда: Team
+Комментировать: Comment
+'Контактная информация': 'Contact info'
+Контакты: Contacts
+'Любимый напиток': 'Favorite beverage'
 
 'Мы не просто рисуем красивые картинки':
     ' Мы проектируем и разрабатываем сложные сайты':
-        '': 'We do not just draw pretty pictures. We design and develop complex websites.'   # FIXME
+        '': 'We do not just draw pretty pictures. We design and develop complex websites.'
 
-'Над проектом работали': 'Cast'   # FIXME
-Написать: Write   # FIXME
-Напитки: Beverage   # FIXME
-'Наши заметки': 'Our notes'   # FIXME
-Перевод: Translation   # FIXME
-Позвонить: Call   # FIXME
-'Предыдущий проект': 'Previous project'   # FIXME
+'Над проектом работали': 'Cast'
+Написать: Write
+Напитки: Beverage
+'Наши заметки': 'Our notes'
+Перевод: Translation
+Позвонить: Call
+'Предыдущий проект': 'Previous project'
 
 'Проект не существует':
-    '': 'Project does not exist.'   # FIXME
+    '': 'Project does not exist.'
 
-Проекты: Projects   # FIXME
-Радиалка: Radialka   # FIXME
-'Следующий проект': 'Next project'   # FIXME
-Сортировка: Sort   # FIXME
-'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'By cooperating with us you choose reliable business partner!'   # FIXME
-'Список проектов': 'List of projects'   # FIXME
-Украина: Ukraine   # FIXME
-Услуги: Services   # FIXME
-Учасники: Participants   # FIXME
-Фамилия: Surname   # FIXME
-Хмельницкий: Khmelnitsky   # FIXME
-'Чем мы занимаемся': 'What we do'   # FIXME
-'Читать дальше': 'Read more'   # FIXME
-'все статьи': 'All articles'   # FIXME
-'года': ''   # FIXME
-'Стоимость проекта %wrap_start%от %price% $%wrap_end%': 'Project charge %wrap_start%from %price% $%wrap_end%'
-'подробно о проекте': 'project details'   # FIXME
-'посмотреть примеры проектов %project%': 'view examples of %project% projects'   # FIXME
-'проектов мы запустили к концу': 'projects we released till the end of'   # FIXME
+Проекты: Projects
+Радиалка: Radialka
+'Следующий проект': 'Next project'
+Сортировка: Sort
+'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us, you choose a reliable business partner!'
+'Список проектов': 'List of projects'
+Украина: Ukraine
+Услуги: Services
+Учасники: Participants
+Фамилия: Surname
+Хмельницкий: Khmelnytskyi
+'Чем мы занимаемся': 'What we do'
+'Читать дальше': 'Read more'
+'все статьи': 'All articles'
+'года': ''
+'Стоимость проекта %wrap_start%от %price% $%wrap_end%': 'Project cost %wrap_start%from %price% $%wrap_end%'
+'подробно о проекте': 'project details'
+'посмотреть примеры проектов %project%': 'view examples of %project% projects'
+'проектов мы запустили к концу': 'projects we released till the end of'
+'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
 
-'ул. Заречанская 3/2': '3/2 Zarechanskaya str.'   # FIXME
+'ул. Заречанская 3/2': '3/2 Zarichanska str.'
 
-'Свежее из блога': 'Fresh from blog'   # FIXME
-'На связи': 'Contact us'   # FIXME
-'Веб-студия': 'web studio'   # FIXME
-'веб-студия': 'web studio'   # FIXME
-'Навигация': 'Navigation'   # FIXME
+'Свежее из блога': 'Fresh from blog'
+'На связи': 'Contact us'
+'Веб-студия': 'web studio'
+'веб-студия': 'web studio'
+'Навигация': 'Navigation'
 
-'Меломаны': 'Audiophiles'   # FIXME
-'Геймеры': 'Gamers'   # FIXME
-'Книголюбы': 'Bibliophiles'   # FIXME
-'Киноманы': 'Moviegoers'   # FIXME
-'Спортсмены': 'Athletes'   # FIXME
-'Ценители искусства': 'Art lovers'   # FIXME
-'Искатели приключений': 'Adventurers'   # FIXME
-'Вжелезкахковырялы': 'Hardwareexplorers'   # FIXME
-'Велосипедисты': 'Cyclists'   # FIXME
-'Детективы': 'Detectives'   # FIXME
-'Необычные увлечения': 'Unusual hobbies'   # FIXME
+'Меломаны': 'Music addicts'
+'Геймеры': 'Gamers'
+'Книголюбы': 'Avid readers'
+'Киноманы': 'Moviegoers'
+'Спортсмены': 'Athletes'
+'Ценители искусства': 'Art lovers'
+'Искатели приключений': 'Adventurers'
+'Вжелезкахковырялы': 'Hardwareexplorers'
+'Велосипедисты': 'Cyclists'
+'Детективы': 'Detectives'
+'Необычные увлечения': 'Unusual hobbies'
 
-'веб-разработки': 'web development'   # FIXME
-'дизайна': 'design'   # FIXME
-'мобильных приложений': 'mobile apps'   # FIXME
-'игр': 'games'   # FIXME
+'веб-разработки': 'web development'
+'дизайна': 'design'
+'мобильных приложений': 'mobile apps'
+'игр': 'games'
 
 'Нет сигнала!': 'No signal!'
 'Ошибка 404. Страница не найдена.': 'Error 404. Page not found.'

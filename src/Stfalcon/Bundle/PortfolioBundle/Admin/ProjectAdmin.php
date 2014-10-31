@@ -57,13 +57,23 @@ class ProjectAdmin extends Admin
                                 )
                             )
                         ),
+                        'tags' => array(
+                            'label' => 'Tags',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
                     ),
                     'label' => 'Перевод'
                 )
             )
             ->add('slug')
             ->add('url')
-            ->add('tags')
             ->add('imageFile', 'file', array('required' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
             ->add('date', 'date')
             ->add('categories')

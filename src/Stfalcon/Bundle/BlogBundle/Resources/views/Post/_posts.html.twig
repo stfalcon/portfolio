@@ -4,7 +4,7 @@
             {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': true} %}
             <div class="post-content">
                 <p>
-                    {{ post.textAsHtml|cutMore|raw }}
+                    {{ post.text|cutMore|highlightCode|raw }}
                 </p>
                 {% if hasMore(post.text) %}
                     <a class="read-more  next-page" href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">

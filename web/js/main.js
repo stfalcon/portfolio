@@ -64,7 +64,7 @@ $(function () {
         },
         change: function (event, ui) {
             counter(startPos, $(yearList[ui.value]).data('val'));
-            updateYear($(yearList[ui.value]).html());
+            updateYear($(yearList[ui.value]).data('text'));
         }
     });
     $('#year-slider').draggable(); // Enable toush dragging
