@@ -4,7 +4,7 @@
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}
         <div class="post-content">
-            {{ post.textAsHtml|moreToSpan|raw }}
+            {{ post.text|moreToSpan|highlightCode|raw }}
             <div class="share-cnt clearfix">
                 <script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
                 <script type="text/javascript">
