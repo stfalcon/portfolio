@@ -68,6 +68,7 @@ $(document).ready(function () {
                         $('#feedback-form').find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
                         $('#feedback-form').find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
                         $(form).trigger('reset');
+                        $(form).find("button").prop('disabled', false);
                     } else {
                         alert('Error!');
                     }
