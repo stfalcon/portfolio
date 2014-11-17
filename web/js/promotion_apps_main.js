@@ -17,32 +17,34 @@ $(document).ready(function () {
     /*
      * form validation
      */
-    $('#feedback-form').validate({
+
+    var validator = $('#feedback-form').validate({
         rules: {
-            name: {
+            'order_promotion[name]': {
                 required: true,
                 minlength: 3
             },
-            email: {
+            'order_promotion[email]': {
                 required: true,
                 minlength: 3
             },
-            messageText: {
+            'order_promotion[message]': {
                 required: true,
                 minlength: 30
             }
         },
         messages: {
-            name: {
+            'order_promotion[name]': {
                 required: "Пожалуйста, введите ваше имя",
                 minlength: jQuery.validator.format("Введите имя не меньше 3 символов")
             },
-            email: {
+            'order_promotion[email]': {
                 required: "Пожалуйста, введите адрес вашей эл.почты",
                 email: "Ваша эл.адрес должен быть формата name@domain.com"
             },
-            messageText: {
-                required: "Пожалуйста, введите сообщение"
+            'order_promotion[message]': {
+                required: "Пожалуйста, введите сообщение",
+                minlength: "Пожалуйста, введите не менее 30 символов."
             }
         },
         errorPlacement: function (label, element) {
