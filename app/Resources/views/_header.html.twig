@@ -1,0 +1,15 @@
+<div class="header-fixed {{ (app.request.attributes.get('_route') == 'blog_post_view')?"pinned":"" }}">
+    <header>
+        <a class="logo" href="{{ path('homepage') }}" title="Stfalcon.com"></a>
+        <h1>{{ 'Веб-студия'|trans }} stfalcon</h1>
+        <span class="show-mobile-nav show-nav"><img src="{{ asset('img/bg/menu_icon.svg') }}" alt="Open menu"/></span>
+        {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
+        <nav class="site-nav">
+            <h2 class="hidden">{{ 'Навигация'|trans }}</h2>
+            {{ knp_menu_render('main') }}
+            <svg viewBox="0 0 20 20" class="close-mobile-nav">
+                <path class="icon-close-nav" d="M19.5303301,18.4696699 L20.0606602,19 L19,20.0606602 L18.4696699,19.5303301 L10,11.0606602 L1.53033009,19.5303301 L1,20.0606602 L-0.0606601718,19 L0.469669914,18.4696699 L8.93933983,10 L0.469669914,1.53033009 L-0.0606601718,1 L1,-0.0606601718 L1.53033009,0.469669914 L10,8.93933983 L18.4696699,0.469669914 L19,-0.0606601718 L20.0606602,1 L19.5303301,1.53033009 L11.0606602,10 L19.5303301,18.4696699 Z M19.5303301,18.4696699"></path>
+            </svg>
+        </nav>
+    </header>
+</div>
