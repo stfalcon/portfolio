@@ -371,6 +371,7 @@ a {
   &.header-slide {
     height: 100%;
     background-image: url("/img/pages/promotions/apps/slides/header-slide.jpg");
+    background-color: #252e33;
     background-size: cover;
 
     color: #ffffff;
@@ -431,6 +432,7 @@ a {
 
 .testimonials {
   background-image: url("/img/pages/promotions/apps/slides/slide_testimonials.jpg");
+  background-color: #293338;
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: auto 100%;
@@ -466,12 +468,12 @@ a {
       font-size: 2rem;
     }
     .inner-content {
-      padding: 50px 30px;
+      padding: 70px 30px 50px;
     }
   }
 }
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 500px) {
   .slide.header-slide {
     height: auto;
   }
@@ -522,6 +524,7 @@ app slides
 
 .mfb {
   background-image: url("/img/pages/promotions/apps/slides/slide_mfb.jpg");
+  background-color: #1c311d;
 
   .app-inf {
     width: 234px;
@@ -532,6 +535,7 @@ app slides
 
 .cookorama {
   background-image: url("/img/pages/promotions/apps/slides/slide_cookorama.jpg");
+  background-color: #6d5e50;
 
   .app-inf {
     top: 44px;
@@ -543,6 +547,7 @@ app slides
 
 .keepsnap {
   background-image: url("/img/pages/promotions/apps/slides/slide_keepsnap.jpg");
+  background-color: #5a6873;
 
   .app-inf {
     width: 234px;
@@ -553,6 +558,7 @@ app slides
 
 .megasos {
   background-image: url("/img/pages/promotions/apps/slides/slide_megasos.jpg");
+  background-color: #1e252a;
 
   .app-inf {
     top: 44px;
@@ -564,6 +570,7 @@ app slides
 
 .nizam {
   background-image: url("/img/pages/promotions/apps/slides/slide_nizam.jpg");
+  background-color: #546480;
 
   .app-inf {
     top: 44px;
@@ -578,6 +585,7 @@ app slides
 
 .galaxyrecon {
   background-image: url("/img/pages/promotions/apps/slides/slide_galaxyrecon.jpg");
+  background-color: #3b3638;
 
   .app-inf {
     top: 44px;
@@ -600,6 +608,11 @@ app slides
 }
 
 @media screen and (max-width: 1020px) {
+
+  .app-slide .wrap {
+    min-height: 0;
+  }
+
   .mfb,
   .keepsnap{
     .app-inf {

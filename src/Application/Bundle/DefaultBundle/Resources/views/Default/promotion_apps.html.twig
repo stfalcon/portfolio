@@ -16,7 +16,7 @@
                     <div class="icon icon-android"></div>
                     <div class="icon icon-apple"></div>
                 </div>
-                <a class="btn" href="#feedback-form">Заказать приложение</a>
+                <a class="btn" id="to-feedback-btn" href="#">Заказать приложение</a>
             </div>
         </div>
     </section>
@@ -176,7 +176,7 @@
         </div>
     </section>
 
-    <section id="feedback-anchor" class="blue-line">
+    <section id="feedback-line" class="blue-line">
         <div class="wrap">
             <form autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('order_apps') }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">

@@ -25,7 +25,7 @@ class PromotionOrderFormType extends AbstractType
                 'text',
                 [
                     'label' => 'Your name',
-                    'constraints' => [new Assert\Length(array('max' => 255))]
+                    'constraints' => [new Assert\Length(array('max' => 64))]
                 ]
             )
             ->add(
@@ -40,7 +40,7 @@ class PromotionOrderFormType extends AbstractType
                 'textarea',
                 [
                     'label' => 'Your message',
-                    'constraints' => [new Assert\Length(array('max' => 1000))]
+                    'constraints' => [new Assert\Length(array('max' => 5000))]
                 ]
             );
     }
