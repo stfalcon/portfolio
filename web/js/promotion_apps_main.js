@@ -129,7 +129,7 @@ var options = {
     prevPage: '#slider-prev',
     nextPage: '#slider-next',
     cycleBy: 'items',
-    cycleInterval: 3000
+    cycleInterval: 20000
 };
 $('#slider').sly(options);
 
