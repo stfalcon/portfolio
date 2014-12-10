@@ -1,0 +1,10 @@
+<form action="" method="post" id="direct-order-form" enctype="multipart/form-data">
+    <h3>{{ 'Заявка на сотрудничество' | trans }}</h3>
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.message) }}
+    {{ form_row(form.attach) }}
+    {{ form_rest(form) }}
+    <button type="submit">{{ 'Отправить' | trans }}</button>
+</form>

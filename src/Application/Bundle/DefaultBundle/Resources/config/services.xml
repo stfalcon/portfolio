@@ -6,6 +6,10 @@
 
     <parameters>
         <parameter key="application_default.menu_builder.class">Application\Bundle\DefaultBundle\Menu\MenuBuilder</parameter>
+
+        <parameter key="application_default.form.type.direct_order.class">Application\Bundle\DefaultBundle\Form\Type\DirectOrderFormType</parameter>
+
+        <parameter key="application_default.service.mailer.class">Application\Bundle\DefaultBundle\Service\MailerService</parameter>
     </parameters>
 
     <services>
@@ -42,6 +46,20 @@
         <service id="kernel.listener.locale_for_exception" class="Application\Bundle\DefaultBundle\EventListener\LocaleForExceptionListener">
             <argument>%locales%</argument>
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
+        </service>
+
+        <service id="application_default.form.type.direct_order" class="%application_default.form.type.direct_order.class%">
+            <argument type="service" id="translator" />
+            <tag name="form.type" alias="direct_order" />
+        </service>
+
+        <service id="application_default.service.mailer" class="%application_default.service.mailer.class%">
+            <argument type="service" id="mailer" />
+            <argument type="service" id="twig" />
+            <argument type="collection">
+                <argument key="fromEmail">%mailer_notify%</argument>
+                <argument key="fromName">%mailer_name%</argument>
+            </argument>
         </service>
 
     </services>

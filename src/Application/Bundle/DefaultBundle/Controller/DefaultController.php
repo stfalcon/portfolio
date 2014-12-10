@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Application\Bundle\DefaultBundle\Form\Type\PromotionOrderFormType;
@@ -37,11 +38,13 @@ class DefaultController extends Controller
     /**
      * Contacts page
      *
+     * @param Request $request
+     *
      * @return array()
      * @Template()
      * @Route("/contacts", name="contacts")
      */
-    public function contactsAction()
+    public function contactsAction(Request $request)
     {
         // @todo: refact
         if ($this->has('application_default.menu.breadcrumbs')) {
@@ -49,7 +52,57 @@ class DefaultController extends Controller
             $breadcrumbs->addChild('Контакты')->setCurrent(true);
         }
 
-        return array();
+        $directOrderForm = $this->createForm('direct_order', []);
+
+        if ($request->isMethod('post')) {
+            $directOrderForm->handleRequest($request);
+            if ($directOrderForm->isValid()) {
+                $formData = $directOrderForm->getData();
+                $container = $this->get('service_container');
+                $attachments = [];
+                if ($formData['attach']) {
+                    /** @var UploadedFile $attach */
+                    $attach = $formData['attach'];
+                    $attachFile = $attach->move(realpath($container->getParameter('kernel.root_dir') . '/../attachments/'), $attach->getClientOriginalName());
+                    $attachments[] = $attachFile;
+                }
+
+                $mailer_name = $container->getParameter('mailer_name');
+                $mailer_notify = $container->getParameter('mailer_notify');
+                $subject = $this->get('translator')->trans('Stfalcon.com direct order');
+                if ($this->get('application_default.service.mailer')->send(
+                    ['lensky84@gmail.com', $mailer_name],
+                    $subject,
+                    '@ApplicationDefault/emails/direct_order.html.twig',
+                    $formData,
+                    $attachments
+                    )
+                ) {
+                    if ($request->isXmlHttpRequest()) {
+                        return new JsonResponse([
+                            'result'    => 'success',
+                            'view'      => $this->renderView('@ApplicationDefault/Default/_direct_order_form_success.html.twig')
+                        ]);
+                    }
+
+                    $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans('Спасибо! Мы с Вами свяжемся в ближайшее время.'));
+
+                    return $this->redirect($this->generateUrl('contacts'));
+                } else {
+                    $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('Произошла ошибка при отправке письма.'));
+                }
+
+            }
+        }
+
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse([
+                'result'    => 'error',
+                'view'      => $this->renderView('@ApplicationDefault/Default/_direct_order_form.html.twig', ['form' => $directOrderForm->createView()])
+            ]);
+        }
+
+        return ['form' => $directOrderForm->createView()];
     }
 
     /**
