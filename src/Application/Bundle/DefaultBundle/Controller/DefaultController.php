@@ -85,6 +85,9 @@ class DefaultController extends Controller
 
         if ($form->isValid()) {
             $data = $form->getData();
+            $email = $data['email'];
+            $name  = $data['name'];
+
 
             // Get base template for email
             $templateContent = $this->get('twig')->loadTemplate(
@@ -94,8 +97,8 @@ class DefaultController extends Controller
             $body = $templateContent->render(
                 [
                     'message' => $data['message'],
-                    'name'    => $data['name'],
-                    'email'   => $data['email']
+                    'name'    => $name,
+                    'email'   => $email
                 ]
             );
 
@@ -104,9 +107,9 @@ class DefaultController extends Controller
             $mailer_notify = $this->get('service_container')->getParameter('mailer_notify');
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Application for the development of new mobile applications')
-                ->setFrom($mailer_from, $mailer_name)
-                ->setTo($mailer_notify)
+                ->setSubject('Заявка на разработку мобильного приложения от "' . $email . '"')
+                ->setFrom($email, $name)
+                ->setTo($mailer_notify, $mailer_name)
                 ->setBody($body, 'text/html');
 
             $mailer = $this->get('mailer');
