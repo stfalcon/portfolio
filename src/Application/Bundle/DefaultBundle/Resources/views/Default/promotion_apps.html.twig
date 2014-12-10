@@ -10,7 +10,7 @@
             <div class="inner-content">
                 <h1>{{ 'Разработка мобильных игр<br>и приложений'|trans|raw }}</h1>
 
-                <p>{{ 'Мы разрабатываем игры и приложения для смартфонов и<br> планшетов на базе платформ Android и iOS.'|trans }}</p>
+                <p>{{ 'Мы разрабатываем игры и приложения для смартфонов и<br> планшетов на базе платформ Android и iOS.'|trans|raw }}</p>
 
                 <div class="platforms">
                     <div class="icon icon-android"></div>
@@ -178,20 +178,20 @@
 
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
-            <form autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('order_apps') }}" method="post" {{ form_enctype(form) }}>
+            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('order_apps') }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">
                     <h1>{{ 'Заказать приложение'|trans }}</h1>
 
                     <div class="line">
                         <div class="col2 float-left">
-                            {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'} }) }}
+                            {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans} }) }}
                         </div>
                         <div class="col2 float-right">
-                            {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'} }) }}
+                            {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
                         </div>
                     </div>
                     <div class="line">
-                        {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'} }) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'|trans} }) }}
                     </div>
                     <div class="line">
                         <button class="btn btn-black float-right">{{ 'Заказать приложение'|trans }}</button>
@@ -203,7 +203,7 @@
                         <div class="inner-pad">
                             <h3>{{ 'Спасибо!'|trans }}</h3>
 
-                            <p>{{ 'Мы изучим Вашу заявку<br>и ответим в ближайшее время.'|trans }}</p>
+                            <p>{{ 'Мы изучим Вашу заявку<br>и ответим в ближайшее время.'|trans|raw }}</p>
                         </div>
                     </div>
                 </div>
@@ -223,9 +223,23 @@
 {% endblock body %}
 
 {% block javascripts %}
-        {% javascripts 'js/vendor/jquery-1.11.1.min.js' 'js/sly.js' 'js/jquery.validate.min.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
+
+    {% set locale = app.request.locale %}
+
+    {% javascripts 'js/vendor/jquery-1.11.1.min.js' 'js/sly.js' 'js/jquery.validate.min.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% if locale == 'en' %}
+        {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+    {% else %}
+        {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+
 {% endblock javascripts %}
 
 {% block stylesheets %}
