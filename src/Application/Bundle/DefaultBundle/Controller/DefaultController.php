@@ -107,7 +107,7 @@ class DefaultController extends Controller
             $mailer_notify = $this->get('service_container')->getParameter('mailer_notify');
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Application for the development of new mobile applications "' . $email . '"')
+                ->setSubject('Заявка на разработку мобильного приложения от "' . $email . '"')
                 ->setFrom($email, $name)
                 ->setTo($mailer_notify, $mailer_name)
                 ->setBody($body, 'text/html');
