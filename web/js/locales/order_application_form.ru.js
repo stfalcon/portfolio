@@ -59,7 +59,7 @@ var validator = $('#feedback-form').validate({
             },
             success: function (response) {
                 if (response.status == "success") {
-                    ga('send', 'pageview', 'order_sent');
+                    ga('send', 'event', 'order', 'landing');
 
                     $('#feedback-form').find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
                     $('#feedback-form').find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
