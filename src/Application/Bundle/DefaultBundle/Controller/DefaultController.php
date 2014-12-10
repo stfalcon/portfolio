@@ -82,6 +82,7 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new PromotionOrderFormType());
         $form->handleRequest($request);
+        $translated = $this->get('translator');
 
         if ($form->isValid()) {
             $data = $form->getData();
@@ -105,9 +106,10 @@ class DefaultController extends Controller
             $mailer_from = $this->get('service_container')->getParameter('mailer_from');
             $mailer_name = $this->get('service_container')->getParameter('mailer_name');
             $mailer_notify = $this->get('service_container')->getParameter('mailer_notify');
+            $subject = $translated->trans('Заявка на разработку мобильного приложения от "%email%"', ['%email%' => $email]);
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Заявка на разработку мобильного приложения от "' . $email . '"')
+                ->setSubject($subject)
                 ->setFrom($email, $name)
                 ->setTo($mailer_notify, $mailer_name)
                 ->setBody($body, 'text/html');
