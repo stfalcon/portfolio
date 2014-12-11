@@ -16,7 +16,7 @@
                     <div class="icon icon-android"></div>
                     <div class="icon icon-apple"></div>
                 </div>
-                <a class="btn" id="to-feedback-btn" href="#">{{ 'Заказать приложение'|trans }}</a>
+                <a class="btn" id="to-feedback-btn" href="#">{{ 'Заказать дизайн веб-сайта'|trans }}</a>
             </div>
         </div>
     </section>
@@ -178,9 +178,9 @@
 
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
-            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'app'}) }}" method="post" {{ form_enctype(form) }}>
+            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'development'}) }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">
-                    <h1>{{ 'Заказать приложение'|trans }}</h1>
+                    <h1>{{ 'Заказать дизайн веб-сайта'|trans }}</h1>
 
                     <div class="line">
                         <div class="col2 float-left">
@@ -191,10 +191,10 @@
                         </div>
                     </div>
                     <div class="line">
-                        {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'|trans} }) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о сайте'|trans} }) }}
                     </div>
                     <div class="line">
-                        <button class="btn btn-black float-right">{{ 'Заказать приложение'|trans }}</button>
+                        <button class="btn btn-black float-right">{{ 'Заказать дизайн веб-сайта'|trans }}</button>
                     </div>
                 </div>
                 {{ form_rest(form) }}
@@ -226,7 +226,12 @@
 
     {% set locale = app.request.locale %}
 
-    {% javascripts 'js/vendor/jquery-1.11.1.min.js' 'js/sly.js' 'js/jquery.validate.min.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
+    {% javascripts
+        'js/vendor/jquery-1.11.1.min.js'
+        'js/sly.js'
+        'js/jquery.validate.min.js'
+        'js/promotion_apps_main.js'
+        output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 

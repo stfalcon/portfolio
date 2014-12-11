@@ -178,7 +178,7 @@
 
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
-            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('order_design') }}" method="post" {{ form_enctype(form) }}>
+            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'design'}) }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">
                     <h1>{{ 'Заказать дизайн веб-сайта'|trans }}</h1>
 
