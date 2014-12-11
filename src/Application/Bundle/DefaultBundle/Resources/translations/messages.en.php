@@ -58,5 +58,6 @@ return array(
     'Заказать приложение' => 'Order an app',
     'Спасибо!' => 'Thanks!',
     'Мы изучим Вашу заявку<br>и ответим в ближайшее время.' => 'We will examine your order<br>and write you back as soon as possible.',
-    'Заявка на разработку мобильного приложения от "%email%"' => 'The application for the development of mobile applications from "%email%"'
+    'Заявка на разработку мобильного приложения от "%email%"' => 'The application for the development of mobile applications from "%email%"',
+    'Кукорама' => 'Cookorama'
 );
