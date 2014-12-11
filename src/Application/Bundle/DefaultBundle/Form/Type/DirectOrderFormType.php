@@ -38,7 +38,10 @@ class DirectOrderFormType extends AbstractType
                         'placeholder' => $this->translator->trans('Ваше имя')
                     ],
                     'label' => false,
-                    'constraints' => [new Assert\Length(array('max' => 64))]
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Length(array('max' => 64))
+                    ]
                 ]
             )
             ->add(
@@ -49,6 +52,10 @@ class DirectOrderFormType extends AbstractType
                         'placeholder' => $this->translator->trans('Электронная почта')
                     ],
                     'label' => false,
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Length(array('max' => 64))
+                    ]
                 ]
             )
             ->add(
@@ -59,6 +66,14 @@ class DirectOrderFormType extends AbstractType
                         'placeholder' => $this->translator->trans('Телефон')
                     ],
                     'label' => false,
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Length(array('max' => 64)),
+                        new Assert\Regex([
+                            'pattern' => '/^\+?[0-9\(\)\/ \-]+$/',
+                            'message' => 'Неверный формат телефона'
+                        ])
+                    ]
                 ]
             )
             ->add(
@@ -69,7 +84,13 @@ class DirectOrderFormType extends AbstractType
                         'placeholder' => $this->translator->trans('Добрый день! Меня интересует создание мобильного приложения под iOS. Мой бюджет 10 000 $. Хочу работать с Stfalcon.')
                     ],
                     'label' => false,
-                    'constraints' => [new Assert\Length(array('max' => 5000))]
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Length([
+                            'min' => 30,
+                            'max' => 5000
+                        ])
+                    ]
                 ]
             )
             ->add('attach', 'file', [

@@ -392,18 +392,14 @@ $(function () {
                 });
             }
         })();
-    };
+    }
     if (location.hash) {               // do the test straight away
         window.scrollTo(0, 0);         // execute it straight away
         setTimeout(function() {
             window.scrollTo(0, 0);     // run it a bit later also for browser compatibility
         }, 1);
     }
-
-});
-
-$(document).ready(function() {
-    $('.file-input input').on("change", function () {
+    $(document).on("change", '.file-input input',  function () {
         var fullPath = $(this).val();
         var pathArray = fullPath.split(/[/\\]/);
         $(this).closest('.file-input').find('.filename').text(pathArray[pathArray.length - 1]);
