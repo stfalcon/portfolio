@@ -8,6 +8,8 @@ vendor/*
 web/uploads/*
 web/bundles/*
 web/cache/*
+attachments/*
+!attachments/.gitkeep
 
 # Configuration files
 app/config/parameters.ini

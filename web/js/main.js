@@ -1,5 +1,23 @@
 $(function () {
-    
+    $(document).on('submit', '#direct-order-form', function(e) {
+        e.preventDefault();
+        var $directOrderForm = $(this);
+
+        $.ajax({
+            url: window.location.href,
+            type: 'post',
+            data: new FormData( this ),
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                $directOrderForm.replaceWith(response.view);
+                if (response.result == 'success' && window.ga) {
+                    ga('send', 'event', 'order', 'contacts');
+                }
+            }
+        });
+    });
+
     // Unpined header
     var headroom  = new Headroom($('body')[0], {
             "tolerance": 0,
@@ -382,4 +400,13 @@ $(function () {
         }, 1);
     }
 
-}); 
+});
+
+$(document).ready(function() {
+    $('.file-input input').on("change", function () {
+        var fullPath = $(this).val();
+        var pathArray = fullPath.split(/[/\\]/);
+        $(this).closest('.file-input').find('.filename').text(pathArray[pathArray.length - 1]);
+        $(this).closest('.file-input').find('.filesize').fadeOut(700);
+    });
+});

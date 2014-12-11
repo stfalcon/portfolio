@@ -22,6 +22,12 @@ monolog:
 assetic:
     use_controller: true
 
+swiftmailer:
+    transport: 'mail'
+    spool:
+        type: file
+        path: "%kernel.root_dir%/spool"
+
 # Twig Configuration
 services:
    twig.extension.debug:
