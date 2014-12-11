@@ -194,6 +194,179 @@ a {
   }
 }
 
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=date],
+input[type=month],
+input[type=time],
+input[type=url],
+input[type=week],
+textarea {
+  display: block;
+  .box-sizing(border-box);
+  width: 100%;
+  background: #fff;
+  border: none;
+  .border-radius(4px);
+  .box-shadow(0 1px 1px rgba(0,0,0,0.35));
+  //height: 51px;
+  padding: 14px 16px 13px;
+  font-family: @global-font;
+  font-size: 1.117em;
+  line-height: 1.335em;
+}
+
+textarea {
+  height: 173px;
+}
+
+/*placeholder css*/
+form :-moz-placeholder {color:#919699;opacity: 1 !important;} /*Firefox 4-18*/
+form ::-moz-placeholder {color:#919699;opacity: 1 !important;} /*Firefox 19+ */
+form ::-webkit-input-placeholder {color:#919699: 1 !important;line-height: 1.335em;} /*webkit*/
+form :-ms-input-placeholder{color:#919699;opacity: 1 !important;} /*ie10*/
+
+.file-input {
+  position: relative;
+  .box-sizing(border-box);
+  padding: 13px 16px 12px;
+  border: 1px dashed #c4c5c5;
+  .border-radius(4px);
+  overflow: hidden;
+
+  p {
+    font-size: 1.287em;
+    line-height: 1.335em;
+  }
+  .filename {
+    margin: 0;
+  }
+  .filesize {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    margin: 0;
+    color: #919699;
+  }
+  input {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 200px;
+    cursor: pointer;
+
+    opacity:0;
+  }
+}
+
+form {
+  .line {
+    margin: 0 0 10px;
+
+    &:after {
+      content:"";
+      display: block;
+      clear:both;
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .btn-line {
+    margin-top: 20px;
+
+    .btn {
+      float: right;
+      position: relative;
+      margin-top: -51px;
+    }
+    .file-input {
+      margin-right: 184px;
+    }
+  }
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  .box-sizing(border-box);
+  text-align: center;
+  height: 51px;
+  background: #2c373c;
+  border: none;
+  padding: 0 27px;
+  .border-radius(3px);
+  font-size: 1.05em;
+  color: #ffffff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #202629;
+  }
+  &:active {
+    background-color: #ed002d;
+    outline:none;
+  }
+  .fullwidth {
+    width: 100%;
+  }
+}
+
+a.btn ,
+div.btn ,
+span.btn {
+  padding-top: 16px;
+}
+
+@media screen and (max-width:1330px){
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=date],
+  input[type=month],
+  input[type=time],
+  input[type=url],
+  input[type=week],
+  textarea {
+    font-size: 1.143rem;
+  }
+}
+
+@media screen and (max-width:1080px) {
+  form {
+    .btn-line {
+      .btn {
+        margin: 0;
+      }
+      .file-input {
+        width: 100%;
+        float: none;
+        margin: 0 0 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:1023px) {
+  .file-input p,
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=date],
+  input[type=month],
+  input[type=time],
+  input[type=url],
+  input[type=week],
+  textarea {
+    font-size: 1rem;
+  }
+}
+
 // for desctop
 .hidden-d {
   .responsive-invisibility();
