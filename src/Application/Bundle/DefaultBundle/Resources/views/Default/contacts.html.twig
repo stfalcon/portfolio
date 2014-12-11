@@ -7,29 +7,53 @@
         <h1>
             {{ 'Контактная информация'|trans }}
         </h1>
-        {% include '@ApplicationDefault/Default/_direct_order_form.html.twig' %}
-        <div class="col">
-            <div class="info-group">
-                <span>{{ 'Позвонить'|trans }}:</span>
-                <a href="tel:+380 97 874-03-42"><b>+380 97 874-03-42</b></a>
+
+        <div class="clearfix">
+            <div class="contacts-inf">
+                <div class="info-group">
+                    <span>Позвонить:</span>
+                    <a href="tel:+380 97 874-03-42"><b>+380 97 874-03-42</b></a>
+                </div>
+                <div class="info-group">
+                    <span>Написать:</span>
+                    <a href="mailto:info@stfalcon.com"><b>info@stfalcon.com</b></a>
+                </div>
+                <div class="info-group">
+                    <span>Зайти в гости:</span>
+                    <b>ул. Заречанская 3/2, <br> Хмельницкий, Украина, 29000</b>
+                </div>
+                <ul class="socials">
+                    <li><a href="https://www.facebook.com/stfalconcom" target="_blank"><span class="icon icon-facebook"></span> <span>Facebook</span></a></li>
+                    <li><a href="https://twitter.com/stfalcon" target="_blank"><span class="icon icon-twitter"></span> <span>Twitter</span></a></li>
+                    <li><a href="https://github.com/stfalcon-studio" target="_blank"><span class="icon icon-github"></span> <span>GitHub</span></a></li>
+                </ul>
             </div>
-            <div class="info-group">
-                <span>{{ 'Написать'|trans }}:</span>
-                <a href="mailto:info@stfalcon.com"><b>info@stfalcon.com</b></a>
+            {% include '@ApplicationDefault/Default/_direct_order_form.html.twig' %}
+            <div class="contacts-form-wr">
+                <form id="feedback-form" action="">
+                    <h3>Заявка на сотрудничество</h3>
+                    <div class="line">
+                        <input type="text" value="" placeholder="Ваше имя">
+                    </div>
+                    <div class="line">
+                        <input type="text" value="" placeholder="Электронная почта">
+                    </div>
+                    <div class="line">
+                        <input type="text" value="" placeholder="Телефон">
+                    </div>
+                    <div class="line">
+                        <textarea name="" id="" cols="30" rows="10" placeholder="Добрый день! Меня интересует создание мобильного приложения под iOS. Мой бюджет 10 000 $. Хочу работать с Stfalcon."></textarea>
+                    </div>
+                    <div class="line btn-line">
+                        <div class="file-input">
+                            <p class="filename">Прикрепить файл</p>
+                            <p class="filesize">до 20 МБ</p>
+                            <input type="file" value="">
+                        </div>
+                        <button class="btn" type="submit">Отправить</button>
+                    </div>
+                </form>
             </div>
-        </div> 
-        <div class="col address">
-            <div class="info-group">
-                <span>{{ 'Зайти в гости'|trans }}:</span>
-                <b>{{ 'ул. Заречанская 3/2'|trans }}, <br> {{ 'Хмельницкий'|trans }}, {{ 'Украина'|trans }}, 29000</b>
-            </div>
-        </div> 
-        <div class="col">
-            <ul class="socials">
-                <li><a href="https://www.facebook.com/stfalconcom" target="_blank"><span class="icon icon-facebook"></span> <span>Facebook</span></a></li>
-                <li><a href="https://twitter.com/stfalcon" target="_blank"><span class="icon icon-twitter"></span> <span>Twitter</span></a></li>
-                <li><a href="https://github.com/stfalcon-studio" target="_blank"><span class="icon icon-github"></span> <span>GitHub</span></a></li>
-            </ul>
         </div>
     </section>
     <!--google map-->
