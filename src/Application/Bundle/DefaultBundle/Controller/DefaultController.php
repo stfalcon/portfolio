@@ -115,7 +115,7 @@ class DefaultController extends Controller
         $form = $this->createForm(new PromotionOrderFormType());
 
         return $this->render(
-            '@ApplicationDefault/Default/promotion_apps.html.twig',
+            'ApplicationDefaultBundle:Default:promotion_apps.html.twig',
             ['form' => $form->createView()]
         );
     }
@@ -142,33 +142,21 @@ class DefaultController extends Controller
             $email = $data['email'];
             $name  = $data['name'];
 
+            $container = $this->get('service_container');
+            $mailer_name = $container->getParameter('mailer_name');
+            $mailer_notify = $container->getParameter('mailer_notify');
+            $subject = $translated->trans('Заявка на разработку мобильного приложения от "%email%"', ['%email%' => $email]);
 
-            // Get base template for email
-            $templateContent = $this->get('twig')->loadTemplate(
-                'ApplicationDefaultBundle:emails:order_app.html.twig'
-            );
-
-            $body = $templateContent->render(
+            if ($this->get('application_default.service.mailer')->send(
+                [$mailer_notify, $mailer_name],
+                $subject,
+                '@ApplicationDefault/emails/order_app.html.twig',
                 [
                     'message' => $data['message'],
                     'name'    => $name,
                     'email'   => $email
                 ]
-            );
-
-            $mailer_from = $this->get('service_container')->getParameter('mailer_from');
-            $mailer_name = $this->get('service_container')->getParameter('mailer_name');
-            $mailer_notify = $this->get('service_container')->getParameter('mailer_notify');
-            $subject = $translated->trans('Заявка на разработку мобильного приложения от "%email%"', ['%email%' => $email]);
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject($subject)
-                ->setFrom($email, $name)
-                ->setTo($mailer_notify, $mailer_name)
-                ->setBody($body, 'text/html');
-
-            $mailer = $this->get('mailer');
-            if ($mailer->send($message)) {
+            )) {
                 return new JsonResponse(['status' => 'success']);
             } else {
                 return new JsonResponse(['status' => 'error']);
