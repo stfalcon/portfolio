@@ -71,7 +71,7 @@ class DefaultController extends Controller
                 $mailer_notify = $container->getParameter('mailer_notify');
                 $subject = $this->get('translator')->trans('Stfalcon.com direct order');
                 if ($this->get('application_default.service.mailer')->send(
-                    ['lensky84@gmail.com', $mailer_name],
+                    [$mailer_notify, $mailer_name],
                     $subject,
                     '@ApplicationDefault/emails/direct_order.html.twig',
                     $formData,
