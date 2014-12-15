@@ -323,6 +323,44 @@ span.btn {
   padding-top: 16px;
 }
 
+/*
+error
+*/
+textarea.error,
+input.error {
+  box-shadow: 0 0 3px #fcd9e0;
+}
+
+.error-list {
+  display: block;
+  position: relative;
+  z-index: 11;
+  color: #ffffff;
+  margin: -10px 0 0 6px;
+  border-radius: 3px;
+  background: #ed002d;
+  .box-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+  padding: 9px 11px;
+
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 12px;
+    border-style: solid;
+    border-width: 6px 6px 6px 5px;
+    border-color: transparent transparent #ed002d transparent;
+  }
+  li {
+    margin: 0 0 10px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
 @media screen and (max-width:1330px){
   input[type=text],
   input[type=password],
