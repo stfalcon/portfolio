@@ -63,7 +63,7 @@ $('#slider').sly(options);
 var i = 0;
 var spreadRange = $(window).height();
 var parallaxRange = 50;
-var elGroup = $('.app-slide');
+var elGroup = $('.app-slide, .webdev-slide, .design-slide');
 var elLength = $(elGroup).length;
 var elArray = [[0, 0]];
 elArray.pop();
