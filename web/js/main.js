@@ -401,8 +401,13 @@ $(function () {
     }
     $(document).on("change", '.file-input input',  function () {
         var fullPath = $(this).val();
+        if ( fullPath == '' || fullPath == '&nbsp;' ) {
+            fullPath = '&nbsp;';
+            $(this).closest('.file-input').find('.filesize').fadeIn(700);
+        } else {
+            $(this).closest('.file-input').find('.filesize').fadeOut(700);
+        };
         var pathArray = fullPath.split(/[/\\]/);
-        $(this).closest('.file-input').find('.filename').text(pathArray[pathArray.length - 1]);
-        $(this).closest('.file-input').find('.filesize').fadeOut(700);
+        $(this).closest('.file-input').find('.filename').html(pathArray[pathArray.length - 1]);
     });
 });
