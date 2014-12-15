@@ -60,7 +60,7 @@ return array(
     'promotion.order.design.mail.subject' => 'Заявка на разработку веб дизайна от "%email%"',
     'promotion.order.development.mail.subject' => 'Заявка на разработку веб разработки от "%email%"',
     'Кукорама' => 'Cookorama',
-    'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thanks you! We will write you back as soon as possible.',
+    'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',
     'Заявка на сотрудничество' => 'Cooperation request',
     'Прикрепить файл' => 'Attach a file',
     'до 20 МБ' => '20 MB max',
