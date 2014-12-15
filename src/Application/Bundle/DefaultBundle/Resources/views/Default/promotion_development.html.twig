@@ -8,15 +8,11 @@
             <div id="scroll-down" class="icon"></div>
 
             <div class="inner-content">
-                <h1>{{ 'Разработка мобильных игр<br>и приложений'|trans|raw }}</h1>
+                <h1>{{ 'Разработка веб-проектов'|trans|raw }}</h1>
 
-                <p>{{ 'Мы разрабатываем игры и приложения для смартфонов и<br> планшетов на базе платформ Android и iOS.'|trans|raw }}</p>
+                <p>{{ 'Мы специализируемся на разработке больших и средних<br />сайтов с нестандартной функциональностью.'|trans|raw }}</p>
 
-                <div class="platforms">
-                    <div class="icon icon-android"></div>
-                    <div class="icon icon-apple"></div>
-                </div>
-                <a class="btn" id="to-feedback-btn" href="#">{{ 'Заказать дизайн веб-сайта'|trans }}</a>
+                <a class="btn" id="to-feedback-btn" href="#">{{ 'Заказать сайт'|trans }}</a>
             </div>
         </div>
     </section>
@@ -62,80 +58,116 @@
         </div>
     </section>
 
-    <section class="app-slide mfb">
+    <section class="webdev-slide mfb">
         <div class="wrap">
             <div class="app-inf">
-                <h1>MeinFernbus.de</h1>
+                <h1>{{ "MeinFernbus" | trans() }}</h1>
+                <p>{{ "Сайт крупнейшей компании<br>пассажирских перевозок в Европе." | trans()|raw }}</p>
 
-                <p>{{ 'Мобильное приложение для крупнейшего пассажирского перевозчика в Германии.'|trans }}</p>
+                <div class="tech-list">
+                    <p>{{ "В разработке использовали:" | trans() }}</p>
+                    <ul>
+                        <li><div class="webtech-mysql"></div></li>
+                        <li><div class="webtech-doctrine"></div></li>
+                        <li><div class="webtech-behat"></div></li>
+                        <li><div class="webtech-symphony"></div></li>
+                        <li><div class="webtech-elasticsearch"></div></li>
+                        <li><div class="webtech-rollbar"></div></li>
+                        <li><div class="webtech-leaflet"></div></li>
+                    </ul>
+                </div>
             </div>
-            <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_mfb.png" width="422" height="646" alt=""/></a>
+            <div class="site-img">
+                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_mfb.jpg') }}" width="630" height="378" alt=""/></a>
             </div>
         </div>
     </section>
 
-    <section class="app-slide cookorama">
+    <section class="webdev-slide keepsnap">
+        <div class="wrap">
+            <div class="app-inf">
+                <h1>{{ "KeepSnap" | trans() }}</h1>
+                <p>{{ "Сервис, где профессиональные фотографы продают отснятые фотографии своим клиентам. Клиент может купить фото любого качества из галереи фотографа." | trans() }}</p>
+                <div class="tech-list">
+                    <p>{{ "В разработке использовали:" | trans() }}</p>
+                    <ul>
+                        <li><div class="webtech-jquery"></div></li>
+                        <li><div class="webtech-less"></div></li>
+                        <li><div class="webtech-mysql"></div></li>
+                        <li><div class="webtech-symphony"></div></li>
+                        <li><div class="webtech-rabbitmq"></div></li>
+                        <li><div class="webtech-sphinx"></div></li>
+                        <li><div class="webtech-grunt"></div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-img">
+                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_keepsnap.jpg') }}" width="630" height="378" alt=""/></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="webdev-slide megasos">
+        <div class="wrap">
+            <div class="app-inf">
+                <h1>{{ "MegaS.O.S" | trans() }}</h1>
+                <p>{{ "Сообщество, где обсуждают вопросы тюнинга и ремонта или просто общаются на автомобильною тематику." | trans() }}</p>
+                <div class="tech-list">
+                    <p>{{ "В разработке использовали:" | trans() }}</p>
+                    <ul>
+                        <li><div class="webtech-less"></div></li>
+                        <li><div class="webtech-leaflet"></div></li>
+                        <li><div class="webtech-fresco"></div></li>
+                        <li><div class="webtech-symphony"></div></li>
+                        <li><div class="webtech-sphinx"></div></li>
+                        <li><div class="webtech-enquire"></div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-img">
+                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_megasos.jpg') }}" width="630" height="378" alt=""/></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="webdev-slide radialka">
+        <div class="wrap">
+            <div class="app-inf">
+                <h1>{{ "Радиалка" | trans() }}</h1>
+                <p>{{ "Один из крупнейших интернет-магазинов, реализующих такую нишевую продукцию, как снаряжение для туризма и активного отдыха." | trans() }}</p>
+                <div class="tech-list">
+                    <p>{{ "В разработке использовали:" | trans() }}</p>
+                    <ul>
+                        <li><div class="webtech-less"></div></li>
+                        <li><div class="webtech-behat"></div></li>
+                        <li><div class="webtech-opencart"></div></li>
+                        <li><div class="webtech-backbone"></div></li>
+                        <li><div class="webtech-enquire"></div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-img">
+                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_radialka.jpg') }}" width="630" height="378" alt=""/></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="webdev-slide cookorama">
         <div class="wrap">
             <div class="app-inf">
                 <h1>{{ "Кукорама" | trans() }}</h1>
-
-                <p>{{ '«Рецепты от Кукорамы» — удобное приложение с красочными пошаговыми рецептами для любителей готовить.'|trans }}</p>
+                <p>{{ "Кулинарное сообщество, где собираются для обмена новыми рецептами и<br> делятся практическим опытом." | trans() }}</p>
+                <div class="tech-list">
+                    <p>{{ "В разработке использовали:" | trans() }}</p>
+                    <ul>
+                        <li><div class="webtech-mootools"></div></li>
+                        <li><div class="webtech-livestreet"></div></li>
+                        <li><div class="webtech-sphinx"></div></li>
+                    </ul>
+                </div>
             </div>
-            <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_cookorama.png" width="960" height="480" alt=""/></a>
-            </div>
-        </div>
-    </section>
-
-    <section class="app-slide keepsnap">
-        <div class="wrap">
-            <div class="app-inf">
-                <h1>KeepSnap</h1>
-
-                <p>{{ 'Нативные приложения проекта KeepSnap для iOS и Android — возможность просмотреть свой баланс, создать галереи на лету или же отметить свое местоположение на карте.'|trans }}</p>
-            </div>
-            <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_keepsnap.png" width="427" height="645" alt=""/></a>
-            </div>
-        </div>
-    </section>
-
-    <section class="app-slide megasos">
-        <div class="wrap">
-            <div class="app-inf">
-                <h1>MegaS.O.S.</h1>
-
-                <p>{{ 'Приложение позволяет автомобилисту отправить сообщение с просьбой о помощи и указать, где именно приключилась неприятность.'|trans }}</p>
-            </div>
-            <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_megasos.png" width="543" height="480" alt=""/></a>
-            </div>
-        </div>
-    </section>
-
-    <section class="app-slide nizam">
-        <div class="wrap">
-            <div class="app-inf">
-                <h1>Nizam</h1>
-
-                <p>{{ 'Увлекательный мобильный вариант одноименной настольной игры. Вариация механики «три-в-ряд», интегрированная в дуэльный режим.'|trans }}</p>
-            </div>
-            <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_nizam.png" width="843" height="435" alt=""/></a>
-            </div>
-        </div>
-    </section>
-
-    <section class="app-slide galaxyrecon">
-        <div class="wrap">
-            <div class="app-inf">
-                <h1>Galaxy Recon</h1>
-
-                <p>{{ '2D Survival Shooter. Идея проста: есть главный герой, есть толпа различных монстров, нужно от них отбиться.'|trans }}</p>
-            </div>
-            <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_galaxyrecon.png" width="846" height="435" alt=""/></a>
+            <div class="site-img">
+                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_cookorama.jpg') }}" width="630" height="378" alt=""/></a>
             </div>
         </div>
     </section>
@@ -178,9 +210,10 @@
 
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
-            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'development'}) }}" method="post" {{ form_enctype(form) }}>
+            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form webdev-form" action="{{ path('promotion_order', {'type': 'development'}) }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">
-                    <h1>{{ 'Заказать дизайн веб-сайта'|trans }}</h1>
+                    <h1>{{ 'Отправте заявку'|trans }}</h1>
+                    <p>{{ "И мы поможем решить вашу задачу" | trans() }}</p>
 
                     <div class="line">
                         <div class="col2 float-left">
@@ -194,7 +227,7 @@
                         {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о сайте'|trans} }) }}
                     </div>
                     <div class="line">
-                        <button class="btn btn-black float-right">{{ 'Заказать дизайн веб-сайта'|trans }}</button>
+                        <button class="btn btn-black float-right">{{ 'Заказать сайт'|trans }}</button>
                     </div>
                 </div>
                 {{ form_rest(form) }}
