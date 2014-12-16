@@ -51,7 +51,8 @@ class PostRepository extends EntityRepository
     /**
      * Get last posts
      *
-     * @param int $count Max count of returned posts
+     * @param string $locale
+     * @param int    $count Max count of returned posts
      *
      * @return array
      */
