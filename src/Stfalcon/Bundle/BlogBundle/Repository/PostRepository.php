@@ -17,13 +17,21 @@ class PostRepository extends EntityRepository
     /**
      * Get all posts
      *
+     * @param string $locale
+     *
      * @return Query
      */
-    public function getAllPublishedPostsAsQuery()
+    public function getAllPublishedPostsAsQuery($locale)
     {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.published = 1')
             ->orderBy('p.created', 'DESC');
+        if ($locale != 'ru') {
+            $qb->innerJoin('p.translations', 't')
+                ->andWhere('t.locale = :locale')
+                ->setParameter('locale', $locale)
+                ->andWhere($qb->expr()->isNotNull('t.content'));
+        }
 
         return $qb->getQuery();
     }
@@ -31,23 +39,26 @@ class PostRepository extends EntityRepository
     /**
      * Get all posts
      *
+     * @param string $locale
+     *
      * @return array
      */
-    public function getAllPublishedPosts()
+    public function getAllPublishedPosts($locale)
     {
-        return $this->getAllPublishedPostsAsQuery()->getResult();
+        return $this->getAllPublishedPostsAsQuery($locale)->getResult();
     }
 
     /**
      * Get last posts
      *
-     * @param int $count Max count of returned posts
+     * @param string $locale
+     * @param int    $count Max count of returned posts
      *
      * @return array
      */
-    public function getLastPosts($count = null)
+    public function getLastPosts($locale, $count = null)
     {
-        $query = $this->getAllPublishedPostsAsQuery();
+        $query = $this->getAllPublishedPostsAsQuery($locale);
 
         if ((int) $count) {
             $query->setMaxResults($count);
