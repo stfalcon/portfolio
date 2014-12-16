@@ -52,10 +52,7 @@ class MenuBuilder
         $menu->addChild($this->translator->trans('Проекты'), array('route' => 'portfolio_all_projects'));
         $menu->addChild($this->translator->trans('Услуги'), array('route' => 'portfolio_categories_list'));
         $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));
-        /* @todo remove when blog translations will be finished */
-        if ($request->getLocale() != 'en') {
-            $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
-        }
+        $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
         $menu->addChild($this->translator->trans('Контакты'), array('route' => 'contacts'));
 
         return $menu;
