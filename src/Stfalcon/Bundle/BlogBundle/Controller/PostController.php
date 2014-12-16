@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -32,9 +33,10 @@ class PostController extends AbstractController
      */
     public function indexAction($page)
     {
+        $request = $this->get('request');
         $translator = $this->get('translator');
         $allPostsQuery = $this->get('doctrine')->getManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery();
+                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery($request->getLocale());
         $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
 
         if ($this->has('application_default.menu.breadcrumbs')) {
@@ -85,6 +87,7 @@ class PostController extends AbstractController
      */
     public function rssAction()
     {
+        $locale = $this->get('request')->getLocale();
         $feed = new Feed();
 
         $config = $this->container->getParameter('stfalcon_blog.config');
@@ -94,7 +97,7 @@ class PostController extends AbstractController
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
         $posts = $this->get('doctrine')->getManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPosts();
+                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPosts($locale);
         foreach ($posts as $post) {
             $entry = new Entry();
             $entry->setTitle($post->getTitle());

@@ -1,7 +1,7 @@
 <section class="blog-posts">
     <h3>{{ 'Свежее из блога'|trans }} <a href="{{ path('blog_rss') }}" target="_blank"><i
                     class="icon icon-share"></i></a></h3>
-    {% render controller("StfalconBlogBundle:Post:last", { 'count': 3 }) %}
+    {% render controller("StfalconBlogBundle:Post:last", { 'locale': app.request.locale, 'count': 3 }) %}
 </section>
 <section class="contacts">
     <h3>{{ 'На связи'|trans }}</h3>
