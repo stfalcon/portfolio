@@ -81,7 +81,7 @@ class DirectOrderFormType extends AbstractType
                 'textarea',
                 [
                     'attr' => [
-                        'placeholder' => $this->translator->trans('Добрый день! Меня интересует создание мобильного приложения под iOS. Мой бюджет 10 000 $. Хочу работать с Stfalcon.')
+                        'placeholder' => $this->translator->trans('Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...')
                     ],
                     'label' => false,
                     'constraints' => [

@@ -66,7 +66,7 @@ return array(
     'до 20 МБ' => '20 MB max',
     'Отправить' => 'Send',
     'Телефон' => 'Phone',
-    'Добрый день! Меня интересует создание мобильного приложения под iOS. Мой бюджет 10 000 $. Хочу работать с Stfalcon.' => "Hello! I'd like to create a mobile app for iOS. My budget is $10000. I want to work with you.",
+    'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...' => "Hello! I'd like to create a mobile app for iOS. My budget is $10000. The idea of this app is...",
     //design landing
     'Дизайн веб-сайтов' => 'Websites design',
     'Мы создаем дизайн веб-сайтов и интерфейсов<br/>веб-приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',
