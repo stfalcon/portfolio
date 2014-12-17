@@ -71,7 +71,7 @@ return array(
     'Дизайн веб-сайтов' => 'Websites design',
     'Мы создаем дизайн веб-сайтов и интерфейсов<br/>веб-приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',
     'Заказать дизайн веб-сайта' => 'Order a website design',
-    'Сервис, где профессиональные фотографы продают отснятые фотографии своим клиентам. Клиент может купить фото любого качества из галереи фотографа.' => 'Service where professional photographers sell captured images to their customers. Customers can buy photo of preferable quality from the photo gallery.',
+    'Сервис, где профессиональные фотографы продают отснятые фотографии своим клиентам. Клиент может купить фото любого качества из галереи фотографа.' => 'Service where professional photographers sell captured images to their customers. Customers can buy photos of preferable quality from the photo gallery.',
     'Сайт крупнейшей компании<br>пассажирских перевозок в Европе.' => 'A site of the largest passenger transportation<br>company in Europe.',
     'Компания обучает всех желающих интернет-маркетингу, проводит онлайн тренинги и семинары.' => 'A company that specializes in internet marketing educational courses. They organize online trainings and seminars.',
     'Крупный интернет-магазин по продаже металлических и межкомнатных дверей, а также фурнитуры и аксессуаров к ним.' => 'The largest e-store of metal and interior doors, as well as all the accessories needed.',
