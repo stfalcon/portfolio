@@ -29,8 +29,8 @@ return array(
     'Посмотреть на большой карте' => 'View in a larger map',
 
     //promotion page
-    'Разработка мобильных игр<br>и приложений' => 'Mobile apps and games<br>development',
-    'Мы разрабатываем игры и приложения для смартфонов и<br> планшетов на базе платформ Android и iOS.' => 'We develop games and apps for iOS and Android<br>smartphones and tablets.',
+    'Разработка мобильных игр&nbsp;и&nbsp;приложений' => 'Mobile apps and games<br>development',
+    'Мы разрабатываем игры и приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop games and apps for iOS and Android<br>smartphones and tablets.',
     'Заказать приложение' => 'Order an app',
     'Почему мы?' => 'Why us?',
     'Индивидуальный подход к менеджменту проекта и организации рабочего процесса' => 'Individual approach for project management and workflow',
@@ -69,7 +69,7 @@ return array(
     'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...' => "Hello! I'd like to create a mobile app for iOS. My budget is $10000. The idea of this app is...",
     //design landing
     'Дизайн веб-сайтов' => 'Websites design',
-    'Мы создаем дизайн веб-сайтов и интерфейсов<br/>веб-приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',
+    'Мы создаем дизайн веб-сайтов и интерфейсов<br>веб&#8209;приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',
     'Заказать дизайн веб-сайта' => 'Order a website design',
     'Сервис, где профессиональные фотографы продают отснятые фотографии своим клиентам. Клиент может купить фото любого качества из галереи фотографа.' => 'Service where professional photographers sell captured images to their customers. Customers can buy photos of preferable quality from the photo gallery.',
     'Сайт крупнейшей компании<br>пассажирских перевозок в Европе.' => 'A site of the largest passenger transportation<br>company in Europe.',
@@ -78,8 +78,8 @@ return array(
     'Сайт всеукраинского чемпионата по веб-разработке. Чемпионат проводится ежегодно в восьми номинациях среди новичков и опытных разработчиков.' => 'A site of Ukrainian web development championship. Championships are held annually in eight categories among beginners and experienced developers.',
     'Напишите пару слов о сайте' => 'Write a few words about website',
     //development landing
-    'Разработка веб-проектов' => 'Web projects development',
-    'Мы специализируемся на разработке больших и средних<br />сайтов с нестандартной функциональностью.' => 'We specialize in development of medium and huge<br />websites with nonstandard functionality.',
+    'Разработка веб&#8209;проектов' => 'Web projects development',
+    'Мы специализируемся на разработке больших и средних сайтов с нестандартной функциональностью.' => 'We specialize in development of medium and huge websites with nonstandard functionality.',
     'Заказать сайт' => 'Order a website',
     'В разработке использовали:' => "During development we've used:",
     'Сообщество, где обсуждают вопросы тюнинга и ремонта или просто общаются на автомобильною тематику.' => 'A community, where you can discuss issues of tuning and repair, boast your car or just speak a lot with other drivers..',
