@@ -21,7 +21,7 @@ class PromotionController extends Controller
     /**
      * Promotion index page by type
      *
-     * @Route("/{type}", requirements={"type" = "design|apps|development"}, name="page_promotion")
+     * @Route("/{type}", requirements={"type" = "design|apps|development|sysadmin|mobilegames"}, name="page_promotion")
      */
     public function indexAction($type)
     {
@@ -41,7 +41,7 @@ class PromotionController extends Controller
      *
      * @return Response
      *
-     * @Route("/order/{type}", requirements={"type" = "design|app|development"}, name="promotion_order")
+     * @Route("/order/{type}", requirements={"type" = "design|app|development|sysadmin|mobilegames"}, name="promotion_order")
      * @Method({"POST"})
      */
     public function orderAction(Request $request, $type)

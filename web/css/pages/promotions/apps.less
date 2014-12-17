@@ -5,6 +5,8 @@
 @sprite-bgsize : 300px 200px;
 @sprite2 : url(/img/pages/promotions/apps/webtech_sprite.png);
 @sprite2-bgsize : 200px 400px;
+@sprite3 : url('/img/pages/promotions/apps/webtech_sprite2.png');
+@sprite3-bgsize : 200px 500px;
 @global-font: Helvetica, Arial, serif;
 @bg-color: #f5f7f7;
 @global-text-color: #2c373c;
@@ -344,6 +346,10 @@ a {
   }
 }
 
+.white-line {
+  background: #fff;
+}
+
 @media screen and (max-width: 690px) {
   .blue-line {
     h1 {
@@ -391,19 +397,25 @@ a {
     }
     .platforms {
       font-size: 0;
-      margin: 41px 0 0px;
+      margin: 51px 0 0px;
 
       .icon {
         margin: 0 12px 0 11px;
       }
     }
     .btn {
-      margin-top: 48px;
+      margin-top: 66px;
+    }
+    p + .btn {
+      margin-top: 132px;
     }
     h1 {
       font-size: 3.85rem;
       line-height: 1.08em;
-      margin: 0 0 32px;
+      margin: 0 0px 60px;
+    }
+    .wider-text h1 {
+      margin: 0 -120px 60px;
     }
   }
   .inner {
@@ -475,6 +487,9 @@ a {
     .inner-content {
       padding: 70px 30px 50px;
     }
+    .wider-text h1 {
+      margin: 0 0px 60px;
+    }
   }
 }
 
@@ -489,7 +504,8 @@ inf slides
 */
 .app-slide ,
 .webdev-slide ,
-.design-slide{
+.design-slide ,
+.sysadmin-slide{
   color: #ffffff;
   -webkit-background-size: cover;
   background-size: cover;
@@ -551,7 +567,6 @@ inf slides
     margin: 0 auto;
     box-shadow:0 6px 30px rgba(0,0,0,0.35);
 
-
     &:before {
       content:"";
       display: block;
@@ -581,6 +596,41 @@ inf slides
 .design-slide {
   .site-img {
     margin-top: 48px;
+  }
+}
+
+.sysadmin-slide {
+  color: @global-text-color;
+
+  h1 {
+    color: #6a84d1;
+  }
+  .wrap {
+    padding-top: 74px;
+    padding-bottom: 80px;
+  }
+  .slide-inf {
+    width: 300px;
+  }
+  .tech-img {
+    margin-top: 45px;
+  }
+  .img-wr {
+    padding: 27px 0 0;
+
+    &.left-side {
+      margin-right: 330px;
+    }
+    &.right-side {
+      margin-left: 330px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .shadowed-img {
+      margin:-30px -30px -30px 0;
+    }
   }
 }
 
@@ -642,34 +692,39 @@ inf slides
   }
 }
 
+.nizam,
+.galaxyrecon,
+.samegame {
+  .app-inf {
+    top: 44px;
+    left: 170px;
+    right: 170px;
+    text-align: center;
+  }
+  .app-img {
+    bottom: 45px;
+  }
+}
+
+
 .nizam {
   background-image: url("/img/pages/promotions/apps/slides/slide_nizam.jpg");
   background-color: #546480;
 
-  &.app-slide.app-inf {
-    top: 44px;
+  .app-inf {
     left: 165px;
     right: 165px;
-    text-align: center;
-  }
-  &.app-slide.app-img {
-    bottom: 45px;
   }
 }
 
 .galaxyrecon {
   background-image: url("/img/pages/promotions/apps/slides/slide_galaxyrecon.jpg");
   background-color: #3b3638;
+}
 
-  &.app-slide.app-inf {
-    top: 44px;
-    left: 170px;
-    right: 170px;
-    text-align: center;
-  }
-  &.app-slide.app-img {
-    bottom: 45px;
-  }
+.samegame {
+  background-image: url("/img/pages/promotions/apps/slides/slide_samegame.jpg");
+  background-color: #282b30;
 }
 
 .empo {
@@ -732,7 +787,8 @@ inf slides
   .cookorama,
   .megasos,
   .nizam,
-  .galaxyrecon {
+  .galaxyrecon,
+  .samegame{
     &.app-slide .app-inf {
       position: static;
       margin: 44px auto 41px;
@@ -750,7 +806,8 @@ inf slides
     }
   }
   .nizam,
-  .galaxyrecon {
+  .galaxyrecon,
+  .samegame{
     &.app-slide .app-img {
       float: right;
       margin-right: -124px;
@@ -774,8 +831,10 @@ inf slides
   .design-slide{
 
     .site-img {
-      width: auto;
+      width: 100%;
     }
+  }
+  .design-slide {
     &.keepsnap,
     &.cooldoors {
       .site-img {
@@ -800,11 +859,38 @@ inf slides
   .cookorama,
   .megasos,
   .nizam,
-  .galaxyrecon {
+  .galaxyrecon,
+  .samegame{
     &.app-slide .app-inf {
       width:auto;
     }
   }
+
+  .sysadmin-slide {
+    .wrap {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+    .slide-inf {
+      width: auto;
+      float: none !important;
+    }
+    .tech-img {
+      display: block;
+      margin: 20px auto 10px;
+    }
+    .img-wr {
+
+      &.left-side,
+      &.right-side {
+        margin: 0;
+      }
+      .shadowed-img {
+        margin:0;
+      }
+    }
+  }
+
 }
 
 @media screen and (max-width: 603px) {
@@ -912,6 +998,13 @@ our-advantages
       font-size: 1.1rem;
       line-height: 1.3em;
     }
+    &.centered {
+      clear:both;
+      width: 215px;
+      margin: 0px auto 0;
+      position: relative;
+      top: 50px;
+    }
   }
   .inf-pad {
     display: table;
@@ -959,6 +1052,11 @@ our-advantages
     .advantage-item ,
     .advantage-item:last-child{
       margin: 0 0 10px;
+
+      &.centered {
+        margin: 0px auto 10px;
+        top: 0px;
+      }
     }
   }
 }
@@ -975,6 +1073,10 @@ our-advantages
       padding: 0;
       margin: 0;
       width: 100%;
+    }
+    .advantage-item.centered {
+      margin: 0px 0 10px;
+      width: auto;
     }
   }
 }
@@ -1107,6 +1209,17 @@ form {
   }
   p {
     line-height: 1.329em;
+  }
+}
+
+.webdev-form {
+  h1 {
+    margin: 0 0 13px;
+  }
+  p {
+    text-align: center;
+    font-size: 1.24em;
+    margin: 0 0 33px;
   }
 }
 
@@ -1596,16 +1709,6 @@ footer {
     display: none;
   }
 }
-.webdev-form {
-  h1 {
-    margin: 0 0 13px;
-  }
-  p {
-    text-align: center;
-    font-size: 1.24em;
-    margin: 0 0 33px;
-  }
-}
 
 /*
   tech-list
@@ -1622,13 +1725,25 @@ footer {
   }
   ul {
     text-align: center;
+    margin: 0 -10px 0;
   }
   li {
     display: inline-block;
-    margin:10px 0 10px 20px;
+    margin:10px 10px 10px 10px;
+  }
+}
 
-    &:first-child {
-      margin-left: 0;
+.sysadmin-slide {
+  .tech-list {
+    clear:both;
+    position: relative;
+    top: 35px;
+
+    ul {
+      margin: 0 -45px;
+    }
+    li {
+      margin: 10px 45px;
     }
   }
 }
@@ -1639,11 +1754,14 @@ footer {
 .webtech-livestreet, .webtech-opencart, .webtech-mootools, .webtech-enquire, .webtech-sphinx,
 .webtech-fresco, .webtech-leaflet, .webtech-behat, .webtech-mysql, .webtech-less,
 .webtech-jquery, .webtech-elasticsearch, .webtech-symphony, .webtech-rabbitmq, .webtech-rollbar,
-.webtech-doctrine, .webtech-grunt, .webtech-backbone
-{ display: inline-block; background-image: @sprite2;
+.webtech-doctrine, .webtech-grunt, .webtech-backbone {
+  display: inline-block;
+  background-image: @sprite2;
   -webkit-background-size: @sprite2-bgsize;
-  background-size:@sprite2-bgsize ;
-  overflow: hidden; text-indent: -9999px; text-align: left;
+  background-size: @sprite2-bgsize;
+  overflow: hidden;
+  text-indent: -9999px;
+  text-align: left;
   vertical-align: middle;
 }
 
@@ -1666,7 +1784,30 @@ footer {
 .webtech-grunt { background-position: -140px -222px; width: 32px; height: 43px; }/**/
 .webtech-backbone { background-position: -1px -292px; width: 31px; height: 39px; }
 
+/* sysadmin technology pictures */
 
+.puppetlab-img, .amazon-img, .webtech-docker, .webtech-graphite, .webtech-mongodb,
+.webtech-jenkins, .webtech-munin, .webtech-zabbix, .webtech-nginx, .webtech-mysql {
+  display: inline-block;
+  background-image: @sprite3;
+  -webkit-background-size: @sprite3-bgsize;
+  background-size: @sprite3-bgsize;
+  overflow: hidden;
+  text-indent: -9999px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.puppetlab-img { background-position: -1px -0px; width: 189px; height: 55px; }
+.amazon-img { background-position: -1px -56px; width: 172px; height: 65px; }
+.webtech-docker { background-position: -1px -122px; width: 141px; height: 34px; }
+.webtech-graphite { background-position: -1px -157px; width: 140px; height: 68px; }/**/
+.webtech-mongodb { background-position: -1px -225px; width: 134px; height: 37px; }/**/
+.webtech-jenkins { background-position: -1px -263px; width: 122px; height: 37px; }
+.webtech-munin { background-position: -1px -301px; width: 116px; height: 30px; }
+.webtech-zabbix { background-position: -1px -332px; width: 113px; height: 29px; }
+.webtech-nginx { background-position: -1px -362px; width: 91px; height: 20px; }
+.webtech-mysql { background-position: -93px -362px; width: 84px; height: 57px; }
 
 iframe[name="google_conversion_frame"] {
   display: none;
@@ -1681,3 +1822,4 @@ iframe[name="google_conversion_frame"] {
 @media screen and (max-width: 640px) {600}
 @media screen and (max-width: 480px) {320}
 */
+

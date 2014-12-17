@@ -1,0 +1,244 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <!--content begin-->
+
+    <section class="slide header-slide">
+        <div class="inner">
+            <a class="logo icon" title="stfalcon" href="http://stfalcon.com"></a>
+            <div id="scroll-down" class="icon"></div>
+
+            <div class="inner-content wider-text">
+                <h1>{{ "Администрирование веб&#8209;серверов" | trans() | raw }}</h1>
+                <p>{{ "Мы специализируемся на администрировании больших и средних сайтов с нестандартной функциональностью." | trans() }}</p>
+                <a class="btn" id="to-feedback-btn" href="">{{ "Заказать администрирование" | trans() }}</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="our-advantages-wr">
+        <div class="wrap">
+            <h1>{{ "Что мы предлагаем" | trans() }}</h1>
+            <div class="our-advantages clearfix">
+                <div class="column float-left">
+                    <div class="advantage-item">
+                        <div class="inf-pad">
+                            <div class="wr">
+                                <p>{{ "Индивидуальный подход к менеджменту проекта и организации рабочего процесса" | trans() }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="inf-pad">
+                            <div class="wr">
+                                <p>{{ "Соблюдаем сроки, используем разные методологии разработки" | trans() }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column float-right">
+                    <div class="advantage-item">
+                        <div class="inf-pad">
+                            <div class="wr">
+                                <p>{{ "Команда состоит из более 20 опытных специалистов" | trans() }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="inf-pad">
+                            <div class="wr">
+                                <p>{{ "За 5 лет мы успешно запустили и поддерживаем более 80 проектов" | trans() }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="advantage-item centered">
+                    <div class="inf-pad">
+                        <div class="wr">
+                            <p>{{ "Скрипты для автоматизации типовых задач администрирования" | trans() }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sysadmin-slide white-line">
+        <div class="wrap">
+            <div class="slide-inf float-left">
+                <h1>{{ "Конфигурирование" | trans() }}</h1>
+                <p>{{ "Мы используем систему централизованного управления конфигурациями Puppet, что позволяет быстрее выполнять повторяющиеся задачи и делает инфраструктуру более гибкой." | trans() }}</p>
+                <div class="tech-img puppetlab-img"></div>
+            </div>
+            <div class="img-wr right-side">
+                <div class="shadowed-img">
+                    <img src="{{ asset('img/pages/promotions/apps/adminlanding_img01.jpg') }}" width="660" height="462" alt=""/>
+                </div>
+            </div>
+
+            <div class="tech-list">
+                <ul>
+                    <li><div class="webtech-jenkins"></div></li>
+                    <li><div class="webtech-nginx"></div></li>
+                    <li><div class="webtech-docker"></div></li>
+                    <li><div class="webtech-mongodb"></div></li>
+                    <li><div class="webtech-mysql"></div></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="sysadmin-slide">
+        <div class="wrap">
+            <div class="slide-inf float-right">
+                <h1>{{ "Горизонтальное масштабирование" | trans() }}</h1>
+                <p>{{ "Имеем опыт горизонтального масштабирования приложений, что позволит вашему проекту справляться с высокими нагрузками. Разворачивание проекта в облаке Amazon Web Services позволит быстрее масштабироваться под требуемые нагрузки" | trans() }}</p>
+                <div class="tech-img amazon-img"></div>
+            </div>
+            <div class="img-wr left-side">
+                <img src="{{ asset('img/pages/promotions/apps/adminlanding_img03.jpg') }}" width="630" height="499" alt=""/>
+            </div>
+        </div>
+    </section>
+
+    <section class="sysadmin-slide white-line">
+        <div class="wrap">
+            <div class="slide-inf float-left">
+                <h1>{{ "Мониторинг" | trans() }}</h1>
+                <p>{{ "Мониторинг ваших серверов позволит нам оперативно узнавать о возникших проблемах" | trans() }}</p>
+            </div>
+            <div class="img-wr right-side">
+                <img src="{{ asset('img/pages/promotions/apps/adminlanding_img04.jpg') }}" width="630" height="379" alt=""/>
+            </div>
+
+            <div class="tech-list">
+                <ul>
+                    <li><div class="webtech-munin"></div></li>
+                    <li><div class="webtech-zabbix"></div></li>
+                    <li><div class="webtech-graphite"></div></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="sysadmin-slide">
+        <div class="wrap">
+            <div class="slide-inf float-right">
+                <h1>{{ "Развертывание" | trans() }}</h1>
+                <p>{{ "Развертывание с использованием Capifony позволит быстро и безопасно обновлять код на production серверах" | trans() }}</p>
+            </div>
+            <div class="img-wr left-side">
+                <img src="{{ asset('img/pages/promotions/apps/adminlanding_img05.jpg') }}" width="630" height="499" alt=""/>
+            </div>
+        </div>
+    </section>
+
+    {#<section class="testimonials" >#}
+        {#<div class="wrap">#}
+            {#<a id="slider-prev" href=""></a>#}
+            {#<a id="slider-next" href=""></a>#}
+            {#<h3>Слово нашим клиентам</h3>#}
+            {#<div class="icon icon-quote"></div>#}
+            {#<div id="slider">#}
+                {#<ul id="slidee">#}
+                    {#<li>#}
+                        {#<div class="inf-pad">#}
+                            {#<div class="wr">#}
+                                {#<p>Мобильное кулинарное приложение — «Рецепты от Кукорамы» (Cookorama). Создали полезное#}
+                                    {#и интуитивно удобное приложение для любителей готовить. Позволяет легко пополнять#}
+                                    {#свою кулинарную книгу новыми рецептами, формировать список избранных рецептов и#}
+                                    {#одним движением добавлять нужные продукты в список покупок, который корректируется в#}
+                                    {#зависимости от количества порций или имеющихся продуктов. </p>#}
+                                {#<div class="review-author">#}
+                                    {#<p class="name">Андрей Мануленко, </p>#}
+                                    {#<p>сооснователь Cookorama.net</p>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</li>#}
+
+                {#</ul>#}
+            {#</div>#}
+        {#</div>#}
+    {#</section>#}
+
+    <section id="feedback-line" class="blue-line">
+        <div class="wrap">
+            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form webdev-form" action="{{ path('promotion_order', {'type': 'sysadmin'}) }}" method="post" {{ form_enctype(form) }}>
+                <div class="form-pad">
+                    <h1>{{ 'Отправьте заявку'|trans }}</h1>
+                    <p>{{ "И мы поможем решить вашу задачу" | trans() }}</p>
+
+                    <div class="line">
+                        <div class="col2 float-left">
+                            {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans} }) }}
+                        </div>
+                        <div class="col2 float-right">
+                            {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+                        </div>
+                    </div>
+                    <div class="line">
+                        {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о сайте'|trans} }) }}
+                    </div>
+                    <div class="line">
+                        <button class="btn btn-black float-right">{{ 'Заказать администрирование'|trans }}</button>
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+                <div class="form-success">
+                    <div class="wr">
+                        <div class="inner-pad">
+                            <h3>{{ 'Спасибо!'|trans }}</h3>
+
+                            <p>{{ 'Мы изучим Вашу заявку<br>и ответим в ближайшее время.'|trans|raw }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <!--content end-->
+
+    <!--footer begin-->
+    <footer class="vcard">
+        <div class="wrap">
+            {{ include('::_footer.html.twig') }}
+        </div>
+    </footer>
+    <!--footer end-->
+{% endblock body %}
+
+{% block javascripts %}
+
+    {% set locale = app.request.locale %}
+
+    {% javascripts
+        'js/vendor/jquery-1.11.1.min.js'
+        'js/sly.js'
+        'js/jquery.validate.min.js'
+        'js/promotion_apps_main.js'
+        output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% if locale == 'en' %}
+        {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% else %}
+        {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+{% endblock javascripts %}
+
+{% block stylesheets %}
+    <!--[if gte IE 8]>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/ie.css') }}"/>
+    <![endif]-->
+    {% stylesheets filter='less, cssrewrite' output='cache/css/*.css' 'css/page_promotions.less' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
