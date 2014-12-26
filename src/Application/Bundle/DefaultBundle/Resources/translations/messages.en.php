@@ -29,8 +29,8 @@ return array(
     'Посмотреть на большой карте' => 'View in a larger map',
 
     //promotion page
-    'Разработка мобильных игр<br>и приложений' => 'Mobile apps and games<br>development',
-    'Мы разрабатываем игры и приложения для смартфонов и<br> планшетов на базе платформ Android и iOS.' => 'We develop games and apps for iOS and Android<br>smartphones and tablets.',
+    'Разработка мобильных игр&nbsp;и&nbsp;приложений' => 'Mobile apps and games<br>development',
+    'Мы разрабатываем игры и приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop games and apps for iOS and Android<br>smartphones and tablets.',
     'Заказать приложение' => 'Order an app',
     'Почему мы?' => 'Why us?',
     'Индивидуальный подход к менеджменту проекта и организации рабочего процесса' => 'Individual approach for project management and workflow',
@@ -69,7 +69,7 @@ return array(
     'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...' => "Hello! I'd like to create a mobile app for iOS. My budget is $10000. The idea of this app is...",
     //design landing
     'Дизайн веб-сайтов' => 'Websites design',
-    'Мы создаем дизайн веб-сайтов и интерфейсов<br/>веб-приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',
+    'Мы создаем дизайн веб-сайтов и интерфейсов<br>веб&#8209;приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',
     'Заказать дизайн веб-сайта' => 'Order a website design',
     'Сервис, где профессиональные фотографы продают отснятые фотографии своим клиентам. Клиент может купить фото любого качества из галереи фотографа.' => 'Service where professional photographers sell captured images to their customers. Customers can buy photos of preferable quality from the photo gallery.',
     'Сайт крупнейшей компании<br>пассажирских перевозок в Европе.' => 'A site of the largest passenger transportation<br>company in Europe.',
@@ -78,8 +78,8 @@ return array(
     'Сайт всеукраинского чемпионата по веб-разработке. Чемпионат проводится ежегодно в восьми номинациях среди новичков и опытных разработчиков.' => 'A site of Ukrainian web development championship. Championships are held annually in eight categories among beginners and experienced developers.',
     'Напишите пару слов о сайте' => 'Write a few words about website',
     //development landing
-    'Разработка веб-проектов' => 'Web projects development',
-    'Мы специализируемся на разработке больших и средних<br />сайтов с нестандартной функциональностью.' => 'We specialize in development of medium and huge<br />websites with nonstandard functionality.',
+    'Разработка веб&#8209;проектов' => 'Web projects development',
+    'Мы специализируемся на разработке больших и средних сайтов с нестандартной функциональностью.' => 'We specialize in medium and big websites development with nonstandard functionality.',
     'Заказать сайт' => 'Order a website',
     'В разработке использовали:' => "During development we've used:",
     'Сообщество, где обсуждают вопросы тюнинга и ремонта или просто общаются на автомобильною тематику.' => 'A community, where you can discuss issues of tuning and repair, boast your car or just speak a lot with other drivers..',
@@ -87,4 +87,25 @@ return array(
     'Кулинарное сообщество, где собираются для обмена новыми рецептами и<br> делятся практическим опытом.' => 'Cook community, where people share new recipes and <br> practical experience with each other.',
     'Отправьте заявку' => 'Send order',
     'И мы поможем решить вашу задачу' => 'And we will help you to solve your problem',
+    //sysadmin landing
+    'Администрирование веб&#8209;серверов' => 'Web servers administration',
+    'Мы специализируемся на администрировании больших и средних сайтов с нестандартной функциональностью.' => 'We specialize in medium and big websites administration with nonstandard functionality.',
+    'Заказать администрирование' => 'Order administration',
+    'Что мы предлагаем' => 'What we propose',
+    'Скрипты для автоматизации типовых задач администрирования' => 'Scripts to automate common administrative tasks',
+    'Конфигурирование' => 'Configuring',
+    'Мы используем систему централизованного управления конфигурациями Puppet, что позволяет быстрее выполнять повторяющиеся задачи и делает инфраструктуру более гибкой.' => 'We use Puppet, a centralized configuration management, which allows to perform repetitive tasks faster and makes the infrastructure more flexible.',
+    'Горизонтальное масштабирование' => 'Scaling',
+    'Имеем опыт горизонтального масштабирования приложений, что позволит вашему проекту справляться с высокими нагрузками. Разворачивание проекта в облаке Amazon Web Services позволит быстрее масштабироваться под требуемые нагрузки' => 'We have experience in scale-out applications that allow your project to cope with high loads. Expanding the project in the Amazon Web Services cloud will quickly be scaled to the required load',
+    'Мониторинг' => 'Monitoring',
+    'Мониторинг ваших серверов позволит нам оперативно узнавать о возникших проблемах' => 'Monitoring of your servers will allow us to quickly learn about the encountered problems',
+    'Развертывание' => 'Deployment',
+    'Развертывание с использованием Capifony позволит быстро и безопасно обновлять код на production серверах' => 'Deploy using Capifony will allow to quickly and safely update the code on production servers',
+    'promotion.order.sysadmin.mail.subject' => 'The order for the system administration from "%email%"',
+    //mobile games landing
+    'Разработка мобильных игр' => 'Mobile games development',
+    'Мы разрабатываем игры для мобильных устройств на игровом движке Unity под платформы Android и iOS.' => 'We develop games for mobile devices on the Unity game engine for Android and iOS.',
+    'Заказать игру' => 'Order a game',
+    'Головоломка, целью которой является уничтожение всех кубиков, расположенных на экране, за как можно меньшее количество ходов.' => 'A puzzle game, which goal is to destroy all cubes on the screen with the least possible number of moves.',
+    'promotion.order.mobilegames.mail.subject' => 'Order for development of a mobile game from "%email%"',
 );
