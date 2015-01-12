@@ -201,6 +201,6 @@ jms_i18n_routing:
     strategy: prefix_except_default
 
 a2lix_translation_form:
-    locales: %locales%
+    locales: [ru, en]
     default_required: true
     manager_registry: doctrine

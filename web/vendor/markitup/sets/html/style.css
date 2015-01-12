@@ -61,3 +61,7 @@
 .markItUp .mMore a {
         background-image: url(images/more.png);
 }
+
+.markItUp .ins-code-button a {
+	background-image: url(images/code.png);
+}

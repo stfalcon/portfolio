@@ -4,6 +4,7 @@
     {{ parent() }}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('vendor/markitup/skins/markitup/style.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('vendor/markitup/sets/html/style.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('vendor/markitup/InsCode/InsCode.css') }}" />
 
     <style type="text/css">
         .markItUpContainer textarea.markItUpEditor {
@@ -14,16 +15,14 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('vendor/markitup/jquery.markitup.js') }}"></script>
     {% javascripts filter='yui_js' output='cache/js/*.js'
-            'vendor/markitup/jquery.markitup.js'
             'js/InlineUpload.js'
+            'vendor/markitup/InsCode/InsCode.js'
             'js/markItUpSettings.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="text/javascript" >
-    $(document).ready(function() {
-            InlineUpload.options.action = '{{ path('blog_post_upload_image') }}';
-            $("textarea").markItUp(mySettings);
-    });
+        InlineUpload.options.action = '{{ path('blog_post_upload_image') }}';
     </script>
 {% endblock %}
