@@ -60,6 +60,7 @@ return array(
     'promotion.order.design.mail.subject' => 'The application for the development of web design from "%email%"',
     'promotion.order.development.mail.subject' => 'The application for Web development by "%email%"',
     'Кукорама' => 'Cookorama',
+    'Радиалка' => 'Radialka',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',
     'Заявка на сотрудничество' => 'Cooperation request',
     'Прикрепить файл' => 'Attach a file',
@@ -102,6 +103,7 @@ return array(
     'Развертывание' => 'Deployment',
     'Развертывание с использованием Capifony позволит быстро и безопасно обновлять код на production серверах' => 'Deploy using Capifony will allow to quickly and safely update the code on production servers',
     'promotion.order.sysadmin.mail.subject' => 'The order for the system administration from "%email%"',
+    'Напишите пару слов о необходимой услуге' => 'Write a few words about the desired service',
     //mobile games landing
     'Разработка мобильных игр' => 'Mobile games development',
     'Мы разрабатываем игры для мобильных устройств на игровом движке Unity под платформы Android и iOS.' => 'We develop games for mobile devices on the Unity game engine for Android and iOS.',
