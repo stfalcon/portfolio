@@ -32,6 +32,11 @@ mySettings = {
 		{name:'Clean', className:'clean', replaceWith:function(markitup) { return markitup.selection.replace(/<(.*?)>/g, "") } },
 		{name:'Preview', className:'preview', call:'preview' },
 		{separator:'---------------' },
-		{name:'More', className:'mMore', key:'M', openWith:'\n<!--more-->\n' }
+		{name:'More', className:'mMore', key:'M', openWith:'\n<!--more-->\n'},
+		{name:'Code',className:'ins-code-button', key:'D', replaceWith: function(markItUp) { InsCode.display(markItUp) }}
 	]
-}
+};
+
+$(document).ready(function() {
+	$("textarea").markItUp(mySettings);
+});
