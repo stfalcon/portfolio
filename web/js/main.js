@@ -271,6 +271,47 @@ $(function () {
         }
     }
 
+    // Set fixed slider buttons
+    var $sliderCnt = $('.project-slider-cnt');
+    if($sliderCnt.length){
+        var $scrollingCnt = ( navigator.userAgent.match(/(iPad|iPhone|iPod|Macintosh|Android)/g) ? $('body') : $('html') ),
+            $fixedNav = $('.fixed-nav'),
+            middleScreenPoint = $(window).height() / 2 - $sliderCnt.offset().top,
+            leftSlideHeight;
+
+        $(window).resize(function(){
+            middleScreenPoint = $(window).height() / 2 - $('.project-slider-cnt').offset().top;
+        });
+
+        window.addEventListener("scroll", function(event) {
+            setButtonsPosition();
+        });
+
+        $(document).on('click', '.fix-prev-slide', function(){
+            $('.slider-nav .prev-slide').trigger('click');
+            $scrollingCnt.scrollTop(0);
+        });
+
+        $(document).on('click', '.fix-next-slide', function(){
+            $('.slider-nav .next-slide').trigger('click');
+            $scrollingCnt.scrollTop(0);
+        });
+
+        function setButtonsPosition(){
+            leftSlideHeight = $sliderCnt.height() - ($scrollingCnt.scrollTop() - $sliderCnt.offset().top) - middleScreenPoint;
+
+            if($scrollingCnt.scrollTop() >= $sliderCnt.offset().top){
+                $sliderCnt.addClass('show-fixed-nav');
+            } else {
+                $sliderCnt.removeClass('show-fixed-nav');
+            }
+
+            if(leftSlideHeight >=400){
+                $fixedNav[0].style.top = $scrollingCnt.scrollTop() + middleScreenPoint + 'px';
+            }
+        };
+    }
+
     enquire.register("screen and (max-width: 670px)", {
         match: function(){
             var promoBannerCnt = $('.promo-banner-wrapper');

@@ -90,9 +90,29 @@
 }
 
 .project-slider-cnt {
+  position: relative;
   display: inline-block;
   margin: 0;
   width: 774px;
+
+  &.show-fixed-nav {
+    .fixed-nav {
+      display: block;
+    }
+    .slider-nav {
+      opacity: 0;
+    }
+  }
+  .fixed-nav {
+    display: none;
+    .box-sizing(border-box);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 10px;
+    width: 100%;
+    z-index: 2;
+  }
 }
 
 .project-slider {
@@ -184,6 +204,15 @@
   .project-slider-wrapper {
     float: none;
     width: auto;
+  }
+}
+
+@media screen and (max-width:1023px){
+  .project-slider-cnt {
+    .fixed-nav {
+      display: none;
+      opacity: 0;
+    }
   }
 }
 
