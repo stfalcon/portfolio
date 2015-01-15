@@ -39,11 +39,6 @@ class PostController extends AbstractController
                 ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery($request->getLocale());
         $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
 
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild($translator->trans('Блог'))->setCurrent(true);
-        }
-
         return $this->_getRequestArrayWithDisqusShortname(array(
             'posts' => $posts
         ));
@@ -52,7 +47,8 @@ class PostController extends AbstractController
     /**
      * View post
      *
-     * @param Post $post
+     * @param Request $request
+     * @param string  $slug
      *
      * @return array
      *
@@ -61,16 +57,13 @@ class PostController extends AbstractController
      * @Route("/blog/post/{slug}", name="blog_post_view")
      * @Template()
      */
-    public function viewAction(Post $post)
+    public function viewAction(Request $request, $slug)
     {
         $translator = $this->get('translator');
-        if (!$post->isPublished()) {
+        $post = $this->get('doctrine')->getManager()
+            ->getRepository("StfalconBlogBundle:Post")->findPostBySlugInLocale($slug, $request->getLocale());
+        if (!$post) {
             throw new NotFoundHttpException('Post not found');
-        }
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild($translator->trans('Блог'), array('route' => 'blog'));
-            $breadcrumbs->addChild($post->getTitle())->setCurrent(true);
         }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
