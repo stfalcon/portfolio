@@ -21,6 +21,9 @@ monolog:
 
 assetic:
     use_controller: true
+    filters:
+        uglifyjs2: null
+        uglifycss: null
 
 swiftmailer:
     transport: 'mail'
