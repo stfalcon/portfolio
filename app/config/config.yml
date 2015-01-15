@@ -62,11 +62,11 @@ assetic:
     filters:
         uglifyjs2:
             node: %node_path%
-            bin: /usr/local/bin/uglifyjs
+            bin: %uglify_js_path%
             apply_to: "\.js$"
         uglifycss:
             node: %node_path%
-            bin: /usr/local/bin/uglifycss
+            bin: $uglify_css_path%
             apply_to: "\.css$"
         cssrewrite: ~
         less:
