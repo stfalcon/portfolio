@@ -66,7 +66,7 @@ assetic:
             apply_to: "\.js$"
         uglifycss:
             node: %node_path%
-            bin: $uglify_css_path%
+            bin: %uglify_css_path%
             apply_to: "\.css$"
         cssrewrite: ~
         less:
