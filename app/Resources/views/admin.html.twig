@@ -16,7 +16,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('vendor/markitup/jquery.markitup.js') }}"></script>
-    {% javascripts filter='yui_js' output='cache/js/*.js'
+    {% javascripts  output='cache/js/*.js'
             'js/InlineUpload.js'
             'vendor/markitup/InsCode/InsCode.js'
             'js/markItUpSettings.js' %}
