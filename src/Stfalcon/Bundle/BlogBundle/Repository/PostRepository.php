@@ -95,7 +95,8 @@ class PostRepository extends EntityRepository
         $qb->leftJoin('p.tags', 't')
             ->where('t.id = :tagId')
             ->andWhere('p.published = 1')
-            ->setParameter('tagId', $tag->getId());
+            ->setParameter('tagId', $tag->getId())
+            ->orderBy('p.created', 'DESC');
 
         $this->addLocaleFilter($locale, $qb);
 

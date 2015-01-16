@@ -12,7 +12,6 @@ framework:
     validation:       { enable_annotations: true }
     templating:
         engines: ['twig']
-        assets_version: 20120724
     default_locale:   %locale%
     session:          ~
 
@@ -61,10 +60,14 @@ assetic:
     debug:          %kernel.debug%
     use_controller: false
     filters:
-        yui_css:
-            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
-        yui_js:
-            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar"
+        uglifyjs2:
+            node: %node_path%
+            bin: %uglify_js_path%
+            apply_to: "\.js$"
+        uglifycss:
+            node: %node_path%
+            bin: $uglify_css_path%
+            apply_to: "\.css$"
         cssrewrite: ~
         less:
             node: %node_path%

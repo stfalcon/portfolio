@@ -70,7 +70,7 @@ class TagControllerTest extends WebTestCase
         );
         $this->assertCount(2, $crawlerSecondPage->filter('article.blog-post'));
         $this->assertCount(1, $crawlerSecondPage->filter('article.blog-post')->first()
-            ->filter('h1 a:contains("Post for paginator #11")'));
+            ->filter('h1 a:contains("Post for paginator #2")'));
     }
 
 }
