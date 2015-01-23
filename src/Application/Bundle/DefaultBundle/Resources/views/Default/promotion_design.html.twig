@@ -1,6 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    <div class="slide scrollto-line">
+        <div class="wrap">
+            <a class="btn" id="scrollto-btn" href="#">{{ 'Заказать дизайн веб-сайта'|trans }}</a>
+        </div>
+    </div>
     <section class="slide header-slide">
         <div class="inner">
             <a class="logo icon" href="{{ path('homepage') }}"></a>
