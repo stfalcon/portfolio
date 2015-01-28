@@ -97,7 +97,7 @@ return array(
     'Конфигурирование' => 'Configuring',
     'Мы используем систему централизованного управления конфигурациями Puppet, что позволяет быстрее выполнять повторяющиеся задачи и делает инфраструктуру более гибкой.' => 'We use Puppet, a centralized configuration management, which allows to perform repetitive tasks faster and makes the infrastructure more flexible.',
     'Горизонтальное масштабирование' => 'Scaling',
-    'Имеем опыт горизонтального масштабирования приложений, что позволит вашему проекту справляться с высокими нагрузками. Разворачивание проекта в облаке Amazon Web Services позволит быстрее масштабироваться под требуемые нагрузки' => 'We have experience in scale-out applications that allow your project to cope with high loads. Expanding the project in the Amazon Web Services cloud will quickly be scaled to the required load',
+    'Имеем опыт горизонтального масштабирования приложений, что позволит вашему проекту справляться с высокими нагрузками. Разворачивание проекта в облаке Amazon Web Services позволит быстрее масштабироваться под требуемые нагрузки' => 'We have experience in scale-out applications that allow your project to cope with high loads. Expanding the project in the Amazon Web Services cloud will quickly be scaled to the required load',
     'Мониторинг' => 'Monitoring',
     'Мониторинг ваших серверов позволит нам оперативно узнавать о возникших проблемах' => 'Monitoring of your servers will allow us to quickly learn about the encountered problems',
     'Развертывание' => 'Deployment',
