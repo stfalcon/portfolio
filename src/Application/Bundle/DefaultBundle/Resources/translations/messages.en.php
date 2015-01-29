@@ -56,9 +56,12 @@ return array(
     'Напишите пару слов о приложении' => 'A few words about app, maybe?',
     'Спасибо!' => 'Thanks!',
     'Мы изучим Вашу заявку<br>и ответим в ближайшее время.' => 'We will examine your order<br>and write you back as soon as possible.',
-    'promotion.order.app.mail.subject' => 'The application for the development of mobile applications from "%email%"',
+    'promotion.order.apps.mail.subject' => 'The application for the development of mobile applications from "%email%"',
+    'promotion.order.apps_form.mail.subject' => 'The application for the development of mobile applications from "%email%"',
     'promotion.order.design.mail.subject' => 'The application for the development of web design from "%email%"',
+    'promotion.order.design_form.mail.subject' => 'The application for the development of web design from "%email%"',
     'promotion.order.development.mail.subject' => 'The application for Web development by "%email%"',
+    'promotion.order.development_form.mail.subject' => 'The application for Web development by "%email%"',
     'Кукорама' => 'Cookorama',
     'Радиалка' => 'Radialka',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',
@@ -103,6 +106,7 @@ return array(
     'Развертывание' => 'Deployment',
     'Развертывание с использованием Capifony позволит быстро и безопасно обновлять код на production серверах' => 'Deploy using Capifony will allow to quickly and safely update the code on production servers',
     'promotion.order.sysadmin.mail.subject' => 'The order for the system administration from "%email%"',
+    'promotion.order.sysadmin_form.mail.subject' => 'The order for the system administration from "%email%"',
     'Напишите пару слов о необходимой услуге' => 'Write a few words about the desired service',
     //mobile games landing
     'Разработка мобильных игр' => 'Mobile games development',
@@ -110,4 +114,5 @@ return array(
     'Заказать игру' => 'Order a game',
     'Головоломка, целью которой является уничтожение всех кубиков, расположенных на экране, за как можно меньшее количество ходов.' => 'A puzzle game, which goal is to destroy all cubes on the screen with the least possible number of moves.',
     'promotion.order.mobilegames.mail.subject' => 'Order for development of a mobile game from "%email%"',
+    'promotion.order.mobilegames_form.mail.subject' => 'Order for development of a mobile game from "%email%"',
 );
