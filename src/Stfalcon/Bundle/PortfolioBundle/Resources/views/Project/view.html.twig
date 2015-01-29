@@ -35,8 +35,14 @@
         </aside>
         <div class="project-slider-wrapper">
             <div class="project-slider-cnt no-controls">
-                <a class="prev-slide"></a>
-                <a class="next-slide"></a>
+                <div class="slider-nav">
+                    <a class="prev-slide"></a>
+                    <a class="next-slide"></a>
+                </div>
+                <div class="fixed-nav">
+                    <a class="fix-prev-slide prev-slide"></a>
+                    <a class="fix-next-slide next-slide "></a>
+                </div>
                 <div class="slider-pages"></div>
                 <div class="project-slider">
                     {% if project.media|length %}

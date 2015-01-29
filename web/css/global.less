@@ -60,16 +60,6 @@ body {
   background-color: @bg-color;
 }
 
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
 hr {
   display: block;
   height: 1px;
@@ -222,10 +212,20 @@ textarea {
 }
 
 /*placeholder css*/
-form :-moz-placeholder {color:#919699;opacity: 1 !important;} /*Firefox 4-18*/
-form ::-moz-placeholder {color:#919699;opacity: 1 !important;} /*Firefox 19+ */
-form ::-webkit-input-placeholder {color:#919699: 1 !important;line-height: 1.335em;} /*webkit*/
-form :-ms-input-placeholder{color:#919699;opacity: 1 !important;} /*ie10*/
+form :-moz-placeholder {
+  color: #919699;
+  opacity: 1 !important;
+}
+
+form ::-moz-placeholder {
+  color: #919699;
+  opacity: 1 !important;
+}
+
+form ::-webkit-input-placeholder {
+  color: #919699 !important;
+  line-height: 1.335em;
+}
 
 .file-input {
   position: relative;
@@ -640,10 +640,10 @@ header nav {
   cursor: pointer;
   width: 20px;
   height: 20px;
-  fill: #fff;
+//  fill: #fff;
 
   &:active {
-    fill: #ec1b43;
+//    fill: #ec1b43;
   }
 }
 
