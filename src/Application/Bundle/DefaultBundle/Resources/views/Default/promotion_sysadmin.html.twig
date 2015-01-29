@@ -1,8 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <!--content begin-->
-
+    <div class="slide scrollto-line">
+        <div class="wrap">
+            <a class="btn" id="scrollto-btn" href="#">{{ 'Заказать администрирование'|trans }}</a>
+        </div>
+    </div>
     <section class="slide header-slide">
         <div class="inner">
             <a class="logo icon" title="stfalcon" href="http://stfalcon.com"></a>
@@ -92,7 +95,7 @@
         <div class="wrap">
             <div class="slide-inf float-right">
                 <h1>{{ "Горизонтальное масштабирование" | trans() }}</h1>
-                <p>{{ "Имеем опыт горизонтального масштабирования приложений, что позволит вашему проекту справляться с высокими нагрузками. Разворачивание проекта в облаке Amazon Web Services позволит быстрее масштабироваться под требуемые нагрузки" | trans() }}</p>
+                <p>{{ "Имеем опыт горизонтального масштабирования приложений, что позволит вашему проекту справляться с высокими нагрузками. Разворачивание проекта в облаке Amazon Web Services позволит быстрее масштабироваться под требуемые нагрузки" | trans() }}</p>
                 <div class="tech-img amazon-img"></div>
             </div>
             <div class="img-wr left-side">
@@ -178,7 +181,7 @@
                         </div>
                     </div>
                     <div class="line">
-                        {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о сайте'|trans} }) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о необходимой услуге'|trans} }) }}
                     </div>
                     <div class="line">
                         <button class="btn btn-black float-right">{{ 'Заказать администрирование'|trans }}</button>

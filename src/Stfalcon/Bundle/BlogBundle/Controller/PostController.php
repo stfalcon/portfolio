@@ -22,7 +22,8 @@ class PostController extends AbstractController
     /**
      * List of posts for admin
      *
-     * @param int $page Page number
+     * @param Request $request Request
+     * @param int     $page    Page number
      *
      * @return array
      *
@@ -31,18 +32,11 @@ class PostController extends AbstractController
      *      defaults={"page"="1", "title"="page"})
      * @Template()
      */
-    public function indexAction($page)
+    public function indexAction(Request $request, $page)
     {
-        $request = $this->get('request');
-        $translator = $this->get('translator');
         $allPostsQuery = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery($request->getLocale());
         $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
-
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild($translator->trans('Блог'))->setCurrent(true);
-        }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
             'posts' => $posts
@@ -52,7 +46,8 @@ class PostController extends AbstractController
     /**
      * View post
      *
-     * @param Post $post
+     * @param Request $request
+     * @param string  $slug
      *
      * @return array
      *
@@ -61,16 +56,12 @@ class PostController extends AbstractController
      * @Route("/blog/post/{slug}", name="blog_post_view")
      * @Template()
      */
-    public function viewAction(Post $post)
+    public function viewAction(Request $request, $slug)
     {
-        $translator = $this->get('translator');
-        if (!$post->isPublished()) {
+        $post = $this->get('doctrine')->getManager()
+            ->getRepository("StfalconBlogBundle:Post")->findPostBySlugInLocale($slug, $request->getLocale());
+        if (!$post) {
             throw new NotFoundHttpException('Post not found');
-        }
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild($translator->trans('Блог'), array('route' => 'blog'));
-            $breadcrumbs->addChild($post->getTitle())->setCurrent(true);
         }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
@@ -81,13 +72,14 @@ class PostController extends AbstractController
     /**
      * RSS feed
      *
-     * @Route("/blog/rss", name="blog_rss")
+     * @param Request $request
      *
      * @return Response
+     *
+     * @Route("/blog/rss", name="blog_rss")
      */
-    public function rssAction()
+    public function rssAction(Request $request)
     {
-        $locale = $this->get('request')->getLocale();
         $feed = new Feed();
 
         $config = $this->container->getParameter('stfalcon_blog.config');
@@ -97,7 +89,8 @@ class PostController extends AbstractController
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
         $posts = $this->get('doctrine')->getManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPosts($locale);
+                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPosts($request->getLocale());
+        /** @var Post $post */
         foreach ($posts as $post) {
             $entry = new Entry();
             $entry->setTitle($post->getTitle());
@@ -115,8 +108,8 @@ class PostController extends AbstractController
     /**
      * Show last blog posts
      *
-     * @param string $locale
-     * @param int    $count A count of posts
+     * @param string $locale Locale
+     * @param int    $count  A count of posts
      *
      * @return array()
      *

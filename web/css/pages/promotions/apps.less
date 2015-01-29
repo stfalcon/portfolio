@@ -1117,7 +1117,7 @@ div.btn {
 @media screen and (max-width: 690px) {
   .btn {
     width: 100%;
-    padding: 0 15px;
+    padding: 0 14px;
   }
 }
 
@@ -1809,3 +1809,41 @@ iframe[name="google_conversion_frame"] {
 @media screen and (max-width: 480px) {320}
 */
 
+/*scroll to order btn*/
+.scrollto-line {
+  display: block;
+  position: fixed;
+  top: -51px;
+  left: 0;
+  right: 0;
+  height: 0px;
+  z-index: 11;
+  overflow: visible;
+
+  .wrap {
+    position: static;
+  }
+}
+#scrollto-btn {
+  float: right;
+  width: auto;
+  padding-left: 35px;
+  padding-right: 35px;
+
+  &:after {
+    content:"";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #6a84d1;
+  }
+  &:hover:after {
+    background: #5273d7;
+  }
+  &:active:after {
+    background: #ed002d;
+  }
+}

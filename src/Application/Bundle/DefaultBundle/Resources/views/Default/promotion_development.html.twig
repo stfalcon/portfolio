@@ -1,6 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    <div class="slide scrollto-line">
+        <div class="wrap">
+            <a class="btn" id="scrollto-btn" href="#">{{ 'Заказать сайт'|trans }}</a>
+        </div>
+    </div>
     <section class="slide header-slide">
         <div class="inner">
             <a class="logo icon" href="{{ path('homepage') }}"></a>
@@ -156,7 +161,7 @@
         <div class="wrap">
             <div class="app-inf">
                 <h1>{{ "Кукорама" | trans() }}</h1>
-                <p>{{ "Кулинарное сообщество, где собираются для обмена новыми рецептами и<br> делятся практическим опытом." | trans() }}</p>
+                <p>{{ "Кулинарное сообщество, где собираются для обмена новыми рецептами и<br> делятся практическим опытом." | trans() | raw }}</p>
                 <div class="tech-list">
                     <p>{{ "В разработке использовали:" | trans() }}</p>
                     <ul>

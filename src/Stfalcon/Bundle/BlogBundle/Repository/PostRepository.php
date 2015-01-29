@@ -4,6 +4,8 @@ namespace Stfalcon\Bundle\BlogBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
+use Stfalcon\Bundle\BlogBundle\Entity\Post;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 
 /**
@@ -13,6 +15,25 @@ use Stfalcon\Bundle\BlogBundle\Entity\Tag;
  */
 class PostRepository extends EntityRepository
 {
+    /**
+     * @param string $slug
+     * @param string $locale
+     *
+     * @return Post|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findPostBySlugInLocale($slug, $locale)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.published = 1')
+            ->andWhere('p.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->setMaxResults(1);
+
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 
     /**
      * Get all posts
@@ -26,12 +47,7 @@ class PostRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.published = 1')
             ->orderBy('p.created', 'DESC');
-        if ($locale != 'ru') {
-            $qb->innerJoin('p.translations', 't')
-                ->andWhere('t.locale = :locale')
-                ->setParameter('locale', $locale)
-                ->andWhere($qb->expr()->isNotNull('t.content'));
-        }
+        $this->addLocaleFilter($locale, $qb);
 
         return $qb->getQuery();
     }
@@ -68,19 +84,37 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param Tag $tag
+     * @param Tag    $tag
+     * @param string $locale
      *
      * @return Query
      */
-    public function findPostsByTagAsQuery($tag)
+    public function findPostsByTagAsQuery($tag, $locale)
     {
         $qb = $this->createQueryBuilder('p');
-
-        return $qb->leftJoin('p.tags', 't')
+        $qb->leftJoin('p.tags', 't')
             ->where('t.id = :tagId')
             ->andWhere('p.published = 1')
             ->setParameter('tagId', $tag->getId())
-            ->getQuery();
+            ->orderBy('p.created', 'DESC');
+
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->getQuery();
+    }
+
+    /**
+     * @param string       $locale
+     * @param QueryBuilder $qb
+     */
+    private function addLocaleFilter($locale, QueryBuilder $qb)
+    {
+        if ($locale != 'ru') {
+            $qb->innerJoin('p.translations', 'tr')
+                ->andWhere('tr.locale = :locale')
+                ->setParameter('locale', $locale)
+                ->andWhere($qb->expr()->isNotNull('tr.content'));
+        }
     }
 
 }
