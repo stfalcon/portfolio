@@ -6,6 +6,7 @@ $(document).ready(function () {
     var scrollPos = parseInt($('.header-slide').outerHeight(true));
     $('#scroll-down').on('click', function () {
         $('html, body').animate({scrollTop: scrollPos}, {duration: '2000', easing: 'swing'});
+        $('.scrollto-line').animate({top:0},300);
         return false;
     });
 
@@ -162,6 +163,34 @@ $(window).scroll(function (e) {
         }
     });
 
+    $(document).on('submit', '#feedback-form-new', function(e) {
+        e.preventDefault();
+        var $directOrderForm = $(this);
+        $directOrderForm.find("button").prop('disabled', 'disabled');
+        $.ajax({
+            url: $directOrderForm.attr('action'),
+            type: 'post',
+            data: new FormData( this ),
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.result == "success") {
+                    if (window.ga) {
+                        ga('send', 'event', 'order', 'landing');
+                    }
+
+                    $directOrderForm.find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
+                    $directOrderForm.find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
+                    $directOrderForm.trigger('reset');
+                    $('.file-input input').trigger('change');
+                    $directOrderForm.find("button").prop('disabled', false);
+                } else {
+                    $directOrderForm.replaceWith(response.view);
+                }
+            }
+        });
+    });
+
     $(document).on({
         click: function () {
             var feedbackOffset = $('#feedback-line').offset();
@@ -180,23 +209,23 @@ $(window).scroll(function (e) {
 
             var w_h = $(window).height();
             var feedbackOffset = $('#feedback-line').offset();
-            var hideScrollToPoint = parseInt ( feedbackOffset.top - w_h );
+            var hideScrollToPoint = parseInt ( feedbackOffset.top - w_h + 80 );
             var showScrollToPoint = parseInt ( $('.header-slide').height() );
             var w_pos = $(window).scrollTop();
             if ( (w_pos >= showScrollToPoint) && (w_pos <= hideScrollToPoint) ) {
-                $('.scrollto-line').stop(true,true).animate({top:0},500);
+                $('.scrollto-line').stop(true,false).animate({top:0},300);
             }
             else {
-                $('.scrollto-line').stop(true,true).animate({top:-51},500);
+                $('.scrollto-line').stop(true,false).animate({top:-51},300);
             };
 
             $( window ).scroll(function() {
                 var w_pos = $(window).scrollTop();
                 if ( (w_pos >= showScrollToPoint) && (w_pos <= hideScrollToPoint) ) {
-                    $('.scrollto-line').stop(true,true).animate({top:0},500);
+                    $('.scrollto-line').stop(true,false).animate({top:0},300);
                 }
                 else {
-                    $('.scrollto-line').stop(true,true).animate({top:-51},500);
+                    $('.scrollto-line').stop(true,false).animate({top:-51},300);
                 };
             });
         };
@@ -205,6 +234,21 @@ $(window).scroll(function (e) {
 
         $(window).resize(function() {
             scrolltoFunc();
+        });
+
+        /*file input script*/
+        $(document).on("change", '.file-input input',  function () {
+            var inputFileName = $(this).closest('.file-input').find('.filename');
+            var inputFileSize = $(this).closest('.file-input').find('.filesize');
+            var fullPath = $(this).val();
+            if ( fullPath == '' || fullPath == '&nbsp;' ) {
+                fullPath = $(inputFileName).attr('title');
+                $(inputFileSize).fadeIn(700);
+            } else {
+                $(inputFileSize).fadeOut(700);
+            };
+            var pathArray = fullPath.split(/[/\\]/);
+            $(inputFileName).html(pathArray[pathArray.length - 1]);
         });
 
     });

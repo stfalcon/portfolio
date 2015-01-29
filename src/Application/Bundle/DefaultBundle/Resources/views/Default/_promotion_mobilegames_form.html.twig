@@ -1,0 +1,41 @@
+<form id="feedback-form-new" action="{{ path('promotion_order_new', {'type':'design_form'}) }}" class="webdev-form" {{ form_enctype(form) }} method="post">
+    <div class="form-pad form-type2">
+        <h1>{{ 'Заказать игру'|trans }}</h1>
+
+        <div class="line">
+            {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans} }) }}
+            {{ form_errors(form.name) }}
+        </div>
+        <div class="line">
+            {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+            {{ form_errors(form.email) }}
+        </div>
+        <div class="line">
+            {{ form_widget(form.phone, {'attr': {'placeholder': 'Телефон'|trans} }) }}
+            {{ form_errors(form.phone) }}
+        </div>
+        <div class="line">
+            {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'|trans} }) }}
+            {{ form_errors(form.message) }}
+        </div>
+        <div class="line btn-line">
+            <button class="btn btn-black float-right">{{ "Отправить" | trans() }}</button>
+            <div class="file-input">
+                <p class="filename" title="Прикрепить файл">{{ "Прикрепить файл" | trans() }}</p>
+                <p class="filesize">{{ "до 20 МБ" | trans() }}</p>
+                {{ form_widget(form.attach) }}
+                {{ form_errors(form.attach) }}
+            </div>
+        </div>
+        {{ form_rest(form) }}
+    </div>
+    <div class="form-success">
+        <div class="wr">
+            <div class="inner-pad">
+                <h3>{{ 'Спасибо!'|trans }}</h3>
+
+                <p>{{ 'Мы изучим Вашу заявку<br>и ответим в ближайшее время.'|trans|raw }}</p>
+            </div>
+        </div>
+    </div>
+</form>

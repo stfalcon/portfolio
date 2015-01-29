@@ -215,6 +215,7 @@
 
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
+            {% block order_form %}
             <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form webdev-form" action="{{ path('promotion_order', {'type': 'development'}) }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">
                     <h1>{{ 'Отправьте заявку'|trans }}</h1>
@@ -247,6 +248,7 @@
                 </div>
 
             </form>
+            {% endblock order_form %}
         </div>
     </section>
     <!--content end-->

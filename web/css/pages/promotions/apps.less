@@ -1787,7 +1787,8 @@ footer {
 /* sysadmin technology pictures */
 
 .puppetlab-img, .amazon-img, .webtech-docker, .webtech-graphite, .webtech-mongodb,
-.webtech-jenkins, .webtech-munin, .webtech-zabbix, .webtech-nginx, .webtech-mysql {
+.webtech-jenkins, .webtech-munin, .webtech-zabbix, .webtech-nginx,
+.sysadmin-slide  .webtech-mysql {
   display: inline-block;
   background-image: @sprite3;
   -webkit-background-size: @sprite3-bgsize;
@@ -1807,7 +1808,7 @@ footer {
 .webtech-munin { background-position: -1px -301px; width: 116px; height: 30px; }
 .webtech-zabbix { background-position: -1px -332px; width: 113px; height: 29px; }
 .webtech-nginx { background-position: -1px -362px; width: 91px; height: 20px; }
-.webtech-mysql { background-position: -93px -362px; width: 84px; height: 57px; }
+.sysadmin-slide .webtech-mysql { background-position: -93px -362px; width: 84px; height: 57px; }
 
 iframe[name="google_conversion_frame"] {
   display: none;
@@ -1860,4 +1861,105 @@ iframe[name="google_conversion_frame"] {
   &:active:after {
     background: #ed002d;
   }
+}
+
+@media screen and (max-width: 420px) {
+  #scrollto-btn {
+    display: block;
+    float: none;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 -20px;
+    border-radius:0;
+    text-align: center;
+  }
+}
+
+/*new form*/
+.form-type2 {
+  .line {
+    margin: 0 0 10px;
+  }
+  .btn-line {
+    margin-top: 20px;
+
+    .btn {
+      width: 160px;
+      padding: 0;
+    }
+    .file-input {
+      margin-right: 195px;
+    }
+  }
+}
+
+/*file input*/
+.file-input {
+  position: relative;
+  .box-sizing(border-box);
+  padding: 13px 16px 12px;
+  border: 1px dashed #c4c5c5;
+  border-radius: 4px;
+  overflow: hidden;
+
+  p {
+    font-size: 1.287em;
+    line-height: 1.335em;
+    text-align: left;
+  }
+  .filename {
+    margin: 0;
+  }
+  .filesize {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    margin: 0;
+    color: #a9bae8;
+  }
+  input {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 200px;
+    cursor: pointer;
+
+    opacity:0;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .form-type2 {
+    .btn-line {
+      position: relative;
+      padding-bottom: 61px;
+
+      .btn {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+      .file-input {
+        margin: 0;
+      }
+    }
+  }
+}
+
+/*
+ localization slides
+*/
+.etopus {
+  background-image: url("/img/pages/promotions/apps/slides/slide_etopus_en.jpg");
+  background-color: #1b3f69;
+}
+.softarchive {
+  background-image: url("/img/pages/promotions/apps/slides/slide_softarchive_en.jpg");
+  background-color: #36383c;
+}
+.twiseller {
+  background-image: url("/img/pages/promotions/apps/slides/slide_twiseller_en.jpg");
+  background-color: #4e4242;
 }

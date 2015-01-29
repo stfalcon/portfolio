@@ -56,9 +56,12 @@ return array( # Rückkehr Datenfeld
     'Напишите пару слов о приложении' => 'Vielleicht einpaar Worte über die gewünschte App?',
     'Спасибо!' => 'Danke',
     'Мы изучим Вашу заявку<br>и ответим в ближайшее время.' => 'Wir überprüfen Ihre Anfrage<br>und antworten Ihnen so schnell wie möglich.',
-    'promotion.order.app.mail.subject' => 'Die Applikation für Entwicklung von mobilen Applikationen von "%email%"',
+    'promotion.order.apps.mail.subject' => 'Die Applikation für Entwicklung von mobilen Applikationen von "%email%"',
+    'promotion.order.apps_form.mail.subject' => 'Die Applikation für Entwicklung von mobilen Applikationen von "%email%"',
     'promotion.order.design.mail.subject' => 'Die Applikation für Entwicklung von Web-Deisgn von "%email%"',
+    'promotion.order.design_form.mail.subject' => 'Die Applikation für Entwicklung von Web-Deisgn von "%email%"',
     'promotion.order.development.mail.subject' => 'Die Applikation für Web ENtwicklung durch "%email%"',
+    'promotion.order.development_form.mail.subject' => 'Die Applikation für Web ENtwicklung durch "%email%"',
     'Кукорама' => 'Cookorama',
     'Радиалка' => 'Radialka',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Danke! Wir setzen uns mit Ihnen in Kontakt so schnell wie möglich.',
@@ -103,6 +106,7 @@ return array( # Rückkehr Datenfeld
     'Развертывание' => 'Bereitstellung',
     'Развертывание с использованием Capifony позволит быстро и безопасно обновлять код на production серверах' => 'Bereitstellung durch Capifony ermöglicht schnell und sicher die Code auf Produktionsservern zu erneuern.',
     'promotion.order.sysadmin.mail.subject' => 'Bestellung für Systemadministrierung von "%email%"',
+    'promotion.order.sysadmin_form.mail.subject' => 'Bestellung für Systemadministrierung von "%email%"',
     'Напишите пару слов о необходимой услуге' => 'Schreiben Sie ein paar Worte über den gewünschten Service',
     //mobile games landing # 'Mobilspiele Absatz
     'Разработка мобильных игр' => 'Entwicklung von Mobilspielen',
@@ -110,4 +114,5 @@ return array( # Rückkehr Datenfeld
     'Заказать игру' => 'Spiel bestellen',
     'Головоломка, целью которой является уничтожение всех кубиков, расположенных на экране, за как можно меньшее количество ходов.' => 'Puzzle Spiel, das als Ziel hat, alle Würfel auf dem Feld mit möglichst wenigen Schritten zu vernichten.',
     'promotion.order.mobilegames.mail.subject' => 'Entwicklung von Mobilspiel bestellen von "%email%"',
+    'promotion.order.mobilegames_form.mail.subject' => 'Entwicklung von Mobilspiel bestellen von "%email%"',
 );
