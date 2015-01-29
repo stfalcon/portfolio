@@ -289,12 +289,14 @@ $(function () {
 
         $(document).on('click', '.fix-prev-slide', function(){
             $('.slider-nav .prev-slide').trigger('click');
-            $scrollingCnt.scrollTop(0);
+            $scrollingCnt.animate({scrollTop: 0}, 300);
+            //$scrollingCnt.scrollTop(0);
         });
 
         $(document).on('click', '.fix-next-slide', function(){
             $('.slider-nav .next-slide').trigger('click');
-            $scrollingCnt.scrollTop(0);
+            $scrollingCnt.animate({scrollTop: 0}, 300);
+            //$scrollingCnt.scrollTop(0);
         });
 
         function setButtonsPosition(){
@@ -306,7 +308,7 @@ $(function () {
                 $sliderCnt.removeClass('show-fixed-nav');
             }
 
-            if(leftSlideHeight >=400){
+            if(leftSlideHeight >= 280){
                 $fixedNav[0].style.top = $scrollingCnt.scrollTop() + middleScreenPoint + 'px';
             }
         };

@@ -44,16 +44,6 @@ body {
   background-color: @bg-color;
 }
 
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
 hr {
   display: block;
   height: 1px;
@@ -1225,26 +1215,22 @@ form {
 
 /*placeholder css*/
 form :-moz-placeholder {
-  /*Firefox 4-18*/
   color: #919699;
   opacity: 1 !important;
 }
 
 form ::-moz-placeholder {
-  /*Firefox 19+ */
   color: #919699;
   opacity: 1 !important;
 }
 
 form ::-webkit-input-placeholder {
-  /*webkit*/
   color: #919699;
   opacity: 1 !important;
   line-height: 26px;
 }
 
 form :-ms-input-placeholder {
-  /*ie10*/
   color: #919699;
   opacity: 1 !important;
 }
