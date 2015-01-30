@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
+{% block abtest %}
     <!-- Google Analytics Content Experiment code -->
     <script>function utmx_section(){}function utmx(){}(function(){var
                 k='97075970-0',d=document,l=d.location,c=d.cookie;
@@ -15,6 +15,9 @@
                     '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
     </script><script>utmx('url','A/B');</script>
     <!-- End of Google Analytics Content Experiment code -->
+{% endblock abtest %}
+
+{% block body %}
     <div class="slide scrollto-line">
         <div class="wrap">
             <a class="btn" id="scrollto-btn" href="#">{{ 'Заказать администрирование'|trans }}</a>
