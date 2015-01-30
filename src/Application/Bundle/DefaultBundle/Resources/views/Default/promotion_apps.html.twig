@@ -181,7 +181,7 @@
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
             {% block order_form %}
-            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'app'}) }}" method="post" {{ form_enctype(form) }}>
+            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'apps'}) }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">
                     <h1>{{ 'Заказать приложение'|trans }}</h1>
 
