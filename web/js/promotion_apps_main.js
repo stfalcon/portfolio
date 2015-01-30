@@ -145,8 +145,9 @@ $(window).scroll(function (e) {
                 },
                 success: function (response) {
                     if (response.status == "success") {
-                        if (window.ga) {
+                        if (window.ga && window.yaCounter27048220) {
                             ga('send', 'event', 'order', 'landing');
+                            yaCounter27048220.reachGoal('landing');
                         }
 
                         $('#feedback-form').find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
@@ -175,8 +176,9 @@ $(window).scroll(function (e) {
             contentType: false,
             success: function(response) {
                 if (response.result == "success") {
-                    if (window.ga) {
+                    if (window.ga && window.yaCounter27048220) {
                         ga('send', 'event', 'order', 'landing');
+                        yaCounter27048220.reachGoal('landing');
                     }
 
                     $directOrderForm.find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
