@@ -11,8 +11,9 @@ $(function () {
             contentType: false,
             success: function(response) {
                 $directOrderForm.replaceWith(response.view);
-                if (response.result == 'success' && window.ga) {
+                if (response.result == 'success' && window.ga && window.yaCounter27048220) {
                     ga('send', 'event', 'order', 'contacts');
+                    yaCounter27048220.reachGoal('contacts');
                 }
             }
         });
