@@ -94,6 +94,7 @@
   display: inline-block;
   margin: 0;
   width: 774px;
+  overflow: hidden;
 
   &.show-fixed-nav {
     .fixed-nav {
@@ -103,6 +104,18 @@
     }
     .slider-nav {
       opacity: 0;
+    }
+  }
+  &.hide-next-button {
+    .next-slide {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  &.hide-prev-button {
+    .prev-slide {
+      opacity: 0;
+      pointer-events: none;
     }
   }
   .fixed-nav {

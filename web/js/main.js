@@ -211,15 +211,32 @@ $(function () {
             projectSliderCnt.addClass('moving');
         });
 
+        projectSlider.on('load', function(){
+            disableNavigation();
+        });
+
         projectSlider.on('moveEnd', function () {
             projectSliderCnt.removeClass('moving');
             projectSlider.activate(projectSlider.rel.activePage);
             projectSliderCnt.height(projectSliderCnt.find('li.active img').height());
+
+            // Hide navigation button
+            disableNavigation();
         });
 
         projectSlider.on('change', function(){
             projectSliderCnt.height(projectSliderCnt.find('li.active img').height());
         });
+
+        var $sliderWrapper = $('.project-slider-cnt');
+        function disableNavigation(){
+            $sliderWrapper.removeClass('hide-next-button hide-prev-button');
+            if(projectSlider.rel.activePage == 0){
+                $sliderWrapper.addClass('hide-prev-button');
+            } else if(projectSlider.rel.activePage == projectSlider.items.length - 1){
+                $sliderWrapper.addClass('hide-next-button');
+            }
+        }
 
         function resizeSliderItems(cnt) {
             sliderWidth = cnt.width();
@@ -297,7 +314,6 @@ $(function () {
         $(document).on('click', '.fix-next-slide', function(){
             $('.slider-nav .next-slide').trigger('click');
             $scrollingCnt.animate({scrollTop: 0}, 300);
-            //$scrollingCnt.scrollTop(0);
         });
 
         function setButtonsPosition(){
@@ -313,6 +329,14 @@ $(function () {
                 $fixedNav[0].style.top = $scrollingCnt.scrollTop() + middleScreenPoint + 'px';
             }
         };
+        // Add navigation from keyboard
+        $(window).on('keyup', function(e){
+            if(e.keyCode == 37){
+                $('.fix-prev-slide').trigger('click');
+            } else if(e.keyCode == 39){
+                $('.fix-next-slide').trigger('click');
+            }
+        });
     }
 
     enquire.register("screen and (max-width: 670px)", {
