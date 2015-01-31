@@ -143,6 +143,8 @@ $(window).scroll(function (e) {
                 beforeSend: function () {
                     $(form).find("button").prop('disabled', true);
                 },
+                cache: false,
+                async: false,
                 success: function (response) {
                     if (response.status == "success") {
                         if (window.ga && window.yaCounter27048220) {
@@ -174,6 +176,8 @@ $(window).scroll(function (e) {
             data: new FormData( this ),
             processData: false,
             contentType: false,
+            cache: false,
+            async: false,
             success: function(response) {
                 if (response.result == "success") {
                     if (window.ga && window.yaCounter27048220) {
@@ -181,10 +185,11 @@ $(window).scroll(function (e) {
                         yaCounter27048220.reachGoal('landing');
                     }
 
-                    $directOrderForm.find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
-                    $directOrderForm.find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
                     $directOrderForm.trigger('reset');
                     $('.file-input input').trigger('change');
+                    $directOrderForm.find('.error-list').remove();
+                    $directOrderForm.find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
+                    $directOrderForm.find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
                     $directOrderForm.find("button").prop('disabled', false);
                 } else {
                     $directOrderForm.replaceWith(response.view);

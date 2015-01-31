@@ -1,3 +1,5 @@
+{% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
+
 <form id="feedback-form-new" action="{{ path('promotion_order_new', {'type':'design_form'}) }}" class="webdev-form" {{ form_enctype(form) }} method="post">
     <div class="form-pad form-type2">
         <h1>{{ 'Заказать дизайн веб-сайта'|trans }}</h1>
