@@ -7,7 +7,7 @@ var orderApplicationFormMessages = {
     'order_promotion[email]': {
         required: "Пожалуйста, введите адрес вашей эл.почты",
         maxlength: "Пожалуйста, введите не более 72 символов.",
-        email: "Ваша эл.адрес должен быть формата name@domain.com"
+        email: "Ваш эл.адрес должен быть формата name@domain.com"
     },
     'order_promotion[message]': {
         required: "Пожалуйста, введите сообщение",

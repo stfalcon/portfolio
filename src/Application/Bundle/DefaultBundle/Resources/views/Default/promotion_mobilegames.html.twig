@@ -195,8 +195,14 @@
         {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-    {% else %}
+    {% endif %}
+    {% if locale == 'ru' %}
         {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'de' %}
+        {% javascripts 'js/locales/order_application_form.de.js' output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endif %}
