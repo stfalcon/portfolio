@@ -96,7 +96,7 @@
                 <p>{{ "Головоломка, целью которой является уничтожение всех кубиков, расположенных на экране, за как можно меньшее количество ходов." | trans() }}</p>
             </div>
             <div class="app-img">
-                <a href=""><img src="{{ asset('img/pages/promotions/apps/app_samegame.png') }}" width="843" height="435" alt=""/></a>
+                <a href=""><img src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/app_samegame.png'):asset('img/pages/promotions/apps/app_samegame_en.png') }}" width="843" height="435" alt=""/></a>
             </div>
         </div>
     </section>

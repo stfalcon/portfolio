@@ -63,7 +63,7 @@ return array( # Rückkehr Datenfeld
     'promotion.order.development.mail.subject' => 'Die Applikation für Web ENtwicklung durch "%email%"',
     'promotion.order.development_form.mail.subject' => 'Die Applikation für Web ENtwicklung durch "%email%"',
     'Кукорама' => 'Cookorama',
-    'Радиалка' => 'Radialka',
+    'Радиалка' => 'Twiseller',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Danke! Wir setzen uns mit Ihnen in Kontakt so schnell wie möglich.',
     'Заявка на сотрудничество' => 'Kooperationsanfrage',
     'Прикрепить файл' => 'Datei anhängen',
@@ -77,8 +77,9 @@ return array( # Rückkehr Datenfeld
     'Заказать дизайн веб-сайта' => 'Design der Webseite bestellen',
     'Сервис, где профессиональные фотографы продают отснятые фотографии своим клиентам. Клиент может купить фото любого качества из галереи фотографа.' => 'Service, wo professionelle Fotografen Fotos an ihre Kunden verkaufen. Der Kunde kann Fotos kaufen, wobei er selber die ihm passende Qualität auswählt.',
     'Сайт крупнейшей компании<br>пассажирских перевозок в Европе.' => 'Die Webseite von dem größten Unternehmen<br/>für Reiseverkehr in Europa.',
-    'Компания обучает всех желающих интернет-маркетингу, проводит онлайн тренинги и семинары.' => 'Ein Unternehmen, das sich in online-Marketingkursen sprezialisiert. Es organisiert online-Trainings und Seminare.',
-    'Крупный интернет-магазин по продаже металлических и межкомнатных дверей, а также фурнитуры и аксессуаров к ним.' => 'Ein großer Internet-Laden für Haus- und Zimmertüren sowie Zubehör und Accessoirs.',
+    'Компания обучает всех желающих интернет-маркетингу, проводит онлайн тренинги и семинары.' => 'Tiefe Signalbearbeitung für Hochgeschwindigkeitsschnittstellen der IP-verbindenden Rechenzentrumsressourcen.',
+    'CoolDoors' => 'SoftArchive',
+    'Крупный интернет-магазин по продаже металлических и межкомнатных дверей, а также фурнитуры и аксессуаров к ним.' => 'SoftArchive ist das populärste Projekt, das für Kontent- und Filesuche, nach Suchmaschinenprinzip, in 2004 entwickelt wurde. SoftArchive wird vom Team rund um die Welt unterstützt.',
     'Сайт всеукраинского чемпионата по веб-разработке. Чемпионат проводится ежегодно в восьми номинациях среди новичков и опытных разработчиков.' => 'Die Webseite des Wettbewerbs für Web Entwicklung in der Ukraine. Der Wettbewerb wird jährlich in acht Nominierungen unter Anfängern und erfahrenen Entwicklern gehalten.',
     'Напишите пару слов о сайте' => 'Schreiben Sie ein paar Worte über die gewünschte Webseite.',
     //development landing # Entwicklung Absatz
@@ -87,7 +88,7 @@ return array( # Rückkehr Datenfeld
     'Заказать сайт' => 'Webseite bestellen',
     'В разработке использовали:' => 'Für die Entwicklung haben wir benutzt:',
     'Сообщество, где обсуждают вопросы тюнинга и ремонта или просто общаются на автомобильною тематику.' => 'Ein Netzwerk, wo über Autos - von Reparatur bis Tuning - diskutiert wird.',
-    'Один из крупнейших интернет-магазинов, реализующих такую нишевую продукцию, как снаряжение для туризма и активного отдыха.' => 'Einer der größten Internet-Läden für Tourismus und Unterhaltung.',
+    'Один из крупнейших интернет-магазинов, реализующих такую нишевую продукцию, как снаряжение для туризма и активного отдыха.' => 'Service für Verkauf der populären Twitter-Accounts.',
     'Кулинарное сообщество, где собираются для обмена новыми рецептами и<br> делятся практическим опытом.' => 'Ein Netzwerk, wo Hobbyköche neue Rezepte und ihre Erfahrungen austauschen können.',
     'Отправьте заявку' => 'Fordern Sie Angebot an.',
     'И мы поможем решить вашу задачу' => 'Und wir helfen Ihnen, Ihr Problem zu lösen.',
@@ -115,4 +116,5 @@ return array( # Rückkehr Datenfeld
     'Головоломка, целью которой является уничтожение всех кубиков, расположенных на экране, за как можно меньшее количество ходов.' => 'Puzzle Spiel, das als Ziel hat, alle Würfel auf dem Feld mit möglichst wenigen Schritten zu vernichten.',
     'promotion.order.mobilegames.mail.subject' => 'Entwicklung von Mobilspiel bestellen von "%email%"',
     'promotion.order.mobilegames_form.mail.subject' => 'Entwicklung von Mobilspiel bestellen von "%email%"',
+    'EMPO' => 'eTopus'
 );
