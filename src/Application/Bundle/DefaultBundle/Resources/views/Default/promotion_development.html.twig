@@ -130,12 +130,12 @@
                 </div>
             </div>
             <div class="site-img">
-                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_megasos.jpg') }}" width="630" height="378" alt=""/></a>
+                <a href=""><img src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/page_megasos.jpg'):asset('img/pages/promotions/apps/page_megasos_' ~ app.request.locale ~ '.jpg') }}" width="630" height="378" alt=""/></a>
             </div>
         </div>
     </section>
 
-    <section class="webdev-slide radialka">
+    <section class="webdev-slide {{ app.request.locale == 'ru'?'radialka':'twiseller' }}">
         <div class="wrap">
             <div class="app-inf">
                 <h1>{{ "Радиалка" | trans() }}</h1>
@@ -152,7 +152,7 @@
                 </div>
             </div>
             <div class="site-img">
-                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_radialka.jpg') }}" width="630" height="378" alt=""/></a>
+                <a href=""><img src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/page_radialka.jpg'):asset('img/pages/promotions/apps/page_twiseller_en.jpg') }}" width="630" height="378" alt=""/></a>
             </div>
         </div>
     </section>
@@ -172,7 +172,7 @@
                 </div>
             </div>
             <div class="site-img">
-                <a href=""><img src="{{ asset('img/pages/promotions/apps/page_cookorama.jpg') }}" width="630" height="378" alt=""/></a>
+                <a href=""><img src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/page_cookorama.jpg'):asset('img/pages/promotions/apps/page_cookorama_en.jpg') }}" width="630" height="378" alt=""/></a>
             </div>
         </div>
     </section>

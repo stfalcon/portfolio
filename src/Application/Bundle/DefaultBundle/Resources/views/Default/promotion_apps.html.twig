@@ -97,7 +97,11 @@
                 <p>{{ '«Рецепты от Кукорамы» — удобное приложение с красочными пошаговыми рецептами для любителей готовить.'|trans }}</p>
             </div>
             <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_cookorama.png" width="960" height="480" alt=""/></a>
+                <a href="">
+                    <img
+                        src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/app_cookorama.png'):asset('img/pages/promotions/apps/app_cookorama_en.png') }}"
+                        width="960" height="480" alt=""/>
+                </a>
             </div>
         </div>
     </section>
@@ -123,7 +127,11 @@
                 <p>{{ 'Приложение позволяет автомобилисту отправить сообщение с просьбой о помощи и указать, где именно приключилась неприятность.'|trans }}</p>
             </div>
             <div class="app-img">
-                <a href=""><img src="/img/pages/promotions/apps/app_megasos.png" width="543" height="480" alt=""/></a>
+                <a href="">
+                    <img
+                        src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/app_megasos.png'):asset('img/pages/promotions/apps/app_megasos_en.png') }}"
+                        width="543" height="480" alt=""/>
+                </a>
             </div>
         </div>
     </section>

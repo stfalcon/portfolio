@@ -94,44 +94,45 @@
         </div>
     </section>
 
-    <section class="design-slide empo">
+    <section class="design-slide {{ app.request.locale == 'ru'?'empo':'etopus' }}">
         <div class="wrap">
             <div class="app-inf">
                 <h1>{{ "EMPO" | trans() }}</h1>
                 <p>{{ "Компания обучает всех желающих интернет-маркетингу, проводит онлайн тренинги и семинары." | trans() }}</p>
             </div>
             <div class="site-img">
-                <img src="{{ asset('img/pages/promotions/apps/page_empo.jpg') }}" width="630" height="468" alt=""/>
+                <img src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/page_empo.jpg'):asset('img/pages/promotions/apps/page_empo_en.jpg') }}" width="630" height="468" alt=""/>
             </div>
         </div>
     </section>
 
-    <section class="design-slide cooldoors">
+    <section class="design-slide {{ app.request.locale == 'ru'?'cooldoors':'softarchive' }}">
         <div class="wrap">
             <div class="app-inf">
                 <h1>{{ "CoolDoors" | trans() }}</h1>
                 <p>{{ "Крупный интернет-магазин по продаже металлических и межкомнатных дверей, а также фурнитуры и аксессуаров к ним." | trans() }}</p>
             </div>
             <div class="site-img">
-                <img src="{{ asset('img/pages/promotions/apps/page_cooldoors.jpg') }}" width="630" height="468" alt=""/>
+                <img src="{{ app.request.locale == 'ru'?asset('img/pages/promotions/apps/page_cooldoors.jpg'):asset('img/pages/promotions/apps/page_softarchive_en.jpg') }}" width="630" height="468" alt=""/>
                 <div class="dev-img">
                     <img src="{{ asset('img/pages/promotions/apps/devapp_cooldoors.png') }}" width="183" height="317" alt=""/>
                 </div>
             </div>
         </div>
     </section>
-
-    <section class="design-slide uaweb">
-        <div class="wrap">
-            <div class="app-inf">
-                <h1>{{ "UA Web Challenge" | trans() }}</h1>
-                <p>{{ "Сайт всеукраинского чемпионата по веб-разработке. Чемпионат проводится ежегодно в восьми номинациях среди новичков и опытных разработчиков." | trans() }}</p>
+    {% if app.request.locale == 'ru' %}
+        <section class="design-slide uaweb">
+            <div class="wrap">
+                <div class="app-inf">
+                    <h1>{{ "UA Web Challenge" | trans() }}</h1>
+                    <p>{{ "Сайт всеукраинского чемпионата по веб-разработке. Чемпионат проводится ежегодно в восьми номинациях среди новичков и опытных разработчиков." | trans() }}</p>
+                </div>
+                <div class="site-img">
+                    <img src="{{ asset('img/pages/promotions/apps/page_uaweb.jpg') }}" width="630" height="468" alt=""/>
+                </div>
             </div>
-            <div class="site-img">
-                <img src="{{ asset('img/pages/promotions/apps/page_uaweb.jpg') }}" width="630" height="468" alt=""/>
-            </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
 
     {#<section class="testimonials" >#}
