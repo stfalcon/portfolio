@@ -61,7 +61,7 @@ class PostController extends AbstractController
         $post = $this->get('doctrine')->getManager()
             ->getRepository("StfalconBlogBundle:Post")->findPostBySlugInLocale($slug, $request->getLocale());
         if (!$post) {
-            throw new NotFoundHttpException('Post not found');
+            return $this->redirect($this->generateUrl('blog'));
         }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
