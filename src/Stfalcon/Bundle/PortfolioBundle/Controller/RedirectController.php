@@ -40,6 +40,11 @@ class RedirectController extends Controller
                     ]
                 );
                 break;
+            default:
+                return $this->forward('StfalconPortfolioBundle:Project:view', [
+                    'categorySlug' => $categorySlug,
+                    'projectSlug'  => $projectSlug
+                ]);
 
         }
 
