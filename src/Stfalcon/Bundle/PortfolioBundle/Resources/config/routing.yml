@@ -1,3 +1,7 @@
+_portfolio_redirect:
+    resource: "@StfalconPortfolioBundle/Controller/RedirectController.php"
+    type:     annotation
+
 _portfolio_project:
     resource: "@StfalconPortfolioBundle/Controller/ProjectController.php"
     type:     annotation
