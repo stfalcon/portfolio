@@ -17,7 +17,7 @@ class RedirectController extends Controller
      *
      * @return array
      * @Route("/portfolio/{categorySlug}/{projectSlug}",
-     *  requirements={"projectSlug" = "uaroads|meinfernbus-de|wallpaperinua|swell-foop-android",
+     *  requirements={"projectSlug" = "uaroads|meinfernbus-de|wallpaperinua|swell-foop-android|wallpaper-in-ua",
      *                "categorySlug" = "web-development|web-design|mobile-development"})
      */
     public function redirectOldPortfolioLinksAction($categorySlug, $projectSlug)
