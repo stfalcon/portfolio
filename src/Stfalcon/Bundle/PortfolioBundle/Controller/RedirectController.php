@@ -85,7 +85,9 @@ class RedirectController extends Controller
      *
      * @return Response
      *
-     * @Route("/portfolio/{categorySlug}/{page}", requirements={"page" = "\d+"})
+     * @Route("/portfolio/{categorySlug}/{page}", requirements={
+     *      "categorySlug" = "web-development|web-design|mobile-development|game-development",
+     *      "page" = "\d+"})
      */
     public function redirectOldLinksAction($categorySlug, $page)
     {
