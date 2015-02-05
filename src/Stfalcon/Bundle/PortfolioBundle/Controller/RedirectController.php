@@ -50,6 +50,15 @@ class RedirectController extends Controller
                     ]
                 );
                 break;
+            case ($categorySlug == 'web-development' && $projectSlug == 'wallpaper-in-ua'):
+                $redirectUrl = $this->generateUrl(
+                    'portfolio_project_view',
+                    [
+                        'categorySlug' => 'web-development',
+                        'projectSlug'  => 'wallpaper-in-ua-v2'
+                    ]
+                );
+                break;
             case ($categorySlug == 'mobile-development' && $projectSlug == 'swell-foop-android'):
                 $redirectUrl = $this->generateUrl(
                     'portfolio_project_view',
