@@ -42,7 +42,8 @@
         "sonata-project/media-bundle": "2.2.8",
         "zendframework/zend-feed": "2.3.1",
         "zendframework/zend-servicemanager": "2.3.1",
-        "geshi/geshi": "dev-master"
+        "geshi/geshi": "dev-master",
+        "fresh/doctrine-enum-bundle": "2.5"
     },
     "scripts": {
         "post-install-cmd": [

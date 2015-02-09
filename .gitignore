@@ -15,5 +15,4 @@ attachments/*
 app/config/parameters.ini
 
 # etc
-composer.lock
 .rsync_cache

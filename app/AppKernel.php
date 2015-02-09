@@ -52,7 +52,9 @@ class AppKernel extends Kernel
 
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle()
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+            new Stfalcon\RedirectBundle\StfalconRedirectBundle(),
+            new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

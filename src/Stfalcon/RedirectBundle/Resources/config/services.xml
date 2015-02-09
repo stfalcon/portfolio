@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="stfalcon_redirect.admin.redirect.router">Stfalcon\RedirectBundle\Routing\ExtraLoader</parameter>
+        <parameter key="stfalcon_redirect.admin.redirect.entity">Stfalcon\RedirectBundle\Entity\Redirect</parameter>
+        <parameter key="stfalcon_redirect.admin.redirect.entity_manager">Stfalcon\RedirectBundle\Entity\RedirectManager</parameter>
+
+        <parameter key="stfalcon_redirect.service.redirect.class">Stfalcon\RedirectBundle\Service\RedirectService</parameter>
+
+        <parameter key="stfalcon_redirect.admin.redirect.class">Stfalcon\RedirectBundle\Admin\RedirectAdmin</parameter>
+        <parameter key="stfalcon_redirect.admin.redirect.entity">Stfalcon\RedirectBundle\Entity\Redirect</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="stfalcon_redirect.service.redirect" class="%stfalcon_redirect.service.redirect.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <!--<service id="stfalcon_redirect.routing_loader" class="%stfalcon_redirect.admin.redirect.router%">-->
+            <!--<tag name="routing.loader"/>-->
+            <!--<argument type="service" id="stfalcon_redirect.service.redirect" />-->
+        <!--</service>-->
+
+        <service id="stfalcon_redirectkernel.listener.redirect_listener" class="Stfalcon\RedirectBundle\Listener\RedirectListener">
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelExceptionRequest" />
+            <argument type="service" id="stfalcon_redirect.service.redirect" />
+        </service>
+
+        <service id="stfalcon_redirect.admin.redirect" class="%stfalcon_redirect.admin.redirect.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Redirects" label="Redirects" />
+            <argument />
+            <argument>%stfalcon_redirect.admin.redirect.entity%</argument>
+            <argument />
+        </service>
+
+    </services>
+</container>
