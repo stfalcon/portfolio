@@ -32,6 +32,10 @@ doctrine:
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
+            RedirectStatusType: Stfalcon\RedirectBundle\Entity\Types\RedirectStatusType
+            RedirectCodeType: Stfalcon\RedirectBundle\Entity\Types\RedirectCodeType
+        mapping_types:
+            enum: string
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true

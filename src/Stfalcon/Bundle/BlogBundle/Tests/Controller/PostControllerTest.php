@@ -37,7 +37,7 @@ class PostControllerTest extends WebTestCase
         $client = $this->makeClient();
         $client->request('GET', $this->getUrl('blog_post_view', array('slug' => 'not-exist-post')));
 
-        $this->assertTrue($client->getResponse()->isNotFound());
+        $this->assertTrue($client->getResponse()->isRedirect($this->getUrl('blog')));
     }
 
     public function testViewBlog()
