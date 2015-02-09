@@ -143,7 +143,7 @@ class UniversalUrlValidatorTest extends \PHPUnit_Framework_TestCase
             ->context
             ->expects($this->once())
             ->method('addViolation')
-            ->with($this->anything(), $this->contains($uri));
+            ->with($this->anything(), $this->anything());
         $this->validator->validate($uri, $this->constraint);
     }
 }
