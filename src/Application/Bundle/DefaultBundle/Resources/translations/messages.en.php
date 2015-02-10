@@ -89,7 +89,7 @@ return array(
     'Заказать сайт' => 'Order a website',
     'В разработке использовали:' => "During development we've used:",
     'Сообщество, где обсуждают вопросы тюнинга и ремонта или просто общаются на автомобильною тематику.' => 'A community, where you can discuss issues of tuning and repair, boast your car or just speak a lot with other drivers..',
-    'Один из крупнейших интернет-магазинов, реализующих такую нишевую продукцию, как снаряжение для туризма и активного отдыха.' => 'A service for selling popular twitter-account.',
+    'Один из крупнейших интернет-магазинов, реализующих такую нишевую продукцию, как снаряжение для туризма и активного отдыха.' => 'A service for selling popular twitter accounts.',
     'Кулинарное сообщество, где собираются для обмена новыми рецептами и<br> делятся практическим опытом.' => 'Cook community, where people share new recipes and <br> practical experience with each other.',
     'Отправьте заявку' => 'Send order',
     'И мы поможем решить вашу задачу' => 'And we will help you to solve your problem',
