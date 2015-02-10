@@ -10,6 +10,9 @@
         <parameter key="application_default.form.type.direct_order.class">Application\Bundle\DefaultBundle\Form\Type\DirectOrderFormType</parameter>
 
         <parameter key="application_default.service.mailer.class">Application\Bundle\DefaultBundle\Service\MailerService</parameter>
+
+        <parameter key="application_default.service.geo_ip.class">Application\Bundle\DefaultBundle\Service\GeoIpService</parameter>
+        <parameter key="geo_ip_database_path">%kernel.root_dir%/../bin/GeoLite2-Country.mmdb</parameter>
     </parameters>
 
     <services>
@@ -48,6 +51,13 @@
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
 
+        <service id="kernel.listener.landing_locale" class="Application\Bundle\DefaultBundle\EventListener\LandingLocaleListener">
+            <argument type="service" id="application_default.service.geo_ip"/>
+            <argument type="service" id="router"/>
+            <argument>%locales%</argument>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
         <service id="application_default.form.type.direct_order" class="%application_default.form.type.direct_order.class%">
             <argument type="service" id="translator" />
             <tag name="form.type" alias="direct_order" />
@@ -60,6 +70,11 @@
                 <argument key="fromEmail">%mailer_notify%</argument>
                 <argument key="fromName">%mailer_name%</argument>
             </argument>
+        </service>
+
+        <service id="application_default.service.geo_ip" class="%application_default.service.geo_ip.class%">
+            <argument type="string">%geo_ip_database_path%</argument>
+            <argument>%locales%</argument>
         </service>
 
     </services>

@@ -43,7 +43,8 @@
         "zendframework/zend-feed": "2.3.1",
         "zendframework/zend-servicemanager": "2.3.1",
         "geshi/geshi": "dev-master",
-        "fresh/doctrine-enum-bundle": "2.5"
+        "fresh/doctrine-enum-bundle": "2.5",
+        "geoip2/geoip2": "2.1.1"
     },
     "scripts": {
         "post-install-cmd": [
