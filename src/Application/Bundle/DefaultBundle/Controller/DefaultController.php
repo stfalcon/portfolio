@@ -6,11 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Application\Bundle\DefaultBundle\Form\Type\PromotionOrderFormType;
+
 /**
  * Default controller. For single actions for project
  *
@@ -103,5 +102,31 @@ class DefaultController extends Controller
         }
 
         return ['form' => $directOrderForm->createView()];
+    }
+
+    /**
+     * Privacy Policy static page
+     *
+     * @return array
+     *
+     * @Template()
+     * @Route("/privacy-policy", name="privacy_policy_page")
+     */
+    public function privacyPolicyAction()
+    {
+        return [];
+    }
+
+    /**
+     * Terms of Service static page
+     *
+     * @return array
+     *
+     * @Template()
+     * @Route("/terms-of-service", name="terms_of_service_page")
+     */
+    public function termsOfServiceAction()
+    {
+        return [];
     }
 }
