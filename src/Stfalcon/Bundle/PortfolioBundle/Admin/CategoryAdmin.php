@@ -10,6 +10,9 @@ use Sonata\AdminBundle\Form\FormMapper;
  */
 class CategoryAdmin extends Admin
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -38,6 +41,39 @@ class CategoryAdmin extends Admin
                                 )
                             )
                         ),
+                        'title' => array(
+                            'label' => 'SEO: Title',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'metaDescription' => array(
+                            'label' => 'SEO: Meta Description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'metaKeywords' => array(
+                            'label' => 'SEO: Meta Keywords',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
                     ),
                     'label' => 'Перевод'
                 )
@@ -48,6 +84,9 @@ class CategoryAdmin extends Admin
             ->add('ordernum');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

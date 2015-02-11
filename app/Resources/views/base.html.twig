@@ -8,13 +8,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{% block title %}{{ 'Веб-студия'|trans }} stfalcon.com{% endblock %}</title>
-    <meta name="description" content="">
+    <meta name="description" content="{% block meta_description %}{% endblock meta_description %}">
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
 
     {% block stylesheets %}
         <!--[if gte IE 8]>
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset(css/ie.css) }}"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/ie.css') }}"/>
         <![endif]-->
         {% stylesheets filter='less, cssrewrite' output='cache/css/*.css'
         'css/main.less'
