@@ -14,7 +14,7 @@
 
     {% block stylesheets %}
         <!--[if gte IE 8]>
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset(css/ie.css) }}"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/ie.css') }}"/>
         <![endif]-->
         {% stylesheets filter='less, cssrewrite' output='cache/css/*.css'
         'css/main.less'
