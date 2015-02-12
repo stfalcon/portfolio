@@ -13,6 +13,7 @@ return array( # Rückkehr Datenfeld
     'офис' => 'Büro',
     'Хмельницкий' => 'Khmelnytskyj',
     'Украина' => 'Ukraine',
+    '+380 96 057-81-61' => '+49 2191 3608 487',
 
     // internal.html.twig
     'Подписаться на RSS ленту'  => 'RSS-Feed abonnieren',
