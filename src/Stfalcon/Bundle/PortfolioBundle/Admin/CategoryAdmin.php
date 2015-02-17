@@ -50,7 +50,8 @@ class CategoryAdmin extends Admin
                                 'en' => array(
                                     'required' => false
                                 )
-                            )
+                            ),
+                            'required' => false
                         ),
                         'metaDescription' => array(
                             'label' => 'SEO: Meta Description',
@@ -61,7 +62,8 @@ class CategoryAdmin extends Admin
                                 'en' => array(
                                     'required' => false
                                 )
-                            )
+                            ),
+                            'required' => false
                         ),
                         'metaKeywords' => array(
                             'label' => 'SEO: Meta Keywords',
@@ -72,7 +74,8 @@ class CategoryAdmin extends Admin
                                 'en' => array(
                                     'required' => false
                                 )
-                            )
+                            ),
+                            'required' => false
                         ),
                     ),
                     'label' => 'Перевод'
