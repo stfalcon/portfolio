@@ -51,33 +51,3 @@
         </div>
     </section>
 {% endblock %}
-
-{#{% block content_wrapper %}#}
-    {#<section class="services-tabs">#}
-        {#<h1>{{ "Чем мы занимаемся"|trans }}</h1>#}
-
-        {#<div class="service-links-wrap">#}
-            {#<ul class="services-links">#}
-                {#{% for c in categories %}#}
-                    {#<li class="{% if c.id == category.id %}active{% endif %}">#}
-                        {#<h2>#}
-                            {#{% if c.id == category.id %}#}
-                                {#<a>{{ c.name }}</a>#}
-                            {#{% else %}#}
-                                {#<a href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">#}
-                                    {#{{ c.name }}#}
-                                {#</a>#}
-                            {#{% endif %}#}
-                        {#</h2>#}
-                    {#</li>#}
-                {#{% endfor %}#}
-            {#</ul>#}
-        {#</div>#}
-        {#<div class="services-description">#}
-            {#<div class="services-img img-{{ category.ordernum }}"></div>#}
-            {#<p>#}
-                {#{{ category.description|raw }}#}
-            {#</p>#}
-        {#</div>#}
-    {#</section>#}
-{#{% endblock %}#}
