@@ -10,10 +10,10 @@
         <h1>{{ "Чем мы занимаемся"|trans }}</h1>
         <ul class="tab-nav">
             {% for c in categories %}
-                <li>
+                <li {% if c.id == category.id %}class="ui-tabs-active"{% endif %}>
                     <h2>
                         {% if c.id == category.id %}
-                            {{ c.name }}
+                            <a class="active">{{ c.name }}</a>
                         {% else %}
                             <a href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">
                                 {{ c.name }}
