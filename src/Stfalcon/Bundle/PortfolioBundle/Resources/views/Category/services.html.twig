@@ -1,35 +1,52 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}{{ "Услуги"|trans }} / {{ parent() }}{% endblock %}
+{% block title %}{{ category.title }} / {{ parent() }}{% endblock %}
+
+{% block meta_description %}{{ category.metaDescription }}{% endblock meta_description %}
+{% block meta_keywords %}{{ category.metaKeywords }}{% endblock meta_keywords %}
 
 {% block content_wrapper %}
     <section class="services-tabs">
         <h1>{{ "Чем мы занимаемся"|trans }}</h1>
         <ul class="tab-nav">
-            {% for category in categories %}
-                <li><h2><a href="#{{ category.slug }}" {{ loop.index == 1?'class="active"':'' }}>{{ category.name }}</a></h2></li>
+            {% for c in categories %}
+                <li {% if c.id == category.id %}class="ui-tabs-active"{% endif %}>
+                    <h2>
+                        {% if c.id == category.id %}
+                            <a class="active">{{ c.name }}</a>
+                        {% else %}
+                            <a href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">
+                                {{ c.name }}
+                            </a>
+                        {% endif %}
+                    </h2>
+                </li>
             {% endfor %}
         </ul>
         <div class="tab-content-wrapper">
-            {% for category in categories %}
-                <div class="services-img img-{{ loop.index }}"></div>
-            {% endfor %}
-            {% for category in categories %}
-                <div id="{{ category.slug }}" class="tab-content">
-                    <a class="tab-title">{{ category.name }}</a>
-                    <div class="accordion-wrapper">
-                        <div class="tab-text">
-                            {{ category.description | raw }}
+            <div class="services-img img-{{ category.ordernum }}"></div>
+            {% for c in categories %}
+                {% if c.id == category.id %}
+                    <div id="{{ c.slug }}" class="tab-content open">
+                        <a class="tab-title">{{ category.name }}</a>
+                        <div class="accordion-wrapper">
+                            <div class="tab-text">
+                                {{ category.description | raw }}
+                            </div>
+                            <div class="price">
+                                {{ "Стоимость проекта %wrap_start%от %price% $%wrap_end%"|trans({'%price%': category.cost, '%wrap_start%': '<span>', '%wrap_end%': '</span>'})|raw }}
+                            </div>
+                            <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
+                                <span class="arrow-btn"></span>
+                                <span>{{ "посмотреть примеры проектов %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</span>
+                            </a>
                         </div>
-                        <div class="price">
-                            {{ "Стоимость проекта %wrap_start%от %price% $%wrap_end%"|trans({'%price%': category.cost, '%wrap_start%': '<span>', '%wrap_end%': '</span>'})|raw }}
-                        </div>
-                        <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
-                            <span class="arrow-btn"></span>
-                            <span>{{ "посмотреть примеры проектов %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</span>
-                        </a>
                     </div>
-                </div>
+                {% else %}
+                    <div id="{{ c.slug }}" class="tab-content">
+                        <a class="tab-title"  href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">{{ c.name }}</a>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </section>

@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="portfolio_categories")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\PortfolioBundle\Repository\CategoryRepository")
+ *
  * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\PortfolioBundle\Entity\CategoryTranslation")
  */
 class Category implements Translatable
@@ -61,6 +62,33 @@ class Category implements Translatable
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * @var string $title Title
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(name="title", type="string", nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string $metaDescription Meta description
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(name="meta_description", type="text", nullable=true)
+     */
+    private $metaDescription;
+
+    /**
+     * @var string $metaKeywords Meta keywords
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(name="meta_keywords", type="text", nullable=true)
+     */
+    private $metaKeywords;
 
     /**
      * @var ArrayCollection
@@ -322,5 +350,77 @@ class Category implements Translatable
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    /**
+     * Get metaDescription
+     *
+     * @return string MetaDescription
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * Set meta description
+     *
+     * @param string $metaDescription Meta description
+     *
+     * @return $this
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get meta keywords
+     *
+     * @return string Meta keywords
+     */
+    public function getMetaKeywords()
+    {
+        return $this->metaKeywords;
+    }
+
+    /**
+     * Set meta keywords
+     *
+     * @param string $metaKeywords Meta keywords
+     *
+     * @return $this
+     */
+    public function setMetaKeywords($metaKeywords)
+    {
+        $this->metaKeywords = $metaKeywords;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string Title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title title
+     *
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
     }
 }

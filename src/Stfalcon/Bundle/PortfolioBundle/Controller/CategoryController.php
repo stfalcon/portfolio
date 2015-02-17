@@ -5,9 +5,9 @@ namespace Stfalcon\Bundle\PortfolioBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
 use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 
@@ -19,15 +19,15 @@ class CategoryController extends Controller
     /**
      * List of categories
      *
+     * @param Category $category Category
+     *
      * @return array
      *
-     * @Route(
-     *      "/services",
-     *      name="portfolio_categories_list"
-     * )
+     * @Route("/services/{slug}", name="portfolio_categories_list")
+     * @ParamConverter("category", class="StfalconPortfolioBundle:Category", options={"mapping": {"slug": "slug"}})
      * @Template()
      */
-    public function servicesAction()
+    public function servicesAction(Category $category)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
         $categories = $repository->getAllCategories();
@@ -39,8 +39,13 @@ class CategoryController extends Controller
             'game-development'   => 'игр'
         );
 
-        return array('categories' => $categories, 'linkTexts' => $linkTexts);
+        return array(
+            'category'   => $category,
+            'categories' => $categories,
+            'linkTexts'  => $linkTexts
+        );
     }
+
     /**
      * View category
      *

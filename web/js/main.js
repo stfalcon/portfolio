@@ -30,10 +30,10 @@ $(function () {
                 "top": "header-top",
                 "notTop": "header-not-top"
             }
-            }
-        );
-    
-    headroom.init(); 
+        }
+    );
+
+    headroom.init();
 
     var nav = $('header nav'),
         locales = $('.locales');
@@ -107,65 +107,65 @@ $(function () {
         teamCnt = $('.team-list'),
         interestsList = $('.interests a');
 
-        if($('.team-list').length){
-            (function() {
-                interestsList.click(function(){
+    if($('.team-list').length){
+        (function() {
+            interestsList.click(function(){
 
-                    if($(this).hasClass('active')){
-                        toDefaultState();
-                    } else {
-                        teamCnt.addClass('active-filter');
-                        interestsList.removeClass('active');
-                        $(this).addClass('active');
-                        filter = $(this).data('filter');
-
-                        if(filter === "drinks") {
-                            teamCnt.addClass('show-drinks');
-                            showItems();
-                        } else {
-                            teamCnt.removeClass('show-drinks');
-                            teamList.each(function(index, value){
-                                var el = $(value);                                
-                                var interests = eval(el.data('interests'));   
-
-                                if(el.hasClass('disabled')) {
-                                    if($.inArray(filter, interests) >= 0) {
-                                        el.removeClass('disabled').animate({opacity: '1'}, 0);                                        
-                                    } else {
-                                        el.addClass('disabled').animate({opacity: '0.2'}, 0);
-                                    }
-                                } else {
-                                    if($.inArray(filter, interests) < 0) {
-                                        el.addClass('disabled').animate({opacity: '0.2'}, 0);
-                                    } else {
-                                        el.removeClass('disabled').animate({opacity: '1'}, 0);                                        
-                                    }
-                                }
-                            });
-                        }
-                    }
-                });
-
-                $(document).click(function(e){
-                    if($.inArray(e.target, interestsList) < 0) {
-                        toDefaultState();
-                    }
-                });
-
-                function toDefaultState(){
-                    teamCnt.removeClass('show-drinks').removeClass('active-filter');
-                    showItems();
+                if($(this).hasClass('active')){
+                    toDefaultState();
+                } else {
+                    teamCnt.addClass('active-filter');
                     interestsList.removeClass('active');
-                }
+                    $(this).addClass('active');
+                    filter = $(this).data('filter');
 
-                function showItems() {
-                    teamList.each(function(index, value){
-                        $(value).stop(true, true).animate({opacity: '1'}, 0);
-                    }); 
-                }
-            })();
+                    if(filter === "drinks") {
+                        teamCnt.addClass('show-drinks');
+                        showItems();
+                    } else {
+                        teamCnt.removeClass('show-drinks');
+                        teamList.each(function(index, value){
+                            var el = $(value);
+                            var interests = eval(el.data('interests'));
 
-        };
+                            if(el.hasClass('disabled')) {
+                                if($.inArray(filter, interests) >= 0) {
+                                    el.removeClass('disabled').animate({opacity: '1'}, 0);
+                                } else {
+                                    el.addClass('disabled').animate({opacity: '0.2'}, 0);
+                                }
+                            } else {
+                                if($.inArray(filter, interests) < 0) {
+                                    el.addClass('disabled').animate({opacity: '0.2'}, 0);
+                                } else {
+                                    el.removeClass('disabled').animate({opacity: '1'}, 0);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            $(document).click(function(e){
+                if($.inArray(e.target, interestsList) < 0) {
+                    toDefaultState();
+                }
+            });
+
+            function toDefaultState(){
+                teamCnt.removeClass('show-drinks').removeClass('active-filter');
+                showItems();
+                interestsList.removeClass('active');
+            }
+
+            function showItems() {
+                teamList.each(function(index, value){
+                    $(value).stop(true, true).animate({opacity: '1'}, 0);
+                });
+            }
+        })();
+
+    };
 
 
     var projectSlider = false,
@@ -255,36 +255,36 @@ $(function () {
             (function(){
                 var teamList = $('.team-list');
                 enquire.register("screen and (max-width:840px)", {
-                        match: function () {
-                            var sliderWidth = $('.project-info').width();
-                            resizeSliderItems(forSliderWidth);
+                    match: function () {
+                        var sliderWidth = $('.project-info').width();
+                        resizeSliderItems(forSliderWidth);
 
-                            $(window).bind('resize', function () {
-                                resizeSliderItems(forSliderWidth);
-                            });
-                        },
-                        unmatch: function () {
-                            $(window).unbind('resize');
-                            projectSliderCnt[0].style.width = '';
-                            slides.each(function (idnex, value) {
-                                value.style.width = '';
-                            });
-                        }
-                    }).register("screen and (max-width:620px)", {
-                        match: function () {
-                            $('.work-on-project h2').bind('click', function () {
-                                teamList.slideToggle(100);
-                            });
-                            teamList.hide();
-                        },
-                        unmatch: function () {
-                            $('.work-on-project h2').unbind('click');
-                            teamList.show();
-                        }
-                    });
-                    $(window).on("resize orientationchange", function(){
-                        projectSlider.reload();
-                    });
+                        $(window).bind('resize', function () {
+                            resizeSliderItems(forSliderWidth);
+                        });
+                    },
+                    unmatch: function () {
+                        $(window).unbind('resize');
+                        projectSliderCnt[0].style.width = '';
+                        slides.each(function (idnex, value) {
+                            value.style.width = '';
+                        });
+                    }
+                }).register("screen and (max-width:620px)", {
+                    match: function () {
+                        $('.work-on-project h2').bind('click', function () {
+                            teamList.slideToggle(100);
+                        });
+                        teamList.hide();
+                    },
+                    unmatch: function () {
+                        $('.work-on-project h2').unbind('click');
+                        teamList.show();
+                    }
+                });
+                $(window).on("resize orientationchange", function(){
+                    projectSlider.reload();
+                });
             })();
         }
     }
@@ -356,111 +356,6 @@ $(function () {
         }
     });
 
-    if($('.services-tabs').length) {
-        (function(){
-            var images = $('.services-tabs .services-img'),
-                accordionTabs = $('.accordion-wrapper'),
-                isVisible = true,
-                activeIndex = 0;
-
-            function showTabImages(selector) {
-                images.fadeOut(100);
-                if (isVisible) {
-                    switch (selector) {
-                        case "#web-development":
-                            $(images[0]).fadeIn(200);
-                            break;
-                        case "#web-design":
-                            $(images[1]).fadeIn(200);
-                            break;
-                        case "#mobile-development":
-                            $(images[2]).fadeIn(200);
-                            break;
-                        case "#game-development":
-                            $(images[3]).fadeIn(200);
-                            break;
-                    }
-                }
-            }
-
-            if (!$('html').hasClass('lt-ie10')) {
-                enquire.register("screen and (max-width:1005px)", {
-                    match: function () {
-                        isVisible = false;
-                        images.hide();
-                    },
-                    unmatch: function () {
-                        isVisible = true;
-                        activeTab = $(".services-tabs").tabs("option", "active");
-                        $(images[activeTab]).show();
-                    }
-                }).register("screen and (min-width:670px)", {
-                    match: function () {
-                        accordionTabs.show();
-                        var hash = window.location.hash;
-                        if(hash != "") {
-                            activeIndex = $('.tab-nav a[href="'+hash+'"]').closest('li').index();
-                        }
-
-                        $(".services-tabs").tabs({
-                            active: activeIndex,
-                            create: function (event, ui) {
-                                if (window.innerWidth > 1005) {
-                                    $(images[0]).fadeIn(200);
-                                };
-                                showTabImages(ui.panel.selector);
-                            },
-                            activate: function (event, ui) {
-                                tabs = ui;
-                                history.pushState('', '', ui.newPanel.selector);
-                                showTabImages(ui.newPanel.selector);
-                            }
-                        });
-                    },
-                    unmatch: function () {
-                        $(".services-tabs").tabs("destroy");
-                        closeAccordion(0);
-                        $(window.location.hash).find('.tab-title').click();
-                    }
-                }).register("screen and (max-width:670px)", {
-                    match: function(){
-                        // If we have mobail device then open accordion
-                        if(window.location.hash != '') {
-                            openAccordionItem($(window.location.hash).find('.tab-title'));
-                        } else {
-                            openAccordionItem($('#web-development').find('.tab-title'));
-                        }
-                    }
-                });
-            };
-
-            $('.tab-content').click(function(){
-                history.pushState('','', '#'+$(this).attr('id'));
-            });
-            
-            $('.tab-title').on('click', function (event) {
-                openAccordionItem(this);
-            });
-            
-            function openAccordionItem(element){
-                var tab = $(element).parent();
-                if ($(tab).hasClass('open')) {
-                    closeAccordion(200)
-                } else {
-                    closeAccordion(200)
-                    tab.find('.accordion-wrapper').slideDown(200);
-                    tab.addClass('open');
-                }
-            }
-
-            function closeAccordion(speed) {
-                accordionTabs.slideUp(speed);
-                accordionTabs.each(function (index, value) {
-                    $(value).parent().removeClass('open');
-                });
-            }
-        })();
-    }
     if (location.hash) {               // do the test straight away
         window.scrollTo(0, 0);         // execute it straight away
         setTimeout(function() {
