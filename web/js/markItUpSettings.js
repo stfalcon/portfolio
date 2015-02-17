@@ -38,5 +38,5 @@ mySettings = {
 };
 
 $(document).ready(function() {
-	$("textarea").markItUp(mySettings);
+	$("textarea.markitup").markItUp(mySettings);
 });

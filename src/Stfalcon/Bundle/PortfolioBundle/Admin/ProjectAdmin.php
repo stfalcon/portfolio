@@ -55,6 +55,9 @@ class ProjectAdmin extends Admin
                                 'en' => array(
                                     'required' => false
                                 )
+                            ),
+                            'attr' => array(
+                                'class' => 'markitup'
                             )
                         ),
                         'tags' => array(
@@ -77,7 +80,11 @@ class ProjectAdmin extends Admin
             ->add('imageFile', 'file', array('required' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
             ->add('date', 'date')
             ->add('categories')
-            ->add('users')
+            ->add('users', null, array(
+                'attr' => array(
+                    'class' => 'markitup'
+                )
+            ))
             ->add('published', 'checkbox', array('required' => false))
             ->add('shadow', 'checkbox', array('required' => false))
             ->add('onFrontPage', 'checkbox', array('required' => false))

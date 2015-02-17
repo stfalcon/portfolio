@@ -36,6 +36,9 @@ class PostAdmin extends Admin
                                 'en' => array(
                                     'required' => false
                                 )
+                            ),
+                            'attr' => array(
+                                'class' => 'markitup'
                             )
                         ),
                     ),
