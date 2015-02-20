@@ -61,11 +61,12 @@ title: __title
 Сортировка: Sort
 'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us, you choose a reliable business partner!'
 'Список проектов': 'List of projects'
-Украина: Ukraine
+Украина: BW, Germany
+, 29000: ''
 Услуги: Services
 Учасники: Participants
 Фамилия: Surname
-Хмельницкий: Khmelnytskyi
+Хмельницкий: 70173 Stuttgart
 'Чем мы занимаемся': 'What we do'
 'Читать дальше': 'Read more'
 'все статьи': 'All articles'
@@ -76,7 +77,7 @@ title: __title
 'проектов мы запустили к концу': 'projects we released till the end of'
 'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
 
-'ул. Заречанская 3/2': '3/2 Zarichanska str.'
+'ул. Заречанская 3/2': 'Konigstraße 80'
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
