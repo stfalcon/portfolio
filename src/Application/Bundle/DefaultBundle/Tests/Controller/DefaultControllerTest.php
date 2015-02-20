@@ -50,7 +50,7 @@ class DefaultControllerTest extends WebTestCase
         // check responce
         $this->assertTrue($client->getResponse()->isSuccessful());
         // check phone number
-        $this->assertCount(1, $crawler->filter('section.contacts-wrapper .info-group a:contains("+380 97 874-03-42")'));
+        $this->assertCount(1, $crawler->filter('section.contacts-wrapper .info-group a:contains("+380 96 057-81-61")'));
         // check e-mail
         $this->assertCount(1, $crawler->filter('section.contacts-wrapper .info-group a:contains("info@stfalcon.com")'));
     }
