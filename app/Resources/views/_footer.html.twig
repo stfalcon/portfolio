@@ -9,6 +9,10 @@
         <li>
             <span>{{ 'Позвонить'|trans }}:</span>
             <abbr title="{{ "+380 96 057-81-61" | trans() }}" class="tel">{{ "+380 96 057-81-61" | trans() }}</abbr>
+            {% if app.request.locale == 'en' %}
+                <br/>
+                <abbr title="{{ "+380 96 057-81-61" }}" class="tel">{{ "+380 96 057-81-61" }}</abbr>
+            {% endif %}
         </li>
         <li>
             <span>{{ 'Написать'|trans }}:</span>
@@ -16,11 +20,19 @@
         </li>
         <li>
             <span>{{ 'Зайти в гости'|trans }}</span>
-                    <span class="adr">
-                        <span class="street-address">{{ 'ул. Заречанская 3/2'|trans }},</span>
-                        <span class="locality">{{ 'Хмельницкий'|trans }},</span>
-                        <span class="country-name">{{ 'Украина'|trans }}</span>
-                    </span>
+            <span class="adr">
+                <span class="street-address">{{ 'ул. Заречанская 3/2'|trans }},</span>
+                <span class="locality">{{ 'Хмельницкий'|trans }},</span>
+                <span class="country-name">{{ 'Украина'|trans }}</span>
+            </span>
+            {% if app.request.locale == 'en' %}
+                <br />
+                <span class="adr">
+                    <span class="street-address">3/2 Zarichanska str.,</span>
+                    <span class="locality">Khmelnytskyi,</span>
+                    <span class="country-name">Ukraine</span>
+                </span>
+            {% endif %}
         </li>
     </ul>
 </section>
