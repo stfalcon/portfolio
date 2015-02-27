@@ -1,14 +1,16 @@
 <footer class="vcard">
-    <div class="wrap {{ app.request.locale == 'de'?de: }}">
+    <div class="wrap {{ app.request.locale == 'de'?'de':'' }}">
 
-        <section class="blog-posts">
-
-            {% if app.request.locale != 'de' %}
-                <h3>{{ 'Свежее из блога'|trans }} <a href="{{ path('blog_rss') }}" target="_blank"><i
-                                class="icon icon-share"></i></a></h3>
+        {% if app.request.locale != 'de' %}
+            <section class="blog-posts">
+                <h3>
+                    {{ 'Свежее из блога'|trans }}
+                    <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-share"></i></a>
+                </h3>
                 {% render controller("StfalconBlogBundle:Post:last", { 'locale': app.request.locale, 'count': 3 }) %}
-            {% endif %}
-        </section>
+            </section>
+        {% endif %}
+
         <section class="contacts">
             {% if app.request.locale != 'de' %}
                 <h3>{{ 'На связи'|trans }}</h3>
@@ -45,9 +47,14 @@
                 {% if app.request.locale != 'de' %}
                     <a href="http://stfalcon.com" title="stfalcon" class="fn org">stfalcon.com</a>
                 {% else %}
-                        stfalcon.com
+                    stfalcon.com
                 {% endif %}
             </div>
+            {% if app.request.locale == 'ru' %}
+                <div class="footer-pdf-link">
+                    <a href="{{ asset('img/presentation.pdf') }}">Презентация студии</a> <span>(PDF, 6 MB)</span>
+                </div>
+            {% endif %}
             <ul class="footer-links">
                 <li><a href="{{ path('privacy_policy_page') }}">Privacy Policy</a></li>
                 <li><a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a></li>
