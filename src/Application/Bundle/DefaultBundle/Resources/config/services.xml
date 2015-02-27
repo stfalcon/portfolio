@@ -77,6 +77,10 @@
             <argument>%locales%</argument>
         </service>
 
+        <service class="Application\Bundle\DefaultBundle\Form\Type\SubscribeFormType" id="application_bundle.defaultbundle.form.type.subscribe">
+            <tag alias="subscribe" name="form.type"/>
+        </service>
+
     </services>
 
 </container>

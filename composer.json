@@ -44,7 +44,8 @@
         "zendframework/zend-servicemanager": "2.3.1",
         "geshi/geshi": "dev-master",
         "fresh/doctrine-enum-bundle": "2.5",
-        "geoip2/geoip2": "2.1.1"
+        "geoip2/geoip2": "2.1.1",
+        "ahmedsamy/hype-mailchimp-bundle": "1.2"
     },
     "scripts": {
         "post-install-cmd": [

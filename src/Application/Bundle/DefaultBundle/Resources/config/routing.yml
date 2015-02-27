@@ -9,3 +9,7 @@ _application_default_promotion:
 _application_default_upload:
     resource: "@ApplicationDefaultBundle/Controller/UploadController.php"
     type:     annotation
+
+_application_default_widget:
+    resource: "@ApplicationDefaultBundle/Controller/WidgetsController.php"
+    type:     annotation

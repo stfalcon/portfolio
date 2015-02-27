@@ -1,4 +1,4 @@
-<nav class="locales">
+<nav class="languages">
     <ul>
         {% set currentLang = '' %}
         {% for key, locale in locales %}
@@ -7,8 +7,6 @@
             </li>
         {% endfor %}
     </ul>
-    <svg viewBox="0 0 20 20" class="close-mobile-nav">
-        <path class="icon-close-nav" d="M19.5303301,18.4696699 L20.0606602,19 L19,20.0606602 L18.4696699,19.5303301 L10,11.0606602 L1.53033009,19.5303301 L1,20.0606602 L-0.0606601718,19 L0.469669914,18.4696699 L8.93933983,10 L0.469669914,1.53033009 L-0.0606601718,1 L1,-0.0606601718 L1.53033009,0.469669914 L10,8.93933983 L18.4696699,0.469669914 L19,-0.0606601718 L20.0606602,1 L19.5303301,1.53033009 L11.0606602,10 L19.5303301,18.4696699 Z M19.5303301,18.4696699"></path>
-    </svg>
+    <svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/></svg>
 </nav>
 <span class="show-mobile-nav current-language">{{ currentLang }}</span>
