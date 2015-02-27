@@ -121,6 +121,25 @@
                     if(oldonload){oldonload()}};
             }());
         </script>
+        <script type="text/javascript">
+            (function () {
+                var a = document.createElement("iframe");
+                a.style.cssText = "width: 0; height: 0; border: 0";
+                a.src = "javascript:false";
+                var b = function () {
+                    setTimeout(function () {
+                        var b = a.contentDocument || a.contentWindow.document, c = b.createElement("script");
+                        c.src = "//static-trackers.adtarget.me/javascripts/pixel.min.js";
+                        c.id = "GIHhtQfW-atm-pixel";
+                        c["data-pixel"] = "6b426f21b81c3aad68c1d763c1d156e4";
+                        c["allow-flash"] = false;
+                        b.body.appendChild(c);
+                    }, 0);
+                };
+                a.addEventListener ? a.addEventListener("load", b, !1) : a.attachEvent ? a.attachEvent("onload", b) : a.onload = b;
+                document.body.appendChild(a);
+            })();
+        </script>
     {% endif %}
 </body>
 </html>
