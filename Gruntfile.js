@@ -3,14 +3,14 @@ module.exports = function(grunt) {
         autoprefixer: {
             dist: {
                 files: {
-                    'assets/css/style.css': 'web/assets/css/style.css'
+                    'web/assets/css/style.css': 'web/assets/css/style.css'
                 }
             }
         },
         watch: {
             css: {
                 files: ['web/assets/css/**/*.less'],
-                tasks: ['less', 'autoprefixer']
+                tasks: ['less', 'autoprefixer', 'csso']
             },
             js: {
                 files: ['web/assets/js/**/*.js']
@@ -43,5 +43,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-csso');
 
-    grunt.registerTask('default', ['watch', 'csso']);
+    grunt.registerTask('default', ['watch']);
 };
