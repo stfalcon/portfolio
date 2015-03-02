@@ -110,3 +110,33 @@
   height: 22px;
   background: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMjAiIGZpbGw9IiNmZmYiIGNsYXNzPSJjbG9zZS1tb2JpbGUtbmF2Ij48cGF0aCBjbGFzcz0iaWNvbi1jbG9zZS1uYXYiIGQ9Ik0xOS41MyAxOC40N2wuNTMuNTNMMTkgMjAuMDZsLS41My0uNTNMMTAgMTEuMDZsLTguNDcgOC40Ny0uNTMuNTNMLS4wNiAxOWwuNTMtLjUzTDguOTQgMTAgLjQ3IDEuNTMtLjA2IDEgMS0uMDZsLjUzLjUzTDEwIDguOTQgMTguNDcuNDcgMTktLjA2IDIwLjA2IDFsLS41My41M0wxMS4wNiAxMGw4LjQ3IDguNDd6bTAgMCIvPjwvc3ZnPg==);
 }
+
+.icon-old {
+  display: inline-block;
+  background: @sprite no-repeat;
+
+  .svg & {
+    background-image: @spriteSVG;
+  }
+}
+
+.icon-share {
+  width: 16px;
+  height: 16px;
+  background-position: -3px -3px;
+}
+
+.icon-old-facebook {
+  .sq(25px);
+  background-position: -22px -3px;
+}
+
+.icon-old-twitter {
+  .sq(25px);
+  background-position: -49px -3px;
+}
+
+.icon-old-github {
+  .sq(25px);
+  background-position: -76px -3px;
+}

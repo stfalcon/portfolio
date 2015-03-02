@@ -3,11 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %}{{ 'Веб-студия'|trans }} stfalcon.com{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=none"/>
 </head>
 <body>
-<section class="page-wrapper">
+<section class="page-wrapper home-page">
     <header class="header">
         {% include '::_header.html.twig' %}
 
@@ -121,34 +121,7 @@
     </section>
     {{ render(controller("StfalconBlogBundle:Post:lastHomepage", { 'locale': app.request.locale, 'count': 3 })) }}
     <footer class="footer">
-        {{ include('::_social_links.html.twig') }}
-
-        <nav class="main-nav footer-nav">
-            {{ knp_menu_render('main') }}
-        </nav>
-        <div class="copyright">
-            &copy; 2009–{{ "now"|date("Y") }}, {{ 'веб-студия'|trans }} <a href="http://stfalcon.com">stfalcon.com</a>
-            <div class="rules">
-                <a href="{{ path('privacy_policy_page') }}">Privacy Policy</a>
-                <a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a>
-            </div>
-        </div>
-        <section class="contacts">
-            <ul class="contact-list">
-                <li>
-                    <span>{{ 'Позвонить'|trans }}:</span>
-                    <a href="tel:+380978740342">+380 97 874-03-42</a>
-                </li>
-                <li>
-                    <span>{{ "Написать" | trans() }}:</span>
-                    <a href="mailto:info@stfalcon.com" class="email">info@stfalcon.com</a>
-                </li>
-                <li class="address">
-                    <span>{{ "Зайти в гости" | trans() }}:</span>
-                    <a href="">{{ "ул. Заречанская 3/2, Хмельницкий, Украина" | trans() }}</a>
-                </li>
-            </ul>
-        </section>
+        {{ include('_footer.html.twig') }}
     </footer>
 </section>
 <script>
