@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+        <g id="Rectangle-1-+-Rectangle-1-+-Rectangle-1" sketch:type="MSLayerGroup" fill="#2C373C">
+            <rect d="M0,0 L0,3 L16,3 L16,0 L0,0 Z M0,0" id="Rectangle-1" sketch:type="MSShapeGroup" x="0" y="0" width="16" height="3"></rect>
+            <rect d="M0,6 L0,9 L16,9 L16,6 L0,6 Z M0,6" id="Rectangle-1" sketch:type="MSShapeGroup" x="0" y="6" width="16" height="3"></rect>
+            <rect d="M0,12 L0,15 L16,15 L16,12 L0,12 Z M0,12" id="Rectangle-1" sketch:type="MSShapeGroup" x="0" y="12" width="16" height="3"></rect>
+        </g>
+</svg>

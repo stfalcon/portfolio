@@ -1,17 +1,162 @@
+// global variables
+@sprite : url(../img/sprite.png);
+@spriteSVG : url(../img/svg/sprite.svg);
+@global-font: Helvetica, Arial, serif;
+@bg-color: #f5f7f7;
+@global-text-color: #2c373c;
+@link-color: #3457c0;
+@link-hover-color: #ed002d;
+
+// Some mixins
+
+// Responsive utilities for block-lavel elements
+.responsive-visibility-block() {
+  display: block !important;
+}
+
+.responsive-invisibility() {
+  display: none !important;
+}
+
+// Responsive utilities for inline-lavel elements
+.responsive-visibility-inline() {
+  display: inline-block !important;
+}
+
+// Square
+.sq(@size) {
+  width: @size;
+  height: @size;
+}
+
 @import 'reset';
 @import "fonts";
+@import "forms";
 @import "icons";
-@import "home";
+@import 'texts';
+@import "page-home";
+@import "page-blog";
+@import "page-contacts";
+@import "page-projects";
+@import "page-project";
+@import "page-services";
+@import "page-team";
 @import "header";
 @import "footer";
 
-body {
-
+.clearfix {
+  &:before, &:after {
+    content: ""; display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }
 
-.clearfix{
-  zoom:1;
-  &:before, &:after{ content:""; display:table; }
-  &:after{ clear: both; }
+.content {
+  .clearfix;
+  margin: 0 auto;
+  width: 93.71%;
 }
 
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+iframe[name="google_conversion_frame"] {
+  display: none;
+}
+
+@media screen and (max-width:715px){
+  .icon-old-facebook {
+    .sq(32px);
+    background-position: -105px -3px;
+
+    .svg & {
+      background-position: -28px -3px;
+      background-size: 830px auto;
+    }
+  }
+  .icon-old-twitter {
+    .sq(32px);
+    background-position: -140px -3px;
+
+    .svg & {
+      background-position: -63px -3px;
+      background-size: 830px auto;
+    }
+  }
+  .icon-old-github {
+    .sq(32px);
+    background-position: -175px -3px;
+
+    .svg & {
+      background-position: -99px -3px;
+      background-size: 830px auto;
+    }
+  }
+}
+
+@media screen and (max-width:410px){
+  section.contacts {
+    margin-bottom: 22px;
+    width: 100%;
+
+    h3 {
+      font-size: 1.714rem;
+    }
+    li {
+      &>span:first-child {
+        margin-bottom: -2px;
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .icon-old-facebook {
+    .sq(48px);
+    background-position: -3px -37px;
+
+    .svg & {
+      background-position: -39px -3px;
+      background-size: 1200px auto;
+    }
+  }
+  .icon-old-twitter {
+    .sq(48px);
+    background-position: -55px -37px;
+
+    .svg & {
+      background-position: -90px -3px;
+      background-size: 1200px auto;
+    }
+  }
+  .icon-old-github {
+    .sq(48px);
+    background-position: -107px -37px;
+
+    .svg & {
+      background-position: -141px -3px;
+      background-size: 1200px auto;
+    }
+  }
+}
+
+@media screen and (max-width:350px){
+  .hidden-pp {
+    .responsive-invisibility();
+  }
+
+  .visible-pp {
+    .responsive-visibility-block();
+  }
+
+  .visible-pp-i {
+    .responsive-visibility-inline();
+  }
+
+//  .page-wrapper:not(.home-page) {
+//    width: 93.75%;
+//  }
+}
