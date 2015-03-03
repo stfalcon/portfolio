@@ -49,6 +49,10 @@ class LandingLocaleListener
             return;
         }
 
+        if ($request->getHost() == 'stfalcon.de') {
+            return;
+        }
+
         if (!in_array($request->attributes->get('_route'), ['page_promotion', 'page_promotion_new'])) {
             return;
         }
