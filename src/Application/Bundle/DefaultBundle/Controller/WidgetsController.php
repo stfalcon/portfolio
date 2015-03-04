@@ -23,17 +23,17 @@ class WidgetsController extends Controller
     public function languageSwitcherAction($request)
     {
         $locales = array(
-            'en' => array(
-                'link' => $this->localizeRoute($request, 'en'),
-                'lang' => 'EN'
-            ),
-            'de' => array(
-                'link' => $this->localizeRoute($request, 'de'),
-                'lang' => 'DE'
-            ),
+//            'de' => array(
+//                'link' => $this->localizeRoute($request, 'de'),
+//                'lang' => 'DE'
+//            ),
             'ru' => array(
                 'link' => $this->localizeRoute($request, 'ru'),
                 'lang' => 'RU'
+            ),
+            'en' => array(
+                'link' => $this->localizeRoute($request, 'en'),
+                'lang' => 'EN'
             ),
         );
 
