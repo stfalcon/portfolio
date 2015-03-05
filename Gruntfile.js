@@ -16,10 +16,11 @@ module.exports = function(grunt) {
         less: {
             development: {
                 options: {
-                    paths: ["web/assets/css"]
+                    paths: ["web/assets/css"],
+                    paths: ["web/css"]
                 },
                 files: {
-                    "web/assets/css/style.css": "web/assets/css/main.less"
+                    "web/css/style.css": "web/assets/css/main.less"
                 }
             }
         },
@@ -29,7 +30,8 @@ module.exports = function(grunt) {
                     report: 'gzip'
                 },
                 files: {
-                    'web/assets/css/style.min.css': ['web/assets/css/style.css']
+                    'web/assets/css/style.min.css': ['web/assets/css/style.css'],
+                    'web/css/style.min.css': ['web/css/style.css']
                 }
             }
         }
