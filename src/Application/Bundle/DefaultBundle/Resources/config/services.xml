@@ -55,6 +55,7 @@
             <argument type="service" id="application_default.service.geo_ip"/>
             <argument type="service" id="router"/>
             <argument>%locales%</argument>
+            <argument>%jms_i18n_routing.cookie.name%</argument>
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
         </service>
 

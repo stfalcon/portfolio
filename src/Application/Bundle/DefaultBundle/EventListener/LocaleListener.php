@@ -27,17 +27,23 @@ class LocaleListener
      * @var Router
      */
     private $router;
+    /**
+     * @var string
+     */
+    private $localeCookieName;
 
     /**
      * @param GeoIpService $geoIpService
      * @param Router       $router
      * @param array        $locales List of available locales
+     * @param string       $localeCookieName
      */
-    public function __construct(GeoIpService $geoIpService, Router $router, array $locales)
+    public function __construct(GeoIpService $geoIpService, Router $router, array $locales, $localeCookieName)
     {
         $this->locales = $locales;
         $this->geoIpService = $geoIpService;
         $this->router = $router;
+        $this->localeCookieName = $localeCookieName;
     }
 
     /**
@@ -45,12 +51,12 @@ class LocaleListener
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        $request = $event->getRequest();
-
         if (HttpKernel::MASTER_REQUEST != $event->getRequestType()) {
             // don't do anything if it's not the master request
             return;
         }
+
+        $request = $event->getRequest();
 
         if ($request->getHost() == 'stfalcon.de') {
             return;
@@ -60,9 +66,24 @@ class LocaleListener
             return;
         }
 
+        $response = new RedirectResponse('/');
+
         $locale = $this->geoIpService->getLocaleByIp($request->getClientIp());
 
         if (!in_array($request->attributes->get('_route'), ['page_promotion', 'page_promotion_new'])) {
+            $session = $request->getSession();
+
+            if ($cookieLocale = $request->cookies->get($this->localeCookieName)) {
+                if ($request->getLocale() == $cookieLocale) {
+                    $locale = $cookieLocale;
+                } else {
+                    $locale = $request->getLocale();
+                    $session->set('_locale', $locale);
+                }
+            } else {
+                $session->set('_locale', $locale);
+            }
+
             if ($locale == 'de') {
                 $locale = 'en';
             }
@@ -75,6 +96,8 @@ class LocaleListener
         $currentRouteParams = array_replace($request->attributes->get('_route_params'), ['_locale' => $locale]);
         $redirectUrl = $this->router->generate($request->attributes->get('_route'), $currentRouteParams);
 
-        $event->setResponse(new RedirectResponse($redirectUrl, 302));
+        $response->setTargetUrl($redirectUrl);
+
+        $event->setResponse($response);
     }
 }
