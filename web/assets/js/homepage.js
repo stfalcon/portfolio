@@ -91,7 +91,8 @@ $(function(){
 });
 
 
-var $projectList = $('.projects-list');
+var $projectList = $('.projects-list'),
+    heightHuck = 0;
 
 function changeServiceCategory(category){
     var loadedCount = 0;
@@ -102,13 +103,14 @@ function changeServiceCategory(category){
         var $projectCell = index === 0 ? $('<div class="project-cell project-cell-l"/>') : $('<div class="project-cell"/>');
         var $projectImg = $('<img alt=""/>').on('load', function(){
             loadedCount++;
-            if(loadedCount == 3){
-//                        $('.loader').fadeOut(100);
-            }
+            heightHuck = $projectList.height();
+            $projectList.css({
+                height: 'auto'
+            });
         })
             .attr('src', item.projectPreviewURL);
         var $linkToProject = $('<a href="'+item.URL+'"/>')
-        var $projectInfo = $('<span class="project-info">' +
+        var $projectInfo = $('<span class="project-info-wrap">' +
         '<span class="project-info-text">' +
         '<span class="project-name">' + item.name + '</span>' +
         '<span class="project-description">' +
@@ -127,6 +129,7 @@ function changeServiceCategory(category){
     });
 
     $projectList.find('.projects-row').remove();
+    $projectList.height(heightHuck);
     $projectList.append($projectRow);
 };
 

@@ -1,0 +1,250 @@
+/* project-list */
+
+.projects {
+  text-align: center;
+  margin: 8px 0  18px;
+
+  li {
+    display: inline-block;
+    width: 23.2558%;
+    max-width: 300px;
+    margin: 0 1.88% 23px 0;
+    vertical-align: top;
+
+    &:nth-child(4n){
+      margin-right: 0;
+    }
+  }
+  h3 {
+    font-family: @global-font;
+  }
+  a {
+    text-align: center;
+    text-decoration: none;
+    color: @global-text-color;
+    font-weight: bold;
+  }
+  p {
+    display: block;
+    margin: 8px 0 0 ;
+    color: #919699;
+    font-size: 0.786rem;
+    line-height: 1.363em;
+  }
+  img {
+    margin-bottom: 11px;
+    width: 100%;
+    border-radius: 4px;
+  }
+  h3 {
+    display: inline-block;
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+  }
+}
+
+.show-all-projects {
+  display: block;
+  margin-bottom: 40px ;
+  height: 60px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  line-height: 60px;
+  color: @global-text-color;
+  text-align: center;
+  background: #fff;
+}
+
+.error-page {
+  text-align: center;
+  margin: 33px auto 89px;
+  width: 60.625%;
+
+  h2 {
+    font-size: 1.714rem;
+    line-height: 1em;
+  }
+  img {
+    margin: 0 0 26px;
+    border-radius: 12px;
+    max-width: 100%;
+    box-shadow: 0 11px 20px rgba(44,55,60,.07);
+  }
+}
+
+@media screen and (max-width:764px) {
+  .error-page {
+    width: 90%;
+    margin: 0 auto 58px;
+  }
+}
+
+@media screen and (max-width:1089px) {
+  .projects {
+    li {
+      width: 31.25%;
+      margin-right: 2.2041%;
+
+      &:nth-child(4n) {
+        margin-right: 2.6041%;
+      }
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .show-all-projects {
+    height: 48px;
+    line-height: 48px;
+    font-size: 1.214rem;
+  }
+}
+
+@media screen and (max-width:777px) {
+  .show-all-projects {
+    margin-bottom: 23px;
+    font-size: 1.214rem;
+  }
+}
+
+@media screen and (max-width:715px){
+  .projects {
+    li {
+      width: 47.61%;
+      margin-right: 3.243%;
+
+      &:nth-child(3n) {
+        margin-right: 3.243%;
+      }
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:350px){
+  .projects {
+    li {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+}
+
+/* project-list */
+
+/* pagination */
+
+.pagination {
+  margin-bottom: 48px;
+  text-align: center;
+
+  ul {
+    display: inline-block;
+    overflow: hidden;
+  }
+  li {
+    float: left;
+    margin-left: 1px;
+    height: 60px;
+    min-width: 60px;
+    line-height: 60px;
+    font-size: 1.500rem;
+  }
+  a {
+    display: block;
+    position: relative;
+    padding: 0 5px;
+    height: 60px;
+    min-width: 50px;
+    font-size: 21px;
+    font-size: 1.714rem;
+    color: @global-text-color;
+    text-decoration: none;
+    background: #fff;
+
+    &.active {
+      color: #ed002d;
+    }
+    &.prev {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 24px;
+        width: 10px;
+        height: 19px;
+        background: @sprite -212px -8px;
+      }
+    }
+    &.next {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 26px;
+        width: 10px;
+        height: 19px;
+        background: @sprite -226px -8px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:1080px) {
+  .pagination {
+
+    li {
+      height: 48px;
+      min-width: 48px;
+      line-height: 48px;
+      font-size: 1.500em;
+    }
+    a {
+      height: 48px;
+      min-width: 38px;
+
+      &.prev {
+        &:after {
+          top: 15px;
+          left: 18px;
+        }
+      }
+      &.next {
+        &:after {
+          top: 15px;
+          left: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:777px) {
+  .pagination {
+    li {
+      font-size: 1em;
+    }
+  }
+}
+
+@media screen and (max-width:620px) {
+  .pagination {
+    .hidden-in-table {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width:410px){
+  .pagination {
+    .hidden-in-mobile {
+      display: none;
+    }
+  }
+}
+
+/* pagination */
