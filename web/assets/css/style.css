@@ -452,7 +452,7 @@ p {
   }
 }
 .header-title {
-  margin: 189px 0 117px;
+  margin: 189px 10px 117px;
   text-align: center;
 }
 .project-tabs-wrap {
@@ -527,11 +527,14 @@ p {
   .projects-tabs li:last-child {
     margin-right: -1px;
   }
-  .projects-tabs a {
+  .projects-tabs a,
+  .projects-tabs a.active {
     margin-bottom: 55px;
   }
   .projects-tabs a:after,
-  .projects-tabs a:before {
+  .projects-tabs a.active:after,
+  .projects-tabs a:before,
+  .projects-tabs a.active:before {
     bottom: -30px;
   }
   .projects-tabs .icon-wrap {
@@ -1015,6 +1018,8 @@ p {
   border-bottom: 1px solid #c3c7c8;
   outline: none;
   vertical-align: middle;
+  padding: 3px 0 0;
+  border-radius: 0;
 }
 .subscribe-form-wrap input:focus {
   color: #000;
@@ -1056,6 +1061,7 @@ p {
 }
 .contact-list {
   overflow: hidden;
+  line-height: 1.5;
 }
 .contact-list li {
   float: left;
@@ -1063,7 +1069,7 @@ p {
 }
 .contact-list li span {
   display: block;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
   color: #919699;
   font-size: 15px;
   font-weight: 100;
@@ -1074,7 +1080,7 @@ p {
 }
 .copyright {
   float: right;
-  margin-top: 23px;
+  margin-top: 30px;
 }
 .copyright a {
   color: #d7c76e;

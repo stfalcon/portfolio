@@ -60,7 +60,7 @@ p {
 @import 'header';
 
 .header-title {
-  margin: 189px 0 117px;
+  margin: 189px 10px 117px;
   text-align: center;
 }
 
@@ -134,7 +134,6 @@ p {
     display: block;
     overflow: hidden;
     margin: 0 auto;
-//    padding: 0 25px;
 
     li {
       display: block;
@@ -147,7 +146,7 @@ p {
         margin-right: -1px;
       }
     }
-    a {
+    a, a.active {
       margin-bottom: 55px;
 
       &:after,
@@ -652,6 +651,8 @@ p {
     border-bottom: 1px solid #c3c7c8;
     outline: none;
     vertical-align: middle;
+    padding: 3px 0 0;
+    border-radius: 0;
 
     &:focus {
       color: #000;
