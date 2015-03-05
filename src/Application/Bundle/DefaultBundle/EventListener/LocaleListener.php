@@ -8,7 +8,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
 
-class LandingLocaleListener
+/**
+ * Class LocaleListener uses for detect user locale by IP and change site locale
+ */
+class LocaleListener
 {
     /**
      * @var array
@@ -53,15 +56,17 @@ class LandingLocaleListener
             return;
         }
 
-        if (!in_array($request->attributes->get('_route'), ['page_promotion', 'page_promotion_new'])) {
-            return;
-        }
-
         if ($request->query->has('_check')) {
             return;
         }
 
         $locale = $this->geoIpService->getLocaleByIp($request->getClientIp());
+
+        if (!in_array($request->attributes->get('_route'), ['page_promotion', 'page_promotion_new'])) {
+            if ($locale == 'de') {
+                $locale = 'en';
+            }
+        }
 
         if ($request->getLocale() == $locale) {
             return;
@@ -69,6 +74,7 @@ class LandingLocaleListener
 
         $currentRouteParams = array_replace($request->attributes->get('_route_params'), ['_locale' => $locale]);
         $redirectUrl = $this->router->generate($request->attributes->get('_route'), $currentRouteParams);
+
         $event->setResponse(new RedirectResponse($redirectUrl, 302));
     }
 }

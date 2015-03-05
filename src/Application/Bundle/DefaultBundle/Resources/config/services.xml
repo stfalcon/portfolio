@@ -51,7 +51,7 @@
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
 
-        <service id="kernel.listener.landing_locale" class="Application\Bundle\DefaultBundle\EventListener\LandingLocaleListener">
+        <service id="kernel.listener.locale" class="Application\Bundle\DefaultBundle\EventListener\LocaleListener">
             <argument type="service" id="application_default.service.geo_ip"/>
             <argument type="service" id="router"/>
             <argument>%locales%</argument>
