@@ -11,9 +11,6 @@ module.exports = function(grunt) {
             css: {
                 files: ['web/assets/css/**/*.less'],
                 tasks: ['less', 'autoprefixer', 'csso']
-            },
-            js: {
-                files: ['web/assets/js/**/*.js']
             }
         },
         less: {

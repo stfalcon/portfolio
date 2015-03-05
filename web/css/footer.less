@@ -6,6 +6,7 @@
 
   a {
     color: #fff;
+    text-decoration: none;
   }
 }
 
@@ -23,6 +24,7 @@
 
 .contact-list {
   overflow: hidden;
+  line-height: 1.5;
 
   li {
     float: left;
@@ -30,7 +32,7 @@
 
     span {
       display: block;
-      margin-bottom: 7px;
+      margin-bottom: 5px;
       color: #919699;
       font-size: 15px;
       font-weight: 100;
@@ -44,7 +46,7 @@
 
 .copyright {
   float: right;
-  margin-top: 23px;
+  margin-top: 30px;
 
   a {
     color: #d7c76e;
@@ -114,8 +116,14 @@
     ul {
       width: 256px;
       margin-left: 30px;
+      -webkit-column-count: 2;
+      -moz-column-count: 2;
       column-count: 2;
+      -webkit-column-width: 110px;
+      -moz-column-width: 110px;
       column-width: 110px;
+      -webkit-column-gap: 20px;
+      -moz-column-gap: 20px;
       column-gap: 20px;
     }
     li {
