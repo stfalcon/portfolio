@@ -110,7 +110,7 @@ function changeServiceCategory(category){
         })
             .attr('src', item.projectPreviewURL);
         var $linkToProject = $('<a href="'+item.URL+'"/>')
-        var $projectInfo = $('<span class="project-info-wrap">' +
+        var $projectInfo = $('<span class="project-info">' +
         '<span class="project-info-text">' +
         '<span class="project-name">' + item.name + '</span>' +
         '<span class="project-description">' +
