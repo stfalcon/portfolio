@@ -58,6 +58,12 @@
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="16" height="11" viewBox="0 0 16 11"><defs><style>.cls-2 { fill: #2c373c; }</style></defs><path d="M15.723 1.77c-.196-.84-.89-1.46-1.73-1.55C12.01 0 10.004 0 8.004 0S3.994 0 2.01.22C1.174.31.478.93.283 1.77.002 2.965 0 4.27 0 5.5s0 2.535.28 3.73c.194.84.89 1.46 1.728 1.55 1.984.22 3.99.22 5.99.22s4.008 0 5.992-.22c.838-.09 1.533-.71 1.73-1.55.278-1.195.28-2.5.28-3.73s.002-2.535-.277-3.73zM6.667 8.088V2.91l4.5 2.59-4.5 2.588z" id="path-1" class="cls-2" fill-rule="evenodd"/></svg>');
 }
 
+.icon-menu {
+  width: 23px;
+  height: 16px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="23" height="16" viewBox="0 0 23 16"><defs><style>.cls-2 { fill: #e8e6e1; filter: url(#color-overlay-1); }</style><filter id="color-overlay-1" filterUnits="userSpaceOnUse"><feFlood flood-color="#2c373c" flood-opacity="1"/><feComposite operator="in" in2="SourceGraphic"/><feBlend in2="SourceGraphic" result="colorOverlay"/></filter></defs><path d="M22 9H1c-.552 0-1-.448-1-1s.448-1 1-1h21c.552 0 1 .448 1 1s-.448 1-1 1zm0-7H1c-.552 0-1-.448-1-1s.448-1 1-1h21c.552 0 1 .448 1 1s-.448 1-1 1zM1 14h21c.552 0 1 .448 1 1s-.448 1-1 1H1c-.552 0-1-.448-1-1s.448-1 1-1z" id="path-1" class="cls-2" fill-rule="evenodd"/></svg>');
+}
+
 .footer {
   .icon-facebook {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="7" height="14" viewBox="0 0 7 14"><defs><style>.cls-2 { fill: #fff; }</style></defs><path d="M1.32 13V6.5H-.01V4.26h1.33V2.913C1.32 1.086 2.07 0 4.2 0h1.774v2.24H4.87c-.83 0-.888.313-.888.898l-.004 1.12H5.99L5.754 6.5H3.978V13h-2.66z" id="path-1" class="cls-2" fill-rule="evenodd"/></svg>');
@@ -311,6 +317,7 @@
     position: absolute;
     top: 0;
     left: 50%;
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
 }
