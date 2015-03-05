@@ -4,7 +4,8 @@ namespace Application\Bundle\DefaultBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -22,18 +23,63 @@ class WidgetsController extends Controller
     public function languageSwitcherAction($request)
     {
         $locales = array(
-//            'uk' => array($this->localizeRoute($request, 'uk'), 'uk'),
+//            'de' => array(
+//                'link' => $this->localizeRoute($request, 'de'),
+//                'lang' => 'DE'
+//            ),
             'ru' => array(
                 'link' => $this->localizeRoute($request, 'ru'),
-                'lang' => 'ру'
+                'lang' => 'RU'
             ),
             'en' => array(
                 'link' => $this->localizeRoute($request, 'en'),
-                'lang' => 'en'
-            )
+                'lang' => 'EN'
+            ),
         );
 
         return array('locales' => $locales);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     *
+     * @Template("ApplicationDefaultBundle:Widgets:_subscribe_form.html.twig")
+     * @Route(
+     *      "/subscribe/{category}",
+     *      requirements={"category" = "blog"},
+     *      name="post_subscribe"
+     * )
+     */
+    public function subscribeWidgetAction(Request $request, $category)
+    {
+        $form = $this->createForm('subscribe', []);
+
+        if ($request->isMethod('post') && $request->isXmlHttpRequest()) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $mc = $this->get('hype_mailchimp');
+                $mc->getList()->subscribe($form->get('email')->getData(), 'html', false);
+
+                return new JsonResponse([
+                    'success' => true
+                ]);
+            }
+
+            return new JsonResponse([
+                'success' => false,
+                'view' => $this->renderView('ApplicationDefaultBundle:Widgets:_subscribe_form.html.twig', [
+                    'form' => $form->createView(),
+                    'category' => $category
+                ])
+            ]);
+        }
+
+        return [
+            'form' => $form->createView(),
+            'category' => $category
+        ];
     }
 
     /**

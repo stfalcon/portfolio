@@ -211,3 +211,8 @@ a2lix_translation_form:
     locales: [ru, en]
     default_required: true
     manager_registry: doctrine
+
+hype_mailchimp:
+    api_key: %mc_api_key%
+    default_list: %mc_default_list%
+    ssl: true

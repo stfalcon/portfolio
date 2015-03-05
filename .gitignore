@@ -16,3 +16,6 @@ app/config/parameters.ini
 
 # etc
 .rsync_cache
+
+# Node.js directories
+node_modules/*

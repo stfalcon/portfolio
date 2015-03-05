@@ -124,6 +124,24 @@ class PostController extends AbstractController
     }
 
     /**
+     * Show last blog posts
+     *
+     * @param string $locale Locale
+     * @param int    $count  A count of posts
+     *
+     * @return array()
+     *
+     * @Template()
+     */
+    public function lastHomepageAction($locale, $count = 1)
+    {
+        $posts = $this->get('doctrine')->getManager()
+            ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, $count);
+
+        return array('posts' => $posts);
+    }
+
+    /**
      * @param array $array
      *
      * @return array
