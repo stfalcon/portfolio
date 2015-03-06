@@ -45,7 +45,8 @@
         "geshi/geshi": "dev-master",
         "fresh/doctrine-enum-bundle": "2.5",
         "geoip2/geoip2": "2.1.1",
-        "ahmedsamy/hype-mailchimp-bundle": "1.2"
+        "ahmedsamy/hype-mailchimp-bundle": "1.2",
+        "mlehner/gelf-php": "v1.0.1"
     },
     "scripts": {
         "post-install-cmd": [

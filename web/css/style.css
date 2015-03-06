@@ -412,6 +412,15 @@ input.error {
   height: 24px;
   background-position: -76px -3px;
 }
+.icon-old.icon-old-youtube {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #2C373C;
+  background-size: 62%;
+  background-position: center;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="16" height="11" viewBox="0 0 16 11"><defs><style>.cls-2 { fill: #ffffff; }</style></defs><path d="M15.723 1.77c-.196-.84-.89-1.46-1.73-1.55C12.01 0 10.004 0 8.004 0S3.994 0 2.01.22C1.174.31.478.93.283 1.77.002 2.965 0 4.27 0 5.5s0 2.535.28 3.73c.194.84.89 1.46 1.728 1.55 1.984.22 3.99.22 5.99.22s4.008 0 5.992-.22c.838-.09 1.533-.71 1.73-1.55.278-1.195.28-2.5.28-3.73s.002-2.535-.277-3.73zM6.667 8.088V2.91l4.5 2.59-4.5 2.588z" id="path-1" class="cls-2" fill-rule="evenodd"/></svg>');
+}
 .hidden {
   display: none !important;
   visibility: hidden;
@@ -2499,8 +2508,7 @@ iframe[name="google_conversion_frame"] {
 .contacts-wrapper .socials a:hover span {
   border-color: #ed002d;
 }
-.contacts-wrapper .socials .icon {
-  display: inline-block;
+.contacts-wrapper .socials .icon-old {
   vertical-align: middle;
 }
 .map-wrapper {
@@ -2690,8 +2698,9 @@ iframe[name="google_conversion_frame"] {
   cursor: pointer;
 }
 .show-mobile-nav.current-language {
-  margin-right: 19px;
-  margin-top: 20px;
+  padding: 10px;
+  margin-right: 9px;
+  margin-top: 10px;
   float: right;
   font-weight: 500;
   text-transform: uppercase;
@@ -2792,7 +2801,7 @@ iframe[name="google_conversion_frame"] {
 .socials-links {
   overflow: hidden;
   float: right;
-  margin: 29px 11px 0 0;
+  margin: 29px 25px 0 0;
 }
 .footer .socials-links {
   margin: 30px 0 0;
@@ -2829,7 +2838,7 @@ iframe[name="google_conversion_frame"] {
 }
 .footer {
   overflow: hidden;
-  padding: 0 10% 76px;
+  padding: 0 3% 76px;
   color: #fff;
   background: #2c373c;
 }
@@ -2917,9 +2926,15 @@ iframe[name="google_conversion_frame"] {
     margin: 0;
   }
 }
-@media (max-width: 679px) {
+@media (max-width: 1030px) {
   .contact-list .address {
     margin-top: 21px;
+    clear: left;
+  }
+}
+@media (max-width: 880px) {
+  .contact-list .write-to {
+    margin-top: 0;
   }
 }
 @media (max-width: 480px) {
@@ -2941,6 +2956,7 @@ iframe[name="google_conversion_frame"] {
     padding-bottom: 22px;
     -webkit-column-break-inside: avoid;
     column-break-inside: avoid;
+    width: 110px;
   }
   .footer-nav a {
     font-size: 18px;

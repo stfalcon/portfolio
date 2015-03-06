@@ -51,10 +51,11 @@
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
 
-        <service id="kernel.listener.landing_locale" class="Application\Bundle\DefaultBundle\EventListener\LandingLocaleListener">
+        <service id="kernel.listener.locale" class="Application\Bundle\DefaultBundle\EventListener\LocaleListener">
             <argument type="service" id="application_default.service.geo_ip"/>
             <argument type="service" id="router"/>
             <argument>%locales%</argument>
+            <argument>%jms_i18n_routing.cookie.name%</argument>
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
         </service>
 
@@ -81,6 +82,17 @@
             <tag alias="subscribe" name="form.type"/>
         </service>
 
+        <service id="application_default.gelf.publisher" class="Application\Bundle\DefaultBundle\Publisher\MessagePublisher">
+            <argument>http://stfalcon.com</argument>
+            <argument>%graylog_hostname%</argument>
+            <argument>%graylog_port%</argument>
+        </service>
+        <service id="application_default.monolog.gelf_handler" class="Monolog\Handler\GelfHandler">
+            <argument type="service" id="application_default.gelf.publisher"/>
+        </service>
+        <service id="application_default.monolog.processor.added_host" class="Monolog\Processor\WebProcessor">
+            <tag name="monolog.processor" method="__invoke"/>
+        </service>
     </services>
 
 </container>
