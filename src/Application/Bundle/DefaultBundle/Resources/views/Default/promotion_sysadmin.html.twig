@@ -1,17 +1,5 @@
 {% extends '::base.html.twig' %}
 
-{% block abtest %}
-    {% if app.request.locale == 'ru' %}
-        {% include 'ApplicationDefaultBundle:Default:_ab_test_template.html.twig' with {'ab_test_code':'97075970-0'} %}
-    {% endif %}
-    {% if app.request.locale == 'en' %}
-        {% include 'ApplicationDefaultBundle:Default:_ab_test_template.html.twig' with {'ab_test_code':'97075970-3'} %}
-    {% endif %}
-    {% if app.request.locale == 'de' %}
-        {% include 'ApplicationDefaultBundle:Default:_ab_test_template.html.twig' with {'ab_test_code':'97075970-2'} %}
-    {% endif %}
-{% endblock abtest %}
-
 {% block body %}
     <div class="slide scrollto-line">
         <div class="wrap">
@@ -210,7 +198,6 @@
                         </div>
                     </div>
                 </div>
-
             </form>
             {% endblock order_form %}
         </div>

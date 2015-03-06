@@ -11,6 +11,10 @@ monolog:
             type:         stream
             path:         %kernel.logs_dir%/%kernel.environment%.log
             level:        debug
+        gelf:
+            type: service
+            id: application_default.monolog.gelf_handler
+            level: error
 
 doctrine:
     orm:
