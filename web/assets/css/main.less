@@ -7,6 +7,7 @@ body {
   color: #2c373c;
   font-size: 15px;
   font-weight: 300;
+  -webkit-text-size-adjust: none;
 }
 
 .clearfix{
@@ -83,12 +84,14 @@ p {
     margin-bottom: 94px;
     font-size: 14px;
     font-weight: 500;
-    text-transform: uppercase;
+    text-transform: uppercase; 
     line-height: 21px;
     letter-spacing: 2px;
+    cursor: pointer;
 
     &.active {
       color: #d7c76e;
+      cursor: default;
 
       &:after,
       &:before {
@@ -138,7 +141,7 @@ p {
     li {
       display: block;
       float: left;
-      margin-right: 46px;
+      margin: 0 23px;
 
       &:first-child {
       }
@@ -398,6 +401,7 @@ p {
 
     a {
       color: #3457c0;
+      cursor: pointer;
 
       &:hover {
         color: #ed002d;
@@ -630,6 +634,12 @@ p {
   }
 }
 
+@media (max-width: 800px) {
+  .having-blog {
+    padding: 0 92px;
+  }
+}
+
 .subscribe-form-wrap {
   padding: 34px 40px 36px;
   max-width: 520px;
@@ -655,7 +665,8 @@ p {
     border-radius: 0;
 
     &:focus {
-      color: #000;
+      color: #2c373c;
+      border-bottom-color: #d7c76e;
     }
   }
   button {
@@ -675,6 +686,9 @@ p {
     input {
       font-size: 15px;
     }
+  }
+  .having-blog {
+    padding: 0 33px;
   }
 }
 

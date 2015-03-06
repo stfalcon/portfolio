@@ -34,7 +34,7 @@ $(function(){
     });
 });
 
-$(function(){
+$(document).ready(function(){
     // Show mobile navigation
     $(document).on('click', '.show-mobile-nav', function(){
         if(!$(this).hasClass('current-language')) {
@@ -44,50 +44,62 @@ $(function(){
         }
     });
 
+    var isSliderInit = false,
+        tabSlider,
+        sliderSettings = {
+            horizontal: 1,
+            itemNav: window.matchMedia("(max-width: 500px)").matches ? 'forceCentered' : 'centered',
+            smart: 1,
+            activateOn: 'click',
+            elasticBounds: 1,
+            mouseDragging: 1,
+            touchDragging: 1,
+            releaseSwing: 1,
+            startAt: 0,
+            scrollBy: 0,
+            activatePageOn: 'click',
+            speed: 300,
+            clickBar: 1
+        },
+        $frame  = $('.project-tabs-wrap');
+    console.log(window.matchMedia("(max-width: 500px)").matches ? 'forceCentered' : 'centered')
+
+    function initMobileSlider(){
+        if (window.matchMedia && window.matchMedia("(max-width: 1023px)").matches) {
+            if(!isSliderInit){
+                tabSlider = new Sly($frame, sliderSettings);
+
+                tabSlider.on('load', function(){
+                    var $ul = $frame.find('ul');
+                    $ul.width($ul.width()+2);
+                });
+
+                tabSlider.init();
+                isSliderInit = true;
+            } else {
+                tabSlider.reload();
+            }
+        } else {
+            if (window.matchMedia && window.matchMedia("(min-width: 1024px)").matches) {
+                tabSlider.destroy();
+                isSliderInit = false;
+            }
+        }
+    };
+
+    initMobileSlider();
+
     // Hide mobile navigation
     $(document).on('click', '.close-mobile-nav', function(){
         $('body').removeClass('open-navigation open-main-nav open-languages-nav');
     });
-    $(window).on('resize', function(){
+    $(window).bind('resize', function () {
         initMobileSlider();
         if(window.matchMedia && window.matchMedia('(min-width: 800px)').matches){
             $('body').removeClass('open-navigation open-main-nav open-languages-nav');
         }
+        console.log('resize');
     });
-
-    var isSliderInit = false;
-
-    function initMobileSlider(){
-        if (window.matchMedia && !isSliderInit && window.matchMedia("(max-width: 1023px)").matches) {
-            var $frame  = $('.project-tabs-wrap');
-
-            var tabSlider = new Sly($frame, {
-                horizontal: 1,
-                itemNav: 'forceCentered',
-                smart: 1,
-                activateOn: 'click',
-                elasticBounds: 1,
-                mouseDragging: 1,
-                touchDragging: 1,
-                releaseSwing: 1,
-                startAt: 3,
-                scrollBy: 1,
-                activatePageOn: 'click',
-                speed: 300,
-                clickBar: 1
-            });
-
-            tabSlider.on('load', function(){
-                var $ul = $frame.find('ul');
-                $ul.width($ul.width()+1);
-            });
-
-            tabSlider.init();
-            isSliderInit = true;
-        };
-    };
-
-    initMobileSlider();
 });
 
 

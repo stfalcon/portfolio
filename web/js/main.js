@@ -33,7 +33,6 @@ $(function () {
         $('body').removeClass('open-navigation open-main-nav open-languages-nav');
     });
     $(window).on('resize', function(){
-        initMobileSlider();
         if(window.matchMedia && window.matchMedia('(min-width: 800px)').matches){
             $('body').removeClass('open-navigation open-main-nav open-languages-nav');
         }

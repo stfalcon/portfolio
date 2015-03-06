@@ -16,11 +16,11 @@ module.exports = function(grunt) {
         less: {
             development: {
                 options: {
-                    paths: ["web/assets/css"],
-                    paths: ["web/css"]
+                    paths: ["web/assets/css", "web/css"]
                 },
                 files: {
-                    "web/css/style.css": "web/assets/css/main.less"
+                    "web/assets/css/style.css": "web/assets/css/main.less",
+                    "web/css/style.css": "web/css/main.less"
                 }
             }
         },
