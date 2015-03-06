@@ -38,6 +38,7 @@ body {
   background-color: #f5f7f7;
 }
 .content {
+  max-width: 1290px;
   width: 93.71%;
   margin: 0 auto;
 }
