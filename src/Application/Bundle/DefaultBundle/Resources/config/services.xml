@@ -78,6 +78,17 @@
             <argument>%locales%</argument>
         </service>
 
+        <service id="application_default.gelf.publisher" class="Application\Bundle\DefaultBundle\Publisher\MessagePublisher">
+            <argument>http://stfalcon.com</argument>
+            <argument>%graylog_hostname%</argument>
+            <argument>%graylog_port%</argument>
+        </service>
+        <service id="application_default.monolog.gelf_handler" class="Monolog\Handler\GelfHandler">
+            <argument type="service" id="application_default.gelf.publisher"/>
+        </service>
+        <service id="application_default.monolog.processor.added_host" class="Monolog\Processor\WebProcessor">
+            <tag name="monolog.processor" method="__invoke"/>
+        </service>
     </services>
 
 </container>
