@@ -1,6 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}{{ category.name }} / {{ parent() }}{% endblock %}
+{% block title %}{{ category.name }} | {{ parent() }}{% endblock %}
+
+{% block additional %}
+    <link rel="canonical" href="{{ url('portfolio_category_view', {'slug': category.slug}) }}" />
+{% endblock additional %}
 
 {% block content_wrapper %}
     <section>

@@ -3,7 +3,7 @@
 return array(
     // main.html.twig
     'Веб-студия'  => 'Web studio',
-    'Веб-студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.'  => 'Web studio stfalcon.com is a team of professionals who love their work and focus on quality results.',
+    'Студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.'  => 'Studio stfalcon.com is a team of professionals who love their work and focus on quality results.',
     'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!'  => 'Cooperating with us, you choose a reliable business partner!',
     'Сайт работает на'  => 'Powered by',
     'Позвонить' => 'Phone',
