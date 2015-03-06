@@ -24,8 +24,12 @@ class MenuBuilderTest extends WebTestCase
         // check if a response is successful
         $this->assertTrue($client->getResponse()->isSuccessful());
         // check the current item of the menu
-        $this->assertEquals(0, $crawler->filter('nav>ul>li.current:contains("Проекты")')->count());
-        $this->assertEquals(0, $crawler->filter('nav>ul>li.current:contains("Команда")')->count());
+        // check menu in header and footer
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Проекты")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Услуги")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Команда")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Блог")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Контакты")'));
 
 
         /** check blog default page **/
@@ -33,8 +37,12 @@ class MenuBuilderTest extends WebTestCase
         // check if a response is successful
         $this->assertTrue($client->getResponse()->isSuccessful());
         // check the current item of the menu
-        $this->assertEquals(0, $crawler->filter('nav>ul>li.current:contains("Главная")')->count());
-        $this->assertEquals(1, $crawler->filter('nav>ul>li.current:contains("Блог")')->count());
+        // check menu in header and footer
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Проекты")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Услуги")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Команда")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li.current a:contains("Блог")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Контакты")'));
 
 
         /** check blog default page **/
@@ -42,7 +50,10 @@ class MenuBuilderTest extends WebTestCase
         // check if a response is successful
         $this->assertTrue($client->getResponse()->isSuccessful());
         // check the current item of the menu
-        $this->assertEquals(0, $crawler->filter('nav>ul>li.current:contains("Блог")')->count());
-        $this->assertEquals(1, $crawler->filter('nav>ul>li.current:contains("Контакты")')->count());
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Проекты")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Услуги")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Команда")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Блог")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li.current a:contains("Контакты")'));
     }
 }
