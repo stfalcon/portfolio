@@ -1,7 +1,7 @@
 <div class="header-fixed {{ (app.request.attributes.get('_route') == 'blog_post_view')?"pinned":"" }}">
     <header>
-        <a class="logo" href="{{ path('homepage') }}" title="Stfalcon.com"></a>
-        <h1>{{ 'Веб-студия'|trans }} stfalcon</h1>
+        <a class="logo" href="{{ path('homepage') }}" title="{{ 'Студия'|trans }} Stfalcon.com"></a>
+        <h1>{{ 'Студия'|trans }} Stfalcon.com</h1>
         <span class="show-mobile-nav show-nav"><img src="{{ asset('img/bg/menu_icon.svg') }}" alt="Open menu"/></span>
         {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
         <nav class="site-nav">

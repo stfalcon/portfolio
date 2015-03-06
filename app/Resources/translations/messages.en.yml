@@ -57,6 +57,8 @@ title: __title
 
 Проекты: Projects
 
+Таг: Tag
+
 'Следующий проект': 'Next project'
 Сортировка: Sort
 'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us, you choose a reliable business partner!'
@@ -81,8 +83,9 @@ title: __title
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
-'Веб-студия': 'web studio'
-'веб-студия': 'web studio'
+'Студия': 'Studio'
+'студия': 'studio'
+Разработка мобильных приложений и игр. Разработка и дизайн сайтов: Mobile games and apps development
 'Навигация': 'Navigation'
 
 'Меломаны': 'Music addicts'
