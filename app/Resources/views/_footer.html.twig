@@ -1,53 +1,38 @@
-<section class="blog-posts">
-    <h3>{{ 'Свежее из блога'|trans }} <a href="{{ path('blog_rss') }}" target="_blank"><i
-                    class="icon icon-share"></i></a></h3>
-    {% render controller("StfalconBlogBundle:Post:last", { 'locale': app.request.locale, 'count': 3 }) %}
-</section>
+{{ include('::_social_links.html.twig') }}
+
+<nav class="main-nav footer-nav">
+    {{ knp_menu_render('main') }}
+</nav>
+<div class="copyright">
+    &copy; 2009–{{ "now"|date("Y") }}, {{ 'студия'|trans }} <a href="http://stfalcon.com">stfalcon.com</a>
+    <div class="rules">
+        <a href="{{ path('privacy_policy_page') }}">Privacy Policy</a>
+        <a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a>
+    </div>
+</div>
 <section class="contacts">
-    <h3>{{ 'На связи'|trans }}</h3>
-    <ul class="address-list">
+    <ul class="contact-list">
         <li>
             <span>{{ 'Позвонить'|trans }}:</span>
-            <abbr title="{{ "+380 67 334-40-40" | trans() }}" class="tel">{{ "+380 67 334-40-40" | trans() }}</abbr>
+            <a href="tel:{{ "+380 67 334-40-40" | trans() }}">{{ "+380 67 334-40-40" | trans() }}</a>
             {% if app.request.locale == 'en' %}
-                <br/>
-                <abbr title="{{ "+380 67 334-40-40" }}" class="tel">{{ "+380 67 334-40-40" }}</abbr>
+                <br/><a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
             {% endif %}
         </li>
         <li>
-            <span>{{ 'Написать'|trans }}:</span>
-            <a class="email" href="mailto:info@stfalcon.com">info@stfalcon.com</a>
+            <span>{{ "Skype" | trans() }}:</span>
+            <a href="skype:stfalcon.sales" class="email">stfalcon.sales</a>
         </li>
-        <li>
-            <span>{{ 'Зайти в гости'|trans }}</span>
-            <span class="adr">
-                <span class="street-address">{{ 'ул. Заречанская 3/2'|trans }},</span>
-                <span class="locality">{{ 'Хмельницкий'|trans }},</span>
-                <span class="country-name">{{ 'Украина'|trans }}</span>
-            </span>
+        <li class="write-to">
+            <span>{{ "Написать" | trans() }}:</span>
+            <a href="mailto:info@stfalcon.com" class="email">info@stfalcon.com</a>
+        </li>
+        <li class="address">
+            <span>{{ "Зайти в гости" | trans() }}:</span>
+            <a href="">{{ "ул. Заречанская 3/2, Хмельницкий, Украина" | trans() }}</a>
             {% if app.request.locale == 'en' %}
-                <br />
-                <span class="adr">
-                    <span class="street-address">3/2 Zarichanska str.,</span>
-                    <span class="locality">Khmelnytskyi,</span>
-                    <span class="country-name">Ukraine</span>
-                </span>
+                <br/><a href="">3/2 Zarichanska str., Khmelnytskyi, Ukraine</a>
             {% endif %}
         </li>
-    </ul>
-</section>
-<section class="link-cnt">
-    <ul class="socials">
-        <li><a href="https://www.facebook.com/stfalconcom" class="icon icon-facebook" target="_blank"></a></li>
-        <li><a href="https://twitter.com/stfalconcom" class="icon icon-twitter" target="_blank"></a></li>
-        <li><a href="https://github.com/stfalcon-studio" class="icon icon-github" target="_blank"></a></li>
-    </ul>
-    <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
-        <span class="category">{{ 'студия'|trans }}</span>
-        <a href="http://stfalcon.com" title="stfalcon" class="fn org">stfalcon.com</a>
-    </div>
-    <ul class="footer-links">
-        <li><a href="{{ path('privacy_policy_page') }}">Privacy Policy</a></li>
-        <li><a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a></li>
     </ul>
 </section>

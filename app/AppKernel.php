@@ -55,6 +55,7 @@ class AppKernel extends Kernel
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new Stfalcon\RedirectBundle\StfalconRedirectBundle(),
             new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
+            new Hype\MailchimpBundle\HypeMailchimpBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

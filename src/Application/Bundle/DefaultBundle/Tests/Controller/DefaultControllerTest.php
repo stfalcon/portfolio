@@ -14,32 +14,21 @@ class DefaultControllerTest extends WebTestCase
 
     public function testHomePage()
     {
-        $this->loadFixtures(array(
-            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
-            'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
-            'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
-        ));
-
         $client = $this->createClient();
         $crawler = $client->request('GET', '/');
 
         // check responce
         $this->assertTrue($client->getResponse()->isSuccessful());
 
-        // check link to category view
-        $url = $this->getUrl('portfolio_all_projects');
-        $this->assertCount(2, $crawler->filter('a[href="' . $url . '"]'));
+        $this->assertCount(1, $crawler->filter('h1:contains("Решаем сложные задачи")'));
 
-        // check links to view projects on homepage
-        $preorderUrl = $this->getUrl('portfolio_project_view',
-            array('categorySlug' => 'web-development', 'projectSlug' => 'preorder-it')
-        );
-        $this->assertCount(1, $crawler->filter('.projects li a[href="' . $preorderUrl . '"]'));
+        $this->assertCount(1, $crawler->filter('h2:contains("Участвуем в Open Source")'));
+        $this->assertCount(1, $crawler->filter('h2:contains("проводим конференции")'));
+        $this->assertCount(1, $crawler->filter('h2:contains("ведем блог")'));
+        $this->assertCount(1, $crawler->filter('form.subscribe-form'));
 
-        $epriceUrl = $this->getUrl('portfolio_project_view',
-            array('categorySlug' => 'web-development', 'projectSlug' => 'eprice-kz')
-        );
-        $this->assertCount(1, $crawler->filter('.projects li a[href="' . $epriceUrl . '"]'));
+        $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("+380 67 334-40-40")'));
+        $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("ул. Заречанская 3/2, Хмельницкий, Украина")'));
     }
 
     public function testContactPage()
