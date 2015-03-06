@@ -2,6 +2,10 @@
 
 {% block title %}{% trans %}Блог{% endtrans %} | {{ parent() }}{% endblock %}
 
+{% block additional %}
+    <link rel="canonical" href="{{ url('blog') }}" />
+{% endblock additional %}
+
 {% block content_wrapper %}
     {% if posts %}
         {% include 'StfalconBlogBundle:Post:_posts.html.twig' with {'posts': posts} %}
