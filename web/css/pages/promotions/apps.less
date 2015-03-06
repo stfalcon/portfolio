@@ -658,16 +658,20 @@ inf slides
 
 .extended-app-slide {
   position: relative;
-  -webkit-background-size: cover;
+/*  -webkit-background-size: cover;
   background-size: cover;
   overflow: hidden;
-  background-image: url("/img/pages/promotions/apps/slides/slide_mfb_uaroads_cookorana.jpg");
+  background-image: url("/img/pages/promotions/apps/slides/slide_mfb_uaroads_cookorana.jpg");*/
   background-color: #3b3d37;
 
   .blank-img {
     display: block;
     width: 100%;
     height: auto;
+
+    &.small {
+      display: none;
+    }
   }
   .section-left {
     position: absolute;
@@ -675,6 +679,11 @@ inf slides
     top: 0;
     bottom: 0;
     right: 42.92%;
+
+    -webkit-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    background-image: url("/img/pages/promotions/apps/slides/slide_mfb_uaroads_cookorana01.jpg");
   }
   .section-right-top {
     position: absolute;
@@ -682,6 +691,11 @@ inf slides
     right: 0;
     bottom: 50%;
     left: 57.08%;
+
+    -webkit-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    background-image: url("/img/pages/promotions/apps/slides/slide_mfb_uaroads_cookorana02.jpg");
   }
   .section-right-bottom {
     position: absolute;
@@ -689,6 +703,11 @@ inf slides
     right: 0;
     bottom: 0;
     left: 57.08%;
+
+    -webkit-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    background-image: url("/img/pages/promotions/apps/slides/slide_mfb_uaroads_cookorana03.jpg");
   }
   .info-wr {
     position: absolute;
@@ -708,6 +727,60 @@ inf slides
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .extended-app-slide {
+    position: relative;
+    /*  -webkit-background-size: cover;
+      background-size: cover;
+      overflow: hidden;
+      background-image: url("/img/pages/promotions/apps/slides/slide_mfb_uaroads_cookorana.jpg");*/
+    background-color: #3b3d37;
+
+    .blank-img {
+      display: none;
+      &.small {
+        display: block;
+      }
+    }
+    .section-left {
+      position:relative;
+      right: auto;
+    }
+    .section-right-top {
+      position: relative;
+      bottom: auto;
+      left: auto;
+    }
+    .section-right-bottom {
+      position: relative;
+      top: auto;
+      left: auto;
+    }
+    .info-wr {
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .extended-app-slide {
+    .blank-img {
+      background: rgba(0,0,0,0.4);
+    }
+    .info-wr {
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .extended-app-slide {
+    .info-wr {
+      width: auto;
+      right: 45px;
+      text-align: center;
+    }
+  }
+}
+
 .mfb {
   background-image: url("/img/pages/promotions/apps/slides/slide_mfb.jpg");
   background-color: #1c311d;
@@ -716,6 +789,25 @@ inf slides
     width: 234px;
     top: 162px;
     right: 0;
+  }
+
+  &.de.app-slide {
+    background-image: url("/img/pages/promotions/apps/slides/slide_mfb_de.jpg");
+
+    .app-inf {
+      width: auto;
+      text-align: center;
+      position: static;
+      top: auto;
+      margin: 41px 0 0;
+
+      h1 {
+        margin: 0 0 11px;
+      }
+    }
+    .app-img {
+      position: static;
+    }
   }
 }
 
@@ -883,6 +975,16 @@ inf slides
   }
 }
 
+@media screen and (max-width: 960px) {
+  .mfb.de.app-slide {
+      .app-img {
+        position: static;
+        float: right;
+      }
+  }
+}
+
+
 @media screen and (max-width: 750px) {
   .webdev-slide ,
   .design-slide{
@@ -964,6 +1066,24 @@ inf slides
   .megasos {
     &.app-slide .app-img {
       float: right;
+    }
+  }
+  .mfb.de.app-slide {
+    .app-img {
+      margin-right: -50px;
+    }
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .mfb.de.app-slide {
+    .app-img {
+      margin-right: -40px;
+      margin-left: -97%;
+    }
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }
@@ -1642,11 +1762,15 @@ input.error {
 
 .apps-list {
   text-align: center;
+  font-size: 0;
 
   li {
+    vertical-align: top;
+    .box-sizing(border-box);
     display: inline-block;
-    width: 200px;
-    margin: 0 15px 31px;
+    width: 230px;
+    padding: 0 15px;
+    margin: 0 0 31px;
     text-align: center;
   }
   a {
@@ -1669,7 +1793,26 @@ input.error {
   }
 }
 
+@media screen and (max-width: 960px) {
+  .apps-list {
+    width: 470px;
+    margin: 0 auto;
 
+    li {
+      width: 50%;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .apps-list {
+    width: 100%;
+  }
+}
 
 /* footer */
 
@@ -2011,6 +2154,9 @@ iframe[name="google_conversion_frame"] {
 
   .wrap {
     position: static;
+  }
+  &.de {
+    display: none !important;
   }
 }
 #scrollto-btn {
