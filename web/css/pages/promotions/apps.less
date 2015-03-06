@@ -2,7 +2,7 @@
 @import 'mixins';
 
 @sprite : url(/img/pages/promotions/apps/sprite.png);
-@sprite-bgsize : 300px 200px;
+@sprite-bgsize : 300px 300px;
 @sprite2 : url(/img/pages/promotions/apps/webtech_sprite.png);
 @sprite2-bgsize : 200px 400px;
 @sprite3 : url('/img/pages/promotions/apps/webtech_sprite2.png');
@@ -241,6 +241,11 @@ a {
   background-position: -60px -160px;
 }
 
+.icon-youtube {
+  .sq(24px);
+  background-position: 0px -190px;
+}
+
 .icon-quote {
   .box(19px, 14px);
   background-position: -110px -160px;
@@ -254,6 +259,16 @@ a {
 .icon-apple {
   .box(35px, 42px);
   background-position: -40px -70px;
+}
+
+.icon-appstore {
+  .box(16px, 20px);
+  background-position: -140px -160px;
+}
+
+.icon-google-play {
+  .box(17px, 20px);
+  background-position: -160px -160px;
 }
 
 #scroll-down {
@@ -638,6 +653,58 @@ inf slides
   .site-img .dev-img{
     left: -31px;
     right: auto;
+  }
+}
+
+.extended-app-slide {
+  position: relative;
+  -webkit-background-size: cover;
+  background-size: cover;
+  overflow: hidden;
+  background-image: url("/img/pages/promotions/apps/slides/slide_mfb_uaroads_cookorana.jpg");
+  background-color: #3b3d37;
+
+  .blank-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .section-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 42.92%;
+  }
+  .section-right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 50%;
+    left: 57.08%;
+  }
+  .section-right-bottom {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 57.08%;
+  }
+  .info-wr {
+    position: absolute;
+    left: 45px;
+    bottom: 54px;
+    width: 270px;
+    color: #fff;
+
+    h3 {
+      font-size: 2rem;
+      line-height: 1.215em;
+      margin: 0 0 14px;
+    }
+    p {
+      font-size: 1.215rem;
+    }
   }
 }
 
@@ -1564,6 +1631,46 @@ input.error {
   }
 }
 
+.other-apps {
+  .wrap {
+    padding: 61px 0 41px;
+  }
+  h1 {
+    margin: 0 0 61px;
+  }
+}
+
+.apps-list {
+  text-align: center;
+
+  li {
+    display: inline-block;
+    width: 200px;
+    margin: 0 15px 31px;
+    text-align: center;
+  }
+  a {
+    display: block;
+    color: #2c373c;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  img {
+    display: block;
+    margin: 0 auto 12px;
+  }
+  .name {
+    font-size: 1.29rem;
+    line-height: 1.329em;
+    margin: 0 0 3px;
+  }
+}
+
+
+
 /* footer */
 
 footer {
@@ -1593,18 +1700,16 @@ footer {
       padding: 16px 0 0;
     }
     .address-list {
-      -webkit-column-count: 2;
-      column-count: 2;
 
       li {
-        -webkit-column-break-inside: avoid;
-        break-inside: avoid;
+        width: 50%;
+        float: left;
       }
     }
   }
 
   .footer-pdf-link {
-    margin:10px 0 0;
+    margin:28px 0 0;
 
     span {
       color: #919699;
@@ -1770,8 +1875,10 @@ footer {
 
   .wrap.de {
     .address-list {
-      -webkit-column-count: 1;
-      column-count: 1;
+      li {
+        float: none;
+        width: auto;
+      }
     }
   }
 
