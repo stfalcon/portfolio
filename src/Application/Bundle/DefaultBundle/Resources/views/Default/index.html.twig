@@ -76,7 +76,7 @@
             <ul class="tabs-content">
                 <li class="tab active">
                     <p>
-                        {{ 'Принимает активное участие в развитии популярного PHP фреймворка <a href="%link%" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.' | trans({'%link%': 'http://symfony.com'}) | raw }}
+                        {{ 'Принимаем активное участие в развитии популярного PHP фреймворка <a href="%link%" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.' | trans({'%link%': 'http://symfony.com'}) | raw }}
                     </p>
                 </li>
                 <li class="tab">
@@ -174,7 +174,7 @@
                     name: 'MeinFernbus',
                     description: '{{ "Крупнейшая компания, специализируется на пассажирских перевозках в Германии" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/design_small_mfb.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'mfb-network-scheme', 'categorySlug': 'web-design'}) }}'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-development'}) }}'
                 }
             ]
         },
@@ -185,19 +185,19 @@
                     name: 'MeinFernbus',
                     description: '{{ "Крупнейшая компания, специализируется на пассажирских перевозках в Германии" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/apps_big_mfb.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-android', 'categorySlug': 'mobile-development'}) }}'
                 },
                 {
                     name: 'KeepSnap',
                     description: '{{ "Сервис продажи фотографий для профессиональных фотографов" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/apps_small_keepsnap.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-android', 'categorySlug': 'mobile-development'}) }}'
                 },
                 {
                     name: 'UARoads',
                     description: '{{ "Социальный стартап по оценке качества дорог Украины" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/apps_small_uaroads.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'uaroads-android', 'categorySlug': 'mobile-development'}) }}'
                 }
             ]
         },
@@ -208,19 +208,19 @@
                     name: 'Nizam',
                     description: '{{ "Увлекательный мобильный вариант одноименной настольной игры" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/games_big_nizam.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'nizam-android', 'categorySlug': 'game-development'}) }}'
                 },
                 {
                     name: 'Galaxy Recon',
                     description: '{{ "Двумерный аркадный шутер, оружие и враги в ассортименте" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/games_small_galrecon.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'galaxy-recon-android', 'categorySlug': 'game-development'}) }}'
                 },
                 {
                     name: 'Swell Foop',
                     description: '{{ "Головоломка, цель которой — убрать все кубики с игрового поля" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/games_small_samegame.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'swell-foop-android', 'categorySlug': 'game-development'}) }}'
                 }
             ]
         }
