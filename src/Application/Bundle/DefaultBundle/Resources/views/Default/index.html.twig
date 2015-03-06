@@ -5,6 +5,63 @@
     <title>{% block title %}{{ 'Веб-студия'|trans }} stfalcon.com{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
+
+    {% if app.request.host == 'stfalcon.com' %}
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-5635962-2', 'auto');
+            ga('require', 'displayfeatures');
+            ga('send', 'pageview');
+
+        </script>
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function() {
+                    try {
+                        w.yaCounter27048220 = new Ya.Metrika({id:27048220,
+                            webvisor:true,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true});
+                    } catch(e) { }
+                });
+
+                var n = d.getElementsByTagName("script")[0],
+                        s = d.createElement("script"),
+                        f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else { f(); }
+            })(document, window, "yandex_metrika_callbacks");
+        </script>
+        <!-- /Yandex.Metrika counter -->
+        <!-- Facebook Conversion Code for заявка -->
+        <script>(function() {
+                var _fbq = window._fbq || (window._fbq = []);
+                if (!_fbq.loaded) {
+                    var fbds = document.createElement('script');
+                    fbds.async = true;
+                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(fbds, s);
+                    _fbq.loaded = true;
+                }
+            })();
+            window._fbq = window._fbq || [];
+            window._fbq.push(['track', '6020145370099', {'value':'0.00','currency':'USD'}]);
+        </script>
+    {% endif %}
 </head>
 <body>
 <section class="page-wrapper">
@@ -76,7 +133,7 @@
             <ul class="tabs-content">
                 <li class="tab active">
                     <p>
-                        {{ 'Принимает активное участие в развитии популярного PHP фреймворка <a href="%link%" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.' | trans({'%link%': 'http://symfony.com'}) | raw }}
+                        {{ 'Принимаем активное участие в развитии популярного PHP фреймворка <a href="%link%" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.' | trans({'%link%': 'http://symfony.com'}) | raw }}
                     </p>
                 </li>
                 <li class="tab">
@@ -86,19 +143,6 @@
                 </li>
             </ul>
         </div>
-        <!--<span class="customer-comment">-->
-        <!--<i class="icon icon-blockquote"></i>-->
-        <!--<span class="comment-text">-->
-        <!--Мы сотрудничали со студией больше 3 лет. Сейчас MeinFernbus является крупнейшим пассажирским перевозчиком. Всё благодаря ребятам из stfalcon!-->
-        <!--</span>-->
-        <!--<span class="customer-name">-->
-        <!--Алексей Колупаев-->
-        <!--</span>-->
-        <!--<span class="customer-position">-->
-        <!--CTO at MeinFernbus-->
-        <!--</span>-->
-        <!--<img class="customer-photo" src="assets/img/fish/customer.png" alt=""/>-->
-        <!--</span>-->
     </section>
     <section class="conference">
         <h2>{{ "проводим конференции" | trans() }}</h2>
@@ -174,7 +218,7 @@
                     name: 'MeinFernbus',
                     description: '{{ "Крупнейшая компания, специализируется на пассажирских перевозках в Германии" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/design_small_mfb.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'mfb-network-scheme', 'categorySlug': 'web-design'}) }}'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-development'}) }}'
                 }
             ]
         },
@@ -185,19 +229,19 @@
                     name: 'MeinFernbus',
                     description: '{{ "Крупнейшая компания, специализируется на пассажирских перевозках в Германии" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/apps_big_mfb.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-android', 'categorySlug': 'mobile-development'}) }}'
                 },
                 {
                     name: 'KeepSnap',
                     description: '{{ "Сервис продажи фотографий для профессиональных фотографов" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/apps_small_keepsnap.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-android', 'categorySlug': 'mobile-development'}) }}'
                 },
                 {
                     name: 'UARoads',
                     description: '{{ "Социальный стартап по оценке качества дорог Украины" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/apps_small_uaroads.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'uaroads-android', 'categorySlug': 'mobile-development'}) }}'
                 }
             ]
         },
@@ -208,19 +252,19 @@
                     name: 'Nizam',
                     description: '{{ "Увлекательный мобильный вариант одноименной настольной игры" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/games_big_nizam.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'nizam-android', 'categorySlug': 'game-development'}) }}'
                 },
                 {
                     name: 'Galaxy Recon',
                     description: '{{ "Двумерный аркадный шутер, оружие и враги в ассортименте" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/games_small_galrecon.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'galaxy-recon-android', 'categorySlug': 'game-development'}) }}'
                 },
                 {
                     name: 'Swell Foop',
                     description: '{{ "Головоломка, цель которой — убрать все кубики с игрового поля" | trans() }}',
                     projectPreviewURL: '/assets/img/preview/games_small_samegame.jpg',
-                    URL: '/portfolio/web-development/keepsnap-com'
+                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'swell-foop-android', 'categorySlug': 'game-development'}) }}'
                 }
             ]
         }
@@ -230,5 +274,59 @@
 {% javascripts 'assets/js/libs/sly.js' 'assets/js/homepage.js'  output='cache/js/*.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
+{% if app.request.host == 'stfalcon.com' %}
+    <!-- Google Code for Remarketing Tag -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1047640200;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1047640200/?value=0&amp;guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+
+    <script type="text/javascript">
+        adroll_adv_id = "4D2635Z5I5HHPLZFLSLGPF";
+        adroll_pix_id = "QCTMESTTRVHSZENSLNPNCG";
+        (function () {
+            var oldonload = window.onload;
+            window.onload = function(){
+                __adroll_loaded=true;
+                var scr = document.createElement("script");
+                var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+                scr.setAttribute('async', 'true');
+                scr.type = "text/javascript";
+                scr.src = host + "/j/roundtrip.js";
+                ((document.getElementsByTagName('head') || [null])[0] ||
+                document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+                if(oldonload){oldonload()}};
+        }());
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var a = document.createElement("iframe");
+            a.style.cssText = "width: 0; height: 0; border: 0";
+            a.src = "javascript:false";
+            var b = function () {
+                setTimeout(function () {
+                    var b = a.contentDocument || a.contentWindow.document, c = b.createElement("script");
+                    c.src = "//static-trackers.adtarget.me/javascripts/pixel.min.js";
+                    c.id = "GIHhtQfW-atm-pixel";
+                    c["data-pixel"] = "6b426f21b81c3aad68c1d763c1d156e4";
+                    c["allow-flash"] = false;
+                    b.body.appendChild(c);
+                }, 0);
+            };
+            a.addEventListener ? a.addEventListener("load", b, !1) : a.attachEvent ? a.attachEvent("onload", b) : a.onload = b;
+            document.body.appendChild(a);
+        })();
+    </script>
+{% endif %}
 </body>
 </html>

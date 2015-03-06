@@ -3,9 +3,9 @@
     <ul class="preview-blog-list">
         {% for post in posts %}
             <li>
-                <h3>{{ post.title }}</h3>
+                <h3><a href="{{ path('blog_post_view', {'slug': post.slug}) }}" title="{{ post.title }}">{{ post.title }}</a></h3>
                 <p>
-                    {{ post.text|striptags|slice(0, 170) }}…
+                    {{ post.text|striptags|slice(0, 170)|raw }}…
                 </p>
                 <div class="user">
                     {% if post.author and post.author.avatarName %}
