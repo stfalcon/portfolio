@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ 'Веб-студия'|trans }} stfalcon.com{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
+</head>
+    <body>
+    {% include '::_header.html.twig' %}
+        <article class="page-wrapper">
+            <div class="row">
+                <div class="col col-1"></div>
+            </div>
+        </article>
+    <footer class="footer">
+        {% include '::_footer.html.twig' %}
+    </footer>
+    </body>
+</html>
