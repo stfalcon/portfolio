@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class LocaleListener uses for detect user locale by IP and change site locale
@@ -31,19 +32,25 @@ class LocaleListener
      * @var string
      */
     private $localeCookieName;
+    /**
+     * @var Kernel
+     */
+    private $kernel;
 
     /**
      * @param GeoIpService $geoIpService
      * @param Router       $router
      * @param array        $locales List of available locales
      * @param string       $localeCookieName
+     * @param Kernel       $kernel
      */
-    public function __construct(GeoIpService $geoIpService, Router $router, array $locales, $localeCookieName)
+    public function __construct(GeoIpService $geoIpService, Router $router, array $locales, $localeCookieName, Kernel $kernel)
     {
         $this->locales = $locales;
         $this->geoIpService = $geoIpService;
         $this->router = $router;
         $this->localeCookieName = $localeCookieName;
+        $this->kernel = $kernel;
     }
 
     /**
@@ -51,7 +58,7 @@ class LocaleListener
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (HttpKernel::MASTER_REQUEST != $event->getRequestType()) {
+        if ($this->kernel->getEnvironment() == 'test' || HttpKernel::MASTER_REQUEST != $event->getRequestType()) {
             // don't do anything if it's not the master request
             return;
         }

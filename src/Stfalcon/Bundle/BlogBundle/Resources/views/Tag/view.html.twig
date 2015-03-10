@@ -1,5 +1,7 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
 
+{% block title %}{{ tag }} | {{ 'Таг' | trans }} | {{ 'Блог'|trans }} | {{ parent() }}{% endblock %}
+
 {% block content_wrapper %}
     {% if posts %}
         {% include 'StfalconBlogBundle:Post:_posts.html.twig' with {'posts': posts} %}

@@ -80,7 +80,7 @@ $(document).ready(function(){
                 tabSlider.reload();
             }
         } else {
-            if (window.matchMedia && window.matchMedia("(min-width: 1024px)").matches) {
+            if (window.matchMedia && window.matchMedia("(min-width: 1024px)").matches && isSliderInit) {
                 tabSlider.destroy();
                 isSliderInit = false;
             }

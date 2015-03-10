@@ -2,9 +2,66 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>{% block title %}{{ 'Веб-студия'|trans }} stfalcon.com{% endblock %}</title>
+    <title>{% block title %}{{ 'Разработка мобильных приложений и игр. Разработка и дизайн сайтов' | trans }} | {{ 'Студия'|trans }} stfalcon.com{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
+
+    {% if app.request.host == 'stfalcon.com' %}
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-5635962-2', 'auto');
+            ga('require', 'displayfeatures');
+            ga('send', 'pageview');
+
+        </script>
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function() {
+                    try {
+                        w.yaCounter27048220 = new Ya.Metrika({id:27048220,
+                            webvisor:true,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true});
+                    } catch(e) { }
+                });
+
+                var n = d.getElementsByTagName("script")[0],
+                        s = d.createElement("script"),
+                        f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else { f(); }
+            })(document, window, "yandex_metrika_callbacks");
+        </script>
+        <!-- /Yandex.Metrika counter -->
+        <!-- Facebook Conversion Code for заявка -->
+        <script>(function() {
+                var _fbq = window._fbq || (window._fbq = []);
+                if (!_fbq.loaded) {
+                    var fbds = document.createElement('script');
+                    fbds.async = true;
+                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(fbds, s);
+                    _fbq.loaded = true;
+                }
+            })();
+            window._fbq = window._fbq || [];
+            window._fbq.push(['track', '6020145370099', {'value':'0.00','currency':'USD'}]);
+        </script>
+    {% endif %}
 </head>
 <body>
 <section class="page-wrapper">
@@ -76,29 +133,16 @@
             <ul class="tabs-content">
                 <li class="tab active">
                     <p>
-                        {{ 'Принимаем активное участие в развитии популярного PHP фреймворка <a href="%link%" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.' | trans({'%link%': 'http://symfony.com'}) | raw }}
+                        {{ 'Принимаем активное участие в развитии популярного PHP фреймворка <a href="%link%" rel="nofollow" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.' | trans({'%link%': 'http://symfony.com'}) | raw }}
                     </p>
                 </li>
                 <li class="tab">
                     <p>
-                        {{ 'Создали целый набор полезных плагинов для системы управления контентом <a href="%link%" target="_blank">LiveStreet</a>.' | trans({'%link%': 'http://livestreetcms.com'}) | raw }}
+                        {{ 'Создали целый набор полезных плагинов для системы управления контентом <a href="%link%" rel="nofollow" target="_blank">LiveStreet</a>.' | trans({'%link%': 'http://livestreetcms.com'}) | raw }}
                     </p>
                 </li>
             </ul>
         </div>
-        <!--<span class="customer-comment">-->
-        <!--<i class="icon icon-blockquote"></i>-->
-        <!--<span class="comment-text">-->
-        <!--Мы сотрудничали со студией больше 3 лет. Сейчас MeinFernbus является крупнейшим пассажирским перевозчиком. Всё благодаря ребятам из stfalcon!-->
-        <!--</span>-->
-        <!--<span class="customer-name">-->
-        <!--Алексей Колупаев-->
-        <!--</span>-->
-        <!--<span class="customer-position">-->
-        <!--CTO at MeinFernbus-->
-        <!--</span>-->
-        <!--<img class="customer-photo" src="assets/img/fish/customer.png" alt=""/>-->
-        <!--</span>-->
     </section>
     <section class="conference">
         <h2>{{ "проводим конференции" | trans() }}</h2>
@@ -108,7 +152,7 @@
                     <svg width="176" height="143" viewBox="0 0 176 143" xmlns="http://www.w3.org/2000/svg"><title>fwdays_logo</title><desc>Created with Sketch.</desc><defs><linearGradient x1="50%" y1="99.341%" x2="50%" y2=".059%" id="a"><stop stop-color="#9DFF00" offset="0%"/><stop stop-color="#ABF80A" offset="6.06%"/><stop stop-color="#C9E821" offset="21.98%"/><stop stop-color="#E1DC33" offset="38.73%"/><stop stop-color="#F2D340" offset="56.47%"/><stop stop-color="#FCCE48" offset="75.86%"/><stop stop-color="#FFCC4A" offset="100%"/></linearGradient><linearGradient x1="50%" y1="95.808%" x2="50%" y2="8.868%" id="b"><stop stop-color="#0063C2" offset="0%"/><stop stop-color="#026EC1" offset="3.57%"/><stop stop-color="#0793BE" offset="17.09%"/><stop stop-color="#0BB2BB" offset="31.25%"/><stop stop-color="#0ECAB9" offset="46.01%"/><stop stop-color="#10DBB7" offset="61.65%"/><stop stop-color="#12E5B6" offset="78.73%"/><stop stop-color="#12E8B6" offset="100%"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><g><g id="Group" fill="#fff"><path d="M22.175 92.75H18.28v13.39h-3.404V92.75H12.25v-1.585l2.626-1.04v-1.038c0-1.885.442-3.283 1.327-4.19.884-.91 2.236-1.365 4.054-1.365 1.192 0 2.365.2 3.52.592l-.895 2.57c-.837-.27-1.635-.406-2.395-.406-.77 0-1.33.24-1.68.714-.35.475-.527 1.19-.527 2.143v1.04h3.895v2.566zM32.78 89.894c.683 0 1.245.05 1.688.145l-.332 3.16c-.48-.117-.98-.175-1.5-.175-1.357 0-2.456.443-3.297 1.328-.842.885-1.263 2.035-1.263 3.447v8.34h-3.39V90.184h2.654l.448 2.812h.174c.53-.952 1.22-1.707 2.07-2.264.85-.558 1.767-.838 2.748-.838zM46.768 106.14l-.678-2.223h-.115c-.77.972-1.544 1.634-2.323 1.983-.78.352-1.78.527-3 .527-1.568 0-2.793-.422-3.673-1.27-.88-.845-1.32-2.042-1.32-3.59 0-1.646.61-2.887 1.83-3.724 1.223-.836 3.084-1.293 5.584-1.37l2.756-.086v-.852c0-1.02-.24-1.782-.715-2.286-.476-.507-1.214-.76-2.214-.76-.817 0-1.6.122-2.35.362s-1.472.524-2.165.852L37.29 91.28c.865-.452 1.812-.796 2.84-1.03 1.03-.237 2-.356 2.916-.356 2.03 0 3.56.444 4.595 1.327 1.034.886 1.55 2.277 1.55 4.17v10.75H46.77zm-5.05-2.31c1.232 0 2.22-.344 2.965-1.03.746-.687 1.118-1.653 1.118-2.893v-1.385l-2.047.087c-1.597.056-2.758.323-3.484.8-.727.475-1.09 1.204-1.09 2.185 0 .71.21 1.26.634 1.65.424.39 1.058.586 1.905.586zM65.774 106.14H62.37V96.3c0-1.22-.23-2.133-.692-2.735-.462-.6-1.184-.9-2.165-.9-1.308 0-2.267.424-2.878 1.276-.61.852-.916 2.268-.916 4.25v7.948h-3.392V90.183h2.655l.476 2.09h.173c.442-.758 1.084-1.346 1.925-1.76.842-.412 1.768-.62 2.777-.62 2.453 0 4.078.837 4.877 2.51h.23c.472-.788 1.136-1.404 1.992-1.847.855-.442 1.837-.663 2.942-.663 1.904 0 3.292.48 4.162 1.442.87.963 1.305 2.43 1.305 4.4v10.403h-3.39v-9.84c0-1.22-.233-2.132-.7-2.733-.466-.6-1.19-.902-2.17-.902-1.318 0-2.282.41-2.894 1.233-.61.823-.916 2.085-.916 3.787v8.456zM86.63 106.427c-2.483 0-4.423-.723-5.823-2.17-1.4-1.447-2.098-3.44-2.098-5.98 0-2.606.648-4.654 1.946-6.146 1.3-1.49 3.083-2.236 5.353-2.236 2.105 0 3.768.64 4.99 1.92 1.222 1.28 1.833 3.04 1.833 5.28v1.833H82.2c.048 1.548.467 2.738 1.256 3.57.788.832 1.9 1.25 3.333 1.25.94 0 1.818-.09 2.63-.27.814-.176 1.686-.472 2.62-.885v2.756c-.827.394-1.664.672-2.51.836-.848.16-1.815.243-2.9.243zm-.622-13.964c-1.077 0-1.94.34-2.59 1.024-.65.683-1.036 1.678-1.16 2.986h7.24c-.018-1.317-.335-2.314-.952-2.994-.615-.68-1.46-1.017-2.538-1.017zM109.77 106.14l-2.063-7.445c-.25-.79-.703-2.62-1.357-5.497h-.13c-.56 2.598-1 4.44-1.328 5.525l-2.12 7.416h-3.75l-4.474-15.957h3.463l2.035 7.862c.46 1.943.79 3.607.98 4.992h.088c.097-.702.243-1.508.44-2.417.196-.91.367-1.59.512-2.04l2.424-8.397h3.72l2.352 8.396c.144.47.325 1.192.54 2.162.218.97.345 1.727.383 2.267h.115c.145-1.185.482-2.84 1.01-4.965l2.064-7.862h3.404l-4.5 15.955h-3.808zM134.294 98.133c0 2.606-.668 4.64-2.006 6.102-1.337 1.46-3.197 2.192-5.583 2.192-1.49 0-2.808-.337-3.952-1.01-1.145-.673-2.024-1.64-2.64-2.9-.617-1.258-.923-2.72-.923-4.384 0-2.59.663-4.608 1.99-6.06 1.327-1.453 3.197-2.18 5.612-2.18 2.308 0 4.135.744 5.483 2.23 1.345 1.486 2.02 3.49 2.02 6.01zm-11.613 0c0 3.683 1.36 5.524 4.082 5.524 2.694 0 4.04-1.84 4.04-5.524 0-3.645-1.356-5.47-4.068-5.47-1.424 0-2.455.474-3.094 1.414-.64.944-.96 2.296-.96 4.056zM144.776 89.894c.682 0 1.246.05 1.688.145l-.333 3.16c-.48-.117-.98-.175-1.498-.175-1.357 0-2.456.443-3.297 1.328-.842.885-1.262 2.035-1.262 3.447v8.34h-3.39V90.184h2.654l.447 2.812h.174c.53-.952 1.218-1.707 2.07-2.264.85-.558 1.767-.838 2.748-.838zM151.84 97.714l1.92-2.395 4.818-5.137h3.91l-6.42 6.852 6.824 9.104h-3.983l-5.122-6.998-1.862 1.53v5.467h-3.36V83.69h3.36v10.952l-.172 3.073h.086zM175.94 101.595c0 1.557-.567 2.753-1.7 3.585-1.137.832-2.763 1.247-4.878 1.247-2.125 0-3.832-.322-5.12-.967v-2.928c1.874.866 3.62 1.298 5.235 1.298 2.087 0 3.13-.63 3.13-1.89 0-.404-.115-.74-.345-1.01-.23-.27-.61-.548-1.14-.836-.53-.29-1.265-.616-2.207-.98-1.838-.713-3.08-1.425-3.73-2.137-.65-.71-.973-1.634-.973-2.77 0-1.364.55-2.426 1.652-3.18 1.1-.756 2.598-1.133 4.494-1.133 1.875 0 3.65.38 5.323 1.14l-1.095 2.554c-1.722-.712-3.17-1.068-4.342-1.068-1.79 0-2.684.51-2.684 1.53 0 .5.232.923.7 1.27.466.346 1.482.822 3.05 1.427 1.318.51 2.275.977 2.87 1.4.598.423 1.04.91 1.328 1.465.29.552.432 1.214.432 1.983zM73.673 131.14c0 1.56-.568 2.755-1.702 3.586-1.134.832-2.76 1.248-4.876 1.248-2.125 0-3.832-.322-5.12-.966v-2.93c1.874.866 3.62 1.3 5.235 1.3 2.086 0 3.13-.63 3.13-1.892 0-.403-.115-.738-.346-1.01-.23-.268-.61-.547-1.14-.836-.53-.287-1.265-.614-2.207-.98-1.838-.71-3.08-1.423-3.73-2.136-.65-.71-.973-1.635-.973-2.77 0-1.365.55-2.425 1.652-3.18 1.1-.755 2.6-1.133 4.494-1.133 1.875 0 3.65.38 5.323 1.142l-1.096 2.552c-1.722-.71-3.17-1.066-4.342-1.066-1.79 0-2.684.51-2.684 1.53 0 .5.234.92.7 1.268.468.345 1.485.823 3.053 1.428 1.318.51 2.274.976 2.87 1.4.597.423 1.04.91 1.328 1.464.29.553.433 1.214.433 1.983zM19.55 135.974c-1.99 0-3.545-.72-4.66-2.163-1.116-1.442-1.674-3.467-1.674-6.073 0-2.616.565-4.653 1.695-6.11 1.13-1.456 2.696-2.186 4.697-2.186 2.097 0 3.693.775 4.79 2.323h.173c-.164-1.143-.246-2.046-.246-2.71v-5.815h3.405v22.448h-2.655l-.592-2.09h-.16c-1.085 1.584-2.676 2.378-4.773 2.378zm.91-2.74c1.393 0 2.408-.393 3.042-1.177.635-.783.962-2.055.98-3.816v-.475c0-2.01-.326-3.44-.98-4.284-.653-.846-1.678-1.27-3.072-1.27-1.193 0-2.112.484-2.756 1.45-.645.968-.966 2.345-.966 4.135 0 1.77.312 3.118.938 4.046.625.93 1.562 1.393 2.813 1.393zM41.32 135.685l-.678-2.22h-.115c-.77.97-1.544 1.632-2.323 1.983-.78.35-1.78.526-3 .526-1.568 0-2.792-.423-3.672-1.27-.88-.845-1.32-2.043-1.32-3.59 0-1.645.61-2.887 1.832-3.723 1.22-.836 3.082-1.292 5.583-1.37l2.755-.087v-.85c0-1.02-.238-1.782-.714-2.287-.477-.506-1.215-.758-2.215-.758-.818 0-1.6.12-2.352.36-.75.24-1.47.526-2.163.85l-1.096-2.422c.866-.452 1.813-.795 2.843-1.03 1.03-.237 2-.354 2.914-.354 2.03 0 3.56.443 4.596 1.327 1.033.884 1.55 2.273 1.55 4.168v10.748H41.32zm-5.05-2.308c1.232 0 2.22-.343 2.966-1.03.745-.688 1.118-1.652 1.118-2.894v-1.383l-2.05.085c-1.596.058-2.757.326-3.483.8-.725.477-1.09 1.206-1.09 2.186 0 .714.213 1.263.636 1.654.423.39 1.058.583 1.905.583zM45.16 119.73h3.692l3.247 9.045c.49 1.288.817 2.502.98 3.635h.115c.086-.53.246-1.17.477-1.926.23-.755 1.452-4.34 3.664-10.755H61l-6.824 18.076c-1.24 3.32-3.31 4.978-6.203 4.978-.75 0-1.482-.082-2.193-.246v-2.683c.51.116 1.09.173 1.745.173 1.636 0 2.785-.947 3.45-2.842l.59-1.5-6.405-15.957z" id="Shape"/></g><g transform="translate(.228)"><path d="M29.91 60.354L.902 31.35 29.91 2.342l2.61 2.612L6.126 31.35 32.52 57.74l-2.61 2.612z" id="Shape" fill="url(#a)"/><path d="M95.847 61.66L77.38 43.194 58.915 61.66l-27.7-27.7L4.82 60.354l-2.61-2.612 29.004-29.004 27.7 27.7L77.38 37.97l18.467 18.467 26.394-26.394 2.613 2.61L95.847 61.66z" fill="url(#b)"/><ellipse id="Oval" fill="#FF700A" cx="31.214" cy="3.649" rx="3.001" ry="3.001"/><ellipse id="Oval" fill="#C9B600" cx="3.515" cy="31.349" rx="3.001" ry="3.001"/><ellipse id="Oval" fill="#135A9E" cx="3.515" cy="59.049" rx="3.001" ry="3.001"/><ellipse id="Oval" fill="#02C2AC" cx="31.214" cy="31.349" rx="3.693" ry="3.693"/><ellipse id="Oval" fill="#135A9E" cx="58.914" cy="59.049" rx="3.001" ry="3.001"/><ellipse id="Oval" fill="#02C2AC" cx="77.381" cy="40.582" rx="3.001" ry="3.001"/><ellipse id="Oval" fill="#135A9E" cx="95.847" cy="59.049" rx="3" ry="3"/><ellipse id="Oval" fill="#02C2AC" cx="123.547" cy="31.349" rx="3.693" ry="3.693"/><ellipse fill="#4BAD00" cx="31.214" cy="59.049" rx="3.001" ry="3.001"/></g></g></g></svg>
                 </div>
                 <p>{{ "Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ." | trans() }}</p>
-                <a class="arrow-button" href="http://frameworksdays.com/" target="_blank"></a>
+                <a class="arrow-button" href="http://frameworksdays.com/" rel="nofollow" target="_blank"></a>
             </li>
             <li class="cnc">
                 <div class="conf-logo">
@@ -230,5 +274,59 @@
 {% javascripts 'assets/js/libs/sly.js' 'assets/js/homepage.js'  output='cache/js/*.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
+{% if app.request.host == 'stfalcon.com' %}
+    <!-- Google Code for Remarketing Tag -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1047640200;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1047640200/?value=0&amp;guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+
+    <script type="text/javascript">
+        adroll_adv_id = "4D2635Z5I5HHPLZFLSLGPF";
+        adroll_pix_id = "QCTMESTTRVHSZENSLNPNCG";
+        (function () {
+            var oldonload = window.onload;
+            window.onload = function(){
+                __adroll_loaded=true;
+                var scr = document.createElement("script");
+                var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+                scr.setAttribute('async', 'true');
+                scr.type = "text/javascript";
+                scr.src = host + "/j/roundtrip.js";
+                ((document.getElementsByTagName('head') || [null])[0] ||
+                document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+                if(oldonload){oldonload()}};
+        }());
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var a = document.createElement("iframe");
+            a.style.cssText = "width: 0; height: 0; border: 0";
+            a.src = "javascript:false";
+            var b = function () {
+                setTimeout(function () {
+                    var b = a.contentDocument || a.contentWindow.document, c = b.createElement("script");
+                    c.src = "//static-trackers.adtarget.me/javascripts/pixel.min.js";
+                    c.id = "GIHhtQfW-atm-pixel";
+                    c["data-pixel"] = "6b426f21b81c3aad68c1d763c1d156e4";
+                    c["allow-flash"] = false;
+                    b.body.appendChild(c);
+                }, 0);
+            };
+            a.addEventListener ? a.addEventListener("load", b, !1) : a.attachEvent ? a.attachEvent("onload", b) : a.onload = b;
+            document.body.appendChild(a);
+        })();
+    </script>
+{% endif %}
 </body>
 </html>
