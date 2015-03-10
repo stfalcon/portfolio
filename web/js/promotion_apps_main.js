@@ -5,8 +5,8 @@ $(document).ready(function () {
      * */
     var scrollPos = parseInt($('.header-slide').outerHeight(true));
     $('#scroll-down').on('click', function () {
-        $('html, body').animate({scrollTop: scrollPos}, {duration: '2000', easing: 'swing'});
-        $('.scrollto-line').animate({top:0},300);
+        $('html, body').animate({scrollTop: scrollPos}, {duration: '1500', easing: 'swing'});
+        $('.scrollto-line').stop(true,true).animate({top:0},200);
         return false;
     });
 
@@ -24,10 +24,8 @@ $(document).ready(function () {
         } else {
             $('html, body').animate({scrollTop: feedbackOffset.top}, {duration: 0, easing: 'linear'});
         }
-
         return false;
     });
-
 
 /*
  * slider
@@ -64,7 +62,7 @@ $('#slider').sly(options);
 var i = 0;
 var spreadRange = $(window).height();
 var parallaxRange = 50;
-var elGroup = $('.app-slide, .webdev-slide, .design-slide');
+var elGroup = $('.app-slide, .webdev-slide, .design-slide').not('.app-slide.de');
 var elLength = $(elGroup).length;
 var elArray = [[0, 0]];
 elArray.pop();
@@ -95,7 +93,7 @@ function parallax() {
 }
 
 $(window).scroll(function (e) {
-    if ($(window).width() >= 800) {
+    if (($(window).width() >= 800)) {
         parallax();
     }
 });
@@ -213,26 +211,25 @@ $(window).scroll(function (e) {
     $( window ).load(function () {
 
         function scrolltoFunc () {
-
             var w_h = $(window).height();
             var feedbackOffset = $('#feedback-line').offset();
             var hideScrollToPoint = parseInt ( feedbackOffset.top - w_h + 80 );
             var showScrollToPoint = parseInt ( $('.header-slide').height() );
             var w_pos = $(window).scrollTop();
             if ( (w_pos >= showScrollToPoint) && (w_pos <= hideScrollToPoint) ) {
-                $('.scrollto-line').stop(true,false).animate({top:0},300);
+                $('.scrollto-line').stop(true,true).animate({top:0},200);
             }
             else {
-                $('.scrollto-line').stop(true,false).animate({top:-51},300);
+                $('.scrollto-line').stop(true,true).animate({top:-51},200);
             };
 
             $( window ).scroll(function() {
                 var w_pos = $(window).scrollTop();
                 if ( (w_pos >= showScrollToPoint) && (w_pos <= hideScrollToPoint) ) {
-                    $('.scrollto-line').stop(true,false).animate({top:0},300);
+                    $('.scrollto-line').stop(true,true).animate({top:0},200);
                 }
                 else {
-                    $('.scrollto-line').stop(true,false).animate({top:-51},300);
+                    $('.scrollto-line').stop(true,true).animate({top:-51},200);
                 };
             });
         };
