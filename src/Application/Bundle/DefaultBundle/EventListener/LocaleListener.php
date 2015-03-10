@@ -58,7 +58,7 @@ class LocaleListener
 
         $request = $event->getRequest();
 
-        if ($request->getHost() == 'stfalcon.de') {
+        if ($request->attributes->get('_route') == 'promotion_order' || $request->getHost() == 'stfalcon.de') {
             return;
         }
 
