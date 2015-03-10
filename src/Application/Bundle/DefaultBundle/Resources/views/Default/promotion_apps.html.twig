@@ -8,7 +8,13 @@
     </div>
     <section class="slide header-slide">
         <div class="inner">
-            <a class="logo icon" title="stfalcon" href="http://stfalcon.com"></a>
+
+            {% if app.request.locale != 'de' %}
+                <a class="logo icon" title="stfalcon" href="{{ path('homepage') }}"></a>
+            {% else %}
+                <span class="logo icon"></span>
+            {% endif %}
+
             <div id="scroll-down" class="icon"></div>
 
             <div class="inner-content">
