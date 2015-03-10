@@ -979,7 +979,11 @@ inf slides
   .mfb.de.app-slide {
       .app-img {
         position: static;
-        float: right;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
       }
   }
 }
@@ -1066,24 +1070,6 @@ inf slides
   .megasos {
     &.app-slide .app-img {
       float: right;
-    }
-  }
-  .mfb.de.app-slide {
-    .app-img {
-      margin-right: -50px;
-    }
-  }
-}
-
-@media screen and (max-width: 490px) {
-  .mfb.de.app-slide {
-    .app-img {
-      margin-right: -40px;
-      margin-left: -97%;
-    }
-    img {
-      width: 100%;
-      height: auto;
     }
   }
 }
