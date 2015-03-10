@@ -65,36 +65,17 @@ class LocaleListener
 
         $request = $event->getRequest();
 
-        if ($request->attributes->get('_route') == 'promotion_order' || $request->getHost() == 'stfalcon.de') {
-            return;
-        }
-
-        if ($request->query->has('_check')) {
+        if (
+            $request->attributes->get('_route') != 'page_promotion' ||
+            $request->getHost() == 'stfalcon.de' ||
+            $request->query->has('_check')
+        ) {
             return;
         }
 
         $response = new RedirectResponse('/');
 
         $locale = $this->geoIpService->getLocaleByIp($request->getClientIp());
-
-        if (!in_array($request->attributes->get('_route'), ['page_promotion', 'page_promotion_new'])) {
-            $session = $request->getSession();
-
-            if ($cookieLocale = $request->cookies->get($this->localeCookieName)) {
-                if ($request->getLocale() == $cookieLocale) {
-                    $locale = $cookieLocale;
-                } else {
-                    $locale = $request->getLocale();
-                    $session->set('_locale', $locale);
-                }
-            } else {
-                $session->set('_locale', $locale);
-            }
-
-            if ($locale == 'de') {
-                $locale = 'en';
-            }
-        }
 
         if ($request->getLocale() == $locale) {
             return;
