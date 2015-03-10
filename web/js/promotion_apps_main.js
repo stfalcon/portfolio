@@ -17,6 +17,16 @@ $(document).ready(function () {
         return c / 2 * (t * t * t * t * t + 2) + b;
     };
 
+    $('#to-feedback-btn').on('click', function () {
+        var feedbackOffset = $('#feedback-line').offset();
+        if ($(window).width() >= 800) {
+            $('html, body').animate({scrollTop: feedbackOffset.top}, {duration: 1500, easing: 'easeInOutQuint'});
+        } else {
+            $('html, body').animate({scrollTop: feedbackOffset.top}, {duration: 0, easing: 'linear'});
+        }
+        return false;
+    });
+
 /*
  * slider
  * temporay disabled , no client reviews
