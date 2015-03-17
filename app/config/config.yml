@@ -216,3 +216,9 @@ hype_mailchimp:
     api_key: %mc_api_key%
     default_list: %mc_default_list%
     ssl: true
+
+sonata_seo:
+    page:
+        metas:
+            property:
+                'og:image': http://stfalcon.com/img/facebook_cover.jpg
