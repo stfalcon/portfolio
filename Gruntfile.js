@@ -3,7 +3,8 @@ module.exports = function(grunt) {
         autoprefixer: {
             dist: {
                 files: {
-                    'web/assets/css/style.css': 'web/assets/css/style.css'
+                    'web/assets/css/style.css': 'web/assets/css/style.css',
+                    'web/css/style.css': 'web/css/style.css'
                 }
             }
         },

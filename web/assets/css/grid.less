@@ -49,6 +49,20 @@ Span 12:    100%
   .col {
     margin-left:1.5625%;
     padding:0;
+    min-height: 1px;
+
+    &.offset-left-1 {
+      left: 6.90104166667%;
+    }
+    &.offset-left-2 {
+      left: 15.3645833333%;
+    }
+    &.offset-left-3 {
+      left: 23.828125%;
+    }
+    &.offset-left-4 {
+      left: 32.2916666667%;
+    }
   }
 
   /* --- Gridpak variables ---*/
@@ -63,7 +77,8 @@ Span 12:    100%
     .mixin-span_first;
   }
   .row {
-    .clearfix;
+    .clearfix();
+    position: relative;
   }
 
 
