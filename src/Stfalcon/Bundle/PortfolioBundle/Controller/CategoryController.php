@@ -39,6 +39,23 @@ class CategoryController extends Controller
             'game-development'   => 'игр'
         );
 
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('name', 'description', $category->getMetaDescription())
+            ->addMeta('name', 'keywords', $category->getMetaKeywords())
+            ->addMeta(
+                'property',
+                'og:url',
+                $this->generateUrl(
+                    'portfolio_categories_list',
+                    [
+                        'slug' => $category->getSlug(),
+                    ],
+                    true
+                )
+            )
+            ->addMeta('property', 'og:title', $category->getTitle())
+            ->addMeta('property', 'og:description', $category->getMetaDescription());
+
         return array(
             'category'   => $category,
             'categories' => $categories,

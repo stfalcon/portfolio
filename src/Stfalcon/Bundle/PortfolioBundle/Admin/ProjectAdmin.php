@@ -71,6 +71,28 @@ class ProjectAdmin extends Admin
                                 )
                             )
                         ),
+                        'metaKeywords' => array(
+                            'label' => 'Meta keywords',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'metaDescription' => array(
+                            'label' => 'Meta description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        )
                     ),
                     'label' => 'Перевод'
                 )
@@ -80,11 +102,6 @@ class ProjectAdmin extends Admin
             ->add('imageFile', 'file', array('required' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
             ->add('date', 'date')
             ->add('categories')
-            ->add('users', null, array(
-                'attr' => array(
-                    'class' => 'markitup'
-                )
-            ))
             ->add('published', 'checkbox', array('required' => false))
             ->add('shadow', 'checkbox', array('required' => false))
             ->add('onFrontPage', 'checkbox', array('required' => false))

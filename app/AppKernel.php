@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Sonata\SeoBundle\SonataSeoBundle(),
 
             new Vich\UploaderBundle\VichUploaderBundle(),
 
@@ -56,6 +57,7 @@ class AppKernel extends Kernel
             new Stfalcon\RedirectBundle\StfalconRedirectBundle(),
             new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

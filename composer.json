@@ -31,6 +31,8 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.2.7",
         "sonata-project/admin-bundle": "2.2.11",
         "sonata-project/cache-bundle": "2.1.6",
+        "sonata-project/block-bundle": "2.2.13",
+        "sonata-project/seo-bundle": "2.0.0",
 
         "kriswallsmith/assetic": "1.1.*",
         "avalanche123/imagine-bundle": "dev-master#eb03645887f732410127a2b3d992befe0f175277",

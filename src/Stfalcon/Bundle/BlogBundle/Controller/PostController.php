@@ -58,10 +58,34 @@ class PostController extends AbstractController
      */
     public function viewAction(Request $request, $slug)
     {
+        /** @var Post $post */
         $post = $this->get('doctrine')->getManager()
             ->getRepository("StfalconBlogBundle:Post")->findPostBySlugInLocale($slug, $request->getLocale());
+
         if (!$post) {
             return $this->redirect($this->generateUrl('blog'));
+        }
+
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('name', 'description', $post->getMetaDescription())
+            ->addMeta('name', 'keywords', $post->getMetaKeywords())
+            ->addMeta('property', 'og:title', $post->getTitle())
+            ->addMeta(
+                'property',
+                'og:url',
+                $this->generateUrl(
+                    'blog_post_view',
+                    [
+                        'slug' => $post->getSlug(),
+                    ],
+                    true
+                )
+            )
+            ->addMeta('property', 'og:type', 'blog')
+            ->addMeta('property', 'og:description', $post->getMetaDescription());
+
+        if ($post->getImage()) {
+            $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost() . $post->getImage());
         }
 
         return $this->_getRequestArrayWithDisqusShortname(array(

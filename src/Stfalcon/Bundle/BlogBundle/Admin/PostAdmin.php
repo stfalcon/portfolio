@@ -41,12 +41,35 @@ class PostAdmin extends Admin
                                 'class' => 'markitup'
                             )
                         ),
+                        'metaKeywords' => array(
+                            'label' => 'Meta keywords',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'metaDescription' => array(
+                            'label' => 'Meta description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        )
                     ),
                     'label' => 'Перевод'
                 )
             )
             ->add('slug')
             ->add('tags', 'tags')
+            ->add('image', null, ['required' => false])
             ->add('author', null, array(
                     'required' => true,
                     'empty_value' => 'Choose an user'
