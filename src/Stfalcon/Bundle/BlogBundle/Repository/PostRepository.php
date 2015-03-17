@@ -113,7 +113,8 @@ class PostRepository extends EntityRepository
             $qb->innerJoin('p.translations', 'tr')
                 ->andWhere('tr.locale = :locale')
                 ->setParameter('locale', $locale)
-                ->andWhere($qb->expr()->isNotNull('tr.content'));
+                ->andWhere($qb->expr()->isNotNull('tr.content'))
+                ->addGroupBy('p.id');
         }
     }
 
