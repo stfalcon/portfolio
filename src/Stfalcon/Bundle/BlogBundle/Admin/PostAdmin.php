@@ -89,4 +89,13 @@ class PostAdmin extends Admin
             ->add('title')
             ->add('created');
     }
+
+    public function postPersist($post)
+    {
+        $this->postUpdate($post);
+    }
+    public function postUpdate($post)
+    {
+        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+    }
 }

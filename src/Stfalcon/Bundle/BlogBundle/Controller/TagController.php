@@ -32,8 +32,8 @@ class TagController extends AbstractController
      */
     public function viewAction(Request $request, Tag $tag, $page)
     {
-        $translator = $this->get('translator');
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
+
         $query = $repository->findPostsByTagAsQuery($tag, $request->getLocale());
         $posts = $this->get('knp_paginator')
             ->paginate($query, $page, 10);
