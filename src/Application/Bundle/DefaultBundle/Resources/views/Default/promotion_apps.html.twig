@@ -80,13 +80,24 @@
                 <p>{{ 'Мобильное приложение для крупнейшего пассажирского перевозчика в Германии.'|trans }}</p>
             </div>
         </div>
-        <div class="section-right-top">
-            <img class="blank-img small" src="/img/pages/promotions/apps/extended_appslide_blank02.png" alt=""/>
-            <div class="info-wr">
-                <h3>{{ 'Дороги Украины'|trans }}</h3>
-                <p>{{ 'Социальный стартап по оценке качества дорог Украины.'|trans }}</p>
+        {% if app.request.locale == 'en' %}
+            <div class="section-right-top keepsnap-ext">
+                <img class="blank-img small" src="/img/pages/promotions/apps/extended_appslide_blank02.png" alt=""/>
+                <div class="info-wr">
+                    <h3>{{ 'KeepSnap'|trans }}</h3>
+                    <p>{{ 'A commercial service for professional photographers.'|trans }}</p>
+                </div>
             </div>
-        </div>
+        {% else %}
+            <div class="section-right-top">
+                <img class="blank-img small" src="/img/pages/promotions/apps/extended_appslide_blank02.png" alt=""/>
+                <div class="info-wr">
+                    <h3>{{ 'Дороги Украины'|trans }}</h3>
+                    <p>{{ 'Социальный стартап по оценке качества дорог Украины.'|trans }}</p>
+                </div>
+            </div>
+        {% endif %}
+
         <div class="section-right-bottom">
             <img class="blank-img small" src="/img/pages/promotions/apps/extended_appslide_blank02.png" alt=""/>
             <div class="info-wr">

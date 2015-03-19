@@ -113,7 +113,7 @@ function changeServiceCategory(category){
     // Build projects items
     serviceData[category].projects.forEach(function(item, index) {
         var $projectCell = index === 0 ? $('<div class="project-cell project-cell-l"/>') : $('<div class="project-cell"/>');
-        var $projectImg = $('<img alt=""/>').on('load', function(){
+        var $projectImg = $('<img alt="' + item.name +'"/>').on('load', function(){
             loadedCount++;
             heightHuck = $projectList.height();
             $projectList.css({
