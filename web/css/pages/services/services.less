@@ -67,7 +67,7 @@
     }
   }
   .features-list {
-    margin: 41px 0;
+    margin: 41px 0 10px;
     width: 100%;
     overflow: hidden;
 
@@ -140,7 +140,7 @@
 
 @media (min-width: 1330px) {
   .services-tabs {
-    p {
+    p:not(.h1) {
       font-size: 1.143rem;
     }
   }
@@ -188,9 +188,16 @@
   .services-tabs {
     .features-list {
       margin-top: 25px;
-      margin-bottom: 25px;
+      margin-bottom: 10px;
 
+      &.two-column {
+        li {
+            display: inline-block;
+            margin-right: 5.625%;
+        }
+      }
       li {
+        display: block;
         margin-right: 0;
         width: 100%;
 
@@ -217,6 +224,20 @@
         margin-right: 0;
         width: 100%;
         max-width: 315px;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .services-tabs {
+    .features-list {
+      &.two-column {
+        li {
+          width: 100%;
+          display: block;
+          margin-right: 0;
+        }
       }
     }
   }

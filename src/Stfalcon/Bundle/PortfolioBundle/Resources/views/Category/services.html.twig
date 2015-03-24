@@ -45,7 +45,7 @@
                                 {#<p>программирование</p>#}
                             {#</li>#}
                         {#</ul>#}
-                        <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="show-all-projects">{{ "Другие примеры %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</a>
+                        <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="show-all-projects">{{ "Примеры %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</a>
                     </div>
                 {% endif %}
             {% endfor %}
