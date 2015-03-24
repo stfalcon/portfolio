@@ -1,11 +1,12 @@
 .services-tabs {
   .h1 {
-//    margin-left: 7.7083%;
+    margin-left: 7.7083%;
   }
   .tab-nav {
     width: 100%;
     display: table;
     margin-bottom: 47px;
+    table-layout: fixed;
 
     li {
       display: table-cell;
@@ -24,7 +25,8 @@
       color: #2c373c;
       font-weight: 500;
       padding: 0 15px;
-      max-width: 192px;
+      max-width: 210px;
+      line-height: 1.333;
     }
     a {
       display: block;
@@ -34,6 +36,7 @@
       font-size: 16px;
       text-decoration: none;
       font-weight: 500;
+      font-family: 'museo_sans_cyrl';
     }
   }
   .tab-content {
@@ -59,19 +62,44 @@
       margin-left: 7.97%;
       margin-bottom: 35px;
     }
+    strong {
+      font-weight: normal;
+    }
   }
   .features-list {
     margin: 41px 0;
     width: 100%;
     overflow: hidden;
 
+    &.two-column {
+      li {
+        width: 44.37%;
+
+        &:nth-child(3n) {
+          clear: left;
+          margin-right: 5.625%;
+        }
+        &:nth-child(4n) {
+          clear: none;
+        }
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+    }
     li {
-      float: left;
+      display: inline-block;
+//      float: left;
       width: 27.7%;
       margin-right: 5.625%;
+      margin-bottom: 10px;
+      vertical-align: top;
 
-      &:last-child {
+      &:nth-child(3n) {
         margin-right: 0;
+      }
+      &:nth-child(4n) {
+        clear: left;
       }
       p {
         margin-left: 0;
@@ -110,8 +138,19 @@
   }
 }
 
+@media (min-width: 1330px) {
+  .services-tabs {
+    p {
+      font-size: 1.143rem;
+    }
+  }
+}
+
 @media (max-width: 860px) {
   .services-tabs {
+    .h1 {
+      margin-left: 0;
+    }
     .tab-nav {
       display: block;
       margin-bottom: 28px;
@@ -157,6 +196,9 @@
 
         h2 {
           height: auto;
+        }
+        p {
+          font-size: 1rem;
         }
       }
     }
