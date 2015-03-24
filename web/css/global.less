@@ -86,7 +86,7 @@ textarea {
   resize: vertical;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .h1 {
   margin-top: 0;
   font-family: 'museo_sans_cyrl', @global-font;
   font-weight: normal;
@@ -98,7 +98,7 @@ h4, h5, h6 {
   font-family: @global-font;
 }
 
-h1 {
+h1, .h1 {
   font-size: 3rem;  
   font-weight: normal;
 }
@@ -135,7 +135,7 @@ p {
 }
 
 @media screen and (max-width:1330px){
-  h1 {
+  h1, .h1 {
     font-size: 2.571rem;
   }
 
@@ -158,7 +158,7 @@ p {
 
 
 @media screen and (max-width:1023px) {
-  h1 {
+  h1, .h1 {
     font-size: 2rem;
   }
   h2 {
@@ -839,7 +839,7 @@ input.error {
   }
 
   .content {
-    width: 93.75%;
+    width: 91%;
   }
 
 }
