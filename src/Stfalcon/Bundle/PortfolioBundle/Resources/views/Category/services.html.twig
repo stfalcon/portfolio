@@ -19,7 +19,6 @@
             {% endfor %}
         </ul>
         <div class="tab-content-wrapper">
-            <div class="services-img img-{{ category.ordernum }}"></div>
             {% for c in categories %}
                 {% if c.id == category.id %}
                     <div id="{{ c.slug }}" class="tab-content">
@@ -47,10 +46,6 @@
                             {#</li>#}
                         {#</ul>#}
                         <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="show-all-projects">{{ "Другие примеры %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</a>
-                    </div>
-                {% else %}
-                    <div id="{{ c.slug }}" class="tab-content">
-                        <a class="tab-title"  href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">{{ c.name }}</a>
                     </div>
                 {% endif %}
             {% endfor %}
