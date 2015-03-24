@@ -79,6 +79,8 @@ assetic:
     assets:
         jquery: vendor/jquery/jquery-1.7.2.min.js
         jquery_ui: vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js
+    workers:
+        cache_busting: ~
 
 # MenuBundle enable template helpers
 knp_menu:
@@ -216,3 +218,9 @@ hype_mailchimp:
     api_key: %mc_api_key%
     default_list: %mc_default_list%
     ssl: true
+
+sonata_seo:
+    page:
+        metas:
+            property:
+                'og:image': http://stfalcon.com/img/facebook_cover.jpg

@@ -56,6 +56,7 @@
             <argument type="service" id="router"/>
             <argument>%locales%</argument>
             <argument>%jms_i18n_routing.cookie.name%</argument>
+            <argument type="service" id="kernel"/>
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
         </service>
 
@@ -93,6 +94,13 @@
         <service id="application_default.monolog.processor.added_host" class="Monolog\Processor\WebProcessor">
             <tag name="monolog.processor" method="__invoke"/>
         </service>
+
+        <service class="Application\Bundle\DefaultBundle\Service\SitemapService" id="application_defaultbundle.service.sitemap">
+            <argument id="doctrine.orm.default_entity_manager" type="service"/>
+            <argument id="jms_i18n_routing.router" type="service"/>
+            <argument>%kernel.root_dir%/../web</argument>
+        </service>
+
     </services>
 
 </container>

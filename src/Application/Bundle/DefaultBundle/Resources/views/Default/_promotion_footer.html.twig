@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <span>{{ 'Skype'|trans }}:</span>
-                    <a href="skype:stfalcon.sales">stfalcon.sales</a>
+                    <a href="skype:stfalcon.sales?chat">stfalcon.sales</a>
                 </li>
                 <li>
                     <span>{{ 'Написать'|trans }}:</span>
@@ -43,11 +43,12 @@
                 <ul class="socials">
                     <li><a href="https://www.facebook.com/stfalconcom" class="icon icon-facebook" target="_blank"></a></li>
                     <li><a href="https://twitter.com/stfalcon" class="icon icon-twitter" target="_blank"></a></li>
+                    <li><a href="https://www.youtube.com/user/stfalconcom" class="icon icon-youtube" target="_blank"></a></li>
                     <li><a href="https://github.com/stfalcon-studio" class="icon icon-github" target="_blank"></a></li>
                 </ul>
             {% endif %}
             <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
-                <span class="category">{{ 'веб-студия'|trans }}</span>
+                <span class="category">{{ 'студия'|trans }}</span>
                 {% if app.request.locale != 'de' %}
                     <a href="http://stfalcon.com" title="stfalcon" class="fn org">stfalcon.com</a>
                 {% else %}

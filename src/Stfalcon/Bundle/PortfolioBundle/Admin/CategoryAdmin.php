@@ -99,4 +99,13 @@ class CategoryAdmin extends Admin
             ->addIdentifier('slug')
             ->add('name');
     }
+
+    public function postPersist($post)
+    {
+        $this->postUpdate($post);
+    }
+    public function postUpdate($post)
+    {
+        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+    }
 }

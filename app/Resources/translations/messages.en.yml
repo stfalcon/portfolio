@@ -57,6 +57,8 @@ title: __title
 
 Проекты: Projects
 
+Таг: Tag
+
 'Следующий проект': 'Next project'
 Сортировка: Sort
 'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us, you choose a reliable business partner!'
@@ -81,8 +83,10 @@ title: __title
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
-'Веб-студия': 'web studio'
-'веб-студия': 'web studio'
+'Студия': 'Studio'
+'студия': 'studio'
+'веб-студия': 'Web-Studio'
+'Разработка сайтов и мобильных приложений. Дизайн сайтов': 'Websites and mobile applications development. Site design'
 'Навигация': 'Navigation'
 
 'Меломаны': 'Music addicts'
@@ -120,8 +124,8 @@ title: __title
 'Увлекательный мобильный вариант одноименной настольной игры': Fascinating mobile version of the puzzle board game
 'Двумерный аркадный шутер, оружие и враги в ассортименте': 2D arcade shooter, weapons and enemies in range
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
-'Принимаем активное участие в развитии популярного PHP фреймворка <a href="%link%" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.': We're participating in the development of the <a href="%link%" target="_blank">Symfony2</a> PHP framework. Because of this, we have extensive experience in developing websites with this framework.
-'Создали целый набор полезных плагинов для системы управления контентом <a href="%link%" target="_blank">LiveStreet</a>.': We've created a set of useful plugins for <a href="%link%" target="_blank">LiveStreet</a> content management systems.
+'Принимаем активное участие в развитии популярного PHP фреймворка <a href="%link%" rel="nofollow" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.': We're participating in the development of the <a href="%link%" rel="nofollow" target="_blank">Symfony2</a> PHP framework. Because of this, we have extensive experience in developing websites with this framework.
+'Создали целый набор полезных плагинов для системы управления контентом <a href="%link%" rel="nofollow" target="_blank">LiveStreet</a>.': We've created a set of useful plugins for <a href="%link%" rel="nofollow" target="_blank">LiveStreet</a> content management systems.
 
 разработка<br/>веб-сайтов: Web<br/>Development
 Дизайн сайтов<br/>и интерфейсов: Web and UI<br/>Design
@@ -139,3 +143,9 @@ title: __title
 ул. Заречанская 3/2, Хмельницкий, Украина: Konigstraße 80, 70173 Stuttgart, BW, Germany
 
 Подписаться на новые записи: Subscribe for new posts
+
+'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony2, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'
+
+Наши приложения: Our Apps
+
+'Кулинарное приложение сообщества для тех, кто любит&nbsp;готовить.': 'Culinary app for a community of people who love to cook.'

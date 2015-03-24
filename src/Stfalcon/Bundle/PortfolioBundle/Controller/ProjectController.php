@@ -3,12 +3,13 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Project controller
@@ -74,32 +75,37 @@ class ProjectController extends Controller
      * @Route("/portfolio/{categorySlug}/{projectSlug}", name="portfolio_project_view")
      * @Template()
      * @throws NotFoundHttpException
+     *
+     * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
+     * @ParamConverter("project", options={"mapping": {"projectSlug": "slug"}})
      */
-    public function viewAction($categorySlug, $projectSlug)
+    public function viewAction(Request $request, Category $category, Project $project)
     {
-        $translator = $this->get('translator');
-        // @todo упростить когда что-то разрулят с этим PR https://github.com/sensio/SensioFrameworkExtraBundle/pull/42
-
-        // try find category by slug
-        $category = $this->_findCategoryBySlug($categorySlug);
-
-        // try find project by slug
-        $project = $this->_findProjectBySlug($projectSlug);
-
-        if (!$project->getCategories()->contains($category)) {
-            throw new NotFoundHttpException($translator->trans('Проект не существует.'));
-        }
-
-        if ($this->has('application_default.menu.breadcrumbs')) {
-            $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
-            $breadcrumbs->addChild(
-                $category->getName(),
-                array(
-                    'route' => 'portfolio_category_view',
-                    'routeParameters' => array('slug' => $category->getSlug())
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('name', 'description', $project->getMetaDescription())
+            ->addMeta('name', 'keywords', $project->getMetaKeywords())
+            ->addMeta('property', 'og:title', $project->getName())
+            ->addMeta(
+                'property',
+                'og:url',
+                $this->generateUrl(
+                    'portfolio_project_view',
+                    [
+                        'categorySlug' => $category->getSlug(),
+                        'projectSlug' => $project->getSlug()
+                    ],
+                    true
                 )
+            )
+            ->addMeta('property', 'og:type', 'portfolio')
+            ->addMeta('property', 'og:description', $project->getMetaDescription());
+
+        if ($project->getImage()) {
+            $seo->addMeta(
+                'property',
+                'og:image',
+                $request->getSchemeAndHttpHost() . $this->get('vich_uploader.templating.helper.uploader_helper')->asset($project, 'imageFile')
             );
-            $breadcrumbs->addChild($project->getName())->setCurrent(true);
         }
 
         return array('project' => $project, 'category' => $category);

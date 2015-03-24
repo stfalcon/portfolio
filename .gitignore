@@ -8,6 +8,9 @@ vendor/*
 web/uploads/*
 web/bundles/*
 web/cache/*
+web/media/*
+web/assetic/*
+bin/*
 attachments/*
 !attachments/.gitkeep
 

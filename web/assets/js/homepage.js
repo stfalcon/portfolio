@@ -113,7 +113,7 @@ function changeServiceCategory(category){
     // Build projects items
     serviceData[category].projects.forEach(function(item, index) {
         var $projectCell = index === 0 ? $('<div class="project-cell project-cell-l"/>') : $('<div class="project-cell"/>');
-        var $projectImg = $('<img alt=""/>').on('load', function(){
+        var $projectImg = $('<img alt="' + item.name +'"/>').on('load', function(){
             loadedCount++;
             heightHuck = $projectList.height();
             $projectList.css({
@@ -162,4 +162,31 @@ servicesTabs.on('click', function(e){
 //           return false;
 });
 
-changeServiceCategory('development');
+function activeTabByHash(hash) {
+    $('.projects-tabs a').removeClass('active');
+
+    var $link = $('.projects-tabs').find('a[data-category="'+hash+'"]');
+    $link.addClass('active');
+    showServiceTabs(hash);
+}
+
+function changeTabByHash(hash) {
+    if (hash.length>0) {
+        activeTabByHash(hash);
+    } else {
+        //go to default category
+        activeTabByHash('development');
+    }
+}
+
+$(document).ready(function() {
+    var hash = window.location.hash;
+    hash = hash.substr(2);
+    changeTabByHash(hash);
+});
+
+
+$.History.bind(function(state) {
+    var hash = state.substr(1);
+    changeTabByHash(hash);
+});

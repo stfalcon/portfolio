@@ -150,13 +150,6 @@ class Project implements Translatable
     private $categories;
 
     /**
-     * @var string $users
-     *
-     * @ORM\Column(name="users", type="text", nullable=true)
-     */
-    private $users;
-
-    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Application\Bundle\UserBundle\Entity\User")
@@ -219,6 +212,22 @@ class Project implements Translatable
      * @Gedmo\Locale
      */
     private $locale;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_keywords", type="text", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $metaKeywords;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_description", type="text", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $metaDescription;
 
     /**
      * Initialization properties for new project entity
@@ -710,5 +719,45 @@ class Project implements Translatable
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaKeywords()
+    {
+        return $this->metaKeywords;
+    }
+
+    /**
+     * @param string $metaKeywords
+     *
+     * @return Project
+     */
+    public function setMetaKeywords($metaKeywords)
+    {
+        $this->metaKeywords = $metaKeywords;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * @param string $metaDescription
+     *
+     * @return Project
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
     }
 }

@@ -1,9 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}{{ category.title }} / {{ parent() }}{% endblock %}
-
-{% block meta_description %}{{ category.metaDescription }}{% endblock meta_description %}
-{% block meta_keywords %}{{ category.metaKeywords }}{% endblock meta_keywords %}
+{% block title %}{{ category.title }} | {{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
     <section class="services-tabs">
