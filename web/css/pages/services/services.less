@@ -1,322 +1,181 @@
 .services-tabs {
+  .h1 {
+//    margin-left: 7.7083%;
+  }
+  .tab-nav {
+    width: 100%;
+    display: table;
+    margin-bottom: 47px;
+
+    li {
+      display: table-cell;
+      height: 65px;
+      border: solid 1px transparent;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .active {
+      border-color: #d7c76e;
+    }
     h1 {
-        margin-left: 7.7083%;
+      padding: 0;
+      margin: 0 auto;
+      font-size: 16px;
+      color: #2c373c;
+      font-weight: 500;
+      padding: 0 15px;
+      max-width: 192px;
     }
-    .tab-title {
-        display: none;
+    a {
+      display: block;
+      max-width: 192px;
+      margin: 0 auto;
+      padding: 0 15px;
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: 500;
     }
+  }
+  .tab-content {
+    position: relative;
+
+    svg {
+      position: absolute;
+      left: 7.97%;
+      top: 4px;
+      width: 120px;
+      height: 120px;
+      fill: #697378;
+    }
+    p, h2 {
+      margin-left: 25%;
+    }
+    h2 {
+      margin-top: 25px;
+      font-size: 19px;
+    }
+    h3 {
+      font-size: 28px;
+      margin-left: 7.97%;
+      margin-bottom: 35px;
+    }
+  }
+  .features-list {
+    margin: 41px 0;
+    width: 100%;
+    overflow: hidden;
+
+    li {
+      float: left;
+      width: 27.7%;
+      margin-right: 5.625%;
+
+      &:last-child {
+        margin-right: 0;
+      }
+      p {
+        margin-left: 0;
+        font-size: 13px;
+      }
+      h2 {
+        margin-left: 0;
+        margin-top: 0;
+      }
+    }
+    h2 {
+      font-size: 19px;
+    }
+  }
+  .projects {
+    margin-bottom: 28px;
+
+    li {
+      font-size: 0;
+      width: 31.453%;
+      max-width: 500px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+      img+p {
+        font-size: 14px;
+        font-weight: bold;
+        color: #2c373c;
+        font-family: "Helvetica Neue", "Arial", sans-serif;
+      }
+      p {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .services-tabs {
     .tab-nav {
-        overflow: hidden;
-        margin-bottom: 47px;
-        margin: 0 0 47px 7.7083%;
-        padding: 42px 0 10px;
+      display: block;
+      margin-bottom: 28px;
 
-        h2 {
-            width: 150px;
-            margin: 0;
-            font-size: 1.714rem;
-            line-height: 1em;
+      li {
+        display: block;
+        border: none;
+        margin-bottom: 10px;
+        text-align: left;
+        height: auto;
+
+        h1, a {
+          max-width: 1000px;
+          display: inline-block;
+          padding: 0;
         }
-        li {
-            float: left;
-            width: 22.1875%;
-            margin-right: 3.7%;
-
-            &:last-child {
-                margin-right: 0;
-            }
-            &.ui-tabs-active {
-                a {
-                    color: @global-text-color;
-                    border-color: transparent;
-
-                    &:before {
-                        opacity: 0;
-                    }
-                }
-            }
-        }
-        a {
-            position: relative;
-            font-size: 1.500rem;
-            color: #6a84d1;
-            text-decoration: none;
-            font-family: 'museo_sans_cyrl', @global-font;
-            outline: solid 0px transparent;
-            border-bottom:  dotted 1px #6a84d1;
-
-            &:before {
-                content: "";
-                position: absolute;
-                background: @sprite;
-                top: -35px;
-                left: 0;
-                .transition(all 150ms ease-in-out);
-            }
-            &[href$="web-development"] {
-                &:before {
-                    width: 17px;
-                    height: 16px;
-                    background-position: -164px -37px;
-                }
-            }
-            &[href$="web-design"] {
-                &:before {
-                    width: 19px;
-                    height: 18px;
-                    background-position: -182px -37px;
-                }
-            }
-            &[href$="mobile-development"] {
-                &:before {
-                    width: 15px;
-                    height: 15px;
-                    background-position: -204px -37px;
-                }
-            }
-            &[href$="game-development"] {
-                &:before {
-                    width: 15px;
-                    height: 15px;
-                    background-position: -222px -37px;
-                }
-            }
-        }
-    }
-    .tab-content-wrapper {
-        position: relative;
-        margin: 0 0 0 7.7083%;
-
-        .services-img {
-            position: absolute;
-            left: -28px;
-            top: -19px;
-            width: 158px;
-            height: 147px;
-            background: @sprite -1px -98px;
-
-            &.img-2 {
-                top: -25px;
-                left: -17px;
-                width: 138px;
-                height: 141px;
-                background-position: -176px -98px;
-            }
-            &.img-3 {
-                top: -22px;
-                left: -16px;
-                width: 136px;
-                height: 136px;
-                background-position: -330px -98px;
-            }
-            &.img-4 {
-                top: -22px;
-                left: -17px;
-                width: 136px;
-                height: 136px;
-                background-position: -490px -98px;
-            }
-        }
+      }
     }
     .tab-content {
-        .clearfix;
-        margin: 0 0 100px 16.9791%;
+      svg {
         display: none;
-
-        &.open {
-            display: block;
-        }
+      }
+      p, h2 {
+        margin-left: 0;
+      }
+      h3 {
+        margin-left: 0;
+        text-align: center;
+      }
     }
-    .tab-text {
-        float: left;
-        margin-right: 4.338%;
-        width: 58.5416%;
-
-        p {
-            margin: 0;
-        }
-    }
-    .price {
-        position: relative;
-        float: left;
-        margin: 0 0 40px 60px;
-        font-size: 12px;
-
-        &:before {
-            content: "";
-            position: absolute;
-            left: -75px;
-            top: 8px;
-            width: 60px;
-            border-top: solid 1px #c3c7c8;
-        }
-        span {
-            display: block;
-            font-size: 30px;
-            font-family: 'museo_sans_cyrl', @global-font;
-        }
-    }
-    .show-in-portfolio {
-        .clearfix;
-        float: left;
-        width: 230px;
-        color: #6a84d1;
-        font-size: 0.750em;
-
-        span {
-            display: inline-block;
-
-            &:last-child {
-                margin-top: 8px;
-                width: 160px;
-                text-decoration: underline;
-            }
-        }
-        .arrow-btn {
-            position: relative;
-            float: left;
-            margin: 0 10px 0 0;
-            .sq(49px);
-            border-radius: 50%;
-            background: #fff;
-
-            &:before {
-                content: "";
-                position: absolute;
-                top: 15px;
-                left: 22px;
-                width: 10px;
-                height: 20px;
-                background: @sprite -226px -8px;
-            }
-        }
-    }
+  }
 }
 
-.svg  {
-    .tab-nav {
-        a {
-            &:before {
-                background-image: @spriteSVG;
-            }
+@media (max-width: 765px) {
+  .services-tabs {
+    .features-list {
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      li {
+        margin-right: 0;
+        width: 100%;
+
+        h2 {
+          height: auto;
         }
+      }
     }
-    .tab-content-wrapper {
-        .services-img {
-            background-image: @spriteSVG;
-        }
-    }
-    .show-in-portfolio {
-        .arrow-btn {
-            &:before {
-                background-image: @spriteSVG;
-            }
-        }
-    }
+  }
+  .show-all-projects {
+    font-size: 13px;
+  }
 }
 
-@media screen and (max-width:1025px) {
-    .services-tabs {
-        .tab-content-wrapper, .tab-nav {
-            margin-left: 0;
-        }
-    }
-}
+@media (max-width: 730px) {
+  .services-tabs {
+    .projects {
+      margin-bottom: 0;
 
-@media screen and (max-width:1005px) {
-    .services-tabs {
-        .tab-text {
-            width: 57%;
-        }
-        .tab-nav {
-            margin-bottom: 27px;
-        }
-        .img {
-            display: none !important;
-        }
-        .tab-content {
-            margin-left: 0;
-        }
+      li {
+        margin-right: 0;
+        width: 100%;
+        max-width: 315px;
+      }
     }
-    .services-img {
-        display: none;
-    }
-}
-
-@media screen and (max-width:670px) {
-    .tab-nav {
-        display: none;
-    }
-    .services-tabs {
-        margin-bottom: 37px;
-
-        h1 {
-            margin: 0 0 11px 7px;
-            font-size: 1.929rem;
-        }
-        .tab-content {
-            display: block;
-            overflow: hidden;
-            margin-bottom: 7px;
-            padding: 12px 7px 13px;
-            background: #fff;
-        }
-        .tab-title {
-            position: relative;
-            display: inline-block;
-            font-size: 1.357rem;
-            text-decoration: none;
-            border-bottom: dotted 1px;
-            color: #3457c0;
-            cursor: pointer;
-
-            &:after {
-                content: "";
-                position: absolute;
-                left: -7px;
-                top: -14px;
-                width: 400%;
-                height: 52px;
-            }
-        }
-        .tab-text {
-            float: none;
-            margin: 0;
-            width: auto;
-        }
-        .price {
-            float: none;
-            margin: 11px 0 12px;
-            font-size: 1rem;
-            font-weight: bold;
-
-            &:before {
-                display: none;
-            }
-            span {
-                font-size: 1rem;
-                display: inline;
-                font-family: @global-font;
-            }
-        }
-        .show-in-portfolio {
-            display: block;
-            float: none;
-            font-size: 1rem;
-
-            .arrow-btn {
-                display: none;
-            }
-            span {
-                display: inline;
-            }
-        }
-    }
-    .open {
-        .tab-title {
-            border: none;
-            color: @global-text-color;
-            margin-bottom: 9px;
-        }
-    }
+  }
 }

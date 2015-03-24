@@ -1,0 +1,130 @@
+/**
+ * Gridpak Beta LESS
+ *
+ * Generator - http://gridpak.com/
+ * Created by @erskinedesign
+ */
+
+/* Reusable column setup */
+.mixin-col {
+  border: 0px solid rgba(0,0,0,0);
+  float:left;
+  box-sizing:border-box;
+}
+.col {
+  .mixin-col;
+}
+
+.mixin-span(@num, @gutter_pc, @gutter_px, @padding, @max_columns) {
+  @one_col: (100% - (@gutter_pc * (@max_columns - 1))) / @max_columns;
+  width:(@one_col * @num) + (@gutter_pc * (@num - 1));
+  border-left-width:@gutter_px;
+  padding:@padding;
+  margin-left:@gutter_pc;
+}
+.mixin-span_first {
+  margin-left:0;
+}
+
+
+
+/* 1. 12 Column Grid 0px - Infinity
+-----------------------------------------------------------------------------
+
+Span 1:    6.90104166667%
+Span 2:    15.3645833333%
+Span 3:    23.828125%
+Span 4:    32.2916666667%
+Span 5:    40.7552083333%
+Span 6:    49.21875%
+Span 7:    57.6822916667%
+Span 8:    66.1458333333%
+Span 9:    74.609375%
+Span 10:    83.0729166667%
+Span 11:    91.5364583333%
+Span 12:    100%
+
+----------------------------------------------------------------------------- */
+
+  .col {
+    margin-left:1.5625%;
+    padding:0;
+    min-height: 1px;
+
+    &.offset-left-1 {
+      left: 6.90104166667%;
+    }
+    &.offset-left-2 {
+      left: 15.3645833333%;
+    }
+    &.offset-left-3 {
+      left: 23.828125%;
+    }
+    &.offset-left-4 {
+      left: 32.2916666667%;
+    }
+  }
+
+  /* --- Gridpak variables ---*/
+  @max_columns: 12;
+  @padding: 0 0%;
+  @gutter_px: 0;
+  @gutter_pc: 1.5625%;
+
+
+
+  .row .col:first-child {
+    .mixin-span_first;
+  }
+  .row {
+    .clearfix();
+    position: relative;
+  }
+
+
+/*
+Add your semantic classnames in alongside their corresponding spans here. e.g.
+
+.span_3,
+.my_semantic_class_name {
+    ...
+}
+
+*/
+.col-1 {
+  .mixin-span(1, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-2 {
+  .mixin-span(2, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-3 {
+  .mixin-span(3, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-4 {
+  .mixin-span(4, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-5 {
+  .mixin-span(5, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-6 {
+  .mixin-span(6, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-7 {
+  .mixin-span(7, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-8 {
+  .mixin-span(8, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-9 {
+  .mixin-span(9, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-10 {
+  .mixin-span(10, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-11 {
+  .mixin-span(11, @gutter_pc, @gutter_px, @padding, @max_columns);
+}
+.col-12 {
+  .mixin-span_first;
+  width:100%;
+}
