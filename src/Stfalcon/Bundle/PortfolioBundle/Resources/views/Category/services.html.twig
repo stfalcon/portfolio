@@ -22,7 +22,6 @@
             {% for c in categories %}
                 {% if c.id == category.id %}
                     <div id="{{ c.slug }}" class="tab-content">
-                        <div id="web-development" class="tab-content">
                         {{ category.description | raw }}
                         {#<h3>Примеры разработки веб-сайтов</h3>#}
                         {#<ul class="projects">#}
