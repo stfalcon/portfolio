@@ -29,7 +29,7 @@ class ProjectController extends Controller
     public function allProjectsAction($page)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projectsQuery = $repository->findAllProjectsOrderingByDateAsQuery();
+        $projectsQuery = $repository->findAllProjectsOrderingByDateAsQuery('p.ordernum', 'ASC');
         $projectsWithPaginator = $this->get('knp_paginator')->paginate($projectsQuery, $page, 12);
 
         return array('projects' => $projectsWithPaginator);
