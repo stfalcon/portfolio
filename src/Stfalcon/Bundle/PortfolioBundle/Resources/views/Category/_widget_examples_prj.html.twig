@@ -1,0 +1,6 @@
+<ul class="projects">
+    {% for p in projects %}
+        {% include 'StfalconPortfolioBundle:Project:_projects_list_item.html.twig' with {'category' :category ,'project' : p} %}
+    {% endfor %}
+</ul>
+
