@@ -7,19 +7,17 @@
 
 {% block content_wrapper %}
     <section class="services-tabs">
-        <h1>{{ "Чем мы занимаемся"|trans }}</h1>
+        <p class="h1">{{ "Чем мы занимаемся"|trans }}</p>
         <ul class="tab-nav">
             {% for c in categories %}
-                <li {% if c.id == category.id %}class="ui-tabs-active"{% endif %}>
-                    <h2>
-                        {% if c.id == category.id %}
-                            <a class="active">{{ c.name }}</a>
-                        {% else %}
-                            <a href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">
-                                {{ c.name }}
-                            </a>
-                        {% endif %}
-                    </h2>
+                <li {% if c.id == category.id %}class="active"{% endif %}>
+                    {% if c.id == category.id %}
+                        <h1>{{ c.name }}</h1>
+                    {% else %}
+                        <a href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">
+                            {{ c.name }}
+                        </a>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
@@ -27,20 +25,31 @@
             <div class="services-img img-{{ category.ordernum }}"></div>
             {% for c in categories %}
                 {% if c.id == category.id %}
-                    <div id="{{ c.slug }}" class="tab-content open">
-                        <a class="tab-title">{{ category.name }}</a>
-                        <div class="accordion-wrapper">
-                            <div class="tab-text">
-                                {{ category.description | raw }}
-                            </div>
-                            <div class="price">
-                                {{ "Стоимость проекта %wrap_start%от %price% $%wrap_end%"|trans({'%price%': category.cost, '%wrap_start%': '<span>', '%wrap_end%': '</span>'})|raw }}
-                            </div>
-                            <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
-                                <span class="arrow-btn"></span>
-                                <span>{{ "посмотреть примеры проектов %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</span>
-                            </a>
-                        </div>
+                    <div id="{{ c.slug }}" class="tab-content">
+                        {{ category.description | raw }}
+                        {#<h3>Примеры разработки веб-сайтов</h3>#}
+                        {#<ul class="projects">#}
+                            {#<li>#}
+                                {#<a href="/portfolio/web-development/naberezhny-kvartal-crm">#}
+                                    {#<img src="http://stfalcon.com/media/cache/project_thumb/uploads/portfolio/projects/54f702bc2dbaa.png" alt="CRM для проекта «Набережный квартал»">#}
+                                    {#<p>CRM для проекта «Набережный квартал»</p>#}
+                                {#</a>#}
+                                {#<p>дизайн интерфейса, программирование, верстка</p>#}
+                            {#</li>                            <li>#}
+                                {#<a href="/portfolio/web-design/truesocialmetrics-com">#}
+                                    {#<img src="http://stfalcon.com/media/cache/project_thumb/uploads/portfolio/projects/54f8379ee155b.png" alt="TrueSocialMetrics.com">#}
+                                    {#<p>TrueSocialMetrics.com</p>#}
+                                {#</a>#}
+                                {#<p>дизайн опыта взаимодействия</p>#}
+                            {#</li>                            <li>#}
+                                {#<a href="/portfolio/mobile-development/patrolife-ru-android">#}
+                                    {#<img src="http://stfalcon.com/media/cache/project_thumb/uploads/portfolio/projects/54f817a96e5e6.png" alt="Приложение Patrolife для Android">#}
+                                    {#<p>Приложение Patrolife для Android</p>#}
+                                {#</a>#}
+                                {#<p>программирование</p>#}
+                            {#</li>#}
+                        {#</ul>#}
+                        <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="show-all-projects">{{ "Другие примеры %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</a>
                     </div>
                 {% else %}
                     <div id="{{ c.slug }}" class="tab-content">
