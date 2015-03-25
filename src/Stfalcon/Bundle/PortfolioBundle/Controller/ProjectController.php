@@ -191,4 +191,22 @@ class ProjectController extends Controller
 
         return $project;
     }
+
+    /**
+     * Widget examples work for page services
+     *
+     * @param $category
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function widgetExamplesProjectAction($category) {
+        $em = $this->getDoctrine()->getManager();
+
+        $projects = $em->getRepository("StfalconPortfolioBundle:Project")
+            ->findAllExamplesProjectsByCategory($category);
+
+        return $this->render('StfalconPortfolioBundle:Category:_widget_examples_prj.html.twig', [
+            'projects' => $projects,
+            'category' => $category
+        ]);
+    }
 }

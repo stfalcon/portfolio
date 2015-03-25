@@ -99,4 +99,18 @@ class ProjectRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param Category $category
+     * @param int      $limit
+     *
+     * @return array
+     */
+    public function findAllExamplesProjectsByCategory(Category $category, $limit = 3)
+    {
+        $qb = $this->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC')
+            ->setMaxResults($limit);
+
+        return $qb->getResult();
+    }
 }
