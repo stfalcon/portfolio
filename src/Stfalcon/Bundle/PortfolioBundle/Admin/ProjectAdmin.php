@@ -1,6 +1,7 @@
 <?php
 namespace Stfalcon\Bundle\PortfolioBundle\Admin;
 
+use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -31,6 +32,8 @@ class ProjectAdmin extends Admin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $currentProject = $this->getSubject();
+
         $formMapper
             ->add('translations', 'a2lix_translations_gedmo', array(
                     'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
@@ -60,6 +63,20 @@ class ProjectAdmin extends Admin
                                 'class' => 'markitup'
                             )
                         ),
+                        'caseContent' => [
+                            'label' => 'Case content',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => false
+                                ],
+                                'en' => [
+                                    'required' => false
+                                ]
+                            ],
+                            'attr' => array(
+                                'class' => 'markitup'
+                            )
+                        ],
                         'tags' => array(
                             'label' => 'Tags',
                             'locale_options' => array(
@@ -105,6 +122,22 @@ class ProjectAdmin extends Admin
             ->add('published', 'checkbox', array('required' => false))
             ->add('shadow', 'checkbox', array('required' => false))
             ->add('onFrontPage', 'checkbox', array('required' => false))
+            ->add('showCase', 'checkbox', array('required' => false))
+            ->add('relativeProjects', 'entity', array(
+                'required' => false,
+                'label' => 'Похожие проекты',
+                'class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
+                'multiple' => true,
+                'query_builder' => function(EntityRepository $repository) use ($currentProject) {
+                    $qb = $repository->createQueryBuilder('p');
+
+                    if ($currentProject->getId()) {
+                        $qb->andWhere($qb->expr()->neq('p.id', $currentProject->getId()));
+                    }
+
+                    return $qb;
+                }
+            ))
             ->add('participants', 'entity', array(
                 'required' => false,
                 'label' => 'Учасники',

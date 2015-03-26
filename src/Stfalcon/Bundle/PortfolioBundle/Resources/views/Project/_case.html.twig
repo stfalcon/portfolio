@@ -1,0 +1,51 @@
+<article class="page-wrapper project-case">
+    <div class="head-row">
+        <div class="col col-1"></div>
+        <div class="col col-4">
+            <h1>{{ project.name }}</h1>
+            <a href="{{ project.url }}" rel="nofollow" target="_blank" class="project-link">{{ project.url }}</a>
+            {#<ul class="tags">#}
+                {#<li><a href="#">Проектирование</a></li>#}
+                {#<li><a href="#">Дизайн сайта</a></li>#}
+                {#<li><a href="#">Разработка backend</a></li>#}
+                {#<li><a href="#">Разработка backend</a></li>#}
+            {#</ul>#}
+        </div>
+    </div>
+    {{ project.caseContent | raw }}
+    {% if project.participants | length %}
+        <div class="row worked-on-project">
+                <h2>{{ 'Над проектом работали'|trans }}:</h2>
+                <ul class="team-list  team-list-small">
+                    {% for participant in project.participants %}
+                        <li>
+                            {% if participant.avatarName %}
+                                <img src="{{ vich_uploader_asset(participant, 'avatar') | apply_filter('avatar_small') }}" alt="{{ participant.firstname ~ ' ' ~ participant.lastname }}"/>
+                            {% endif %}
+                            <span>{{ participant.firstname ~ ' ' ~ participant.lastname }}</span>
+                            <p>{{ participant.position }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+        </div>
+    {% endif %}
+    {% if project.relativeProjects | length %}
+        <div class="row similar-projects">
+            <h2>{{ "Смотрите также" | trans() }}</h2>
+            <ul class="projects">
+                {% for relativeProject in project.relativeProjects %}
+                    <li>
+                        <a href="{{ path('portfolio_project_view', {'categorySlug': relativeProject.categories.first.slug, 'projectSlug': relativeProject.slug}) }}">
+                            {% if relativeProject.image %}
+                                <img src="{{ vich_uploader_asset(relativeProject, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ relativeProject.name }}" />
+                            {% endif %}
+
+                            <h3>{{ relativeProject.name }}</h3>
+                        </a>
+                        <p>{{ project.tags }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</article>
