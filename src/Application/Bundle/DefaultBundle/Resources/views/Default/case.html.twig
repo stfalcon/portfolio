@@ -11,18 +11,11 @@
             {% include '::_header_index.html.twig' %}
         </header>
         <article class="page-wrapper project-case">
-            <div class="row case-header">
+            <div class="head-row">
                 <div class="col col-1"></div>
                 <div class="col col-4">
                     <h1>MeinFernbus</h1>
                     <a href="#" class="project-link">www.meinfernbus.de</a>
-                </div>
-                <div class="col col-6 description-row"><p>Крупнейшая компания специализируется на пассажирских перевозках в Германии и Европе.</p></div>
-                <div class="col col-1"></div>
-            </div>
-            <div class="row  case-header">
-                <div class="col col-1"></div>
-                <div class="col col-4">
                     <ul class="tags">
                         <li><a href="#">Проектирование</a></li>
                         <li><a href="#">Дизайн сайта</a></li>
@@ -30,11 +23,27 @@
                         <li><a href="#">Разработка backend</a></li>
                     </ul>
                 </div>
-                <div class="col col-6">
-                    <h2 class="no-top-margin">О проекте</h2>
+            </div>
+            <div class="row">
+                <div class="col col-1"></div>
+                <div class="col col-4">
+                </div>
+                <div class="col col-6 description-row">
+                    <p>Крупнейшая компания специализируется на пассажирских перевозках в Германии и Европе.</p>
+                    <h2>О проекте</h2>
                     <p>Мы принимали участие в улучшении дизайна старого сайта, меняя отдельные блоки и части. При этом вся стилистика, цвета, шрифты тянулись еще с первой версии. И нас и клиента стало многое не устраивать в текущем дизайне и было решено разработать новый дизайн, заложить новую стилистику, описаную в брендбуке компании.</p>
                     <h2>Дизайн сайта</h2>
                     <p>Мы принимали участие в улучшении дизайна старого сайта, меняя отдельные блоки и части. При этом вся стилистика, цвета, шрифты тянулись еще с первой версии. И нас и клиента стало многое не устраивать в текущем дизайне и было решено разработать новый дизайн, заложить новую стилистику, описаную в брендбуке компании.</p>
+                </div>
+                <div class="col col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col col-1"></div>
+                <div class="col col-4">
+
+                </div>
+                <div class="col col-6">
+
                 </div>
                 <div class="col col-1"></div>
             </div>
@@ -320,5 +329,11 @@
     <footer class="footer">
         {% include '::_footer.html.twig' %}
     </footer>
+
+        {% block javascripts %}
+            {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/headroom.js' 'js/main.js'  output='cache/js/*.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>

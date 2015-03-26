@@ -62,7 +62,6 @@ $(document).ready(function(){
             clickBar: 1
         },
         $frame  = $('.project-tabs-wrap');
-    console.log(window.matchMedia("(max-width: 500px)").matches ? 'forceCentered' : 'centered')
 
     function initMobileSlider(){
         if (window.matchMedia && window.matchMedia("(max-width: 1023px)").matches) {
@@ -98,7 +97,6 @@ $(document).ready(function(){
         if(window.matchMedia && window.matchMedia('(min-width: 800px)').matches){
             $('body').removeClass('open-navigation open-main-nav open-languages-nav');
         }
-        console.log('resize');
     });
 });
 
