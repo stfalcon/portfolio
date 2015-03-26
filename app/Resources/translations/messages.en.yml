@@ -152,3 +152,7 @@ title: __title
 
 'Примеры разработки %project%': 'Examples of %project%'
 'Другие примеры разработки %project%': 'More examples of %project%'
+
+'Мы внесли свой вклад в развитие и разработку ядра <a href="%link2%" target="_blank" title="OpenCart CMS">OpenCart CMS</a>, предназначенной для управления интернет-магазинами. Для нее же мы сделали шаблон <a href="%link%" target="_blank" title="Tecart">Tecart</a>.' : We've participated in the development of the <a href="%link2%" target="_blank" title="OpenCart CMS">OpenCart CMS</a> core, designed for online store management. Also, we've made the <a href="%link%" target="_blank" title="Tecart">Tecart</a> template for it.
+
+'<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, шаблон, который нашел своих поклонников, был разработан нами специально для <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.' : '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, a popular template, was developed by us specifically for <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.'
