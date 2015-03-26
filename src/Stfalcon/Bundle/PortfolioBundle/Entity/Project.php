@@ -230,6 +230,30 @@ class Project implements Translatable
     private $metaDescription;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="case_content", type="text", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $caseContent;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="show_case", type="boolean")
+     */
+    private $showCase = false;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Project")
+     * @ORM\JoinTable(name="relative_projects_ref",
+     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="relative_project_id", referencedColumnName="id", unique=true)}
+     *      )
+     **/
+    private $relativeProjects;
+
+    /**
      * Initialization properties for new project entity
      */
     public function __construct()
@@ -239,6 +263,7 @@ class Project implements Translatable
         $this->media = new ArrayCollection();
         $this->published = true;
         $this->translations = new ArrayCollection();
+        $this->relativeProjects = new ArrayCollection();
     }
 
     /**
@@ -399,26 +424,6 @@ class Project implements Translatable
     public function setImage($image)
     {
         $this->image = $image;
-    }
-
-    /**
-     * Get list of users who worked on the project (as html)
-     *
-     * @return string
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * Set list of users who worked on the project (as html)
-     *
-     * @param string $users A list in html format
-     */
-    public function setUsers($users)
-    {
-        $this->users = $users;
     }
 
     /**
@@ -759,5 +764,85 @@ class Project implements Translatable
         $this->metaDescription = $metaDescription;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCaseContent()
+    {
+        return $this->caseContent;
+    }
+
+    /**
+     * @param string $caseContent
+     *
+     * @return Project
+     */
+    public function setCaseContent($caseContent)
+    {
+        $this->caseContent = $caseContent;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isShowCase()
+    {
+        return $this->showCase;
+    }
+
+    /**
+     * @param boolean $showCase
+     *
+     * @return Project
+     */
+    public function setShowCase($showCase)
+    {
+        $this->showCase = $showCase;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRelativeProjects()
+    {
+        return $this->relativeProjects;
+    }
+
+    /**
+     * @param mixed $relativeProjects
+     *
+     * @return Project
+     */
+    public function setRelativeProjects($relativeProjects)
+    {
+        $this->relativeProjects = $relativeProjects;
+
+        return $this;
+    }
+
+    /**
+     * @param Project $project
+     */
+    public function addRelativeProject(Project $project)
+    {
+        if (!$this->relativeProjects->contains($project)) {
+            $this->relativeProjects->add($project);
+        }
+    }
+
+    /**
+     * @param Project $project
+     */
+    public function removeRelativeProject(Project $project)
+    {
+        if ($this->relativeProjects->contains($project)) {
+            $this->relativeProjects->removeElement($project);
+        }
     }
 }
