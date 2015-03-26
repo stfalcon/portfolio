@@ -1,6 +1,13 @@
 <ul class="projects">
-    {% for p in projects %}
-        {% include 'StfalconPortfolioBundle:Project:_projects_list_item.html.twig' with {'category' :category ,'project' : p} %}
+    {% for project in projects %}
+        <li>
+            <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
+                {% if project.image %}
+                    <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ project.name }}" />
+                {% endif %}
+                <p>{{ project.name }}</p>
+            </a>
+            <p>{{ project.tags }}</p>
+        </li>
     {% endfor %}
 </ul>
-
