@@ -102,9 +102,10 @@ title: __title
 'Необычные увлечения': 'Unusual hobbies'
 
 'веб-разработки': 'web development'
-'дизайна': 'design'
-'мобильных приложений': 'mobile apps'
-'игр': 'games'
+'разработки дизайна': 'design'
+'разработки мобильных приложений': 'mobile apps'
+'создания игр': 'games'
+'консалтинга и аудита': 'consulting and audit'
 
 'Нет сигнала!': 'No signal!'
 'Ошибка 404. Страница не найдена.': 'Error 404. Page not found.'
@@ -150,8 +151,8 @@ title: __title
 
 'Кулинарное приложение сообщества для тех, кто любит&nbsp;готовить.': 'Culinary app for a community of people who love to cook.'
 
-'Примеры разработки %project%': 'Examples of %project%'
-'Другие примеры разработки %project%': 'More examples of %project%'
+'Примеры %project%': 'Examples of %project%'
+'Другие примеры %project%': 'More examples of %project%'
 
 'Мы внесли свой вклад в развитие и разработку ядра <a href="%link2%" target="_blank" title="OpenCart CMS">OpenCart CMS</a>, предназначенной для управления интернет-магазинами. Для нее же мы сделали шаблон <a href="%link%" target="_blank" title="Tecart">Tecart</a>.' : We've participated in the development of the <a href="%link2%" target="_blank" title="OpenCart CMS">OpenCart CMS</a> core, designed for online store management. Also, we've made the <a href="%link%" target="_blank" title="Tecart">Tecart</a> template for it.
 

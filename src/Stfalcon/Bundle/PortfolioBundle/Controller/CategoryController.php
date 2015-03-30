@@ -34,9 +34,10 @@ class CategoryController extends Controller
 
         $linkTexts = array(
             'web-development'    => 'веб-разработки',
-            'web-design'         => 'дизайна',
-            'mobile-development' => 'мобильных приложений',
-            'game-development'   => 'игр'
+            'web-design'         => 'разработки дизайна',
+            'mobile-development' => 'разработки мобильных приложений',
+            'game-development'   => 'создания игр',
+            'consulting-audit'   => 'консалтинга и аудита'
         );
 
         $seo = $this->get('sonata.seo.page');

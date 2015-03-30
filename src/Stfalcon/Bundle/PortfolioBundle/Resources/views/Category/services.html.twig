@@ -23,11 +23,11 @@
                 {% if c.id == category.id %}
                     <div id="{{ c.slug }}" class="tab-content">
                         {{ category.description | raw }}
-                        <h3>{{ 'Примеры разработки %project%'|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</h3>
+                        <h3>{{ 'Примеры %project%'|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</h3>
 
                             {{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProject', { 'category': category })) }}
 
-                        <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="show-all-projects">{{ "Другие примеры разработки %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</a>
+                        <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="show-all-projects">{{ "Другие примеры %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</a>
                     </div>
                 {% endif %}
             {% endfor %}
