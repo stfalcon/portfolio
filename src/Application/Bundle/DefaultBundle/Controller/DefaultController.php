@@ -129,16 +129,4 @@ class DefaultController extends Controller
     {
         return [];
     }
-
-    /**
-         *
-         * @return array
-         *
-         * @Template()
-         * @Route("/case", name="url_case")
-         */
-        public function caseAction()
-        {
-            return [];
-        }
 }
