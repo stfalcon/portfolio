@@ -364,7 +364,7 @@ p {
     .tabs-content {
       padding: 0 33px;
       font-size: 22px;
-      line-height: 28px;
+      line-height: 1.5;
     }
   }
 }
@@ -420,6 +420,67 @@ p {
   }
   p {
     letter-spacing: 1px;
+  }
+}
+
+.sensiolabs {
+  margin: 128px auto 74px;
+  max-width: 812px;
+  width: 81%;
+
+  .sensiolabs-logo {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  p {
+    width: 500px;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 1.5;
+    float: right;
+  }
+  a {
+    color: #3457C0;
+
+    &:hover {
+      color: #ED002D;
+      border-bottom: solid 1px;
+    }
+  }
+  &::before {
+    content: "";
+    display: block;
+    width: 188px;
+    height: 1px;
+    background-color: #c3c7c8;
+    position: absolute;
+    left: 50%;
+    margin-left: -94px;
+    margin-top: -64px;
+  }
+}
+
+@media (max-width: 880px) {
+  .sensiolabs {
+    text-align: center;
+    margin-top: 47px;
+
+    &:before {
+      display: none;
+    }
+    .sensiolabs-logo {
+      margin-right: 0;
+    }
+    p {
+      float: none;
+      width: auto;
+    }
+  }
+}
+@media (max-width: 720px) {
+  .sensiolabs p {
+    font-size: 22px;
   }
 }
 
