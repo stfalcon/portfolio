@@ -158,4 +158,4 @@ title: __title
 
 '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, шаблон, который нашел своих поклонников, был разработан нами специально для <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.' : '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, a popular template, was developed by us specifically for <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.'
 
-'Мы &mdash;&nbsp;аффилированный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, которая представляет фреймворк Symfony2.':'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> which represents the Symfony2 framework.'
+'Мы &mdash;&nbsp;аффилированный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, которая представляет фреймворк Symfony2.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> which represents the Symfony2 framework.'
