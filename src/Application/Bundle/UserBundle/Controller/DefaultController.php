@@ -17,7 +17,7 @@ class DefaultController extends Controller
      * Team page
      *
      * @return array()
-     * @Route("/", name="team")
+     * @Route("/team", name="team")
      * @Template()
      */
     public function indexAction()
