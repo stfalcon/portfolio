@@ -53,5 +53,4 @@ media:
 
 team_route:
     resource: "@ApplicationUserBundle/Controller"
-    prefix: /team
     type: annotation
