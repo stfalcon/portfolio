@@ -100,6 +100,8 @@ class ProjectController extends Controller
             ->addMeta('property', 'og:type', 'portfolio')
             ->addMeta('property', 'og:description', $project->getMetaDescription());
 
+        $seo->generateLangAlternates($this->get('request'));
+
         if ($project->getImage()) {
             $seo->addMeta(
                 'property',

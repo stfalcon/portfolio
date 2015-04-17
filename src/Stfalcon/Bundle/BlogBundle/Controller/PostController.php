@@ -84,6 +84,8 @@ class PostController extends AbstractController
             ->addMeta('property', 'og:type', 'blog')
             ->addMeta('property', 'og:description', $post->getMetaDescription());
 
+        $seo->generateLangAlternates($this->get('request'));
+
         if ($post->getImage()) {
             $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost() . $post->getImage());
         }
