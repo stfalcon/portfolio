@@ -69,11 +69,13 @@ class RedirectController extends Controller
                 );
                 break;
             default:
-                return $this->forward('StfalconPortfolioBundle:Project:view', [
-                    'categorySlug' => $categorySlug,
-                    'projectSlug'  => $projectSlug
-                ]);
+                $request = $this->get('request');
+                $requestAttributes = $request->attributes->all();
 
+                return $this->forward('StfalconPortfolioBundle:Project:view', array_merge($requestAttributes, [
+                    'categorySlug' => $categorySlug,
+                    'projectSlug'  => $projectSlug,
+                ]));
         }
 
         return $this->redirect($redirectUrl, 301);
