@@ -28,6 +28,10 @@ class ProjectController extends Controller
      */
     public function allProjectsAction($page)
     {
+        $request = $this->get('request');
+        $seo = $this->get('sonata.seo.page');
+        $seo->generateLangAlternates($request);
+
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
         $projectsQuery = $repository->findAllProjectsOrderingByDateAsQuery('p.ordernum', 'ASC');
         $projectsWithPaginator = $this->get('knp_paginator')->paginate($projectsQuery, $page, 12);
