@@ -8,6 +8,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% block title %}{{ 'Студия'|trans }} stfalcon.com{% endblock %}</title>
     {{ sonata_seo_metadatas() }}
+
+    {{ sonata_seo_lang_alternates() }}
+
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
     {% block additional %}{% endblock additional %}
