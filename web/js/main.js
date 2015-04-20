@@ -330,12 +330,6 @@ $(function () {
         }
     });
 
-    if (location.hash) {               // do the test straight away
-        window.scrollTo(0, 0);         // execute it straight away
-        setTimeout(function() {
-            window.scrollTo(0, 0);     // run it a bit later also for browser compatibility
-        }, 1);
-    }
     $(document).on("change", '.file-input input',  function () {
         var fullPath = $(this).val();
         if ( fullPath == '' || fullPath == '&nbsp;' ) {
