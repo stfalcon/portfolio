@@ -8,8 +8,7 @@ _stfalcon_blog:
     resource: "@StfalconBlogBundle/Resources/config/routing.yml"
 
 admin:
-    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /admin
+    resource: '@ApplicationDefaultBundle/Resources/config/custom_sonata_admin.xml'
 
 _sonata_admin:
     resource: .
