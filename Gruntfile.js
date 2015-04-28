@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         },
         watch: {
             css: {
-                files: ['web/assets/css/**/*.less'],
+                files: ['web/assets/css/**/*.less', 'web/css/**/*.less'],
                 tasks: ['less', 'autoprefixer', 'csso']
             }
         },

@@ -34,9 +34,10 @@ class CategoryController extends Controller
 
         $linkTexts = array(
             'web-development'    => 'веб-разработки',
-            'web-design'         => 'дизайна',
-            'mobile-development' => 'мобильных приложений',
-            'game-development'   => 'игр'
+            'web-design'         => 'разработки дизайна',
+            'mobile-development' => 'разработки мобильных приложений',
+            'game-development'   => 'создания игр',
+            'consulting-audit'   => 'консалтинга и аудита'
         );
 
         $seo = $this->get('sonata.seo.page');
@@ -55,6 +56,8 @@ class CategoryController extends Controller
             )
             ->addMeta('property', 'og:title', $category->getTitle())
             ->addMeta('property', 'og:description', $category->getMetaDescription());
+
+        $seo->generateLangAlternates($this->get('request'));
 
         return array(
             'category'   => $category,
@@ -82,7 +85,7 @@ class CategoryController extends Controller
     {
         $query = $this->getDoctrine()
             ->getRepository("StfalconPortfolioBundle:Project")
-            ->getQueryForSelectProjectsByCategory($category);
+            ->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC');
 
         $paginatedProjects = $this->get('knp_paginator')->paginate($query, $page, 12);
         $paginatedProjects->setUsedRoute('portfolio_category_view');

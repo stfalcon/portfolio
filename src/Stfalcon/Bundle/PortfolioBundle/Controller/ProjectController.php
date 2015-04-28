@@ -28,8 +28,12 @@ class ProjectController extends Controller
      */
     public function allProjectsAction($page)
     {
+        $request = $this->get('request');
+        $seo = $this->get('sonata.seo.page');
+        $seo->generateLangAlternates($request);
+
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projectsQuery = $repository->findAllProjectsOrderingByDateAsQuery();
+        $projectsQuery = $repository->findAllProjectsOrderingByDateAsQuery('p.ordernum', 'ASC');
         $projectsWithPaginator = $this->get('knp_paginator')->paginate($projectsQuery, $page, 12);
 
         return array('projects' => $projectsWithPaginator);
@@ -99,6 +103,8 @@ class ProjectController extends Controller
             )
             ->addMeta('property', 'og:type', 'portfolio')
             ->addMeta('property', 'og:description', $project->getMetaDescription());
+
+        $seo->generateLangAlternates($this->get('request'));
 
         if ($project->getImage()) {
             $seo->addMeta(
@@ -190,5 +196,23 @@ class ProjectController extends Controller
         }
 
         return $project;
+    }
+
+    /**
+     * Widget examples work for page services
+     *
+     * @param $category
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function widgetExamplesProjectAction($category) {
+        $em = $this->getDoctrine()->getManager();
+
+        $projects = $em->getRepository("StfalconPortfolioBundle:Project")
+            ->findAllExamplesProjectsByCategory($category);
+
+        return $this->render('StfalconPortfolioBundle:Category:_widget_examples_prj.html.twig', [
+            'projects' => $projects,
+            'category' => $category
+        ]);
     }
 }

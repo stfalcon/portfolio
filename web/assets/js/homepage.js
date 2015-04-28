@@ -62,7 +62,6 @@ $(document).ready(function(){
             clickBar: 1
         },
         $frame  = $('.project-tabs-wrap');
-    console.log(window.matchMedia("(max-width: 500px)").matches ? 'forceCentered' : 'centered')
 
     function initMobileSlider(){
         if (window.matchMedia && window.matchMedia("(max-width: 1023px)").matches) {
@@ -98,7 +97,6 @@ $(document).ready(function(){
         if(window.matchMedia && window.matchMedia('(min-width: 800px)').matches){
             $('body').removeClass('open-navigation open-main-nav open-languages-nav');
         }
-        console.log('resize');
     });
 });
 
@@ -162,4 +160,31 @@ servicesTabs.on('click', function(e){
 //           return false;
 });
 
-changeServiceCategory('development');
+function activeTabByHash(hash) {
+    $('.projects-tabs a').removeClass('active');
+
+    var $link = $('.projects-tabs').find('a[data-category="'+hash+'"]');
+    $link.addClass('active');
+    showServiceTabs(hash);
+}
+
+function changeTabByHash(hash) {
+    if (hash.length>0) {
+        activeTabByHash(hash);
+    } else {
+        //go to default category
+        activeTabByHash('development');
+    }
+}
+
+$(document).ready(function() {
+    var hash = window.location.hash;
+    hash = hash.substr(2);
+    changeTabByHash(hash);
+});
+
+
+$.History.bind(function(state) {
+    var hash = state.substr(1);
+    changeTabByHash(hash);
+});

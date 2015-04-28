@@ -40,7 +40,7 @@ class ProjectRepository extends EntityRepository
      *
      * @return array
      */
-    public function getProjectsByCategory(Category $category, $orderBy = 'p.date', $orderDirection = 'DESC')
+    public function getProjectsByCategory(Category $category, $orderBy = 'p.ordernum', $orderDirection = 'ASC')
     {
         return $this->getQueryForSelectProjectsByCategory($category, $orderBy, $orderDirection)
                 ->getResult();
@@ -98,5 +98,19 @@ class ProjectRepository extends EntityRepository
             ->setParameter('onFrontPage', true)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param Category $category
+     * @param int      $limit
+     *
+     * @return array
+     */
+    public function findAllExamplesProjectsByCategory(Category $category, $limit = 3)
+    {
+        $qb = $this->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC')
+            ->setMaxResults($limit);
+
+        return $qb->getResult();
     }
 }

@@ -111,7 +111,8 @@ class SitemapService
 
             $this->addUrlElement(
                 $xmlSitemap,
-                $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => 'ru'], true)
+                $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => 'ru'], true),
+                $category->getUpdatedAt()
             );
 
             $this->addUrlElement(
