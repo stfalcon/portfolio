@@ -85,24 +85,26 @@ class ProjectController extends Controller
      */
     public function viewAction(Request $request, Category $category, Project $project)
     {
+        $categorySlug = $project->getCategories()->first()->getSlug();
+        $canonicalUrl = $this->generateUrl(
+            'portfolio_project_view',
+            [
+                'categorySlug' => $categorySlug,
+                'projectSlug'  => $project->getSlug()
+            ],
+            true
+        );
+
         $seo = $this->get('sonata.seo.page');
+
         $seo->addMeta('name', 'description', $project->getMetaDescription())
             ->addMeta('name', 'keywords', $project->getMetaKeywords())
             ->addMeta('property', 'og:title', $project->getName())
-            ->addMeta(
-                'property',
-                'og:url',
-                $this->generateUrl(
-                    'portfolio_project_view',
-                    [
-                        'categorySlug' => $category->getSlug(),
-                        'projectSlug' => $project->getSlug()
-                    ],
-                    true
-                )
-            )
+            ->addMeta('property', 'og:url', $canonicalUrl)
             ->addMeta('property', 'og:type', 'portfolio')
-            ->addMeta('property', 'og:description', $project->getMetaDescription());
+            ->addMeta('property', 'og:description', $project->getMetaDescription())
+            ->setLinkCanonical($canonicalUrl)
+        ;
 
         $seo->generateLangAlternates($this->get('request'));
 

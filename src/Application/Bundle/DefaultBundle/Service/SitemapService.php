@@ -120,16 +120,20 @@ class SitemapService
                 $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => 'en'], true)
             );
 
+            $categoryUpdatedAt = ($category->getProjects()->count() > 0)?
+                $category->getProjects()->first()->getUpdated():
+                $category->getUpdatedAt();
+
             $this->addUrlElement(
                 $xmlSitemap,
                 $this->router->generate('portfolio_category_view', ['slug' => $category->getSlug(), '_locale' => 'ru'], true),
-                $category->getProjects()->first()->getUpdated()
+                $categoryUpdatedAt
             );
 
             $this->addUrlElement(
                 $xmlSitemap,
                 $this->router->generate('portfolio_category_view', ['slug' => $category->getSlug(), '_locale' => 'en'], true),
-                $category->getProjects()->first()->getUpdated()
+                $categoryUpdatedAt
             );
 
             /** @var Project $project */
