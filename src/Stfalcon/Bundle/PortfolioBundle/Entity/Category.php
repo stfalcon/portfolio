@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Translatable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Category entity. It groups projects in portfolio
@@ -18,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Category implements Translatable
 {
+    use TimestampableEntity;
 
     /**
      * @var integer $id

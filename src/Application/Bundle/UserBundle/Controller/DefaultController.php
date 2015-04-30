@@ -17,11 +17,16 @@ class DefaultController extends Controller
      * Team page
      *
      * @return array()
-     * @Route("/", name="team")
+     * @Route("/team", name="team")
      * @Template()
      */
     public function indexAction()
     {
+        $request = $this->get('request');
+
+        $seo = $this->get('sonata.seo.page');
+        $seo->generateLangAlternates($request);
+
         $users = $this->getDoctrine()->getManager()
                 ->getRepository("ApplicationUserBundle:User")->findAllActiveUsers();
 
