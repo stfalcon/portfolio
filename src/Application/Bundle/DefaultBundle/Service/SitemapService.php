@@ -37,49 +37,57 @@ class SitemapService
     }
 
     /**
+     * @param string $lang
+     *
+     * @return \SimpleXMLElement
+     */
+    public function getXMLSitemapByLocale($lang) {
+
+        $xmlSitemap = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" />');
+
+        $this->addUrlElement(
+            $xmlSitemap,
+            $this->router->generate('homepage', ['_locale' => $lang], true),
+            null,
+            'monthly',
+            1
+        );
+
+        $this->addPortfolioItems($xmlSitemap, $lang);
+        $this->addBlogItems($xmlSitemap, $lang);
+        $this->addBlogTags($xmlSitemap, $lang);
+
+        $this->addUrlElement(
+            $xmlSitemap,
+            $this->router->generate('team', ['_locale' => $lang], true),
+            null,
+            'monthly'
+        );
+
+        $this->addUrlElement(
+            $xmlSitemap,
+            $this->router->generate('contacts', ['_locale' => $lang], true)
+        );
+
+        return $xmlSitemap;
+    }
+
+    /**
      * Generate sitimap.xml
      */
     public function generateSitemap()
     {
-        $xmlSitemap = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" />');
+        $RUxmlSitemap = $this->getXMLSitemapByLocale('ru');
+        $RUxmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'sitemap.xml');
 
-        $this->addPortfolioItems($xmlSitemap);
-        $this->addBlogItems($xmlSitemap);
-        $this->addBlogTags($xmlSitemap);
-
-        $this->addUrlElement(
-            $xmlSitemap,
-            $this->router->generate('team', ['_locale' => 'ru'], true),
-            null,
-            'monthly',
-            0.3
-        );
-
-        $this->addUrlElement(
-            $xmlSitemap,
-            $this->router->generate('team', ['_locale' => 'en'], true),
-            null,
-            'monthly',
-            0.3
-        );
-
-        $this->addUrlElement(
-            $xmlSitemap,
-            $this->router->generate('contacts', ['_locale' => 'ru'], true)
-        );
-
-        $this->addUrlElement(
-            $xmlSitemap,
-            $this->router->generate('contacts', ['_locale' => 'en'], true)
-        );
-
-        $xmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'sitemap.xml');
+        $ENxmlSitemap = $this->getXMLSitemapByLocale('en');
+        $ENxmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'sitemap_en.xml');
     }
 
     /**
      * @param \SimpleXMLElement $xmlSitemap
      */
-    private function addBlogTags(\SimpleXMLElement $xmlSitemap)
+    private function addBlogTags(\SimpleXMLElement $xmlSitemap, $locale)
     {
         $blogTagsRepository = $this->entityManager->getRepository('StfalconBlogBundle:Tag');
         $blogTags = $blogTagsRepository->findAll();
@@ -88,20 +96,16 @@ class SitemapService
         foreach ($blogTags as $tag) {
             $this->addUrlElement(
                 $xmlSitemap,
-                $this->router->generate('blog_tag_view', ['text' => $tag->getText(), '_locale' => 'ru'], true)
-            );
-
-            $this->addUrlElement(
-                $xmlSitemap,
-                $this->router->generate('blog_tag_view', ['text' => $tag->getText(), '_locale' => 'en'], true)
+                $this->router->generate('blog_tag_view', ['text' => $tag->getText(), '_locale' => $locale], true)
             );
         }
     }
 
     /**
      * @param \SimpleXMLElement $xmlSitemap
+     * @param string            $locale
      */
-    private function addPortfolioItems(\SimpleXMLElement $xmlSitemap)
+    private function addPortfolioItems(\SimpleXMLElement $xmlSitemap, $locale)
     {
         $portfolioCategoriesRepository = $this->entityManager->getRepository('StfalconPortfolioBundle:Category');
         $portfolioCategories = $portfolioCategoriesRepository->findAll();
@@ -111,13 +115,8 @@ class SitemapService
 
             $this->addUrlElement(
                 $xmlSitemap,
-                $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => 'ru'], true),
+                $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => $locale], true),
                 $category->getUpdatedAt()
-            );
-
-            $this->addUrlElement(
-                $xmlSitemap,
-                $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => 'en'], true)
             );
 
             $categoryUpdatedAt = ($category->getProjects()->count() > 0)?
@@ -126,13 +125,7 @@ class SitemapService
 
             $this->addUrlElement(
                 $xmlSitemap,
-                $this->router->generate('portfolio_category_view', ['slug' => $category->getSlug(), '_locale' => 'ru'], true),
-                $categoryUpdatedAt
-            );
-
-            $this->addUrlElement(
-                $xmlSitemap,
-                $this->router->generate('portfolio_category_view', ['slug' => $category->getSlug(), '_locale' => 'en'], true),
+                $this->router->generate('portfolio_category_view', ['slug' => $category->getSlug(), '_locale' => $locale], true),
                 $categoryUpdatedAt
             );
 
@@ -143,22 +136,10 @@ class SitemapService
                     $xmlSitemap,
                     $this->router->generate(
                         'portfolio_project_view',
-                        ['categorySlug' => $category->getSlug(), 'projectSlug' => $project->getSlug(), '_locale' => 'ru'],
+                        ['categorySlug' => $category->getSlug(), 'projectSlug' => $project->getSlug(), '_locale' => $locale],
                         true),
                     $project->getUpdated(),
-                    'monthly',
-                    0.8
-                );
-
-                $this->addUrlElement(
-                    $xmlSitemap,
-                    $this->router->generate(
-                        'portfolio_project_view',
-                        ['categorySlug' => $category->getSlug(), 'projectSlug' => $project->getSlug(), '_locale' => 'en'],
-                        true),
-                    $project->getUpdated(),
-                    'monthly',
-                    0.8
+                    'monthly'
                 );
 
                 if ($lastUpdateDate < $project->getUpdated()) {
@@ -168,29 +149,26 @@ class SitemapService
 
             $this->addUrlElement(
                 $xmlSitemap,
-                $this->router->generate('portfolio_all_projects', ['_locale' => 'ru'], true),
-                $lastUpdateDate
-            );
-
-            $this->addUrlElement(
-                $xmlSitemap,
-                $this->router->generate('portfolio_all_projects', ['_locale' => 'en'], true),
+                $this->router->generate('portfolio_all_projects', ['_locale' => $locale], true),
                 $lastUpdateDate
             );
         }
-
     }
 
-    private function addBlogItems(\SimpleXMLElement $xmlSitemap)
+    /**
+     * @param \SimpleXMLElement $xmlSitemap
+     * @param string            $locale
+     */
+    private function addBlogItems(\SimpleXMLElement $xmlSitemap, $locale)
     {
         $blogPostsRepository = $this->entityManager->getRepository('StfalconBlogBundle:Post');
-        $blogPosts = $blogPostsRepository->getAllPublishedPosts('ru');
+        $blogPosts = $blogPostsRepository->getAllPublishedPosts($locale);
 
         /** @var Post $lastPost */
         $lastPost = reset($blogPosts);
         $this->addUrlElement(
             $xmlSitemap,
-            $this->router->generate('blog', ['_locale' => 'ru'], true),
+            $this->router->generate('blog', ['_locale' => $locale], true),
             $lastPost->getCreated()
         );
 
@@ -198,36 +176,11 @@ class SitemapService
         foreach ($blogPosts as $post) {
             $this->addUrlElement(
                 $xmlSitemap,
-                $this->router->generate('blog_post_view', ['slug' => $post->getSlug(), '_locale' => 'ru'], true),
+                $this->router->generate('blog_post_view', ['slug' => $post->getSlug(), '_locale' => $locale], true),
                 $post->getCreated(),
-                'monthly',
-                0.8
-            );
-
-
-        }
-
-        $blogPosts = $blogPostsRepository->getAllPublishedPosts('en');
-
-        /** @var Post $lastPost */
-        $lastPost = reset($blogPosts);
-        $this->addUrlElement(
-            $xmlSitemap,
-            $this->router->generate('blog', ['_locale' => 'en'], true),
-            $lastPost->getCreated()
-        );
-
-        /** @var Post $post */
-        foreach ($blogPosts as $post) {
-            $this->addUrlElement(
-                $xmlSitemap,
-                $this->router->generate('blog_post_view', ['slug' => $post->getSlug(), '_locale' => 'en'], true),
-                $post->getCreated(),
-                'monthly',
-                0.8
+                'monthly'
             );
         }
-
     }
 
     /**
@@ -242,7 +195,7 @@ class SitemapService
         $url,
         \DateTime $lastMod = null,
         $changeFrequency = 'monthly',
-        $priority = 0.5
+        $priority = 0.8
     )
     {
         $urlXml = $xmlSitemap->addChild('url');
