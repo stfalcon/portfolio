@@ -32,15 +32,6 @@ class RedirectController extends Controller
                     ]
                 );
                 break;
-            case ($categorySlug == 'web-design' && $projectSlug == 'meinfernbus-de'):
-                $redirectUrl = $this->generateUrl(
-                    'portfolio_project_view',
-                    [
-                        'categorySlug' => 'web-development',
-                        'projectSlug'  => $projectSlug
-                    ]
-                );
-                break;
             case ($categorySlug == 'web-design' && $projectSlug == 'wallpaperinua'):
                 $redirectUrl = $this->generateUrl(
                     'portfolio_project_view',
