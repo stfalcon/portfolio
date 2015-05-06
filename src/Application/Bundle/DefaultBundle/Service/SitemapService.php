@@ -96,6 +96,7 @@ class SitemapService
 
     /**
      * @param \SimpleXMLElement $xmlSitemap
+     * @param string            $locale
      */
     private function addPortfolioItems(\SimpleXMLElement $xmlSitemap, $locale)
     {
@@ -148,6 +149,10 @@ class SitemapService
         }
     }
 
+    /**
+     * @param \SimpleXMLElement $xmlSitemap
+     * @param string            $locale
+     */
     private function addBlogItems(\SimpleXMLElement $xmlSitemap, $locale)
     {
         $blogPostsRepository = $this->entityManager->getRepository('StfalconBlogBundle:Post');
