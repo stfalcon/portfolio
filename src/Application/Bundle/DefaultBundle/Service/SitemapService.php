@@ -49,7 +49,7 @@ class SitemapService
             $xmlSitemap,
             $this->router->generate('homepage', ['_locale' => $lang], true),
             null,
-            'monthly',
+            'weekly',
             1
         );
 
@@ -61,7 +61,7 @@ class SitemapService
             $xmlSitemap,
             $this->router->generate('team', ['_locale' => $lang], true),
             null,
-            'monthly'
+            'weekly'
         );
 
         $this->addUrlElement(
@@ -139,7 +139,7 @@ class SitemapService
                         ['categorySlug' => $category->getSlug(), 'projectSlug' => $project->getSlug(), '_locale' => $locale],
                         true),
                     $project->getUpdated(),
-                    'monthly'
+                    'weekly'
                 );
 
                 if ($lastUpdateDate < $project->getUpdated()) {
@@ -178,7 +178,7 @@ class SitemapService
                 $xmlSitemap,
                 $this->router->generate('blog_post_view', ['slug' => $post->getSlug(), '_locale' => $locale], true),
                 $post->getCreated(),
-                'monthly'
+                'weekly'
             );
         }
     }
@@ -194,7 +194,7 @@ class SitemapService
         \SimpleXMLElement $xmlSitemap,
         $url,
         \DateTime $lastMod = null,
-        $changeFrequency = 'monthly',
+        $changeFrequency = 'weekly',
         $priority = 0.8
     )
     {
