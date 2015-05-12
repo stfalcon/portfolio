@@ -7,19 +7,19 @@
     <nav class="services-nav">
         <ul>
             <li>
-                <a href="#">Разработка веб-сайтов</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'web-development'}) }}">{{ "Разработка веб-сайтов" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Дизайн сайтов и интерфейсов</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'web-design'}) }}">{{ "Дизайн сайтов и интерфейсов" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Мобильная разработка</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'mobile-development'}) }}">{{ "Мобильная разработка" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Создание мобильных игр</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'game-development'}) }}">{{ "Создание мобильных игр" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Консалтинг и аудит</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'consulting-audit'}) }}">{{ "Консалтинг и аудит" | trans() }}</a>
             </li>
         </ul>
     </nav>
