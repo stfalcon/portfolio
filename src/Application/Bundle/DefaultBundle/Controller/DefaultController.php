@@ -45,6 +45,9 @@ class DefaultController extends Controller
      */
     public function contactsAction(Request $request)
     {
+        $seo = $this->get('sonata.seo.page');
+        $seo->generateLangAlternates($request);
+
         // @todo: refact
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
@@ -129,16 +132,4 @@ class DefaultController extends Controller
     {
         return [];
     }
-
-    /**
-         *
-         * @return array
-         *
-         * @Template()
-         * @Route("/case", name="url_case")
-         */
-        public function caseAction()
-        {
-            return [];
-        }
 }

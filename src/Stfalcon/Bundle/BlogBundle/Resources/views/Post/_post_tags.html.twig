@@ -1,7 +1,13 @@
 <ul class="tags">
     {% for tag in post.tags %}
         <li>
-            <a href="{{ path('blog_tag_view', { 'text': tag.text }) }}">{{ tag.text }}</a>{% if not loop.last %},{% endif %}
+            {% if tag.posts.count > 1 %}
+                <a href="{{ path('blog_tag_view', { 'text': tag.text }) }}">{{ tag.text }}</a>
+            {% else %}
+               <span>{{ tag.text }}</span>
+            {% endif %}
+
+            {% if not loop.last %},{% endif %}
         </li>
     {% endfor %}
 </ul>

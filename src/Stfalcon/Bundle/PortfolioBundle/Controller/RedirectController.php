@@ -32,15 +32,6 @@ class RedirectController extends Controller
                     ]
                 );
                 break;
-            case ($categorySlug == 'web-design' && $projectSlug == 'meinfernbus-de'):
-                $redirectUrl = $this->generateUrl(
-                    'portfolio_project_view',
-                    [
-                        'categorySlug' => 'web-development',
-                        'projectSlug'  => $projectSlug
-                    ]
-                );
-                break;
             case ($categorySlug == 'web-design' && $projectSlug == 'wallpaperinua'):
                 $redirectUrl = $this->generateUrl(
                     'portfolio_project_view',
@@ -69,11 +60,13 @@ class RedirectController extends Controller
                 );
                 break;
             default:
-                return $this->forward('StfalconPortfolioBundle:Project:view', [
-                    'categorySlug' => $categorySlug,
-                    'projectSlug'  => $projectSlug
-                ]);
+                $request = $this->get('request');
+                $requestAttributes = $request->attributes->all();
 
+                return $this->forward('StfalconPortfolioBundle:Project:view', array_merge($requestAttributes, [
+                    'categorySlug' => $categorySlug,
+                    'projectSlug'  => $projectSlug,
+                ]));
         }
 
         return $this->redirect($redirectUrl, 301);

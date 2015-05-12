@@ -38,10 +38,14 @@ class TagController extends AbstractController
         $posts = $this->get('knp_paginator')
             ->paginate($query, $page, 10);
 
-        return $this->_getRequestDataWithDisqusShortname(array(
-            'tag' => $tag,
-            'posts' => $posts,
-        ));
-    }
+        if (count($posts) > 1) {
+            return $this->_getRequestDataWithDisqusShortname(array(
+                'tag' => $tag,
+                'posts' => $posts,
+            ));
 
+        } else {
+            return $this->redirect($this->generateUrl('blog'));
+        }
+    }
 }

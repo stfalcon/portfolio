@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="sonata_admin_redirect" pattern="/admin">
+        <default key="_controller">FrameworkBundle:Redirect:redirect</default>
+        <default key="route">sonata_admin_dashboard</default>
+        <default key="permanent">true</default>
+    </route>
+
+    <route id="sonata_admin_dashboard" pattern="/admin/dashboard">
+        <default key="_controller">SonataAdminBundle:Core:dashboard</default>
+    </route>
+
+    <route id="sonata_admin_retrieve_form_element" pattern="/admin/core/get-form-field-element">
+        <default key="_controller">sonata.admin.controller.admin:retrieveFormFieldElementAction</default>
+    </route>
+
+    <route id="sonata_admin_append_form_element" pattern="/admin/core/append-form-field-element">
+        <default key="_controller">sonata.admin.controller.admin:appendFormFieldElementAction</default>
+    </route>
+
+    <route id="sonata_admin_short_object_information" pattern="/admin/core/get-short-object-description.{_format}">
+        <default key="_controller">sonata.admin.controller.admin:getShortObjectDescriptionAction</default>
+        <default key="_format">html</default>
+        <requirement key="_format">html|json</requirement>
+    </route>
+
+    <route id="sonata_admin_set_object_field_value" pattern="/admin/core/set-object-field-value">
+        <default key="_controller">sonata.admin.controller.admin:setObjectFieldValueAction</default>
+    </route>
+
+    <route id="sonata_admin_search" pattern="/admin/search">
+        <default key="_controller">SonataAdminBundle:Core:search</default>
+    </route>
+</routes>

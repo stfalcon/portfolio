@@ -85,6 +85,7 @@ title: __title
 'На связи': 'Contact us'
 'Студия': 'Studio'
 'студия': 'studio'
+'Студия stfalcon.com': 'Stfalcon.com Company'
 'веб-студия': 'Web-Studio'
 'Разработка сайтов и мобильных приложений. Дизайн сайтов': 'Websites and mobile applications development. Site design'
 'Навигация': 'Navigation'
@@ -102,9 +103,10 @@ title: __title
 'Необычные увлечения': 'Unusual hobbies'
 
 'веб-разработки': 'web development'
-'дизайна': 'design'
-'мобильных приложений': 'mobile apps'
-'игр': 'games'
+'разработки дизайна': 'design'
+'разработки мобильных приложений': 'mobile apps'
+'создания игр': 'games'
+'консалтинга и аудита': 'consulting and audit'
 
 'Нет сигнала!': 'No signal!'
 'Ошибка 404. Страница не найдена.': 'Error 404. Page not found.'
@@ -115,12 +117,12 @@ title: __title
 'Android приложение MeinFernbus': 'MeinFernbus App for Android'
 'Мобильное приложение для крупнейшего пассажирского перевозчика в Германии.': 'A mobile application for the largest passenger transportation company in Germany.'
 
-Решаем сложные задачи: Solving complex tasks
+Решаем сложные задачи: We solve complex problems
 
 'Крупнейшая компания, специализируется на пассажирских перевозках в Германии': The largest passenger transportation company in Germany
 'Сервис продажи фотографий для профессиональных фотографов': A commercial service for professional photographers
 'Социальный стартап по оценке качества дорог Украины': Social startup for assessing the quality of roads of Ukraine
-'Кулинарное сообщество для тех, кто любит готовить': Culinary community for those who like to cook
+'Система по работе с клиентами для строительной компании': Customer relationship management system for the real estate builder company
 'Увлекательный мобильный вариант одноименной настольной игры': Fascinating mobile version of the puzzle board game
 'Двумерный аркадный шутер, оружие и враги в ассортименте': 2D arcade shooter, weapons and enemies in range
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
@@ -133,9 +135,9 @@ title: __title
 создание <br/>мобильных Игр: Game<br/>Development
 Консалтинг<br/>и аудит: Consulting<br/>and Audit
 
-проводим конференции: Organizing conferences
+проводим конференции: We organize conferences
 ведем блог: Fresh from our Blog
-Участвуем в Open Source: Contributing to Open Source
+Участвуем в Open Source: We contribute to Open Source
 
 Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ.: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
 ІТ ивент с несколькими краткими докладами, кофе, новыми знакомствами и доброжелательной атмосферой.: IT event with several short presentations, coffee, and new acquaintances. Friendly atmosphere included.
@@ -150,9 +152,11 @@ title: __title
 
 'Кулинарное приложение сообщества для тех, кто любит&nbsp;готовить.': 'Culinary app for a community of people who love to cook.'
 
-'Примеры разработки %project%': 'Examples of %project%'
-'Другие примеры разработки %project%': 'More examples of %project%'
+'Примеры %project%': 'Examples of %project%'
+'Другие примеры %project%': 'More examples of %project%'
 
 'Мы внесли свой вклад в развитие и разработку ядра <a href="%link2%" target="_blank" title="OpenCart CMS">OpenCart CMS</a>, предназначенной для управления интернет-магазинами. Для нее же мы сделали шаблон <a href="%link%" target="_blank" title="Tecart">Tecart</a>.' : We've participated in the development of the <a href="%link2%" target="_blank" title="OpenCart CMS">OpenCart CMS</a> core, designed for online store management. Also, we've made the <a href="%link%" target="_blank" title="Tecart">Tecart</a> template for it.
 
 '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, шаблон, который нашел своих поклонников, был разработан нами специально для <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.' : '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, a popular template, was developed by us specifically for <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.'
+
+'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony2.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony2 framework.'

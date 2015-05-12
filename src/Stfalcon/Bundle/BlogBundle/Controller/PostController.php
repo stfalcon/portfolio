@@ -34,6 +34,9 @@ class PostController extends AbstractController
      */
     public function indexAction(Request $request, $page)
     {
+        $seo = $this->get('sonata.seo.page');
+        $seo->generateLangAlternates($request);
+
         $allPostsQuery = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery($request->getLocale());
         $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
@@ -83,6 +86,8 @@ class PostController extends AbstractController
             )
             ->addMeta('property', 'og:type', 'blog')
             ->addMeta('property', 'og:description', $post->getMetaDescription());
+
+        $seo->generateLangAlternates($this->get('request'));
 
         if ($post->getImage()) {
             $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost() . $post->getImage());

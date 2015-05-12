@@ -1,7 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    {{ include('_header.html.twig') }}
+    {% block header_content %}
+        {{ include('_header.html.twig') }}
+    {% endblock %}
     <div class="content">
         {% block content_wrapper %}{% endblock %}
     </div>
