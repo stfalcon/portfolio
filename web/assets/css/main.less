@@ -188,6 +188,7 @@ p {
 
 .projects-list {
   position: relative;
+  overflow: hidden;
 
   .projects-row {
     overflow: hidden;
@@ -309,6 +310,50 @@ p {
     color: #c5cbe7;
     font-size: 13px;
   }
+  .prev-tab,
+  .next-tab {
+    display: block;
+    position: absolute;
+    left: -79px;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    background: rgba(44,55,60, 0.4);
+    transform: translateY(-50%);
+    z-index: 5;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.disabled {
+      background: rgba(44,55,60, 0.1);
+      cursor: default;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border: solid 1px #fff;
+      border-top-width: 0;
+      border-right-width: 0;
+      transform-origin: 0.5 0.5;
+      transform: rotate(45deg) translateY(-50%);
+    }
+  }
+  .next-tab {
+    left: auto;
+    right: -79px;
+    
+    &:after {
+      left: 8px;
+      right: auto;
+      border-width: 0;
+      border-right-width: 1px;
+      border-top-width: 1px;
+    }
+  }
 }
 
 @keyframes imagesCell {
@@ -342,6 +387,10 @@ p {
     .project-cell {
       float: none;
       width: 100%;
+    }
+    .prev-tab,
+    .next-tab {
+      display: none;
     }
   }
 }
