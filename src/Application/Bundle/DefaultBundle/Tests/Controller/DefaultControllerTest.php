@@ -14,11 +14,14 @@ class DefaultControllerTest extends WebTestCase
 
     public function testHomePage()
     {
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
+            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
+
         $client = $this->createClient();
         $crawler = $client->request('GET', $this->getUrl('homepage', array()));
 
-
-        var_dump($client->getResponse()->getContent());
         // check response
         $this->assertTrue($client->getResponse()->isSuccessful());
 
