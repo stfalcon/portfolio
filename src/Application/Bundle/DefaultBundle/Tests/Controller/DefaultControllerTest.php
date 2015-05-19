@@ -15,9 +15,9 @@ class DefaultControllerTest extends WebTestCase
     public function testHomePage()
     {
         $client = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', $this->getUrl('homepage', array()));
 
-        // check responce
+        // check response
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         $this->assertCount(1, $crawler->filter('h1:contains("Решаем сложные задачи")'));
