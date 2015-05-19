@@ -12,6 +12,9 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 class DefaultControllerTest extends WebTestCase
 {
 
+    /**
+     * Test for home page
+     */
     public function testHomePage()
     {
         $this->loadFixtures(array(
@@ -36,6 +39,9 @@ class DefaultControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("ул. Заречанская 3/2, Хмельницкий, Украина")'));
     }
 
+    /**
+     * Test for contacts page
+     */
     public function testContactPage()
     {
         $client = $this->createClient();
