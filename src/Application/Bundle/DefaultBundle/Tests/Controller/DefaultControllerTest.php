@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Bundle\DefaultBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
@@ -11,7 +10,6 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
  */
 class DefaultControllerTest extends WebTestCase
 {
-
     /**
      * Test for home page
      */
