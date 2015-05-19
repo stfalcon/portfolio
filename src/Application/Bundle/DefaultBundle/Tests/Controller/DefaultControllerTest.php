@@ -17,6 +17,8 @@ class DefaultControllerTest extends WebTestCase
         $client = $this->createClient();
         $crawler = $client->request('GET', $this->getUrl('homepage', array()));
 
+
+        var_dump($client->getResponse()->getStatusCode());
         // check response
         $this->assertTrue($client->getResponse()->isSuccessful());
 
