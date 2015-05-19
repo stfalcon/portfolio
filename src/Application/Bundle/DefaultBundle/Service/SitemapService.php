@@ -81,7 +81,7 @@ class SitemapService
         $RUxmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'sitemap.xml');
 
         $ENxmlSitemap = $this->getXMLSitemapByLocale('en');
-        $ENxmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'sitemap_en.xml');
+        $ENxmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'en' . DIRECTORY_SEPARATOR . 'sitemap.xml');
     }
 
     /**
@@ -164,22 +164,24 @@ class SitemapService
         $blogPostsRepository = $this->entityManager->getRepository('StfalconBlogBundle:Post');
         $blogPosts = $blogPostsRepository->getAllPublishedPosts($locale);
 
-        /** @var Post $lastPost */
-        $lastPost = reset($blogPosts);
-        $this->addUrlElement(
-            $xmlSitemap,
-            $this->router->generate('blog', ['_locale' => $locale], true),
-            $lastPost->getCreated()
-        );
-
-        /** @var Post $post */
-        foreach ($blogPosts as $post) {
+        if (!empty($blogPosts)) {
+            /** @var Post $lastPost */
+            $lastPost = reset($blogPosts);
             $this->addUrlElement(
                 $xmlSitemap,
-                $this->router->generate('blog_post_view', ['slug' => $post->getSlug(), '_locale' => $locale], true),
-                $post->getCreated(),
-                'weekly'
+                $this->router->generate('blog', ['_locale' => $locale], true),
+                $lastPost->getCreated()
             );
+
+            /** @var Post $post */
+            foreach ($blogPosts as $post) {
+                $this->addUrlElement(
+                    $xmlSitemap,
+                    $this->router->generate('blog_post_view', ['slug' => $post->getSlug(), '_locale' => $locale], true),
+                    $post->getCreated(),
+                    'weekly'
+                );
+            }
         }
     }
 
