@@ -32,20 +32,6 @@
             ga('create', 'UA-5635962-2', 'auto');
             ga('require', 'displayfeatures');
             ga('send', 'pageview');
-
-            $(document).ready(function() {
-                $( "a[href^='tel:']" ).on( 'click', function() {
-                    ga('send', 'event', 'click', 'phone', this.href);
-                });
-
-                $( "a[href^='skype:stfalcon']" ).on( 'click', function() {
-                    ga('send', 'event', 'click', 'skype', this.href);
-                });
-
-                $( "a[href='mailto:info@stfalcon.com']" ).on( 'click', function() {
-                    ga('send', 'event', 'click', 'mail', this.href);
-                });
-            });
         </script>
 
         <!-- Yandex.Metrika counter -->
@@ -368,6 +354,20 @@
             a.addEventListener ? a.addEventListener("load", b, !1) : a.attachEvent ? a.attachEvent("onload", b) : a.onload = b;
             document.body.appendChild(a);
         })();
+
+        $(document).ready(function() {
+            $( "a[href^='tel:']" ).on( 'click', function() {
+                ga('send', 'event', 'click', 'phone', this.href);
+            });
+
+            $( "a[href^='skype:stfalcon']" ).on( 'click', function() {
+                ga('send', 'event', 'click', 'skype', this.href);
+            });
+
+            $( "a[href='mailto:info@stfalcon.com']" ).on( 'click', function() {
+                ga('send', 'event', 'click', 'mail', this.href);
+            });
+        });
     </script>
 {% endif %}
 </body>
