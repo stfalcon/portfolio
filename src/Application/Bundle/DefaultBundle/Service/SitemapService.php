@@ -113,15 +113,15 @@ class SitemapService
         foreach ($portfolioCategories as $category) {
             $lastUpdateDate = null;
 
-            $this->addUrlElement(
-                $xmlSitemap,
-                $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => $locale], true),
-                $category->getUpdatedAt()
-            );
-
             $categoryUpdatedAt = ($category->getProjects()->count() > 0)?
                 $category->getProjects()->first()->getUpdated():
                 $category->getUpdatedAt();
+
+            $this->addUrlElement(
+                $xmlSitemap,
+                $this->router->generate('portfolio_categories_list', ['slug' => $category->getSlug(), '_locale' => $locale], true),
+                $categoryUpdatedAt
+            );
 
             $this->addUrlElement(
                 $xmlSitemap,
