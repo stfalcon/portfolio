@@ -29,6 +29,10 @@ class CommentController extends Controller
         // колличество комментариев к записи (если такой метод появится в API disqus)
         // после чего обновлять их колличество в БД
 
+        if (false == $this->getRequest()->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
         $post->setCommentsCount($post->getCommentsCount() + 1);
         $em = $this->get('doctrine.orm.entity_manager');
         $em->persist($post);
