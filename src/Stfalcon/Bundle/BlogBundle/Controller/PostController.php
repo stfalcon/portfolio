@@ -72,7 +72,7 @@ class PostController extends AbstractController
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('name', 'description', $post->getMetaDescription())
             ->addMeta('name', 'keywords', $post->getMetaKeywords())
-            ->addMeta('property', 'og:title', $post->getTitle())
+            ->addMeta('property', 'og:title', $post->getMetaTitle())
             ->addMeta(
                 'property',
                 'og:url',
