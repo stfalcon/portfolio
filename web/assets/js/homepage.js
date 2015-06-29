@@ -144,6 +144,8 @@ function changeServiceCategory(category){
     $projectList.find('.projects-row').remove();
     $projectList.height(heightHuck);
     $projectList.append($projectRow);
+
+    checkButtonsState();
 };
 
 var servicesTabs = $('.projects-tabs a');
@@ -155,7 +157,7 @@ servicesTabs.on('click', function(e){
         if(itemIndex == servicesTabs.length - 2){
             /*
             * When will created preview for category 'CONSULTING AND AUDIT'
-            * todo: change expression in "if" change 2 on 1
+            * todo: edit expression in "if" change 2 on 1
             * */
             $nextButton.addClass('disabled');
             $prevButton.removeClass('disabled');
@@ -191,15 +193,9 @@ function toNextItem(){
         var $sliderLink = $nextItem.find('a');
         window.location.hash = $sliderLink.attr('href');
         $sliderLink.trigger('click');
-        $nextButton.removeClass('disabled');
         $(window).trigger("hashchange");
-        $prevButton.removeClass('disabled');
     }
-    $nextItem = currentTab.nextAll().first();
-
-    if(!$nextItem.length || $nextItem.hasClass('disabled')){
-        $nextButton.addClass('disabled');
-    }
+    checkButtonsState();
 }
 
 function toPrevItem(){
@@ -208,14 +204,27 @@ function toPrevItem(){
         var $sliderLink = $prevItem.find('a');
         window.location.hash = $sliderLink.attr('href');
         $sliderLink.trigger('click');
-        $nextButton.removeClass('disabled');
         $(window).trigger("hashchange");
-        $nextButton.removeClass('disabled');
     }
 
-    var $prevItem = currentTab.prevAll().first();
-    if(!$prevItem.length){
-        $prevButton.addClass('disabled');
+    checkButtonsState();
+}
+
+function checkButtonsState(){
+    console.log($(currentTab).index());
+    switch($(currentTab).index()){
+        case 0:
+            $prevButton.addClass('disabled');
+            $nextButton.removeClass('disabled');
+            break;
+        case 1:
+        case 2:
+            $prevButton.removeClass('disabled');
+            $nextButton.removeClass('disabled');
+            break;
+        case 3:
+            $prevButton.removeClass('disabled');
+            $nextButton.addClass('disabled');
     }
 }
 
