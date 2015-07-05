@@ -20,4 +20,4 @@ swiftmailer:
 
 # FunctionalTestBundle
 liip_functional_test:
-    cache_sqlite_db: false
+    cache_sqlite_db: true

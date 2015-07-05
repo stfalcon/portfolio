@@ -62,6 +62,17 @@ class PostAdmin extends Admin
                                     'required' => false
                                 )
                             )
+                        ),
+                        'metaTitle' => array(
+                            'label' => 'Meta title',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
                         )
                     ),
                     'label' => 'Перевод'

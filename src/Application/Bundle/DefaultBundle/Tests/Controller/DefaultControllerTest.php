@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Bundle\DefaultBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
@@ -11,13 +10,20 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
  */
 class DefaultControllerTest extends WebTestCase
 {
-
+    /**
+     * Test for home page
+     */
     public function testHomePage()
     {
-        $client = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $this->loadFixtures(array(
+            'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
+            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
 
-        // check responce
+        $client = $this->createClient();
+        $crawler = $client->request('GET', $this->getUrl('homepage', array()));
+
+        // check response
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         $this->assertCount(1, $crawler->filter('h1:contains("Решаем сложные задачи")'));
@@ -31,6 +37,9 @@ class DefaultControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("ул. Заречанская 3/2, Хмельницкий, Украина")'));
     }
 
+    /**
+     * Test for contacts page
+     */
     public function testContactPage()
     {
         $client = $this->createClient();

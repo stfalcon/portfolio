@@ -7,19 +7,19 @@
     <nav class="services-nav">
         <ul>
             <li>
-                <a href="#">Разработка веб-сайтов</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'web-development'}) }}">{{ "Разработка веб-сайтов" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Дизайн сайтов и интерфейсов</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'web-design'}) }}">{{ "Дизайн сайтов и интерфейсов" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Мобильная разработка</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'mobile-development'}) }}">{{ "Мобильная разработка" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Создание мобильных игр</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'game-development'}) }}">{{ "Создание мобильных игр" | trans() }}</a>
             </li>
             <li>
-                <a href="#">Консалтинг и аудит</a>
+                <a href="{{ path('portfolio_categories_list', {'slug': 'consulting-audit'}) }}">{{ "Консалтинг и аудит" | trans() }}</a>
             </li>
         </ul>
     </nav>
@@ -53,7 +53,7 @@
 </div>
 <div class="copyright-cnt">
     <div class="copyright">
-        &copy; 2009–{{ "now"|date("Y") }}, {{ 'студия'|trans }} <a href="http://stfalcon.com">stfalcon.com</a>
+        &copy; 2009–{{ "now"|date("Y") }}, <a href="http://stfalcon.com">stfalcon.com</a> &mdash; {{ 'студия веб дизайна, разработки сайтов и мобильных приложений' |trans }}
         <div class="rules">
             <a href="{{ path('privacy_policy_page') }}">Privacy Policy</a>
             <a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a>

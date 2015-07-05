@@ -85,9 +85,9 @@ title: __title
 'На связи': 'Contact us'
 'Студия': 'Studio'
 'студия': 'studio'
-'Студия stfalcon.com': 'Stfalcon.com Company'
+'Web cтудия Stfalcon.com': 'Stfalcon.com'
 'веб-студия': 'Web-Studio'
-'Разработка сайтов и мобильных приложений. Дизайн сайтов': 'Websites and mobile applications development. Site design'
+'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений': 'Web and mobile app development, web design company'
 'Навигация': 'Navigation'
 
 'Меломаны': 'Music addicts'
@@ -130,9 +130,13 @@ title: __title
 'Создали целый набор полезных плагинов для системы управления контентом <a href="%link%" rel="nofollow" target="_blank">LiveStreet</a>.': We've created a set of useful plugins for <a href="%link%" rel="nofollow" target="_blank">LiveStreet</a> content management systems.
 
 разработка<br/>веб-сайтов: Web<br/>Development
+Разработка веб-сайтов: Web Development
 Дизайн сайтов<br/>и интерфейсов: Web and UI<br/>Design
+Дизайн сайтов и интерфейсов: Web and UI Design
 Мобильная<br/>разработка: Mobile<br/>Apps
+Мобильная разработка: Mobile Apps
 создание <br/>мобильных Игр: Game<br/>Development
+Создание мобильных игр: Game Development
 Консалтинг<br/>и аудит: Consulting<br/>and Audit
 
 проводим конференции: We organize conferences
@@ -160,3 +164,4 @@ title: __title
 '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, шаблон, который нашел своих поклонников, был разработан нами специально для <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.' : '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, a popular template, was developed by us specifically for <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.'
 
 'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony2.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony2 framework.'
+'студия веб дизайна, разработки сайтов и мобильных приложений': 'web design and development company'

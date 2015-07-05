@@ -26,6 +26,7 @@ $(function(){
                 if (!response.success) {
                     $form.closest('.subscribe-form-wrap').replaceWith(response.view);
                 } else {
+                    ga('send', 'event', 'subscribe', 'success');
                     $form.find('input[type="email"]').val('');
                     $form.find('.error-list').remove();
                 }

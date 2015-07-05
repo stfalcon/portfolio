@@ -77,7 +77,6 @@ class ProjectAdminTest extends WebTestCase
         $form[$formId . '[slug]'] = 'wallpaper-in-ua';
         $form[$formId . '[url]'] = 'http://wallpaper.in.ua';
         $form[$formId . '[imageFile]'] = $this->_getTestImagePath();
-        $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
         $this->client->submit($form);
@@ -112,7 +111,6 @@ class ProjectAdminTest extends WebTestCase
         $form[$formId . '[slug]'] = '';
         $form[$formId . '[url]'] = 'http://wallpaper.in.ua';
         $form[$formId . '[imageFile]'] = $this->_getTestImagePath();
-        $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
         $crawler = $this->client->submit($form);
@@ -144,7 +142,6 @@ class ProjectAdminTest extends WebTestCase
         $form[$formId . '[slug]'] = 'wallpaper-in-ua';
         $form[$formId . '[url]'] = 'http://wallpaper.in.ua';
         $form[$formId . '[imageFile]'] = $this->_getTestImagePath();
-        $form[$formId . '[users]'] = 'users';
         $form[$formId . '[categories]']->select(array($category->getId()));
         $form[$formId . '[onFrontPage]'] = 1;
         $this->client->submit($form);

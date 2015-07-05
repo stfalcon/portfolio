@@ -27,10 +27,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projects = $repository->findProjectsForHomePage();
-
-        return array('projects' => $projects);
+        return [];
     }
 
 
