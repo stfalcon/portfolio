@@ -138,6 +138,42 @@
         <a class="prev-tab"></a>
         <a class="next-tab"></a>
         <div class="projects-row">
+            <div class="project-cell project-cell-l">
+                <a href="/portfolio/web-development/meinfernbus-de">
+                    <img alt="MeinFernbus" src="/assets/img/preview/develop_big_mfb.jpg">
+                    <span class="project-info">
+                        <span class="project-info-text">
+                            <span class="project-name">MeinFernbus</span>
+                            <span class="project-description">Крупнейшая компания, специализируется на пассажирских перевозках в Германии</span>
+                        </span>
+                        <span class="helper"></span>
+                    </span>
+                </a>
+            </div>
+            <div class="project-cell">
+                <a href="/portfolio/web-development/keepsnap-com">
+                    <img alt="KeepSnap" src="/assets/img/preview/develop_small_keepsnap.jpg">
+                    <span class="project-info">
+                        <span class="project-info-text">
+                            <span class="project-name">KeepSnap</span>
+                            <span class="project-description">Сервис продажи фотографий для профессиональных фотографов</span>
+                        </span>
+                        <span class="helper"></span>
+                    </span>
+                </a>
+            </div>
+            <div class="project-cell">
+                <a href="/portfolio/web-development/uaroads-com">
+                    <img alt="UARoads" src="/assets/img/preview/develop_small_uaroads.jpg">
+                    <span class="project-info">
+                        <span class="project-info-text">
+                            <span  class="project-name">UARoads</span>
+                            <span class="project-description">Социальный стартап по оценке качества дорог Украины</span>
+                        </span>
+                        <span class="helper"></span>
+                    </span>
+                </a>
+            </div>
         </div>
     </section>
     <section class="open-source">
@@ -193,6 +229,40 @@
         </ul>
     </section>
     {{ render(controller("StfalconBlogBundle:Post:lastHomepage", { 'locale': app.request.locale, 'count': 3 })) }}
+    <section class="details-info">
+        <h2>Stfalcon - студия веб-дизайна и разработки сайтов</h2>
+        <h3>Есть ли смысл дальше изучать наш сайт? <br/> да, если:</h3>
+        <div class="more-detail-wrap">
+            <ul class="more-detail">
+                <li>Вы ищите web студию разработки сайтов, приложений, мобильных игр с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов.</li>
+                <li>Вам нужны нестандартные решения, выходящие за рамки шаблонов, которые предлагает рынок.</li>
+                <li>У Вас есть мечта, за воплощение которой другие боятся браться (мы оценим стоящие идеи и во что бы то ни стало реализуем).</li>
+                <li>Для реализации Вашей идеи требуются высоконагруженные системы.</li>
+            </ul>
+        </div>
+        <div class="hidden-content hidden">
+            <h3>Как именно мы решаем нестандартные задачи?</h3>
+            <div class="more-detail-wrap">
+                <ul class="more-detail">
+                    <li>Для создания сайтов на заказ наша веб студия использует самые передовые технологии (фреймворк Symfony2 и его компоненты,  Silex, MySQL, MongoDB, Sphinx, RabbitMQ, Ember.js, и др).</li>
+                    <li>Cоздаем нативные мобильные приложения (более производительные и стабильные, чем кросс-платформенные), используем самые популярные библиотеки (ORM, Robospice, Gson, UniversalImageLoader) и технологические решения.</li>
+                    <li>Думаем наперед (чтобы вы могли легко анализировать, монетизировать и использовать продукт на полную катушку, а сторонним специалистам было удобно сопровождать его в дальнейшем).</li>
+                    <li>Любим свою работу (мы просто не беремся за проекты, к которым у нас не лежит душа и за успех которых мы искренне не болеем).</li>
+                </ul>
+            </div>
+            <h3>Чем докажем, что мы – лучшие?</h3>
+            <div class="more-detail-wrap">
+                <ul class="more-detail">
+                    <li>Более 90 успешных проектов;</li>
+                    <li>100% наших партнеров (именно так мы воспринимаем клиентов) остались довольны;</li>
+                    <li>У нас идеально отлажены коммуникации внутри команды, а это значит: <br/>а) проект будет выполнен в минимальные сроки; <br/>б) пока он дойдет до вас, мы уже найдем и исправим все «косяки»;</li>
+                    <li>Мы имеем непосредственное отношение к развитию технологий (развиваем фреймворк Symfony, создали кучу полезных плагинов для LiveStreet, развиваем OpenCart CMS и сделали для нее шаблон Tecard, разработали шаблон Snowberry для Wordpress)</li>
+                    <li>Экспертному мнению студии web дизайна Stfalcon доверяют на рынке (на ивентах, которые мы организуем, всегда аншлаг, а в блоге – сотни благодарных отзывов (почитайте).</li>
+                </ul>
+            </div>
+        </div>
+        <a class="show-more-info">Подробнее</a>
+    </section>
     <footer class="footer">
         {{ include('_footer.html.twig') }}
     </footer>

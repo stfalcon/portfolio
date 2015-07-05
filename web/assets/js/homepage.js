@@ -101,7 +101,8 @@ $(document).ready(function(){
 });
 
 
-var $projectList = $('.projects-list'),
+var $projectList = $('.projects-row'),
+    $projectRow = $('.projects-list'),
     heightHuck = 0,
     $prevButton = $('.projects-list .prev-tab'),
     $nextButton = $('.projects-list .next-tab'),
@@ -109,17 +110,13 @@ var $projectList = $('.projects-list'),
 
 function changeServiceCategory(category){
     var loadedCount = 0;
-    var $projectRow = $('<div class="projects-row"/>');
 
+    $projectRow.html("");
     // Build projects items
     serviceData[category].projects.forEach(function(item, index) {
         var $projectCell = index === 0 ? $('<div class="project-cell project-cell-l"/>') : $('<div class="project-cell"/>');
         var $projectImg = $('<img alt="' + item.name +'"/>').on('load', function(){
             loadedCount++;
-            heightHuck = $projectList.height();
-            $projectList.css({
-                height: 'auto'
-            });
         })
             .attr('src', item.projectPreviewURL);
         var $linkToProject = $('<a href="'+item.URL+'"/>')
@@ -140,10 +137,6 @@ function changeServiceCategory(category){
         $projectCell.append($linkToProject);
         $projectRow.append($projectCell);
     });
-
-    $projectList.find('.projects-row').remove();
-    $projectList.height(heightHuck);
-    $projectList.append($projectRow);
 
     checkButtonsState();
 };
@@ -178,7 +171,6 @@ function activeTabByHash(hash) {
 }
 
 function changeTabByHash(hash) {
-    console.log(hash);
     if (hash.length>0 && hash != 'ndefined') {
         activeTabByHash(hash);
     } else {
@@ -211,7 +203,6 @@ function toPrevItem(){
 }
 
 function checkButtonsState(){
-    console.log($(currentTab).index());
     switch($(currentTab).index()){
         case 0:
             $prevButton.addClass('disabled');
@@ -246,4 +237,9 @@ $(document).ready(function() {
 $.History.bind(function(state) {
     var hash = state.substr(1);
     changeTabByHash(hash);
+});
+
+$(document).on('click', '.show-more-info', function(){
+   $(this).hide(200);
+   $('.hidden-content.hidden').removeClass('hidden');
 });
