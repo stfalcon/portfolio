@@ -1,18 +1,35 @@
 .footer {
   overflow: hidden;
-  padding: 0 10% 76px;
+  padding: 30px 36px 0;
   color: #fff;
   background: #2c373c;
+  margin-bottom: -17px;
 
   a {
     color: #fff;
+    text-decoration: none;
   }
 }
 
-.footer-nav {
-  float: none;
-  margin: 29px 0 48px;
+.footer-top {
+  position: relative;
+}
 
+.footer-nav {
+  max-width: 80px;
+  float: left;
+  margin: 0 67px 0 0;
+  overflow: hidden;
+
+  li {
+    float: none;
+    margin-right: 0;
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
   a {
     color: #fff;
     font-size: 15px;
@@ -21,13 +38,43 @@
   }
 }
 
+.services-nav {
+  float: left;
+  max-width: 215px;
+  margin-right: 69px;
+
+  li {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  a {
+    font-weight: 100;
+    color: #707B80;
+    font-size: 15px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.contacts {
+  float: left;
+  margin-top: -3px;
+}
+
 .contact-list {
   overflow: hidden;
   line-height: 1.5;
 
   li {
     float: left;
-    margin-right: 23px;
+    margin-right: 73px;
+    min-width: 135px;
+    margin-bottom: 15px;
 
     span {
       display: block;
@@ -41,38 +88,103 @@
     color: #d7c76e;
     text-decoration: underline;
   }
+  .write-to {
+    clear: left;
+  }
+  .address,
+  .skype {
+    margin-right: 0;
+  }
+}
+
+.copyright-cnt {
+  margin: 30px -36px 0;
+  padding: 18px 36px 17px;
+  background: #1A1F21;
 }
 
 .copyright {
-  float: right;
-  margin-top: 30px;
+  overflow: hidden;
+  color: #707B80;
+  font-size: 13px;
 
   a {
-    color: #d7c76e;
+    font-size: inherit;
+    font-weight: 100;
+    color: inherit;
     text-decoration: underline;
   }
   .rules {
-    margin-top: 7px;
-    text-align: right;
+    float: right;
 
     a {
-      margin-left: 17px;
-      font-size: 12px;
-      color: #8d9295;
+      margin-left: 43px;
     }
   }
 }
 
-@media (max-width: 790px){
-  .footer {
-    position: relative;
-    padding: 0 15px 180px;
+.contacts + .socials-links {
+  display: none;
+}
 
+.footer .socials-links {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  margin: 0;
+}
+
+.footer-logo {
+  float: left;
+  margin-top: -7px;
+  margin-right: 73px;
+  width: 135px;
+  height: 27px;
+  background: url('data:image/svg+xml;utf-8,<svg width="135" height="27" viewBox="0 0 135 27" xmlns="http://www.w3.org/2000/svg"><title>Fill 1 + Fill 2</title><desc>Created with Sketch.</desc><g fill="none" fill-rule="evenodd"><g fill="#707B7F"><g><path d="M2.57 13.942c0-.722.667-.975 1.517-.975.992 0 1.82.253 2.57.565v-1.735c-.728-.274-1.64-.45-2.65-.45-2.206 0-3.5 1.152-3.5 2.712 0 3.06 4.49 2.456 4.49 4.172 0 .818-.788 1.15-1.8 1.15s-1.882-.332-2.55-.74L0 20.14c.728.43 1.882.858 3.298.858 2.023 0 3.784-.838 3.784-2.807 0-3.198-4.513-2.575-4.513-4.25zm10.206 5.4c-.627 0-.95-.33-.95-1.168V13.18h2.346l.526-1.598h-2.873v-2.75l-2.105.625v2.125H8.04v1.6h1.68v5.44c0 1.5.95 2.378 2.55 2.378.95 0 2.003-.272 2.67-.72l-.667-1.405c-.385.253-.91.468-1.497.468zm7.842-10.588c.385 0 .77.098 1.153.235l.426-1.62c-.587-.253-1.254-.37-1.84-.37-1.74 0-3.076.995-3.076 3.198v1.384h-1.377v1.6h1.377v7.624h2.104V13.18h1.943l.525-1.598h-2.468v-1.424c0-.896.384-1.404 1.234-1.404zm9.882 5.89c0-2.242-1.336-3.296-3.703-3.296-1.255 0-2.47.293-3.602.917l.73 1.345c.667-.37 1.537-.682 2.55-.682 1.132 0 1.92.507 1.92 1.715v.39l-1.72.06c-.97.04-1.78.155-2.448.487-.97.467-1.598 1.267-1.598 2.495 0 1.775 1.314 2.925 3.115 2.925 1.194 0 2.084-.487 2.792-1.13l.345.936h1.8c-.14-.488-.182-1.287-.182-2.613v-3.55zm-2.104 3.86c-.385.332-1.113.878-2.084.878-.952 0-1.558-.546-1.558-1.423 0-.528.222-.938.668-1.17.363-.196.85-.294 1.537-.313l1.436-.06v2.088zm7.168.664c-.465 0-.707-.195-.707-.878V7h-2.105v11.855c0 1.346.728 2.087 2.206 2.087.505 0 1.133-.097 1.638-.312l-.424-1.58c-.182.06-.466.118-.608.118zm6.833.175c-1.74 0-2.873-1.13-2.873-3.14 0-1.832 1.133-3.198 2.995-3.198.93 0 1.658.254 2.326.683v-1.735c-.547-.312-1.397-.605-2.53-.605-2.873 0-4.957 2.106-4.957 4.914 0 2.652 1.7 4.738 4.754 4.738 1.254 0 2.428-.39 3.157-.878l-.607-1.403c-.667.35-1.335.623-2.266.623zm8.51-7.995c-2.81 0-4.673 2.067-4.673 4.816 0 2.75 1.882 4.836 4.674 4.836 2.793 0 4.654-2.086 4.654-4.836 0-2.75-1.86-4.816-4.654-4.816zm0 7.995c-1.597 0-2.508-1.326-2.508-3.18 0-1.83.91-3.158 2.508-3.158 1.6 0 2.49 1.327 2.49 3.16 0 1.852-.89 3.178-2.49 3.178zm11.66-7.995c-1.195 0-2.288.527-3.3 1.326l-.222-1.092h-1.78v9.224h2.103v-6.572c.77-.624 1.64-1.112 2.53-1.112 1.274 0 1.558.975 1.558 2.185v5.5h2.104v-6.144c0-2.535-1.477-3.315-2.994-3.315zm6.59 7.195c-.69 0-1.215.527-1.215 1.21 0 .682.526 1.228 1.214 1.228.667 0 1.214-.545 1.214-1.228 0-.682-.547-1.21-1.214-1.21zm7.857.8c-1.74 0-2.873-1.13-2.873-3.14 0-1.832 1.134-3.198 2.996-3.198.93 0 1.66.254 2.327.683v-1.735c-.547-.312-1.397-.605-2.53-.605-2.873 0-4.957 2.106-4.957 4.914 0 2.652 1.7 4.738 4.755 4.738 1.256 0 2.43-.39 3.157-.878l-.607-1.403c-.667.35-1.335.623-2.266.623zm8.345-7.995c-2.814 0-4.676 2.067-4.676 4.816 0 2.75 1.883 4.836 4.675 4.836 2.79 0 4.652-2.086 4.652-4.836 0-2.75-1.86-4.816-4.653-4.816zm0 7.995c-1.6 0-2.51-1.326-2.51-3.18 0-1.83.91-3.158 2.51-3.158 1.597 0 2.488 1.327 2.488 3.16 0 1.852-.89 3.178-2.49 3.178zm17.584-7.995c-1.112 0-2.327.527-3.48 1.482-.466-.975-1.376-1.482-2.51-1.482-1.193 0-2.286.566-3.257 1.326l-.222-1.092h-1.76v9.224h2.103v-6.61c.75-.605 1.62-1.074 2.49-1.074 1.254 0 1.497.956 1.497 2.126v5.558h2.104v-6.182c0-.156 0-.312-.02-.43.768-.603 1.638-1.072 2.488-1.072 1.274 0 1.518.937 1.518 2.107v5.576H106v-6.143c0-2.398-1.416-3.315-3.056-3.315z"/><path d="M119.14 20.863l-3.805-8.835-8.028-9.81L107 0l15.295 9.327 5.827 7.773-5.018-8.1.486-1.146-.486-4.336 8.82 9.982-1.375 3.027 2.265-.08 2.185 1.88-1.214.328-2.914 2.536-1.86.574-5.098 1.964-6.475.49-2.266 1.146-.97-.328-4.21 1.964-.81-.327 9.955-5.81"/></g></g></g></svg>');
+}
+
+@media (max-width: 1230px){
+  .footer-logo {
+    display: none;
+  }
+}
+
+@media (max-width: 1012px){
+  .footer-nav {
+    margin-bottom: 20px;
+    max-width: 100%;
+
+    ul {
+      column-count: 2;
+      column-width: 65px;
+      column-gap: 43px;
+    }
+  }
+  .services-nav {
+    margin-bottom: 20px;
+    max-width: 100%;
+
+    ul {
+      column-count: 2;
+      column-width: 215px;
+      column-gap: 45px;
+    }
+  }
+}
+
+@media (max-width: 955px) {
+  .footer {
     .socials-links {
-      margin: 0;
-      position: absolute;
-      left: 21px;
-      bottom: 128px;
+      display: none;
+    }
+    .contacts + .socials-links {
+      display: block;
+    }
+    .socials-links {
+      position: static;
+      margin: 21px 0 26px -12px;
+      float: left;
+      width: 100%;
       overflow: visible;
       transform-origin: 0 0 ;
       transform: scale(2.25);
@@ -82,60 +194,49 @@
       }
     }
   }
+}
+
+@media (max-width: 790px){
+  .footer {
+    position: relative;
+  }
   .footer-nav {
     margin-bottom: 34px;
   }
-  .contact-list {
+  .copyright {
 
   }
+}
+
+@media (max-width: 620px){
   .copyright {
-    position: absolute;
-    left: 15px;
-    bottom: 27px;
+    text-align: center;
 
     .rules {
-      text-align: left;
+      margin-top: 12px;
+      width: 100%;
 
-      a:first-child {
-        margin: 0;
+      a {
+        margin: 0 21px;
       }
     }
   }
 }
 
-
-@media (max-width: 1294px){
-  .contact-list .address {
-    margin-top: 21px;
-    clear: left;
-  }
-}
-
-@media (max-width: 880px){
-  .contact-list .write-to {
-    margin-top: 21px;
-    clear: left;
-  }
-}
-
 @media (max-width: 480px){
   .footer-nav {
+    margin-bottom: 24px;
+
     ul {
       width: 256px;
-      margin-left: 30px;
       column-count: 2;
       column-width: 110px;
       column-gap: 20px;
     }
     li {
       margin-right: 0;
-      padding-bottom: 22px;
       -webkit-column-break-inside: avoid;
       column-break-inside: avoid;
-      width: 110px;
-    }
-    a {
-      font-size: 18px;
     }
   }
 }

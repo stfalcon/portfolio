@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\PortfolioBundle\Tests\Entity;
 
+use Application\Bundle\UserBundle\Entity\User;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 
@@ -105,14 +106,99 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($project->getCategories(), $categories);
     }
 
-    public function testSetAndGetProjectUsers()
+    public function testSetAndGetAndAddProjectParticipants()
     {
-        $users = '<dl><dt>art-director and designer</dt><dd>Oleg Ulasyuk</dd></dl>';
-
         $project = new Project();
-        $project->setUsers($users);
 
-        $this->assertEquals($project->getUsers(), $users);
+        $user = new User();
+
+        $project->addParticipant($user);
+        $participants = $project->getParticipants();
+
+        $this->assertEquals($participants->count(), 1);
+        $this->assertTrue(\is_a($participants, 'Doctrine\Common\Collections\ArrayCollection'), 2);
+
+        $project->setParticipants($participants);
+
+        $this->assertEquals($project->getParticipants(), $participants);
     }
 
+    public function testSetAndGetProjectTags()
+    {
+        $project = new Project();
+
+        $tags = 'php, symfony2';
+        $project->setTags($tags);
+
+        $this->assertEquals($project->getTags(), $tags);
+    }
+
+    public function testSetAndGetProjectPublished()
+    {
+        $project = new Project();
+
+        $this->assertTrue($project->isPublished());
+
+        $project->setPublished(false);
+
+        $this->assertFalse($project->isPublished());
+    }
+
+    public function testSetAndGetProjectShowCase()
+    {
+        $project = new Project();
+
+        $this->assertFalse($project->isShowCase());
+
+        $project->setShowCase(true);
+
+        $this->assertTrue($project->isShowCase());
+    }
+
+    public function testSetAndGetProjectShadow()
+    {
+        $project = new Project();
+
+        $this->assertTrue($project->getShadow());
+
+        $project->setShadow(false);
+
+        $this->assertFalse($project->getShadow());
+    }
+
+    public function testSetAndGetProjectMetaKeywords()
+    {
+        $project = new Project();
+
+        $keywords = 'php, symfony2';
+        $project->setMetaKeywords($keywords);
+
+        $this->assertEquals($project->getMetaKeywords(), $keywords);
+    }
+
+    public function testSetAndGetProjectMetaDescription()
+    {
+        $project = new Project();
+
+        $description = 'php symfony2 performance';
+        $project->setMetaDescription($description);
+
+        $this->assertEquals($project->getMetaDescription(), $description);
+    }
+
+    public function testSetAndGetAndAddProjectRelativeProjects()
+    {
+        $project = new Project();
+        $relativeProject = new Project();
+
+        $project->addRelativeProject($relativeProject);
+        $relativeProjects = $project->getRelativeProjects();
+
+        $this->assertEquals($relativeProjects->count(), 1);
+        $this->assertTrue(\is_a($relativeProjects, 'Doctrine\Common\Collections\ArrayCollection'), 2);
+
+        $project->setRelativeProjects($relativeProjects);
+
+        $this->assertEquals($project->getRelativeProjects(), $relativeProjects);
+    }
 }

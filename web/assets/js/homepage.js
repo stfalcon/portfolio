@@ -26,6 +26,7 @@ $(function(){
                 if (!response.success) {
                     $form.closest('.subscribe-form-wrap').replaceWith(response.view);
                 } else {
+                    ga('send', 'event', 'subscribe', 'success');
                     $form.find('input[type="email"]').val('');
                     $form.find('.error-list').remove();
                 }
@@ -102,7 +103,10 @@ $(document).ready(function(){
 
 
 var $projectList = $('.projects-list'),
-    heightHuck = 0;
+    heightHuck = 0,
+    $prevButton = $('.projects-list .prev-tab'),
+    $nextButton = $('.projects-list .next-tab'),
+    currentTab;
 
 function changeServiceCategory(category){
     var loadedCount = 0;
@@ -143,39 +147,86 @@ function changeServiceCategory(category){
     $projectList.append($projectRow);
 };
 
-function showServiceTabs(category){
-    changeServiceCategory(category);
-};
-
 var servicesTabs = $('.projects-tabs a');
 
 servicesTabs.on('click', function(e){
     var category = $(this).data('category');
     if(category) {
-        showServiceTabs(category);
+        var itemIndex = $(e.target).closest('li').index();
+        if(itemIndex == servicesTabs.length - 2){
+            /*
+            * When will created preview for category 'CONSULTING AND AUDIT'
+            * todo: change expression in "if" change 2 on 1
+            * */
+            $nextButton.addClass('disabled');
+            $prevButton.removeClass('disabled');
+        } else if(itemIndex != 0) {
+            $prevButton.removeClass('disabled');
+        }
+        changeServiceCategory(category);
         servicesTabs.removeClass('active');
         $(this).addClass('active');
-//                e.preventDefault();
+        currentTab = $(this).closest('li');
     }
-//           return false;
 });
 
 function activeTabByHash(hash) {
-    $('.projects-tabs a').removeClass('active');
-
     var $link = $('.projects-tabs').find('a[data-category="'+hash+'"]');
-    $link.addClass('active');
-    showServiceTabs(hash);
+    $link.trigger('click');
+    changeServiceCategory(hash);
 }
 
 function changeTabByHash(hash) {
-    if (hash.length>0) {
+    console.log(hash);
+    if (hash.length>0 && hash != 'ndefined') {
         activeTabByHash(hash);
     } else {
-        //go to default category
+        // go to default category
         activeTabByHash('development');
     }
 }
+
+function toNextItem(){
+    var $nextItem = currentTab.nextAll().first();
+    if($nextItem.length && !$nextItem.hasClass('disabled')) {
+        var $sliderLink = $nextItem.find('a');
+        window.location.hash = $sliderLink.attr('href');
+        $sliderLink.trigger('click');
+        $nextButton.removeClass('disabled');
+        $(window).trigger("hashchange");
+        $prevButton.removeClass('disabled');
+    }
+    $nextItem = currentTab.nextAll().first();
+
+    if(!$nextItem.length || $nextItem.hasClass('disabled')){
+        $nextButton.addClass('disabled');
+    }
+}
+
+function toPrevItem(){
+    var $prevItem = currentTab.prevAll().first();
+    if($prevItem.length) {
+        var $sliderLink = $prevItem.find('a');
+        window.location.hash = $sliderLink.attr('href');
+        $sliderLink.trigger('click');
+        $nextButton.removeClass('disabled');
+        $(window).trigger("hashchange");
+        $nextButton.removeClass('disabled');
+    }
+
+    var $prevItem = currentTab.prevAll().first();
+    if(!$prevItem.length){
+        $prevButton.addClass('disabled');
+    }
+}
+
+$nextButton.on('click', function(){
+    toNextItem();
+});
+
+$prevButton.on('click', function(){
+    toPrevItem();
+});
 
 $(document).ready(function() {
     var hash = window.location.hash;

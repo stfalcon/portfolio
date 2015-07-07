@@ -148,6 +148,14 @@ class Post implements Translatable
     private $metaDescription;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_title", type="text", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $metaTitle;
+
+    /**
      * Initialization properties for new post entity
      */
     public function __construct()
@@ -492,6 +500,26 @@ class Post implements Translatable
         $this->metaDescription = $metaDescription;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+        if (empty($this->metaTitle)) {
+            return $this->getTitle();
+        }
+
+        return $this->metaTitle;
+    }
+
+    /**
+     * @param string $metaTitle
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
     }
 
     /**
