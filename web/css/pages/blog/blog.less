@@ -123,8 +123,9 @@
     float: right;
     margin-right: -17.187%; 
     width: 21.46%;
-    font-size: 1.071rem;
+    font-size: 1rem;
     line-height: 1.6em;
+    padding-left: 3%;
     
     ul {
       margin-top: 10px; 
@@ -477,7 +478,14 @@
     padding: 0 4.2151%;
   }
 }
-
+@media screen and (max-width: 730px) {
+  aside {
+    float: none;
+    width: 75%;
+    margin: 18px auto 13px;
+    font-size: 1rem;
+  }
+}
 @media screen and (max-width: 640px) {
   .share-cnt {
     margin-top: 20px;
@@ -561,12 +569,6 @@
     .tips p {
       padding-left: 20px;
       padding-right: 20px; 
-    }
-    aside {
-      float: none;
-      width: 68.3333%;
-      margin: 18px auto 13px;
-      font-size: 0.857rem;
     }
     p, li {
       .big-img {
