@@ -229,7 +229,7 @@
     </section>
     {{ render(controller("StfalconBlogBundle:Post:lastHomepage", { 'locale': app.request.locale, 'count': 3 })) }}
     <section class="details-info">
-        <h2>{{ "Stfalcon - студия веб-дизайна и разработки сайтов" | trans() }}</h2>
+        <h1>{{ "Stfalcon &mdash; студия веб-дизайна и разработки сайтов" | trans()|raw }}</h1>
         <h3>{{ "Есть ли смысл дальше изучать наш сайт? <br/> да, если:" | trans() | raw }}</h3>
         <div class="more-detail-wrap">
             <ul class="more-detail">
