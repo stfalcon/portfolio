@@ -102,7 +102,8 @@ $(document).ready(function(){
 });
 
 
-var $projectList = $('.projects-list'),
+var $projectList = $('.projects-row'),
+    $projectRow = $('.projects-list'),
     heightHuck = 0,
     $prevButton = $('.projects-list .prev-tab'),
     $nextButton = $('.projects-list .next-tab'),
@@ -110,17 +111,13 @@ var $projectList = $('.projects-list'),
 
 function changeServiceCategory(category){
     var loadedCount = 0;
-    var $projectRow = $('<div class="projects-row"/>');
 
+    $projectRow.html("");
     // Build projects items
     serviceData[category].projects.forEach(function(item, index) {
         var $projectCell = index === 0 ? $('<div class="project-cell project-cell-l"/>') : $('<div class="project-cell"/>');
         var $projectImg = $('<img alt="' + item.name +'"/>').on('load', function(){
             loadedCount++;
-            heightHuck = $projectList.height();
-            $projectList.css({
-                height: 'auto'
-            });
         })
             .attr('src', item.projectPreviewURL);
         var $linkToProject = $('<a href="'+item.URL+'"/>')
@@ -142,9 +139,7 @@ function changeServiceCategory(category){
         $projectRow.append($projectCell);
     });
 
-    $projectList.find('.projects-row').remove();
-    $projectList.height(heightHuck);
-    $projectList.append($projectRow);
+    checkButtonsState();
 };
 
 var servicesTabs = $('.projects-tabs a');
@@ -156,7 +151,7 @@ servicesTabs.on('click', function(e){
         if(itemIndex == servicesTabs.length - 2){
             /*
             * When will created preview for category 'CONSULTING AND AUDIT'
-            * todo: change expression in "if" change 2 on 1
+            * todo: edit expression in "if" change 2 on 1
             * */
             $nextButton.addClass('disabled');
             $prevButton.removeClass('disabled');
@@ -177,7 +172,6 @@ function activeTabByHash(hash) {
 }
 
 function changeTabByHash(hash) {
-    console.log(hash);
     if (hash.length>0 && hash != 'ndefined') {
         activeTabByHash(hash);
     } else {
@@ -192,15 +186,9 @@ function toNextItem(){
         var $sliderLink = $nextItem.find('a');
         window.location.hash = $sliderLink.attr('href');
         $sliderLink.trigger('click');
-        $nextButton.removeClass('disabled');
         $(window).trigger("hashchange");
-        $prevButton.removeClass('disabled');
     }
-    $nextItem = currentTab.nextAll().first();
-
-    if(!$nextItem.length || $nextItem.hasClass('disabled')){
-        $nextButton.addClass('disabled');
-    }
+    checkButtonsState();
 }
 
 function toPrevItem(){
@@ -209,14 +197,26 @@ function toPrevItem(){
         var $sliderLink = $prevItem.find('a');
         window.location.hash = $sliderLink.attr('href');
         $sliderLink.trigger('click');
-        $nextButton.removeClass('disabled');
         $(window).trigger("hashchange");
-        $nextButton.removeClass('disabled');
     }
 
-    var $prevItem = currentTab.prevAll().first();
-    if(!$prevItem.length){
-        $prevButton.addClass('disabled');
+    checkButtonsState();
+}
+
+function checkButtonsState(){
+    switch($(currentTab).index()){
+        case 0:
+            $prevButton.addClass('disabled');
+            $nextButton.removeClass('disabled');
+            break;
+        case 1:
+        case 2:
+            $prevButton.removeClass('disabled');
+            $nextButton.removeClass('disabled');
+            break;
+        case 3:
+            $prevButton.removeClass('disabled');
+            $nextButton.addClass('disabled');
     }
 }
 
@@ -238,4 +238,9 @@ $(document).ready(function() {
 $.History.bind(function(state) {
     var hash = state.substr(1);
     changeTabByHash(hash);
+});
+
+$(document).on('click', '.show-more-info', function(){
+   $(this).hide(200);
+   $('.hidden-content.hidden').removeClass('hidden');
 });
