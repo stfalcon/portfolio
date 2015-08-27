@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>cms_icon</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Adaptive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="adaptive_land_v" sketch:type="MSArtboardGroup" transform="translate(-1034.000000, -2645.000000)">
+            <g id="3-Benefits" sketch:type="MSLayerGroup" transform="translate(0.000000, 2161.000000)">
+                <g id="b6" transform="translate(961.000000, 484.000000)" sketch:type="MSShapeGroup">
+                    <g id="cms_icon" transform="translate(73.000000, 0.000000)">
+                        <path d="M54,37.8 C54,40.7823376 51.5823376,43.2 48.6,43.2 L16.2,43.2 C13.203,43.2 10.8,40.77 10.8,37.8 L10.8,5.4 C10.8,2.403 13.203,0 16.2,0 L48.6,0 C51.5823376,0 54,2.41766235 54,5.4 L54,37.8 L54,37.8 Z M29.7,32.4 L48.6,13.5 L44.793,9.693 L29.7,24.759 L21.357,16.443 L17.55,20.25 L29.7,32.4 L29.7,32.4 Z" id="Shape" fill="#4770BC"></path>
+                        <path d="M37.8,48.6 L37.8,54 L5.4,54 C2.41766235,54 0,51.5823376 0,48.6 L0,13.5 L5.4,13.5 L5.4,48.6 L37.8,48.6 L37.8,48.6 Z" id="Path" fill="#E31A54"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

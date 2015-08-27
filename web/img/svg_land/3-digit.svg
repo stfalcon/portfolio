@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="34px" viewBox="0 0 24 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>3-digit</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Silex" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="silex_land_v" sketch:type="MSArtboardGroup" transform="translate(-729.000000, -1605.000000)" fill="#F0EBD8">
+            <g id="Общие-положения--«ко-+-Правильное-проектиро-+-На-первом-этапе-опре" sketch:type="MSLayerGroup" transform="translate(0.000000, 1386.000000)">
+                <path d="M728.994,248.228 C731.938,251.218 736.262,252.552 740.218,252.552 C748.452,252.552 752.408,246.94 752.408,241.328 C752.408,236.728 749.326,232.864 744.45,231.806 L751.12,224.124 L751.12,219.11 L730.374,219.11 L730.374,226.01 L738.24,226.01 C740.31,226.01 741.368,225.78 741.368,225.78 L741.368,225.872 C741.368,225.872 740.08,227.068 738.516,228.954 L734.192,234.152 L735.894,238.062 L738.194,238.062 C741.736,238.062 744.312,239.12 744.312,241.696 C744.312,243.49 742.61,244.962 739.62,244.962 C737.09,244.962 734.514,243.628 732.858,242.018 L728.994,248.228 Z" id="3-digit" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

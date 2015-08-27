@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="61px" height="81px" viewBox="0 0 61 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>ball2_icon</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Adaptive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="adaptive_land_v" sketch:type="MSArtboardGroup" transform="translate(-466.000000, -5100.000000)">
+            <g id="4" sketch:type="MSLayerGroup" transform="translate(0.000000, 4924.000000)">
+                <g id="ball2_icon" transform="translate(466.000000, 176.000000)" sketch:type="MSShapeGroup">
+                    <path d="M30.5,80.63 C30.5,80.63 61,47.9746849 61,31.13 C61,14.2853151 47.3446849,0.63 30.5,0.63 C13.6553151,0.63 0,14.2853151 0,31.13 C0,47.9746849 30.5,80.63 30.5,80.63 Z" id="Oval-5" fill="#9DF6FF"></path>
+                    <path d="M20.352,50 L40.592,50 L40.592,47.148 L23.664,47.148 C23.756,38.546 40.086,37.028 40.086,26.172 C40.086,21.112 36.36,17.11 30.242,17.11 C25.872,17.11 22.238,19.686 20.444,22.952 L22.79,24.562 C24.354,22.032 27.022,20.146 30.058,20.146 C34.106,20.146 36.774,22.814 36.774,26.356 C36.774,35.096 20.168,36.568 20.168,47.93 C20.168,48.574 20.26,49.264 20.352,50 L20.352,50 Z" id="2" fill="#32BFCE"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

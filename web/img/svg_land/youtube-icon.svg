@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="11px" viewBox="0 0 16 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>youtube_icon</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Adaptive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="adaptive_land_v" sketch:type="MSArtboardGroup" transform="translate(-1358.000000, -29.000000)" fill-opacity="0.6" fill="#FFFFFF">
+            <g id="Header" sketch:type="MSLayerGroup">
+                <g id="social" transform="translate(1279.000000, 27.000000)" sketch:type="MSShapeGroup">
+                    <path d="M94.7199517,11.230603 C94.5241382,12.0699841 93.8280552,12.6888852 92.9904799,12.7812044 C91.0064689,12.9998744 88.9984171,13.0009605 86.9989906,12.9998744 C84.9997476,13.0009605 82.9915123,12.9998744 81.0076848,12.7812044 C80.169926,12.6888852 79.47421,12.0699841 79.27858,11.230603 C79,10.0351592 79,8.73074238 79,7.50018102 C79,6.26943864 79.0033033,4.96484085 79.2816998,3.769397 C79.4775133,2.93001586 80.1732293,2.31093379 81.0108046,2.21879556 C82.9948156,2.00012563 85.0028674,1.99903952 87.0022939,2.00012563 C89.0015369,1.99903952 91.0097722,2.00012563 92.9935997,2.21879556 C93.8313585,2.31093379 94.5274415,2.93001586 94.7230715,3.769397 C95.0016515,4.96484085 94.9999999,6.26943864 94.9999999,7.50018102 C94.9999999,8.73074238 94.9983482,10.0351592 94.7199517,11.230603 Z M85.6666667,4.91176471 L90.1666667,7.5 L85.6666667,10.0882353 L85.6666667,4.91176471 Z" id="youtube_icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
