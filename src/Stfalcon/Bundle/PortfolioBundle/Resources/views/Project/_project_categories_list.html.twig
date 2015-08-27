@@ -1,0 +1,12 @@
+<ul class="tabs-header">
+    <li>
+        <div class="wrap-nav"><a class="tab-title {% if active == 'all' %} {{ 'active' }}{% endif %}" href="{{ url('portfolio_all_projects') }}"><h1>{{ "Все"|trans }}</h1></a></div>
+    </li>
+    {% for category in categories %}
+        <li>
+            <div class="wrap-nav"><a class="tab-title {% if active == category.slug %} {{ 'active' }}{% endif %}" href="{{ path('portfolio_category_project', {'slug': category.slug}) }}">
+                    {{ category.name }}
+                </a></div>
+        </li>
+    {% endfor %}
+</ul>

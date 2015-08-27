@@ -2823,8 +2823,14 @@ iframe[name="google_conversion_frame"] {
   font-size: 11px;
 }
 @media (min-width: 1330px) {
-  .services-tabs p:not(.h1, .content-offer) {
+  .services-tabs p {
     font-size: 1.143rem;
+  }
+  .services-tabs .h1 {
+    font-size: 2.57rem;
+  }
+  .services-tabs .content-offer {
+    font-size: 1.7rem;
   }
 }
 @media (max-width: 1280px) {

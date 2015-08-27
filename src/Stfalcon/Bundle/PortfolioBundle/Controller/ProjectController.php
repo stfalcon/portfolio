@@ -20,23 +20,49 @@ class ProjectController extends Controller
      * @param int $page
      *
      * @return array
-     * @Route("/portfolio/{page_prefix}/{page}",
-     *  name="portfolio_all_projects",
-     *  requirements={"page" = "\d+", "page_prefix" = "page"},
-     *  defaults={"page"=1, "page_prefix"="page"})
+     * @Route("/portfolio/", name="portfolio_all_projects")
      * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
      */
-    public function allProjectsAction($page)
+    public function allProjectsAction()
     {
         $request = $this->get('request');
         $seo = $this->get('sonata.seo.page');
         $seo->generateLangAlternates($request);
 
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projectsQuery = $repository->findAllProjectsOrderingByDateAsQuery('p.ordernum', 'ASC');
-        $projectsWithPaginator = $this->get('knp_paginator')->paginate($projectsQuery, $page, 12);
+        $projects = $repository->getAllProjectPortfolio();
+        $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
 
-        return array('projects' => $projectsWithPaginator);
+        return array(
+            'categories' => $categories,
+            'active' => 'all',
+            'projects' => $projects
+        );
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @Route("/portfolio/{slug}/", name="portfolio_category_project")
+     * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
+     * @return array
+     */
+    public function projectCategoryAction(Category $category)
+    {
+        $request = $this->get('request');
+        $seo = $this->get('sonata.seo.page');
+        $seo->generateLangAlternates($request);
+
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
+        $projects = $repository->findAllExamplesProjectsByCategory($category, 7);
+
+        $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
+
+        return array(
+            'categories' => $categories,
+            'active' => $category->getSlug(),
+            'projects' => $projects
+        );
     }
 
     /**
@@ -60,7 +86,7 @@ class ProjectController extends Controller
                 $projectYears[$year] = array('year' => $year, 'counter' => $projectBefore);
             }
 
-            $projectBefore ++;
+            $projectBefore++;
         }
 
         $projectYears = array_slice($projectYears, -4);
@@ -90,7 +116,7 @@ class ProjectController extends Controller
             'portfolio_project_view',
             [
                 'categorySlug' => $categorySlug,
-                'projectSlug'  => $project->getSlug()
+                'projectSlug' => $project->getSlug()
             ],
             true
         );
@@ -103,8 +129,7 @@ class ProjectController extends Controller
             ->addMeta('property', 'og:url', $canonicalUrl)
             ->addMeta('property', 'og:type', 'portfolio')
             ->addMeta('property', 'og:description', $project->getMetaDescription())
-            ->setLinkCanonical($canonicalUrl)
-        ;
+            ->setLinkCanonical($canonicalUrl);
 
         $seo->generateLangAlternates($this->get('request'));
 
@@ -112,7 +137,8 @@ class ProjectController extends Controller
             $seo->addMeta(
                 'property',
                 'og:image',
-                $request->getSchemeAndHttpHost() . $this->get('vich_uploader.templating.helper.uploader_helper')->asset($project, 'imageFile')
+                $request->getSchemeAndHttpHost() . $this->get('vich_uploader.templating.helper.uploader_helper')->asset($project,
+                    'imageFile')
             );
         }
 
@@ -140,14 +166,16 @@ class ProjectController extends Controller
 
         // get all projects from this category
         $projects = $em->getRepository("StfalconPortfolioBundle:Project")
-                ->getProjectsByCategory($category);
+            ->getProjectsByCategory($category);
 
         // get next and previous projects from this category
-        $i = 0; $previousProject = null; $nextProject = null;
+        $i = 0;
+        $previousProject = null;
+        $nextProject = null;
         foreach ($projects as $p) {
             if ($project->getId() == $p->getId()) {
-                $previousProject = isset($projects[$i-1]) ? $projects[$i-1] : null;
-                $nextProject     = isset($projects[$i+1]) ? $projects[$i+1] : null;
+                $previousProject = isset($projects[$i - 1]) ? $projects[$i - 1] : null;
+                $nextProject = isset($projects[$i + 1]) ? $projects[$i + 1] : null;
                 break;
             }
             $i++;
@@ -169,7 +197,7 @@ class ProjectController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository("StfalconPortfolioBundle:Category")
-                ->findOneBy(array('slug' => $slug));
+            ->findOneBy(array('slug' => $slug));
 
         if (!$category) {
             throw new NotFoundHttpException($translator->trans('Категория не существует.'));
@@ -191,7 +219,7 @@ class ProjectController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository("StfalconPortfolioBundle:Project")
-                ->findOneBy(array('slug' => $slug));
+            ->findOneBy(array('slug' => $slug));
 
         if (!$project) {
             throw new NotFoundHttpException($translator->trans('Проект не существует.'));
@@ -206,7 +234,8 @@ class ProjectController extends Controller
      * @param $category
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function widgetExamplesProjectAction($category) {
+    public function widgetExamplesProjectAction($category)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $projects = $em->getRepository("StfalconPortfolioBundle:Project")
