@@ -47,7 +47,8 @@
         "fresh/doctrine-enum-bundle": "2.5",
         "geoip2/geoip2": "2.1.1",
         "ahmedsamy/hype-mailchimp-bundle": "1.2",
-        "mlehner/gelf-php": "v1.0.1"
+        "mlehner/gelf-php": "v1.0.1",
+        "friendsofsymfony/jsrouting-bundle": "^2.0@dev"
     },
     "scripts": {
         "post-install-cmd": [

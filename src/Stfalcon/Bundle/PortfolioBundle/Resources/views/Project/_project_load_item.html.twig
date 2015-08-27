@@ -1,0 +1,15 @@
+<a href="">
+    <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}"
+         alt="{{ project.name }}"/>
+                    <span class="project-info">
+                        <span class="project-info-text">
+                            <span class="project-name">
+                                {{ project.name }}
+                            </span>
+                            <span class="project-description">
+                                {{ project.description }}
+                            </span>
+                        </span>
+                        <span class="helper"></span>
+                    </span>
+</a>

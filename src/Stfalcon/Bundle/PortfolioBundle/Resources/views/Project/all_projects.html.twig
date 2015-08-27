@@ -9,8 +9,14 @@
 {% block content_wrapper %}
     <div class="section-offer">
         <p class="h1">{{ "Проекты"|trans }}</p>
-        {% include('@StfalconPortfolio/Project/_project_categories_list.html.twig') with categories %}
+        {% include('@StfalconPortfolio/Project/_project_categories_list.html.twig') with {'categories': categories} %}
     </div>
-    {% include('@StfalconPortfolio/Project/_project_category_item.html.twig') with projects %}
+    {% include('@StfalconPortfolio/Project/_project_category_item.html.twig') with {'projects': projects} %}
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>var next_count = {{ nextCount }}</script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 {% endblock %}

@@ -120,12 +120,12 @@ class ProjectRepository extends EntityRepository
     }
 
     /**
-     * @param int    $limit
-     * @param int    $offset
+     * @param int $limit
+     * @param int $offset
      * @param string $orderBy
      * @param string $orderDirection
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return array
      */
     public function getAllProjectPortfolio($limit = 7, $offset = 0, $orderBy = 'p.ordernum', $orderDirection = 'ASC')
     {

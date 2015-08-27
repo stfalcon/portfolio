@@ -1,42 +1,10 @@
-
 <div class="list_projects">
     <ul class="items_projects">
         {% for project in projects %}
-        <li class="project-cell">
-            <a href="">
-                <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ project.name }}" />
-                    <span class="project-info">
-                        <span class="project-info-text">
-                            <span class="project-name">
-                                {{ project.name }}
-                            </span>
-                            <span class="project-description">
-                                {{ project.description }}
-                            </span>
-                        </span>
-                        <span class="helper"></span>
-                    </span>
-            </a>
-        </li>
+            <li class="project-cell">
+                {% include('@StfalconPortfolio/Project/_project_load_item.html.twig') with {'project': project } %}
+            </li>
         {% endfor %}
-        <li class="project-cell project-cell_load">
-            <div class="container_load">
-                <div class="loader">
-                    <svg class="circular">
-                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="1" stroke-miterlimit="10"/>
-                    </svg>
-                </div>
-            </div>
-        </li>
-        <li class="project-cell project-cell_load">
-            <div class="container_load">
-                <div class="loader">
-                    <svg class="circular">
-                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="1" stroke-miterlimit="10"/>
-                    </svg>
-                </div>
-            </div>
-        </li>
     </ul>
     <div id="element-waypoint"></div>
 </div>

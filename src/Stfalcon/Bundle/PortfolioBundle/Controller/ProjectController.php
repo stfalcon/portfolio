@@ -3,6 +3,7 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -16,52 +17,90 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  */
 class ProjectController extends Controller
 {
+
+    /**
+     * @param null $slug
+     * @return array
+     * @Route("/portfolio/next-projects/", name="portfolio_next_projects", options={"expose"=true})
+     * @Route("/portfolio/next-projects/{slug}", name="portfolio_category_next_projects", options={"expose"=true})
+     */
+    public function getNextProjectsAction($slug = null)
+    {
+        $category = null;
+        $request = $this->get('request');
+        $limit = $request->get('limit', 4);
+        $offset = $request->get('offset', 0);
+        $data = [];
+        if ($slug) {
+            $category = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('StfalconPortfolioBundle:Category')
+                ->findOneBy(['slug' => $slug]);
+            if (!$category) {
+                $this->createNotFoundException();
+            }
+        }
+
+        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
+        if ($category) {
+            $projects = $repository->findAllExamplesProjectsByCategory($category, $limit, $offset);
+            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $limit, count($projects) + $offset);
+        } else {
+            $projects = $repository->getAllProjectPortfolio($limit, $offset);
+            $nextPartCategoriesCount = $repository->getAllProjectPortfolio($limit, count($projects) + $offset);
+        }
+
+        foreach ($projects as $project) {
+            $data[] = $this->renderView('@StfalconPortfolio/Project/_project_load_item.html.twig', ['project' => $project]);
+        }
+
+
+        return new JsonResponse([
+            'data' => $data,
+            'nextCount' => count($nextPartCategoriesCount)
+        ]);
+    }
+
     /**
      * @param int $page
      *
      * @return array
+     * @Route("/portfolio/{slug}/", name="portfolio_category_project")
      * @Route("/portfolio/", name="portfolio_all_projects")
      * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
      */
-    public function allProjectsAction()
+    public function allProjectsAction($slug = null)
     {
         $request = $this->get('request');
         $seo = $this->get('sonata.seo.page');
         $seo->generateLangAlternates($request);
+        $category = null;
+        $nextLimit = 4;
+        if ($slug) {
+            $category = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('StfalconPortfolioBundle:Category')
+                ->findOneBy(['slug' => $slug]);
+            if (!$category) {
+                $this->createNotFoundException();
+            }
+        }
 
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projects = $repository->getAllProjectPortfolio();
+        if ($category) {
+            $projects = $repository->findAllExamplesProjectsByCategory($category, 7);
+            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $nextLimit, count($projects) + $nextLimit);
+        } else {
+            $projects = $repository->getAllProjectPortfolio();
+            $nextPartCategoriesCount = $repository->getAllProjectPortfolio($nextLimit, count($projects) + $nextLimit);
+        }
         $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
 
         return array(
             'categories' => $categories,
-            'active' => 'all',
-            'projects' => $projects
-        );
-    }
-
-    /**
-     * @param Category $category
-     *
-     * @Route("/portfolio/{slug}/", name="portfolio_category_project")
-     * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
-     * @return array
-     */
-    public function projectCategoryAction(Category $category)
-    {
-        $request = $this->get('request');
-        $seo = $this->get('sonata.seo.page');
-        $seo->generateLangAlternates($request);
-
-        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projects = $repository->findAllExamplesProjectsByCategory($category, 7);
-
-        $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
-
-        return array(
-            'categories' => $categories,
-            'active' => $category->getSlug(),
-            'projects' => $projects
+            'active' => $category ? $category->getSlug() : 'all',
+            'projects' => $projects,
+            'nextCount' => count($nextPartCategoriesCount)
         );
     }
 
@@ -79,7 +118,7 @@ class ProjectController extends Controller
         $projectYears = array();
         $projectBefore = 1;
         foreach ($projects as $project) {
-            $year = (int) $project->getDate()->format('Y');
+            $year = (int)$project->getDate()->format('Y');
             if (isset($projectYears[$year]['counter'])) {
                 $projectYears[$year]['counter']++;
             } else {
@@ -98,7 +137,7 @@ class ProjectController extends Controller
      * View project
      *
      * @param string $categorySlug Slug of category
-     * @param string $projectSlug  Slug of project
+     * @param string $projectSlug Slug of project
      *
      * @return array
      *
@@ -149,7 +188,7 @@ class ProjectController extends Controller
      * Display links to prev/next projects
      *
      * @param string $categorySlug Object of category
-     * @param string $projectSlug  Object of project
+     * @param string $projectSlug Object of project
      *
      * @return array
      * @Template()
