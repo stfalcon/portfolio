@@ -289,7 +289,7 @@ class ProjectController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $projects = $em->getRepository("StfalconPortfolioBundle:Project")
-            ->findAllExamplesProjectsByCategory($category);
+            ->findAllExamplesProjectsByCategory($category, 4);
 
         return $this->render('StfalconPortfolioBundle:Category:_widget_examples_prj.html.twig', [
             'projects' => $projects,
