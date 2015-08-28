@@ -17,6 +17,8 @@
 {% block javascripts %}
     {{ parent() }}
     <script>var next_count = {{ nextCount }}</script>
+    <script>var item_count = {{ itemCount }}</script>
+    <script>var category = '{{ categorySlug }}'</script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 {% endblock %}

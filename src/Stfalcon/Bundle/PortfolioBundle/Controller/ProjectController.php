@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Project controller
@@ -20,14 +21,18 @@ class ProjectController extends Controller
 
     /**
      * @param null $slug
+     *
      * @return array
      * @Route("/portfolio/next-projects/", name="portfolio_next_projects", options={"expose"=true})
      * @Route("/portfolio/next-projects/{slug}", name="portfolio_category_next_projects", options={"expose"=true})
      */
     public function getNextProjectsAction($slug = null)
     {
-        $category = null;
         $request = $this->get('request');
+        if (!$request->isXmlHttpRequest()) {
+            throw new AccessDeniedException();
+        }
+        $category = null;
         $limit = $request->get('limit', 4);
         $offset = $request->get('offset', 0);
         $data = [];
@@ -44,14 +49,16 @@ class ProjectController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
         if ($category) {
             $projects = $repository->findAllExamplesProjectsByCategory($category, $limit, $offset);
-            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $limit, count($projects) + $offset);
+            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $limit,
+                count($projects) + $offset);
         } else {
             $projects = $repository->getAllProjectPortfolio($limit, $offset);
             $nextPartCategoriesCount = $repository->getAllProjectPortfolio($limit, count($projects) + $offset);
         }
 
         foreach ($projects as $project) {
-            $data[] = $this->renderView('@StfalconPortfolio/Project/_project_load_item.html.twig', ['project' => $project]);
+            $data[] = $this->renderView('@StfalconPortfolio/Project/_project_load_item.html.twig',
+                ['project' => $project]);
         }
 
 
@@ -82,14 +89,15 @@ class ProjectController extends Controller
                 ->getRepository('StfalconPortfolioBundle:Category')
                 ->findOneBy(['slug' => $slug]);
             if (!$category) {
-                $this->createNotFoundException();
+                throw $this->createNotFoundException();
             }
         }
 
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
         if ($category) {
             $projects = $repository->findAllExamplesProjectsByCategory($category, 7);
-            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $nextLimit, count($projects) + $nextLimit);
+            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $nextLimit,
+                count($projects) + $nextLimit);
         } else {
             $projects = $repository->getAllProjectPortfolio();
             $nextPartCategoriesCount = $repository->getAllProjectPortfolio($nextLimit, count($projects) + $nextLimit);
@@ -100,7 +108,9 @@ class ProjectController extends Controller
             'categories' => $categories,
             'active' => $category ? $category->getSlug() : 'all',
             'projects' => $projects,
-            'nextCount' => count($nextPartCategoriesCount)
+            'nextCount' => count($nextPartCategoriesCount),
+            'itemCount' => count($projects),
+            'categorySlug' => $slug,
         );
     }
 
@@ -118,7 +128,7 @@ class ProjectController extends Controller
         $projectYears = array();
         $projectBefore = 1;
         foreach ($projects as $project) {
-            $year = (int)$project->getDate()->format('Y');
+            $year = (int) $project->getDate()->format('Y');
             if (isset($projectYears[$year]['counter'])) {
                 $projectYears[$year]['counter']++;
             } else {
@@ -137,7 +147,7 @@ class ProjectController extends Controller
      * View project
      *
      * @param string $categorySlug Slug of category
-     * @param string $projectSlug Slug of project
+     * @param string $projectSlug  Slug of project
      *
      * @return array
      *
@@ -188,7 +198,7 @@ class ProjectController extends Controller
      * Display links to prev/next projects
      *
      * @param string $categorySlug Object of category
-     * @param string $projectSlug Object of project
+     * @param string $projectSlug  Object of project
      *
      * @return array
      * @Template()
@@ -271,6 +281,7 @@ class ProjectController extends Controller
      * Widget examples work for page services
      *
      * @param $category
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function widgetExamplesProjectAction($category)

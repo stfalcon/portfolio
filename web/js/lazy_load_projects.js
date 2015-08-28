@@ -1,5 +1,6 @@
 $(function () {
-    var all_item_count = next_count;
+    var all_item_count = item_count;
+
     function loadMore() {
         if (next_count > 0) {
             append_preload();
@@ -16,17 +17,25 @@ $(function () {
     }
 
     function render_next_item() {
-
-        var route = Routing.generate('portfolio_next_projects', {limit: 4, offset: all_item_count});
+        var route;
+        if (category) {
+            route = Routing.generate('portfolio_category_next_projects', {slug: category, limit: 4, offset: all_item_count});
+        } else {
+            route = Routing.generate('portfolio_next_projects', {limit: 4, offset: all_item_count});
+        }
         next_count = 0;
         $.get(route, function (data) {
             all_item_count += data['data'].length;
             next_count = data['nextCount'];
             var preload_items = $('.project-cell_load');
-            $.each(data['data'], function( index, value ) {
-                $(preload_items[index]).append(value);
-                $(preload_items[index]).removeClass('project-cell_load');
-                $(preload_items[index]).find('.container_load').remove();
+            $.each(data['data'], function (index, value) {
+                if (!preload_items[index]){
+                    $('.items_projects').append('<li class="project-cell">' + value + '</li>');
+                } else {
+                    $(preload_items[index]).append(value);
+                    $(preload_items[index]).removeClass('project-cell_load');
+                    $(preload_items[index]).find('.container_load').remove();
+                }
             });
         });
     }
