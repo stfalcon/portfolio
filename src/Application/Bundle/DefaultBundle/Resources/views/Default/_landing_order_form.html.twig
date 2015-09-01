@@ -1,0 +1,21 @@
+<section id="scroll_form" class="apllication_form">
+    <div id="feedback-line">
+        <h2>{{ 'Отправьте заявку'|trans }}</h2>
+
+        <p>{{ 'И мы поможем решить вашу задачу'|trans }}</p>
+
+        <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form"
+              action="{{ path('promotion_order', {'type': 'apps'}) }}" method="post" {{ form_enctype(form) }}>
+            <div class="wrap_form">
+                {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans} }) }}
+
+                {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+
+                {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'|trans} }) }}
+
+                <button type="submit">{{ 'Отправить заявку'|trans }}</button>
+            </div>
+            {{ form_rest(form) }}
+        </form>
+    </div>
+</section>

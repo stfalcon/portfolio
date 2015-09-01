@@ -14,9 +14,6 @@
         {{ include('::_social_links.html.twig') }}
         {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
     </div>
-    <h1 class="header-title">{{ 'Дизайн'|trans }}<br>&nbsp;{{ ' мобильных приложений'|trans }}</h1>
-    <p>{{ 'Мобильные приложения — это самый современный и эффективный инструмент маркетинга'|trans }}. {{ 'Зачем это нужно вам и вашему бизнесу'|trans }}?</p>
-    <div class="link_more">
-        <a href="#scroll">{{ 'Подробнее'|trans }} <div class="circle_link"></div></a>
-    </div>
+    {% block header_content %}
+    {% endblock header_content %}
 </header>

@@ -1,0 +1,131 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="wrapper_landing adaptive_land">
+    {{ include('@ApplicationDefault/Default/_responsive_design_landing_header.html.twig') }}
+    <section id="scroll" class="success">
+        <h2>{{ 'Три кита'|trans }}<br> {{ ' успеха вашего решения'|trans }}</h2>
+        <ul class="list_success">
+            <li>
+                <h3>{{ 'Полифункциональность'|trans }}<br> {{ 'гаджетов'|trans }}</h3>
+                <p>{{ 'Количество устройств, с которых можно выходить во Всемирную Сеть растет с каждым днем, и каждое из них имеет свои технические особенности, главной из которых (конкретно для вашего ресурса) является размер экрана'|trans }}. {{ 'Универсальное решение для любого из вариантов устройства – адаптивная верстка вашего сайта'|trans }}.</p>
+            </li>
+            <li>
+                <h3>{{ 'Рост'|trans }}<br> {{ 'интернет-трафика'|trans }}</h3>
+                <p>{{ 'Теперь выход в Интернет осуществляется не только с домашнего компьютера или нетбука'|trans }}. {{ 'Согласно последним данным, количество заходов на сайты с мобильных устройств возросло за последние несколько лет более чем на 56%'|trans }}. {{ 'Предприимчивые бизнесмены уже не могут игнорировать «мобильную аудиторию» — счет идет не на пару десятков человек, а на сотни и тысячи реальных клиентов'|trans }}.</p>
+            </li>
+            <li>
+                <h3>{{ 'Срочная и шаговая'|trans }}<br> {{ 'доступность'|trans }}</h3>
+                <p>{{ 'Если речь идет о новостных порталах, то пользователю, скорее всего, понадобится прочитать самые свежие новости сразу же, как они появляются, чтобы оставаться в курсе событий'|trans }}. {{ 'И ваш читатель не будет ждать окончания рабочего дня, чтобы добраться до своего домашнего компьютера — он зайдет в интернет со своего смартфона'|trans }}.</p>
+            </li>
+        </ul>
+    </section>
+    <section class="info_technology">
+        <h2>{{ 'Предусмотрительный выбор:'|trans }}<br>  {{ 'мобильная версия или адаптивный сайт?'|trans }}</h2>
+        <div class="wrap_text"><p>{{ 'Создание мобильного сайта — это услуга, которая уже теряет свою актуальность, так как со сменой расширения экрана подобный подход к ведению бизнеса уже не будет приносить того результата, который можно было видеть в эру «типичных» телефонов'|trans }}.</p></div>
+    </section>
+    <section class="list_selection">
+        <div class="wrap_select">
+            <div class="inform_select icon-graph"><p>{{ 'Кроме того, учтите, что загрузка HTML-страниц в мобильных версиях сайта является явление статичным'|trans }}. {{ 'По сути, это лишь дополнение к основной версии ресурса, с уменьшенным количеством информации и другим веб-адресом'|trans }}. {{ 'Это немаловажный аспект, если вы всерьез занимаетесь продвижением — вы увидите, насколько это негативно сказывается на ранжировании вашего сайта'|trans }}.</p></div>
+            <div class="inform_select icon-tools"><p>{{ 'В дополнение к этому можно назвать и еще один существенный минус — затраты на постоянную поддержку обеих версий сайта, своевременное обновление товарных позиций на двух ресурсах'|trans }}. {{ 'Это ведет к увеличению трудозатрат, что никогда не оказывало положительного влияния на предпринимательскую деятельность — наоборот, каждый стремится получить максимум при выполнении минимальных шагов и уменьшению работы человека'|trans }}.</p></div>
+        </div>
+    </section>
+    <section class="button_order">
+        <a href="#scroll_form">{{ 'Заказать адаптивный дизайн'|trans }}</a>
+    </section>
+    <section class="advantages">
+        <h2>{{ 'Очевидные преимущества, которые дает'|trans }}<br> {{ 'адаптивный веб-дизайн'|trans }}</h2>
+        <ul class="list_advantages">
+            <li><div class="wrap_icon"><span class="icon_auditory"></span></div><p>{{ 'Максимальный'|trans }}<br> {{ 'охват аудитории'|trans }} </p></li>
+            <li><div class="wrap_icon"><span class="icon_friendly"></span></div><p>{{ 'Доброжелательность  со стороны поисковиков'|trans }}</p></li>
+            <li><div class="wrap_icon"><span class="icon_time"></span></div><p>{{ 'Уменьшение  трудозатрат команды'|trans }}</p></li>
+            <li><div class="wrap_icon"><span class="icon_smm"></span></div><p>{{ 'Увеличение  эффективности CMM'|trans }}</p></li>
+            <li><div class="wrap_icon"><span class="icon_checkmark"></span></div><p>{{ 'Современная  функциональность'|trans }}</p></li>
+            <li><div class="wrap_icon"><span class="icon_cms"></span></div><p{{ 'Управление  при помощи одной CMS'|trans }}></p></li>
+        </ul>
+    </section>
+    <section class="design-slide keepsnap">
+        <div class="wrap">
+            <div class="app-inf">
+                <h1>KeepSnap</h1>
+                <p>{{ 'Сервис, где профессиональные фотографы продают отснятые фотографии своим клиентам'|trans }}. {{ 'Клиент может купить фото любого качества из галереи фотографа'|trans }}.</p>
+            </div>
+            <div class="site-img">
+                <img src="{{ asset('img/pages/promotions/apps/page_keepsnap.jpg') }}" width="630" height="378" alt="">
+                <div class="dev-img">
+                    <img src="{{ asset('img/img_land/devapp_keepsnap1.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="design-slide mfb">
+        <div class="wrap">
+            <div class="app-inf">
+                <h1>MeinFernbus</h1>
+                <p>{{ 'Сайт крупнейшей компании'|trans }}<br>{{ 'пассажирских перевозок в Европе'|trans }}.</p>
+            </div>
+            <div class="site-img">
+                <img src="{{ asset('img/pages/promotions/apps/page_mfb.jpg') }}" width="630" height="378" alt="">
+                <div class="dev-img">
+                    <img src="{{ asset('img/img_land/devapp_mfb1.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="design-slide softarchive">
+        <div class="wrap">
+            <div class="app-inf">
+                <h1>SoftArchive</h1>
+                <p>{{ 'Крупный интернет-магазин по продаже металлических и межкомнатных дверей, а также фурнитуры и аксессуаров к ним'|trans }}.</p>
+            </div>
+            <div class="site-img">
+                <img src="{{ asset('img/pages/promotions/apps/page_softarchive_en.jpg') }}" width="630" height="468" alt="">
+                <div class="dev-img">
+                    <img src="{{ asset('img/img_land/devapp_sa.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="list_argument">
+        <div class="wrap_text"><p>{{ 'Вы все еще раздумываете, почему же вам нужна адаптивная верстка сайта?  Мы приведем вам еще несколько аргументов!'|trans }}</p></div>
+        <ul>
+            <li><span class="icon_ball icon_ball-1"></span><p>{{ 'Возможность заказать любой товар или услугу с вашего сайта при выходе в Интернет с любого устройства'|trans }}.</p></li>
+            <li><span class="icon_ball icon_ball-2"></span><p>{{ 'Гибкий CSS код позволяет дизайну адаптироваться в любом окружении'|trans }}.</p></li>
+            <li><span class="icon_ball icon_ball-3"></span><p>{{ 'Разработка адаптивного дизайна гораздо проще, чем мобильного приложения, так как производится не «с нуля»'|trans }}.</p></li>
+            <li><span class="icon_ball icon_ball-4"></span><p>{{ 'Огромное количество решений по навигации, подбираемые под конкретные задачи и тип сайта'|trans }}.</p></li>
+        </ul>
+        <div class="text_arguments"><div class="wrap_text"><p>{{ 'Этот список можно продолжать практически до бесконечности, но вы можете быть уверены, что создание адаптивного сайта под любой гаджет — это будущее, которое наступило уже сегодня'|trans }}. {{ 'И компания StFalcon готова показать вам, как технологии будущего могут изменить ваш бизнес, расширить его и увеличить ваши продажи и посещаемость'|trans }}.</p></div></div>
+    </section>
+    {% include('@ApplicationDefault/Default/_landing_order_form.html.twig') %}
+</div>
+<footer class="footer vcard">
+    {% include('::_footer.html.twig') %}
+</footer>
+{% endblock body %}
+{% block javascripts %}
+
+    {% set locale = app.request.locale %}
+
+    {% javascripts 'js/vendor/jquery-1.11.1.min.js' 'js/sly.js' 'js/jquery.validate.min.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% if locale == 'en' %}
+        {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'ru' %}
+        {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'de' %}
+        {% javascripts 'js/locales/order_application_form.de.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+{% endblock javascripts %}
