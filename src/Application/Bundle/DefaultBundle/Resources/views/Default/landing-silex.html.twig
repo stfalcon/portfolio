@@ -1,0 +1,124 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper_landing silex_land">
+        {% include('@ApplicationDefault/Default/_silex_landing_header.html.twig') %}
+        <section id="scroll" class="info_product">
+            <div class="top_text"><p>{{ 'Армия поклонников Symfony2 с каждым днем становится все больше, поэтому разработчики поспешили создать «бонус» к этой системе в виде микрофреймворка Silex на PHP в стиле Sinatra'|trans }}.</p></div>
+            <div class="info">
+                <div class="info_1">
+                    <div class="wrap_icon">
+                        <span class="icon_info icon_pimple"></span>
+                        <p>Pimple</p>
+                    </div>
+                    <div class="wrap_text"><p>{{ 'Как и следовало ожидать, для работы Silex использует основные компоненты Symfony2, но при этом интегрирована с реализацией шаблона проектирования – «Внедрение зависимостей»'|trans }}. {{ 'Данный микрофреймворк использует сервис-контейнер Pimple, ответственный за разделение логических частей кода и формирование независимой их работы'|trans }}.</p></div>
+                </div>
+                <div class="info_2">
+                    <div class="wrap_icon">
+                        <span class="icon_info icon_silex"></span>
+                        <p>Silex</p>
+                    </div>
+                    <div class="wrap_text"><p>{{ 'Благодаря тому, что Silex, как и framework Symfony2 имеет интуитивно понятный API, девелоперы не встретят никаких сложностей в процессе программирования, а также смогут без проблем внедрять свой функционал непосредственно во фреймворк'|trans }}. {{ 'Многим разработчикам знаком функционал Silex благодаря схожести с OOP через предыдущие Java-разработки, поэтому адаптация будет достаточно легкой'|trans }}.</p></div>
+                </div>
+            </div>
+        </section>
+        <section class="list_number">
+            <h2>{{ 'Почему разработка web-сайтов'|trans }}<br> {{ ' на Silex становится такой удобной?'|trans }}</h2>
+            <ul>
+                <li><svg width="24px" height="33px" viewBox="0 0 24 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+                        <title>1-digit</title>
+                        <desc>Created with bin/sketchtool.</desc>
+                        <defs></defs>
+                        <g id="Silex" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="silex_land_v" sketch:type="MSArtboardGroup" transform="translate(-218.000000, -1605.000000)" fill="#F0EBD8">
+                                <g id="Общие-положения--«ко-+-Правильное-проектиро-+-На-первом-этапе-опре" sketch:type="MSLayerGroup" transform="translate(0.000000, 1386.000000)">
+                                    <path d="M219.834,252 L241.73,252 L241.73,245.1 L234.692,245.1 L234.692,219.11 L227.746,219.11 L218.868,227.436 L223.514,232.404 L225.492,230.61 C226.366,229.782 226.78,228.862 226.78,228.862 L226.872,228.862 C226.872,228.862 226.826,230.15 226.826,231.392 L226.826,245.1 L219.834,245.1 L219.834,252 Z" id="1-digit" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg><p>{{ 'Silex основан на компонентах Symfony2, поэтому пользователь может создать альтернативный интерфейс, если он является девелопером'|trans }}. {{ 'Так как оба фреймворка имею одинаковую основу, перемещение между ними является очень простым'|trans }}.</p></li>
+                <li><svg width="24px" height="34px" viewBox="0 0 24 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+                        <title>2-digit</title>
+                        <desc>Created with bin/sketchtool.</desc>
+                        <defs></defs>
+                        <g id="Silex" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="silex_land_v" sketch:type="MSArtboardGroup" transform="translate(-473.000000, -1604.000000)" fill="#F0EBD8">
+                                <g id="Общие-положения--«ко-+-Правильное-проектиро-+-На-первом-этапе-опре" sketch:type="MSLayerGroup" transform="translate(0.000000, 1386.000000)">
+                                    <path d="M473.753,252 L496.523,252 L496.523,245.1 L482.309,245.1 C482.723,240.868 496.017,238.89 496.017,228.632 C496.017,221.64 490.175,218.558 484.793,218.558 C478.859,218.558 475.133,221.916 473.201,225.642 L479.181,229.644 C480.147,227.804 481.941,226.148 484.057,226.148 C485.759,226.148 487.599,227.114 487.599,229.414 C487.599,234.152 473.385,236.314 473.385,248.458 C473.385,249.562 473.523,250.712 473.753,252 L473.753,252 Z" id="2-digit" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg><p>{{ 'В основном, Silex является фреймворком-контроллером'|trans }}. {{ 'Иными словами, хотя структура предполагает определенную модель, отдельные компоненты могут быть изменены при помощи сторонних библиотек'|trans }}.</p></li>
+                <li><svg width="24px" height="34px" viewBox="0 0 24 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+                        <title>3-digit</title>
+                        <desc>Created with bin/sketchtool.</desc>
+                        <defs></defs>
+                        <g id="Silex" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="silex_land_v" sketch:type="MSArtboardGroup" transform="translate(-729.000000, -1605.000000)" fill="#F0EBD8">
+                                <g id="Общие-положения--«ко-+-Правильное-проектиро-+-На-первом-этапе-опре" sketch:type="MSLayerGroup" transform="translate(0.000000, 1386.000000)">
+                                    <path d="M728.994,248.228 C731.938,251.218 736.262,252.552 740.218,252.552 C748.452,252.552 752.408,246.94 752.408,241.328 C752.408,236.728 749.326,232.864 744.45,231.806 L751.12,224.124 L751.12,219.11 L730.374,219.11 L730.374,226.01 L738.24,226.01 C740.31,226.01 741.368,225.78 741.368,225.78 L741.368,225.872 C741.368,225.872 740.08,227.068 738.516,228.954 L734.192,234.152 L735.894,238.062 L738.194,238.062 C741.736,238.062 744.312,239.12 744.312,241.696 C744.312,243.49 742.61,244.962 739.62,244.962 C737.09,244.962 734.514,243.628 732.858,242.018 L728.994,248.228 Z" id="3-digit" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg><p>{{ 'В связи с тем, что контроллеры в любом случае не должны содержать бизнес-логику, если вы уберете оттуда этот код и оставите свои контроллеры легкими, то фактором, который ограничивает размеры проекта, будет являться только количество ваших раутов'|trans }}.</p></li>
+                <li><svg width="27px" height="33px" viewBox="0 0 27 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+                        <title>4-digit</title>
+                        <desc>Created with bin/sketchtool.</desc>
+                        <defs></defs>
+                        <g id="Silex" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="silex_land_v" sketch:type="MSArtboardGroup" transform="translate(-983.000000, -1605.000000)" fill="#F0EBD8">
+                                <g id="Общие-положения--«ко-+-Правильное-проектиро-+-На-первом-этапе-опре" sketch:type="MSLayerGroup" transform="translate(0.000000, 1386.000000)">
+                                    <path d="M983.545,244.042 L998.127,244.042 L998.127,252 L1006.085,252 L1006.085,244.042 L1009.995,244.042 L1009.995,237.372 L1006.085,237.372 L1006.085,219.11 L996.241,219.11 L983.545,239.166 L983.545,244.042 Z M991.733,237.372 L991.733,237.28 L996.701,229.736 C997.621,228.356 998.311,226.332 998.311,226.332 L998.403,226.332 C998.403,226.332 998.127,228.218 998.127,230.012 L998.127,237.372 L991.733,237.372 Z" id="4-digit" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg><p>{{ 'Если вы не хотите при написании веб-сервера с нуля иметь сильную привязку к большой иерархии классов, не позволяющей оперативно и легко менять шаблонизатор, Silex срабатывает на «отлично»'|trans }}.</p></li>
+            </ul>
+        </section>
+        <section class="text_silex">
+            <h2>{{ 'В чем состоит трудность и легкость'|trans }}<br> {{ 'в разработке сайтов на Silex?'|trans }} </h2>
+            <div class="wrap_text">
+                <p>{{ 'Мы описали основные преимущества создания сайтов на заказ на основе микрофреймврка Silex, обратив внимание на его положительные стороны'|trans }}. {{ 'Создание веб-сайта на Silex – это удивительно приятный для девелопера вариант и отличная функциональность всех компонентов с возможностью гибкой настройки интерфейса'|trans }}.</p>
+                <p>{{ 'Но легкой эту работу могут назвать только профессионалы, которые отлично ориентируются в среде и бандлах Symfony2'|trans }}. {{ 'Именно это можно сказать про нашу команду специалистов Stfalcon — мы знаем все тонкости и подводные «камни», которые могут возникнуть в процессе разработки'|trans }}.</p>
+            </div>
+        </section>
+        <section class="note_text">
+            <div class="wrap_text"><p>{{ 'Позвольте нам создать для вас сайт, который будет легок во всем — в управлении, в «весе» кода и скорости получения прибыли от ваших клиентов'|trans }}.</p></div>
+        </section>
+        {% include('@ApplicationDefault/Default/_landing_order_form.html.twig') %}
+    </div>
+<footer class="footer vcard">
+    {% include('::_footer.html.twig') %}
+</footer>
+{% endblock body %}
+
+{% block javascripts %}
+
+    {% set locale = app.request.locale %}
+
+    {% javascripts 'js/vendor/jquery-1.11.1.min.js' 'js/sly.js' 'js/jquery.validate.min.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% if locale == 'en' %}
+        {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'ru' %}
+        {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'de' %}
+        {% javascripts 'js/locales/order_application_form.de.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+{% endblock javascripts %}
+
