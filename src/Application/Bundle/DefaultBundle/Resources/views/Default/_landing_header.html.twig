@@ -14,6 +14,7 @@
         {{ include('::_social_links.html.twig') }}
         {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
     </div>
-    {% block header_content %}
-    {% endblock header_content %}
+    {% if landing_page %}
+        {{ landing_page.title|raw }}
+    {% endif %}
 </header>

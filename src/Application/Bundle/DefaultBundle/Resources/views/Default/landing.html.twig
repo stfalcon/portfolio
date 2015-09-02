@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+{% set styles = {'mobile-app-design': 'mob_design_land', 'responsive-design':'adaptive_land', 'ui-design':'projection_land','ember-js':'ember_land','silex':'silex_land', 'sylius':'sylius_land'} %}
+{% block body %}
+    <div class="wrapper_landing {{ styles[app.request.get('type')] }}">
+        {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
+        {% if landing_page %}
+            {{ landing_page.text|raw }}
+        {% endif %}
+        {% include('@ApplicationDefault/Default/_landing_order_form.html.twig') %}
+    </div>
+<footer class="footer vcard">
+    {% include('::_footer.html.twig') %}
+</footer>
+{% endblock body %}
+{% block javascripts %}
+
+    {% set locale = app.request.locale %}
+
+    {% javascripts 'js/vendor/jquery-1.11.1.min.js' 'js/sly.js' 'js/jquery.validate.min.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% if locale == 'en' %}
+        {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'ru' %}
+        {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'de' %}
+        {% javascripts 'js/locales/order_application_form.de.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+{% endblock javascripts %}

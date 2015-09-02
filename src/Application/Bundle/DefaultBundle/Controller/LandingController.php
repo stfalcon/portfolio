@@ -34,11 +34,18 @@ class LandingController extends Controller
             ->addMeta('property', 'og:description', $translator->trans('landing_og.description'))
             ->setLinkCanonical($canonicalUrl);
 
+        $landingPage = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('StfalconPortfolioBundle:Landing')
+            ->findOneBy(['slug' => $type]);
+
         $form = $this->createForm(new PromotionOrderFormType());
 
         return $this->render(
-            'ApplicationDefaultBundle:Default:landing-' . $type . '.html.twig',
-            ['form' => $form->createView()]
+            'ApplicationDefaultBundle:Default:landing.html.twig',
+            [
+                'form' => $form->createView(),
+                'landing_page' => $landingPage
+            ]
         );
     }
 }
