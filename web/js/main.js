@@ -368,6 +368,17 @@ $(function () {
         });
     }
 
+    if ($("#web-dev").length) {
+        $('a[href="#web-dev"]').click(function () {
+            $(".detailed-text").show();
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top
+            }, 1000);
+            return false;
+        });
+    }
+
     if ($("#scroll_form").length) {
         $('a[href="#scroll_form"]').click(function () {
             var el = $(this).attr('href');
