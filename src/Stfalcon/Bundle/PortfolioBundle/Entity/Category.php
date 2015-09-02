@@ -65,6 +65,19 @@ class Category implements Translatable
      */
     private $description;
 
+
+    /**
+     * @var string $details
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = "3"
+     * )
+     * @Gedmo\Translatable(fallback=true)
+     * @ORM\Column(name="details", type="text")
+     */
+    private $details;
+
     /**
      * @var string $title Title
      *
@@ -424,5 +437,21 @@ class Category implements Translatable
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param string $details
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
     }
 }

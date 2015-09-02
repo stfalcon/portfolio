@@ -30,6 +30,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             'autumn.jpg'
         );
         $webCategory = $this->getReference('category-development');
+        $mobileCategory = $this->getReference('mobile-development');
 
         $adminUser = $this->getReference('user-admin');
         $firstUser = $this->getReference('user-first');
@@ -64,6 +65,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $ePrice->setPublished(true);
         $ePrice->setOrdernum(1);
         $ePrice->addCategory($webCategory);
+        $ePrice->addCategory($mobileCategory);
 //        $ePrice->addParticipant($adminUser);
 //        $ePrice->addParticipant($firstUser);
         $ePrice->setImageFile($this->copyFile($files[array_rand($files)]));
@@ -75,7 +77,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('project-preorder', $preOrder);
         $this->addReference('project-eprice', $ePrice);
 
-        for ($i = 0; $i < 16; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $example = new Project();
             $example->setName('example.com_' . $i);
             $example->setSlug('example-com_' . $i);
@@ -85,7 +87,11 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             $example->setTags('design, HTML markup, development');
             $example->setOnFrontPage(0);
             $example->setOrdernum(2 + $i);
-            $example->addCategory($webCategory);
+            if ($i % 2){
+                $example->addCategory($webCategory);
+            } else {
+                $example->addCategory($mobileCategory);
+            }
             $example->addParticipant($adminUser);
             $example->addParticipant($firstUser);
             $example->addParticipant($secondUser);

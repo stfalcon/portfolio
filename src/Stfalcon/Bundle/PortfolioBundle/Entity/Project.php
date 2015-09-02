@@ -137,7 +137,7 @@ class Project implements Translatable
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Category")
+     * @ORM\ManyToMany(targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Category", inversedBy="projects")
      * @ORM\JoinTable(name="portfolio_projects_categories",
      *   joinColumns={
      *     @ORM\JoinColumn(name="project_id", referencedColumnName="id")

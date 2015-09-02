@@ -57,7 +57,7 @@ class AppKernel extends Kernel
             new Stfalcon\RedirectBundle\StfalconRedirectBundle(),
             new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
-
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

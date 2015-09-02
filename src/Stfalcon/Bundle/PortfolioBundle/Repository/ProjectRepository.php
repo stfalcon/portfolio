@@ -21,14 +21,17 @@ class ProjectRepository extends EntityRepository
      *
      * @return Query
      */
-    public function getQueryForSelectProjectsByCategory(Category $category, $orderBy = 'p.date', $orderDirection = 'DESC')
-    {
+    public function getQueryForSelectProjectsByCategory(
+        Category $category,
+        $orderBy = 'p.date',
+        $orderDirection = 'DESC'
+    ) {
         $qb = $this->getQueryBuilderWithOrdering($orderBy, $orderDirection);
 
         return $qb->join('p.categories', 'c')
-                ->andWhere('c.id = :category')
-                ->setParameter('category', $category->getId())
-                ->getQuery();
+            ->andWhere('c.id = :category')
+            ->setParameter('category', $category->getId())
+            ->getQuery();
     }
 
     /**
@@ -43,7 +46,7 @@ class ProjectRepository extends EntityRepository
     public function getProjectsByCategory(Category $category, $orderBy = 'p.ordernum', $orderDirection = 'ASC')
     {
         return $this->getQueryForSelectProjectsByCategory($category, $orderBy, $orderDirection)
-                ->getResult();
+            ->getResult();
     }
 
     /**
@@ -103,14 +106,33 @@ class ProjectRepository extends EntityRepository
     /**
      * @param Category $category
      * @param int      $limit
+     * @param int      $offset
      *
      * @return array
      */
-    public function findAllExamplesProjectsByCategory(Category $category, $limit = 3)
+    public function findAllExamplesProjectsByCategory(Category $category, $limit = 3, $offset = 0)
     {
         $qb = $this->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC')
+            ->setFirstResult($offset)
             ->setMaxResults($limit);
 
         return $qb->getResult();
+    }
+
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @param string $orderBy
+     * @param string $orderDirection
+     *
+     * @return array
+     */
+    public function getAllProjectPortfolio($limit = 7, $offset = 0, $orderBy = 'p.ordernum', $orderDirection = 'ASC')
+    {
+        $qb = $this->getQueryBuilderWithOrdering($orderBy, $orderDirection);
+        $qb->setFirstResult($offset)
+            ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="7px" height="13px" viewBox="0 0 7 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>facebook_icon</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Adaptive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="adaptive_land_v" sketch:type="MSArtboardGroup" transform="translate(-1279.000000, -27.000000)" fill-opacity="0.6" fill="#FFFFFF">
+            <g id="Header" sketch:type="MSLayerGroup">
+                <g id="social" transform="translate(1279.000000, 27.000000)" sketch:type="MSShapeGroup">
+                    <path d="M2.22978887,13 L2.22978887,6.49953608 L0.900024414,6.49953608 L0.900024414,4.25879666 L2.22978887,4.25879666 L2.22978887,2.91435301 C2.22978887,1.08650346 2.97955944,0 5.11232175,0 L6.88717645,0 L6.88717645,2.24073942 L5.77858055,2.24073942 C4.94896905,2.24073942 4.89298862,2.55342231 4.89298862,3.13796303 L4.88931778,4.25879666 L6.90002441,4.25879666 L6.66417247,6.49953608 L4.88840006,6.49953608 L4.88840006,13 L2.22978887,13 Z" id="facebook_icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
