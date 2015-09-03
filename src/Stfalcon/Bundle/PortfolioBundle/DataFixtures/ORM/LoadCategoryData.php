@@ -26,6 +26,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $development = new Category();
         $development->setName('Web Development');
         $development->setSlug('web-development');
+        $development->setDetails('web-development');
         $development->setDescription('In work we use Symfony2.');
         $development->setCost('20 000');
 
@@ -34,6 +35,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $mobileDevelopment = new Category();
         $mobileDevelopment->setName('Mobile Development');
         $mobileDevelopment->setSlug('mobile-development');
+        $mobileDevelopment->setDetails('mobile-development');
         $mobileDevelopment->setDescription('In work we use Android and IOS.');
         $mobileDevelopment->setCost('30 000');
 
