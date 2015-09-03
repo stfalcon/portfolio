@@ -2730,6 +2730,15 @@ iframe[name="google_conversion_frame"] {
   line-height: 1.429em;
   margin: 14px 0px;
 }
+.our-skills ul.design-list li a {
+  text-decoration: none;
+}
+.our-skills ul.design-list li a p {
+  color: #2c373c;
+}
+.our-skills ul.design-list li a:hover h2 {
+  text-decoration: underline;
+}
 /**Design page**/
 .tab-content {
   position: relative;
@@ -3303,104 +3312,6 @@ iframe[name="google_conversion_frame"] {
   .wrapper_landing .button_order a {
     font-size: 14px;
     padding: 18px 20px;
-  }
-}
-.wrapper_landing .apllication_form {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#79aeed+0,214197+99 */
-  background: #79aeed;
-  /* Old browsers */
-  /* FF3.6+ */
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #79aeed), color-stop(99%, #214197));
-  /* Chrome,Safari4+ */
-  background: -webkit-radial-gradient(center, ellipse cover, #79aeed 0%, #214197 99%);
-  /* Chrome10+,Safari5.1+ */
-  /* Opera 12+ */
-  /* IE10+ */
-  background: -webkit-radial-gradient(center, ellipse, #79aeed 0%, #214197 99%);
-  background: radial-gradient(ellipse at center, #79aeed 0%, #214197 99%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79aeed', endColorstr='#214197', GradientType=1);
-  /* IE6-9 fallback on horizontal gradient */
-  padding-top: 70px;
-  padding-bottom: 90px;
-  color: #FFFFFF;
-  text-align: center;
-}
-@media (max-width: 730px) {
-  .wrapper_landing .apllication_form {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-.wrapper_landing .apllication_form h2 {
-  color: #FFFFFF;
-  margin-bottom: 5px;
-}
-.wrapper_landing .apllication_form p {
-  font-size: 17px;
-  margin-bottom: 43px;
-}
-.wrapper_landing .apllication_form .wrap_form {
-  max-width: 660px;
-  margin: auto;
-}
-.wrapper_landing .apllication_form .wrap_form input[type=text],
-.wrapper_landing .apllication_form .wrap_form input[type=email],
-.wrapper_landing .apllication_form .wrap_form textarea {
-  font-family: 'museo_sans_cyrl', sans-serif;
-  border-radius: 3px;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
-}
-.wrapper_landing .apllication_form .wrap_form input[type=text],
-.wrapper_landing .apllication_form .wrap_form input[type=email] {
-  max-width: 320px;
-  height: 51px;
-  font-size: 16px;
-}
-@media (max-width: 706px) {
-  .wrapper_landing .apllication_form .wrap_form input[type=text],
-  .wrapper_landing .apllication_form .wrap_form input[type=email] {
-    max-width: none;
-  }
-}
-.wrapper_landing .apllication_form .wrap_form input[type=text] {
-  float: left;
-  margin-right: 20px;
-}
-@media (max-width: 706px) {
-  .wrapper_landing .apllication_form .wrap_form input[type=text] {
-    float: none;
-    margin-bottom: 30px;
-  }
-}
-.wrapper_landing .apllication_form .wrap_form textarea {
-  max-width: 660px;
-  margin-top: 30px;
-  height: 138px;
-  resize: none;
-  margin-bottom: 30px;
-}
-.wrapper_landing .apllication_form .wrap_form input[type=text]::-webkit-input-placeholder,
-.wrapper_landing .apllication_form .wrap_form input[type=email]::-webkit-input-placeholder,
-.wrapper_landing .apllication_form .wrap_form textarea::-webkit-input-placeholder {
-  font-family: 'museo_sans_cyrl', sans-serif;
-  font-weight: 500;
-}
-.wrapper_landing .apllication_form .wrap_form button[type=submit] {
-  display: inline-block;
-  padding: 18px 81px;
-  border: none;
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 3px;
-  color: #FFFFFF;
-  background-color: #1e2528;
-  cursor: pointer;
-}
-@media (max-width: 389px) {
-  .wrapper_landing .apllication_form .wrap_form button[type=submit] {
-    padding: 18px 50px;
   }
 }
 .wrapper_landing .info_slide {
@@ -5738,6 +5649,179 @@ iframe[name="google_conversion_frame"] {
   .ember_land .checkmark_text .wrap_text p {
     padding-left: 0;
   }
+}
+.blue-line {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#79aeed+0,214197+99 */
+  background: #79aeed;
+  /* Old browsers */
+  /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #79aeed), color-stop(99%, #214197));
+  /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, #79aeed 0%, #214197 99%);
+  /* Chrome10+,Safari5.1+ */
+  /* Opera 12+ */
+  /* IE10+ */
+  background: -webkit-radial-gradient(center, ellipse, #79aeed 0%, #214197 99%);
+  background: radial-gradient(ellipse at center, #79aeed 0%, #214197 99%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79aeed', endColorstr='#214197', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  padding-top: 70px;
+  padding-bottom: 90px;
+  color: #FFFFFF;
+  text-align: center;
+}
+.blue-line h2 {
+  color: #FFFFFF;
+  margin-bottom: 5px;
+}
+.blue-line p {
+  font-size: 17px;
+  margin-bottom: 43px;
+}
+.blue-line .wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  min-width: 260px;
+}
+.blue-line form {
+  position: relative;
+  max-width: 660px;
+  margin: auto;
+}
+.blue-line form .line {
+  margin: 0 0 30px;
+  position: relative;
+}
+.blue-line form .col2 {
+  width: 320px;
+  position: relative;
+}
+.blue-line .float-left {
+  float: left!important;
+}
+.blue-line .float-right {
+  float: right!important;
+}
+.blue-line .form-success {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.blue-line .form-success h2 {
+  margin-bottom: 64px;
+}
+.blue-line .form-success .wr {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.blue-line .form-success .inner-pad {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.blue-line .btn {
+  display: inline-block;
+  padding: 18px 81px;
+  border: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  color: #FFFFFF;
+  background-color: #1e2528;
+  cursor: pointer;
+}
+@media (max-width: 389px) {
+  .blue-line .btn {
+    padding: 18px 50px;
+  }
+}
+.blue-line .error-wr {
+  position: relative;
+}
+.blue-line textarea.error,
+.blue-line input.error {
+  border: 3px solid #fcd9e0;
+}
+.blue-line textarea.error,
+.blue-line input.error {
+  padding: 10px 14px 9px;
+}
+.blue-line .error-pad {
+  text-align: left;
+  display: block;
+  position: relative;
+  z-index: 11;
+  color: #ffffff;
+  margin: -10px 0 0 6px;
+}
+.blue-line .error-pad .error {
+  display: inline-block !important;
+  border-radius: 3px;
+  background: #ed002d;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
+  padding: 9px 11px;
+}
+.blue-line .error-pad .error:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 12px;
+  border-style: solid;
+  border-width: 6px 6px 6px 5px;
+  border-color: transparent transparent #ed002d transparent;
+}
+@media screen and (max-width: 690px) {
+  .blue-line .blue-line h2 {
+    margin-bottom: 36px;
+  }
+  .blue-line .blue-line .wrap {
+    padding-top: 30px;
+    padding-bottom: 36px;
+  }
+  .blue-line .blue-line form {
+    margin: 0;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 690px) {
+  .blue-line form .line {
+    margin: 0 0 15px;
+  }
+  .blue-line form .col2 {
+    width: 100%;
+    margin: 0 0 15px;
+  }
+  .blue-line form .col2 + .col2 {
+    margin: 0;
+  }
+  .blue-line form .btn {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .blue-line .wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.blue-line .wrap:before,
+.blue-line .line:before,
+.blue-line .wrap:after,
+.blue-line .line:after {
+  content: "";
+  display: table;
+}
+.blue-line .wrap:after,
+.blue-line .line:after {
+  clear: both;
 }
 /**Landing_pages**/
 .contacts-wrapper {

@@ -379,8 +379,8 @@ $(function () {
         });
     }
 
-    if ($("#scroll_form").length) {
-        $('a[href="#scroll_form"]').click(function () {
+    if ($("#feedback-line").length) {
+        $('a[href="#feedback-line"]').click(function () {
             var el = $(this).attr('href');
             $('body').animate({
                 scrollTop: $(el).offset().top
@@ -397,6 +397,71 @@ $(function () {
             $(".container_load").height(a);
         });
     }
+
+    /*
+     * form animation
+     */
+    var formDelay = 3000;
+
+    /*
+     * form validation
+     */
+    $('#feedback-form').validate({
+        rules: {
+            'name': {
+                required: true,
+                minlength: 3
+            },
+            'email': {
+                required: true,
+                minlength: 3
+            },
+            'message': {
+                required: true,
+                minlength: 30
+            }
+        },
+        messages: {
+            'name': {
+                required: "Пожалуйста, введите ваше имя",
+                minlength: jQuery.validator.format("Введите имя не меньше 3 символов")
+            },
+            'email': {
+                required: "Пожалуйста, введите адрес вашей эл.почты",
+                email: "Ваша эл.адрес должен быть формата name@domain.com"
+            },
+            'message': {
+                required: "Пожалуйста, введите сообщение",
+                minlength: jQuery.validator.format("Введите сообщение не меньше 30 символов")
+            }
+        },
+        errorPlacement: function(label, element) {
+            label.addClass('error-pad');
+            label.insertAfter(element);
+        },
+        wrapper: 'div',
+        debug:true,
+        submitHandler: function() {
+            $('#feedback-form').find('.form-pad').animate({opacity:0},300).delay(formDelay).animate({opacity:1},300);
+            $('#feedback-form').find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
+            return false;
+        }
+    });
+
+    $.validator.addClassRules({
+        name: {
+            required: true,
+            minlength: 3
+        },
+        email: {
+            required: true,
+            minlength: 3
+        },
+        messageText: {
+            required: true,
+            minlength: 30
+        }
+    });
 
 
 });

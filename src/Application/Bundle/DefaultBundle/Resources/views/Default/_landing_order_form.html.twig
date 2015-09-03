@@ -1,34 +1,33 @@
-<section id="scroll_form" class="apllication_form">
-    <div id="feedback-line">
-
-
-        <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form"
-              action="{{ path('promotion_order', {'type': 'apps'}) }}" method="post" {{ form_enctype(form) }}>
-            <div class="form-success" style="display: none">
+<section id="feedback-line" class="blue-line">
+    <div class="wrap">
+        <form id="feedback-form" class="webdev-form" action="{{ path('promotion_order', {'type': 'apps'}) }}" method="post">
+            <div class="form-pad">
+                <h2>{{ 'Отправьте заявку'|trans }}</h2>
+                <p>{{ 'И мы поможем решить вашу задачу'|trans }}</p>
+                <div class="line">
+                    <div class="col2 float-left">
+                        {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans} }) }}
+                    </div>
+                    <div class="col2 float-right">
+                        {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+                    </div>
+                </div>
+                <div class="line">
+                    {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'|trans} }) }}
+                </div>
+                <div class="line">
+                    <button class="btn">{{ 'Отправить заявку'|trans }}</button>
+                </div>
+            </div>
+            <div class="form-success">
                 <div class="wr">
                     <div class="inner-pad">
                         <h2>{{ 'Спасибо!'|trans }}</h2>
-
-                        <p>{{ 'Мы изучим Вашу заявку<br>и ответим в ближайшее время.'|trans|raw }}</p>
+                        <p>{{ 'Мы изучим Вашу заявку'|trans }}<br>{{ 'и ответим в ближайшее время'|trans }}.</p>
                     </div>
                 </div>
             </div>
-            <div class="form-pad">
-                <h2>{{ 'Отправьте заявку'|trans }}</h2>
-
-                <p>{{ 'И мы поможем решить вашу задачу'|trans }}</p>
-                <div class="wrap_form">
-                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans} }) }}
-
-                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
-
-                    {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'|trans} }) }}
-
-                    <button type="submit">{{ 'Отправить заявку'|trans }}</button>
-                </div>
-            </div>
             {{ form_rest(form) }}
-
         </form>
     </div>
 </section>
