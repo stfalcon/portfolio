@@ -2188,7 +2188,7 @@ iframe[name="google_conversion_frame"] {
 .services-tabs .section-offer .tabs-header li {
   display: inline-block;
   text-align: center;
-  margin: 0 9px;
+  width: 138px;
 }
 .services-tabs .section-offer .tabs-header li .wrap-nav {
   display: table;
@@ -2214,6 +2214,15 @@ iframe[name="google_conversion_frame"] {
 .services-tabs .section-offer .tabs-header li .wrap-nav .active:hover {
   color: #2c373c;
   cursor: text;
+}
+.services-tabs .section-offer .tabs-header li:nth-child(5) {
+  width: 124px;
+  margin-left: 14px;
+}
+@media (max-width: 440px) {
+  .services-tabs .section-offer .tabs-header li:nth-child(5) {
+    margin-left: 0px;
+  }
 }
 .services-tabs .section-offer h1 {
   font-family: 'museo_sans_cyrl';
