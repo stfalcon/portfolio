@@ -243,15 +243,22 @@ Cоздаем нативные мобильные приложения (боле
 Подробнее про консалтинг и аудит: 'Подробнее про консалтинг и аудит'
 Прототип наглядно демонстрирует навигацию и основное взаимодействие с интерфейсом: 'Прототип наглядно демонстрирует навигацию и основное взаимодействие с интерфейсом'
 Мы проектируем приложения, учитывая индивидуальные особенности каждой из платформ и официальные рекомендации для разработчиков: 'Мы проектируем приложения, учитывая индивидуальные особенности каждой из платформ и официальные рекомендации для разработчиков'
-
-landing_meta:
-    description: 'landing_meta.description'
-    keywords: 'landing_meta.keywords'
-landing_og:
-    title: 'landing_og.title'
-    description: 'landing_og.description'
 Создание прототипа для демонстрации решения задачи клиента: 'Создание прототипа для демонстрации решения задачи клиента'
-
 Отправить заявку: 'Отправить заявку'
 Мы изучим Вашу заявку: 'Мы изучим Вашу заявку'
 и ответим в ближайшее время: 'и ответим в ближайшее время'
+
+#metadata
+landing_meta:
+    title-mobile-app-design: 'Android App Development and iOS App Development Services, Mobile Application Development Services | Stfalcon.com Company'
+    description-mobile-app-design: 'Application development of any complexity and subject on Android and iOS ➤ Call now ✆ +49 7115 18-66-999'
+    title-responsive-design: 'Responsive Web Design Services | Stfalcon.com Company'
+    description-responsive-design: 'Development of best adaptive design for websites ➤ Call rigth now ✆ +49 7115 18-66-999'
+    title-ui-design: 'UI Design Services For Web Mobile and Games | Stfalcon.com Company'
+    description-ui-design: 'Designing interfaces for web sites and mobile applications ➤ Call right now ✆ +49 7115 18-66-999'
+    title-ember-js: 'Ember.js Web Development Services | Stfalcon.com Company'
+    description-ember-js: 'Company Stfalcon specializes in the ember.js development of large and medium-sized web projects of any complexity. Professional approach, adequate cost. ✆ +49 7115 18-66-999'
+    title-silex: 'Silex Web Development Services | Stfalcon.com Company'
+    description-silex: 'Company Stfalcon specializes in the silex development of large and medium-sized web projects of any complexity. Professional approach, adequate cost. ✆ +49 7115 18-66-999'
+    title-sylius: 'Sylius Web Development Services | Stfalcon.com Company'
+    description-sylius: 'Company Stfalcon specializes in the sylius development of large and medium-sized web projects of any complexity. Professional approach, adequate cost. ✆ +49 7115 18-66-999'
