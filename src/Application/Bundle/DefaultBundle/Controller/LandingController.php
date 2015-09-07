@@ -26,12 +26,13 @@ class LandingController extends Controller
         $seoPage = $this->get('sonata.seo.page');
         $translator = $this->get('translator');
         $canonicalUrl = $this->generateUrl('page_landing', ['type' => $type], true);
-        $seoPage->addMeta('name', 'description', $translator->trans('landing_meta.description'))
-            ->addMeta('name', 'keywords', $translator->trans('landing_meta.keywords'))
-            ->addMeta('property', 'og:title', $translator->trans('landing_og.title'))
+        $title = $translator->trans('landing_meta.title-' . $type);
+        $description = $translator->trans('landing_meta.description-' . $type);
+        $seoPage->addMeta('name', 'description', $description)
+            ->addMeta('property', 'og:title', $title)
             ->addMeta('property', 'og:url', $canonicalUrl)
             ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:description', $translator->trans('landing_og.description'))
+            ->addMeta('property', 'og:description', $description)
             ->setLinkCanonical($canonicalUrl);
 
         $landingPage = $this->get('doctrine.orm.entity_manager')
@@ -44,7 +45,8 @@ class LandingController extends Controller
             'ApplicationDefaultBundle:Default:landing.html.twig',
             [
                 'form' => $form->createView(),
-                'landing_page' => $landingPage
+                'landing_page' => $landingPage,
+                'title' => $title,
             ]
         );
     }

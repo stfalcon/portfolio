@@ -1,4 +1,5 @@
 {% extends '::base.html.twig' %}
+{% block title %}{{ title }}{% endblock title %}
 {% set styles = {'mobile-app-design': 'mob_design_land', 'responsive-design':'adaptive_land', 'ui-design':'projection_land','ember-js':'ember_land','silex':'silex_land', 'sylius':'sylius_land'} %}
 {% block body %}
     <div class="wrapper_landing {{ styles[app.request.get('type')] }}">

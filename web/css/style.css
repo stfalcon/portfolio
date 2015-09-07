@@ -2626,6 +2626,7 @@ iframe[name="google_conversion_frame"] {
   width: 65%;
   margin: 0 auto;
   display: none;
+  margin-bottom: 14px;
 }
 .detailed-text ul.list_disk {
   margin-left: 25px;
@@ -2636,6 +2637,7 @@ iframe[name="google_conversion_frame"] {
 }
 .detailed-text ol {
   padding-left: 25px;
+  font-weight: 300;
 }
 .detailed-text ol li {
   list-style: decimal;
@@ -2832,12 +2834,6 @@ iframe[name="google_conversion_frame"] {
   font-size: 11px;
 }
 @media (min-width: 1330px) {
-  .services-tabs p {
-    font-size: 1.143rem;
-  }
-  .services-tabs .h1 {
-    font-size: 2.57rem;
-  }
   .services-tabs .content-offer {
     font-size: 1.7rem;
   }
