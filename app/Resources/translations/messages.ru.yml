@@ -1,5 +1,10 @@
 #metadata
 Используя данные с датчиков, приложение может определять состояние устройства: геопозицию, положение в пространстве, движение, освещение, температуру:
+_order-web-development: 'Заказать сайт'
+_order-web-design: 'Заказать дизайн'
+_order-mobile-development: 'Заказать мобильное приложение'
+_order-game-development: 'Заказать игру'
+_order-consulting-audit: 'Заказать консалтинг и аудит'
 landing_meta:
     title-mobile-app-design: 'Разработка мобильных приложений для Android и IOS | Студия stfalcon.com'
     description-mobile-app-design: 'Разработка приложений любой сложности и тематики на Android и IOS ➤ Звоните прямо сейчас ✆ +380 67 334-40-40'

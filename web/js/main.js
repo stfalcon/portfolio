@@ -358,7 +358,19 @@ $(function () {
         });
     }
 
+    if ($("#feedback-form").length) {
+
+        $('a[href="#feedback-form"]').click(function () {
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top
+            }, 1000);
+            return false;
+        });
+    }
+
     if ($("#scroll").length) {
+
         $('a[href="#scroll"]').click(function () {
             var el = $(this).attr('href');
             $('body').animate({

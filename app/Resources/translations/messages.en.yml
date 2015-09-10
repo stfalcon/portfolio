@@ -248,6 +248,11 @@ Cоздаем нативные мобильные приложения (боле
 Благодаря интеграции приложений с социальными сетями пользователи могут легко регистрироваться и делиться информацией с друзьями: 'Users can easily register and share information with friends thanks to app integration with social media'
 Определяем способы монетизации и стратегии продвижения: 'We determine monetization options and promotion strategies'
 Наполняем игровой мир: 'We fill the game world'
+_order-web-development: 'Order a website'
+_order-web-design: 'Order design'
+_order-mobile-development: 'Order mobile application'
+_order-game-development: 'Order game'
+_order-consulting-audit: 'Order consulting and audit'
 
 #metadata
 landing_meta:
@@ -263,5 +268,6 @@ landing_meta:
     description-silex: 'Company Stfalcon specializes in the silex development of large and medium-sized web projects of any complexity. Professional approach, adequate cost. ✆ +49 7115 18-66-999'
     title-sylius: 'Sylius Web Development Services | Stfalcon.com Company'
     description-sylius: 'Company Stfalcon specializes in the sylius development of large and medium-sized web projects of any complexity. Professional approach, adequate cost. ✆ +49 7115 18-66-999'
+
 
 
