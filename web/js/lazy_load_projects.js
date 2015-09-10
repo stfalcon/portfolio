@@ -47,5 +47,14 @@ $(function () {
         for (var i = 0; i < next_count; i++) {
             $('.items_projects').append(preload_block);
         }
+
+        if($(".project-cell").length) {
+            var a = $(".project-cell:eq(2)").height();
+            $(".container_load").height(a);
+            $(window).resize(function () {
+                a = $(".project-cell:eq(2)").height();
+                $(".container_load").height(a);
+            });
+        }
     }
 });
