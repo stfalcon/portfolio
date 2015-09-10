@@ -30,7 +30,7 @@ class CategoryController extends Controller
     public function servicesAction(Category $category)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
-        $categories = $repository->getAllCategories();
+        $categories = $repository->getServicesCategories();
 
         $linkTexts = array(
             'web-development'    => 'веб-разработки',

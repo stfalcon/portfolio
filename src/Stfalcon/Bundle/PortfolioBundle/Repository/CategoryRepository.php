@@ -23,4 +23,18 @@ class CategoryRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Get all categories
+     *
+     * @return array
+     */
+    public function getServicesCategories()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.showInServices = 1')
+            ->orderBy('c.ordernum', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 }
