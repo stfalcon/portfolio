@@ -68,6 +68,19 @@ class Project implements Translatable
      */
     private $description;
 
+
+    /**
+     * @var string $shortDescription
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = "3"
+     * )
+     * @Gedmo\Translatable(fallback=true)
+     * @ORM\Column(name="short_description", type="text")
+     */
+    private $shortDescription;
+
     /**
      * @var string $url
      *
@@ -844,5 +857,21 @@ class Project implements Translatable
         if ($this->relativeProjects->contains($project)) {
             $this->relativeProjects->removeElement($project);
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * @param string $shortDescription
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
     }
 }

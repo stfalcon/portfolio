@@ -63,6 +63,20 @@ class ProjectAdmin extends Admin
                                 'class' => 'markitup'
                             )
                         ),
+                        'shortDescription' => array(
+                            'label' => 'short description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            ),
+                            'attr' => array(
+                                'class' => 'markitup'
+                            )
+                        ),
                         'caseContent' => [
                             'label' => 'Case content',
                             'locale_options' => [
