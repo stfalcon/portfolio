@@ -165,7 +165,7 @@ avalanche_imagine:
     filters:
         project_thumb:
             type:    thumbnail
-            options: { size: [1920, 1080], mode: outbound }
+            options: { size: [300, 264], mode: outbound }
         avatar:
             type:    thumbnail
             options: { size: [135, 135], mode: outbound }
