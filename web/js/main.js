@@ -357,7 +357,6 @@ $(function () {
             $(".detailed-text").toggle();
         });
     }
-    console.log('scroll');
 
     if ($("#feedback-form").length) {
 
