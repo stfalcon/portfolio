@@ -2320,7 +2320,8 @@ iframe[name="google_conversion_frame"] {
   height: auto;
   width: auto;
 }
-.projects-wrapper .section-offer .tabs-projects li .wrap-nav a {
+.projects-wrapper .section-offer .tabs-projects li .wrap-nav a,
+.projects-wrapper .section-offer .tabs-projects li .wrap-nav h1 {
   max-width: none;
   width: auto;
 }
