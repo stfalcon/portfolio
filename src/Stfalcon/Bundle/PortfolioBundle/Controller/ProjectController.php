@@ -23,7 +23,7 @@ class ProjectController extends Controller
      * @param null $slug
      *
      * @return array
-     * @Route("/portfolio/next-projects/", name="portfolio_next_projects", options={"expose"=true})
+     * @Route("/portfolio/next-projects", name="portfolio_next_projects", options={"expose"=true})
      * @Route("/portfolio/next-projects/{slug}", name="portfolio_category_next_projects", options={"expose"=true})
      */
     public function getNextProjectsAction($slug = null)
@@ -72,8 +72,8 @@ class ProjectController extends Controller
      * @param int $page
      *
      * @return array
-     * @Route("/portfolio/{slug}/", name="portfolio_category_project")
-     * @Route("/portfolio/", name="portfolio_all_projects")
+     * @Route("/portfolio/{slug}", name="portfolio_category_project")
+     * @Route("/portfolio", name="portfolio_all_projects")
      * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
      */
     public function allProjectsAction($slug = null)
