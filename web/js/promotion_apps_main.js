@@ -289,4 +289,24 @@ $(window).scroll(function (e) {
         });
     }
 
+
+    // Show mobile navigation
+    $(document).on('click', '.show-mobile-nav', function(){
+        if(!$(this).hasClass('current-language')) {
+            $('body').addClass('open-navigation open-main-nav');
+        } else {
+            $('body').addClass('open-navigation open-languages-nav');
+        }
+    });
+
+    // Hide mobile navigation
+    $(document).on('click', '.close-mobile-nav', function(){
+        $('body').removeClass('open-navigation open-main-nav open-languages-nav');
+    });
+    $(window).on('resize', function(){
+        if(window.matchMedia && window.matchMedia('(min-width: 800px)').matches){
+            $('body').removeClass('open-navigation open-main-nav open-languages-nav');
+        }
+    });
+
 });

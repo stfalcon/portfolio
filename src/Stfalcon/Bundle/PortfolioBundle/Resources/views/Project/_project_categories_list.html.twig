@@ -5,7 +5,7 @@
     {% for category in categories %}
         <li>
             <div class="wrap-nav"><a class="tab-title {% if active == category.slug %} {{ 'active' }}{% endif %}" href="{{ path('portfolio_category_project', {'slug': category.slug}) }}">
-                    {% if active == category.slug %} <h1>{% endif %}{{ category.name }}{% if active == category.slug %}</h1>{% endif %}
+                    {% if active == category.slug %} <h1>{% endif %}{{ category.shortName }}{% if active == category.slug %}</h1>{% endif %}
                 </a></div>
         </li>
     {% endfor %}
