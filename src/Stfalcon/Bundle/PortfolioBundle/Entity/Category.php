@@ -42,6 +42,19 @@ class Category implements Translatable
      */
     private $name = '';
 
+
+    /**
+     * @var string $shortName
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = "3"
+     * )
+     * @Gedmo\Translatable(fallback=true)
+     * @ORM\Column(name="short_name", type="string", length=255)
+     */
+    private $shortName = '';
+
     /**
      * @var string $slug
      *
@@ -477,5 +490,21 @@ class Category implements Translatable
     public function setShowInServices($showInServices)
     {
         $this->showInServices = $showInServices;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortName()
+    {
+        return $this->shortName;
+    }
+
+    /**
+     * @param string $shortName
+     */
+    public function setShortName($shortName)
+    {
+        $this->shortName = $shortName;
     }
 }

@@ -20,7 +20,18 @@ class CategoryAdmin extends Admin
                     'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Category',
                     'fields' => array(
                         'name' => array(
-                            'label' => 'name',
+                            'label' => 'Full Name',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'shortName' => array(
+                            'label' => 'Short Name',
                             'locale_options' => array(
                                 'ru' => array(
                                     'required' => true
