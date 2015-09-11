@@ -132,7 +132,6 @@ $(window).scroll(function (e) {
         wrapper: 'div',
         debug: false,
         submitHandler: function (form) {
-
             $.ajax({
                 url: $(form).attr('action'),
                 type: "POST",
@@ -256,5 +255,38 @@ $(window).scroll(function (e) {
         });
 
     });
+
+    if ($("#scroll").length) {
+
+        $('a[href="#scroll"]').click(function () {
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top + 34
+            }, 1000);
+            return false;
+        });
+    }
+
+    if ($("#web-dev").length) {
+        $('a[href="#web-dev"]').click(function () {
+            $(".detailed-text").show();
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top
+            }, 1000);
+            return false;
+        });
+    }
+
+    if ($("#feedback-form").length) {
+
+        $('a[href="#feedback-form"]').click(function () {
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top
+            }, 1000);
+            return false;
+        });
+    }
 
 });
