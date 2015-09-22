@@ -42,6 +42,42 @@ class LandingAdmin extends Admin
                                 )
                             )
                         ),
+                        'metaTitle' => array(
+                            'label' => 'SEO: Title',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => true
+                                )
+                            ),
+                            'required' => false
+                        ),
+                        'metaDescription' => array(
+                            'label' => 'SEO: Meta Description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            ),
+                            'required' => false
+                        ),
+                        'metaKeywords' => array(
+                            'label' => 'SEO: Meta Keywords',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            ),
+                            'required' => false
+                        ),
                     ),
                     'label' => 'Перевод'
                 )
@@ -64,7 +100,6 @@ class LandingAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('slug');
+            ->addIdentifier('slug');
     }
 }

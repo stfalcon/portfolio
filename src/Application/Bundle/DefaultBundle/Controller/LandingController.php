@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Promotion controller. For promotions actions
  *
- * @Route("/services/web-design")
+ * @Route("/services/web-development")
  */
 class LandingController extends Controller
 {
@@ -24,20 +24,20 @@ class LandingController extends Controller
     public function indexAction($type)
     {
         $seoPage = $this->get('sonata.seo.page');
-        $translator = $this->get('translator');
         $canonicalUrl = $this->generateUrl('page_landing', ['type' => $type], true);
-        $title = $translator->trans('landing_meta.title-' . $type);
-        $description = $translator->trans('landing_meta.description-' . $type);
-        $seoPage->addMeta('name', 'description', $description)
-            ->addMeta('property', 'og:title', $title)
-            ->addMeta('property', 'og:url', $canonicalUrl)
-            ->addMeta('property', 'og:type', 'website')
-            ->addMeta('property', 'og:description', $description)
-            ->setLinkCanonical($canonicalUrl);
 
         $landingPage = $this->get('doctrine.orm.entity_manager')
             ->getRepository('StfalconPortfolioBundle:Landing')
             ->findOneBy(['slug' => $type]);
+        $seoPage->addMeta('name', 'description', $landingPage->getMetaDescription())
+            ->addMeta('name', 'title', $landingPage->getMetaTitle())
+            ->addMeta('name', 'keywords', $landingPage->getMetaKeywords())
+            ->addMeta('property', 'og:title', $landingPage->getMetaTitle())
+            ->addMeta('property', 'og:url', $canonicalUrl)
+            ->addMeta('property', 'og:type', 'website')
+            ->addMeta('property', 'og:description', $landingPage->getMetaDescription())
+            ->setLinkCanonical($canonicalUrl);
+
 
         $form = $this->createForm(new PromotionOrderFormType());
 
@@ -46,7 +46,7 @@ class LandingController extends Controller
             [
                 'form' => $form->createView(),
                 'landing_page' => $landingPage,
-                'title' => $title,
+                'title' => $landingPage->getMetaTitle(),
             ]
         );
     }
