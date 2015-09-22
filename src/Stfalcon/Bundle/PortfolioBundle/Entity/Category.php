@@ -42,6 +42,19 @@ class Category implements Translatable
      */
     private $name = '';
 
+
+    /**
+     * @var string $shortName
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = "3"
+     * )
+     * @Gedmo\Translatable(fallback=true)
+     * @ORM\Column(name="short_name", type="string", length=255)
+     */
+    private $shortName = '';
+
     /**
      * @var string $slug
      *
@@ -64,6 +77,19 @@ class Category implements Translatable
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+
+    /**
+     * @var string $details
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = "3"
+     * )
+     * @Gedmo\Translatable(fallback=true)
+     * @ORM\Column(name="details", type="text")
+     */
+    private $details;
 
     /**
      * @var string $title Title
@@ -130,6 +156,14 @@ class Category implements Translatable
      * @Gedmo\Locale
      */
     private $locale;
+
+    /**
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="show_in_services", type="boolean")
+     */
+    private $showInServices = false;
 
     /**
      * Initialization properties for new category entity
@@ -424,5 +458,53 @@ class Category implements Translatable
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param string $details
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isShowInServices()
+    {
+        return $this->showInServices;
+    }
+
+    /**
+     * @param boolean $showInServices
+     */
+    public function setShowInServices($showInServices)
+    {
+        $this->showInServices = $showInServices;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortName()
+    {
+        return $this->shortName;
+    }
+
+    /**
+     * @param string $shortName
+     */
+    public function setShortName($shortName)
+    {
+        $this->shortName = $shortName;
     }
 }

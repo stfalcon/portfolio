@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7be804e064c98de43e113bc660f0f7c2",
+    "hash": "0c1f3dc169968921ab5b70d853cf079f",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -183,7 +183,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cocur/slugify/zipball/ff7a885895b01d48a477c924bf08646f06e8c901",
+                "url": "https://api.github.com/repos/cocur/slugify/zipball/bb8ae38987973bc20a36509ea97797a107e5b39a",
                 "reference": "ff7a885895b01d48a477c924bf08646f06e8c901",
                 "shasum": ""
             },
@@ -246,7 +246,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/c8927ad70c6fce36b3af52c17ed996c9aa4de89b",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f4a91702ca3cd2e568c3736aa031ed00c3752af4",
                 "reference": "c8927ad70c6fce36b3af52c17ed996c9aa4de89b",
                 "shasum": ""
             },
@@ -314,7 +314,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/9930e3367777a8727e229f5126c5299890d700bb",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/e7b77e5abe230a2cc1db5005fb86435da213ae3b",
                 "reference": "9930e3367777a8727e229f5126c5299890d700bb",
                 "shasum": ""
             },
@@ -839,7 +839,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/63c61ba4f8f20c9a013e0fb5b6c0a8d0002f87a9",
                 "reference": "e5eaf8c7ded0877195b5d2848491e17b1c0a6c4d",
                 "shasum": ""
             },
@@ -906,7 +906,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/b70d22758c0813ea5fef9c22480caadd3a2b6a56",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
                 "reference": "b70d22758c0813ea5fef9c22480caadd3a2b6a56",
                 "shasum": ""
             },
@@ -1014,7 +1014,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/a4f14d3a3d397104e557ec65d1a4e43bb86e4ddf",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/4e85ba638acf62e1afe735f94b0c51aa971f8773",
                 "reference": "a4f14d3a3d397104e557ec65d1a4e43bb86e4ddf",
                 "shasum": ""
             },
@@ -1189,6 +1189,64 @@
             "time": "2014-02-01 10:10:26"
         },
         {
+            "name": "friendsofsymfony/jsrouting-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+                "reference": "cc33cfd500cb056808a9f937d6c2e589b23ba936"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/cc33cfd500cb056808a9f937d6c2e589b23ba936",
+                "reference": "cc33cfd500cb056808a9f937d6c2e589b23ba936",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/console": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/serializer": "~2.0",
+                "willdurand/jsonp-callback-validator": "~1.0"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.4"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FOS\\JsRoutingBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+                },
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "A pretty nice way to expose your Symfony2 routing to client applications.",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "Js Routing",
+                "javascript",
+                "routing"
+            ],
+            "time": "2015-07-31 09:51:44"
+        },
+        {
             "name": "friendsofsymfony/rest-bundle",
             "version": "dev-master",
             "target-dir": "FOS/RestBundle",
@@ -1199,7 +1257,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/d20cbc4eb60dff93f33ef7b55db31fd96d8c5aee",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/3a19b352643b36be51e7bf8cca3035783f500304",
                 "reference": "d20cbc4eb60dff93f33ef7b55db31fd96d8c5aee",
                 "shasum": ""
             },
@@ -1806,7 +1864,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/cd1c5a439a9c636e4a120e760adfd35e61eb4469",
+                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/de4c74afde53b9e4fc44b8c0e3c23fd742a6bb9f",
                 "reference": "cd1c5a439a9c636e4a120e760adfd35e61eb4469",
                 "shasum": ""
             },
@@ -2094,7 +2152,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/363186a46c1187df048158945ea429cc5247ad77",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/7b3d6c2ba99566e41dc3abe2bbcd9fb41e365042",
                 "reference": "363186a46c1187df048158945ea429cc5247ad77",
                 "shasum": ""
             },
@@ -2165,7 +2223,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/c49628cfc8b8ce7404665b4e6528487d780e7d68",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/46bb11dd95e3546e048d2d5a083cb427cb289b87",
                 "reference": "c49628cfc8b8ce7404665b4e6528487d780e7d68",
                 "shasum": ""
             },
@@ -2307,7 +2365,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/f1734151aecb55b95ed9d6dcfb47b61eb4c753fd",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/9d52413665284f9c96e0cef399fc14e68ac0aa5a",
                 "reference": "f1734151aecb55b95ed9d6dcfb47b61eb4c753fd",
                 "shasum": ""
             },
@@ -2452,7 +2510,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/0a7608e6d540d6558e817168329ea4e759b9dbe4",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/620a9e4b53a940cee370e51cd4e3457a819af815",
                 "reference": "0a7608e6d540d6558e817168329ea4e759b9dbe4",
                 "shasum": ""
             },
@@ -2516,7 +2574,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/802e7f67fa3ea6cdaa40bffb96fc5cc83c7c2826",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/5c5b01905d671134efde7dd5d769fee4934a164a",
                 "reference": "802e7f67fa3ea6cdaa40bffb96fc5cc83c7c2826",
                 "shasum": ""
             },
@@ -2631,7 +2689,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/6c3bd95d329bfe79f3cfa137ac7a8a482e247644",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/35b328142a9657622a927aba987501157a305a97",
                 "reference": "6c3bd95d329bfe79f3cfa137ac7a8a482e247644",
                 "shasum": ""
             },
@@ -2955,7 +3013,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bf2bff61743f20a13dc46ff1e3bbd0f19c997d2b",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d58755629d665abe7955e87ecb0a7a17912670ad",
                 "reference": "bf2bff61743f20a13dc46ff1e3bbd0f19c997d2b",
                 "shasum": ""
             },
@@ -3031,7 +3089,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/de31760fd84a45fadbb4fe24db050b5e29ea70d1",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/874c8752e6114fd2d384d93d48e859a680f2ae9d",
                 "reference": "de31760fd84a45fadbb4fe24db050b5e29ea70d1",
                 "shasum": ""
             },
@@ -3244,7 +3302,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/bf2c13de4300e227d7b2fd08027673a79c519987",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/9e45edca52cc9c954680072c93e621f8b71fab26",
                 "reference": "bf2c13de4300e227d7b2fd08027673a79c519987",
                 "shasum": ""
             },
@@ -3288,7 +3346,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/df552307f1426f69ada59cfcae85c43b7c10a8cd",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/98bdda791e7c2dfb5fd55781e69a4b00e4f751a6",
                 "reference": "df552307f1426f69ada59cfcae85c43b7c10a8cd",
                 "shasum": ""
             },
@@ -3576,7 +3634,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/cache/zipball/a1522be3a1874c4646e7f9aaea6ca973b8bcbcde",
+                "url": "https://api.github.com/repos/sonata-project/cache/zipball/0f2437f824b634939f6b1e1c67a066fb3ff6c8cc",
                 "reference": "a1522be3a1874c4646e7f9aaea6ca973b8bcbcde",
                 "shasum": ""
             },
@@ -3705,7 +3763,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/360942d98ac7441dc9b06b089ef8636721e37f9c",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/4d6f441f9f0eaa8232eb87c6aa5bf145586e141f",
                 "reference": "360942d98ac7441dc9b06b089ef8636721e37f9c",
                 "shasum": ""
             },
@@ -3770,7 +3828,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/1c412dd3631dce794f2d4c55968b46c2bd9311d3",
+                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/cc42f2801011d7ebc65edda451a2efa4b4d1fbb9",
                 "reference": "1c412dd3631dce794f2d4c55968b46c2bd9311d3",
                 "shasum": ""
             },
@@ -3938,7 +3996,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/a29ed7c2c49ac02bc0cd08700bf2037c4903ce9e",
+                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/3ca362fddc33f0ed8479c7129916913859fc3979",
                 "reference": "a29ed7c2c49ac02bc0cd08700bf2037c4903ce9e",
                 "shasum": ""
             },
@@ -3995,7 +4053,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/fbfac4ca1095d8773db33b4d2e7f469f9640bf80",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/92835b5aac7a5300b3c34f4b52ed4327a1d1ed47",
                 "reference": "fbfac4ca1095d8773db33b4d2e7f469f9640bf80",
                 "shasum": ""
             },
@@ -4142,7 +4200,6 @@
                 "jquery",
                 "sonata"
             ],
-            "abandoned": true,
             "time": "2013-03-01 17:24:02"
         },
         {
@@ -4238,7 +4295,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataNotificationBundle/zipball/d711769128bacf3401d69663c30529239fa37048",
+                "url": "https://api.github.com/repos/sonata-project/SonataNotificationBundle/zipball/60a34d9e15013111d4efdaf42a4600fd5ce9e141",
                 "reference": "d711769128bacf3401d69663c30529239fa37048",
                 "shasum": ""
             },
@@ -4508,7 +4565,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/ac8b475454c120bfb31f5bef475233dd4fb6b626",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/caf94ee2473ba6503e411ce3bcbd33b080f1d903",
                 "reference": "ac8b475454c120bfb31f5bef475233dd4fb6b626",
                 "shasum": ""
             },
@@ -4560,7 +4617,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/4bfd74e41d6d3d153b5de402604ab637fb88917a",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/9e8dff63f6a4ef6818220b4ee5179fd9f1bf3bb7",
                 "reference": "4bfd74e41d6d3d153b5de402604ab637fb88917a",
                 "shasum": ""
             },
@@ -4685,7 +4742,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/b5281c8cacdea3eab8c80c88df9e00fde1ea2b34",
+                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/185e00d5e4a617cf0fb5f7415f0cc80d51c15bdd",
                 "reference": "b5281c8cacdea3eab8c80c88df9e00fde1ea2b34",
                 "shasum": ""
             },
@@ -4742,7 +4799,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/af0e02c35e302b21108a7c04d632ec9d5f21677c",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/6dac13bc200dccb8a349d880d58cf3a9e9b35c10",
                 "reference": "af0e02c35e302b21108a7c04d632ec9d5f21677c",
                 "shasum": ""
             },
@@ -4897,7 +4954,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d63ac2088e8d30137cde10f310ab89b06dab916b",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5815c8344b4d645323d92dab3abb5b8a7d8dd605",
                 "reference": "d63ac2088e8d30137cde10f310ab89b06dab916b",
                 "shasum": ""
             },
@@ -5311,7 +5368,8 @@
         "doctrine/doctrine-migrations-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
         "avalanche123/imagine-bundle": 20,
-        "geshi/geshi": 20
+        "geshi/geshi": 20,
+        "friendsofsymfony/jsrouting-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

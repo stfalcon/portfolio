@@ -63,6 +63,20 @@ class ProjectAdmin extends Admin
                                 'class' => 'markitup'
                             )
                         ),
+                        'shortDescription' => array(
+                            'label' => 'short description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            ),
+                            'attr' => array(
+                                'class' => 'markitup'
+                            )
+                        ),
                         'caseContent' => [
                             'label' => 'Case content',
                             'locale_options' => [
@@ -118,7 +132,7 @@ class ProjectAdmin extends Admin
             ->add('url')
             ->add('imageFile', 'file', array('required' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
             ->add('date', 'date')
-            ->add('categories')
+            ->add('categories', null, array('required' => true))
             ->add('published', 'checkbox', array('required' => false))
             ->add('shadow', 'checkbox', array('required' => false))
             ->add('onFrontPage', 'checkbox', array('required' => false))

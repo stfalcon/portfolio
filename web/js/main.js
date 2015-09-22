@@ -1,4 +1,8 @@
 $(function () {
+
+
+
+
     $(document).on('submit', '#direct-order-form', function(e) {
         e.preventDefault();
         var $directOrderForm = $(this);
@@ -46,21 +50,24 @@ $(function () {
         $('#view-year').html(value)
     }
 
-    $("#year-slider").slider({
-        min: 0,
-        max: yearList.length - 1,
-        value: yearList.length - 1,
-        step: 1,
-        range: 'min',
-        start: function (event, ui) {
-            startPos = $(yearList[ui.value]).data('val');
-        },
-        change: function (event, ui) {
-            counter(startPos, $(yearList[ui.value]).data('val'));
-            updateYear($(yearList[ui.value]).data('text'));
-        }
-    });
-    $('#year-slider').draggable(); // Enable toush dragging
+    if($('#yeat-slider').length){
+        $("#year-slider").slider({
+            min: 0,
+            max: yearList.length - 1,
+            value: yearList.length - 1,
+            step: 1,
+            range: 'min',
+            start: function (event, ui) {
+                startPos = $(yearList[ui.value]).data('val');
+            },
+            change: function (event, ui) {
+                counter(startPos, $(yearList[ui.value]).data('val'));
+                updateYear($(yearList[ui.value]).data('text'));
+            }
+        });
+        $('#year-slider').draggable(); // Enable toush dragging
+    }
+
 
     function counter(start, end) {
         var i = start;
@@ -75,6 +82,8 @@ $(function () {
             yearsCnt.html(i);
         }, 20);
     }
+
+
 
     var filter;
     var teamList = $('.avatar'),
@@ -313,22 +322,22 @@ $(function () {
         });
     }
 
-    enquire.register("screen and (max-width: 670px)", {
-        match: function(){
-            var promoBannerCnt = $('.promo-banner-wrapper');
-            if(promoBannerCnt.length) {
-                var bannerImg = promoBannerCnt.find('.img-wrapper');
-                promoBannerCnt.append(bannerImg);
-            }
-        },
-        unmatch: function(){
-            var promoBannerCnt = $('.promo-banner-wrapper');
-            if(promoBannerCnt.length) {
-                var bannerImg = promoBannerCnt.find('.img-wrapper');
-                promoBannerCnt.prepend(bannerImg);
-            }
-        }
-    });
+    //enquire.register("screen and (max-width: 670px)", {
+    //    match: function(){
+    //        var promoBannerCnt = $('.promo-banner-wrapper');
+    //        if(promoBannerCnt.length) {
+    //            var bannerImg = promoBannerCnt.find('.img-wrapper');
+    //            promoBannerCnt.append(bannerImg);
+    //        }
+    //    },
+    //    unmatch: function(){
+    //        var promoBannerCnt = $('.promo-banner-wrapper');
+    //        if(promoBannerCnt.length) {
+    //            var bannerImg = promoBannerCnt.find('.img-wrapper');
+    //            promoBannerCnt.prepend(bannerImg);
+    //        }
+    //    }
+    //});
 
     $(document).on("change", '.file-input input',  function () {
         var fullPath = $(this).val();
@@ -341,4 +350,132 @@ $(function () {
         var pathArray = fullPath.split(/[/\\]/);
         $(this).closest('.file-input').find('.filename').html(pathArray[pathArray.length - 1]);
     });
+
+    /*Services page*/
+    if ($(".link-more").length) {
+        $(".link-more").click(function () {
+            $(".detailed-text").toggle();
+        });
+    }
+
+    if ($("#feedback-form").length) {
+
+        $('a[href="#feedback-form"]').click(function () {
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top
+            }, 1000);
+            return false;
+        });
+    }
+
+    if ($("#scroll").length) {
+
+        $('a[href="#scroll"]').click(function () {
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top + 34
+            }, 1000);
+            return false;
+        });
+    }
+
+    if ($("#web-dev").length) {
+        $('a[href="#web-dev"]').click(function () {
+            $(".detailed-text").show();
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top
+            }, 1000);
+            return false;
+        });
+    }
+
+    if ($("#feedback-line").length) {
+        $('a[href="#feedback-line"]').click(function () {
+            var el = $(this).attr('href');
+            $('body').animate({
+                scrollTop: $(el).offset().top
+            }, 1000);
+            return false;
+        });
+    }
+
+    if($(".project-cell").length) {
+        var a = $(".project-cell:eq(2)").height();
+        $(".container_load").height(a);
+        $(window).resize(function () {
+            a = $(".project-cell:eq(2)").height();
+            $(".container_load").height(a);
+        });
+    }
+
+    /*
+     * form animation
+     */
+    var formDelay = 3000;
+
+    /*
+     * form validation
+     */
+    if($('#feedback-form').length) {
+        $('#feedback-form').validate({
+            rules: {
+                'name': {
+                    required: true,
+                    minlength: 3
+                },
+                'email': {
+                    required: true,
+                    minlength: 3
+                },
+                'message': {
+                    required: true,
+                    minlength: 30
+                }
+            },
+            messages: {
+                'name': {
+                    required: "Пожалуйста, введите ваше имя",
+                    minlength: jQuery.validator.format("Введите имя не меньше 3 символов")
+                },
+                'email': {
+                    required: "Пожалуйста, введите адрес вашей эл.почты",
+                    email: "Ваша эл.адрес должен быть формата name@domain.com"
+                },
+                'message': {
+                    required: "Пожалуйста, введите сообщение",
+                    minlength: jQuery.validator.format("Введите сообщение не меньше 30 символов")
+                }
+            },
+            errorPlacement: function (label, element) {
+                label.addClass('error-pad');
+                label.insertAfter(element);
+            },
+            wrapper: 'div',
+            debug: true,
+            submitHandler: function () {
+                $('#feedback-form').find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
+                $('#feedback-form').find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
+                return false;
+            }
+        });
+
+        $.validator.addClassRules({
+            name: {
+                required: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                minlength: 3
+            },
+            messageText: {
+                required: true,
+                minlength: 30
+            }
+        });
+    }
+
+
 });

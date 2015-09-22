@@ -6,6 +6,10 @@ _application_default_promotion:
     resource: "@ApplicationDefaultBundle/Controller/PromotionController.php"
     type:     annotation
 
+_application_default_landing:
+    resource: "@ApplicationDefaultBundle/Controller/LandingController.php"
+    type:     annotation
+
 _application_default_upload:
     resource: "@ApplicationDefaultBundle/Controller/UploadController.php"
     type:     annotation

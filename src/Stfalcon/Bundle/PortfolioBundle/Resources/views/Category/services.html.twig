@@ -1,36 +1,49 @@
-{% extends '::layout.html.twig' %}
+{% extends '::portfolio_layout.html.twig' %}
 
 {% block title %}{{ category.title }} | {{ parent() }}{% endblock %}
-
+{% set templates = ['web-development', 'web-design', 'mobile-development', 'game-development', 'consulting-audit'] %}
+{% set slug = app.request.get('slug') %}
 {% block content_wrapper %}
     <section class="services-tabs">
-        <p class="h1">{{ "Чем мы занимаемся"|trans }}</p>
-        <ul class="tab-nav">
-            {% for c in categories %}
-                <li {% if c.id == category.id %}class="active"{% endif %}>
-                    {% if c.id == category.id %}
-                        <h1>{{ c.name }}</h1>
-                    {% else %}
-                        <a href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">
-                            {{ c.name }}
-                        </a>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-        <div class="tab-content-wrapper">
-            {% for c in categories %}
-                {% if c.id == category.id %}
-                    <div id="{{ c.slug }}" class="tab-content">
-                        {{ category.description | raw }}
-                        <h3>{{ 'Примеры %project%'|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</h3>
+        <div class="section-offer">
+            <p class="h1">{{ 'Что мы предлагаем'|trans }}</p>
+            <ul class="tabs-header">
+                {% for category in categories %}
+                    <li>
+                        <div class="wrap-nav"><a
+                                    href="{{ path('portfolio_categories_list', {'slug': category.slug }) }}"
+                                    class="tab-title {% if app.request.get('slug') == category.slug %}active{% endif %}">
+                                {{ category.name }}</a></div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p class="content-offer">
+                {{ category.description|raw }}
+            </p>
+        </div>
+        {% if (slug  in templates ) %}
+            {% include('@StfalconPortfolio/Category/'~slug ~'-part.html.twig') %}
+        {% else %}
+            <div class="section-cms">
+                <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
+                {{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProject', { 'category': category })) }}
+            </div>
+        {% endif %}
+        <div class="detailed-text">
+            {{ category.details|raw }}
+        </div>
+        <div class="contact-us">
+            <p class="h2">
+                {{ 'Давайте сделаем что-то классное вместе'|trans }}
+            </p>
 
-                            {{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProject', { 'category': category })) }}
-
-                        <a href="{{ path('portfolio_category_view', {'slug': category.slug}) }}" class="show-all-projects">{{ "Другие примеры %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</a>
-                    </div>
-                {% endif %}
-            {% endfor %}
+            <p>
+                {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи'|trans }}.
+            </p>
+            <a class="link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" href="{{ path('contacts') }}">
+                {% set order_text = '_order-' ~ category.slug %}
+                {{ order_text|trans }}
+            </a>
         </div>
     </section>
 {% endblock %}

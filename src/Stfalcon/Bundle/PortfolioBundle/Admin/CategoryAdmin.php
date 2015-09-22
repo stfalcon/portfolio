@@ -20,7 +20,18 @@ class CategoryAdmin extends Admin
                     'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Category',
                     'fields' => array(
                         'name' => array(
-                            'label' => 'name',
+                            'label' => 'Full Name',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            )
+                        ),
+                        'shortName' => array(
+                            'label' => 'Short Name',
                             'locale_options' => array(
                                 'ru' => array(
                                     'required' => true
@@ -32,6 +43,20 @@ class CategoryAdmin extends Admin
                         ),
                         'description' => array(
                             'label' => 'description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true
+                                ),
+                                'en' => array(
+                                    'required' => false
+                                )
+                            ),
+                            'attr' => array(
+                                'class' => 'markitup'
+                            )
+                        ),
+                        'details' => array(
+                            'label' => 'details',
                             'locale_options' => array(
                                 'ru' => array(
                                     'required' => true
@@ -85,6 +110,7 @@ class CategoryAdmin extends Admin
                 )
             )
             ->add('slug')
+            ->add('showInServices', null, array('required' => false))
             ->add('cost')
             // @todo сделать сортировку через sortable (по аналогии с проектами)
             ->add('ordernum');

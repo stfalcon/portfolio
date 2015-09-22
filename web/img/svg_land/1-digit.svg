@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="33px" viewBox="0 0 24 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>1-digit</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Silex" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="silex_land_v" sketch:type="MSArtboardGroup" transform="translate(-218.000000, -1605.000000)" fill="#F0EBD8">
+            <g id="Общие-положения--«ко-+-Правильное-проектиро-+-На-первом-этапе-опре" sketch:type="MSLayerGroup" transform="translate(0.000000, 1386.000000)">
+                <path d="M219.834,252 L241.73,252 L241.73,245.1 L234.692,245.1 L234.692,219.11 L227.746,219.11 L218.868,227.436 L223.514,232.404 L225.492,230.61 C226.366,229.782 226.78,228.862 226.78,228.862 L226.872,228.862 C226.872,228.862 226.826,230.15 226.826,231.392 L226.826,245.1 L219.834,245.1 L219.834,252 Z" id="1-digit" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>
