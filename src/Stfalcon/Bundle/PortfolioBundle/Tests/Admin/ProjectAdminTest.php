@@ -53,7 +53,7 @@ class ProjectAdminTest extends WebTestCase
         // check display projects
         $this->assertEquals(1, $crawler->filter('table tbody tr td:contains("preorder.it")')->count());
         $this->assertEquals(1, $crawler->filter('table tbody tr td:contains("eprice.kz")')->count());
-        $this->assertEquals(16, $crawler->filter('table tbody tr td:contains("example.com")')->count());
+        $this->assertEquals(20, $crawler->filter('table tbody tr td:contains("example.com")')->count());
     }
 
     public function testCreateValidProject()
@@ -74,6 +74,8 @@ class ProjectAdminTest extends WebTestCase
 
         $form[$formId . '[translations][defaultLocale][ru][name]'] = 'wallpaper.in.ua';
         $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Free desktop wallpapers gallery.';
+        $form[$formId . '[translations][defaultLocale][ru][shortDescription]'] = 'Free desktop wallpapers gallery.';
+        $form[$formId . '[translations][defaultLocale][ru][tags]'] = 'design, HTML markup, development';
         $form[$formId . '[slug]'] = 'wallpaper-in-ua';
         $form[$formId . '[url]'] = 'http://wallpaper.in.ua';
         $form[$formId . '[imageFile]'] = $this->_getTestImagePath();
