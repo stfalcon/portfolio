@@ -55,7 +55,11 @@ class CategoryAdminTest extends WebTestCase
         $formId = substr($form->getUri(), -14);
 
         $form[$formId . '[translations][defaultLocale][ru][name]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][shortName]'] = 'Web Design';
         $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Short text about web design servise.';
+        $form[$formId . '[translations][defaultLocale][ru][details]'] = 'Short text about web design servise.';
+        $form[$formId . '[translations][defaultLocale][ru][title]'] = 'Meta Title';
+        $form[$formId . '[translations][translations][en][title]'] = 'Meta Title';
         $form[$formId . '[slug]'] = 'web-design';
         $form[$formId . '[cost]'] = '20 000';
         $this->client->submit($form);
@@ -105,6 +109,10 @@ class CategoryAdminTest extends WebTestCase
 
         $form[$formId . '[translations][defaultLocale][ru][name]'] = 'Web Design';
         $form[$formId . '[translations][defaultLocale][ru][description]'] = 'Short text about web design servise.';
+        $form[$formId . '[translations][defaultLocale][ru][shortName]'] = 'Web Design';
+        $form[$formId . '[translations][defaultLocale][ru][details]'] = 'Short text about web design servise.';
+        $form[$formId . '[translations][defaultLocale][ru][title]'] = 'Meta Title';
+        $form[$formId . '[translations][translations][en][title]'] = 'Meta Title';
         $form[$formId . '[slug]'] = 'web-design';
         $this->client->submit($form);
 
