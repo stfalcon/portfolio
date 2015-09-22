@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Application\Bundle\DefaultBundle\Form\Type\PromotionOrderFormType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Promotion controller. For promotions actions
@@ -29,6 +30,9 @@ class LandingController extends Controller
         $landingPage = $this->get('doctrine.orm.entity_manager')
             ->getRepository('StfalconPortfolioBundle:Landing')
             ->findOneBy(['slug' => $type]);
+        if (!$landingPage) {
+            throw new NotFoundHttpException();
+        }
         $seoPage->addMeta('name', 'description', $landingPage->getMetaDescription())
             ->addMeta('name', 'title', $landingPage->getMetaTitle())
             ->addMeta('name', 'keywords', $landingPage->getMetaKeywords())
