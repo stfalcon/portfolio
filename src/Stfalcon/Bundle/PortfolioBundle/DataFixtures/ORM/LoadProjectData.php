@@ -44,6 +44,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $preOrder->setDate(new \DateTime('now'));
         $preOrder->setDescription('Press-releases and reviews of the latest electronic novelties. The possibility to leave a pre-order.');
         $preOrder->setTags('design, HTML markup, development');
+        $preOrder->setShortDescription('design, HTML markup, development');
         $preOrder->setOnFrontPage(1);
         $preOrder->setOrdernum(0);
         $preOrder->addCategory($webCategory);
@@ -61,6 +62,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $ePrice->setDate(new \DateTime('now'));
         $ePrice->setDescription('Comparison of the prices of mobile phones, computers, monitors, audio and video in Kazakhstan');
         $ePrice->setTags('design');
+        $ePrice->setShortDescription('design');
         $ePrice->setOnFrontPage(1);
         $ePrice->setPublished(true);
         $ePrice->setOrdernum(1);
@@ -85,6 +87,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             $example->setDate(new \DateTime('now'));
             $example->setDescription('As described in RFC 2606, we maintain a number of domains such as EXAMPLE.COM and EXAMPLE.ORG for documentation purposes. These domains may be used as illustrative examples in documents without prior coordination with us. They are not available for registration.');
             $example->setTags('design, HTML markup, development');
+            $example->setShortDescription('design, HTML markup, development');
             $example->setOnFrontPage(0);
             $example->setOrdernum(2 + $i);
             if ($i % 2){

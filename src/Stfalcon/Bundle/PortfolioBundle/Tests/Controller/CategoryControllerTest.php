@@ -12,18 +12,17 @@ class CategoryControllerTest extends WebTestCase{
     /**
      * @todo исправить тесты после создания страницы "Услуги"
      */
-    public function testViewCategory() {
+    public function testViewCategory()
+    {
         $this->loadFixtures(array(
             'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
             'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData'
         ));
         $crawler = $this->fetchCrawler(
-                $this->getUrl('portfolio_category_view', array('slug' => 'web-development')), 'GET'
+            $this->getUrl('portfolio_category_view', array('slug' => 'web-development')), 'GET'
         );
 
-        $this->assertEquals(1, $crawler->filter('html:contains("Web Development")')->count());
-        $description = "In work we use Symfony2.";
-        $this->assertEquals(0, $crawler->filter('html:contains("' . $description . '")')->count());
+        $this->assertEquals(1, $crawler->filter('html:contains("Проекты")')->count());
     }
 
     public function testViewNonExistCategory() {
