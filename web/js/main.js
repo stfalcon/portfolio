@@ -50,7 +50,7 @@ $(function () {
         $('#view-year').html(value)
     }
 
-    if($('#yeat-slider').length){
+    if($('#year-slider').length){
         $("#year-slider").slider({
             min: 0,
             max: yearList.length - 1,
