@@ -26,8 +26,8 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $files = array(
-            'summer.jpg',
-            'autumn.jpg'
+            '55f18a561ca39.jpeg',
+            '55f18d6a43d1a.jpeg'
         );
         $webCategory = $this->getReference('category-development');
         $mobileCategory = $this->getReference('mobile-development');
