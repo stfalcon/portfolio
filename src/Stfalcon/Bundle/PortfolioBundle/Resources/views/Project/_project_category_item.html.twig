@@ -1,8 +1,8 @@
 <div class="list_projects">
     <ul class="items_projects">
-        {% for project in projects %}
+        {% for  key,project in projects %}
             <li class="project-cell">
-                {% include('@StfalconPortfolio/Project/_project_load_item.html.twig') with {'project': project } %}
+                {% include('@StfalconPortfolio/Project/_project_load_item.html.twig') with {'project': project, 'key': key } %}
             </li>
         {% endfor %}
     </ul>
