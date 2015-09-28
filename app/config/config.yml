@@ -172,6 +172,12 @@ avalanche_imagine:
         avatar_small:
             type:    thumbnail
             options: { size: [48, 48], mode: outbound }
+        portfolio_large:
+            type:    thumbnail
+            options: { size: [1358, 764], mode: outbound }
+        portfolio_small:
+            type:    thumbnail
+            options: { size: [674, 379], mode: outbound }
 
 sonata_media:
     class:

@@ -66,6 +66,33 @@ class Landing implements Translatable
     private $text;
 
     /**
+     * @var string $title Title
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(name="meta_title", type="string", nullable=true)
+     */
+    private $metaTitle;
+
+    /**
+     * @var string $metaDescription Meta description
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(name="meta_description", type="text", nullable=true)
+     */
+    private $metaDescription;
+
+    /**
+     * @var string $metaKeywords Meta keywords
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(name="meta_keywords", type="text", nullable=true)
+     */
+    private $metaKeywords;
+
+    /**
      * @var  ArrayCollection
      *
      * @ORM\OneToMany(
@@ -197,5 +224,53 @@ class Landing implements Translatable
     public function getTranslations()
     {
         return $this->translations;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * @param string $metaTitle
+     */
+    public function setMetaTitle($metaTitle)
+    {
+        $this->metaTitle = $metaTitle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * @param string $metaDescription
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaKeywords()
+    {
+        return $this->metaKeywords;
+    }
+
+    /**
+     * @param string $metaKeywords
+     */
+    public function setMetaKeywords($metaKeywords)
+    {
+        $this->metaKeywords = $metaKeywords;
     }
 }
