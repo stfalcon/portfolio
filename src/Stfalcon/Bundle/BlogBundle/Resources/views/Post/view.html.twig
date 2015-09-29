@@ -1,4 +1,5 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
+
 {% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }} | {{ parent() }}{% endblock %}
 {% block content_wrapper %}
     <article class="blog-post">
@@ -29,7 +30,16 @@
             <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
                 <span>{{ 'К списку записей'|trans }}</span></a>
         </div>
+
+        {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
+
+        {# Related posts widget #}
+        {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
+
+        {# Subscribe widget #}
+        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
+
         {% if app.request.host == 'stfalcon.com' %}
             <p>
                 <div id="disqus_thread"></div>

@@ -42,7 +42,7 @@ class PostController extends AbstractController
         $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
 
         return $this->_getRequestArrayWithDisqusShortname(array(
-            'posts' => $posts
+            'posts' => $posts,
         ));
     }
 
@@ -94,7 +94,7 @@ class PostController extends AbstractController
         }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
-            'post' => $post
+            'post' => $post,
         ));
     }
 
@@ -168,6 +168,24 @@ class PostController extends AbstractController
             ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, $count);
 
         return array('posts' => $posts);
+    }
+
+    /**
+     * Related posts action
+     *
+     * @param string $locale Site locale
+     * @param Post   $post   Current post
+     *
+     * @return array
+     */
+    public function relatedPostsAction($locale, $post)
+    {
+        $postRepository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
+        $relatedPosts = $postRepository->findRelatedPostsToCurrentPost($locale, $post);
+
+        return $this->render('@StfalconBlog/Post/relatedPosts.twig', [
+            'related_posts' => $relatedPosts,
+        ]);
     }
 
     /**
