@@ -9,3 +9,7 @@ _stfalcon_blog_tag:
 _stfalcon_comment:
     resource: "@StfalconBlogBundle/Controller/CommentController.php"
     type:     annotation
+
+_stfalcon_search:
+    resource: "@StfalconBlogBundle/Controller/SearchController.php"
+    type:     annotation

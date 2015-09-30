@@ -104,6 +104,23 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * Find all in array
+     *
+     * @param array $postsId Posts id
+     *
+     * @return array Posts
+     */
+    public function findAllInArray($postsId)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $qb->where($qb->expr()->in('p.id', ':posts'))
+                  ->setParameter('posts', $postsId)
+                  ->getQuery()
+                  ->getResult();
+    }
+
+    /**
      * @param string       $locale
      * @param QueryBuilder $qb
      */

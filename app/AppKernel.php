@@ -58,6 +58,8 @@ class AppKernel extends Kernel
             new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+
+            new Headzoo\SphinxSearchBundle\SphinxSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
