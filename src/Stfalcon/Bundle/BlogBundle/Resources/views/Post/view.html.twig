@@ -34,11 +34,11 @@
         {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
 
-        {# Related posts widget #}
-        {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
-
         {# Subscribe widget #}
         {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
+
+        {# Related posts widget #}
+        {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
 
         {% if app.request.host == 'stfalcon.com' %}
             <p>
