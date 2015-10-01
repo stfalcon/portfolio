@@ -3,6 +3,8 @@
 {% block body %}
     {% block header_content %}
         {{ include('_header.html.twig') }}
+
+        {{ render(controller('StfalconBlogBundle:Search:searchPosts')) }}
     {% endblock %}
     <div class="content">
         {% block content_wrapper %}{% endblock %}

@@ -48,7 +48,8 @@
         "geoip2/geoip2": "2.1.1",
         "ahmedsamy/hype-mailchimp-bundle": "1.2",
         "mlehner/gelf-php": "v1.0.1",
-        "friendsofsymfony/jsrouting-bundle": "^2.0@dev"
+        "friendsofsymfony/jsrouting-bundle": "^2.0@dev",
+        "headzoo/sphinx-search-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

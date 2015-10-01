@@ -10,12 +10,30 @@ use Sonata\AdminBundle\Form\FormMapper;
  */
 class TagAdmin extends Admin
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('text');
+            ->add('translations', 'a2lix_translations_gedmo', [
+                    'translatable_class' => 'Stfalcon\Bundle\BlogBundle\Entity\Tag',
+                    'fields'             => [
+                        'text' => [
+                            'label'          => 'Text',
+                            'locale_options' => [
+                                'ru' => ['required' => true],
+                                'en' => ['required' => false],
+                            ],
+                        ],
+                    ],
+                ]
+            );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -23,12 +41,22 @@ class TagAdmin extends Admin
             ->add('id');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function postPersist($post)
     {
         $this->postUpdate($post);
     }
+
+    /**
+     * {@inheritdoc}
+     */
     public function postUpdate($post)
     {
-        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+        $this->configurationPool
+             ->getContainer()
+             ->get('application_defaultbundle.service.sitemap')
+             ->generateSitemap();
     }
 }
