@@ -2,13 +2,11 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
-use Doctrine\ORM\NoResultException;
 use Stfalcon\Bundle\BlogBundle\Bridge\Doctrine\Form\Type\SearchType;
 use Stfalcon\Bundle\BlogBundle\Controller\AbstractController;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -86,6 +84,8 @@ class SearchController extends AbstractController
      * @param string $type   Sphinx search entity
      *
      * @return array Searched items id
+     *
+     * @throw RuntimeException
      */
     private function search($locale, $text, $type)
     {
@@ -99,7 +99,7 @@ class SearchController extends AbstractController
         ]);
 
         if (false === $searchResults) {
-            throw new Exception('Sphinx not found!');
+            throw new \RuntimeException('Sphinx not found!');
         }
 
         $items = [];
