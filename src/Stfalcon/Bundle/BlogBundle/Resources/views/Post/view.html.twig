@@ -5,12 +5,12 @@
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}
 
-        {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' %}
+        {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'top'} %}
 
         <div class="post-content">
             {{ post.text|moreToSpan|highlightCode|raw }}
 
-            {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' %}
+            {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
 
             <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
                 <span>{{ 'К списку записей'|trans }}</span></a>
