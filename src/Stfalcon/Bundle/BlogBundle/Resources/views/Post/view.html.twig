@@ -60,3 +60,7 @@
         {% endif %}
     </article>
 {% endblock %}
+
+{% block after_body %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+{% endblock %}
