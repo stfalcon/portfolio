@@ -44,7 +44,7 @@ class BlogExtension extends \Twig_Extension
     public function getPostFirstImage(Post $post, $filter, $host = '')
     {
         $return = '';
-        $path   = $this->getPostFirstImage($post, $filter, $host);
+        $path   = $this->getPostFirstImagePath($post, $filter, $host);
 
         if (!empty($path)) {
             $return = '<img src="'.$path.'" alt="'.$post->getTitle().'">';
