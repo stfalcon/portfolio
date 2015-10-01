@@ -63,6 +63,9 @@ return array(
     'promotion.order.design_form.mail.subject' => 'The application for the development of web design from "%email%"',
     'promotion.order.development.mail.subject' => 'The application for Web development by "%email%"',
     'promotion.order.development_form.mail.subject' => 'The application for Web development by "%email%"',
+
+    'promotion.order.hire.us.mail.subject' => 'Hiring request by "%email%"',
+
     'Кукорама' => 'Cookorama',
     'Радиалка' => 'Twiseller',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',

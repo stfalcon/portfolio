@@ -104,6 +104,30 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * Find related posts by tags
+     *
+     * @param string $locale Locale
+     * @param Post   $post   Current post
+     *
+     * @return array
+     */
+    public function findRelatedPostsToCurrentPost($locale, $post)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->where($qb->expr()->in('t.text', $post->getTags()->getValues()))
+           ->andWhere($qb->expr()->neq('p', ':post'))
+           ->setParameter('post', $post)
+           ->join('p.tags', 't');
+
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->setMaxResults(6)
+                  ->getQuery()
+                  ->getResult();
+    }
+
+    /**
      * Find all in array
      *
      * @param array $postsId Posts id
