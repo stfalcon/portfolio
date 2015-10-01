@@ -82,6 +82,7 @@
 </head>
 <body>
     {% block body %}{% endblock %}
+    {% block after_body %}{% endblock %}
 
     {% block javascripts %}
         {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/headroom.js' 'js/main.js'  output='cache/js/*.js' %}

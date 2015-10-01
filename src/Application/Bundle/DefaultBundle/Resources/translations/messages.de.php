@@ -63,6 +63,9 @@ return array( # Rückkehr Datenfeld
     'promotion.order.design_form.mail.subject' => 'Die Applikation für Entwicklung von Web-Deisgn von "%email%"',
     'promotion.order.development.mail.subject' => 'Die Applikation für Web ENtwicklung durch "%email%"',
     'promotion.order.development_form.mail.subject' => 'Die Applikation für Web ENtwicklung durch "%email%"',
+
+    'promotion.order.hire.us.mail.subject' => 'Mieten Antrag "%email%"',
+
     'Кукорама' => 'Cookorama',
     'Радиалка' => 'Twiseller',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Danke! Wir setzen uns mit Ihnen in Kontakt so schnell wie möglich.',
