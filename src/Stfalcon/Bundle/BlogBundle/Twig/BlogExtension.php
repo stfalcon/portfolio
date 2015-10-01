@@ -12,14 +12,14 @@ class BlogExtension extends \Twig_Extension
     /**
      * @var CachePathResolver
      */
-    private $cacheManager;
+    private $cachePathResolver;
 
     /**
-     * @param CachePathResolver $cacheManager
+     * @param CachePathResolver $cachePathResolver
      */
-    public function __construct(CachePathResolver $cacheManager)
+    public function __construct(CachePathResolver $cachePathResolver)
     {
-        $this->cacheManager = $cacheManager;
+        $this->cachePathResolver = $cachePathResolver;
     }
 
     /**
@@ -41,17 +41,48 @@ class BlogExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function getPostFirstImage(Post $post, $filter, $host)
+    public function getPostFirstImage(Post $post, $filter, $host = '')
     {
         $return = '';
+        $path   = $this->getPostFirstImage($post, $filter, $host);
 
-        if (preg_match('~<img[^>]+src="([^"]+)"[^>]*>~i', $post->getText(), $matches)) {
-            $imagePath = $this->cacheManager->getBrowserPath($matches[1], $filter);
-
-            $return = '<img src="'.$imagePath.'" alt="'.$post->getTitle().'">';
+        if (!empty($path)) {
+            $return = '<img src="'.$path.'" alt="'.$post->getTitle().'">';
         }
 
         return $return;
+    }
+
+    /**
+     * Get post first image path
+     *
+     * @param Post   $post   Current post
+     * @param string $filter Image filter
+     * @param string $host   Current host
+     *
+     * @return string
+     */
+    public function getPostFirstImagePath(Post $post, $filter, $host = '')
+    {
+        $imagePath = '';
+
+        if (preg_match('~<img[^>]+src="([^"]+)"[^>]*>~i', $post->getText(), $matches)) {
+            $imagePath = $this->cachePathResolver->getBrowserPath($matches[1], $filter);
+        }
+
+        return $imagePath;
+    }
+
+    /**
+     * Delete post first image
+     *
+     * @param string $postText Post text
+     *
+     * @return string Post text
+     */
+    public function deletePostFirstImage($postText)
+    {
+        return preg_replace('~<img[^>]+src="([^"]+)"[^>]*>~i', '', $postText);
     }
 
     /**

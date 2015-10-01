@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: sphinx/sphinx.yml }
 
 framework:
     #esi:             ~
