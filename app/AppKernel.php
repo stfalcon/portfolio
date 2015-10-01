@@ -59,7 +59,7 @@ class AppKernel extends Kernel
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
-            new Headzoo\SphinxSearchBundle\SphinxSearchBundle(),
+            new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

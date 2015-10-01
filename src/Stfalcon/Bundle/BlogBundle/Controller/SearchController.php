@@ -59,7 +59,7 @@ class SearchController extends AbstractController
 
             $searchedPosts = [];
             if (null !== $text) {
-                $postsId        = $this->search($locale, $text, 'Posts');
+                $postsId        = $this->search($locale, $text, 'postSearchIndex');
                 $postRepository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
                 $searchedPosts  = $postRepository->findAllInArray($postsId);
             }
@@ -89,8 +89,8 @@ class SearchController extends AbstractController
      */
     private function search($locale, $text, $type)
     {
-        $sphinxSearch = $this->get('search.sphinx_search.search');
-        $sphinxSearch->setFilter('locale', [
+        $sphinxSearch = $this->get('iakumai.sphinxsearch.search');
+        $sphinxSearch->SetFilter('locale', [
             crc32($locale),
         ]);
 

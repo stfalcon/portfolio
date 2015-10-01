@@ -1,8 +1,6 @@
-sphinx_search:
+sphinxsearch:
     indexes:
-        Posts: postSearchIndex
+        postSearchIndex: "StfalconBlogBundle:Post"
     searchd:
-        host: 127.0.0.1
-        port: 9312
-    indexer:
-        bin: /usr/bin/indexer
+        host: %sphinx_host%
+        port: %sphinx_port%
