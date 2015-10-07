@@ -10,6 +10,9 @@
 
         <parameter key="stfalcon_blog.admin.tag.class">Stfalcon\Bundle\BlogBundle\Admin\TagAdmin</parameter>
         <parameter key="stfalcon_blog.admin.tag.entity">Stfalcon\Bundle\BlogBundle\Entity\Tag</parameter>
+
+        <parameter key="stfalcon_blog.admin.comment.class">Stfalcon\Bundle\BlogBundle\Admin\CommentAdmin</parameter>
+        <parameter key="stfalcon_blog.admin.comment.entity">Stfalcon\Bundle\BlogBundle\Entity\Comment</parameter>
     </parameters>
 
     <services>
@@ -23,6 +26,12 @@
             <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Tags" />
             <argument />
             <argument>%stfalcon_blog.admin.tag.entity%</argument>
+            <argument />
+        </service>
+        <service id="stfalcon_blog.admin.comment" class="%stfalcon_blog.admin.comment.class%">
+            <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Comments" />
+            <argument />
+            <argument>%stfalcon_blog.admin.comment.entity%</argument>
             <argument />
         </service>
 
@@ -43,6 +52,10 @@
         <service id="twig.extension.blog" class="Stfalcon\Bundle\BlogBundle\Twig\BlogExtension">
             <argument type="service" id="imagine.cache.path.resolver"/>
             <tag name="twig.extension" alias="blog" />
+        </service>
+
+        <service id="form.type.add_new_comment" class="Stfalcon\Bundle\BlogBundle\Bridge\Doctrine\Form\Type\NewCommentType">
+            <tag name="form.type" alias="add_new_comment" />
         </service>
     </services>
 </container>

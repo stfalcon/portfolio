@@ -1,0 +1,6 @@
+{# New comment widget #}
+{{ render(controller('StfalconBlogBundle:Comment:commentForm', { 'id': post.id })) }}
+
+{% include 'StfalconBlogBundle:Comment:commentsList.html.twig' with { 'comments': comments } %}
+
+{{ knp_pagination_render(comments) }}

@@ -25,6 +25,8 @@
         {# Related posts widget #}
         {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
 
+        {{ render(controller('StfalconBlogBundle:Comment:getComments', { 'id': post.id, 'page': app.request.query.get('page', '1') })) }}
+
         {% if app.request.host == 'stfalcon.com' %}
             <p>
                 <div id="disqus_thread"></div>

@@ -1,0 +1,32 @@
+<div class="new-comment">
+    <form id="add-new-comment" data-action="{{ path('blog_post_add_comment', {'id': post.id}) }}">
+        {{ form_label(form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+
+        {{ form_label(form.email) }}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email) }}
+
+        {{ form_label(form.message) }}
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message) }}
+
+        {{ form_widget(form.language, { 'attr': { 'value': app.request.locale } }) }}
+
+        <input id="submit-new-comment" type="submit" value="Submit">
+        {{ form_end(form) }}
+    </form>
+</div>
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+
+{% for flashMessage in app.session.flashbag.get('error') %}
+    <div class="flash-error">
+        {{ flashMessage }}
+    </div>
+{% endfor %}

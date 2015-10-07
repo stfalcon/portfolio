@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Stfalcon\Bundle\BlogBundle\Entity\Comment;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -32,7 +33,7 @@ class PostController extends AbstractController
      *      defaults={"page"="1", "title"="page"})
      * @Template()
      */
-    public function indexAction(Request $request, $page)
+    public function indexAction(Request $request, $page = 1)
     {
         $seo = $this->get('sonata.seo.page');
         $seo->generateLangAlternates($request);
@@ -90,12 +91,12 @@ class PostController extends AbstractController
         $seo->generateLangAlternates($this->get('request'));
 
         if ($post->getImage()) {
-            $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost() . $post->getImage());
+            $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost().$post->getImage());
         }
 
-        return $this->_getRequestArrayWithDisqusShortname(array(
-            'post' => $post,
-        ));
+        return $this->_getRequestArrayWithDisqusShortname([
+            'post'     => $post,
+        ]);
     }
 
     /**
