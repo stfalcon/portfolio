@@ -477,9 +477,15 @@ $(function () {
         });
     }
 
-    $('.scroll-to-top').click(function (e) {
+    $('#submit-new-comment').click(function (e) {
         e.preventDefault();
 
-        $('html, body').animate({scrollTop: 0}, 800);
+        var $addNewCommentForm = $('#add-new-comment');
+
+        $.post($addNewCommentForm.data('action'), $addNewCommentForm.serialize(), function (response) {
+            if (response.status == 'ok') {
+                location.reload();
+            }
+        });
     });
 });

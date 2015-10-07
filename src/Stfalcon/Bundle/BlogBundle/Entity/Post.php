@@ -4,6 +4,7 @@ namespace Stfalcon\Bundle\BlogBundle\Entity;
 
 use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Translatable\Translatable;
@@ -72,6 +73,15 @@ class Post implements Translatable
      *      )
      */
     private $tags;
+
+    /**
+     * @var Collection|Comment[] $comments Comments
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     *
+     * @Assert\Valid()
+     */
+    private $comments;
 
     /**
      * @var \DateTime $created
@@ -160,9 +170,10 @@ class Post implements Translatable
      */
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
-        $this->created = new \DateTime();
+        $this->tags         = new ArrayCollection();
+        $this->created      = new \DateTime();
         $this->translations = new ArrayCollection();
+        $this->comments     = new ArrayCollection();
     }
 
     /**
@@ -275,6 +286,48 @@ class Post implements Translatable
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Collection|Comment[] Comments
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set comments
+     *
+     * @param Collection|Comment[] $comments comments
+     *
+     * @return $this
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        foreach ($comments as $comment) {
+            $comment->setPost($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param Comment $comment Comment
+     *
+     * @return $this Post
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments->add($comment);
+
+        return $this;
     }
 
     /**

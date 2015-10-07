@@ -1,0 +1,16 @@
+<ul class="comments">
+    {% for comment in comments %}
+        <li>
+            <p>{{ comment.name }}</p>
+            <p>{{ comment.email }}</p>
+            <p>{{ comment.message }}</p>
+            <p>{{ comment.createdAt|date('d M Y') }}</p>
+
+            {% if comment.children.count() %}
+                <div style="margin-left: 20px">
+                    {% include 'StfalconBlogBundle:Comment:commentsList.html.twig' with {'comments': comment.children} %}
+                </div>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
