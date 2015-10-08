@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:og="http://ogp.me/ns#">
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %}{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}{% endblock %}</title>
@@ -18,9 +18,10 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
+    {{ sonata_seo_title() }}
     {{ sonata_seo_metadatas() }}
-
     {{ sonata_seo_link_canonical() }}
+    {{ sonata_seo_lang_alternates() }}
 
     {% if app.request.host == 'stfalcon.com' %}
         <script>

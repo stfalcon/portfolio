@@ -22,10 +22,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $request = $this->get('request');
-
-        $seo = $this->get('sonata.seo.page');
-        $seo->generateLangAlternates($request);
+        $this->get('application_default.service.seo')
+             ->setOpenGraphSeoData('team', 'Team');
 
         $users = $this->getDoctrine()->getManager()
                 ->getRepository("ApplicationUserBundle:User")->findAllActiveUsers();

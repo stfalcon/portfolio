@@ -27,6 +27,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $this->get('application_default.service.seo')
+             ->setOpenGraphSeoData('homepage');
+
         return [];
     }
 
@@ -42,8 +45,8 @@ class DefaultController extends Controller
      */
     public function contactsAction(Request $request)
     {
-        $seo = $this->get('sonata.seo.page');
-        $seo->generateLangAlternates($request);
+        $this->get('application_default.service.seo')
+             ->setOpenGraphSeoData('contacts', 'Contacts');
 
         // @todo: refact
         if ($this->has('application_default.menu.breadcrumbs')) {
@@ -114,6 +117,9 @@ class DefaultController extends Controller
      */
     public function privacyPolicyAction()
     {
+        $this->get('application_default.service.seo')
+             ->setOpenGraphSeoData('privacy_policy_page', 'Privacy Policy');
+
         return [];
     }
 
@@ -127,6 +133,9 @@ class DefaultController extends Controller
      */
     public function termsOfServiceAction()
     {
+        $this->get('application_default.service.seo')
+             ->setOpenGraphSeoData('terms_of_service_page', 'Terms of Service');
+
         return [];
     }
 }
