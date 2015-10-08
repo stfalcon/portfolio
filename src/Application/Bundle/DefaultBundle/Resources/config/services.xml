@@ -101,15 +101,10 @@
             <argument>%kernel.root_dir%/../web</argument>
         </service>
 
-        <service id="sonata.seo.page.default" class="Application\Bundle\DefaultBundle\Service\SeoPage" >
-            <call method="setRouter">
-                <argument type="service" id="router" />
-            </call>
-        </service>
-
-        <service id="application_default.service.seo" class="Application\Bundle\DefaultBundle\Service\SeoService">
-            <argument id="sonata.seo.page" type="service"/>
-            <argument id="router" type="service"/>
+        <service id="kernel.seo.listener" class="Application\Bundle\DefaultBundle\EventListener\SeoRequestListener">
+            <argument type="service" id="router"/>
+            <argument type="service" id="sonata.seo.page"/>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
         </service>
     </services>
 
