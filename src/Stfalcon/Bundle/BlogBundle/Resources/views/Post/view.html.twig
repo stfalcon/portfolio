@@ -31,7 +31,7 @@
             </p>
             <script type="text/javascript">
                 var disqus_shortname = '{{ disqus_shortname }}';
-                var disqus_identifier = '{{ post.id }}';
+                var disqus_identifier = '{{ app.request.locale ~ ' ' ~ post.id }}';
                 var disqus_url = '{{ url('blog_post_view', {'slug': post.slug}) }}';
                 var disqus_title = '{{ post.title }}';
                 // var disqus_developer = 1; // developer mode is on
