@@ -31,6 +31,11 @@ class LoadTagData extends AbstractFixture implements OrderedFixtureInterface
         $php = new Tag('php');
         $manager->persist($php);
 
+        $design = (new Tag())
+            ->setText('дизайн');
+        $manager->persist($design);
+        $this->addReference('tag-design', $design);
+
         $manager->flush();
 
         $this->addReference('tag-php', $php);

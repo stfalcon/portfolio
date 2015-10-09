@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: sphinx/sphinx.yml }
 
 framework:
     #esi:             ~
@@ -164,6 +165,9 @@ sonata_user:
 avalanche_imagine:
     filters:
         project_thumb:
+            type:    thumbnail
+            options: { size: [300, 264], mode: outbound }
+        image_preview:
             type:    thumbnail
             options: { size: [300, 264], mode: outbound }
         avatar:
