@@ -1,6 +1,6 @@
 {% extends '::project_layout.html.twig' %}
 
-{% block title %}{{ "Проекты"|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ "Проекты"|trans }}{{ parent() }}{% endblock %}
 
 {% block additional %}
     <link rel="canonical" href="{{ url('portfolio_all_projects') }}"/>

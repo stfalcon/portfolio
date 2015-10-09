@@ -1,6 +1,6 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
 
-{% block title %}{% trans %}Блог{% endtrans %} | {{ parent() }}{% endblock %}
+{% block title %}{% trans %}Блог{% endtrans %}{{ parent() }}{% endblock %}
 
 {% block additional %}
     <link rel="canonical" href="{{ url('blog') }}" />

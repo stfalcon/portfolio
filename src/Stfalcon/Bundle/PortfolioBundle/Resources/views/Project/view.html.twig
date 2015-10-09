@@ -18,7 +18,7 @@
     {% endif %}
 {% endblock %}
 
-{% block title %}{{ project.name }} | {{ "Проекты"|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ project.name }} | {{ "Проекты"|trans }}{{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
     {% if project.showCase %}
