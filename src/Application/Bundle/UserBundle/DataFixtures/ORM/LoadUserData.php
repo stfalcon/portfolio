@@ -41,6 +41,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $userAdmin->setInterests(array('games', 'sportsman'));
         $userAdmin->setDrink('tea');
         $userAdmin->setOrdering(0);
+        $userAdmin->setSlug('admin');
         $manager->persist($userAdmin);
 
         $this->addReference('user-admin', $userAdmin);
@@ -60,6 +61,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $user->setInterests(array('ironman', 'art', 'detectives'));
         $user->setDrink('beer');
         $user->setOrdering(1);
+        $user->setSlug('firstuser');
         $manager->persist($user);
 
         $this->addReference('user-first', $user);
@@ -79,6 +81,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $user->setInterests(array('cyclists', 'art', 'books'));
         $user->setDrink('water');
         $user->setOrdering(2);
+        $user->setSlug('seconduser');
         $manager->persist($user);
 
         $this->addReference('user-second', $user);

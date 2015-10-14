@@ -9,10 +9,14 @@
 
     <div class="post-info">
         <time pubdate="pubdate">{{ post.created|localizeddate('long', 'none', app.request.locale) }}</time>
-        {% if post.author and post.author.avatarName %}
-            <img src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar') }}" alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}"/>
+        {% if post.author %}
+            <a href="{% if post.author.slug is defined and post.author.slug is not empty %}{{ path('blog_author', { 'slug': post.author.slug }) }}{% else %}#{% endif %}">
+                {% if post.author.avatarName %}
+                    <img src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar') }}" alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}"/>
+                {% endif %}
+                <span>{{ post.author.firstname | default('') ~ ' ' ~  post.author.lastname | default('') }}</span>
+            </a>
         {% endif %}
-        <span>{{ post.author.firstname | default('') ~ ' ' ~  post.author.lastname | default('') }}</span>
         <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#disqus_thread" data-disqus-identifier="{{ post.id }}">{{ 'Комментировать'|trans }}</a>
     </div>
 </header>
