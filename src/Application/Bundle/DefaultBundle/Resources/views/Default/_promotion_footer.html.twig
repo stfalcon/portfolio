@@ -48,11 +48,11 @@
                 </ul>
             {% endif %}
             <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
+                <span class="category">{{ 'студия'|trans }}</span>
                 {% if app.request.locale != 'de' %}
-                    <span class="category">{{ 'студия'|trans }}</span>
                     <a href="http://stfalcon.com" title="stfalcon" class="fn org">Stfalcon.com</a>
                 {% else %}
-                    Stfalcon.com
+                    stfalcon.com
                 {% endif %}
             </div>
             {% if app.request.locale == 'ru' %}
