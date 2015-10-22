@@ -11,6 +11,8 @@
                     VK.init({apiId: 4612398, onlyWidgets: true});
                 </script>
                 <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,gplus" data-yashareTheme="counter" data-yashareType="small"></div>
+                <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: {{ app.request.locale == 'ru' ? 'ru_RU' : 'en_US' }}</script>
+                <script type="IN/Share"  data-counter="right"></script>
                 <div id="vk_like"></div>
                 <div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
                 <script type="text/javascript">
@@ -25,6 +27,7 @@
                     js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>
+
             </div>
             <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
                 <span>{{ 'К списку записей'|trans }}</span></a>
