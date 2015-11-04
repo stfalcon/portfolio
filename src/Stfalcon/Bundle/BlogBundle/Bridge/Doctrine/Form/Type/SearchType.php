@@ -27,6 +27,7 @@ class SearchType extends AbstractType
                 'attr' => [
                     'class' => 'search-phrase',
                 ],
+                'label' => 'Search',
             ]);
     }
 

@@ -1,20 +1,28 @@
+<div class="search-form-wrap">
+    <svg viewBox="0 0 20 20" fill="#fff" class="close-search-form">
+        <path class="icon-close-nav"
+              d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
+    </svg>
+    <div class="wrapper-results">
 <form id="search-form" action="{{ path('ajax_search') }}">
     {{ form_row(form.searchPhrase) }}
     {{ form_rest(form) }}
 </form>
 
-<div id="search-results"></div>
+<ul id="search-results"></ul>
+    </div>
 
 <script type="text/template" id="search-template">
-    <div class="search-item">
+    <li class="search-item">
         <a href="">
             <div>
-                <img class="preview-image" src="<%= imagePreview %>" alt="<%= imageAlt %>" />
+                <img class="preview-image" src="{{ asset('img/hard-cod-img.jpg') }}" alt="<%= imageAlt %>" />
             </div>
 
-            <p class="title"><%= title %></p>
+            <h3 class="title"><%= title %></h3>
             <p class="text"><%= text %></p>
         </a>
-    </div>
+    </li>
 </script>
+</div>
 
