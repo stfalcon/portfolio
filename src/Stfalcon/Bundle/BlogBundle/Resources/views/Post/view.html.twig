@@ -2,6 +2,7 @@
 
 {% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }} | {{ parent() }}{% endblock %}
 {% block content_wrapper %}
+    {{ parent() }}
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}
 
@@ -9,21 +10,26 @@
 
         <div class="post-content">
             {{ post.text|moreToSpan|highlightCode|raw }}
-
             {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
 
+            <div class="contact-us hire_us-mob">
+                <button class="hire_us hire_us-button-mob">Hire us!</button>
+            </div>
+            {# Subscribe widget #}
+            {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
+
+            <h3 style="text-align: center; text-transform: uppercase; font-size: 18px; margin-top: 34px;">Похожие новости</h3>
+            {# Related posts widget #}
+            {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
+
             <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
-                <span>{{ 'К списку записей'|trans }}</span></a>
+                <span>{{ 'К списку записей'|trans }}</span>
+            </a>
         </div>
 
         {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
 
-        {# Subscribe widget #}
-        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
-
-        {# Related posts widget #}
-        {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
 
         {% if app.request.host == 'stfalcon.com' %}
             <p>
@@ -55,7 +61,8 @@
         {% endif %}
     </article>
 
-    <a href="#" class="scroll-to-top">Scroll to top</a>
+    <button class="button-up scroll-to-top"></button>
+    <button id="hire_us-js" class="hire_us">Hire us!</button>
 {% endblock %}
 
 {% block after_body %}

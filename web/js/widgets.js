@@ -41,7 +41,9 @@ $(function () {
                 success: function (response) {
                     $(form).find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
                     $(form).find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
-
+                    setTimeout(function() {
+                        $('body').removeClass('open-hire_us');
+                    }, 4000);
                     $(form).trigger('reset');
                     $(form).find("button").prop('disabled', false);
                 }
