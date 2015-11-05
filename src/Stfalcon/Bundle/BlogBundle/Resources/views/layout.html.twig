@@ -5,6 +5,7 @@
 
     {% javascripts 'js/jquery.validate.min.js' 'js/widgets.js' output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
+    <script src="{{ asset('js/autosize.min.js') }}"></script>
     {% endjavascripts %}
 {% endblock %}
 
