@@ -756,6 +756,11 @@
     max-width: 565px;
     margin: auto;
     padding: 0px 20px;
+
+    @media (max-width: 690px) {
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
   }
 
   input[type="text"], input[type="email"], textarea{
@@ -788,7 +793,7 @@
 
   input::-moz-placeholder, textarea::-moz-placeholder{
     color: #ffffff!important;
-    opacity: 0.3;
+    opacity: 0.3!important;
   }
 
   input:-ms-input-placeholder, textarea:-ms-input-placeholder{
@@ -943,15 +948,6 @@
   position: fixed;
   .hire_us-form{
     display: block;
-    @media (max-width: 690px) {
-      display: table;
-    }
-    .wrap_form{
-      @media (max-width: 690px) {
-        display: table-cell;
-        vertical-align: middle;
-      }
-    }
   }
 
   .close-hire_us{
@@ -1296,6 +1292,9 @@
   clear: none!important;
   float: right!important;
   margin-right: 15px;
+  @media (max-width: 320px) {
+    margin-right: 10px;
+  }
 }
 
 .fixed-scroll-top{

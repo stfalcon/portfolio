@@ -564,6 +564,7 @@ $(function () {
         placeholderReplace();
     });
 
+    autosize(document.querySelectorAll('#order_promotion_message'));
 });
 
 
