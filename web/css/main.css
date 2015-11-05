@@ -1885,7 +1885,8 @@ iframe[name="google_conversion_frame"] {
   margin: 0 0 0 -4px;
 }
 .share-cnt .fb-like,
-.share-cnt #vk_like {
+.share-cnt #vk_like,
+.share-cnt .IN-widget{
   display: inline-block;
   vertical-align: top;
 }
