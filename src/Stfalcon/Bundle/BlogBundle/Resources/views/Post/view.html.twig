@@ -13,7 +13,7 @@
             {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
 
             <div class="contact-us hire_us-mob">
-                <button class="hire_us hire_us-button-mob">Hire us!</button>
+                <button class="hire_us hire_us-button-mob">{{ 'Нанять нас!'|trans }}</button>
             </div>
             {# Subscribe widget #}
             {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
@@ -62,7 +62,6 @@
     </article>
 
     <button class="button-up scroll-to-top"></button>
-    <button id="hire_us-js" class="hire_us">Hire us!</button>
 {% endblock %}
 
 {% block after_body %}
