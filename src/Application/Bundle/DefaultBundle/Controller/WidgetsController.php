@@ -65,8 +65,12 @@ class WidgetsController extends Controller
         if ($request->isMethod('post') && $request->isXmlHttpRequest()) {
             $form->handleRequest($request);
             if ($form->isValid()) {
-                $mc = $this->get('hype_mailchimp');
-                $mc->getList()->subscribe($form->get('email')->getData(), 'html', false);
+                $this->get('hype_mailchimp')
+                     ->getList()
+                     ->addMerge_vars([
+                         'locale' => $request->getLocale(),
+                     ])
+                     ->subscribe($form->get('email')->getData(), 'html', false);
 
                 return new JsonResponse([
                     'success' => true
