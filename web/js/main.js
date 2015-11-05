@@ -47,10 +47,7 @@ $(function () {
         $('body').addClass('open-hire_us');
     });
 
-    //Hide hire us
-    $(document).on('click', '.close-hire_us', function(){
-        $('body').removeClass('open-hire_us');
-    });
+
 
     //Show search form
     $(document).on('click', '.search_button', function(){
@@ -519,6 +516,11 @@ $(function () {
                 $('.scroll-to-top').fadeIn();
             } else {
                 $('.scroll-to-top').fadeOut();
+            }
+
+            if ($(window).width()<=320){
+                $('.scroll-to-top').hide();
+                return false;
             }
         });
         $(".scroll-to-top").click(function () {
