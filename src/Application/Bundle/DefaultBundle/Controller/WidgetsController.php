@@ -44,7 +44,10 @@ class WidgetsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Subscribe widget action
+     *
+     * @param Request $request  Request
+     * @param string  $category Category
      *
      * @return array
      *
@@ -57,7 +60,7 @@ class WidgetsController extends Controller
      */
     public function subscribeWidgetAction(Request $request, $category)
     {
-        $form = $this->createForm('subscribe', []);
+        $form = $this->createForm('subscribe');
 
         if ($request->isMethod('post') && $request->isXmlHttpRequest()) {
             $form->handleRequest($request);

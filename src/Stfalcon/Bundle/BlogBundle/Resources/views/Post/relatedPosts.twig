@@ -3,7 +3,7 @@
     {% for post in related_posts %}
         <li>
             <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">
-                {{ get_post_first_image(post, 'image_preview', app.request.host) }}
+                {{ get_post_first_image(post, 'portfolio_large', app.request.host) }}
                 <h3>{{ post.title }}</h3>
             </a>
         </li>

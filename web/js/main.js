@@ -550,13 +550,11 @@ $(function () {
         fixedHireUs();
     });
 
-    function placeholderReplace(){
-        if($(window).width()<540){
-            $("#subscribe_email").attr("placeholder", "Подписаться");
-        }
-
-        else{
-            $("#subscribe_email").attr("placeholder", "Подписаться на новые записи");
+    function placeholderReplace() {
+        if ($(window).width() < 540) {
+            $("#subscribe_email").attr("placeholder", subscribeShortText);
+        } else {
+            $("#subscribe_email").attr("placeholder", subscribeFullText);
         }
     }
     placeholderReplace();

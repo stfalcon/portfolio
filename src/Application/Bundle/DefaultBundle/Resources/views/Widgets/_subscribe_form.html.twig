@@ -5,7 +5,7 @@
     <form action="{{ path('post_subscribe', {'category': category}) }}" method="post" class="subscribe-form" novalidate="novalidate">
         <button class="arrow-button" type="submit"></button>
         <div class="input-wrap">
-            {{ form_widget(form.email, {'attr': {'placeholder': 'Подписаться на новые записи'|trans}}) }}
+            {{ form_widget(form.email, {'attr': {'placeholder': 'Подписаться на новые записи'|trans }}) }}
             {{ form_errors(form.email) }}
         </div>
         {{ form_rest(form) }}

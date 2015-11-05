@@ -123,4 +123,5 @@ return array(
     'promotion.order.mobilegames_form.mail.subject' => 'Order for development of a mobile game from "%email%"',
     'Заполните это поле' => 'This field is required',
     'Нанять нас!' => 'Hire us!',
+    'Подписаться' => 'Subscribe',
 );
