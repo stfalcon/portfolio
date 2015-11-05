@@ -139,7 +139,8 @@
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
             {% block order_form %}
-            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form webdev-form" action="{{ path('promotion_order', {'type': 'mobilegames'}) }}" method="post" {{ form_enctype(form) }}>
+                {% set locale = app.request.locale == 'de' ? 'ru' : app.request.locale %}
+            <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form webdev-form" action="{{ path('promotion_order', {'type': 'mobilegames', '_locale': locale }) }}" method="post" {{ form_enctype(form) }}>
                 <div class="form-pad">
                     <h1>{{ 'Заказать игру'|trans }}</h1>
 
