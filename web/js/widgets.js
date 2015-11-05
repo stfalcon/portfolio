@@ -1,7 +1,8 @@
 $(function () {
     var formDelay = 3000;
+    var $hireUsForm = $('#hire-us-form');
 
-    $('#hire-us-form').validate({
+    $hireUsForm.validate({
         rules: {
             'order_promotion[name]': {
                 required: true,
@@ -27,6 +28,7 @@ $(function () {
         debug: false,
         submitHandler: function (form, e) {
             e.preventDefault();
+            console.log(e);
 
             $.ajax({
                 url: $(form).attr('action'),

@@ -9,6 +9,9 @@
     {% endjavascripts %}
 
     <script type="text/javascript">
+        var subscribeFullText = '{{ 'Подписаться на новые записи'|trans }}';
+        var subscribeShortText = '{{ 'Подписаться'|trans }}';
+
         jQuery.extend(jQuery.validator.messages, {
             required: "{{ 'Заполните это поле'|trans }}"
         });
