@@ -121,4 +121,6 @@ return array(
     'Головоломка, целью которой является уничтожение всех кубиков, расположенных на экране, за как можно меньшее количество ходов.' => 'A puzzle game, which goal is to destroy all cubes on the screen with the least possible number of moves.',
     'promotion.order.mobilegames.mail.subject' => 'Order for development of a mobile game from "%email%"',
     'promotion.order.mobilegames_form.mail.subject' => 'Order for development of a mobile game from "%email%"',
+    'Заполните это поле' => 'This field is required',
+    'Нанять нас!' => 'Hire us!',
 );

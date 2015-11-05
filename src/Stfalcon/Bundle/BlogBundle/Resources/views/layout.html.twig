@@ -6,6 +6,12 @@
     {% javascripts 'js/jquery.validate.min.js' 'js/widgets.js' output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <script type="text/javascript">
+        jQuery.extend(jQuery.validator.messages, {
+            required: "{{ 'Заполните это поле'|trans }}"
+        });
+    </script>
 {% endblock %}
 
 {% block after_body %}
