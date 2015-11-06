@@ -1,4 +1,18 @@
+//Hide hire us
+var windowCloseTimerId = false;
+$(document).on('click', '.close-hire_us', function(){
+    $('#hire-us-form').find('.form-pad').css({opacity: "1"});
+    $('body').removeClass('open-hire_us');
+    $('#hire-us-form').trigger('reset');
+    $('#hire-us-form').find("button").prop('disabled', false);
+    $('#hire-us-form').find('.form-success').css('display','none');
+    $('#hire-us-form').find('.form-pad').stop(true, true).css('opacity','1');
+    clearTimeout(windowCloseTimerId);
+    $('#order_promotion_message').css('height','auto');
+});
+
 $(function () {
+
     var formDelay = 3000;
     var $hireUsForm = $('#hire-us-form');
 
@@ -41,16 +55,13 @@ $(function () {
                 cache: false,
                 async: false,
                 success: function (response) {
-                    $(form).find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
-                    $(form).find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
-                    setTimeout(function() {
-                        $('body').removeClass('open-hire_us');
+                    $(form).find('.form-pad').animate({opacity: 0}, 300);
+                    $(form).find('.form-success').fadeIn(300);
+                    windowCloseTimerId = setTimeout(function() {
+                        $('.close-hire_us').trigger('click');
                     }, 4000);
-                    $(form).trigger('reset');
-                    $(form).find("button").prop('disabled', false);
                 }
             });
-
             return false;
         }
     });
