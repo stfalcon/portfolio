@@ -45,11 +45,11 @@ class GenerateUserSlugCommand extends ContainerAwareCommand
                     $tanslationContent = $translation->getContent();
 
                     if ($translation->getField() == 'firstname') {
-                        $isFirstnameExists = !empty($tanslationContent) ? true : false;
+                        $isFirstnameExists = !empty($tanslationContent);
 
                         $slug = $tanslationContent.'_'.$slug;
                     } else {
-                        $isLastnameExists = !empty($tanslationContent) ? true : false;
+                        $isLastnameExists = !empty($tanslationContent);
 
                         $slug = $slug.$tanslationContent;
                     }
