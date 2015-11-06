@@ -1,11 +1,12 @@
-<ul>
+<div class="wrap_related_posts">
+<ul class="related_posts">
     {% for post in related_posts %}
-        <li style="display: inline-block; margin-bottom: 20px">
+        <li>
             <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">
-                {{ get_post_first_image(post, 'image_preview', app.request.host) }}
-
-                <p>{{ post.title }}</p>
+                {{ get_post_first_image(post, 'portfolio_large', app.request.host) }}
+                <h3>{{ post.title }}</h3>
             </a>
         </li>
     {% endfor %}
 </ul>
+</div>

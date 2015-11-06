@@ -24,6 +24,7 @@ $(document).ready(function(){
         }
     });
 
+
     var isSliderInit = false,
         tabSlider,
         sliderSettings = {

@@ -1,15 +1,31 @@
 <div class="share-cnt clearfix">
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
-    <script type="text/javascript">
-        VK.init({apiId: 4612398, onlyWidgets: true});
-    </script>
     <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script>
-    <div class="yashare yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,gplus" data-yashareTheme="counter" data-yashareType="small"></div>
-    <div id="vk_like_{{ position }}"></div>
+    <div class="yashare yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="{{ app.request.locale == 'ru' ? 'vkontakte,' : '' }}facebook,twitter,gplus" data-yashareTheme="counter" data-yashareType="small"></div>
     <div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-    <script type="text/javascript">
-        VK.Widgets.Like("vk_like_{{ position }}", {type: "button", height: 20});
-    </script>
+    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: {{ app.request.locale == 'ru' ? 'ru_RU' : 'en_US' }}</script>
+    <script type="IN/Share"  data-counter="right"></script>
+
+    {% if app.request.locale == 'en' %}
+        {# Pocket social button #}
+        <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+        <script type="text/javascript">
+            !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+        </script>
+
+        {# Evernote social button #}
+    {% endif %}
+
+    {% if app.request.locale == 'ru' %}
+        <script type="text/javascript">
+            VK.init({apiId: 4612398, onlyWidgets: true});
+        </script>
+
+        <div id="vk_like_{{ position }}" class="vk-button"></div>
+        <script type="text/javascript">
+            VK.Widgets.Like("vk_like_{{ position }}", {type: "button", height: 20});
+        </script>
+    {% endif %}
 
     <div id="fb-root"></div>
     <script>
@@ -17,7 +33,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";
+            js.src = "//connect.facebook.net/{{ app.request.locale == 'ru' ? 'ru_RU' : 'en_US' }}/sdk.js#xfbml=1&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>

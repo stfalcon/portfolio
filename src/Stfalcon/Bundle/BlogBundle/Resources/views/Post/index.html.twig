@@ -7,11 +7,15 @@
 {% endblock additional %}
 
 {% block content_wrapper %}
+    {{ parent() }}
     {% if posts %}
         {% include 'StfalconBlogBundle:Post:_posts.html.twig' with {'posts': posts} %}
 
         {{ knp_pagination_render(posts) }}
     {% endif %}
 
-    <a href="#" class="scroll-to-top">Scroll to top</a>
+    <button id="scroll-top" class="button-up scroll-to-top"></button>
+{% endblock %}
+{% block after_body %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
 {% endblock %}

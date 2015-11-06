@@ -2,11 +2,12 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Application\Bundle\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Zend\Feed\Writer\Entry;
@@ -181,6 +182,41 @@ class PostController extends AbstractController
         return $this->render('@StfalconBlog/Post/relatedPosts.twig', [
             'related_posts' => $relatedPosts,
         ]);
+    }
+
+    /**
+     * Users post action
+     *
+     * @param User $user User
+     * @param int  $page Page number
+     *
+     * @return Response
+     *
+     * @Route(
+     *      "/blog/{usernameCanonical}/{title}/{page}",
+     *      name         = "blog_author",
+     *      requirements = {"page" = "\d+", "title" = "page"},
+     *      defaults     = {"page" = "1",   "title" = "page"}
+     * )
+     * @ParamConverter(
+     *      "user",
+     *      class   = "ApplicationUserBundle:User",
+     *      options = {"usernameCanonical" = "usernameCanonical"}
+     * )
+     */
+    public function usersPostAction(User $user, $page)
+    {
+        $request = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $postRepository = $em->getRepository('StfalconBlogBundle:Post');
+        $postsQuery     = $postRepository->getPostsQueryByUser($user, $request->getLocale());
+        $paginatedPosts = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
+
+        return $this->render('@StfalconBlog/Post/index.html.twig', $this->_getRequestArrayWithDisqusShortname([
+            'posts' => $paginatedPosts,
+        ]));
     }
 
     /**
