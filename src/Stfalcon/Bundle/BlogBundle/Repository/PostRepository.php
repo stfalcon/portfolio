@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Repository;
 
+use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -142,6 +143,28 @@ class PostRepository extends EntityRepository
                   ->setParameter('posts', $postsId)
                   ->getQuery()
                   ->getResult();
+    }
+
+    /**
+     * Get posts query by user
+     *
+     * @param User   $user   User
+     * @param string $locale Locale
+     *
+     * @return array
+     */
+    public function getPostsQueryByUser(User $user, $locale)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->where($qb->expr()->eq('p.author', ':user_id'))
+           ->andWhere($qb->expr()->eq('p.published', true))
+           ->orderBy('p.created', 'DESC')
+           ->setParameter('user_id', $user->getId());
+
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->getQuery();
     }
 
     /**

@@ -2,7 +2,9 @@
 
 namespace Application\Bundle\UserBundle\Repository;
 
+use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * User Repository
@@ -13,7 +15,7 @@ class UserRepository extends EntityRepository
     /**
      * Get all active users
      *
-     * @return array
+     * @return User[]
      */
     public function findAllActiveUsers()
     {
@@ -27,4 +29,22 @@ class UserRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Find user by slug
+     *
+     * @param string $slug Slug
+     *
+     * @return User
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findUserBySlug($slug)
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        return $qb->where($qb->expr()->eq('u.slug', ':slug'))
+                  ->setParameter('slug', $slug)
+                  ->getQuery()
+                  ->getOneOrNullResult();
+    }
 }
