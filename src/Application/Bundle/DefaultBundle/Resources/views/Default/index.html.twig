@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:og="http://ogp.me/ns#">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>{% block title %}{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}{% endblock %}</title>
+    <title>{% block title %}{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }}{% endblock %}</title>
 
     <meta property="og:title" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
     <meta itemprop="name" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
@@ -13,14 +13,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
 
-    <link rel="alternate" hreflang="ru" href="http://stfalcon.com/" />
-    <link rel="alternate" hreflang="en" href="http://stfalcon.com/en" />
-
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
     {{ sonata_seo_metadatas() }}
-
     {{ sonata_seo_link_canonical() }}
+    {{ sonata_seo_lang_alternates() }}
 
     {% if app.request.host == 'stfalcon.com' %}
         <script>

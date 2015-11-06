@@ -78,9 +78,6 @@ class ProjectController extends Controller
      */
     public function allProjectsAction($slug = null)
     {
-        $request = $this->get('request');
-        $seo = $this->get('sonata.seo.page');
-        $seo->generateLangAlternates($request);
         $category = null;
         $nextLimit = 4;
         if ($slug) {
@@ -179,8 +176,6 @@ class ProjectController extends Controller
             ->addMeta('property', 'og:type', 'portfolio')
             ->addMeta('property', 'og:description', $project->getMetaDescription())
             ->setLinkCanonical($canonicalUrl);
-
-        $seo->generateLangAlternates($this->get('request'));
 
         if ($project->getImage()) {
             $seo->addMeta(

@@ -1,6 +1,5 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
-
-{% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }}{{ parent() }}{% endblock %}
 {% block content_wrapper %}
     {{ parent() }}
     <article class="blog-post">
