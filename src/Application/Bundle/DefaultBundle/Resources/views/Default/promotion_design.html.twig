@@ -8,7 +8,13 @@
     </div>
     <section class="slide header-slide">
         <div class="inner">
-            <a class="logo icon" title="stfalcon" href="{{ path('homepage') }}"></a>
+
+            {% if app.request.locale != 'de' %}
+                <a class="logo icon" title="stfalcon" href="{{ path('homepage') }}"></a>
+            {% else %}
+                <a class="logo icon" title="stfalcon" href="http://stfalcon.com/en/"></a>
+            {% endif %}
+
 
             <div id="scroll-down" class="icon"></div>
 
@@ -173,7 +179,8 @@
     <section id="feedback-line" class="blue-line">
         <div class="wrap">
             {% block order_form %}
-                <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'design'}) }}" method="post" {{ form_enctype(form) }}>
+                {% set locale = app.request.locale == 'de' ? 'ru' : app.request.locale %}
+                <form novalidate="novalidate" autocomplete="off" id="feedback-form" class="feedback-form" action="{{ path('promotion_order', {'type': 'design', '_locale': locale}) }}" method="post" {{ form_enctype(form) }}>
                     <div class="form-pad">
                         <h1>{{ 'Заказать дизайн веб-сайта'|trans }}</h1>
 

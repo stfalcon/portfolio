@@ -1,7 +1,8 @@
 $(function () {
     var formDelay = 3000;
+    var $hireUsForm = $('#hire-us-form');
 
-    $('#hire-us-form').validate({
+    $hireUsForm.validate({
         rules: {
             'order_promotion[name]': {
                 required: true,
@@ -27,6 +28,7 @@ $(function () {
         debug: false,
         submitHandler: function (form, e) {
             e.preventDefault();
+            console.log(e);
 
             $.ajax({
                 url: $(form).attr('action'),
@@ -41,7 +43,9 @@ $(function () {
                 success: function (response) {
                     $(form).find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
                     $(form).find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
-
+                    setTimeout(function() {
+                        $('body').removeClass('open-hire_us');
+                    }, 4000);
                     $(form).trigger('reset');
                     $(form).find("button").prop('disabled', false);
                 }
