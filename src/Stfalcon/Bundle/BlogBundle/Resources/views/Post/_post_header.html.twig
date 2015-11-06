@@ -10,7 +10,7 @@
     <div class="post-info">
         <time pubdate="pubdate">{{ post.created|localizeddate('long', 'none', app.request.locale) }}</time>
         {% if post.author %}
-            <a href="{% if post.author.slug is defined and post.author.slug is not empty %}{{ path('blog_author', { 'slug': post.author.slug }) }}{% else %}#{% endif %}">
+            <a href="{% if post.author.usernameCanonical is defined and post.author.usernameCanonical is not empty %}{{ path('blog_author', { 'usernameCanonical': post.author.usernameCanonical }) }}{% else %}#{% endif %}">
                 {% if post.author.avatarName %}
                     <img src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar') }}" alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}"/>
                 {% endif %}

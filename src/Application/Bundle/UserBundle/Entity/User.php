@@ -157,16 +157,6 @@ class User extends BaseUser
     private $userLocale;
 
     /**
-     * @var string $slug
-     *
-     * @ORM\Column(name="slug", type="string", length=128, unique=true)
-     *
-     * @Assert\NotBlank()
-     * @Assert\Length(min="3")
-     */
-    private $slug;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -419,29 +409,5 @@ class User extends BaseUser
     public function getLocale()
     {
         return $this->userLocale;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string Slug
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug slug
-     *
-     * @return $this
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 }

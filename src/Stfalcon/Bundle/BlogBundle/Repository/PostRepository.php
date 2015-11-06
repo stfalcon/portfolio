@@ -146,26 +146,25 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Find by user
+     * Get posts query by user
      *
      * @param User   $user   User
      * @param string $locale Locale
      *
      * @return array
      */
-    public function findByUser(User $user, $locale)
+    public function getPostsQueryByUser(User $user, $locale)
     {
         $qb = $this->createQueryBuilder('p');
 
-        $qb->where($qb->expr()->eq('p.author', ':user'))
+        $qb->where($qb->expr()->eq('p.author', ':user_id'))
            ->andWhere($qb->expr()->eq('p.published', true))
            ->orderBy('p.created', 'DESC')
-           ->setParameter('user', $user);
+           ->setParameter('user_id', $user->getId());
 
         $this->addLocaleFilter($locale, $qb);
 
-        return $qb->getQuery()
-                  ->getResult();
+        return $qb->getQuery();
     }
 
     /**

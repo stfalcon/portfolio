@@ -34,7 +34,7 @@ class UserAdmin extends Admin
         $formMapper
             ->with('General')
                 ->add('ordering', null, array('required' => false, 'label' => 'Сортировка'))
-                ->add('slug', null, ['label' => 'Slug'])
+                ->add('usernameCanonical', null, ['label' => 'Username'])
             ->end()
             ->with('Profile')
                 ->add('translations', 'a2lix_translations_gedmo', array(

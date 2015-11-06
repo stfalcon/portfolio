@@ -198,12 +198,16 @@ class PostController extends AbstractController
      * @return Response
      *
      * @Route(
-     *      "/blog/{slug}/{title}/{page}",
+     *      "/blog/{usernameCanonical}/{title}/{page}",
      *      name         = "blog_author",
      *      requirements = {"page" = "\d+", "title" = "page"},
      *      defaults     = {"page" = "1",   "title" = "page"}
      * )
-     * @ParamConverter("user", class="ApplicationUserBundle:User", options={"slug" = "slug"})
+     * @ParamConverter(
+     *      "user",
+     *      class   = "ApplicationUserBundle:User",
+     *      options = {"usernameCanonical" = "usernameCanonical"}
+     * )
      */
     public function usersPostAction(User $user, $page)
     {
@@ -212,8 +216,8 @@ class PostController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $postRepository = $em->getRepository('StfalconBlogBundle:Post');
-        $selectedPosts  = $postRepository->findByUser($user, $request->getLocale());
-        $paginatedPosts = $this->get('knp_paginator')->paginate($selectedPosts, $page, 10);
+        $postsQuery     = $postRepository->getPostsQueryByUser($user, $request->getLocale());
+        $paginatedPosts = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
 
         return $this->render('@StfalconBlog/Post/index.html.twig', $this->_getRequestArrayWithDisqusShortname([
             'posts' => $paginatedPosts,
