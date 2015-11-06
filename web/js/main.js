@@ -51,14 +51,15 @@ $(function () {
 
     //Show search form
     $(document).on('click', '.search_button', function(){
-        $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'0'},450,function() {
-            $('#search_searchPhrase').focus();})
+            $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'0'},450,function() {
+                $('#search_searchPhrase').focus();})
             $('.search_button').prop("disabled",true).css('cursor','default');
-            $('.search_button').addClass('search_button-animate').animate({left:'293px', top:'77px'},500);
-        setTimeout(function(){
-            $('body').addClass('open-search-form');
-            $('#search-form, #search-results').animate({opacity:'1'},500);
-        },450)
+            var windowWidth = ((window.innerWidth - 915)/2) - 49.5;
+            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'77px'},500);
+            setTimeout(function(){
+                $('body').addClass('open-search-form');
+                $('#search-form, #search-results').animate({opacity:'1'},500);
+            },450)
 
 
     });
