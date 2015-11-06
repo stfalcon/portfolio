@@ -40,18 +40,18 @@ class GenerateUserSlugCommand extends ContainerAwareCommand
             $translations = $user->getTranslations()->getValues();
             /** @var UserTranslation $translation */
             foreach ($translations as $translation) {
-                if (
-                    $translation->getLocale() == 'en'
-                    && in_array($translation->getField(), ['firstname', 'lastname'])
-                ) {
+                if ($translation->getLocale() == 'en'
+                    && in_array($translation->getField(), ['firstname', 'lastname'])) {
+                    $tanslationContent = $translation->getContent();
+
                     if ($translation->getField() == 'firstname') {
-                        $isFirstnameExists = !empty($translation->getContent()) ? true : false;
+                        $isFirstnameExists = !empty($tanslationContent) ? true : false;
 
-                        $slug = $translation->getContent().'_'.$slug;
+                        $slug = $tanslationContent.'_'.$slug;
                     } else {
-                        $isLastnameExists = !empty($translation->getContent()) ? true : false;
+                        $isLastnameExists = !empty($tanslationContent) ? true : false;
 
-                        $slug = $slug.$translation->getContent();
+                        $slug = $slug.$tanslationContent;
                     }
                 }
             }
