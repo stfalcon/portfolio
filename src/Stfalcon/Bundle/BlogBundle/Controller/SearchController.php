@@ -85,7 +85,8 @@ class SearchController extends AbstractController
      *
      * @return array Searched items id
      *
-     * @throw RuntimeException
+     * @throws \Exception
+     * @throws \RuntimeException
      */
     private function search($locale, $text, $type)
     {
@@ -94,9 +95,13 @@ class SearchController extends AbstractController
             crc32($locale),
         ]);
 
-        $searchResults = $sphinxSearch->search('*'.$text.'*', [
-            $type,
-        ]);
+        try {
+            $searchResults = $sphinxSearch->search('*'.$text.'*', [
+                $type,
+            ]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
 
         if (false === $searchResults) {
             throw new \RuntimeException('Sphinx not found!');
