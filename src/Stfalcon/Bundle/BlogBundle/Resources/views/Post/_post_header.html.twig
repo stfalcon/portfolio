@@ -11,7 +11,7 @@
         <time pubdate="pubdate">{{ post.created|localizeddate('long', 'none', app.request.locale) }}</time>
         {% if post.author %}
             {% if post.author.usernameCanonical is defined and post.author.usernameCanonical is not empty %}
-                <a href="{{ path('blog_author', { 'usernameCanonical': post.author.usernameCanonical }) }}">
+                <a class="author_blog" href="{{ path('blog_author', { 'usernameCanonical': post.author.usernameCanonical }) }}">
                     {% if post.author.avatarName %}
                         <img src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar') }}" alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}"/>
                     {% endif %}
