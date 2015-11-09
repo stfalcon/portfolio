@@ -3,6 +3,7 @@
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
 use Application\Bundle\UserBundle\Entity\User;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -212,7 +213,17 @@ class PostController extends AbstractController
 
         $postRepository = $em->getRepository('StfalconBlogBundle:Post');
         $postsQuery     = $postRepository->getPostsQueryByUser($user, $request->getLocale());
+
+        /** @var SlidingPagination $paginatedPosts */
         $paginatedPosts = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
+        $totalCount     = $paginatedPosts->getTotalItemCount();
+
+        if ($totalCount == 0) {
+            return $this->redirect($this->generateUrl('blog', [
+                'page'  => 1,
+                'title' => 'page',
+            ]));
+        }
 
         return $this->render('@StfalconBlog/Post/index.html.twig', $this->_getRequestArrayWithDisqusShortname([
             'posts' => $paginatedPosts,
