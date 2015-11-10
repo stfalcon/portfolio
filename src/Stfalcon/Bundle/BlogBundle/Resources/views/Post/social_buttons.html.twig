@@ -2,7 +2,7 @@
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
     <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script>
     <div class="yashare yashare-auto-init" data-yashareL10n="ru"
-         data-yashareQuickServices="{{ app.request.locale == 'ru' ? 'vkontakte,' : '' }}facebook,twitter,gplus"
+         data-yashareQuickServices="facebook,twitter,gplus"
          data-yashareTheme="counter" data-yashareType="small"></div>
     <div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
@@ -22,9 +22,8 @@
         </script>
     {% endif %}
 
-
     <span class="{% if app.request.locale == 'en' %}en-IN{% else %}ru{% endif %}">
-        <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: {{ app.request.locale == 'ru' ? 'ru_RU' : 'en_US' }}</script>
+        <script src="//platform.linkedin.com/in.js" type="text/javascript">lang:{{ app.request.locale == 'ru' ? 'ru_RU' : 'en_US' }}</script>
         <script type="IN/Share" data-counter="right"></script>
     </span>
 
@@ -32,7 +31,9 @@
     <script>
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
+            if (d.getElementById(id)) {
+                return;
+            }
             js = d.createElement(s);
             js.id = id;
             js.src = "//connect.facebook.net/{{ app.request.locale == 'ru' ? 'ru_RU' : 'en_US' }}/sdk.js#xfbml=1&version=v2.0";
