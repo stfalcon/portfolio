@@ -13,7 +13,10 @@
         var subscribeShortText = '{{ 'Подписаться'|trans }}';
 
         jQuery.extend(jQuery.validator.messages, {
-            required: "{{ 'Заполните это поле'|trans }}"
+            required: "{{ 'Заполните это поле'|trans }}",
+            email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
+            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
         });
     </script>
 {% endblock %}
