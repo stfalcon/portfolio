@@ -124,4 +124,8 @@ return array(
     'Заполните это поле' => 'This field is required',
     'Нанять нас!' => 'Hire us!',
     'Подписаться' => 'Subscribe',
+    'Пожалуйста введите правильный имейл.' => 'Please enter a valid email address.',
+    'Пожалуйста введите как минимум {0} символа' => 'Please enter at least {0} characters.',
+    'Минимальное количество символов {0}' => 'Please enter at least {0} characters.',
+    'Максимальное количество символов {0}' => 'Please enter no more than {0} characters.',
 );
