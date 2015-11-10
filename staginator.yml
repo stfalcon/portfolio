@@ -2,6 +2,8 @@ apt_packages: ['sphinxsearch']
 deploy_callbacks:
     after_clone:
         - 'npm install -g uglifyjs'
+        - 'npm install -g grunt'
+        - 'npm install -g grunt-cli'
         - 'sed -i "s/database_host     =.*/database_host     = portfolio-mysql/" app/config/parameters.ini'
         - 'sed -i "s/database_password =.*/database_password = `mysql_password`/" app/config/parameters.ini'
         - "sed -i \"s/database_name     =.*/database_name     = `echo -n $STAGING_BRANCH|md5sum | awk '{print $1}'`/\" app/config/parameters.ini"
