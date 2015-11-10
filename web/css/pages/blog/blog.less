@@ -299,6 +299,17 @@
   .IN-widget {
     float: right;
     margin-right: 10px;
+    @media (max-width: 360px) {
+      margin-right: 0px;
+      margin-top: 15px;
+    }
+  }
+
+  .en-IN .IN-widget{
+    @media (max-width: 360px) {
+      margin-right: 10px;
+      margin-top: 0px;
+    }
   }
 }
 
@@ -1323,19 +1334,19 @@
 .vk-button{
   clear: none!important;
   float: right!important;
-  margin-right: -25px;
-  @media (max-width: 445px) {
-    margin-right: 0;
-    margin-top: 15px;
-  }
+  margin-right: -7px;
+//  @media (max-width: 445px) {
+//    margin-right: 0;
+//    margin-top: 15px;
+//  }
 
-  @media (max-width: 360px) {
-    iframe{
-      .scroll_fix_wrap{
-        float: right!important;
-      }
-    }
-  }
+//  @media (max-width: 360px) {
+//    iframe{
+//      .scroll_fix_wrap{
+//        float: right!important;
+//      }
+//    }
+//  }
 }
 
 .fixed-scroll-top{
