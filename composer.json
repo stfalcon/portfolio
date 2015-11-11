@@ -51,6 +51,9 @@
         "friendsofsymfony/jsrouting-bundle": "^2.0@dev",
         "iakumai/sphinxsearch-bundle": "^0.2.0@dev"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8"
+    },
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",

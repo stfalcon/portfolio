@@ -37,22 +37,7 @@
             <p>
                 {{ project.description | raw }}
             </p>
-            {% if project.participants | length %}
-                <section class="work-on-project">
-                    <h2>{{ 'Над проектом работали'|trans }}:</h2>
-                    <ul class="team-list  team-list-small">
-                        {% for participant in project.participants %}
-                            <li>
-                                {% if participant.avatarName %}
-                                    <img src="{{ vich_uploader_asset(participant, 'avatar') | apply_filter('avatar_small') }}" alt="{{ participant.firstname ~ ' ' ~ participant.lastname }}"/>
-                                {% endif %}
-                                <span>{{ participant.firstname ~ ' ' ~ participant.lastname }}</span>
-                                <p>{{ participant.position }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            {% endif %}
+            {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions } %}
         </aside>
         <div class="project-slider-wrapper">
             <div class="project-slider-cnt no-controls">

@@ -5,6 +5,7 @@ namespace Stfalcon\Bundle\PortfolioBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
+use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 
 /**
  * Project Repository
@@ -134,5 +135,20 @@ class ProjectRepository extends EntityRepository
             ->setMaxResults($limit);
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Find all without connection to user with position table
+     *
+     * @return array|Project[]
+     */
+    public function findAllWithoutUserWithPosition()
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $qb->where($qb->expr()->isNull('uwp.project'))
+                  ->leftJoin('p.usersWithPositions', 'uwp')
+                  ->getQuery()
+                  ->getResult();
     }
 }

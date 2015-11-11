@@ -45,6 +45,7 @@ class ProjectControllerTest extends WebTestCase
             'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
             'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadCategoryData',
             'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadProjectData',
+            'Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM\LoadUserWithPositionData',
         ));
 
         // Check project preorder.it
@@ -55,6 +56,7 @@ class ProjectControllerTest extends WebTestCase
         // check display project info
         $this->assertEquals(1, $crawler->filter('section.work-on-project h2:contains("Над проектом работали")')->count());
         $this->assertEquals(1, $crawler->filter('.team-list li:contains("Admin User")')->count());
+        $this->assertEquals(1, $crawler->filter('.team-list li:contains("First User")')->count());
         $this->assertEquals(1, $crawler->filter('.team-list li:contains("Second User")')->count());
     }
 
