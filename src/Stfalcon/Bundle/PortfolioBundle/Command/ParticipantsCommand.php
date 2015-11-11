@@ -5,7 +5,6 @@ namespace Stfalcon\Bundle\PortfolioBundle\Command;
 use Application\Bundle\UserBundle\Entity\User;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
-use Stfalcon\Bundle\PortfolioBundle\Repository\UserWithPositionRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,10 +37,7 @@ HELP
     {
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-        $projectRepository          = $em->getRepository('StfalconPortfolioBundle:Project');
-        $userWithPositionRepository = $em->getRepository('StfalconPortfolioBundle:UserWithPosition');
-
-        $projects = $projectRepository->findAllWithoutUserWithPosition();
+        $projects = $em->getRepository('StfalconPortfolioBundle:Project')->findAllWithoutUserWithPosition();
         if (empty($project)) {
             foreach ($projects as $project) {
                 $participants = $project->getParticipants()->getValues();
@@ -50,7 +46,10 @@ HELP
                     /** @var User $participant */
                     foreach ($participants as $participant) {
                         /** @var UserWithPosition $userWithPosition */
-                        $userWithPosition = $this->getUserWithPosition($userWithPositionRepository, $participant, $project);
+                        $userWithPosition = (new UserWithPosition())
+                            ->setProject($project)
+                            ->setUser($participant)
+                            ->setPositions($participant->getPosition());
 
                         $em->persist($userWithPosition);
 
@@ -68,33 +67,8 @@ HELP
             }
         } else {
             $output->writeln('<comment>There\'s not projects without participants</comment>');
+
+            $em->flush();
         }
-
-        $em->flush();
-    }
-
-    /**
-     * Get user with position
-     *
-     * @param UserWithPositionRepository $repository
-     * @param User                       $user
-     * @param Project                    $project
-     *
-     * @return UserWithPosition
-     */
-    private function getUserWithPosition($repository, $user, $project)
-    {
-        $userWithPosition = $repository->findByUserAndProject($user, $project);
-
-        if (null === $userWithPosition) {
-            $userWithPosition = (new UserWithPosition())
-                ->setProject($project)
-                ->setUser($user)
-                ->setPositions($user->getPosition());
-        } else {
-            $userWithPosition->setPositions($user->getPosition());
-        }
-
-        return $userWithPosition;
     }
 }

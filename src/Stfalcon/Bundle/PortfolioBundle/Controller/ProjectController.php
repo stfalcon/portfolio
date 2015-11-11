@@ -188,15 +188,9 @@ class ProjectController extends Controller
             );
         }
 
-        $participants = $this->getDoctrine()
-                             ->getManager()
-                             ->getRepository('StfalconPortfolioBundle:UserWithPosition')
-                             ->findByProject($project);
-
         return [
-            'project'      => $project,
-            'category'     => $category,
-            'participants' => $participants,
+            'project'  => $project,
+            'category' => $category,
         ];
     }
 
