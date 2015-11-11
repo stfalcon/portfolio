@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
         <parameter key="stfalcon_portfolio.admin.category.class">Stfalcon\Bundle\PortfolioBundle\Admin\CategoryAdmin</parameter>
@@ -10,6 +10,9 @@
 
         <parameter key="stfalcon_portfolio.admin.project.class">Stfalcon\Bundle\PortfolioBundle\Admin\ProjectAdmin</parameter>
         <parameter key="stfalcon_portfolio.admin.project.entity">Stfalcon\Bundle\PortfolioBundle\Entity\Project</parameter>
+
+        <parameter key="stfalcon_portfolio.admin.user_with_position.class">Stfalcon\Bundle\PortfolioBundle\Admin\UserWithPositionAdmin</parameter>
+        <parameter key="stfalcon_portfolio.admin.user_with_position.entity">Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition</parameter>
 
         <parameter key="stfalcon_portfolio.admin.landing.class">Stfalcon\Bundle\PortfolioBundle\Admin\LandingAdmin</parameter>
         <parameter key="stfalcon_portfolio.admin.landing.entity">Stfalcon\Bundle\PortfolioBundle\Entity\Landing</parameter>
@@ -35,6 +38,13 @@
             <argument />
             <argument>%stfalcon_portfolio.admin.project.entity%</argument>
             <argument />
+        </service>
+
+        <service id="stfalcon_portfolio.admin.user_with_position" class="%stfalcon_portfolio.admin.user_with_position.class%">
+            <tag name="sonata.admin" manager_type="orm" show_in_dashboard="false" />
+            <argument />
+            <argument>%stfalcon_portfolio.admin.user_with_position.entity%</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
         <service id="stfalcon_portfolio.namer.project" class="Stfalcon\Bundle\PortfolioBundle\Naming\ProjectNaming">

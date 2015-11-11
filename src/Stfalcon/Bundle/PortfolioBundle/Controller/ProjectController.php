@@ -143,14 +143,15 @@ class ProjectController extends Controller
     /**
      * View project
      *
-     * @param string $categorySlug Slug of category
-     * @param string $projectSlug  Slug of project
+     * @param Request  $request  Request
+     * @param Category $category Category
+     * @param Project  $project  Project
      *
      * @return array
      *
      * @Route("/portfolio/{categorySlug}/{projectSlug}", name="portfolio_project_view")
+     *
      * @Template()
-     * @throws NotFoundHttpException
      *
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
      * @ParamConverter("project", options={"mapping": {"projectSlug": "slug"}})
@@ -178,15 +179,25 @@ class ProjectController extends Controller
             ->setLinkCanonical($canonicalUrl);
 
         if ($project->getImage()) {
+            $vichUploader = $this->get('vich_uploader.templating.helper.uploader_helper');
+
             $seo->addMeta(
                 'property',
                 'og:image',
-                $request->getSchemeAndHttpHost() . $this->get('vich_uploader.templating.helper.uploader_helper')->asset($project,
-                    'imageFile')
+                $request->getSchemeAndHttpHost().$vichUploader->asset($project, 'imageFile')
             );
         }
 
-        return array('project' => $project, 'category' => $category);
+        $participants = $this->getDoctrine()
+                             ->getManager()
+                             ->getRepository('StfalconPortfolioBundle:UserWithPosition')
+                             ->findByProject($project);
+
+        return [
+            'project'      => $project,
+            'category'     => $category,
+            'participants' => $participants,
+        ];
     }
 
     /**
