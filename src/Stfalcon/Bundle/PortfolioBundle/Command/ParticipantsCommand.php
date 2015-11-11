@@ -58,6 +58,8 @@ HELP
                             $project->getId()
                         ));
                     }
+
+                    $em->flush();
                 } else {
                     $output->writeln(sprintf(
                         '<comment>Project #<info>%s</info> without participants</comment>',
@@ -67,8 +69,6 @@ HELP
             }
         } else {
             $output->writeln('<comment>There\'s not projects without participants</comment>');
-
-            $em->flush();
         }
     }
 }
