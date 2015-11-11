@@ -1,5 +1,17 @@
+apt_packages: ['sphinxsearch']
 deploy_callbacks:
     after_clone:
+        - 'npm install -g uglifyjs'
+        - 'npm install -g grunt'
+        - 'npm install -g grunt-cli'
         - 'sed -i "s/database_host     =.*/database_host     = portfolio-mysql/" app/config/parameters.ini'
-        - 'sed -i "s/database_password =.*/database_password = d466a4bb594d82d7884aed7e/" app/config/parameters.ini'
+        - 'sed -i "s/database_password =.*/database_password = `mysql_password`/" app/config/parameters.ini'
         - "sed -i \"s/database_name     =.*/database_name     = `echo -n $STAGING_BRANCH|md5sum | awk '{print $1}'`/\" app/config/parameters.ini"
+        - 'cp app/config/sphinx.conf /etc/sphinxsearch/sphinx.conf'
+        - 'sed -i "s/sql_host        =.*/sql_host        = portfolio-mysql/" /etc/sphinxsearch/sphinx.conf'
+        - 'sed -i "s/sql_pass        =.*/sql_pass        = `mysql_password`/" /etc/sphinxsearch/sphinx.conf'
+        - "sed -i \"s/sql_db          =.*/sql_db          = `echo -n $STAGING_BRANCH|md5sum | awk '{print $1}'`/\" /etc/sphinxsearch/sphinx.conf"
+        - 'sed -i "s/START=no/START=yes/" /etc/default/sphinxsearch'
+    after_deploy:
+        - 'indexer --all'
+        - '/etc/init.d/sphinxsearch start'
