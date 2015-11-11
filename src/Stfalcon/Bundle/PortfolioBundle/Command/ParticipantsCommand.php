@@ -44,9 +44,9 @@ HELP
         $projects = $projectRepository->findAllWithoutUserWithPosition();
         if (empty($project)) {
             foreach ($projects as $project) {
-                $participants = $project->getParticipants();
+                $participants = $project->getParticipants()->getValues();
 
-                if (!empty($participants->getValues())) {
+                if (!empty($participants)) {
                     /** @var User $participant */
                     foreach ($participants as $participant) {
                         /** @var UserWithPosition $userWithPosition */
