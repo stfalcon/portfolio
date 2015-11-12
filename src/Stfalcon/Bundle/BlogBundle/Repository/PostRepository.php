@@ -90,14 +90,15 @@ class PostRepository extends EntityRepository
      *
      * @return Query
      */
-    public function findPostsByTagAsQuery($tag, $locale)
+    public function findPostsByTagAsQuery(Tag $tag, $locale)
     {
         $qb = $this->createQueryBuilder('p');
-        $qb->leftJoin('p.tags', 't')
-            ->where('t.id = :tagId')
-            ->andWhere('p.published = 1')
-            ->setParameter('tagId', $tag->getId())
-            ->orderBy('p.created', 'DESC');
+
+        $qb->where($qb->expr()->eq('t.id', ':tag_id'))
+           ->andWhere($qb->expr()->eq('p.published', true))
+           ->leftJoin('p.tags', 't')
+           ->setParameter('tag_id', $tag->getId())
+           ->orderBy('p.created', 'DESC');
 
         $this->addLocaleFilter($locale, $qb);
 
