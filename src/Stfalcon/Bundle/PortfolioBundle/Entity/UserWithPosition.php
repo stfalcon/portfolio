@@ -3,8 +3,11 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Entity;
 
 use Application\Bundle\UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -21,9 +24,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      message   = "This user is already partisipant on this project"
  * )
  *
+ * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPositionTranslation")
  * @Gedmo\Loggable
  */
-class UserWithPosition
+class UserWithPosition implements Translatable
 {
     /**
      * @var int $id ID
@@ -59,9 +63,17 @@ class UserWithPosition
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      *
+     * @Gedmo\Translatable(fallback=true)
      * @Gedmo\Versioned()
      */
     private $positions;
+
+    /**
+     * @var Collection|UserWithPositionTranslation[] $translations
+     *
+     * @ORM\OneToMany(targetEntity="UserWithPositionTranslation", mappedBy="object", cascade={"persist", "remove"})
+     */
+    private $translations;
 
     /**
      * To string
@@ -77,6 +89,14 @@ class UserWithPosition
         }
 
         return $result;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -159,5 +179,25 @@ class UserWithPosition
         $this->positions = $positions;
 
         return $this;
+    }
+
+    /**
+     * Set translations
+     *
+     * @param ArrayCollection $translations
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+    }
+
+    /**
+     * Get translations
+     *
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 }

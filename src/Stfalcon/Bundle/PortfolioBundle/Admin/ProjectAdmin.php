@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
+use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPositionTranslation;
 
 /**
  * Class ProjectAdmin
@@ -43,90 +44,90 @@ class ProjectAdmin extends Admin
                             'label' => 'name',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'description' => array(
                             'label' => 'description',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
+                                    'required' => false,
+                                ),
                             ),
                             'attr' => array(
-                                'class' => 'markitup'
-                            )
+                                'class' => 'markitup',
+                            ),
                         ),
                         'shortDescription' => array(
                             'label' => 'short description',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
+                                    'required' => false,
+                                ),
                             ),
                             'attr' => array(
-                                'class' => 'markitup'
-                            )
+                                'class' => 'markitup',
+                            ),
                         ),
                         'caseContent' => [
                             'label' => 'Case content',
                             'locale_options' => [
                                 'ru' => [
-                                    'required' => false
+                                    'required' => false,
                                 ],
                                 'en' => [
-                                    'required' => false
-                                ]
+                                    'required' => false,
+                                ],
                             ],
                             'attr' => array(
-                                'class' => 'markitup'
-                            )
+                                'class' => 'markitup',
+                            ),
                         ],
                         'tags' => array(
                             'label' => 'Tags',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'metaKeywords' => array(
                             'label' => 'Meta keywords',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => false
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'metaDescription' => array(
                             'label' => 'Meta description',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => false
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
-                        )
+                                    'required' => false,
+                                ),
+                            ),
+                        ),
                     ),
-                    'label' => 'Перевод'
+                    'label' => 'Перевод',
                 )
             )
             ->add('slug')
@@ -156,7 +157,7 @@ class ProjectAdmin extends Admin
             ->with('Participants')
                 ->add('usersWithPositions', 'sonata_type_collection',
                     [
-                        'by_reference'       => true,
+                        'by_reference' => true,
                     ],
                     [
                         'edit'            => 'inline',
@@ -176,7 +177,7 @@ class ProjectAdmin extends Admin
                     'inline'            => 'table',
                     'sortable'          => 'position',
                     'link_parameters'   => array('context' => 'default'),
-                    'admin_code'        => 'sonata.media.admin.gallery_has_media'
+                    'admin_code'        => 'sonata.media.admin.gallery_has_media',
                 ))
             ->end();
     }
@@ -231,6 +232,11 @@ class ProjectAdmin extends Admin
         /** @var UserWithPosition $userWithPosition */
         foreach ($project->getUsersWithPositions() as $userWithPosition) {
             $userWithPosition->setProject($project);
+
+            /** @var UserWithPositionTranslation $translation */
+            foreach ($userWithPosition->getTranslations() as $translation) {
+                $translation->setObject($userWithPosition);
+            }
         }
     }
 }
