@@ -51,10 +51,8 @@ $(function () {
 
     //Show search form
     $(document).on('click', '.search_button', function(){
-
-
         if ($(window).width() < 838) {
-            $('.search-form-wrap').animate({width:'100%','height':'toggle',top:'0'},450,function() {
+            $('.search-form-wrap').animate({display:'block' ,width:'100%','height':'toggle',top:'0'},450,function() {
                 $('#search_searchPhrase').focus();})
             $('.search_button').prop("disabled",true).css('cursor','default');
             var windowWidth = ((window.innerWidth - 915)/2) - 49.5;
