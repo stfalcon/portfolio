@@ -51,6 +51,20 @@ $(function () {
 
     //Show search form
     $(document).on('click', '.search_button', function(){
+
+
+        if ($(window).width() < 838) {
+            $('.search-form-wrap').animate({width:'100%','height':'toggle',top:'0'},450,function() {
+                $('#search_searchPhrase').focus();})
+            $('.search_button').prop("disabled",true).css('cursor','default');
+            var windowWidth = ((window.innerWidth - 915)/2) - 49.5;
+            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'77px'},500);
+            $('body').addClass('open-search-form');
+            setTimeout(function(){
+                $('#search-form, #search-results').animate({opacity:'1'},500);
+            },450)
+        }
+        else {
             $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'0'},450,function() {
                 $('#search_searchPhrase').focus();})
             $('.search_button').prop("disabled",true).css('cursor','default');
@@ -60,19 +74,30 @@ $(function () {
                 $('body').addClass('open-search-form');
                 $('#search-form, #search-results').animate({opacity:'1'},500);
             },450)
-
+        }
 
     });
 
     //Hide search form
     $(document).on('click', '.close-search-form', function(){
-        $('body').removeClass('open-search-form');
-        $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'92px'},450);
-        $('#search-form,#search-results').animate({opacity:'0'},100);
-        $('.search_button').animate({left:'0px', top:'92px'},500, function(){
-            $('.search_button').removeClass('search_button-animate');
-            $('.search_button').prop("disabled",false).css('cursor','pointer');
-        });
+        if($(window).width() < 838){
+            $('body').removeClass('open-search-form');
+            $('.search-form-wrap').animate({width:'100%','height':'toggle',top:'92px'},450);
+            $('#search-form,#search-results').animate({opacity:'0'},100);
+            $('.search_button').animate({left:'0px', top:'92px'},500, function(){
+                $('.search_button').removeClass('search_button-animate');
+                $('.search_button').prop("disabled",false).css('cursor','pointer');
+            });
+        }
+        else{
+            $('body').removeClass('open-search-form');
+            $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'92px'},450);
+            $('#search-form,#search-results').animate({opacity:'0'},100);
+            $('.search_button').animate({left:'0px', top:'92px'},500, function(){
+                $('.search_button').removeClass('search_button-animate');
+                $('.search_button').prop("disabled",false).css('cursor','pointer');
+            });
+        }
     });
 
     var yearsCnt = $('.years-count'),
