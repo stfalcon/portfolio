@@ -53,10 +53,7 @@ $(function () {
     $(document).on('click', '.search_button', function(){
         if ($(window).width() < 838) {
             $('.search-form-wrap').animate({display:'block' ,width:'100%','height':'toggle',top:'0'},450,function() {
-                //$('#search_searchPhrase').focus();
-                setTimeout(function(){
-                    $('#search_searchPhrase').focus();
-                },100);
+                $('#search_searchPhrase').focus();
 
             })
             $('.search_button').prop("disabled",true).css('cursor','default');
@@ -69,10 +66,7 @@ $(function () {
         }
         else {
             $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'0'},450,function() {
-                //$('#search_searchPhrase').focus();
-                setTimeout(function(){
-                    $('#search_searchPhrase').focus();
-                },450);
+                $('#search_searchPhrase').focus();
             })
             $('.search_button').prop("disabled",true).css('cursor','default');
             var windowWidth = ((window.innerWidth - 915)/2) - 49.5;
