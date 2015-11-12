@@ -41,7 +41,7 @@ class BlogExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function getPostFirstImage(Post $post, $filter, $host = '')
+    public function getPostFirstImage(Post $post, $filter = '', $host = '')
     {
         $return = '';
         $path   = $this->getPostFirstImagePath($post, $filter, $host);
@@ -68,6 +68,10 @@ class BlogExtension extends \Twig_Extension
 
         if (preg_match('~<img[^>]+src="([^"]+)"[^>]*>~i', $post->getText(), $matches)) {
             $imagePath = $this->cachePathResolver->getBrowserPath($matches[1], $filter);
+        }
+
+        if ('' === $filter && isset($matches[1])) {
+            $imagePath = $matches[1];
         }
 
         return $imagePath;
