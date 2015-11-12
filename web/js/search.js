@@ -36,6 +36,7 @@ $(document).ready(function () {
                         var item = response['posts'][post];
 
                         posts += template({
+                            postHref: item['url'],
                             title: item['title'],
                             text: item['text'],
                             imagePreview: item['preview_image'],

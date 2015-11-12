@@ -4,6 +4,7 @@ namespace Stfalcon\Bundle\PortfolioBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
+
 /**
  * UserWithPositionAdmin class
  *
@@ -18,6 +19,22 @@ class UserWithPositionAdmin extends Admin
     {
         $formMapper
             ->add('user')
-            ->add('positions');
+            ->add('translations', 'a2lix_translations_gedmo', [
+                    'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition',
+                    'fields'             => [
+                        'positions' => [
+                            'label'          => 'Positions',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => true,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
+                            ],
+                        ],
+                    ],
+                ]
+            );
     }
 }
