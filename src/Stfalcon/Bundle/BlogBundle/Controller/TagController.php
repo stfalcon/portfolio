@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 use Stfalcon\Bundle\BlogBundle\Entity\TagTranslation;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * TagController
@@ -46,6 +47,10 @@ class TagController extends AbstractController
             $tag = $tagRepository->findOneBy(['text' => $text]);
         } else {
             $tag = $tagTranslation->getObject();
+        }
+
+        if (null === $tag) {
+            throw new NotFoundHttpException();
         }
 
         $query = $postRepository->findPostsByTagAsQuery($tag, $request->getLocale());
