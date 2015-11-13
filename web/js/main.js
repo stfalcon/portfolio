@@ -48,16 +48,24 @@ $(function () {
     });
 
 
+    //function resize margin position
+    function resizePos(){
+        return ((window.innerWidth - 915)/2) - 49.5;
+    };
 
-    //Show search form
+        $(window).resize(function() {
+            var windowWidth = resizePos();
+            $('.search_button.js-icon-search').css({left: windowWidth, top:'77px'});
+        });
+
+        //Show search form
     $(document).on('click', '.search_button', function(){
         if ($(window).width() < 838) {
             $('.search-form-wrap').animate({display:'block' ,width:'100%','height':'toggle',top:'0'},450,function() {
                 $('#search_searchPhrase').focus();
-
-            })
+            });
             $('.search_button').prop("disabled",true).css('cursor','default');
-            var windowWidth = ((window.innerWidth - 915)/2) - 49.5;
+            var windowWidth = resizePos();
             $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'77px'},500);
             $('body').addClass('open-search-form');
             setTimeout(function(){
@@ -66,10 +74,11 @@ $(function () {
         }
         else {
             $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'0'},450,function() {
+                $('.search_button').toggle();
                 $('#search_searchPhrase').focus();
-            })
+            });
             $('.search_button').prop("disabled",true).css('cursor','default');
-            var windowWidth = ((window.innerWidth - 915)/2) - 49.5;
+            var windowWidth = resizePos();
             $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'77px'},500);
             setTimeout(function(){
                 $('body').addClass('open-search-form');
@@ -92,6 +101,7 @@ $(function () {
         }
         else{
             $('body').removeClass('open-search-form');
+            $('.search_button').toggle();
             $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'92px'},450);
             $('#search-form,#search-results').animate({opacity:'0'},100);
             $('.search_button').animate({left:'0px', top:'92px'},500, function(){
