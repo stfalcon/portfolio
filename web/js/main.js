@@ -55,7 +55,7 @@ $(function () {
 
         $(window).resize(function() {
             var windowWidth = resizePos();
-            $('.search_button.js-icon-search').css({left: windowWidth, top:'77px'});
+            $('.search_button.js-icon-search').css({left: windowWidth, top:'76px'});
         });
 
         //Show search form
@@ -66,7 +66,7 @@ $(function () {
             });
             $('.search_button').prop("disabled",true).css('cursor','default');
             var windowWidth = resizePos();
-            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'77px'},500);
+            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'76px'},500);
             $('body').addClass('open-search-form');
             setTimeout(function(){
                 $('#search-form, #search-results').animate({opacity:'1'},500);
@@ -79,7 +79,7 @@ $(function () {
             });
             $('.search_button').prop("disabled",true).css('cursor','default');
             var windowWidth = resizePos();
-            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'77px'},500);
+            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'76px'},500);
             setTimeout(function(){
                 $('body').addClass('open-search-form');
                 $('#search-form, #search-results').animate({opacity:'1'},500);
