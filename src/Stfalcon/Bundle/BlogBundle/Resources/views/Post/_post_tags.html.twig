@@ -2,9 +2,7 @@
     {% for tag in post.tags %}
         <li>
             {% if tag.posts.count > 1 %}
-                {% for tag_translation in tag.translations %}
-                    <a href="{{ path('blog_tag_view', { 'text': tag_translation.content }) }}">{{ tag.text }}</a>
-                {% endfor %}
+                <a href="{{ path('blog_tag_view', { 'text': tag.text }) }}">{{ tag.text }}</a>
             {% else %}
                 <span>{{ tag.text }}</span>
             {% endif %}
