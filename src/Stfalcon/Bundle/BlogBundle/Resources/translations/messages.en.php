@@ -5,4 +5,5 @@ return array(
     'Читать далее'  => 'Read more',
     'Комментировать'  => 'Add comment',
     'Поиск' => 'Search',
+    'Похожие новости' => 'Related news',
 );

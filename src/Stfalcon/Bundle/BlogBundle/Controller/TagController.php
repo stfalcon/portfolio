@@ -2,10 +2,9 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 use Stfalcon\Bundle\BlogBundle\Entity\TagTranslation;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +17,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class TagController extends AbstractController
 {
-
     /**
      * View tag
      *
@@ -57,11 +55,10 @@ class TagController extends AbstractController
         $posts = $this->get('knp_paginator')->paginate($query, $page, 10);
 
         if (count($posts) > 1) {
-            return $this->_getRequestDataWithDisqusShortname(array(
-                'tag' => $tag,
+            return $this->_getRequestDataWithDisqusShortname([
+                'tag'   => $tag,
                 'posts' => $posts,
-            ));
-
+            ]);
         } else {
             return $this->redirect($this->generateUrl('blog'));
         }
