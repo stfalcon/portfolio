@@ -66,15 +66,10 @@ class SearchController extends AbstractController
                 $searchedPosts  = $postRepository->findAllInArray($postsId);
             }
 
-            $responseData = [
+            return new JsonResponse([
                 'status' => 'success',
-                'posts' => $this->performPosts($searchedPosts),
-            ];
-
-            $response = new Response(json_encode($responseData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
-            $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
+                'posts'  => $this->performPosts($searchedPosts),
+            ]);
         }
 
         return new JsonResponse([
@@ -140,15 +135,16 @@ class SearchController extends AbstractController
         /** @var Post $post */
         foreach ($posts as $post) {
             $blogExtension     = $this->get('twig.extension.blog');
+            $readMoreExtension = $this->get('twig.extension.read_more');
 
             $postText = $post->getText();
-            $postText = strip_tags($postText);
-            $postText = substr($postText, 0, 275);
-            $postText .= '...';
+            if ($readMoreExtension->hasMore($postText)) {
+                $postText = $readMoreExtension->cutMore($postText).'...';
+            }
 
             $performedPosts[] = [
                 'title'         => $post->getTitle(),
-                'text'          => strip_tags(trim(html_entity_decode($blogExtension->deletePostFirstImage($postText), ENT_QUOTES, 'UTF-8'), "\xc2\xa0")),
+                'text'          => strip_tags($blogExtension->deletePostFirstImage($postText)),
                 'preview_image' => $blogExtension->getPostFirstImagePath($post, 'portfolio_large'),
                 'url'           => $this->generateUrl('blog_post_view', [
                     'slug' => $post->getSlug(),
