@@ -84,8 +84,22 @@
     {% block body %}{% endblock %}
     {% block after_body %}{% endblock %}
 
+    <script type="text/javascript">
+        var subscribeFullText = '{{ 'Подписаться на новые записи'|trans }}';
+        var subscribeShortText = '{{ 'Подписаться'|trans }}';
+    </script>
     {% block javascripts %}
-        {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/headroom.js' 'js/main.js' 'js/underscore-min.js' 'js/search.js' 'js/subscribe.js'  output='cache/js/*.js' %}
+        {% javascripts
+            'js/vendor/jquery-1.7.2.min.js'
+            'js/plugins.js'
+        'js/autosize.min.js'
+        'js/headroom.js'
+        'js/underscore-min.js'
+        'js/search.js'
+        'js/subscribe.js'
+            'js/main.js'
+            output='cache/js/*.js'
+        %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock %}

@@ -69,7 +69,7 @@ class PostRepository extends EntityRepository
      * Get last posts
      *
      * @param string $locale
-     * @param int    $count Max count of returned posts
+     * @param int $count Max count of returned posts
      *
      * @return array
      */
@@ -77,7 +77,7 @@ class PostRepository extends EntityRepository
     {
         $query = $this->getAllPublishedPostsAsQuery($locale);
 
-        if ((int) $count) {
+        if ((int)$count) {
             $query->setMaxResults($count);
         }
 
@@ -85,7 +85,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param Tag    $tag
+     * @param Tag $tag
      * @param string $locale
      *
      * @return Query
@@ -95,10 +95,10 @@ class PostRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p');
 
         $qb->where($qb->expr()->eq('t.id', ':tag_id'))
-           ->andWhere($qb->expr()->eq('p.published', true))
-           ->leftJoin('p.tags', 't')
-           ->setParameter('tag_id', $tag->getId())
-           ->orderBy('p.created', 'DESC');
+            ->andWhere($qb->expr()->eq('p.published', true))
+            ->leftJoin('p.tags', 't')
+            ->setParameter('tag_id', $tag->getId())
+            ->orderBy('p.created', 'DESC');
 
         $this->addLocaleFilter($locale, $qb);
 
@@ -109,7 +109,7 @@ class PostRepository extends EntityRepository
      * Find related posts by tags
      *
      * @param string $locale Locale
-     * @param Post   $post   Current post
+     * @param Post $post Current post
      *
      * @return array
      */
@@ -118,15 +118,16 @@ class PostRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p');
 
         $qb->where($qb->expr()->in('t.text', $post->getTags()->getValues()))
-           ->andWhere($qb->expr()->neq('p', ':post'))
-           ->setParameter('post', $post)
-           ->join('p.tags', 't');
+            ->andWhere($qb->expr()->neq('p', ':post'))
+            ->setParameter('post', $post)
+            ->addOrderBy('p.created', 'desc')
+            ->join('p.tags', 't');
 
         $this->addLocaleFilter($locale, $qb);
 
         return $qb->setMaxResults(6)
-                  ->getQuery()
-                  ->getResult();
+            ->getQuery()
+            ->getResult();
     }
 
     /**
@@ -141,15 +142,16 @@ class PostRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p');
 
         return $qb->where($qb->expr()->in('p.id', ':posts'))
-                  ->setParameter('posts', $postsId)
-                  ->getQuery()
-                  ->getResult();
+            ->setParameter('posts', $postsId)
+            ->addOrderBy('p.created', 'desc')
+            ->getQuery()
+            ->getResult();
     }
 
     /**
      * Get posts query by user
      *
-     * @param User   $user   User
+     * @param User $user User
      * @param string $locale Locale
      *
      * @return array
@@ -159,9 +161,9 @@ class PostRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p');
 
         $qb->where($qb->expr()->eq('p.author', ':user_id'))
-           ->andWhere($qb->expr()->eq('p.published', true))
-           ->orderBy('p.created', 'DESC')
-           ->setParameter('user_id', $user->getId());
+            ->andWhere($qb->expr()->eq('p.published', true))
+            ->orderBy('p.created', 'DESC')
+            ->setParameter('user_id', $user->getId());
 
         $this->addLocaleFilter($locale, $qb);
 
@@ -169,7 +171,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param string       $locale
+     * @param string $locale
      * @param QueryBuilder $qb
      */
     private function addLocaleFilter($locale, QueryBuilder $qb)
