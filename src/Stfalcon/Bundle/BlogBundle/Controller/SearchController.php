@@ -136,7 +136,7 @@ class SearchController extends AbstractController
 
             $postText = $post->getText();
             $postText = strip_tags($postText);
-            $postText = substr($postText, 0, 300);
+            $postText = substr($postText, 0, 275);
             $postText .= '&hellip;';
 
             $performedPosts[] = [
