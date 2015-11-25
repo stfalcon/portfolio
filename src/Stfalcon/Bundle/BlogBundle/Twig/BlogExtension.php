@@ -62,7 +62,7 @@ class BlogExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function getPostFirstImagePath(Post $post, $filter, $host = '')
+    public function getPostFirstImagePath(Post $post, $filter = '', $host = '')
     {
         $imagePath = '';
 
@@ -78,15 +78,24 @@ class BlogExtension extends \Twig_Extension
     }
 
     /**
-     * Delete post first image
+     * Cut text to specific limit
      *
-     * @param string $postText Post text
+     * @param string $string Text
+     * @param int    $limit  Limit
      *
-     * @return string Post text
+     * @return string
      */
-    public function deletePostFirstImage($postText)
+    public function cutTextToLimit($string, $limit = 275)
     {
-        return preg_replace('~<img[^>]+src="([^"]+)"[^>]*>~i', '', $postText);
+        $string = strip_tags($string);
+
+        if (strlen($string) > $limit) {
+            $stringCut = substr($string, 0, $limit);
+
+            $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+        }
+
+        return $string;
     }
 
     /**

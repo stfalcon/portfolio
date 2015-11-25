@@ -134,18 +134,14 @@ class SearchController extends AbstractController
         $performedPosts = [];
         /** @var Post $post */
         foreach ($posts as $post) {
-            $blogExtension     = $this->get('twig.extension.blog');
-            $readMoreExtension = $this->get('twig.extension.read_more');
+            $blogExtension = $this->get('twig.extension.blog');
 
-            $postText = $post->getText();
-            if ($readMoreExtension->hasMore($postText)) {
-                $postText = $readMoreExtension->cutMore($postText).'...';
-            }
+            $postText = $blogExtension->cutTextToLimit($post->getText(), 475);
 
             $performedPosts[] = [
                 'title'         => $post->getTitle(),
-                'text'          => strip_tags($blogExtension->deletePostFirstImage($postText)),
-                'preview_image' => $blogExtension->getPostFirstImagePath($post, 'portfolio_large'),
+                'text'          => $postText,
+                'preview_image' => $blogExtension->getPostFirstImagePath($post),
                 'url'           => $this->generateUrl('blog_post_view', [
                     'slug' => $post->getSlug(),
                 ]),
