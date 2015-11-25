@@ -3,11 +3,13 @@
 {% block body %}
     {% block header_content %}
         {{ include('_header.html.twig') }}
+
+        {{ render(controller('StfalconBlogBundle:Search:searchPosts')) }}
     {% endblock %}
     <div class="content">
         {% block content_wrapper %}{% endblock %}
     </div>
-    <footer class="footer vcard">
+    <footer id="footer" class="footer vcard">
         {{ include('_footer.html.twig') }}
     </footer>
 {% endblock body %}

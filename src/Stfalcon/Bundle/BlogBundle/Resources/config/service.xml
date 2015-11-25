@@ -39,5 +39,10 @@
             <tag name="form.type" alias="tags" />
             <argument type="service" id="doctrine" />
         </service>
+
+        <service id="twig.extension.blog" class="Stfalcon\Bundle\BlogBundle\Twig\BlogExtension">
+            <argument type="service" id="imagine.cache.path.resolver"/>
+            <tag name="twig.extension" alias="blog" />
+        </service>
     </services>
 </container>

@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Repository;
 
+use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -68,7 +69,7 @@ class PostRepository extends EntityRepository
      * Get last posts
      *
      * @param string $locale
-     * @param int    $count Max count of returned posts
+     * @param int $count Max count of returned posts
      *
      * @return array
      */
@@ -76,7 +77,7 @@ class PostRepository extends EntityRepository
     {
         $query = $this->getAllPublishedPostsAsQuery($locale);
 
-        if ((int) $count) {
+        if ((int)$count) {
             $query->setMaxResults($count);
         }
 
@@ -84,18 +85,19 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param Tag    $tag
+     * @param Tag $tag
      * @param string $locale
      *
      * @return Query
      */
-    public function findPostsByTagAsQuery($tag, $locale)
+    public function findPostsByTagAsQuery(Tag $tag, $locale)
     {
         $qb = $this->createQueryBuilder('p');
-        $qb->leftJoin('p.tags', 't')
-            ->where('t.id = :tagId')
-            ->andWhere('p.published = 1')
-            ->setParameter('tagId', $tag->getId())
+
+        $qb->where($qb->expr()->eq('t.id', ':tag_id'))
+            ->andWhere($qb->expr()->eq('p.published', true))
+            ->leftJoin('p.tags', 't')
+            ->setParameter('tag_id', $tag->getId())
             ->orderBy('p.created', 'DESC');
 
         $this->addLocaleFilter($locale, $qb);
@@ -104,7 +106,72 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param string       $locale
+     * Find related posts by tags
+     *
+     * @param string $locale Locale
+     * @param Post $post Current post
+     *
+     * @return array
+     */
+    public function findRelatedPostsToCurrentPost($locale, $post)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->where($qb->expr()->in('t.text', $post->getTags()->getValues()))
+            ->andWhere($qb->expr()->neq('p', ':post'))
+            ->setParameter('post', $post)
+            ->addOrderBy('p.created', 'desc')
+            ->join('p.tags', 't');
+
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->setMaxResults(6)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Find all in array
+     *
+     * @param array $postsId Posts id
+     *
+     * @return array Posts
+     */
+    public function findAllInArray($postsId)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $qb->where($qb->expr()->in('p.id', ':posts'))
+            ->setParameter('posts', $postsId)
+            ->addOrderBy('p.created', 'desc')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Get posts query by user
+     *
+     * @param User $user User
+     * @param string $locale Locale
+     *
+     * @return array
+     */
+    public function getPostsQueryByUser(User $user, $locale)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->where($qb->expr()->eq('p.author', ':user_id'))
+            ->andWhere($qb->expr()->eq('p.published', true))
+            ->orderBy('p.created', 'DESC')
+            ->setParameter('user_id', $user->getId());
+
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->getQuery();
+    }
+
+    /**
+     * @param string $locale
      * @param QueryBuilder $qb
      */
     private function addLocaleFilter($locale, QueryBuilder $qb)

@@ -1,1 +1,25 @@
 {% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% javascripts 'js/jquery.validate.min.js' 'js/widgets.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        jQuery.extend(jQuery.validator.messages, {
+            required: "{{ 'Заполните это поле'|trans }}",
+            email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
+            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+        });
+    </script>
+{% endblock %}
+
+{% block after_body %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+{% endblock %}
+{% block content_wrapper %}
+    <button class="search_button search-mob"><span class="icon-search"></span></button>
+{% endblock %}

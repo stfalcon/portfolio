@@ -10,17 +10,18 @@
     {% set filter_name = 'portfolio_small' %}
 {% endif %}
 <a href="{% if slug %}{{ path('portfolio_project_view', { 'categorySlug': slug, 'projectSlug': project.slug }) }}{% endif %}">
-    <img src="{{ vich_uploader_asset(project, 'imageFile')| apply_filter(filter_name) }}"
-         alt="{{ project.name }}"/>
-                    <span class="project-info">
-                        <span class="project-info-text">
-                            <span class="project-name">
-                                {{ project.name }}
-                            </span>
-                            <span class="project-description">
-                                {{ project.shortDescription }}
-                            </span>
-                        </span>
-                        <span class="helper"></span>
-                    </span>
+    {% if project.imageFile is defined %}
+        <img src="{{ vich_uploader_asset(project, 'imageFile')| apply_filter(filter_name) }}" alt="{{ project.name }}" />
+    {% endif %}
+    <span class="project-info">
+        <span class="project-info-text">
+            <span class="project-name">
+                {{ project.name }}
+            </span>
+            <span class="project-description">
+                {{ project.shortDescription }}
+            </span>
+        </span>
+        <span class="helper"></span>
+    </span>
 </a>

@@ -17,6 +17,7 @@ class TagControllerTest extends WebTestCase
         $this->loadFixtures(array(
                 'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
                 'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
+                'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagTranslationData',
                 'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
         $crawler = $this->fetchCrawler($this->getUrl('blog_tag_view', array('text' => 'symfony2')));
 

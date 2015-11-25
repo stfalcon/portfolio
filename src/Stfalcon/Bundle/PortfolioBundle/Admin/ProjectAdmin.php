@@ -5,6 +5,8 @@ use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
+use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPositionTranslation;
 
 /**
  * Class ProjectAdmin
@@ -42,90 +44,90 @@ class ProjectAdmin extends Admin
                             'label' => 'name',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'description' => array(
                             'label' => 'description',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
+                                    'required' => false,
+                                ),
                             ),
                             'attr' => array(
-                                'class' => 'markitup'
-                            )
+                                'class' => 'markitup',
+                            ),
                         ),
                         'shortDescription' => array(
                             'label' => 'short description',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
+                                    'required' => false,
+                                ),
                             ),
                             'attr' => array(
-                                'class' => 'markitup'
-                            )
+                                'class' => 'markitup',
+                            ),
                         ),
                         'caseContent' => [
                             'label' => 'Case content',
                             'locale_options' => [
                                 'ru' => [
-                                    'required' => false
+                                    'required' => false,
                                 ],
                                 'en' => [
-                                    'required' => false
-                                ]
+                                    'required' => false,
+                                ],
                             ],
                             'attr' => array(
-                                'class' => 'markitup'
-                            )
+                                'class' => 'markitup',
+                            ),
                         ],
                         'tags' => array(
                             'label' => 'Tags',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => true,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'metaKeywords' => array(
                             'label' => 'Meta keywords',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => false
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'metaDescription' => array(
                             'label' => 'Meta description',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => false
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
-                        )
+                                    'required' => false,
+                                ),
+                            ),
+                        ),
                     ),
-                    'label' => 'Перевод'
+                    'label' => 'Перевод',
                 )
             )
             ->add('slug')
@@ -150,14 +152,23 @@ class ProjectAdmin extends Admin
                     }
 
                     return $qb;
-                }
+                },
             ))
-            ->add('participants', 'entity', array(
-                'required' => false,
-                'label' => 'Учасники',
-                'class' => 'Application\Bundle\UserBundle\Entity\User',
-                'multiple' => true
-            ))
+            ->with('Participants')
+                ->add('usersWithPositions', 'sonata_type_collection',
+                    [
+                        'by_reference' => true,
+                    ],
+                    [
+                        'edit'            => 'inline',
+                        'inline'          => 'table',
+                        'sortable'        => 'position',
+                        'link_parameters' => [
+                            'context' => 'default',
+                        ],
+                    ]
+                )
+            ->end()
             ->with('Media')
                 ->add('media', 'sonata_type_collection', array(
                     'cascade_validation' => true,
@@ -166,7 +177,7 @@ class ProjectAdmin extends Admin
                     'inline'            => 'table',
                     'sortable'          => 'position',
                     'link_parameters'   => array('context' => 'default'),
-                    'admin_code'        => 'sonata.media.admin.gallery_has_media'
+                    'admin_code'        => 'sonata.media.admin.gallery_has_media',
                 ))
             ->end();
     }
@@ -189,12 +200,43 @@ class ProjectAdmin extends Admin
         parent::setTemplates($templates);
     }
 
-    public function postPersist($post)
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist($project)
     {
-        $this->postUpdate($post);
+        $this->postUpdate($project);
     }
-    public function postUpdate($post)
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postUpdate($project)
     {
         $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($project)
+    {
+        $this->preUpdate($project);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($project)
+    {
+        /** @var UserWithPosition $userWithPosition */
+        foreach ($project->getUsersWithPositions() as $userWithPosition) {
+            $userWithPosition->setProject($project);
+
+            /** @var UserWithPositionTranslation $translation */
+            foreach ($userWithPosition->getTranslations() as $translation) {
+                $translation->setObject($userWithPosition);
+            }
+        }
     }
 }

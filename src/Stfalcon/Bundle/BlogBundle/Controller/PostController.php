@@ -2,11 +2,13 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Application\Bundle\UserBundle\Entity\User;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Zend\Feed\Writer\Entry;
@@ -34,15 +36,12 @@ class PostController extends AbstractController
      */
     public function indexAction(Request $request, $page)
     {
-        $seo = $this->get('sonata.seo.page');
-        $seo->generateLangAlternates($request);
-
         $allPostsQuery = $this->get('doctrine')->getManager()
                 ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery($request->getLocale());
         $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
 
         return $this->_getRequestArrayWithDisqusShortname(array(
-            'posts' => $posts
+            'posts' => $posts,
         ));
     }
 
@@ -87,14 +86,12 @@ class PostController extends AbstractController
             ->addMeta('property', 'og:type', 'blog')
             ->addMeta('property', 'og:description', $post->getMetaDescription());
 
-        $seo->generateLangAlternates($this->get('request'));
-
         if ($post->getImage()) {
             $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost() . $post->getImage());
         }
 
         return $this->_getRequestArrayWithDisqusShortname(array(
-            'post' => $post
+            'post' => $post,
         ));
     }
 
@@ -168,6 +165,69 @@ class PostController extends AbstractController
             ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, $count);
 
         return array('posts' => $posts);
+    }
+
+    /**
+     * Related posts action
+     *
+     * @param string $locale Site locale
+     * @param Post   $post   Current post
+     *
+     * @return array
+     */
+    public function relatedPostsAction($locale, $post)
+    {
+        $postRepository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
+        $relatedPosts = $postRepository->findRelatedPostsToCurrentPost($locale, $post);
+
+        return $this->render('@StfalconBlog/Post/relatedPosts.twig', [
+            'related_posts' => $relatedPosts,
+        ]);
+    }
+
+    /**
+     * Users post action
+     *
+     * @param User $user User
+     * @param int  $page Page number
+     *
+     * @return Response
+     *
+     * @Route(
+     *      "/blog/{usernameCanonical}/{title}/{page}",
+     *      name         = "blog_author",
+     *      requirements = {"page" = "\d+", "title" = "page"},
+     *      defaults     = {"page" = "1",   "title" = "page"}
+     * )
+     * @ParamConverter(
+     *      "user",
+     *      class   = "ApplicationUserBundle:User",
+     *      options = {"usernameCanonical" = "usernameCanonical"}
+     * )
+     */
+    public function usersPostAction(User $user, $page)
+    {
+        $request = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $postRepository = $em->getRepository('StfalconBlogBundle:Post');
+        $postsQuery     = $postRepository->getPostsQueryByUser($user, $request->getLocale());
+
+        /** @var SlidingPagination $paginatedPosts */
+        $paginatedPosts = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
+        $totalCount     = $paginatedPosts->getTotalItemCount();
+
+        if ($totalCount == 0) {
+            return $this->redirect($this->generateUrl('blog', [
+                'page'  => 1,
+                'title' => 'page',
+            ]));
+        }
+
+        return $this->render('@StfalconBlog/Post/index.html.twig', $this->_getRequestArrayWithDisqusShortname([
+            'posts' => $paginatedPosts,
+        ]));
     }
 
     /**

@@ -1,45 +1,41 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
-{% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }}{{ parent() }}{% endblock %}
 {% block content_wrapper %}
+    {{ parent() }}
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}
+
+        {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'top'} %}
+
         <div class="post-content">
             {{ post.text|moreToSpan|highlightCode|raw }}
-            <div class="share-cnt clearfix">
-                <script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
-                <script type="text/javascript">
-                    VK.init({apiId: 4612398, onlyWidgets: true});
-                </script>
-                <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="vkontakte,facebook,twitter,gplus" data-yashareTheme="counter" data-yashareType="small"></div>
-                <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: {{ app.request.locale == 'ru' ? 'ru_RU' : 'en_US' }}</script>
-                <script type="IN/Share"  data-counter="right"></script>
-                <div id="vk_like"></div>
-                <div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-                <script type="text/javascript">
-                    VK.Widgets.Like("vk_like", {type: "button", height: 20});
-                </script>
+            {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
 
-                <div id="fb-root"></div>
-                <script>(function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
-
+            <div class="contact-us hire_us-mob">
+                <button class="hire_us hire_us-button-mob">{{ 'Работать с нами!'|trans }}</button>
             </div>
+            {# Subscribe widget #}
+            {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
+
+            {# Related posts widget #}
+            {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
+
             <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
-                <span>{{ 'К списку записей'|trans }}</span></a>
+                <span>{{ 'К списку записей'|trans }}</span>
+            </a>
         </div>
+
+        {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
+
+
         {% if app.request.host == 'stfalcon.com' %}
             <p>
                 <div id="disqus_thread"></div>
             </p>
             <script type="text/javascript">
                 var disqus_shortname = '{{ disqus_shortname }}';
-                var disqus_identifier = '{{ post.id }}';
+                var disqus_identifier = '{{ app.request.locale ~ ' ' ~ post.id }}';
                 var disqus_url = '{{ url('blog_post_view', {'slug': post.slug}) }}';
                 var disqus_title = '{{ post.title }}';
                 // var disqus_developer = 1; // developer mode is on
@@ -62,4 +58,10 @@
             </script>
         {% endif %}
     </article>
+
+    <button class="button-up scroll-to-top"></button>
+{% endblock %}
+
+{% block after_body %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
 {% endblock %}

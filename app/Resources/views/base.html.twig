@@ -3,15 +3,15 @@
 <!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
-<head>
+<html xmlns:og="http://ogp.me/ns#">
+<head {{ sonata_seo_head_attributes() }}>
     {% block abtest %}{% endblock abtest %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block title %}{{ 'Web cтудия Stfalcon.com'|trans }}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+
     {{ sonata_seo_metadatas() }}
-
-    {{ sonata_seo_lang_alternates() }}
-
     {{ sonata_seo_link_canonical() }}
+    {{ sonata_seo_lang_alternates() }}
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
@@ -82,9 +82,24 @@
 </head>
 <body>
     {% block body %}{% endblock %}
+    {% block after_body %}{% endblock %}
 
+    <script type="text/javascript">
+        var subscribeFullText = '{{ 'Подписаться на новые записи'|trans }}';
+        var subscribeShortText = '{{ 'Подписаться'|trans }}';
+    </script>
     {% block javascripts %}
-        {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/headroom.js' 'js/main.js'  output='cache/js/*.js' %}
+        {% javascripts
+            'js/vendor/jquery-1.7.2.min.js'
+            'js/plugins.js'
+        'js/autosize.min.js'
+        'js/headroom.js'
+        'js/underscore-min.js'
+        'js/search.js'
+        'js/subscribe.js'
+            'js/main.js'
+            output='cache/js/*.js'
+        %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock %}

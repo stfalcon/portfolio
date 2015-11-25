@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: sphinx/sphinx.yml }
 
 framework:
     #esi:             ~
@@ -166,6 +167,9 @@ avalanche_imagine:
         project_thumb:
             type:    thumbnail
             options: { size: [300, 264], mode: outbound }
+        image_preview:
+            type:    thumbnail
+            options: { size: [240, 75], mode: outbound }
         avatar:
             type:    thumbnail
             options: { size: [135, 135], mode: outbound }
