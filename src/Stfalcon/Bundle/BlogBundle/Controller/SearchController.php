@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -58,16 +59,22 @@ class SearchController extends AbstractController
             $text   = $form->get('searchPhrase')->getData();
 
             $searchedPosts = [];
+
             if (null !== $text) {
                 $postsId        = $this->search($locale, $text, 'postSearchIndex');
                 $postRepository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
                 $searchedPosts  = $postRepository->findAllInArray($postsId);
             }
 
-            return new JsonResponse([
+            $responseData = [
                 'status' => 'success',
-                'posts'  => $this->performPosts($searchedPosts),
-            ]);
+                'posts' => $this->performPosts($searchedPosts),
+            ];
+
+            $response = new Response(json_encode($responseData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
         }
 
         return new JsonResponse([
