@@ -91,6 +91,7 @@ class SearchController extends AbstractController
     private function search($locale, $text, $type)
     {
         $sphinxSearch = $this->get('iakumai.sphinxsearch.search');
+        $sphinxSearch->SetMatchMode(SPH_MATCH_ANY);
         $sphinxSearch->SetFilter('locale', [
             crc32($locale),
         ]);
@@ -132,12 +133,11 @@ class SearchController extends AbstractController
         /** @var Post $post */
         foreach ($posts as $post) {
             $blogExtension     = $this->get('twig.extension.blog');
-            $readMoreExtension = $this->get('twig.extension.read_more');
 
             $postText = $post->getText();
-            if ($readMoreExtension->hasMore($postText)) {
-                $postText = $readMoreExtension->cutMore($postText).'...';
-            }
+            $postText = strip_tags($postText);
+            $postText = substr($postText, 0, 500);
+            $postText .= '&hellip;';
 
             $performedPosts[] = [
                 'title'         => $post->getTitle(),
