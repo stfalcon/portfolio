@@ -136,7 +136,7 @@ class SearchController extends AbstractController
         foreach ($posts as $post) {
             $blogExtension = $this->get('twig.extension.blog');
 
-            $postText = $blogExtension->cutTextToLimit($post->getText(), 475);
+            $postText = $blogExtension->cutTextToLimit($post->getText(), 275);
 
             $performedPosts[] = [
                 'title'         => $post->getTitle(),
