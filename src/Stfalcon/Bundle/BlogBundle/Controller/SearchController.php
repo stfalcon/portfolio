@@ -148,7 +148,7 @@ class SearchController extends AbstractController
 
             $performedPosts[] = [
                 'title'         => $post->getTitle(),
-                'text'          => strip_tags($blogExtension->deletePostFirstImage($postText)),
+                'text'          => strip_tags(trim(html_entity_decode($blogExtension->deletePostFirstImage($postText), ENT_QUOTES, 'UTF-8'), "\xc2\xa0")),
                 'preview_image' => $blogExtension->getPostFirstImagePath($post, 'portfolio_large'),
                 'url'           => $this->generateUrl('blog_post_view', [
                     'slug' => $post->getSlug(),
