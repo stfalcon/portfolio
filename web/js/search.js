@@ -35,12 +35,15 @@ $(document).ready(function () {
                     for (var post in response['posts']) {
                         var item = response['posts'][post];
 
+                        if (item['preview_image']) {
+                            var imageTag = '<img class="preview-image" src="' + item['preview_image'] + '" alt="' + item['title'] + '" />';
+                        }
+
                         posts += template({
                             postHref: item['url'],
                             title: item['title'],
                             text: item['text'],
-                            imagePreview: item['preview_image'],
-                            imageAlt: item['title']
+                            imageTag: imageTag
                         });
                     }
 

@@ -699,8 +699,11 @@
 }
 
 .hire_us{
-  width: 122px;
   height: 51px;
+  font-size: 15px;
+  font-weight: 500;
+  box-sizing: border-box;
+  padding: 0px 15px;
   text-transform: uppercase;
   border-radius: 4px 4px 0px 0px;
   color: #ffffff;
@@ -710,7 +713,7 @@
   cursor: pointer;
   outline: none;
   position: fixed;
-  right: -35px;
+  right: -63px;
   top: 50%;
   transform: rotate(-90deg);
   z-index: 998;
@@ -719,6 +722,9 @@
   }
   @media (max-width: 838px) {
     display: none;
+  }
+  &.en-btn{
+    right: -22px;
   }
 }
 
@@ -1037,7 +1043,6 @@
 
 .open-search-form{
   overflow: hidden;
-  position: fixed;
   .search-form-wrap{
 //    display: block;
   }
@@ -1138,8 +1143,10 @@
     max-width: 47.54%;
     vertical-align: top;
     margin-bottom: 40px;
+    text-align: left;
     a{
       text-decoration: none;
+      display: inline-block;
     }
 
     img{
@@ -1258,6 +1265,7 @@
 
     a{
       text-decoration: none;
+      word-break: normal;
     }
 
     h3{
@@ -1289,6 +1297,10 @@
 
   @media (max-width: 838px) {
     margin:0 4.2151%;
+  }
+
+  @media (max-width: 600px) {
+    padding: 34px 20px 36px;
   }
 
   @media (max-width: 475px) {
@@ -1384,7 +1396,11 @@
 .fixed-hire-us{
   position: absolute;
   top: inherit;
-  margin-top: -456px;
+  margin-top: -480px;
+}
+
+.en-btn.fixed-hire-us{
+  margin-top: -470px;
 }
 
 .contact-us.hire_us-mob{
@@ -1425,5 +1441,30 @@
     left: 0;
     right: 0;
     border: none;
+  }
+}
+
+.subscribe-form-wrap{
+  .error-list{
+    display: block;
+    position: relative;
+    z-index: 11;
+    color: rgb(44, 55, 60);
+    margin: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    &:before{
+      content: none;
+    }
+    li{
+      font-size: 15px!important;
+      padding: 0!important;
+      margin: 0!important;
+      &:before{
+        content: none;
+      }
+    }
   }
 }

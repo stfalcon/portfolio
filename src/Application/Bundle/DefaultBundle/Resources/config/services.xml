@@ -81,6 +81,7 @@
 
         <service class="Application\Bundle\DefaultBundle\Form\Type\SubscribeFormType" id="application_bundle.defaultbundle.form.type.subscribe">
             <tag alias="subscribe" name="form.type"/>
+            <argument id="translator" type="service"/>
         </service>
 
         <service id="application_default.gelf.publisher" class="Application\Bundle\DefaultBundle\Publisher\MessagePublisher">
