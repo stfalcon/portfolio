@@ -78,9 +78,6 @@ class ProjectController extends Controller
      */
     public function allProjectsAction($slug = null)
     {
-        $request = $this->get('request');
-        $seo = $this->get('sonata.seo.page');
-        $seo->generateLangAlternates($request);
         $category = null;
         $nextLimit = 4;
         if ($slug) {
@@ -146,14 +143,15 @@ class ProjectController extends Controller
     /**
      * View project
      *
-     * @param string $categorySlug Slug of category
-     * @param string $projectSlug  Slug of project
+     * @param Request  $request  Request
+     * @param Category $category Category
+     * @param Project  $project  Project
      *
      * @return array
      *
      * @Route("/portfolio/{categorySlug}/{projectSlug}", name="portfolio_project_view")
+     *
      * @Template()
-     * @throws NotFoundHttpException
      *
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
      * @ParamConverter("project", options={"mapping": {"projectSlug": "slug"}})
@@ -180,18 +178,20 @@ class ProjectController extends Controller
             ->addMeta('property', 'og:description', $project->getMetaDescription())
             ->setLinkCanonical($canonicalUrl);
 
-        $seo->generateLangAlternates($this->get('request'));
-
         if ($project->getImage()) {
+            $vichUploader = $this->get('vich_uploader.templating.helper.uploader_helper');
+
             $seo->addMeta(
                 'property',
                 'og:image',
-                $request->getSchemeAndHttpHost() . $this->get('vich_uploader.templating.helper.uploader_helper')->asset($project,
-                    'imageFile')
+                $request->getSchemeAndHttpHost().$vichUploader->asset($project, 'imageFile')
             );
         }
 
-        return array('project' => $project, 'category' => $category);
+        return [
+            'project'  => $project,
+            'category' => $category,
+        ];
     }
 
     /**

@@ -2,11 +2,14 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Form\Type\PromotionOrderFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Widgets controller
@@ -41,7 +44,10 @@ class WidgetsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Subscribe widget action
+     *
+     * @param Request $request  Request
+     * @param string  $category Category
      *
      * @return array
      *
@@ -54,13 +60,17 @@ class WidgetsController extends Controller
      */
     public function subscribeWidgetAction(Request $request, $category)
     {
-        $form = $this->createForm('subscribe', []);
+        $form = $this->createForm('subscribe');
 
         if ($request->isMethod('post') && $request->isXmlHttpRequest()) {
             $form->handleRequest($request);
             if ($form->isValid()) {
-                $mc = $this->get('hype_mailchimp');
-                $mc->getList()->subscribe($form->get('email')->getData(), 'html', false);
+                $this->get('hype_mailchimp')
+                     ->getList()
+                     ->addMerge_vars([
+                         'locale' => $request->getLocale(),
+                     ])
+                     ->subscribe($form->get('email')->getData(), 'html', false);
 
                 return new JsonResponse([
                     'success' => true
@@ -83,6 +93,76 @@ class WidgetsController extends Controller
     }
 
     /**
+     * Hire us action
+     *
+     * @return Response
+     *
+     * @Route(name="hire_us")
+     */
+    public function hireUsAction()
+    {
+        $form = $this->createForm(new PromotionOrderFormType());
+
+        return $this->render('ApplicationDefaultBundle:Widgets:_hire_us_form.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Hire us action
+     *
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @throw NotFoundHttpException
+     *
+     * @Route("/ajax-hire-us", name="ajax_hire_us")
+     */
+    public function hireUsAjaxAction(Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(new PromotionOrderFormType());
+        $form->handleRequest($request);
+        $translated = $this->get('translator');
+
+        if ($form->isValid() && $request->isMethod('post')) {
+            $data  = $form->getData();
+            $email = $data['email'];
+            $name  = $data['name'];
+
+            $container    = $this->get('service_container');
+            $mailerName   = $container->getParameter('mailer_name');
+            $mailerNotify = $container->getParameter('mailer_notify');
+            $subject      = $translated->trans('promotion.order.hire.us.mail.subject', ['%email%' => $email]);
+
+            $resultSending = $this->get('application_default.service.mailer')->send(
+                [$mailerNotify, $mailerName],
+                $subject,
+                '@ApplicationDefault/emails/order_app.html.twig',
+                [
+                    'message' => $data['message'],
+                    'name'    => $name,
+                    'email'   => $email,
+                ]
+            );
+
+            if ($resultSending) {
+                return new JsonResponse([
+                    'status' => 'success'
+                ]);
+            }
+        }
+
+        return new JsonResponse([
+            'status' => 'error'
+        ]);
+    }
+
+    /**
      * Localize current route
      *
      * @param Request $request
@@ -93,6 +173,10 @@ class WidgetsController extends Controller
     protected function localizeRoute($request, $locale)
     {
         $routeParams = $request->attributes->get('_route_params');
+        if (isset($routeParams['page'])) {
+            unset($routeParams['page']);
+        }
+
         $attributes = $request->query->all();
         if (!is_null($routeParams)) {
             $attributes = array_merge($attributes, $routeParams);

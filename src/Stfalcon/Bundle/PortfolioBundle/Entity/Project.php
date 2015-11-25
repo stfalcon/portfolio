@@ -5,6 +5,7 @@ namespace Stfalcon\Bundle\PortfolioBundle\Entity;
 use Application\Bundle\MediaBundle\Entity\Media;
 use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Translatable;
 use Symfony\Component\HttpFoundation\File\File;
@@ -267,16 +268,26 @@ class Project implements Translatable
     private $relativeProjects;
 
     /**
+     * @var Collection|UserWithPosition[] $usersWithPositions Users with positions
+     *
+     * @ORM\OneToMany(targetEntity="UserWithPosition", mappedBy="project", cascade={"persist", "remove"}, orphanRemoval=true)
+     *
+     * @Assert\Type(type="object")
+     */
+    private $usersWithPositions;
+
+    /**
      * Initialization properties for new project entity
      */
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
-        $this->participants = new ArrayCollection();
-        $this->media = new ArrayCollection();
-        $this->published = true;
-        $this->translations = new ArrayCollection();
-        $this->relativeProjects = new ArrayCollection();
+        $this->categories                   = new ArrayCollection();
+        $this->participants                 = new ArrayCollection();
+        $this->media                        = new ArrayCollection();
+        $this->published                    = true;
+        $this->translations                 = new ArrayCollection();
+        $this->relativeProjects             = new ArrayCollection();
+        $this->usersWithPositions = new ArrayCollection();
     }
 
     /**
@@ -307,6 +318,20 @@ class Project implements Translatable
     public function addCategory(Category $category)
     {
         $this->categories[] = $category;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param Category $category Category
+     *
+     * @return $this
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
     }
 
     /**
@@ -873,5 +898,59 @@ class Project implements Translatable
     public function setShortDescription($shortDescription)
     {
         $this->shortDescription = $shortDescription;
+    }
+
+    /**
+     * Get users with positions
+     *
+     * @return Collection|UserWithPosition[] Users with positions
+     */
+    public function getUsersWithPositions()
+    {
+        return $this->usersWithPositions;
+    }
+
+    /**
+     * Set users with positions
+     *
+     * @param Collection|UserWithPosition[] $usersWithPositions Users with positions
+     *
+     * @return $this
+     */
+    public function setUsersWithPositions($usersWithPositions)
+    {
+        $this->usersWithPositions = $usersWithPositions;
+
+        return $this;
+    }
+
+    /**
+     * Remove user with position
+     *
+     * @param UserWithPosition $userWithPosition User with position
+     *
+     * @return $this
+     */
+    public function removeUsersWithPositions(UserWithPosition $userWithPosition)
+    {
+        $this->usersWithPositions->removeElement($userWithPosition);
+
+        return $this;
+    }
+
+    /**
+     * Add user with position
+     *
+     * @param UserWithPosition $userWithPosition User with position
+     *
+     * @return $this
+     */
+    public function addUsersWithPositions(UserWithPosition $userWithPosition)
+    {
+        $userWithPosition->setProject($this);
+
+        $this->usersWithPositions->add($userWithPosition);
+
+        return $this;
     }
 }

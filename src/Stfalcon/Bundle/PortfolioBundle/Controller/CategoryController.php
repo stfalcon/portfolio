@@ -57,8 +57,6 @@ class CategoryController extends Controller
             ->addMeta('property', 'og:title', $category->getTitle())
             ->addMeta('property', 'og:description', $category->getMetaDescription());
 
-        $seo->generateLangAlternates($this->get('request'));
-
         return array(
             'category'   => $category,
             'categories' => $categories,

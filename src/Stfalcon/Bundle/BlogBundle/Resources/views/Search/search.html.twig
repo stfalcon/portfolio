@@ -1,0 +1,29 @@
+<div class="search-form-wrap">
+    <button class="search_button search-mob js-icon-search"><span class="icon-search"></span></button>
+    <svg viewBox="0 0 20 20" fill="#fff" class="close-search-form">
+        <path class="icon-close-nav"
+              d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
+    </svg>
+    <div class="wrapper-results">
+<form id="search-form" action="{{ path('ajax_search') }}">
+    {{ form_row(form.searchPhrase, { 'label': 'Поиск'|trans }) }}
+    {{ form_rest(form) }}
+</form>
+
+<ul id="search-results"></ul>
+    </div>
+
+<script type="text/template" id="search-template">
+    <li class="search-item">
+        <a href="<%= postHref %>">
+            <div>
+                <img class="preview-image" src="<%= imagePreview %>" alt="<%= imageAlt %>" />
+            </div>
+
+            <h3 class="title"><%= title %></h3>
+        </a>
+        <p class="text"><%= text %></p>
+    </li>
+</script>
+</div>
+

@@ -1,6 +1,6 @@
 {% extends '::portfolio_layout.html.twig' %}
 
-{% block title %}{{ category.title }} | {{ parent() }}{% endblock %}
+{% block title %}{{ category.title }}{% endblock %}
 {% set templates = ['web-development', 'web-design', 'mobile-development', 'game-development', 'consulting-audit'] %}
 {% set slug = app.request.get('slug') %}
 {% block content_wrapper %}

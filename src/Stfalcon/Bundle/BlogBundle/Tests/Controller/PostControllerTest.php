@@ -17,6 +17,7 @@ class PostControllerTest extends WebTestCase
         $this->loadFixtures(array(
                 'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
                 'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
+                'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagTranslationData',
                 'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
         $crawler = $this->fetchCrawler($this->getUrl('blog_post_view', array('slug' => 'my-first-post')));
 
@@ -45,6 +46,7 @@ class PostControllerTest extends WebTestCase
         $this->loadFixtures(array(
             'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
             'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
+            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagTranslationData',
             'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
 
         $crawler = $this->fetchCrawler($this->getUrl('blog'));

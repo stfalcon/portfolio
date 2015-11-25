@@ -2,11 +2,13 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
+use Stfalcon\Bundle\BlogBundle\Entity\TagTranslation;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * TagController
@@ -15,35 +17,48 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class TagController extends AbstractController
 {
-
     /**
      * View tag
      *
-     * @param Request $request
-     * @param Tag     $tag
-     * @param int     $page page number
+     * @param Request $request Request
+     * @param string  $text    Tag text
+     * @param int     $page    Page number
      *
      * @return array
      *
      * @Route("/blog/tag/{text}/{title}/{page}", name="blog_tag_view",
      *      requirements={"page"="\d+", "title"="page"},
      *      defaults={"page"="1", "title"="page"})
+     *
      * @Template()
      */
-    public function viewAction(Request $request, Tag $tag, $page)
+    public function viewAction(Request $request, $text, $page)
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
+        $em = $this->getDoctrine()->getManager();
 
-        $query = $repository->findPostsByTagAsQuery($tag, $request->getLocale());
-        $posts = $this->get('knp_paginator')
-            ->paginate($query, $page, 10);
+        $postRepository           = $em->getRepository('StfalconBlogBundle:Post');
+        $tagTranslationRepository = $em->getRepository('StfalconBlogBundle:TagTranslation');
+        $tagRepository            = $em->getRepository('StfalconBlogBundle:Tag');
+
+        $tagTranslation = $tagTranslationRepository->findOneBy(['content' => $text]);
+        if (null === $tagTranslation) {
+            $tag = $tagRepository->findOneBy(['text' => $text]);
+        } else {
+            $tag = $tagTranslation->getObject();
+        }
+
+        if (null === $tag) {
+            throw new NotFoundHttpException();
+        }
+
+        $query = $postRepository->findPostsByTagAsQuery($tag, $request->getLocale());
+        $posts = $this->get('knp_paginator')->paginate($query, $page, 10);
 
         if (count($posts) > 1) {
-            return $this->_getRequestDataWithDisqusShortname(array(
-                'tag' => $tag,
+            return $this->_getRequestDataWithDisqusShortname([
+                'tag'   => $tag,
                 'posts' => $posts,
-            ));
-
+            ]);
         } else {
             return $this->redirect($this->generateUrl('blog'));
         }

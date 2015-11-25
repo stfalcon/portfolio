@@ -42,6 +42,75 @@ $(function () {
         }
     });
 
+    //Show hire us
+    $(document).on('click', '.hire_us', function(){
+        $('body').addClass('open-hire_us');
+    });
+
+
+    //function resize margin position
+    function resizePos(){
+        return ((window.innerWidth - 915)/2) - 49.5;
+    };
+
+        $(window).resize(function() {
+            var windowWidth = resizePos();
+            $('.search_button.js-icon-search').css({left: windowWidth, top:'76px'});
+        });
+
+        //Show search form
+    $(document).on('click', '.search_button', function(){
+        if ($(window).width() < 838) {
+            $('.search-form-wrap').animate({display:'block' ,width:'100%','height':'toggle',top:'0'},450,function() {
+                $('#search_searchPhrase').focus();
+            });
+            $('.search_button').prop("disabled",true).css('cursor','default');
+            var windowWidth = resizePos();
+            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'76px'},500);
+            $('body').addClass('open-search-form');
+            setTimeout(function(){
+                $('#search-form, #search-results').animate({opacity:'1'},500);
+            },100)
+        }
+        else {
+            $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'0'},450,function() {
+                $('.search_button').toggle();
+                $('#search_searchPhrase').focus();
+            });
+            $('.search_button').prop("disabled",true).css('cursor','default');
+            var windowWidth = resizePos();
+            $('.search_button').addClass('search_button-animate').animate({left: windowWidth, top:'76px'},500);
+            setTimeout(function(){
+                $('body').addClass('open-search-form');
+                $('#search-form, #search-results').animate({opacity:'1'},500);
+            },450)
+        }
+
+    });
+
+    //Hide search form
+    $(document).on('click', '.close-search-form', function(){
+        if($(window).width() < 838){
+            $('body').removeClass('open-search-form');
+            $('.search-form-wrap').animate({width:'100%','height':'toggle',top:'92px'},450);
+            $('#search-form,#search-results').animate({opacity:'0'},100);
+            $('.search_button').animate({left:'0px', top:'92px'},500, function(){
+                $('.search_button').removeClass('search_button-animate');
+                $('.search_button').prop("disabled",false).css('cursor','pointer');
+            });
+        }
+        else{
+            $('body').removeClass('open-search-form');
+            $('.search_button').toggle();
+            $('.search-form-wrap').animate({width:'toggle','height':'toggle',top:'92px'},450);
+            $('#search-form,#search-results').animate({opacity:'0'},100);
+            $('.search_button').animate({left:'0px', top:'92px'},500, function(){
+                $('.search_button').removeClass('search_button-animate');
+                $('.search_button').prop("disabled",false).css('cursor','pointer');
+            });
+        }
+    });
+
     var yearsCnt = $('.years-count'),
         startPos;
     var yearList = $('.year-slider-wrapp li');
@@ -478,4 +547,63 @@ $(function () {
     }
 
 
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 200) {
+                $('.scroll-to-top').fadeIn();
+            } else {
+                $('.scroll-to-top').fadeOut();
+            }
+
+            if ($(window).width()<=320){
+                $('.scroll-to-top').hide();
+                return false;
+            }
+        });
+        $(".scroll-to-top").click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+
+    function fixedButtonUp() {
+        if($('.scroll-to-top').offset().top + $('.scroll-to-top').height()
+            >= $('.footer').offset().top - 69)
+            $('.scroll-to-top').addClass('fixed-scroll-top');
+        if($(document).scrollTop() + window.innerHeight < $('.footer').offset().top)
+            $('.scroll-to-top').removeClass('fixed-scroll-top');
+    }
+
+    function fixedHireUs() {
+        if($('#hire_us-js').offset().top + $('.hire_us').height()
+            >= $('.footer').offset().top - 186)
+            $('#hire_us-js').addClass('fixed-hire-us');
+        if($(document).scrollTop() + window.innerHeight < $('.footer').offset().top)
+            $('#hire_us-js').removeClass('fixed-hire-us');
+    }
+
+    $(document).scroll(function() {
+        fixedButtonUp();
+        fixedHireUs();
+    });
+
+    function placeholderReplace() {
+        if ($(window).width() < 540) {
+            $("#subscribe_email").attr("placeholder", subscribeShortText);
+        } else {
+            $("#subscribe_email").attr("placeholder", subscribeFullText);
+        }
+    }
+    placeholderReplace();
+    $( window ).resize(function() {
+        placeholderReplace();
+    });
+
+    autosize(document.querySelectorAll('#order_promotion_message'));
 });
+
+
+
+

@@ -63,6 +63,9 @@ return array(
     'promotion.order.design_form.mail.subject' => 'The application for the development of web design from "%email%"',
     'promotion.order.development.mail.subject' => 'The application for Web development by "%email%"',
     'promotion.order.development_form.mail.subject' => 'The application for Web development by "%email%"',
+
+    'promotion.order.hire.us.mail.subject' => 'Hiring request by "%email%"',
+
     'Кукорама' => 'Cookorama',
     'Радиалка' => 'Twiseller',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',
@@ -118,4 +121,11 @@ return array(
     'Головоломка, целью которой является уничтожение всех кубиков, расположенных на экране, за как можно меньшее количество ходов.' => 'A puzzle game, which goal is to destroy all cubes on the screen with the least possible number of moves.',
     'promotion.order.mobilegames.mail.subject' => 'Order for development of a mobile game from "%email%"',
     'promotion.order.mobilegames_form.mail.subject' => 'Order for development of a mobile game from "%email%"',
+    'Заполните это поле' => 'This field is required',
+    'Работать с нами!' => 'Hire us!',
+    'Подписаться' => 'Subscribe',
+    'Пожалуйста введите правильный имейл.' => 'Please enter a valid email address.',
+    'Пожалуйста введите как минимум {0} символа' => 'Please enter at least {0} characters.',
+    'Минимальное количество символов {0}' => 'Please enter at least {0} characters.',
+    'Максимальное количество символов {0}' => 'Please enter no more than {0} characters.',
 );
