@@ -35,8 +35,9 @@ $(document).ready(function () {
                     for (var post in response['posts']) {
                         var item = response['posts'][post];
 
+                        var imageTag = '';
                         if (item['preview_image']) {
-                            var imageTag = '<img class="preview-image" src="' + item['preview_image'] + '" alt="' + item['title'] + '" />';
+                            imageTag = '<img class="preview-image" src="' + item['preview_image'] + '" alt="' + item['title'] + '" />';
                         }
 
                         posts += template({
