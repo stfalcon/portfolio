@@ -2,7 +2,10 @@
 
 namespace StfalconBundle\Bundle\BlogBundle\Tests\Admin;
 
+use Doctrine\ORM\EntityManager;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Stfalcon\Bundle\BlogBundle\Entity\Tag;
+use Stfalcon\Bundle\BlogBundle\Repository\TagRepository;
 use Symfony\Component\HttpKernel\Client;
 
 /**
@@ -37,6 +40,7 @@ class PostAdminTest extends WebTestCase
     {
         $this->loadFixtures(array(
             'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
+            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
         ));
 
         $this->doLogin();
@@ -45,10 +49,21 @@ class PostAdminTest extends WebTestCase
         $form = $crawler->selectButton('btn_create_and_edit')->form();
         $formId = substr($form->getUri(), -14);
 
+        /** @var TagRepository $tagRepository */
+        $tagRepository = $this->getContainer()
+                              ->get('doctrine')
+                              ->getManager()
+                              ->getRepository('StfalconBlogBundle:Tag');
+
+        /** @var Tag $phpTag */
+        /** @var Tag $symfonyTag */
+        $phpTag     = $tagRepository->findOneBy(['text' => 'php']);
+        $symfonyTag = $tagRepository->findOneBy(['text' => 'symfony2']);
+
         $form[$formId . '[translations][defaultLocale][ru][title]'] = 'Post title';
         $form[$formId . '[translations][defaultLocale][ru][text]'] = 'Post text';
         $form[$formId . '[slug]'] = 'post-slug';
-        $form[$formId . '[tags]'] = 'Post,tags';
+        $form[$formId . '[tags]']->select([$phpTag->getId(), $symfonyTag->getId()]);
         $form[$formId . '[author]'] = 1;
         $this->client->submit($form);
 
@@ -83,8 +98,17 @@ class PostAdminTest extends WebTestCase
             'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
 
         $this->doLogin();
+        /** @var EntityManager $em */
         $em = $this->getContainer()->get('doctrine')->getManager();
         $post = $em->getRepository("StfalconBlogBundle:Post")->findOneBy(array('slug' => 'post-about-php'));
+
+        /** @var TagRepository $tagRepository */
+        $tagRepository = $em->getRepository('StfalconBlogBundle:Tag');
+
+        /** @var Tag $phpTag */
+        /** @var Tag $symfonyTag */
+        $phpTag     = $tagRepository->findOneBy(['text' => 'php']);
+        $symfonyTag = $tagRepository->findOneBy(['text' => 'symfony2']);
 
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_blog_post_edit', array('id' => $post->getId())));
 
@@ -94,7 +118,7 @@ class PostAdminTest extends WebTestCase
         $form[$formId . '[translations][defaultLocale][ru][title]'] = 'New post title';
         $form[$formId . '[translations][defaultLocale][ru][text]'] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..';
         $form[$formId . '[slug]'] = 'new-post-slug';
-        $form[$formId . '[tags]'] = 'php, symfony2, etc';
+        $form[$formId . '[tags]']->select([$phpTag->getId(), $symfonyTag->getId()]);
         $this->client->submit($form);
 
         // check responce
