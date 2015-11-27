@@ -52,7 +52,7 @@ HELP
                     }
 
                     $translation = (new UserWithPositionTranslation())
-                        ->setField('position')
+                        ->setField('positions')
                         ->setLocale('en')
                         ->setContent($this->getTranslatedUserPosition($participant->getUser()));
 

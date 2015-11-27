@@ -214,4 +214,17 @@ class UserWithPosition implements Translatable
 
         return $this;
     }
+
+    /**
+     * @param UserWithPositionTranslation $userWithPositionTranslation
+     * @return $this
+     */
+    public function removeTranslation(UserWithPositionTranslation $userWithPositionTranslation)
+    {
+        if ($this->translations->contains($userWithPositionTranslation)) {
+            $this->translations->removeElement($userWithPositionTranslation);
+        }
+
+        return $this;
+    }
 }
