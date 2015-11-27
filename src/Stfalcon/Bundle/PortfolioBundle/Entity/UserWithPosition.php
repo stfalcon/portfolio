@@ -200,4 +200,18 @@ class UserWithPosition implements Translatable
     {
         return $this->translations;
     }
+
+    /**
+     * @param UserWithPositionTranslation $userWithPositionTranslation
+     * @return $this
+     */
+    public function addTranslation(UserWithPositionTranslation $userWithPositionTranslation)
+    {
+        if (!$this->translations->contains($userWithPositionTranslation)) {
+            $this->translations->add($userWithPositionTranslation);
+            $userWithPositionTranslation->setObject($this);
+        }
+
+        return $this;
+    }
 }
