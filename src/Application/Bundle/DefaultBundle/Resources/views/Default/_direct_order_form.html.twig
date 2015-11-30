@@ -25,6 +25,9 @@
             {{ form_widget(form.attach) }}
             {{ form_errors(form.attach) }}
         </div>
+        <div class="">
+            {{ form_widget(form.captcha) }}
+        </div>
         <button class="btn" type="submit">{{ "Отправить" | trans() }}</button>
     </div>
     {{ form_rest(form) }}

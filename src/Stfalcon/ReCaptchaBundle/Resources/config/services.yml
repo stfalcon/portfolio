@@ -1,0 +1,15 @@
+parameters:
+#    stfalcon_re_captcha.example.class: Stfalcon\ReCaptchaBundle\Example
+
+services:
+    stfalcon_recaptchabundle.form.type.recaptchaformtype:
+        class: Stfalcon\ReCaptchaBundle\Form\Type\ReCaptchaFormType
+        arguments:
+            - @request
+            - @buzz
+            - @translator.default
+            - %stfalcon.recaptcha.site_key%
+            - %stfalcon.recaptcha.secret%
+        scope: request
+        tags:
+            - { name: form.type, alias: recaptcha }

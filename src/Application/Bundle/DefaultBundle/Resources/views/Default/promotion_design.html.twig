@@ -195,6 +195,9 @@
                         <div class="line">
                             {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о сайте'|trans} }) }}
                         </div>
+                        <div class="">
+                            {{ form_widget(form.captcha) }}
+                        </div>
                         <div class="line">
                             <button class="btn btn-black float-right">{{ 'Заказать дизайн веб-сайта'|trans }}</button>
                         </div>

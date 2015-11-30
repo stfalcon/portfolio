@@ -42,7 +42,6 @@ $(function () {
         debug: false,
         submitHandler: function (form, e) {
             e.preventDefault();
-            console.log(e);
 
             $.ajax({
                 url: $(form).attr('action'),
@@ -55,11 +54,13 @@ $(function () {
                 cache: false,
                 async: false,
                 success: function (response) {
-                    $(form).find('.form-pad').animate({opacity: 0}, 300);
-                    $(form).find('.form-success').fadeIn(300);
-                    windowCloseTimerId = setTimeout(function() {
-                        $('.close-hire_us').trigger('click');
-                    }, 4000);
+                    if ('success' === response.status) {
+                        $(form).find('.form-pad').animate({opacity: 0}, 300);
+                        $(form).find('.form-success').fadeIn(300);
+                        windowCloseTimerId = setTimeout(function () {
+                            $('.close-hire_us').trigger('click');
+                        }, 4000);
+                    }
                 }
             });
             return false;

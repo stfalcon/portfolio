@@ -101,6 +101,9 @@ class DirectOrderFormType extends AbstractType
                         'maxSize' => '20M',
                     ])
                 ]
+            ])
+            ->add('captcha', 'recaptcha', [
+                'label' => false,
             ]);
     }
 
@@ -111,4 +114,4 @@ class DirectOrderFormType extends AbstractType
     {
         return 'direct_order';
     }
-} 
+}

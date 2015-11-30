@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
 
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -40,6 +41,7 @@ class AppKernel extends Kernel
 
             new Stfalcon\Bundle\BlogBundle\StfalconBlogBundle(),
             new Stfalcon\Bundle\PortfolioBundle\StfalconPortfolioBundle(),
+            new Stfalcon\ReCaptchaBundle\StfalconReCaptchaBundle(),
 
             new Application\Bundle\DefaultBundle\ApplicationDefaultBundle(),
 

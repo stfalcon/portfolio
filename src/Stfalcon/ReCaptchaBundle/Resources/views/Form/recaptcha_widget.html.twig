@@ -1,0 +1,4 @@
+{% block recaptcha_widget %}
+    <script src='https://www.google.com/recaptcha/api.js?hl={{ locale }}'></script>
+    <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-theme="{{ theme }}"></div>
+{% endblock %}
