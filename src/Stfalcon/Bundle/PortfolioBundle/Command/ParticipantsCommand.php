@@ -3,8 +3,11 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Command;
 
 use Application\Bundle\UserBundle\Entity\User;
+use Application\Bundle\UserBundle\Entity\UserTranslation;
+use Doctrine\ORM\PersistentCollection;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
+use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPositionTranslation;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -36,39 +39,73 @@ HELP
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        $projects = $em->getRepository('StfalconPortfolioBundle:Project')->findAll();
 
-        $projects = $em->getRepository('StfalconPortfolioBundle:Project')->findAllWithoutUserWithPosition();
-        if (empty($project)) {
-            foreach ($projects as $project) {
-                $participants = $project->getParticipants()->getValues();
+        foreach ($projects as $project) {
+            $participants = $project->getUsersWithPositions();
 
-                if (!empty($participants)) {
-                    /** @var User $participant */
-                    foreach ($participants as $participant) {
-                        /** @var UserWithPosition $userWithPosition */
-                        $userWithPosition = (new UserWithPosition())
-                            ->setProject($project)
-                            ->setUser($participant)
-                            ->setPositions($participant->getPosition());
-
-                        $em->persist($userWithPosition);
-
-                        $output->writeln(sprintf(
-                            '<comment>User with position for Proejct#<info>%s</info> <info>successfully</info> created</comment>',
-                            $project->getId()
-                        ));
+            if (!$participants->isEmpty()) {
+                /** @var UserWithPosition $participant */
+                foreach ($participants as $participant) {
+                    if ($this->hasUserWithPositionTranslations($participant)) {
+                        continue;
                     }
 
-                    $em->flush();
-                } else {
+                    $translation = (new UserWithPositionTranslation())
+                        ->setField('positions')
+                        ->setLocale('en')
+                        ->setContent($this->getTranslatedUserPosition($participant->getUser()));
+
+                    $participant->addTranslation($translation);
+
                     $output->writeln(sprintf(
-                        '<comment>Project #<info>%s</info> without participants</comment>',
+                        '<comment>User with position for Proejct#<info>%s</info> <info>successfully</info> created</comment>',
                         $project->getId()
                     ));
                 }
+
+                $em->flush();
+            } else {
+                $output->writeln(sprintf(
+                    '<comment>Project #<info>%s</info> without participants</comment>',
+                    $project->getId()
+                ));
             }
-        } else {
-            $output->writeln('<comment>There\'s not projects without participants</comment>');
         }
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return string
+     */
+    private function getTranslatedUserPosition(User $user)
+    {
+        $position = $user->getPosition();
+
+        /** @var UserTranslation $translation */
+        foreach ($user->getTranslations()->getValues() as $translation) {
+            if ($translation->getField() == 'position' && $translation->getLocale() == 'en') {
+                $position = $translation->getContent();
+            }
+        }
+
+        return $position;
+    }
+
+    /**
+     * @param UserWithPosition $userWithPosition
+     *
+     * @return bool
+     */
+    private function hasUserWithPositionTranslations($userWithPosition)
+    {
+        /** @var UserWithPositionTranslation $translation */
+        foreach ($userWithPosition->getTranslations() as $translation) {
+            if ($translation->getField() == 'position' && $translation->getLocale() == 'en') {
+                return true;
+            }
+        }
+        return false;
     }
 }
