@@ -155,11 +155,13 @@
                     <div class="line">
                         {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о приложении'|trans} }) }}
                     </div>
-                    <div class="">
-                        {{ form_widget(form.captcha) }}
+                    <div class="wrap_captcha">
+                        <div class="google-captcha">
+                            {{ form_widget(form.captcha) }}
+                        </div>
                     </div>
-                    <div class="line">
-                        <button class="btn btn-black float-right">{{ 'Заказать игру'|trans }}</button>
+                    <div class="line" style="text-align: center;">
+                        <button class="btn btn-black">{{ 'Заказать приложение'|trans }}</button>
                     </div>
                 </div>
                 {{ form_rest(form) }}

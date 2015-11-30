@@ -899,9 +899,10 @@
 
   .btn{
     background: #ea0d34;
-    margin-top: 56px;
-    @media (max-width: 690px) {
-      margin-top: 0px;
+    margin-top: 25px;
+    width: 304px;
+    @media (max-width: 320px) {
+      margin-left: -11px;
     }
     &:active{
       outline: none;
@@ -1468,3 +1469,25 @@
     }
   }
 }
+
+.google-captcha{
+  display: inline-block;
+  &.mod-landing{
+    margin-bottom: 25px;
+  }
+  &.contact-captcha{
+    margin-top: 20px;
+    margin-bottom: 20px;
+//    float: left;
+    @media (max-width: 1080px) {
+      margin-top: 0px;
+    }
+    @media (max-width: 320px) {
+      margin-left: 0px;
+    }
+  }
+  @media (max-width: 320px) {
+    margin-left: -11px;
+  }
+}
+

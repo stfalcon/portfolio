@@ -60,6 +60,8 @@ $(function () {
                         windowCloseTimerId = setTimeout(function () {
                             $('.close-hire_us').trigger('click');
                         }, 4000);
+                    } else{
+                        $(form).find("button").prop('disabled', false);
                     }
                 }
             });

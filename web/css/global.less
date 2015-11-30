@@ -222,6 +222,7 @@ form ::-webkit-input-placeholder {
   }
   .filename {
     margin: 0;
+    text-align: left;
   }
   .filesize {
     position: absolute;
@@ -259,14 +260,22 @@ form {
   }
   .btn-line {
     margin-top: 20px;
+    @media (max-width: 1080px) {
+      text-align: center;
+    }
 
     .btn {
-      float: right;
       position: relative;
-      margin-top: -51px;
+      float: right;
+      margin-top: 33px;
+      @media (max-width: 1080px) {
+        float: none;
+        display: block;
+        margin: auto;
+      }
     }
     .file-input {
-      margin-right: 184px;
+//      margin-right: 184px;
     }
   }
 }
@@ -359,9 +368,6 @@ input.error {
 @media screen and (max-width:1080px) {
   form {
     .btn-line {
-      .btn {
-        margin: 0;
-      }
       .file-input {
         width: 100%;
         float: none;
