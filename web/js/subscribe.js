@@ -12,14 +12,21 @@ $(document).ready(function () {
             success: function(response) {
                 if (!response.success) {
                     $form.closest('.subscribe-form-wrap').replaceWith(response.view);
+                    inputChange();
                 } else {
                     if (window.ga) {
                         ga('send', 'event', 'subscribe', 'success');
                     }
                     $form.find('input[type="email"]').val('');
                     $form.find('.error-list').remove();
+                    inputChange();
                 }
             }
         });
     });
+    function inputChange(){
+        $('#subscribe_email').keyup(function () {
+            $('.error-list').empty();
+        });
+    }
 });

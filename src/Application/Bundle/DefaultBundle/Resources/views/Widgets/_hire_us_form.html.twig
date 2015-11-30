@@ -1,4 +1,4 @@
-<button id="hire_us-js" class="hire_us">{{ 'Работать с нами!'|trans }}</button>
+<button id="hire_us-js" class="hire_us {% if app.request.locale == 'en' %}en-btn{% endif %}">{{ 'Работать с нами!'|trans }}</button>
 
 <section id="hire-us-widget" class="hire_us-form">
     <div class="wrap_form">
