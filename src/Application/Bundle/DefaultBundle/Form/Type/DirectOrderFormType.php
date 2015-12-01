@@ -1,6 +1,7 @@
 <?php
 namespace Application\Bundle\DefaultBundle\Form\Type;
 
+use Stfalcon\ReCaptchaBundle\Validator\Constraints\ValidCaptcha;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

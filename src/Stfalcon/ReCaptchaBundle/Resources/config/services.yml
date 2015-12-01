@@ -6,10 +6,15 @@ services:
         class: Stfalcon\ReCaptchaBundle\Form\Type\ReCaptchaFormType
         arguments:
             - @request
-            - @buzz
-            - @translator.default
             - %stfalcon.recaptcha.site_key%
             - %stfalcon.recaptcha.secret%
         scope: request
         tags:
             - { name: form.type, alias: recaptcha }
+
+    stfalcon_re_captcha.validator_constraints.valid_captcha_validator:
+        class: Stfalcon\ReCaptchaBundle\Validator\Constraints\ValidCaptchaValidator
+        arguments: [ @request, @buzz, %stfalcon.recaptcha.site_key%, %stfalcon.recaptcha.secret% ]
+        scope: request
+        tags:
+            - { name: validator.constraint_validator, alias: valid_captcha }

@@ -2,6 +2,7 @@
 
 <form action="" method="post" id="direct-order-form" enctype="multipart/form-data">
     <h3>{{ "Заявка на сотрудничество" | trans() }}</h3>
+    {{ form_errors(form) }}
     <div class="line">
         {{ form_widget(form.name) }}
         {{ form_errors(form.name) }}
@@ -27,6 +28,7 @@
         </div>
         <div class="google-captcha contact-captcha">
             {{ form_widget(form.captcha) }}
+            {{ form_errors(form.captcha) }}
         </div>
         <button class="btn" type="submit">{{ "Отправить" | trans() }}</button>
     </div>
