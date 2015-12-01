@@ -1,6 +1,7 @@
 <?php
 namespace Application\Bundle\DefaultBundle\Form\Type;
 
+use Stfalcon\ReCaptchaBundle\Validator\Constraints\ValidCaptcha;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -101,6 +102,9 @@ class DirectOrderFormType extends AbstractType
                         'maxSize' => '20M',
                     ])
                 ]
+            ])
+            ->add('captcha', 'recaptcha', [
+                'label' => false,
             ]);
     }
 
@@ -111,4 +115,4 @@ class DirectOrderFormType extends AbstractType
     {
         return 'direct_order';
     }
-} 
+}

@@ -42,7 +42,10 @@ class PromotionOrderFormType extends AbstractType
                     'label' => 'Your message',
                     'constraints' => [new Assert\Length(array('max' => 5000))]
                 ]
-            );
+            )
+            ->add('captcha', 'recaptcha', [
+                'label' => false,
+            ]);
     }
 
     /**
@@ -52,4 +55,4 @@ class PromotionOrderFormType extends AbstractType
     {
         return 'order_promotion';
     }
-} 
+}

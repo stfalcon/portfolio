@@ -20,6 +20,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+        resources:
+            - 'StfalconReCaptchaBundle:Form:recaptcha_widget.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -234,3 +237,11 @@ sonata_seo:
         metas:
             property:
                 'og:image': http://stfalcon.com/img/facebook_cover.jpg
+
+stfalcon_re_captcha:
+    site_key: %recaptcha.site_key%
+    secret: %recaptcha.secret%
+    theme: light
+
+sensio_buzz:
+    client_timeout: 20

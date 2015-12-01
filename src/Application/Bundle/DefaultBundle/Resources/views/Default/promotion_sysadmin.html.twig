@@ -192,8 +192,13 @@
                     <div class="line">
                         {{ form_widget(form.message, {'attr': {'placeholder': 'Напишите пару слов о необходимой услуге'|trans} }) }}
                     </div>
-                    <div class="line">
-                        <button class="btn btn-black float-right">{{ 'Заказать администрирование'|trans }}</button>
+                    <div class="wrap_captcha">
+                        <div class="google-captcha">
+                            {{ form_widget(form.captcha) }}
+                        </div>
+                    </div>
+                    <div class="line" style="text-align: center;">
+                        <button class="btn btn-black">{{ 'Заказать приложение'|trans }}</button>
                     </div>
                 </div>
                 {{ form_rest(form) }}
