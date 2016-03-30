@@ -1,6 +1,6 @@
 <li>
     {% if participant.user.avatarName %}
-        <img src="{{ vich_uploader_asset(participant.user, 'avatar') | apply_filter('avatar_small') }}" alt="{{ participant.user.firstname ~ ' ' ~ participant.user.lastname }}" />
+        <img src="{{ vich_uploader_asset(participant.user, 'avatar') | apply_filter('avatar') }}" alt="{{ participant.user.firstname ~ ' ' ~ participant.user.lastname }}" />
     {% endif %}
     <span>{{ participant.user.firstname ~ ' ' ~ participant.user.lastname }}</span>
 
