@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
+use FOS\RestBundle\Util\Codes;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,13 +21,19 @@ class DefaultController extends Controller
     /**
      * Categories/projects list
      *
+     * @param Request $request Request
+     *
      * @return array()
      * @Cache(expires="tomorrow")
      * @Route("/", name="homepage")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        if (!$request->cookies->has('hl')) {
+            return $this->redirect($this->generateUrl('homepage', ['_locale' => 'en']), Codes::HTTP_FOUND);
+        }
+
         return [];
     }
 
