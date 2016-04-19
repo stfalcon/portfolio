@@ -13,5 +13,8 @@ deploy_callbacks:
         - "sed -i \"s/sql_db          =.*/sql_db          = `echo -n $STAGING_BRANCH|md5sum | awk '{print $1}'`/\" /etc/sphinxsearch/sphinx.conf"
         - 'sed -i "s/START=no/START=yes/" /etc/default/sphinxsearch'
     after_deploy:
+        - 'grunt less'
+        - 'grunt autoprefixer'
+        - 'grunt csso'
         - 'indexer --all'
         - '/etc/init.d/sphinxsearch start'
