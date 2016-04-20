@@ -152,7 +152,7 @@ function activeTabByHash(hash) {
 }
 
 function changeTabByHash(hash) {
-    if (hash.length>0 && hash != 'ndefined') {
+    if (hash.length>0 && hash != 'undefined') {
         activeTabByHash(hash);
     } else {
         // go to default category
@@ -210,13 +210,12 @@ $prevButton.on('click', function(){
 
 $(document).ready(function() {
     var hash = window.location.hash;
-    hash = hash.substr(2);
     changeTabByHash(hash);
 });
 
 
 $.History.bind(function(state) {
-    var hash = state.substr(1);
+    hash = state;
     changeTabByHash(hash);
 });
 
