@@ -25,7 +25,5 @@ node_modules/*
 
 # generated sitemaps
 web/sitemap.xml
-web/en/*
-!web/en/.gitkeep
-web/ru/*
-!web/ru/.gitkeep
+web/sitemap/*
+!web/sitemap/.gitkeep

@@ -87,10 +87,10 @@ class SitemapService
     public function generateSitemap()
     {
         $ruXmlSitemap = $this->getXMLSitemapByLocale('ru');
-        $ruXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'ru'.DIRECTORY_SEPARATOR.'sitemap.xml');
+        $ruXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'ru.xml');
 
         $enXmlSitemap = $this->getXMLSitemapByLocale('en');
-        $enXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'en'.DIRECTORY_SEPARATOR.'sitemap.xml');
+        $enXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'en.xml');
 
         $renderedSitemapIndex = $this->twig->render('::sitemap.xml.twig');
         file_put_contents($this->webRoot.'/sitemap.xml', $renderedSitemapIndex);
