@@ -22,3 +22,10 @@ app/config/parameters.ini
 
 # Node.js directories
 node_modules/*
+
+# generated sitemaps
+web/sitemap.xml
+web/en/*
+!web/en/.gitkeep
+web/ru/*
+!web/ru/.gitkeep
