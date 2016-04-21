@@ -19,9 +19,9 @@ $(function () {
     function render_next_item() {
         var route;
         if (category) {
-            route = Routing.generate('portfolio_category_next_projects', {slug: category, limit: 4, offset: all_item_count});
+            route = Routing.generate('portfolio_category_next_projects', {slug: category, limit: 8, offset: all_item_count});
         } else {
-            route = Routing.generate('portfolio_next_projects', {limit: 4, offset: all_item_count});
+            route = Routing.generate('portfolio_next_projects', {limit: 8, offset: all_item_count});
         }
         next_count = 0;
         $.get(route, function (data) {
