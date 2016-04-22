@@ -22,3 +22,13 @@ app/config/parameters.ini
 
 # Node.js directories
 node_modules/*
+
+# generated sitemaps
+web/sitemap.xml
+web/sitemap/*
+!web/sitemap/.gitkeep
+
+# ingore generate with Grunt css files
+web/css/style.min.css
+web/assets/css/style.css
+web/assets/css/style.min.css

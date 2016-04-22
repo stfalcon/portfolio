@@ -22,7 +22,8 @@ class DefaultController extends Controller
      *
      * @return array()
      * @Cache(expires="tomorrow")
-     * @Route("/", name="homepage")
+     * @Route("/{_locale}", name="homepage", defaults={"_locale": "en"}, requirements={"_locale": "en|ru"}, options={"i18n"=false})
+     *
      * @Template()
      */
     public function indexAction()

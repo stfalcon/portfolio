@@ -218,9 +218,9 @@ services:
             - { name: twig.extension }
 
 jms_i18n_routing:
-    default_locale: %locale%
-    locales: %locales%
-    strategy: prefix_except_default
+    default_locale: "%locale%"
+    locales:        "%locales%"
+    strategy:       prefix
 
 a2lix_translation_form:
     locales: [ru, en]

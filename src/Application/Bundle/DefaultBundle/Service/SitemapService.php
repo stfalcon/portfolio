@@ -25,15 +25,24 @@ class SitemapService
     private $entityManager;
 
     /**
-     * @param EntityManager $entityManager
-     * @param Router        $router
-     * @param string        $webRoot
+     * @var \Twig_Environment
      */
-    public function __construct(EntityManager $entityManager, Router $router, $webRoot)
+    private $twig;
+
+    /**
+     * Constructor
+     *
+     * @param EntityManager     $entityManager Entity manager
+     * @param Router            $router        Router
+     * @param \Twig_Environment $twig          Twig
+     * @param string            $webRoot       Web root
+     */
+    public function __construct(EntityManager $entityManager, Router $router, \Twig_Environment $twig, $webRoot)
     {
-        $this->router = $router;
-        $this->webRoot = $webRoot;
         $this->entityManager = $entityManager;
+        $this->router        = $router;
+        $this->twig          = $twig;
+        $this->webRoot       = $webRoot;
     }
 
     /**
@@ -77,11 +86,14 @@ class SitemapService
      */
     public function generateSitemap()
     {
-        $RUxmlSitemap = $this->getXMLSitemapByLocale('ru');
-        $RUxmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'sitemap.xml');
+        $ruXmlSitemap = $this->getXMLSitemapByLocale('ru');
+        $ruXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'ru.xml');
 
-        $ENxmlSitemap = $this->getXMLSitemapByLocale('en');
-        $ENxmlSitemap->saveXML($this->webRoot . DIRECTORY_SEPARATOR . 'en' . DIRECTORY_SEPARATOR . 'sitemap.xml');
+        $enXmlSitemap = $this->getXMLSitemapByLocale('en');
+        $enXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'en.xml');
+
+        $renderedSitemapIndex = $this->twig->render('::sitemap.xml.twig');
+        file_put_contents($this->webRoot.'/sitemap.xml', $renderedSitemapIndex);
     }
 
     /**

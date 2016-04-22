@@ -11,7 +11,7 @@ role :web,        domain                         # Your HTTP server, Apache/etc
 role :app,        domain                         # This may be the same as your `Web` server
 role :db,         domain, :primary => true       # This is where Rails migrations will run
 
-default_run_options[:pty] = true 
+default_run_options[:pty] = true
 
 set :keep_releases, 3
 set :user,          "stfalcon-com"
@@ -21,5 +21,5 @@ set :use_composer,  true
 #set :deploy_via,    :rsync_with_remote_cache
 
 set :shared_files,        ["app/config/parameters.ini", "web/sitemap.xml"]
-set :shared_children,     [app_path + "/logs", web_path + "/uploads", web_path + "/bundles", web_path + "/media", web_path + "/en"]
+set :shared_children,     [app_path + "/logs", web_path + "/uploads", web_path + "/bundles", web_path + "/media", web_path + "/sitemap"]
 set :dump_assetic_assets, true
