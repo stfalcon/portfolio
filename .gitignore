@@ -27,3 +27,8 @@ node_modules/*
 web/sitemap.xml
 web/sitemap/*
 !web/sitemap/.gitkeep
+
+# ingore generate with Grunt css files
+web/css/style.min.css
+web/assets/css/style.css
+web/assets/css/style.min.css
