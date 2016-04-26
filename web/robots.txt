@@ -5,3 +5,4 @@
 User-agent: *
 Allow: /
 Host: stfalcon.com
+Sitemap: httр://stfalcon.com/sitemap.xml
