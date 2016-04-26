@@ -17,13 +17,13 @@
             <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Posts" />
             <argument />
             <argument>%stfalcon_blog.admin.post.entity%</argument>
-            <argument />
+            <argument>StfalconBlogBundle:Admin\PostAdmin</argument>
         </service>
         <service id="stfalcon_blog.admin.tag" class="%stfalcon_blog.admin.tag.class%">
             <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Tags" />
             <argument />
             <argument>%stfalcon_blog.admin.tag.entity%</argument>
-            <argument />
+            <argument>StfalconBlogBundle:Admin\TagAdmin</argument>
         </service>
 
         <service id="twig.extension.read_more" class="Stfalcon\Bundle\BlogBundle\Extension\ReadMoreTwigExtension">

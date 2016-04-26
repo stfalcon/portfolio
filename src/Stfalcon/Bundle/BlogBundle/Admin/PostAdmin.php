@@ -10,6 +10,24 @@ use Sonata\AdminBundle\Form\FormMapper;
  */
 class PostAdmin extends Admin
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected $datagridValues = [
+        '_page'       => 1,
+        '_sort_order' => 'DESC',
+    ];
+
+    public function postPersist($post)
+    {
+        $this->postUpdate($post);
+    }
+
+    public function postUpdate($post)
+    {
+        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -99,14 +117,5 @@ class PostAdmin extends Admin
             ->addIdentifier('slug')
             ->add('title')
             ->add('created');
-    }
-
-    public function postPersist($post)
-    {
-        $this->postUpdate($post);
-    }
-    public function postUpdate($post)
-    {
-        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
     }
 }

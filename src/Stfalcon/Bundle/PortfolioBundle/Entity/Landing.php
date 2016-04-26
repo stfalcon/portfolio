@@ -39,7 +39,6 @@ class Landing implements Translatable
      */
     private $slug;
 
-
     /**
      * @var string $name
      *
@@ -51,7 +50,6 @@ class Landing implements Translatable
      * @ORM\Column(name="title", type="text")
      */
     private $title;
-
 
     /**
      * @var string $name
@@ -106,6 +104,20 @@ class Landing implements Translatable
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $result = 'New Landing';
+
+        if (null !== $this->getId()) {
+            $result = $this->getTitle();
+        }
+
+        return $result;
     }
 
     /**
