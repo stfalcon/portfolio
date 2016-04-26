@@ -42,7 +42,6 @@ class Category implements Translatable
      */
     private $name = '';
 
-
     /**
      * @var string $shortName
      *
@@ -77,7 +76,6 @@ class Category implements Translatable
      * @ORM\Column(name="description", type="text")
      */
     private $description;
-
 
     /**
      * @var string $details
@@ -173,6 +171,20 @@ class Category implements Translatable
         $this->projects = new ArrayCollection();
         $this->cost = '';
         $this->translations = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $result = 'New Category';
+
+        if (null !== $this->getId()) {
+            $result = $this->getName();
+        }
+
+        return $result;
     }
 
     /**
@@ -274,16 +286,6 @@ class Category implements Translatable
     }
 
     /**
-     * This method allows a class to decide how it will react when it is treated like a string
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
      * Get order num
      *
      * @return integer
@@ -329,6 +331,7 @@ class Category implements Translatable
             $categoryTranslation->setObject($this);
         }
     }
+
     /**
      * @param CategoryTranslation $categoryTranslation
      */

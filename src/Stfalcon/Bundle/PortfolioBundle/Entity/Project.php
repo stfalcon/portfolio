@@ -69,7 +69,6 @@ class Project implements Translatable
      */
     private $description;
 
-
     /**
      * @var string $shortDescription
      *
@@ -123,7 +122,6 @@ class Project implements Translatable
      * @Vich\UploadableField(mapping="project_image", fileNameProperty="image")
      */
     protected $imageFile;
-
 
     /**
      * @var string $image
@@ -288,6 +286,20 @@ class Project implements Translatable
         $this->translations                 = new ArrayCollection();
         $this->relativeProjects             = new ArrayCollection();
         $this->usersWithPositions = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $result = 'New Project';
+
+        if (null !== $this->getId()) {
+            $result = $this->getName();
+        }
+
+        return $result;
     }
 
     /**
@@ -563,16 +575,6 @@ class Project implements Translatable
     public function getImageFile()
     {
         return $this->imageFile;
-    }
-
-    /**
-     * This method allows a class to decide how it will react when it is treated like a string
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
     }
 
     /**
