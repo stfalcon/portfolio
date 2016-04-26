@@ -13,6 +13,24 @@ class CategoryAdmin extends Admin
     /**
      * {@inheritdoc}
      */
+    protected $datagridValues = [
+        '_page'       => 1,
+        '_sort_order' => 'DESC',
+    ];
+
+    public function postPersist($post)
+    {
+        $this->postUpdate($post);
+    }
+
+    public function postUpdate($post)
+    {
+        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -124,14 +142,5 @@ class CategoryAdmin extends Admin
         $listMapper
             ->addIdentifier('slug')
             ->add('name');
-    }
-
-    public function postPersist($post)
-    {
-        $this->postUpdate($post);
-    }
-    public function postUpdate($post)
-    {
-        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
     }
 }
