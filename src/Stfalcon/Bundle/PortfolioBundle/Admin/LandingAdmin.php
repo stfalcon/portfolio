@@ -4,13 +4,20 @@ namespace Stfalcon\Bundle\PortfolioBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 /**
  * Class LandingAdmin
  */
 class LandingAdmin extends Admin
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected $datagridValues = [
+        '_page'       => 1,
+        '_sort_order' => 'DESC',
+    ];
+
     /**
      * {@inheritdoc}
      */
