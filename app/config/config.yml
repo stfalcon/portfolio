@@ -159,11 +159,12 @@ fos_user:
 
 sonata_user:
     class:
-        user: Application\Bundle\UserBundle\Entity\User
+        user:  Application\Bundle\UserBundle\Entity\User
         group: Application\Bundle\UserBundle\Entity\Group
     admin:                  # Admin Classes
         user:
-            class: Application\Bundle\UserBundle\Admin\UserAdmin
+            class:      Application\Bundle\UserBundle\Admin\UserAdmin
+            controller: ApplicationUserBundle:Admin\UserAdmin
 
 avalanche_imagine:
     filters:
