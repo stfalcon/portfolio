@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\EventListener;
 
+use Doctrine\ORM\EntityManager;
 use JMS\I18nRoutingBundle\Router\I18nRouter;
 use Sonata\SeoBundle\Seo\SeoPage;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -24,13 +25,22 @@ class SeoRequestListener
     private $seoPage;
 
     /**
-     * @param I18nRouter $router  I18nRouter
-     * @param SeoPage    $seoPage SeoPage
+     * @var EntityManager $em Entity manager
      */
-    public function __construct(I18nRouter $router, SeoPage $seoPage)
+    private $em;
+
+    /**
+     * Constructor
+     *
+     * @param I18nRouter    $router  I18nRouter
+     * @param SeoPage       $seoPage SeoPage
+     * @param EntityManager $em      Entity manager
+     */
+    public function __construct(I18nRouter $router, SeoPage $seoPage, EntityManager $em)
     {
-        $this->router = $router;
+        $this->router  = $router;
         $this->seoPage = $seoPage;
+        $this->em      = $em;
     }
 
     /**
@@ -52,14 +62,59 @@ class SeoRequestListener
                 $attributes = array_merge($attributes, $routeParams);
             }
 
-            foreach ($langs as $lang) {
-                $attributes['_locale'] = $lang;
-
-                $this->seoPage->addLangAlternate(
-                    $this->router->generate($route, $attributes, true),
-                    $lang
-                );
+            if ('blog_post_view' === $route) {
+                $this->addBlogLangAlternates($route, $langs, $attributes);
+            } else {
+                $this->addDefaultLangAlternates($route, $langs, $attributes);
             }
+        }
+    }
+
+    /**
+     * Add blog lang alternates
+     *
+     * @param string $route      Current route
+     * @param array  $langs      Languages
+     * @param array  $attributes Route attributes
+     */
+    private function addBlogLangAlternates($route, $langs, $attributes)
+    {
+        $slug = isset($attributes['slug']) ? $attributes['slug'] : null;
+
+        if (null !== $slug) {
+            foreach ($langs as $lang) {
+                $post = $this->em->getRepository('StfalconBlogBundle:Post')->findPostBySlugInLocale($attributes['slug'], $lang);
+
+                if (null !== $post) {
+                    $attributes['_locale'] = $lang;
+
+                    $this->seoPage->addLangAlternate(
+                        $this->router->generate($route, $attributes, true),
+                        $lang
+                    );
+                }
+            }
+        } else {
+            $this->addDefaultLangAlternates($route, $langs, $attributes);
+        }
+    }
+
+    /**
+     * Add default lang alternates
+     *
+     * @param string $route      Current route
+     * @param array  $langs      Languages
+     * @param array  $attributes Route attributes
+     */
+    private function addDefaultLangAlternates($route, $langs, $attributes)
+    {
+        foreach ($langs as $lang) {
+            $attributes['_locale'] = $lang;
+
+            $this->seoPage->addLangAlternate(
+                $this->router->generate($route, $attributes, true),
+                $lang
+            );
         }
     }
 }
