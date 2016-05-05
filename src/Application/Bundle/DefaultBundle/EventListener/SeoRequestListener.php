@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\EventListener;
 
+use Doctrine\ORM\EntityManager;
 use JMS\I18nRoutingBundle\Router\I18nRouter;
 use Sonata\SeoBundle\Seo\SeoPage;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -24,12 +25,14 @@ class SeoRequestListener
     private $seoPage;
 
     /**
+     * Constructor
+     *
      * @param I18nRouter $router  I18nRouter
      * @param SeoPage    $seoPage SeoPage
      */
     public function __construct(I18nRouter $router, SeoPage $seoPage)
     {
-        $this->router = $router;
+        $this->router  = $router;
         $this->seoPage = $seoPage;
     }
 
@@ -53,12 +56,14 @@ class SeoRequestListener
             }
 
             foreach ($langs as $lang) {
-                $attributes['_locale'] = $lang;
+                if ($lang !== $attributes['_locale']) {
+                    $attributes['_locale'] = $lang;
 
-                $this->seoPage->addLangAlternate(
-                    $this->router->generate($route, $attributes, true),
-                    $lang
-                );
+                    $this->seoPage->addLangAlternate(
+                        $this->router->generate($route, $attributes, true),
+                        $lang
+                    );
+                }
             }
         }
     }

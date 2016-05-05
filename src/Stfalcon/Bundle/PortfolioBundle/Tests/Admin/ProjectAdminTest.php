@@ -37,7 +37,7 @@ class ProjectAdminTest extends WebTestCase
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_project_list', array()));
 
         // check don't display projects
-        $this->assertEquals(1, $crawler->filter('div.sonata-ba-list:contains("Нет результатов")')->count());
+        $this->assertEquals(1, $crawler->filter('div.sonata-ba-list:contains("No result")')->count());
     }
 
     public function testProjectsList()
@@ -172,7 +172,7 @@ class ProjectAdminTest extends WebTestCase
         $crawler = $this->client->request('GET',
             $this->getUrl('admin_stfalcon_portfolio_project_delete', array('id' => $project->getId()))
         );
-        $form = $crawler->selectButton('Да, удалить')->form();
+        $form = $crawler->selectButton('Yes, delete')->form();
         $this->client->submit($form);
 
         // check if project was removed from DB
