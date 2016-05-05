@@ -21,13 +21,43 @@
                      </div>
                 </div>
                 <div class="line">
-                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}
+                    {{ form_widget(form.message, {'attr': {'placeholder': 'A few words about app, maybe?'|trans, 'rows':'1'} }) }}
                 </div>
                 <div class="google-captcha">
                     {{ form_widget(form.captcha, {'theme': 'dark' }) }}
                 </div>
                 <div class="line">
                     <button class="btn">{{ 'Отправить заявку'|trans }}</button>
+                </div>
+                <div class="line">
+                    <div class="col2 float-left">
+                        <div class="contacts-info">
+                            <div class="contacts-info__cell">
+                                <div class="contacts-info__left">Call:</div>
+                                <div class="contacts-info__right">
+                                    <div class="contacts-info__item"><a href="tel:+49 7115 18-66-999" class="phone-link">+49 7115 18-66-999</a></div>
+                                    <div class="contacts-info__item"><a href="tel:+380 67 996-63-41" class="phone-link">+380 67 996-63-41</a></div>
+                                    <div class="contacts-info__item"><a href="tel:+380 96 057-81-61" class="phone-link">+380 96 057-81-61</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col2 float-right">
+                        <div class="contacts-info">
+                            <div class="contacts-info__cell">
+                                <div class="contacts-info__left">Skype:</div>
+                                <div class="contacts-info__right">
+                                    <div class="contacts-info__item"><a href="skype:stfalcon.sales?call">stfalcon.sales</a></div>
+                                </div>
+                            </div>
+                            <div class="contacts-info__cell">
+                                <div class="contacts-info__left">Write:</div>
+                                <div class="contacts-info__right">
+                                    <div class="contacts-info__item"><a href="mailto:info@stfalcon.com">info@stfalcon.com</a></div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
                 </div>
             </div>
             <div class="form-success">
