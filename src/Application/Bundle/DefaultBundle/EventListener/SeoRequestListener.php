@@ -80,18 +80,21 @@ class SeoRequestListener
     private function addBlogLangAlternates($route, $langs, $attributes)
     {
         $slug = isset($attributes['slug']) ? $attributes['slug'] : null;
+        $attr = $attributes;
 
         if (null !== $slug) {
             foreach ($langs as $lang) {
-                $post = $this->em->getRepository('StfalconBlogBundle:Post')->findPostBySlugInLocale($attributes['slug'], $lang);
+                if ($lang !== $attributes['_locale']) {
+                    $post = $this->em->getRepository('StfalconBlogBundle:Post')->findPostBySlugInLocale($slug, $lang);
 
-                if (null !== $post) {
-                    $attributes['_locale'] = $lang;
+                    if (null !== $post) {
+                        $attr['_locale'] = $lang;
 
-                    $this->seoPage->addLangAlternate(
-                        $this->router->generate($route, $attributes, true),
-                        $lang
-                    );
+                        $this->seoPage->addLangAlternate(
+                            $this->router->generate($route, $attr, true),
+                            $lang
+                        );
+                    }
                 }
             }
         } else {
@@ -108,13 +111,17 @@ class SeoRequestListener
      */
     private function addDefaultLangAlternates($route, $langs, $attributes)
     {
-        foreach ($langs as $lang) {
-            $attributes['_locale'] = $lang;
+        $attr = $attributes;
 
-            $this->seoPage->addLangAlternate(
-                $this->router->generate($route, $attributes, true),
-                $lang
-            );
+        foreach ($langs as $lang) {
+            if ($lang !== $attributes['_locale']) {
+                $attr['_locale'] = $lang;
+
+                $this->seoPage->addLangAlternate(
+                    $this->router->generate($route, $attr, true),
+                    $lang
+                );
+            }
         }
     }
 }
