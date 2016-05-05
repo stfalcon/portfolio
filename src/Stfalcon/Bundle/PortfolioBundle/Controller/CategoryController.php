@@ -3,6 +3,7 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -19,6 +20,7 @@ class CategoryController extends Controller
     /**
      * List of categories
      *
+     * @param Request  $request  Request
      * @param Category $category Category
      *
      * @return array
@@ -27,7 +29,7 @@ class CategoryController extends Controller
      * @ParamConverter("category", class="StfalconPortfolioBundle:Category", options={"mapping": {"slug": "slug"}})
      * @Template()
      */
-    public function servicesAction(Category $category)
+    public function servicesAction(Request $request, Category $category)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
         $categories = $repository->getServicesCategories();
@@ -56,6 +58,8 @@ class CategoryController extends Controller
             )
             ->addMeta('property', 'og:title', $category->getTitle())
             ->addMeta('property', 'og:description', $category->getMetaDescription());
+
+        $this->get('app.default.seo_alternate')->addAlternateForCategory($category, $seo, $request);
 
         return array(
             'category'   => $category,

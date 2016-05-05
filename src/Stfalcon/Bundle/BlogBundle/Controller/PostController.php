@@ -87,8 +87,10 @@ class PostController extends AbstractController
             ->addMeta('property', 'og:description', $post->getMetaDescription());
 
         if ($post->getImage()) {
-            $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost() . $post->getImage());
+            $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost().$post->getImage());
         }
+
+        $this->get('app.default.seo_alternate')->addAlternateForPost($post, $seo, $request);
 
         return $this->_getRequestArrayWithDisqusShortname(array(
             'post' => $post,

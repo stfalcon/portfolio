@@ -106,8 +106,13 @@
         <service id="kernel.seo.listener" class="Application\Bundle\DefaultBundle\EventListener\SeoRequestListener">
             <argument type="service" id="router"/>
             <argument type="service" id="sonata.seo.page"/>
-            <argument type="service" id="doctrine.orm.entity_manager"/>
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+        <service id="app.default.seo_alternate" class="Application\Bundle\DefaultBundle\Service\SeoAlternateService">
+            <argument id="doctrine.orm.entity_manager" type="service" />
+            <argument id="router" type="service" />
+            <argument>%locales%</argument>
         </service>
     </services>
 
