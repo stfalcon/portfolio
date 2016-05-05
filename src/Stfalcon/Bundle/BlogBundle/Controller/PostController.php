@@ -90,7 +90,7 @@ class PostController extends AbstractController
             $seo->addMeta('property', 'og:image', $request->getSchemeAndHttpHost().$post->getImage());
         }
 
-        $this->get('app.default.seo_alternate')->addAlternateForPost($post, $seo, $request);
+        $this->get('app.default.seo_alternate')->addAlternate($post, $seo, $request);
 
         return $this->_getRequestArrayWithDisqusShortname(array(
             'post' => $post,
@@ -226,6 +226,8 @@ class PostController extends AbstractController
                 'title' => 'page',
             ]));
         }
+
+        $this->get('app.default.seo_alternate')->addAlternate($user, $this->get('sonata.seo.page'), $request);
 
         return $this->render('@StfalconBlog/Post/index.html.twig', $this->_getRequestArrayWithDisqusShortname([
             'posts' => $paginatedPosts,

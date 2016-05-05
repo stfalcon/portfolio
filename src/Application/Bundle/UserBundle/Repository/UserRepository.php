@@ -5,6 +5,7 @@ namespace Application\Bundle\UserBundle\Repository;
 use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * User Repository
@@ -30,21 +31,41 @@ class UserRepository extends EntityRepository
     }
 
     /**
-     * Find user by slug
+     * Find user by username and locale
      *
-     * @param string $slug Slug
+     * @param string $username Username
+     * @param string $locale   Locale
      *
-     * @return User
-     *
-     * @throws NonUniqueResultException
+     * @return User|null
      */
-    public function findUserBySlug($slug)
+    public function findUserByUsernameAndLocale($username, $locale)
     {
         $qb = $this->createQueryBuilder('u');
 
-        return $qb->where($qb->expr()->eq('u.slug', ':slug'))
-                  ->setParameter('slug', $slug)
-                  ->getQuery()
+        $qb->andWhere($qb->expr()->eq('u.username', ':username'))
+           ->setParameter('username', $username)
+           ->setMaxResults(1);
+
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->getQuery()
                   ->getOneOrNullResult();
+    }
+
+    /**
+     * Add locale filter
+     *
+     * @param string       $locale Locale
+     * @param QueryBuilder $qb     Query builder
+     */
+    private function addLocaleFilter($locale, QueryBuilder $qb)
+    {
+        if ($locale !== 'ru') {
+            $qb->innerJoin('u.translations', 'tr')
+               ->andWhere($qb->expr()->eq('tr.locale', ':locale'))
+               ->setParameter('locale', $locale)
+               ->andWhere($qb->expr()->isNotNull('tr.content'))
+               ->addGroupBy('u.id');
+        }
     }
 }

@@ -59,7 +59,7 @@ class CategoryController extends Controller
             ->addMeta('property', 'og:title', $category->getTitle())
             ->addMeta('property', 'og:description', $category->getMetaDescription());
 
-        $this->get('app.default.seo_alternate')->addAlternateForCategory($category, $seo, $request);
+        $this->get('app.default.seo_alternate')->addAlternate($category, $seo, $request);
 
         return array(
             'category'   => $category,
