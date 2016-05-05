@@ -25,11 +25,11 @@ class MenuBuilderTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isSuccessful());
         // check the current item of the menu
         // check menu in header and footer
-        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Проекты")'));
-        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Услуги")'));
-        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Команда")'));
-        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Блог")'));
-        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Контакты")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Projects")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Services")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Team")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Blog")'));
+        $this->assertCount(2, $crawler->filter('.main-nav ul li a:contains("Contacts")'));
 
 
         /** check blog default page **/

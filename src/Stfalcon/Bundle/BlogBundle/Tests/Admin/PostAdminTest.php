@@ -33,7 +33,7 @@ class PostAdminTest extends WebTestCase
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_blog_post_list', array()));
 
         // check don't display categories
-        $this->assertEquals(1, $crawler->filter('div.sonata-ba-list:contains("Нет результатов")')->count());
+        $this->assertEquals(1, $crawler->filter('div.sonata-ba-list:contains("No result")')->count());
     }
 
     public function testCreateNewPost()
@@ -134,7 +134,8 @@ class PostAdminTest extends WebTestCase
         $this->loadFixtures(array(
             'Application\Bundle\UserBundle\DataFixtures\ORM\LoadUserData',
             'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
-            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
+            'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData',
+        ));
 
         $this->doLogin();
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -142,7 +143,7 @@ class PostAdminTest extends WebTestCase
 
         // delete post
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_blog_post_delete', array('id' => $post->getId())));
-        $form = $crawler->selectButton('Да, удалить')->form();
+        $form = $crawler->selectButton('Yes, delete')->form();
         $this->client->submit($form);
         // check if post was removed from DB
         $em->detach($post);
