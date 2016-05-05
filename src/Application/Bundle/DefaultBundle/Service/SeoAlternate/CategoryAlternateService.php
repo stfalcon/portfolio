@@ -36,4 +36,18 @@ class CategoryAlternateService extends AbstractSeoAlternateService
         return $this->em->getRepository('StfalconPortfolioBundle:Category')
                         ->findCategoryBySlugAndLocale($slug, $locale);
     }
+
+    /**
+     * Get route params
+     *
+     * @param Category $post Category
+     *
+     * @return array
+     */
+    public function getRouteParams($post)
+    {
+        return [
+            'slug' => $this->getIdentifier($post),
+        ];
+    }
 }

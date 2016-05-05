@@ -35,4 +35,18 @@ class PostAlternateService extends AbstractSeoAlternateService
     {
         return $this->em->getRepository('StfalconBlogBundle:Post')->findPostBySlugInLocale($slug, $locale);
     }
+
+    /**
+     * Get route params
+     *
+     * @param Post $post Post
+     *
+     * @return array
+     */
+    public function getRouteParams($post)
+    {
+        return [
+            'slug' => $this->getIdentifier($post),
+        ];
+    }
 }

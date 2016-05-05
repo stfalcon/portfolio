@@ -20,7 +20,7 @@ class UserAlternateService extends AbstractSeoAlternateService
      */
     public function getIdentifier($user)
     {
-        return $user->getUsername();
+        return $user->getUsernameCanonical();
     }
 
     /**
@@ -34,5 +34,19 @@ class UserAlternateService extends AbstractSeoAlternateService
     public function getTranslation($username, $locale)
     {
         return $this->em->getRepository('ApplicationUserBundle:User')->findUserByUsernameAndLocale($username, $locale);
+    }
+
+    /**
+     * Get route params
+     *
+     * @param User $user User
+     *
+     * @return array
+     */
+    public function getRouteParams($user)
+    {
+        return [
+            'usernameCanonical' => $user->getUsernameCanonical(),
+        ];
     }
 }

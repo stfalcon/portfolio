@@ -46,12 +46,12 @@ abstract class AbstractSeoAlternateService
     /**
      * Get translation
      *
-     * @param Object $entity Entity
-     * @param string $locale Locale
+     * @param string $identifier Identifier
+     * @param string $locale     Locale
      *
      * @return Object|null
      */
-    abstract public function getTranslation($entity, $locale);
+    abstract public function getTranslation($identifier, $locale);
 
     /**
      * Get identifier
@@ -61,6 +61,15 @@ abstract class AbstractSeoAlternateService
      * @return string
      */
     abstract public function getIdentifier($entity);
+
+    /**
+     * Get route params
+     *
+     * @param Object $entity Entity
+     *
+     * @return string
+     */
+    abstract public function getRouteParams($entity);
 
     /**
      * Add alternate for entity
@@ -80,15 +89,16 @@ abstract class AbstractSeoAlternateService
                 continue;
             }
 
-            $translation = $this->getTranslation($entity, $locale);
+            $translation = $this->getTranslation($this->getIdentifier($entity), $locale);
 
             if (null !== $translation) {
                 $params = [
-                    'slug'    => $this->getIdentifier($entity),
                     '_locale' => $locale,
                 ];
 
-                $alternates[$this->router->generate($route, $params, true)] = $locale;
+                $url = $this->router->generate($route, array_merge($params, $this->getRouteParams($entity)), true);
+
+                $alternates[$url] = $locale;
             }
         }
 

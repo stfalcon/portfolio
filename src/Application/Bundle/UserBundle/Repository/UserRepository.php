@@ -42,7 +42,7 @@ class UserRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('u');
 
-        $qb->andWhere($qb->expr()->eq('u.username', ':username'))
+        $qb->andWhere($qb->expr()->eq('u.usernameCanonical', ':username'))
            ->setParameter('username', $username)
            ->setMaxResults(1);
 
