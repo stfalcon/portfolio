@@ -27,7 +27,7 @@ class CategoryAdminTest extends WebTestCase
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_category_list', array()));
 
         // check display notice
-        $this->assertEquals(1, $crawler->filter('div.sonata-ba-list:contains("Нет результатов")')->count());
+        $this->assertEquals(1, $crawler->filter('div.sonata-ba-list:contains("No result")')->count());
     }
 
     public function testCategoriesList()
@@ -174,7 +174,7 @@ class CategoryAdminTest extends WebTestCase
         $crawler = $this->client->request('GET',
             $this->getUrl('admin_stfalcon_portfolio_category_delete', array('id' => $category->getId()))
         );
-        $form = $crawler->selectButton('Да, удалить')->form();
+        $form = $crawler->selectButton('Yes, delete')->form();
         $this->client->submit($form);
 
         // check if category was removed from DB
