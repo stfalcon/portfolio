@@ -82,9 +82,9 @@
         <div class="header-text">
             <h2 class="header-title small-margin">{{ 'We Code Your Ideas'|trans }}</h2>
             <p class="header-sub-title">
-                {{ 'Web, IOS and Android development from a scratch'|trans }}
+                {{ 'Разработка Web, IOS и Android приложения с нуля'|trans }}
             </p>
-            <button id="hire_us-js" type="button" class="hire_us button button--big button--blue">{{ 'Start a project'|trans }}</button>
+            <button id="hire_us-js" type="button" class="hire_us button button--big button--blue">{{ 'Заказать проект'|trans }}</button>
             {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
         </div>
     </header>
@@ -92,7 +92,7 @@
         <div class="projects-row">
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-development'}) }}">
-                    <img alt="KeepSnap" src="{{ asset('assets/img/preview/design_small_mfb.jpg') }}">
+                    <img alt="MeinFernbus" src="{{ asset('assets/img/homepage/home-project-mfb.jpg') }}">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span class="project-name">MeinFernbus</span>
@@ -104,7 +104,7 @@
             </div>
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-com', 'categorySlug': 'web-development'}) }}">
-                    <img alt="KeepSnap" src="{{ asset('assets/img/preview/develop_small_keepsnap.jpg') }}">
+                    <img alt="KeepSnap" src="{{ asset('assets/img/homepage/home-project-keepsnap.jpg') }}">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span class="project-name">KeepSnap</span>
@@ -116,7 +116,7 @@
             </div>
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'naberezhny-kvartal-crm', 'categorySlug': 'web-design'}) }}">
-                    <img alt="UARoads" src="{{ asset('assets/img/preview/design_small_crm.jpg') }}">
+                    <img alt="Real Estate CRM" src="{{ asset('assets/img/homepage/home-project-crm.jpg') }}">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span  class="project-name">Real Estate CRM</span>
@@ -128,7 +128,7 @@
             </div>
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'uaroads-android', 'categorySlug': 'mobile-development'}) }}">
-                    <img alt="UARoads" src="{{ asset('assets/img/preview/develop_small_uaroads.jpg') }}">
+                    <img alt="UARoads" src="{{ asset('assets/img/homepage/home-project-uaroads.jpg') }}">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span  class="project-name">UARoads</span>
@@ -141,7 +141,7 @@
         </div>
     </section>
     <section class="our-services">
-        <h2>{{ 'We propose services'|trans }}</h2>
+        <h2>{{ 'Наши услуги'|trans }}</h2>
         <div class="project-tabs-wrap">
             <ul class="projects-tabs">
                 {{ render(controller('StfalconPortfolioBundle:Category:widgetCategories')) }}
@@ -241,112 +241,26 @@
         {{ include('_footer.html.twig') }}
     </footer>
 </section>
-<script>
-    var serviceData = {
-        'development': {
-            url: '/services/web-development',
-            projects: [
-                {
-                    name: 'MeinFernbus',
-                    description: '{{ "Крупнейшая компания, специализируется на пассажирских перевозках в Германии" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/develop_big_mfb.jpg',
-                    customer: {
-                        name: '{{ "Алексей Колупаев" | trans() }}',
-                        position: '{{ "CTO at MeinFernbus" | trans() }}',
-                        avatarURL: '/assets/img/fish/customer.png',
-                        comment: '{{ "Мы сотрудничали со студией больше 3 лет. Сейчас MeinFernbus является крупнейшим пассажирским перевозчиком. Всё благодаря ребятам из stfalcon!" | trans() }}'
-                    },
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-development'}) }}'
-                },
-                {
-                    name: 'KeepSnap',
-                    description: '{{ "Сервис продажи фотографий для профессиональных фотографов" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/develop_small_keepsnap.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-com', 'categorySlug': 'web-development'}) }}'
-                },
-                {
-                    name: 'UARoads',
-                    description: '{{ "Социальный стартап по оценке качества дорог Украины" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/develop_small_uaroads.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'uaroads-com', 'categorySlug': 'web-development'}) }}'
-                }
-            ]
-        },
-        'design': {
-            url: '/services/web-design',
-            projects: [
-                {
-                    name: 'KeepSnap',
-                    description: '{{ "Сервис продажи фотографий для профессиональных фотографов" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/design_big_keepsnap.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-com', 'categorySlug': 'web-design'}) }}'
-                },
-                {
-                    name: 'Real Estate CRM',
-                    description: '{{ "Система по работе с клиентами для строительной компании" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/design_small_crm.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'naberezhny-kvartal-crm', 'categorySlug': 'web-design'}) }}'
-                },
-                {
-                    name: 'MeinFernbus',
-                    description: '{{ "Крупнейшая компания, специализируется на пассажирских перевозках в Германии" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/design_small_mfb.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-design'}) }}'
-                }
-            ]
-        },
-        'apps': {
-            url: '/services/apps',
-            projects: [
-                {
-                    name: 'MeinFernbus',
-                    description: '{{ "Крупнейшая компания, специализируется на пассажирских перевозках в Германии" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/apps_big_mfb.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-android', 'categorySlug': 'mobile-development'}) }}'
-                },
-                {
-                    name: 'KeepSnap',
-                    description: '{{ "Сервис продажи фотографий для профессиональных фотографов" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/apps_small_keepsnap.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-android', 'categorySlug': 'mobile-development'}) }}'
-                },
-                {
-                    name: 'UARoads',
-                    description: '{{ "Социальный стартап по оценке качества дорог Украины" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/apps_small_uaroads.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'uaroads-android', 'categorySlug': 'mobile-development'}) }}'
-                }
-            ]
-        },
-        'games': {
-            url: '/services/games',
-            projects: [
-                {
-                    name: 'Nizam',
-                    description: '{{ "Увлекательный мобильный вариант одноименной настольной игры" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/games_big_nizam.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'nizam-android', 'categorySlug': 'game-development'}) }}'
-                },
-                {
-                    name: 'Galaxy Recon',
-                    description: '{{ "Двумерный аркадный шутер, оружие и враги в ассортименте" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/games_small_galrecon.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'galaxy-recon-android', 'categorySlug': 'game-development'}) }}'
-                },
-                {
-                    name: 'Swell Foop',
-                    description: '{{ "Головоломка, цель которой — убрать все кубики с игрового поля" | trans() }}',
-                    projectPreviewURL: '/assets/img/preview/games_small_samegame.jpg',
-                    URL: '{{ path('portfolio_project_view', {'projectSlug': 'swell-foop-android', 'categorySlug': 'game-development'}) }}'
-                }
-            ]
-        }
-    };
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-{% javascripts 'assets/js/libs/jquery.history.min.js' 'assets/js/libs/sly.js' 'assets/js/homepage.js' 'js/subscribe.js' output='cache/js/*.js' %}
+{% javascripts
+'assets/js/libs/jquery.history.min.js'
+'assets/js/libs/sly.js'
+'assets/js/homepage.js'
+'js/jquery.validate.min.js'
+'js/widgets.js'
+'js/subscribe.js'
+output='cache/js/*.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
+    <script type="text/javascript">
+        jQuery.extend(jQuery.validator.messages, {
+            required: "{{ 'Заполните это поле'|trans }}",
+            email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
+            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+        });
+    </script>
 
 {% if app.request.host == 'stfalcon.com' %}
     <!-- Google Code for Remarketing Tag -->
@@ -380,8 +294,7 @@
                 document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
                 if(oldonload){oldonload()}};
         }());
-    </script>
-    <script type="text/javascript">
+
         (function () {
             var a = document.createElement("iframe");
             a.style.cssText = "width: 0; height: 0; border: 0";

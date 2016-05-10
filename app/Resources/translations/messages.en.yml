@@ -50,7 +50,6 @@ title: __title
 'Наши заметки': 'Our notes'
 Перевод: Translation
 Позвонить: Call
-'+380 67 334-40-40': '+49 7115 18-66-999'
 'Предыдущий проект': 'Previous project'
 
 'Проект не существует':
@@ -64,12 +63,12 @@ title: __title
 Сортировка: Sort
 'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us, you choose a reliable business partner!'
 'Список проектов': 'List of projects'
-Украина: BW, Germany
+Украина: Ukraine
 , 29000: ''
 Услуги: Services
 Учасники: Participants
 Фамилия: Surname
-Хмельницкий: 70173 Stuttgart
+Хмельницкий: Khmelnytskyi
 'Чем мы занимаемся': 'What we do'
 'Читать дальше': 'Read more'
 'все статьи': 'All articles'
@@ -80,7 +79,7 @@ title: __title
 'проектов мы запустили к концу': 'projects we released till the end of'
 'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
 
-'ул. Заречанская 3/2': 'Konigstraße 80'
+'ул. Заречанская 3/2': '3/2 Zarichanska str.'
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
@@ -119,6 +118,9 @@ title: __title
 'Мобильное приложение для крупнейшего пассажирского перевозчика в Германии.': 'A mobile application for the largest passenger transportation company in Germany.'
 
 Решаем сложные задачи: We solve complex problems
+'Разработка Web, IOS и Android приложения с нуля': Web, IOS and Android development from a scratch
+'Заказать проект': Start a project
+'Наши услуги': We propose services
 
 'Крупнейшая компания, специализируется на пассажирских перевозках в Германии': The largest passenger transportation company in Germany
 'Сервис продажи фотографий для профессиональных фотографов': A commercial service for professional photographers
@@ -147,7 +149,7 @@ title: __title
 Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ.: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
 ІТ ивент с несколькими краткими докладами, кофе, новыми знакомствами и доброжелательной атмосферой.: IT event with several short presentations, coffee, and new acquaintances. Friendly atmosphere included.
 
-ул. Заречанская 3/2, Хмельницкий, Украина: Konigstraße 80, 70173 Stuttgart, BW, Germany
+'ул. Заречанская 3/2, Хмельницкий, Украина': 3/2 Zarichanska str., Khmelnytskyi, Ukraine
 
 Подписаться на новые записи: Subscribe for new posts
 

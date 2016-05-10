@@ -11,6 +11,11 @@ $(document).on('click', '.close-hire_us', function(){
     $('#order_promotion_message').css('height','auto');
 });
 
+//Show hire us
+$(document).on('click', '.hire_us', function () {
+    $('body').addClass('open-hire_us');
+});
+
 $(function () {
 
     var formDelay = 3000;

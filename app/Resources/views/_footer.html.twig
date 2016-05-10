@@ -27,11 +27,7 @@
         <ul class="contact-list">
             <li>
                 <span>{{ 'Позвонить'|trans }}:</span>
-                <a href="tel:{{ "+380 67 334-40-40" | trans() }}">{{ "+380 67 334-40-40" | trans() }}</a>
-                {% if app.request.locale == 'en' %}
-                    <br/><a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
-                    <br/><a href="tel:+1 323 2845520">+1 323 2845520</a>
-                {% endif %}
+                <a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
             </li>
             <li class="skype">
                 <span>{{ "Skype" | trans() }}:</span>
@@ -44,9 +40,6 @@
             <li class="address">
                 <span>{{ "Зайти в гости" | trans() }}:</span>
                 <a href="">{{ "ул. Заречанская 3/2, Хмельницкий, Украина" | trans() }}</a>
-                {% if app.request.locale == 'en' %}
-                    <br/><a href="">3/2 Zarichanska str., Khmelnytskyi, Ukraine</a>
-                {% endif %}
             </li>
         </ul>
     </section>
