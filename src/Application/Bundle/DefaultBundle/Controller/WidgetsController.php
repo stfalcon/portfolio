@@ -73,7 +73,8 @@ class WidgetsController extends Controller
                      ->subscribe($form->get('email')->getData(), 'html', false);
 
                 return new JsonResponse([
-                    'success' => true
+                    'success' => true,
+                    'message' => $this->get('translator')->trans('Мы записали ваш адрес. Обещаем не спамить.'),
                 ]);
             }
 
