@@ -25,7 +25,7 @@ class SubscribeFormType extends AbstractType
     {
         $this->translator = $translator;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -38,7 +38,7 @@ class SubscribeFormType extends AbstractType
                 [
                     'label' => false,
                     'constraints' => [
-                        new Assert\NotBlank(['message' => $this->translator->trans('Поле не должно быть пустым')]),
+                        new Assert\NotBlank(['message' => $this->translator->trans('Вы не указали e-mail адрес')]),
                         new Assert\Email(['message' => $this->translator->trans('Недопустимый адрес электронной почты')]),
                         new Assert\Length(array('max' => 64))
                     ]
@@ -53,4 +53,4 @@ class SubscribeFormType extends AbstractType
     {
         return 'subscribe';
     }
-} 
+}

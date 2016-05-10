@@ -11,7 +11,10 @@ $(document).ready(function () {
             async: false,
             success: function(response) {
                 if (!response.success) {
-                    $form.closest('.subscribe-form-wrap').replaceWith(response.view);
+                    var $renderedForm = $(response.view);
+                    console.log($renderedForm);
+                    $renderedForm.find('form').addClass('error-status');
+                    $form.closest('.subscribe-form-wrap').replaceWith($renderedForm);
                     inputChange();
                 } else {
                     if (window.ga) {
@@ -19,8 +22,21 @@ $(document).ready(function () {
                     }
                     $form.find('input[type="email"]').val('');
                     $form.find('.error-list').remove();
+                    $form.addClass('success-status');
+
+                    if (response.message) {
+                        $form.find('.success-list').append('<li>' + response.message + '</li>');
+                    }
                     inputChange();
                 }
+
+                setTimeout(function () {
+                    var $subscribeForm = $('.subscribe-form');
+
+                    $subscribeForm.removeClass('error-status').removeClass('success-status');
+                    $subscribeForm.find('.error-list').remove();
+                    $subscribeForm.find('.success-list').remove();
+                }, 3000);
             }
         });
     });
