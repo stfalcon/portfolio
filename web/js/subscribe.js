@@ -35,7 +35,7 @@ $(document).ready(function () {
 
                     $subscribeForm.removeClass('error-status').removeClass('success-status');
                     $subscribeForm.find('.error-list').remove();
-                    $subscribeForm.find('.success-list').remove();
+                    $subscribeForm.find('.success-list').empty();
                 }, 3000);
             }
         });
