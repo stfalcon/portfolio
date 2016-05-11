@@ -51,15 +51,6 @@
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
 
-        <service id="kernel.listener.locale" class="Application\Bundle\DefaultBundle\EventListener\LocaleListener">
-            <argument type="service" id="application_default.service.geo_ip"/>
-            <argument type="service" id="router"/>
-            <argument>%locales%</argument>
-            <argument>%jms_i18n_routing.cookie.name%</argument>
-            <argument type="service" id="kernel"/>
-            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
-        </service>
-
         <service id="application_default.form.type.direct_order" class="%application_default.form.type.direct_order.class%">
             <argument type="service" id="translator" />
             <tag name="form.type" alias="direct_order" />
