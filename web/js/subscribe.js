@@ -12,7 +12,6 @@ $(document).ready(function () {
             success: function(response) {
                 if (!response.success) {
                     var $renderedForm = $(response.view);
-                    console.log($renderedForm);
                     $renderedForm.find('form').addClass('error-status');
                     $form.closest('.subscribe-form-wrap').replaceWith($renderedForm);
                     inputChange();
