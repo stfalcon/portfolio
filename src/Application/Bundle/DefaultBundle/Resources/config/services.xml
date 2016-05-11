@@ -51,15 +51,6 @@
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
 
-        <service id="kernel.listener.locale" class="Application\Bundle\DefaultBundle\EventListener\LocaleListener">
-            <argument type="service" id="application_default.service.geo_ip"/>
-            <argument type="service" id="router"/>
-            <argument>%locales%</argument>
-            <argument>%jms_i18n_routing.cookie.name%</argument>
-            <argument type="service" id="kernel"/>
-            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
-        </service>
-
         <service id="application_default.form.type.direct_order" class="%application_default.form.type.direct_order.class%">
             <argument type="service" id="translator" />
             <tag name="form.type" alias="direct_order" />
@@ -107,6 +98,24 @@
             <argument type="service" id="router"/>
             <argument type="service" id="sonata.seo.page"/>
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+        <service id="app.default.seo_alternate.abstract" class="Application\Bundle\DefaultBundle\Service\SeoAlternate\AbstractSeoAlternateService" abstract="true">
+            <argument id="doctrine.orm.entity_manager" type="service" />
+            <argument id="router" type="service" />
+            <argument>%locales%</argument>
+        </service>
+
+        <service id="app.default.seo_alternate.post" class="Application\Bundle\DefaultBundle\Service\SeoAlternate\PostAlternateService" parent="app.default.seo_alternate.abstract" />
+
+        <service id="app.default.seo_alternate.category" class="Application\Bundle\DefaultBundle\Service\SeoAlternate\CategoryAlternateService" parent="app.default.seo_alternate.abstract" />
+
+        <service id="app.default.seo_alternate.user" class="Application\Bundle\DefaultBundle\Service\SeoAlternate\UserAlternateService" parent="app.default.seo_alternate.abstract" />
+
+        <service id="app.default.seo_alternate" class="Application\Bundle\DefaultBundle\Service\SeoAlternate\SeoAlternateService">
+            <argument id="app.default.seo_alternate.post" type="service" />
+            <argument id="app.default.seo_alternate.category" type="service" />
+            <argument id="app.default.seo_alternate.user" type="service" />
         </service>
     </services>
 

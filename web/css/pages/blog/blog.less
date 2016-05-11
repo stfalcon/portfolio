@@ -1089,6 +1089,9 @@
 
   .input-wrap {
     margin-right: 52px;
+    input {
+      box-sizing: initial;
+    }
   }
   input {
     width: 100%;
@@ -1246,5 +1249,26 @@
         content: none;
       }
     }
+  }
+}
+
+.google-captcha{
+  display: inline-block;
+  &.mod-landing{
+    margin-bottom: 25px;
+  }
+  &.contact-captcha{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    //    float: left;
+    @media (max-width: 1080px) {
+      margin-top: 0px;
+    }
+    @media (max-width: 320px) {
+      margin-left: 0px;
+    }
+  }
+  @media (max-width: 320px) {
+    margin-left: -11px;
   }
 }

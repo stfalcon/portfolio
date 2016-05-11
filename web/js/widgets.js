@@ -60,6 +60,9 @@ $(function () {
                 async: false,
                 success: function (response) {
                     if ('success' === response.status) {
+                        if (window.ga) {
+                            ga('send', 'event', 'Knopka', 'Otpravit_zayavku');
+                        }
                         $(form).find('.form-pad').animate({opacity: 0}, 300);
                         $(form).find('.form-success').fadeIn(300);
                         windowCloseTimerId = setTimeout(function () {

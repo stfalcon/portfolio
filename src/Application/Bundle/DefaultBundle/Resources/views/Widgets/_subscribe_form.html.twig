@@ -7,6 +7,7 @@
         <div class="input-wrap">
             {{ form_widget(form.email, {'attr': {'placeholder': 'Подписаться на новые записи'|trans }}) }}
             {{ form_errors(form.email) }}
+            <ul class="success-list"></ul>
         </div>
         {{ form_rest(form) }}
     </form>
