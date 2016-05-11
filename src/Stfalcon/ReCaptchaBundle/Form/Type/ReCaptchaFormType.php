@@ -30,18 +30,22 @@ class ReCaptchaFormType extends AbstractType
      * @param string     $siteKey
      * @param string     $secret
      */
-    function __construct(Request $request, $siteKey, $secret)
+    public function __construct(Request $request, $siteKey, $secret)
     {
         $this->siteKey = $siteKey;
         $this->secret = $secret;
         $this->request = $request;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['site_key'] = $options['site_key'];
         $view->vars['locale'] = $options['locale'];
         $view->vars['theme'] = $options['theme'];
+        $view->vars['callback_name'] = $options['callback_name'];
     }
 
     /**
@@ -55,13 +59,14 @@ class ReCaptchaFormType extends AbstractType
 
         $resolver->setDefaults([
             'compound'      => false,
-            'site_key' => $this->siteKey,
-            'mapped'   => false,
-            'locale'   => $this->request->getLocale(),
-            'theme'    => 'light',
-            'constraints' => [
-                new ValidCaptcha()
-            ]
+            'site_key'      => $this->siteKey,
+            'mapped'        => false,
+            'locale'        => $this->request->getLocale(),
+            'theme'         => 'light',
+            'callback_name' => 'showSubmitButton',
+            'constraints'   => [
+                new ValidCaptcha(),
+            ],
         ]);
 
         $resolver->setAllowedValues([
