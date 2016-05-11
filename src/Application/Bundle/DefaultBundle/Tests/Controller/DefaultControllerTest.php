@@ -26,16 +26,16 @@ class DefaultControllerTest extends WebTestCase
         // check response
         $this->assertTrue($client->getResponse()->isSuccessful());
 
-        $this->assertCount(1, $crawler->filter('h1:contains("Stfalcon — студия веб-дизайна и разработки сайтов")'));
-        $this->assertCount(1, $crawler->filter('h2:contains("Решаем сложные задачи")'));
+        $this->assertCount(1, $crawler->filter('h1:contains("Stfalcon — Studio of web design and sites development")'));
+        $this->assertCount(1, $crawler->filter('h2:contains("We solve complex problems")'));
 
-        $this->assertCount(1, $crawler->filter('h2:contains("Участвуем в Open Source")'));
-        $this->assertCount(1, $crawler->filter('h2:contains("проводим конференции")'));
-        $this->assertCount(1, $crawler->filter('h2:contains("ведем блог")'));
+        $this->assertCount(1, $crawler->filter('h2:contains("We contribute to Open Source")'));
+        $this->assertCount(1, $crawler->filter('h2:contains("We organize conferences")'));
+        $this->assertCount(1, $crawler->filter('h2:contains("Fresh from our Blog")'));
         $this->assertCount(1, $crawler->filter('form.subscribe-form'));
 
         $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("+380 67 334-40-40")'));
-        $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("ул. Заречанская 3/2, Хмельницкий, Украина")'));
+        $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("3/2 Zarichanska str., Khmelnytskyi, Ukraine")'));
     }
 
     /**
