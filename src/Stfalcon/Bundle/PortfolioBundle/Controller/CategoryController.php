@@ -125,4 +125,20 @@ class CategoryController extends Controller
 
         return new Response('good');
     }
+
+    /**
+     * Widget categories action
+     *
+     * @return Response
+     */
+    public function widgetCategoriesAction()
+    {
+        $categoryRepository = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Category');
+
+        $categories = $categoryRepository->getServicesCategories();
+
+        return $this->render('StfalconPortfolioBundle:Category:_widget_categories.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
 }
