@@ -128,6 +128,7 @@ return array(
     'Пожалуйста введите как минимум {0} символа' => 'Please enter at least {0} characters.',
     'Минимальное количество символов {0}' => 'Please enter at least {0} characters.',
     'Максимальное количество символов {0}' => 'Please enter no more than {0} characters.',
-    'Поле не должно быть пустым' => 'The field can not be blank',
-    'Недопустимый адрес электронной почты' =>'Invalid email address'
+    'Вы не указали e-mail адрес' => 'You haven’t told us your email',
+    'Недопустимый адрес электронной почты' => 'Invalid email address',
+    'Мы записали ваш адрес. Обещаем не спамить.' => 'Your email was saved. We promise not to spam you, no matter what.',
 );

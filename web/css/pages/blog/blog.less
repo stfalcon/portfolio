@@ -1311,6 +1311,9 @@
 
   .input-wrap {
     margin-right: 52px;
+    input {
+      box-sizing: initial;
+    }
   }
   input {
     width: 100%;
@@ -1443,31 +1446,6 @@
     left: 0;
     right: 0;
     border: none;
-  }
-}
-
-.subscribe-form-wrap{
-  .error-list{
-    display: block;
-    position: relative;
-    z-index: 11;
-    color: rgb(44, 55, 60);
-    margin: 0;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    &:before{
-      content: none;
-    }
-    li{
-      font-size: 15px!important;
-      padding: 0!important;
-      margin: 0!important;
-      &:before{
-        content: none;
-      }
-    }
   }
 }
 
