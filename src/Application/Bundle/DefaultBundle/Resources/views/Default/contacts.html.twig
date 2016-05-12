@@ -12,13 +12,7 @@
             <div class="contacts-inf">
                 <div class="info-group">
                     <span>{{ "Позвонить" | trans() }}:</span>
-                    <a href="tel:{{ "+380 67 334-40-40" | trans() }}"><b>{{ "+380 67 334-40-40" | trans() }}</b></a>
-                    {% if app.request.locale == 'en' %}
-                        <br/>
-                        <a href="tel:{{ "+380 67 334-40-40" }}"><b>{{ "+380 67 334-40-40" }}</b></a>
-                        <br/>
-                        <a href="tel:{{ "+1 323 284-55-20" }}"><b>{{ "+1 323 284-55-20" }}</b></a>
-                    {% endif %}
+                    <a href="tel:+380 67 334-40-40"><b>+380 67 334-40-40</b></a>
                 </div>
                 <div class="info-group">
                     <span>{{ "Skype" | trans() }}:</span>
@@ -31,10 +25,6 @@
                 <div class="info-group">
                     <span>{{ "Зайти в гости" | trans() }}:</span>
                     <b>{{ "ул. Заречанская 3/2" | trans() }}, <br> {{ "Хмельницкий" | trans() }}, {{ "Украина" | trans() }}{{ ", 29000" | trans() }}</b>
-                    {% if app.request.locale == 'en' %}
-                        <br/>
-                        <b>{{ "3/2 Zarichanska str." }}, <br> {{ "Khmelnytskyi" }}, {{ "Ukraine" }}{{ ", 29000" }}</b>
-                    {% endif %}
                 </div>
                 <ul class="socials">
                     <li><a href="https://www.facebook.com/stfalconcom" rel="nofollow" target="_blank"><span class="icon-old icon-old-facebook"></span> <span>Facebook</span></a></li>

@@ -27,7 +27,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         $this->assertCount(1, $crawler->filter('h1:contains("Stfalcon — Studio of web design and sites development")'));
-        $this->assertCount(1, $crawler->filter('h2:contains("We solve complex problems")'));
+        $this->assertCount(1, $crawler->filter('h2:contains("We Code Your Ideas")'));
 
         $this->assertCount(1, $crawler->filter('h2:contains("We contribute to Open Source")'));
         $this->assertCount(1, $crawler->filter('h2:contains("We organize conferences")'));

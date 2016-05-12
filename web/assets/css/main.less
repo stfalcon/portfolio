@@ -52,7 +52,7 @@ p {
 
 .header {
   position: relative;
-  background: url(../img/header-bg.jpg) #575f62 center no-repeat;
+  background: url(../img/header_bg.jpg) #575f62 center no-repeat;
   background-size: cover;
   color: #fff;
   overflow: hidden;
@@ -64,10 +64,76 @@ p {
 
 @import 'header';
 
+.header-text {
+    text-align: center;
+    padding: 170px 0 223px 0;
+}
+
 .header-title {
   margin: 189px 10px 117px;
   text-align: center;
+  font-weight: 900;
   color: #fff;
+  &.small-margin {
+      margin-top: 0;
+      margin-bottom: 15px;
+  }
+}
+
+.header-sub-title {
+    color: rgba(255,255,255, 0.6);
+    text-align: center;
+    font-size: 17px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+.button {
+    display: inline-block;
+    vertical-align: top;
+    &--big {
+        text-transform: uppercase;
+        font-size: 17px;
+        font-weight: 500;
+        padding: 0 50px;
+        height: 56px;
+        line-height: 56px;
+        letter-spacing: 0.05em;
+        border: 0;
+        outline: 0;
+        box-shadow: none;
+    }
+    &--blue {
+        background: #6B86CF;
+        color: #fff;
+        border-radius: 4px;
+    }
+}
+
+.our-services {
+    padding-top: 74px;
+    margin-bottom: 30px;
+    max-width: 644px;
+    margin: 0 auto;
+    h2 {
+        margin-bottom: 65px;
+        font-size: 21px;
+        letter-spacing: 0.03em;
+    }
+    .projects-tabs{
+        .icon-wrap{
+            margin-bottom: 26px;
+            svg {
+                fill: #2C373C;
+                width: 67px;
+                height: 62px;
+            }
+        }
+        a {
+            letter-spacing: 0;
+            line-height: 17px;
+            margin-bottom: 0;
+        }
+    }
 }
 
 .project-tabs-wrap {
@@ -93,9 +159,10 @@ p {
     line-height: 21px;
     letter-spacing: 2px;
     cursor: pointer;
+    color: #3457c0;
 
     &.active {
-      color: #d7c76e;
+      color: #3457c0;
       cursor: default;
 
       &:after,
@@ -146,13 +213,10 @@ p {
     li {
       display: block;
       float: left;
-      margin: 0 23px;
+      width: 33%;
 
       &:first-child {
       }
-//      &:last-child {
-//        margin-right: -1px;
-//      }
     }
     a, a.active {
       margin-bottom: 55px;
@@ -230,6 +294,11 @@ p {
       animation: imagesCell ease-in-out 0.3s 1;
     }
   }
+  &.equal-list {
+      .project-cell {
+          width: 50%;
+      }
+  }
   .project-cell-l {
     width: 58.9062%;
 
@@ -237,6 +306,7 @@ p {
 //      height: 74%;
     }
   }
+
   .project-info {
     position: absolute;
     top: 0;
@@ -375,6 +445,13 @@ p {
   }
 }
 
+.open-source {
+  h2 {
+    margin: 105px 0 53px;
+    letter-spacing: 0.08em;
+  }
+}
+
 @media (max-width: 980px) {
   .projects-list {
     .customer-comment {
@@ -391,6 +468,10 @@ p {
 }
 
 @media (max-width: 800px) {
+  .header-text {
+      padding-top: 115px;
+      padding-bottom: 120px;
+  }
   .projects-list {
     .project-cell {
       float: none;
@@ -400,21 +481,26 @@ p {
     .next-tab {
       display: none;
     }
+    &.equal-list {
+        .project-cell {
+            width: 100%;
+        }
+    }
   }
-}
-
-.open-source {
-  h2 {
-    margin: 61px 0 53px;
+  .our-services {
+      padding-top: 30px;
+      h2 {
+          margin-bottom: 20px;
+      }
   }
-}
-
-@media (max-width: 720px) {
   .open-source {
     h2 {
       margin: 33px 0 26px;
     }
   }
+}
+
+@media (max-width: 720px) {
   div.tabs-cnt {
     margin-bottom: 74px;
 
@@ -967,4 +1053,5 @@ p {
   }
 }
 
+@import "../../css/pages/hire-us";
 @import "subscribe-status";
