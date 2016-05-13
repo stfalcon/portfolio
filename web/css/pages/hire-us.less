@@ -120,16 +120,27 @@
   }
   
   .col3 {
-    width: 32%;
+    width: 33.3%;
     float: left;
-    margin-right: 1%;
+    &:first-child {
+        text-align: left;
+    }
+    &:nth-child(2) {
+        text-align: center;
+    }
     &:last-child {
-      margin-right: 0;
+      text-align: right;
+    }
+    .contacts-info {
+        text-align: inherit;
     }
     @media (max-width: 690px) {
       width: 100%;
       margin-bottom: 15px;
       margin-right: 0;
+      .contacts-info {
+          text-align: left;
+      }
     }
   }
 
