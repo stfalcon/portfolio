@@ -90,6 +90,7 @@ p {
 .button {
     display: inline-block;
     vertical-align: top;
+    cursor: pointer;
     &--big {
         text-transform: uppercase;
         font-size: 17px;
@@ -111,17 +112,21 @@ p {
 
 .our-services {
     padding-top: 74px;
-    margin-bottom: 30px;
-    max-width: 644px;
-    margin: 0 auto;
     h2 {
         margin-bottom: 65px;
         font-size: 21px;
         letter-spacing: 0.03em;
     }
     .projects-tabs{
+        text-align: center;
+        li {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 25px;
+            width: 140px;
+        }
         .icon-wrap{
-            margin-bottom: 26px;
+            margin-bottom: 25px;
             svg {
                 fill: #2C373C;
                 width: 67px;
@@ -190,9 +195,6 @@ p {
       display: none;
     }
   }
-//  .active a {
-//
-//  }
   .icon-wrap {
     display: block;
     margin: 0 auto 17px;
@@ -205,26 +207,20 @@ p {
 }
 
 @media (max-width: 1023px) {
-  .projects-tabs {
+  .our-services .projects-tabs {
     display: block;
-    overflow: hidden;
-    margin: 0 auto;
-
     li {
-      display: block;
-      float: left;
-      width: 33%;
-    //   margin: 0 23px;
+      width: 32%;
+      margin: 0;
 
-      &:first-child {
+      &:nth-child(3n){
+          margin-bottom: 55px;
       }
-//      &:last-child {
-//        margin-right: -1px;
-//      }
+      &:last-child {
+          margin-bottom: 0;
+      }
     }
     a, a.active {
-      margin-bottom: 55px;
-
       &:after,
       &:before {
         bottom: -30px;
@@ -492,10 +488,35 @@ p {
     }
   }
   .our-services {
-      padding-top: 30px;
-      h2 {
+    padding: 30px 33px 0 33px;
+    h2 {
+      margin-bottom: 20px;
+    }
+    .projects-tabs {
+      width: 220px;
+      margin: 0 auto;
+      li {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 20px;
+        &:nth-child(3n) {
           margin-bottom: 20px;
+        }
       }
+      a {
+        >span {
+          display: inline-block;
+          vertical-align: middle;
+          &:last-child {
+            width: 138px;
+          }
+        }
+      }
+      .icon-wrap {
+          margin-right: 10px;
+      }
+    }
   }
   .open-source {
     h2 {
