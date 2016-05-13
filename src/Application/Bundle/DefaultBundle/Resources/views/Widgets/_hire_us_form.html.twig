@@ -15,7 +15,7 @@
                     </div>
                     <div class="col2 float-right">
                         {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
-                     </div>
+                    </div>
                 </div>
                 <div class="line">
                     {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}
@@ -27,7 +27,7 @@
                     <button class="btn send-request" style="display: none;">{{ 'Отправить заявку'|trans }}</button>
                 </div>
                 <div class="line">
-                    <div class="col2 float-left">
+                    <div class="col3">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ 'Позвонить'|trans }}:</div>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col2 float-right">
+                    <div class="col3">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ "Skype" | trans() }}:</div>
@@ -47,6 +47,10 @@
                                     <div class="contacts-info__item"><a href="skype:stfalcon.sales?call">stfalcon.sales</a></div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col3">
+                        <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ "Написать" | trans() }}:</div>
                                 <div class="contacts-info__right">
@@ -54,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                     </div>
+                    </div>
                 </div>
             </div>
             <div class="form-success">
