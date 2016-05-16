@@ -475,8 +475,7 @@ p {
     }
   }
   .header-text {
-      padding-top: 115px;
-      padding-bottom: 120px;
+      padding: 115px 10px 120px 10px;
   }
   .projects-list {
     .project-cell {
@@ -495,7 +494,7 @@ p {
   }
   .open-source {
     h2 {
-      margin: 33px 0 26px;
+      margin: 33px 10px 26px;
     }
   }
 }
@@ -527,8 +526,8 @@ p {
         }
       }
       .icon-wrap {
-          margin-right: 10px;
-          margin-bottom: 0;
+        margin-right: 10px;
+        margin-bottom: 0;
       }
     }
   }
@@ -542,6 +541,15 @@ p {
       padding: 0 33px;
       font-size: 22px;
       line-height: 1.5;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .open-source {
+    .tabs-cnt .tabs-header li {
+      width: 44%;
+      margin: 0;
     }
   }
 }
