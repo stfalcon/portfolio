@@ -46,7 +46,7 @@
     </div>
 </div>
 <div class="section-cms">
-    <h3>{{ 'Разрабатываем с использованием CMS'|trans }}</h3>
+    {#<h3>{{ 'Разрабатываем с использованием CMS'|trans }}</h3>
     <ul class="cms-list">
         <li>
             <a href="https://www.prestashop.com/" target="_blank"><div class="prestashop-icon center-icon"></div>
@@ -60,7 +60,7 @@
             <a href="http://livestreetcms.com/" target="_blank"><div class="livestreetcms-icon center-icon"></div>
                 <p>LiveStreetCMS</p></a>
         </li>
-    </ul>
+    </ul>#}
     <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
     {{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProject', { 'category': category })) }}
     <div class="more">

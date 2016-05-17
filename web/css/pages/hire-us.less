@@ -18,7 +18,7 @@
 
   form{
     position: relative;
-    max-width: 565px;
+    max-width: 615px;
     margin: auto;
     padding: 0px 20px;
 
@@ -116,6 +116,31 @@
     @media (max-width: 690px) {
       width: 100%;
       margin-bottom: 15px;
+    }
+  }
+  
+  .col3 {
+    width: 33.3%;
+    float: left;
+    &:first-child {
+        text-align: left;
+    }
+    &:nth-child(2) {
+        text-align: center;
+    }
+    &:last-child {
+      text-align: right;
+    }
+    .contacts-info {
+        text-align: inherit;
+    }
+    @media (max-width: 690px) {
+      width: 100%;
+      margin-bottom: 15px;
+      margin-right: 0;
+      .contacts-info {
+          text-align: left;
+      }
     }
   }
 
