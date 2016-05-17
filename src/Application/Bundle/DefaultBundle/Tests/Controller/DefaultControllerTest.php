@@ -35,7 +35,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('form.subscribe-form'));
 
         $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("+380 67 334-40-40")'));
-        $this->assertCount(1, $crawler->filter('.footer .contact-list a:contains("3/2 Zarichanska str., Khmelnytskyi, Ukraine")'));
+        $this->assertCount(1, $crawler->filter('.footer .contact-list span.adress:contains("3/2 Zarichanska str., Khmelnytskyi, Ukraine")'));
     }
 
     /**
