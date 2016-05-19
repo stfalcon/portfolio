@@ -21,10 +21,10 @@
             <div class="login-{{ user.username }} {% if user.drink %}drink-{{ user.drink }}{% endif %}">
                 {% if user.avatarName %}
                 <img src="{{ vich_uploader_asset(user, 'avatar') | apply_filter('avatar') }}" alt="{{ user.firstname~' '~user.lastname }}" class="avatar"
-                     data-interests="{{ user.getInterestsValues|json_encode() }}"/>
+                     data-interests="{{ user.getInterestsValues|json_encode() }}" width="135">
                 {% endif %}
                 {% if user.caricatureName %}
-                    <img src="{{ vich_uploader_asset(user, 'caricature') | apply_filter('avatar') }}" class="overlay">
+                    <img src="{{ vich_uploader_asset(user, 'caricature') | apply_filter('avatar') }}" class="overlay" width="135">
                 {% endif %}
             </div>
             <span>{{ user.firstname~' '~user.lastname }}</span>
