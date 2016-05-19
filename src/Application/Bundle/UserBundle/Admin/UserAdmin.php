@@ -72,7 +72,18 @@ class UserAdmin extends Admin
                                         'required' => false
                                     )
                                 )
-                            )
+                            ),
+                            'description' => array(
+                                'label' => 'Краткая информация',
+                                'locale_options' => array(
+                                    'ru' => array(
+                                        'required' => true
+                                    ),
+                                    'en' => array(
+                                        'required' => false
+                                    )
+                                ),
+                            ),
                         ),
                         'label' => 'Перевод'
                     )

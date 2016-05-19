@@ -1,0 +1,26 @@
+{% from 'StfalconBlogBundle:Post:macros.html.twig' import author_info as about %}
+
+<div class="about-author">
+    <h2>{{ 'О авторе'|trans }}</h2>
+    {% if author.usernameCanonical is defined and author.usernameCanonical is not empty %}
+        <a class="author_blog" href="{{ path('blog_author', { 'usernameCanonical': author.usernameCanonical }) }}">
+            {{ about(author) }}
+        </a>
+    {% else %}
+        {{ about(author) }}
+    {% endif %}
+
+    <div>
+        {% if author.position is defined %}
+            <span>{{ author.position|raw }}</span>
+        {% endif %}
+
+        {% if author.description is defined %}
+            <div>
+                {{ author.description|raw }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="clear"></div>

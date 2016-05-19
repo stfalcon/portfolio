@@ -14,6 +14,11 @@
             <div class="contact-us hire_us-mob">
                 <button class="hire_us hire_us-button-mob">{{ 'Работать с нами!'|trans }}</button>
             </div>
+
+            {% if post.author %}
+                {% include 'StfalconBlogBundle:Post:about_author.html.twig' with {'author': post.author} %}
+            {% endif %}
+
             {# Subscribe widget #}
             {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
 

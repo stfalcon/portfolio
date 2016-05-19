@@ -1,0 +1,10 @@
+{% macro author_info(author) %}
+    {% if author.avatarName %}
+        <div>
+            <img src="{{ vich_uploader_asset(author, 'avatar') | apply_filter('avatar') }}" alt="{{ author.firstname | default('') ~ ' ' ~ author.lastname | default('') }}" />
+        </div>
+    {% endif %}
+    <div>
+        <span>{{ author.firstname | default('') ~ ' ' ~  author.lastname | default('') }}</span>
+    </div>
+{% endmacro %}

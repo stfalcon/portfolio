@@ -37,6 +37,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $userAdmin->setCaricature($this->copyFile('autumn.jpg'));
         $userAdmin->setFirstname('Admin');
         $userAdmin->setLastname('User');
+        $userAdmin->setDescription(<<<TEXT
+Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin
+molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in
+faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper
+sit amet ligula.
+TEXT
+);
         $userAdmin->setPosition('CEO');
         $userAdmin->setInterests(array('games', 'sportsman'));
         $userAdmin->setDrink('tea');
@@ -51,6 +58,11 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $user->setPlainPassword('qwerty');
         $user->setFirstname('First');
         $user->setLastname('User');
+        $user->setDescription(<<<TEXT
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget tortor risus. Proin eget tortor risus. Curabitur
+aliquet quam id dui posuere blandit. Sed porttitor lectus nibh.
+TEXT
+);
         $user->setPosition('PHP developer');
         $user->setEnabled(true);
         $user->setExpired(false);
@@ -70,6 +82,12 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $user->setPlainPassword('qwerty');
         $user->setFirstname('Second');
         $user->setLastname('User');
+        $user->setDescription(<<<TEXT
+Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci porta dapibus. Vestibulum ac diam
+sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+Proin eget tortor risus.
+TEXT
+);
         $user->setPosition('Art director, Designer');
         $user->setEnabled(true);
         $user->setExpired(false);
