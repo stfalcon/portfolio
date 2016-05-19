@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Bundle\DefaultBundle\Service;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -52,7 +53,24 @@ class MailerService
     {
         $body = $this->getBody($template, $templateParams);
 
-        return $this->sendMessage($subject, $body, $to, $attachments);
+        return $this->sendMessage($subject, $body, $to, null, $attachments);
+    }
+
+    /**
+     * @param string|array $to
+     * @param string|array $from
+     * @param string       $subject
+     * @param string       $template
+     * @param array        $templateParams
+     * @param array        $attachments
+     *
+     * @return bool|int
+     */
+    public function sendWithFrom($to, $from, $subject, $template, array $templateParams = [], array $attachments = [])
+    {
+        $body = $this->getBody($template, $templateParams);
+
+        return $this->sendMessage($subject, $body, $to, $from, $attachments);
     }
 
     /**
@@ -74,11 +92,12 @@ class MailerService
      * @param string       $subject
      * @param string       $body
      * @param string|array $to
+     * @param string|array $from
      * @param array        $attachments
      *
      * @return bool|int
      */
-    private function sendMessage($subject, $body, $to, array $attachments = [])
+    private function sendMessage($subject, $body, $to, $from = null, array $attachments = [])
     {
         if (is_array($to)) {
             list($toEmail, $toName) = $to;
@@ -86,11 +105,24 @@ class MailerService
             $toEmail = $to;
             $toName = null;
         }
+
+        if (is_null($from)) {
+            $fromEmail = $this->options['fromEmail'];
+            $fromName = $this->options['fromName'];
+        } else {
+            if (is_array($from)) {
+                list($fromEmail, $fromName) = $from;
+            } else {
+                $fromEmail = $from;
+                $fromName = null;
+            }
+        }
+
         try {
             /** @var \Swift_Message $message */
             $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
-                ->setFrom($this->options['fromEmail'], $this->options['fromName'])
+                ->setFrom($fromEmail, $fromName)
                 ->setTo($toEmail, $toName)
                 ->setBody($body, 'text/html');
 
@@ -106,4 +138,4 @@ class MailerService
             return false;
         }
     }
-} 
+}
