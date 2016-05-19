@@ -92,7 +92,7 @@ class ProjectController extends Controller
 
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
         if ($category) {
-            $projects = $repository->findAllExamplesProjectsByCategory($category, 7);
+            $projects = $repository->findAllExamplesProjectsByCategory($category, 8);
             $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $nextLimit,
                 count($projects) + $nextLimit);
         } else {
