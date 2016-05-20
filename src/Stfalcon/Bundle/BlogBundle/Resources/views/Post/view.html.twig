@@ -28,8 +28,7 @@
         {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
 
-
-        {% if app.request.host == 'stfalcon.com' %}
+        {#{% if app.request.host == 'stfalcon.com' %}#}
             <p>
                 <div id="disqus_thread"></div>
             </p>
@@ -51,12 +50,9 @@
 
                 function disqus_config() {
                     this.language = "{{ app.request.locale }}";
-                    this.callbacks.onNewComment = [function () {
-                        $.ajax({  url: '{{ url('blog_post_disqus_sync', {'slug': post.slug}) }}' });
-                    }];
                 }
             </script>
-        {% endif %}
+        {#{% endif %}#}
     </article>
 
     <button class="button-up scroll-to-top"></button>
