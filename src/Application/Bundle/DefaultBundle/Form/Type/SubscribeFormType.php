@@ -1,7 +1,8 @@
 <?php
 namespace Application\Bundle\DefaultBundle\Form\Type;
 
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,16 +13,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 class SubscribeFormType extends AbstractType
 {
     /**
-     * @var Translator $translator Translator
+     * @var TranslatorInterface $translator TranslatorInterface
      */
     private $translator;
 
     /**
      * Constructor
      *
-     * @param Translator $translator Translator
+     * @param TranslatorInterface $translator TranslatorInterface
      */
-    public function __construct(Translator $translator)
+    public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
@@ -34,14 +35,14 @@ class SubscribeFormType extends AbstractType
         $builder
             ->add(
                 'email',
-                'email',
+                EmailType::class,
                 [
-                    'label' => false,
+                    'label'       => false,
                     'constraints' => [
                         new Assert\NotBlank(['message' => $this->translator->trans('Вы не указали e-mail адрес')]),
                         new Assert\Email(['message' => $this->translator->trans('Недопустимый адрес электронной почты')]),
-                        new Assert\Length(array('max' => 64))
-                    ]
+                        new Assert\Length(['max' => 64]),
+                    ],
                 ]
             );
     }

@@ -3,8 +3,10 @@
 namespace Application\Bundle\DefaultBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -22,25 +24,25 @@ class PromotionOrderFormType extends AbstractType
         $builder
             ->add(
                 'name',
-                'text',
+                TextType::class,
                 [
-                    'label' => 'Your name',
-                    'constraints' => [new Assert\Length(array('max' => 64))]
+                    'label'       => 'Your name',
+                    'constraints' => [new Assert\Length(['max' => 64])],
                 ]
             )
             ->add(
                 'email',
-                'email',
+                EmailType::class,
                 [
                     'label' => 'Your email',
                 ]
             )
             ->add(
                 'message',
-                'textarea',
+                TextareaType::class,
                 [
-                    'label' => 'Your message',
-                    'constraints' => [new Assert\Length(array('max' => 5000))]
+                    'label'       => 'Your message',
+                    'constraints' => [new Assert\Length(['max' => 5000])],
                 ]
             )
             ->add('captcha', 'recaptcha', [

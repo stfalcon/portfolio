@@ -36,9 +36,10 @@ class PostController extends AbstractController
      */
     public function indexAction(Request $request, $page)
     {
-        $allPostsQuery = $this->get('doctrine')->getManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery($request->getLocale());
-        $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
+        $postRepository = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post');
+
+        $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
+        $posts      = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
 
         return $this->_getRequestArrayWithDisqusShortname(array(
             'posts' => $posts,

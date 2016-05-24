@@ -5,14 +5,20 @@ use Gelf\Message;
 use Gelf\MessagePublisher as BasePublisher;
 
 /**
- * Class MessagePublisher send messages to Graylog server
+ * Class MessagePublisher
+ *
+ * Send messages to Graylog server
  */
 class MessagePublisher extends BasePublisher
 {
-    /** @var  string */
+    /**
+     * @var string $fromName From name
+     */
     private $fromName;
 
     /**
+     * Constructor
+     *
      * @param string $fromName
      * @param string $hostname
      * @param int    $port
@@ -35,4 +41,4 @@ class MessagePublisher extends BasePublisher
 
         return parent::publish($message);
     }
-} 
+}

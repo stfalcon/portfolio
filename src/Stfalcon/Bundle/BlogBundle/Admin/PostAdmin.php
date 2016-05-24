@@ -101,7 +101,7 @@ class PostAdmin extends Admin
             ->add('image', null, ['required' => false])
             ->add('author', null, array(
                     'required' => true,
-                    'empty_value' => 'Choose an user'
+                    'placeholder' => 'Choose an user'
                 )
             )
         ->add('created', 'date', array(
