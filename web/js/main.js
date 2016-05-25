@@ -550,8 +550,8 @@ $(function () {
             }
         });
     }
-    
-    
+
+
     if ($('#direct-order-form').length) {
         $('#direct-order-form').validate({
             rules: {
@@ -580,6 +580,7 @@ $(function () {
                 },
                 'direct_order[email]': {
                     required: "Пожалуйста, введите адрес вашей эл.почты",
+                    email: "Ваша эл.адрес должен быть формата name@domain.com",
                     minlength: "Ваша эл.адрес должен быть формата name@domain.com"
                 },
                 'direct_order[phone]': {
@@ -617,7 +618,7 @@ $(function () {
                 minlength: 30
             }
         });
-        
+
         $("#direct_order_phone").keydown(function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
