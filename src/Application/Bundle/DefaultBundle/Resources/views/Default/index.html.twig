@@ -6,12 +6,9 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="http://stfalcon.com/sitemap.xml" />
 
     <meta property="og:title" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
-    <meta itemprop="name" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
-
     <meta property="og:description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}" />
-    <meta itemprop="description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}"/>
-    <meta name="description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}">
 
+    <meta name="description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
@@ -21,58 +18,11 @@
     {{ sonata_seo_lang_alternates() }}
 
     {% if app.request.host == 'stfalcon.com' %}
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-5635962-2', 'auto');
-            ga('require', 'displayfeatures');
-            ga('send', 'pageview');
-        </script>
-
-        <!-- Yandex.Metrika counter -->
-        <script type="text/javascript">
-            (function (d, w, c) {
-                (w[c] = w[c] || []).push(function() {
-                    try {
-                        w.yaCounter27048220 = new Ya.Metrika({id:27048220,
-                            webvisor:true,
-                            clickmap:true,
-                            trackLinks:true,
-                            accurateTrackBounce:true});
-                    } catch(e) { }
-                });
-
-                var n = d.getElementsByTagName("script")[0],
-                        s = d.createElement("script"),
-                        f = function () { n.parentNode.insertBefore(s, n); };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f, false);
-                } else { f(); }
-            })(document, window, "yandex_metrika_callbacks");
-        </script>
-        <!-- /Yandex.Metrika counter -->
-        <!-- Facebook Conversion Code for заявка -->
-        <script>(function() {
-                var _fbq = window._fbq || (window._fbq = []);
-                if (!_fbq.loaded) {
-                    var fbds = document.createElement('script');
-                    fbds.async = true;
-                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(fbds, s);
-                    _fbq.loaded = true;
-                }
-            })();
-            window._fbq = window._fbq || [];
-            window._fbq.push(['track', '6020145370099', {'value':'0.00','currency':'USD'}]);
-        </script>
+        {% javascripts
+        'js/metrics/header.js'
+        output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endif %}
 </head>
 <body>
@@ -253,14 +203,14 @@
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-    <script type="text/javascript">
-        jQuery.extend(jQuery.validator.messages, {
-            required: "{{ 'Заполните это поле'|trans }}",
-            email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
-            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
-            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
-        });
-    </script>
+<script type="text/javascript">
+    jQuery.extend(jQuery.validator.messages, {
+        required: "{{ 'Заполните это поле'|trans }}",
+        email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
+        maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+        minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+    });
+</script>
 
 {% if app.request.host == 'stfalcon.com' %}
     <!-- Google Code for Remarketing Tag -->
@@ -278,55 +228,11 @@
         </div>
     </noscript>
 
-    <script type="text/javascript">
-        adroll_adv_id = "4D2635Z5I5HHPLZFLSLGPF";
-        adroll_pix_id = "QCTMESTTRVHSZENSLNPNCG";
-        (function () {
-            var oldonload = window.onload;
-            window.onload = function(){
-                __adroll_loaded=true;
-                var scr = document.createElement("script");
-                var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
-                scr.setAttribute('async', 'true');
-                scr.type = "text/javascript";
-                scr.src = host + "/j/roundtrip.js";
-                ((document.getElementsByTagName('head') || [null])[0] ||
-                document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
-                if(oldonload){oldonload()}};
-        }());
-
-        (function () {
-            var a = document.createElement("iframe");
-            a.style.cssText = "width: 0; height: 0; border: 0";
-            a.src = "javascript:false";
-            var b = function () {
-                setTimeout(function () {
-                    var b = a.contentDocument || a.contentWindow.document, c = b.createElement("script");
-                    c.src = "//static-trackers.adtarget.me/javascripts/pixel.min.js";
-                    c.id = "GIHhtQfW-atm-pixel";
-                    c["data-pixel"] = "6b426f21b81c3aad68c1d763c1d156e4";
-                    c["allow-flash"] = false;
-                    b.body.appendChild(c);
-                }, 0);
-            };
-            a.addEventListener ? a.addEventListener("load", b, !1) : a.attachEvent ? a.attachEvent("onload", b) : a.onload = b;
-            document.body.appendChild(a);
-        })();
-
-        $(document).ready(function() {
-            $( "a[href^='tel:']" ).on( 'click', function() {
-                ga('send', 'event', 'click', 'phone', this.href);
-            });
-
-            $( "a[href^='skype:stfalcon']" ).on( 'click', function() {
-                ga('send', 'event', 'click', 'skype', this.href);
-            });
-
-            $( "a[href='mailto:info@stfalcon.com']" ).on( 'click', function() {
-                ga('send', 'event', 'click', 'mail', this.href);
-            });
-        });
-    </script>
+    {% javascripts
+    'js/metrics/footer.js'
+    output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endif %}
 </body>
 </html>

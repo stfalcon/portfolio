@@ -28,6 +28,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $seo = $this->get('sonata.seo.page');
+        $seo
+            ->addMeta('property', 'og:url', $this->generateUrl('homepage', [], true))
+            ->addMeta('property', 'og:type', 'website');
+
         return [];
     }
 
