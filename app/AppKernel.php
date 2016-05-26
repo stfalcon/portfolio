@@ -5,7 +5,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
-
     public function registerBundles()
     {
         $bundles = array(
@@ -31,7 +30,6 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
 
             new Vich\UploaderBundle\VichUploaderBundle(),

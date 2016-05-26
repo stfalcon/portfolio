@@ -26,7 +26,7 @@ var InlineUpload = {
         $("input[name='upload_file']").trigger('click');
 
         // submit hidden form after file was selected in system dialog
-        $("input[name='upload_file']").live('change', function(){
+        $("input[name='upload_file']").on('change', function(){
             if ($(this).val() != '') {
                 $('.' + self.options.form_class).submit();
             }
@@ -48,7 +48,7 @@ var InlineUpload = {
         });
     },
     cleanUp: function() {
-        $("input[name='upload_file']").die('change');
+        $("input[name='upload_file']").off('change');
         this.dialog.remove();
     }
 };
