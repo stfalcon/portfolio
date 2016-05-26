@@ -39,7 +39,7 @@ class PostController extends AbstractController
         $postRepository = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post');
 
         $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
-        $posts      = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
+        $posts      = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
 
         return $this->_getRequestArrayWithDisqusShortname(array(
             'posts' => $posts,
