@@ -153,6 +153,8 @@ sonata_admin:
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
         # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+    title: "Portfolio"
+    title_logo: img/pages/promotions/apps/falcon-img.png
     templates:
         layout: "::admin.html.twig"
 

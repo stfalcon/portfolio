@@ -2,6 +2,7 @@
 namespace Stfalcon\Bundle\BlogBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
@@ -18,11 +19,17 @@ class PostAdmin extends Admin
         '_sort_order' => 'DESC',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     public function postPersist($post)
     {
         $this->postUpdate($post);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function postUpdate($post)
     {
         $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
@@ -100,22 +107,41 @@ class PostAdmin extends Admin
             ->add('tags', null)
             ->add('image', null, ['required' => false])
             ->add('author', null, array(
-                    'required' => true,
-                    'placeholder' => 'Choose an user'
-                )
-            )
+                'required' => true,
+                'placeholder' => 'Choose an user',
+            ))
         ->add('created', 'date', array(
-                    'widget' => 'single_text',
-                    'format' => 'dd-MM-yyyy'
-                ))
+            'widget' => 'single_text',
+            'format' => 'dd-MM-yyyy',
+        ))
         ->add('published', null, array('required' => false));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('slug')
             ->add('title')
-            ->add('created');
+            ->add('created')
+            ->add('_action', 'actions', [
+                'label' => 'Действия',
+                'actions' => [
+                    'edit'   => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureDatagridFilters(DatagridMapper $filterMapper)
+    {
+        $filterMapper
+            ->add('slug')
+            ->add('title');
     }
 }

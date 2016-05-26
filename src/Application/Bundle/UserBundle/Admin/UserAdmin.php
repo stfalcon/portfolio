@@ -12,15 +12,28 @@
 namespace Application\Bundle\UserBundle\Admin;
 
 use Application\Bundle\UserBundle\Entity\User;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\UserBundle\Admin\Model\UserAdmin as Admin;
 use Sonata\AdminBundle\Form\FormMapper;
-
 
 /**
  * Class UserAdmin
  */
 class UserAdmin extends Admin
 {
+    /**
+     * Pre update
+     *
+     * @param User $entity User
+     *
+     * @return User
+     */
+    public function preUpdate($entity)
+    {
+        $entity->setUpdatedAt(new \DateTime());
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -96,10 +109,19 @@ class UserAdmin extends Admin
     }
 
     /**
-     * @param mixed $entity
+     * {@inheritdoc}
      */
-    public function preUpdate($entity)
+    protected function configureListFields(ListMapper $listMapper)
     {
-        $entity->setUpdatedAt(new \DateTime());
+        parent::configureListFields($listMapper);
+
+        $listMapper
+            ->add('_action', 'actions', [
+                'label' => 'Действия',
+                'actions' => [
+                    'edit'   => [],
+                    'delete' => [],
+                ],
+            ]);
     }
 }

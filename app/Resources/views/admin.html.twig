@@ -13,6 +13,10 @@
     </style>
 {% endblock %}
 
+{% block side_bar_before_nav %}{% endblock side_bar_before_nav %}
+
+{% block sonata_sidebar_search %}{% endblock sonata_sidebar_search %}
+
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('vendor/markitup/jquery.markitup.js') }}"></script>

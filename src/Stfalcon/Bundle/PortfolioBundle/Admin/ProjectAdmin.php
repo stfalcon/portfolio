@@ -3,6 +3,7 @@ namespace Stfalcon\Bundle\PortfolioBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
@@ -32,104 +33,155 @@ class ProjectAdmin extends Admin
         }
     }
 
+    /**
+     * @param array $templates
+     */
+    public function setTemplates(array $templates)
+    {
+        $templates['list'] = 'StfalconPortfolioBundle:ProjectAdmin:list.html.twig';
+        parent::setTemplates($templates);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist($project)
+    {
+        $this->postUpdate($project);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postUpdate($project)
+    {
+        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($project)
+    {
+        $this->preUpdate($project);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($project)
+    {
+        /** @var UserWithPosition $userWithPosition */
+        foreach ($project->getUsersWithPositions() as $userWithPosition) {
+            $userWithPosition->setProject($project);
+
+            /** @var UserWithPositionTranslation $translation */
+            foreach ($userWithPosition->getTranslations() as $translation) {
+                $translation->setObject($userWithPosition);
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $currentProject = $this->getSubject();
 
         $formMapper
             ->add('translations', 'a2lix_translations_gedmo', array(
-                    'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
-                    'fields' => array(
-                        'name' => array(
-                            'label' => 'name',
-                            'locale_options' => array(
-                                'ru' => array(
-                                    'required' => true,
-                                ),
-                                'en' => array(
-                                    'required' => false,
-                                ),
+                'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
+                'fields' => array(
+                    'name' => array(
+                        'label' => 'name',
+                        'locale_options' => array(
+                            'ru' => array(
+                                'required' => true,
                             ),
-                        ),
-                        'description' => array(
-                            'label' => 'description',
-                            'locale_options' => array(
-                                'ru' => array(
-                                    'required' => true,
-                                ),
-                                'en' => array(
-                                    'required' => false,
-                                ),
-                            ),
-                            'attr' => array(
-                                'class' => 'markitup',
-                            ),
-                        ),
-                        'shortDescription' => array(
-                            'label' => 'short description',
-                            'locale_options' => array(
-                                'ru' => array(
-                                    'required' => true,
-                                ),
-                                'en' => array(
-                                    'required' => false,
-                                ),
-                            ),
-                            'attr' => array(
-                                'class' => 'markitup',
-                            ),
-                        ),
-                        'caseContent' => [
-                            'label' => 'Case content',
-                            'locale_options' => [
-                                'ru' => [
-                                    'required' => false,
-                                ],
-                                'en' => [
-                                    'required' => false,
-                                ],
-                            ],
-                            'attr' => array(
-                                'class' => 'markitup',
-                            ),
-                        ],
-                        'tags' => array(
-                            'label' => 'Tags',
-                            'locale_options' => array(
-                                'ru' => array(
-                                    'required' => true,
-                                ),
-                                'en' => array(
-                                    'required' => false,
-                                ),
-                            ),
-                        ),
-                        'metaKeywords' => array(
-                            'label' => 'Meta keywords',
-                            'locale_options' => array(
-                                'ru' => array(
-                                    'required' => false,
-                                ),
-                                'en' => array(
-                                    'required' => false,
-                                ),
-                            ),
-                        ),
-                        'metaDescription' => array(
-                            'label' => 'Meta description',
-                            'locale_options' => array(
-                                'ru' => array(
-                                    'required' => false,
-                                ),
-                                'en' => array(
-                                    'required' => false,
-                                ),
+                            'en' => array(
+                                'required' => false,
                             ),
                         ),
                     ),
-                    'label' => 'Перевод',
-                )
-            )
+                    'description' => array(
+                        'label' => 'description',
+                        'locale_options' => array(
+                            'ru' => array(
+                                'required' => true,
+                            ),
+                            'en' => array(
+                                'required' => false,
+                            ),
+                        ),
+                        'attr' => array(
+                            'class' => 'markitup',
+                        ),
+                    ),
+                    'shortDescription' => array(
+                        'label' => 'short description',
+                        'locale_options' => array(
+                            'ru' => array(
+                                'required' => true,
+                            ),
+                            'en' => array(
+                                'required' => false,
+                            ),
+                        ),
+                        'attr' => array(
+                            'class' => 'markitup',
+                        ),
+                    ),
+                    'caseContent' => [
+                        'label' => 'Case content',
+                        'locale_options' => [
+                            'ru' => [
+                                'required' => false,
+                            ],
+                            'en' => [
+                                'required' => false,
+                            ],
+                        ],
+                        'attr' => array(
+                            'class' => 'markitup',
+                        ),
+                    ],
+                    'tags' => array(
+                        'label' => 'Tags',
+                        'locale_options' => array(
+                            'ru' => array(
+                                'required' => true,
+                            ),
+                            'en' => array(
+                                'required' => false,
+                            ),
+                        ),
+                    ),
+                    'metaKeywords' => array(
+                        'label' => 'Meta keywords',
+                        'locale_options' => array(
+                            'ru' => array(
+                                'required' => false,
+                            ),
+                            'en' => array(
+                                'required' => false,
+                            ),
+                        ),
+                    ),
+                    'metaDescription' => array(
+                        'label' => 'Meta description',
+                        'locale_options' => array(
+                            'ru' => array(
+                                'required' => false,
+                            ),
+                            'en' => array(
+                                'required' => false,
+                            ),
+                        ),
+                    ),
+                ),
+                'label' => 'Перевод',
+            ))
             ->add('slug')
             ->add('url')
             ->add('imageFile', 'file', array('required' => true, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
@@ -198,51 +250,12 @@ class ProjectAdmin extends Admin
     }
 
     /**
-     * @param array $templates
-     */
-    public function setTemplates(array $templates)
-    {
-        $templates['list'] = 'StfalconPortfolioBundle:ProjectAdmin:list.html.twig';
-        parent::setTemplates($templates);
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function postPersist($project)
+    protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
-        $this->postUpdate($project);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postUpdate($project)
-    {
-        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function prePersist($project)
-    {
-        $this->preUpdate($project);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function preUpdate($project)
-    {
-        /** @var UserWithPosition $userWithPosition */
-        foreach ($project->getUsersWithPositions() as $userWithPosition) {
-            $userWithPosition->setProject($project);
-
-            /** @var UserWithPositionTranslation $translation */
-            foreach ($userWithPosition->getTranslations() as $translation) {
-                $translation->setObject($userWithPosition);
-            }
-        }
+        $filterMapper
+            ->add('slug')
+            ->add('name');
     }
 }

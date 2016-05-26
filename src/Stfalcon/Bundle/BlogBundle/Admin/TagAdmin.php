@@ -2,6 +2,7 @@
 namespace Stfalcon\Bundle\BlogBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
@@ -10,6 +11,25 @@ use Sonata\AdminBundle\Form\FormMapper;
  */
 class TagAdmin extends Admin
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist($post)
+    {
+        $this->postUpdate($post);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postUpdate($post)
+    {
+        $this->configurationPool
+            ->getContainer()
+            ->get('application_defaultbundle.service.sitemap')
+            ->generateSitemap();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -38,25 +58,21 @@ class TagAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('text')
-            ->add('id');
+            ->add('_action', 'actions', [
+                'label'   => 'Действия',
+                'actions' => [
+                    'edit'   => [],
+                    'delete' => [],
+                ],
+            ]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function postPersist($post)
+    protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
-        $this->postUpdate($post);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postUpdate($post)
-    {
-        $this->configurationPool
-             ->getContainer()
-             ->get('application_defaultbundle.service.sitemap')
-             ->generateSitemap();
+        $filterMapper
+            ->add('text');
     }
 }
