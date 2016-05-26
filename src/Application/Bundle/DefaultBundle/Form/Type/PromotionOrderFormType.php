@@ -24,7 +24,7 @@ class PromotionOrderFormType extends AbstractType
         $builder
             ->add(
                 'name',
-                TextType::class,
+                'text',
                 [
                     'label'       => 'Your name',
                     'constraints' => [new Assert\Length(['max' => 64])],
@@ -32,14 +32,14 @@ class PromotionOrderFormType extends AbstractType
             )
             ->add(
                 'email',
-                EmailType::class,
+                'email',
                 [
                     'label' => 'Your email',
                 ]
             )
             ->add(
                 'message',
-                TextareaType::class,
+                'textarea',
                 [
                     'label'       => 'Your message',
                     'constraints' => [new Assert\Length(['max' => 5000])],

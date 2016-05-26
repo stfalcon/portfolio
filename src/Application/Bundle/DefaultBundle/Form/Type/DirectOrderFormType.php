@@ -37,7 +37,7 @@ class DirectOrderFormType extends AbstractType
         $builder
             ->add(
                 'name',
-                TextType::class,
+                'text',
                 [
                     'attr'        => [
                         'placeholder' => $this->translator->trans('Ваше имя'),
@@ -51,7 +51,7 @@ class DirectOrderFormType extends AbstractType
             )
             ->add(
                 'email',
-                EmailType::class,
+                'email',
                 [
                     'attr'        => [
                         'placeholder' => $this->translator->trans('Электронная почта'),
@@ -65,7 +65,7 @@ class DirectOrderFormType extends AbstractType
             )
             ->add(
                 'phone',
-                TextType::class,
+                'text',
                 [
                     'attr'        => [
                         'placeholder' => $this->translator->trans('Телефон'),
@@ -83,7 +83,7 @@ class DirectOrderFormType extends AbstractType
             )
             ->add(
                 'message',
-                TextareaType::class,
+                'textarea',
                 [
                     'attr'        => [
                         'placeholder' => $this->translator->trans(<<<TEXT
@@ -101,7 +101,7 @@ TEXT
                     ],
                 ]
             )
-            ->add('attach', FileType::class, [
+            ->add('attach', 'file', [
                 'label'       => false,
                 'required'    => false,
                 'constraints' => [
@@ -110,7 +110,7 @@ TEXT
                     ]),
                 ],
             ])
-            ->add('captcha', ReCaptchaFormType::class, [
+            ->add('captcha', 'recaptcha', [
                 'label' => false,
             ]);
     }

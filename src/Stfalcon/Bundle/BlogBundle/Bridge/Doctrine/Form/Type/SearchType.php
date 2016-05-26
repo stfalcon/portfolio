@@ -24,7 +24,7 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('searchPhrase', TextType::class, [
+            ->add('searchPhrase', 'text', [
                 'attr' => [
                     'class' => 'search-phrase',
                 ],

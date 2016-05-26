@@ -35,7 +35,7 @@ class SubscribeFormType extends AbstractType
         $builder
             ->add(
                 'email',
-                EmailType::class,
+                'email',
                 [
                     'label'       => false,
                     'constraints' => [
