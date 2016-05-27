@@ -515,7 +515,7 @@ $(function () {
                 },
                 'email': {
                     required: "Пожалуйста, введите адрес вашей эл.почты",
-                    email: "Ваша эл.адрес должен быть формата name@domain.com"
+                    email: "Ваш эл.адрес должен быть формата name@domain.com"
                 },
                 'message': {
                     required: "Пожалуйста, введите сообщение",
@@ -580,8 +580,8 @@ $(function () {
                 },
                 'direct_order[email]': {
                     required: "Пожалуйста, введите адрес вашей эл.почты",
-                    email: "Ваша эл.адрес должен быть формата name@domain.com",
-                    minlength: "Ваша эл.адрес должен быть формата name@domain.com"
+                    email: "Ваш эл.адрес должен быть формата name@domain.com",
+                    minlength: "Ваш эл.адрес должен быть формата name@domain.com"
                 },
                 'direct_order[phone]': {
                     required: "Пожалуйста, введите телефон",
