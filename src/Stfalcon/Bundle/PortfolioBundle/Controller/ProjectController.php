@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\PortfolioBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,14 +70,17 @@ class ProjectController extends Controller
     }
 
     /**
-     * @param int $page
+     * All projects
+     *
+     * @param Request     $request Request
+     * @param string|null $slug    Project slug
      *
      * @return array
      * @Route("/portfolio/{slug}", name="portfolio_category_project")
      * @Route("/portfolio", name="portfolio_all_projects")
      * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
      */
-    public function allProjectsAction($slug = null)
+    public function allProjectsAction(Request $request, $slug = null)
     {
         $category = null;
         $nextLimit = 4;
@@ -93,13 +97,24 @@ class ProjectController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
         if ($category) {
             $projects = $repository->findAllExamplesProjectsByCategory($category, 8);
-            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory($category, $nextLimit,
-                count($projects) + $nextLimit);
+            $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory(
+                $category,
+                $nextLimit,
+                count($projects) + $nextLimit
+            );
         } else {
             $projects = $repository->getAllProjectPortfolio(8);
             $nextPartCategoriesCount = $repository->getAllProjectPortfolio($nextLimit, count($projects) + $nextLimit);
         }
         $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
+
+
+        $seo = $this->get('sonata.seo.page');
+        $seo
+            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
+                'slug' => $slug,
+            ], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return array(
             'categories' => $categories,
@@ -159,14 +174,10 @@ class ProjectController extends Controller
     public function viewAction(Request $request, Category $category, Project $project)
     {
         $categorySlug = $project->getCategories()->first()->getSlug();
-        $canonicalUrl = $this->generateUrl(
-            'portfolio_project_view',
-            [
-                'categorySlug' => $categorySlug,
-                'projectSlug' => $project->getSlug()
-            ],
-            true
-        );
+        $canonicalUrl = $this->generateUrl($request->get('_route'), [
+            'categorySlug' => $categorySlug,
+            'projectSlug'  => $project->getSlug(),
+        ], true);
 
         $seo = $this->get('sonata.seo.page');
 
@@ -174,7 +185,7 @@ class ProjectController extends Controller
             ->addMeta('name', 'keywords', $project->getMetaKeywords())
             ->addMeta('property', 'og:title', $project->getName())
             ->addMeta('property', 'og:url', $canonicalUrl)
-            ->addMeta('property', 'og:type', 'portfolio')
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::ARTICLE)
             ->addMeta('property', 'og:description', $project->getMetaDescription())
             ->setLinkCanonical($canonicalUrl);
 

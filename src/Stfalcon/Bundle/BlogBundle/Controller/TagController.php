@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -39,6 +40,13 @@ class TagController extends AbstractController
         $postRepository           = $em->getRepository('StfalconBlogBundle:Post');
         $tagTranslationRepository = $em->getRepository('StfalconBlogBundle:TagTranslation');
         $tagRepository            = $em->getRepository('StfalconBlogBundle:Tag');
+
+        $seo = $this->get('sonata.seo.page');
+        $seo
+            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
+                'text' => $text,
+            ], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         $tagTranslation = $tagTranslationRepository->findOneBy(['content' => $text]);
         if (null === $tagTranslation) {

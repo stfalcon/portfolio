@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\PortfolioBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,43 +35,37 @@ class CategoryController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category');
         $categories = $repository->getServicesCategories();
 
-        $linkTexts = array(
+        $linkTexts = [
             'web-development'    => 'веб-разработки',
             'web-design'         => 'разработки дизайна',
             'mobile-development' => 'разработки мобильных приложений',
             'game-development'   => 'создания игр',
-            'consulting-audit'   => 'консалтинга и аудита'
-        );
+            'consulting-audit'   => 'консалтинга и аудита',
+        ];
 
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('name', 'description', $category->getMetaDescription())
             ->addMeta('name', 'keywords', $category->getMetaKeywords())
-            ->addMeta(
-                'property',
-                'og:url',
-                $this->generateUrl(
-                    'portfolio_categories_list',
-                    [
-                        'slug' => $category->getSlug(),
-                    ],
-                    true
-                )
-            )
+            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
+                'slug' => $category->getSlug(),
+            ], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::ARTICLE)
             ->addMeta('property', 'og:title', $category->getTitle())
             ->addMeta('property', 'og:description', $category->getMetaDescription());
 
         $this->get('app.default.seo_alternate')->addAlternate($category, $seo, $request);
 
-        return array(
+        return [
             'category'   => $category,
             'categories' => $categories,
-            'linkTexts'  => $linkTexts
-        );
+            'linkTexts'  => $linkTexts,
+        ];
     }
 
     /**
      * View category
      *
+     * @param Request  $request  Request
      * @param Category $category Category object
      * @param int      $page     Page number
      *
@@ -83,11 +78,11 @@ class CategoryController extends Controller
      * )
      * @Template()
      */
-    public function viewAction(Category $category, $page = 1)
+    public function viewAction(Request $request, Category $category, $page = 1)
     {
         $query = $this->getDoctrine()
-            ->getRepository("StfalconPortfolioBundle:Project")
-            ->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC');
+                      ->getRepository("StfalconPortfolioBundle:Project")
+                      ->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC');
 
         $paginatedProjects = $this->get('knp_paginator')->paginate($query, $page, 12);
         $paginatedProjects->setUsedRoute('portfolio_category_view');
@@ -97,10 +92,20 @@ class CategoryController extends Controller
             $breadcrumbs->addChild($category->getName())->setCurrent(true);
         }
 
-        return array(
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('name', 'description', $category->getMetaDescription())
+            ->addMeta('name', 'keywords', $category->getMetaKeywords())
+            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
+                'slug' => $category->getSlug(),
+            ], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE)
+            ->addMeta('property', 'og:title', $category->getTitle())
+            ->addMeta('property', 'og:description', $category->getMetaDescription());
+
+        return [
             'category' => $category,
-            'projects' => $paginatedProjects
-        );
+            'projects' => $paginatedProjects,
+        ];
     }
 
     /**
