@@ -19,8 +19,8 @@
 
     {% if app.request.host == 'stfalcon.com' %}
         {% javascripts
-        'js/metrics/header.js'
-        output='cache/js/*.js' %}
+            'js/metrics/header.js'
+            output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endif %}
@@ -229,8 +229,8 @@
     </noscript>
 
     {% javascripts
-    'js/metrics/footer.js'
-    output='cache/js/*.js' %}
+        'js/metrics/footer.js'
+        output='cache/js/*.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endif %}

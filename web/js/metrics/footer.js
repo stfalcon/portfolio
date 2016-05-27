@@ -2,16 +2,19 @@ adroll_adv_id = "4D2635Z5I5HHPLZFLSLGPF";
 adroll_pix_id = "QCTMESTTRVHSZENSLNPNCG";
 (function () {
     var oldonload = window.onload;
-    window.onload = function(){
-        __adroll_loaded=true;
+    window.onload = function () {
+        __adroll_loaded = true;
         var scr = document.createElement("script");
         var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
         scr.setAttribute('async', 'true');
         scr.type = "text/javascript";
         scr.src = host + "/j/roundtrip.js";
-        ((document.getElementsByTagName('head') || [null])[0] ||
-         document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
-        if(oldonload){oldonload()}};
+        ((document.getElementsByTagName('head') || [null])[0] || document.getElementsByTagName(
+            'script')[0].parentNode).appendChild(scr);
+        if (oldonload) {
+            oldonload()
+        }
+    };
 }());
 
 (function () {
@@ -32,16 +35,16 @@ adroll_pix_id = "QCTMESTTRVHSZENSLNPNCG";
     document.body.appendChild(a);
 })();
 
-$(document).ready(function() {
-    $( "a[href^='tel:']" ).on( 'click', function() {
+$(document).ready(function () {
+    $("a[href^='tel:']").on('click', function () {
         ga('send', 'event', 'click', 'phone', this.href);
     });
 
-    $( "a[href^='skype:stfalcon']" ).on( 'click', function() {
+    $("a[href^='skype:stfalcon']").on('click', function () {
         ga('send', 'event', 'click', 'skype', this.href);
     });
 
-    $( "a[href='mailto:info@stfalcon.com']" ).on( 'click', function() {
+    $("a[href='mailto:info@stfalcon.com']").on('click', function () {
         ga('send', 'event', 'click', 'mail', this.href);
     });
 });
