@@ -108,22 +108,28 @@ class ProjectController extends Controller
         }
         $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
 
-
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
-                'slug' => $slug,
-            ], true))
+        $seo->addMeta(
+            'property',
+            'og:url',
+            $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'slug' => $slug,
+                ],
+                true
+            )
+        )
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
-        return array(
-            'categories' => $categories,
-            'active' => $category ? $category->getSlug() : 'all',
-            'projects' => $projects,
-            'nextCount' => count($nextPartCategoriesCount),
-            'itemCount' => count($projects),
+        return [
+            'categories'   => $categories,
+            'active'       => $category ? $category->getSlug() : 'all',
+            'projects'     => $projects,
+            'nextCount'    => count($nextPartCategoriesCount),
+            'itemCount'    => count($projects),
             'categorySlug' => $slug,
-        );
+        ];
     }
 
     /**
@@ -174,10 +180,14 @@ class ProjectController extends Controller
     public function viewAction(Request $request, Category $category, Project $project)
     {
         $categorySlug = $project->getCategories()->first()->getSlug();
-        $canonicalUrl = $this->generateUrl($request->get('_route'), [
-            'categorySlug' => $categorySlug,
-            'projectSlug'  => $project->getSlug(),
-        ], true);
+        $canonicalUrl = $this->generateUrl(
+            $request->get('_route'),
+            [
+                'categorySlug' => $categorySlug,
+                'projectSlug'  => $project->getSlug(),
+            ],
+            true
+        );
 
         $seo = $this->get('sonata.seo.page');
 

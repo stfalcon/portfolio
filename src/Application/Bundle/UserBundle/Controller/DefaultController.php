@@ -33,8 +33,7 @@ class DefaultController extends Controller
         $interestsList = User::getInterestsList();
 
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return [

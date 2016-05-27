@@ -36,10 +36,17 @@ class PromotionController extends Controller
         $form = $this->createForm(new PromotionOrderFormType());
 
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
-                'type' => $type,
-            ], true))
+        $seo->addMeta(
+            'property',
+            'og:url',
+            $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'type' => $type,
+                ],
+                true
+            )
+        )
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::ARTICLE);
 
         return $this->render('ApplicationDefaultBundle:Default:promotion_'.$type.'.html.twig', [

@@ -42,10 +42,17 @@ class TagController extends AbstractController
         $tagRepository            = $em->getRepository('StfalconBlogBundle:Tag');
 
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
-                'text' => $text,
-            ], true))
+        $seo->addMeta(
+            'property',
+            'og:url',
+            $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'text' => $text,
+                ],
+                true
+            )
+        )
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         $tagTranslation = $tagTranslationRepository->findOneBy(['content' => $text]);

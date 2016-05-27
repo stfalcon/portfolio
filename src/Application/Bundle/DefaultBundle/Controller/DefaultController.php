@@ -33,8 +33,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return [];
@@ -102,8 +101,7 @@ class DefaultController extends Controller
         }
 
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         if ($request->isXmlHttpRequest()) {
@@ -129,8 +127,7 @@ class DefaultController extends Controller
     public function privacyPolicyAction(Request $request)
     {
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return [];
@@ -149,8 +146,7 @@ class DefaultController extends Controller
     public function termsOfServiceAction(Request $request)
     {
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return [];

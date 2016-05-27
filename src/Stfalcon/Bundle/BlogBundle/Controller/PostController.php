@@ -43,8 +43,7 @@ class PostController extends AbstractController
         $posts = $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
 
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return $this->_getRequestArrayWithDisqusShortname([
@@ -227,10 +226,17 @@ class PostController extends AbstractController
         }
 
         $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
-                'usernameCanonical' => $user->getUsernameCanonical(),
-            ], true))
+        $seo->addMeta(
+            'property',
+            'og:url',
+            $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'usernameCanonical' => $user->getUsernameCanonical(),
+                ],
+                true
+            )
+        )
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         $this->get('app.default.seo_alternate')->addAlternate($user, $seo, $request);
