@@ -151,11 +151,11 @@ class WidgetsController extends Controller
                 ]
             );
 
-            if ($resultSending) {
+//            if ($resultSending) {
                 return new JsonResponse([
                     'status' => 'success'
                 ]);
-            }
+//            }
         }
 
         return new JsonResponse([

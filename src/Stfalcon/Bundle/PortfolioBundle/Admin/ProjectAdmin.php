@@ -90,122 +90,124 @@ class ProjectAdmin extends Admin
         $currentProject = $this->getSubject();
 
         $formMapper
-            ->add('translations', 'a2lix_translations_gedmo', array(
-                'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
-                'fields' => array(
-                    'name' => array(
-                        'label' => 'name',
-                        'locale_options' => array(
-                            'ru' => array(
-                                'required' => true,
-                            ),
-                            'en' => array(
-                                'required' => false,
-                            ),
-                        ),
-                    ),
-                    'description' => array(
-                        'label' => 'description',
-                        'locale_options' => array(
-                            'ru' => array(
-                                'required' => true,
-                            ),
-                            'en' => array(
-                                'required' => false,
+            ->with('Projects')
+                ->add('translations', 'a2lix_translations_gedmo', array(
+                    'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
+                    'fields' => array(
+                        'name' => array(
+                            'label' => 'name',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true,
+                                ),
+                                'en' => array(
+                                    'required' => false,
+                                ),
                             ),
                         ),
-                        'attr' => array(
-                            'class' => 'markitup',
-                        ),
-                    ),
-                    'shortDescription' => array(
-                        'label' => 'short description',
-                        'locale_options' => array(
-                            'ru' => array(
-                                'required' => true,
+                        'description' => array(
+                            'label' => 'description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true,
+                                ),
+                                'en' => array(
+                                    'required' => false,
+                                ),
                             ),
-                            'en' => array(
-                                'required' => false,
+                            'attr' => array(
+                                'class' => 'markitup',
                             ),
                         ),
-                        'attr' => array(
-                            'class' => 'markitup',
+                        'shortDescription' => array(
+                            'label' => 'short description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true,
+                                ),
+                                'en' => array(
+                                    'required' => false,
+                                ),
+                            ),
+                            'attr' => array(
+                                'class' => 'markitup',
+                            ),
                         ),
-                    ),
-                    'caseContent' => [
-                        'label' => 'Case content',
-                        'locale_options' => [
-                            'ru' => [
-                                'required' => false,
+                        'caseContent' => [
+                            'label' => 'Case content',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => false,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
                             ],
-                            'en' => [
-                                'required' => false,
-                            ],
+                            'attr' => array(
+                                'class' => 'markitup',
+                            ),
                         ],
-                        'attr' => array(
-                            'class' => 'markitup',
-                        ),
-                    ],
-                    'tags' => array(
-                        'label' => 'Tags',
-                        'locale_options' => array(
-                            'ru' => array(
-                                'required' => true,
-                            ),
-                            'en' => array(
-                                'required' => false,
+                        'tags' => array(
+                            'label' => 'Tags',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => true,
+                                ),
+                                'en' => array(
+                                    'required' => false,
+                                ),
                             ),
                         ),
-                    ),
-                    'metaKeywords' => array(
-                        'label' => 'Meta keywords',
-                        'locale_options' => array(
-                            'ru' => array(
-                                'required' => false,
-                            ),
-                            'en' => array(
-                                'required' => false,
+                        'metaKeywords' => array(
+                            'label' => 'Meta keywords',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false,
+                                ),
+                                'en' => array(
+                                    'required' => false,
+                                ),
                             ),
                         ),
-                    ),
-                    'metaDescription' => array(
-                        'label' => 'Meta description',
-                        'locale_options' => array(
-                            'ru' => array(
-                                'required' => false,
-                            ),
-                            'en' => array(
-                                'required' => false,
+                        'metaDescription' => array(
+                            'label' => 'Meta description',
+                            'locale_options' => array(
+                                'ru' => array(
+                                    'required' => false,
+                                ),
+                                'en' => array(
+                                    'required' => false,
+                                ),
                             ),
                         ),
                     ),
-                ),
-                'label' => 'Перевод',
-            ))
-            ->add('slug')
-            ->add('url')
-            ->add('imageFile', 'file', array('required' => true, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
-            ->add('date', 'date')
-            ->add('categories', null, array('required' => true))
-            ->add('published', 'checkbox', array('required' => false))
-            ->add('shadow', 'checkbox', array('required' => false))
-            ->add('onFrontPage', 'checkbox', array('required' => false))
-            ->add('showCase', 'checkbox', array('required' => false))
-            ->add('relativeProjects', 'entity', array(
-                'required' => false,
-                'label' => 'Похожие проекты',
-                'class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
-                'multiple' => true,
-                'query_builder' => function(EntityRepository $repository) use ($currentProject) {
-                    $qb = $repository->createQueryBuilder('p');
+                    'label' => 'Перевод',
+                ))
+                ->add('slug')
+                ->add('url')
+                ->add('imageFile', 'file', array('required' => true, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
+                ->add('date', 'date')
+                ->add('categories', null, array('required' => true))
+                ->add('published', 'checkbox', array('required' => false))
+                ->add('shadow', 'checkbox', array('required' => false))
+                ->add('onFrontPage', 'checkbox', array('required' => false))
+                ->add('showCase', 'checkbox', array('required' => false))
+                ->add('relativeProjects', 'entity', array(
+                    'required' => false,
+                    'label' => 'Похожие проекты',
+                    'class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
+                    'multiple' => true,
+                    'query_builder' => function(EntityRepository $repository) use ($currentProject) {
+                        $qb = $repository->createQueryBuilder('p');
 
-                    if ($currentProject->getId()) {
-                        $qb->andWhere($qb->expr()->neq('p.id', $currentProject->getId()));
-                    }
+                        if ($currentProject->getId()) {
+                            $qb->andWhere($qb->expr()->neq('p.id', $currentProject->getId()));
+                        }
 
-                    return $qb;
-                },
-            ))
+                        return $qb;
+                    },
+                ))
+            ->end()
             ->with('Participants')
                 ->add('usersWithPositions', 'sonata_type_collection',
                     [
