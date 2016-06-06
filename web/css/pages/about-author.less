@@ -1,0 +1,64 @@
+.about-author{
+    max-width: 960px;
+    margin: 0 7.8125% 36px;
+    h2.about-author__heading {
+        margin-left: 0;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    &__body{
+        &:after{
+            display: table;
+            clear: both;
+            content: '';
+        }
+    }
+    &__photo{
+        display: block;
+        float: left;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 98px;
+        margin-right: 20px;
+        img {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    &__info {
+        font-family: 'museo_sans_cyrl',sans-serif;
+        margin-left: 118px;
+    }
+    &__name {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 4px;
+        font-size: 18px;
+    }
+    &__position {
+        font-size: 14px;
+        color: #7E8A8E;
+        margin-bottom: 10px;
+        font-weight: 300;
+    }
+    &__text {
+        font-size: 16px;
+        font-weight: 300;
+    }
+}
+
+@media (max-width: 420px) {
+    .about-author {
+        text-align: center;
+        &__photo {
+            float: none;
+            margin: 0 auto 10px;
+        }
+        &__info {
+            margin-left: 0;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{% if author.description is not null %}
+    <div class="about-author">
+        <h2 class="about-author__heading">{{ 'Об авторе'|trans }}</h2>
+        <div class="about-author__body">
+            <div class="about-author__photo">
+                {% if author.usernameCanonical is defined and author.usernameCanonical is not empty %}
+                    <a class="author_blog" href="{{ path('blog_author', { 'usernameCanonical': author.usernameCanonical }) }}">
+                        <img src="{{ vich_uploader_asset(author, 'avatar')|apply_filter('avatar') }}" alt="{{ author.firstname|default('') ~ ' ' ~ author.lastname|default('') }}" />
+                    </a>
+                {% else %}
+                    <img src="{{ vich_uploader_asset(author, 'avatar')|apply_filter('avatar') }}" alt="{{ author.firstname|default('') ~ ' ' ~ author.lastname|default('') }}" />
+                {% endif %}
+            </div>
+            <div class="about-author__info">
+                <div class="about-author__name">
+                    {% if author.usernameCanonical is defined and author.usernameCanonical is not empty %}
+                        <a href="{{ path('blog_author', { 'usernameCanonical': author.usernameCanonical }) }}">
+                            {{ author.firstname|default('') ~ ' ' ~ author.lastname|default('') }}
+                        </a>
+                    {% else %}
+                        {{ author.firstname|default('') ~ ' ' ~ author.lastname|default('') }}
+                    {% endif %}
+                </div>
+                <div class="about-author__position">
+                    {% if author.position is defined %}
+                        {{ author.position|raw }}
+                    {% endif %}
+                </div>
+                <div class="about-author__text">
+                    {{ author.description|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+{% endif %}

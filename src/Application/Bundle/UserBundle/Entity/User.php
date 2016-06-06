@@ -104,6 +104,15 @@ class User extends BaseUser
     protected $ordering = 0;
 
     /**
+     * @var string $description Description
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+
+    /**
      * @var array $interestsList
      */
     static protected $interestsList = array(
@@ -409,5 +418,29 @@ class User extends BaseUser
     public function getLocale()
     {
         return $this->userLocale;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string Description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description Description
+     *
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }
