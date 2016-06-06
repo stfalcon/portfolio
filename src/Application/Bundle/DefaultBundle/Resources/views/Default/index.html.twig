@@ -6,12 +6,9 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="http://stfalcon.com/sitemap.xml" />
 
     <meta property="og:title" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
-    <meta itemprop="name" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
-
     <meta property="og:description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}" />
-    <meta itemprop="description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}"/>
-    <meta name="description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}">
 
+    <meta name="description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
@@ -21,58 +18,11 @@
     {{ sonata_seo_lang_alternates() }}
 
     {% if app.request.host == 'stfalcon.com' %}
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-5635962-2', 'auto');
-            ga('require', 'displayfeatures');
-            ga('send', 'pageview');
-        </script>
-
-        <!-- Yandex.Metrika counter -->
-        <script type="text/javascript">
-            (function (d, w, c) {
-                (w[c] = w[c] || []).push(function() {
-                    try {
-                        w.yaCounter27048220 = new Ya.Metrika({id:27048220,
-                            webvisor:true,
-                            clickmap:true,
-                            trackLinks:true,
-                            accurateTrackBounce:true});
-                    } catch(e) { }
-                });
-
-                var n = d.getElementsByTagName("script")[0],
-                        s = d.createElement("script"),
-                        f = function () { n.parentNode.insertBefore(s, n); };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f, false);
-                } else { f(); }
-            })(document, window, "yandex_metrika_callbacks");
-        </script>
-        <!-- /Yandex.Metrika counter -->
-        <!-- Facebook Conversion Code for заявка -->
-        <script>(function() {
-                var _fbq = window._fbq || (window._fbq = []);
-                if (!_fbq.loaded) {
-                    var fbds = document.createElement('script');
-                    fbds.async = true;
-                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(fbds, s);
-                    _fbq.loaded = true;
-                }
-            })();
-            window._fbq = window._fbq || [];
-            window._fbq.push(['track', '6020145370099', {'value':'0.00','currency':'USD'}]);
-        </script>
+        {% javascripts
+            'js/metrics/header.js'
+            output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endif %}
 </head>
 <body>
@@ -92,7 +42,7 @@
         <div class="projects-row">
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-development'}) }}">
-                    <img alt="MeinFernbus" src="{{ asset('assets/img/homepage/home-project-mfb.jpg') }}">
+                    <img alt="MeinFernbus" src="{{ asset('assets/img/homepage/home-project-mfb.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span class="project-name">MeinFernbus</span>
@@ -104,7 +54,7 @@
             </div>
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-com', 'categorySlug': 'web-development'}) }}">
-                    <img alt="KeepSnap" src="{{ asset('assets/img/homepage/home-project-keepsnap.jpg') }}">
+                    <img alt="KeepSnap" src="{{ asset('assets/img/homepage/home-project-keepsnap.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span class="project-name">KeepSnap</span>
@@ -116,7 +66,7 @@
             </div>
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'naberezhny-kvartal-crm', 'categorySlug': 'web-design'}) }}">
-                    <img alt="Real Estate CRM" src="{{ asset('assets/img/homepage/home-project-crm.jpg') }}">
+                    <img alt="Real Estate CRM" src="{{ asset('assets/img/homepage/home-project-crm.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span  class="project-name">Real Estate CRM</span>
@@ -128,7 +78,7 @@
             </div>
             <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'uaroads-android', 'categorySlug': 'mobile-development'}) }}">
-                    <img alt="UARoads" src="{{ asset('assets/img/homepage/home-project-uaroads.jpg') }}">
+                    <img alt="UARoads" src="{{ asset('assets/img/homepage/home-project-uaroads.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span  class="project-name">UARoads</span>
@@ -145,24 +95,6 @@
         <div class="project-tabs-wrap">
             <ul class="projects-tabs">
                 {{ render(controller('StfalconPortfolioBundle:Category:widgetCategories')) }}
-                 <li>
-                    <a href="/en/services/web-development" class="tab-title ">
-                        <span class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path fill-rule="evenodd" clip-rule="evenodd" d="M38 7h-3V2c0-.545-.447-1-1-1H2c-.545 0-1 .447-1 1v32c0 .545.447 1 1 1h5v3c0 .545.447 1 1 1h30c.545 0 1-.447 1-1V8c0-.545-.447-1-1-1zM2.61 2.61h30.78L33.392 6H2.61V2.61zm0 30.796V7h30.782l.015 26.39-30.797.016zm6 4V35H34c.545 0 1-.447 1-1V8.61h2.39l.017 28.78-28.797.016zM4.5 4c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5zm2 0c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5zm2 0c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5zm-1.006 7h12.013c.267 0 .493-.224.493-.5 0-.268-.22-.5-.494-.5H7.494c-.268 0-.494.224-.494.5 0 .268.22.5.494.5zm-.004 3h16.02c.275 0 .49-.224.49-.5 0-.268-.22-.5-.49-.5H7.49c-.275 0-.49.224-.49.5 0 .268.22.5.49.5zm21.002 2H10.508c-.28 0-.508.224-.508.5 0 .268.228.5.508.5h17.984c.28 0 .508-.224.508-.5 0-.268-.228-.5-.508-.5zm0 3H10.508c-.28 0-.508.224-.508.5 0 .268.228.5.508.5h17.984c.28 0 .508-.224.508-.5 0-.268-.228-.5-.508-.5zm-.99 3H13.498c-.276 0-.5.224-.5.5 0 .27.224.5.5.5h14c.276 0 .5-.224.5-.5 0-.27-.224-.5-.5-.5zm-3.992 3H7.49c-.275 0-.49.224-.49.5 0 .27.22.5.49.5h16.02c.275 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zm-3.008 3H7.498c-.278 0-.498.224-.498.5 0 .27.223.5.498.5h13.004c.278 0 .498-.224.498-.5 0-.27-.223-.5-.498-.5z"></path></svg></span>
-                        <span>Web Development</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/en/services/web-design" class="tab-title ">
-                        <span class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path fill-rule="evenodd" clip-rule="evenodd" d="M38 7h-3V2c0-.545-.447-1-1-1H2c-.545 0-1 .447-1 1v32c0 .545.447 1 1 1h5v3c0 .545.447 1 1 1h30c.545 0 1-.447 1-1V8c0-.545-.447-1-1-1zM2.61 2.61h30.78L33.392 6H2.61V2.61zm0 30.796V7h30.782l.015 26.39-30.797.016zm6 4V35H34c.545 0 1-.447 1-1V8.61h2.39l.017 28.78-28.797.016zM4.5 4c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5zm2 0c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5zm2 0c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5zM9 16c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm18 0c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm-9 0c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm-6.49 8H6.49c-.262 0-.49.224-.49.5 0 .27.22.5.49.5h5.02c.262 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zm9 0h-5.02c-.262 0-.49.224-.49.5 0 .27.22.5.49.5h5.02c.262 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zm9 0h-5.02c-.262 0-.49.224-.49.5 0 .27.22.5.49.5h5.02c.262 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zm-18 2H6.49c-.262 0-.49.224-.49.5 0 .27.22.5.49.5h5.02c.262 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zm9 0h-5.02c-.262 0-.49.224-.49.5 0 .27.22.5.49.5h5.02c.262 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zm9 0h-5.02c-.262 0-.49.224-.49.5 0 .27.22.5.49.5h5.02c.262 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zM8.503 28H6.496c-.28 0-.496.224-.496.5 0 .27.222.5.496.5h2.01c.278 0 .494-.224.494-.5 0-.27-.222-.5-.496-.5zm10.005 0h-3.02c-.275 0-.49.224-.49.5 0 .27.22.5.49.5h3.02c.275 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zm9 0h-3.02c-.275 0-.49.224-.49.5 0 .27.22.5.49.5h3.02c.275 0 .49-.224.49-.5 0-.27-.22-.5-.49-.5zM29 10H7c-.553 0-1 .448-1 1 0 .556.448 1 1 1h22c.553 0 1-.448 1-1 0-.556-.448-1-1-1z"></path></svg></span>
-                        <span>Web and UI&nbsp;Design</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/en/services/mobile-development" class="tab-title ">
-                        <span class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M9 24c-.552 0-1 .447-1 1s.448 1 1 1 1-.447 1-1-.448-1-1-1zm26 0c-.553 0-1 .447-1 1s.447 1 1 1 1-.447 1-1-.447-1-1-1zM10.51 5H7.49c-.275 0-.49.224-.49.5 0 .268.22.5.49.5h3.02c.275 0 .49-.224.49-.5 0-.268-.22-.5-.49-.5zm26.5 7H17V4.007C17 2.897 16.107 2 15.006 2H2.994C1.894 2 1 2.9 1 4.007v22.985C1 28.102 1.893 29 2.994 29H4v7c0 1.1.9 2 2.007 2h30.985C38.1 38 39 37.108 39 36.01V13.99c0-1.09-.892-1.99-1.99-1.99zM2.993 27.39c-.212 0-.384-.178-.384-.397V4.007c0-.22.172-.397.384-.397h12.012c.212 0 .384.178.384.397v22.985c0 .22-.172.397-.384.397H2.994zm34.396 8.62c0 .21-.178.38-.397.38H6.007c-.215 0-.397-.178-.397-.39v-7h9.396c1.1 0 1.994-.898 1.994-2.008V13.61h20.01c.206 0 .38.175.38.38v22.02z"></path></svg></span>
-                        <span>Mobile Apps</span>
-                    </a>
-                </li>
             </ul>
         </div>
     </section>
@@ -245,7 +177,7 @@
             <h3>{{ "Чем докажем, что мы – лучшие?" | trans() }}</h3>
             <div class="more-detail-wrap">
                 <ul class="more-detail">
-                    <li>{{ "Более 90 успешных проектов;" | trans() }}</li>
+                    <li>{{ "Более 100 успешных проектов;" | trans() }}</li>
                     <li>{{ "100% наших партнеров (именно так мы воспринимаем клиентов) остались довольны;" | trans() }}</li>
                     <li>{{ "У нас идеально отлажены коммуникации внутри команды, а это значит: <br/> а) проект будет выполнен в минимальные сроки; <br/> б) пока он дойдет до вас, мы уже найдем и исправим все «косяки»;" | trans() | raw }}</li>
                     <li>{{ "Мы имеем непосредственное отношение к развитию технологий (продвигаем фреймворк Symfony, создали множество полезных плагинов для LiveStreet, совершенствуем OpenCart CMS и сделали для нее шаблон Tecard, разработали шаблон Snowberry для Wordpress);" | trans() }}</li>
@@ -271,14 +203,14 @@
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-    <script type="text/javascript">
-        jQuery.extend(jQuery.validator.messages, {
-            required: "{{ 'Заполните это поле'|trans }}",
-            email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
-            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
-            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
-        });
-    </script>
+<script type="text/javascript">
+    jQuery.extend(jQuery.validator.messages, {
+        required: "{{ 'Заполните это поле'|trans }}",
+        email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
+        maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+        minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+    });
+</script>
 
 {% if app.request.host == 'stfalcon.com' %}
     <!-- Google Code for Remarketing Tag -->
@@ -296,55 +228,11 @@
         </div>
     </noscript>
 
-    <script type="text/javascript">
-        adroll_adv_id = "4D2635Z5I5HHPLZFLSLGPF";
-        adroll_pix_id = "QCTMESTTRVHSZENSLNPNCG";
-        (function () {
-            var oldonload = window.onload;
-            window.onload = function(){
-                __adroll_loaded=true;
-                var scr = document.createElement("script");
-                var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
-                scr.setAttribute('async', 'true');
-                scr.type = "text/javascript";
-                scr.src = host + "/j/roundtrip.js";
-                ((document.getElementsByTagName('head') || [null])[0] ||
-                document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
-                if(oldonload){oldonload()}};
-        }());
-
-        (function () {
-            var a = document.createElement("iframe");
-            a.style.cssText = "width: 0; height: 0; border: 0";
-            a.src = "javascript:false";
-            var b = function () {
-                setTimeout(function () {
-                    var b = a.contentDocument || a.contentWindow.document, c = b.createElement("script");
-                    c.src = "//static-trackers.adtarget.me/javascripts/pixel.min.js";
-                    c.id = "GIHhtQfW-atm-pixel";
-                    c["data-pixel"] = "6b426f21b81c3aad68c1d763c1d156e4";
-                    c["allow-flash"] = false;
-                    b.body.appendChild(c);
-                }, 0);
-            };
-            a.addEventListener ? a.addEventListener("load", b, !1) : a.attachEvent ? a.attachEvent("onload", b) : a.onload = b;
-            document.body.appendChild(a);
-        })();
-
-        $(document).ready(function() {
-            $( "a[href^='tel:']" ).on( 'click', function() {
-                ga('send', 'event', 'click', 'phone', this.href);
-            });
-
-            $( "a[href^='skype:stfalcon']" ).on( 'click', function() {
-                ga('send', 'event', 'click', 'skype', this.href);
-            });
-
-            $( "a[href='mailto:info@stfalcon.com']" ).on( 'click', function() {
-                ga('send', 'event', 'click', 'mail', this.href);
-            });
-        });
-    </script>
+    {% javascripts
+        'js/metrics/footer.js'
+        output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endif %}
 </body>
 </html>

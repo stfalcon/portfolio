@@ -132,7 +132,7 @@ class ProjectAdmin extends Admin
             )
             ->add('slug')
             ->add('url')
-            ->add('imageFile', 'file', array('required' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
+            ->add('imageFile', 'file', array('required' => false))
             ->add('date', 'date')
             ->add('categories', null, array('required' => true))
             ->add('published', 'checkbox', array('required' => false))
@@ -188,7 +188,13 @@ class ProjectAdmin extends Admin
         $listMapper
             ->addIdentifier('slug')
             ->add('name')
-            ->add('date');
+            ->add('date')
+            ->add('_action', 'actions', [
+                'actions' => [
+                    'edit'   => [],
+                    'delete' => [],
+                ],
+            ]);
     }
 
     /**

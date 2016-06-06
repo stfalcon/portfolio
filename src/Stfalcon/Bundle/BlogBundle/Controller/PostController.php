@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Application\Bundle\UserBundle\Entity\User;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,13 +37,18 @@ class PostController extends AbstractController
      */
     public function indexAction(Request $request, $page)
     {
-        $allPostsQuery = $this->get('doctrine')->getManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPostsAsQuery($request->getLocale());
-        $posts= $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
+        $allPostsQuery = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post')
+                              ->getAllPublishedPostsAsQuery($request->getLocale());
 
-        return $this->_getRequestArrayWithDisqusShortname(array(
+        $posts = $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
+
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
+        return $this->_getRequestArrayWithDisqusShortname([
             'posts' => $posts,
-        ));
+        ]);
     }
 
     /**
@@ -61,8 +67,9 @@ class PostController extends AbstractController
     public function viewAction(Request $request, $slug)
     {
         /** @var Post $post */
-        $post = $this->get('doctrine')->getManager()
-            ->getRepository("StfalconBlogBundle:Post")->findPostBySlugInLocale($slug, $request->getLocale());
+        $post = $this->getDoctrine()
+                     ->getRepository('StfalconBlogBundle:Post')
+                     ->findPostBySlugInLocale($slug, $request->getLocale());
 
         if (!$post) {
             return $this->redirect($this->generateUrl('blog'));
@@ -72,18 +79,10 @@ class PostController extends AbstractController
         $seo->addMeta('name', 'description', $post->getMetaDescription())
             ->addMeta('name', 'keywords', $post->getMetaKeywords())
             ->addMeta('property', 'og:title', $post->getMetaTitle())
-            ->addMeta(
-                'property',
-                'og:url',
-                $this->generateUrl(
-                    'blog_post_view',
-                    [
-                        'slug' => $post->getSlug(),
-                    ],
-                    true
-                )
-            )
-            ->addMeta('property', 'og:type', 'blog')
+            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [
+                'slug' => $post->getSlug(),
+            ], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::ARTICLE)
             ->addMeta('property', 'og:description', $post->getMetaDescription());
 
         if ($post->getImage()) {
@@ -92,15 +91,15 @@ class PostController extends AbstractController
 
         $this->get('app.default.seo_alternate')->addAlternate($post, $seo, $request);
 
-        return $this->_getRequestArrayWithDisqusShortname(array(
+        return $this->_getRequestArrayWithDisqusShortname([
             'post' => $post,
-        ));
+        ]);
     }
 
     /**
      * RSS feed
      *
-     * @param Request $request
+     * @param Request $request Request
      *
      * @return Response
      *
@@ -190,8 +189,9 @@ class PostController extends AbstractController
     /**
      * Users post action
      *
-     * @param User $user User
-     * @param int  $page Page number
+     * @param Request $request Request
+     * @param User    $user    User
+     * @param int     $page    Page number
      *
      * @return Response
      *
@@ -207,10 +207,8 @@ class PostController extends AbstractController
      *      options = {"usernameCanonical" = "usernameCanonical"}
      * )
      */
-    public function usersPostAction(User $user, $page)
+    public function usersPostAction(Request $request, User $user, $page)
     {
-        $request = $this->getRequest();
-
         $em = $this->getDoctrine()->getManager();
 
         $postRepository = $em->getRepository('StfalconBlogBundle:Post');
@@ -220,14 +218,28 @@ class PostController extends AbstractController
         $paginatedPosts = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
         $totalCount     = $paginatedPosts->getTotalItemCount();
 
-        if ($totalCount == 0) {
+        if ((int) $totalCount === 0) {
             return $this->redirect($this->generateUrl('blog', [
                 'page'  => 1,
                 'title' => 'page',
             ]));
         }
 
-        $this->get('app.default.seo_alternate')->addAlternate($user, $this->get('sonata.seo.page'), $request);
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta(
+            'property',
+            'og:url',
+            $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'usernameCanonical' => $user->getUsernameCanonical(),
+                ],
+                true
+            )
+        )
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
+        $this->get('app.default.seo_alternate')->addAlternate($user, $seo, $request);
 
         return $this->render('@StfalconBlog/Post/index.html.twig', $this->_getRequestArrayWithDisqusShortname([
             'posts' => $paginatedPosts,

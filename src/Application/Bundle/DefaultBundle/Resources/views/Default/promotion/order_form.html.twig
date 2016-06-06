@@ -1,0 +1,79 @@
+{% set labels = {
+    'apps': {
+        'title': 'Заказать приложение',
+        'message': 'Напишите пару слов о приложении',
+        'button': 'Заказать приложение'
+    },
+    'design': {
+        'title': 'Заказать дизайн веб-сайта',
+        'message': 'Напишите пару слов о сайте',
+        'button': 'Заказать приложение'
+    },
+    'development': {
+        'title': 'Отправьте заявку',
+        'message': 'Напишите пару слов о сайте',
+        'button': 'Заказать приложение',
+        'tip': 'И мы поможем решить вашу задачу'
+    },
+    'mobilegames': {
+        'title': 'Заказать игру',
+        'message': 'Напишите пару слов о приложении',
+        'button': 'Заказать приложение'
+    },
+    'sysadmin': {
+        'title': 'Отправьте заявку',
+        'message': 'Напишите пару слов о необходимой услуге',
+        'button': 'Заказать приложение',
+        'tip': 'И мы поможем решить вашу задачу'
+    },
+} %}
+
+{% set url_params = {'type': 'apps'} %}
+{% if locale != 'de' %}
+    {% set url_params = url_params|merge({'_locale': locale}) %}
+{% endif %}
+<form
+    novalidate="novalidate"
+    autocomplete="off"
+    id="feedback-form"
+    class="feedback-form webdev-form"
+    action="{{ url('promotion_order', url_params) }}"
+    method="post"
+    {{ form_enctype(form) }}>
+    <div class="form-pad">
+        <h1>{{ labels[type].title|trans }}</h1>
+        {% if labels[type].tip is defined %}
+            <p>{{ labels[type].tip|trans }}</p>
+        {% endif %}
+
+        <div class="line">
+            <div class="col2 float-left">
+                {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans} }) }}
+            </div>
+            <div class="col2 float-right">
+                {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+            </div>
+        </div>
+        <div class="line">
+            {{ form_widget(form.message, {'attr': {'placeholder': labels[type].message|trans} }) }}
+        </div>
+        <div class="wrap_captcha">
+            <div class="google-captcha">
+                {{ form_widget(form.captcha) }}
+            </div>
+        </div>
+        <div class="line" style="text-align: center;">
+            <button class="btn btn-black">{{ labels[type].button|trans }}</button>
+        </div>
+    </div>
+    {{ form_rest(form) }}
+    <div class="form-success">
+        <div class="wr">
+            <div class="inner-pad">
+                <h3>{{ 'Спасибо!'|trans }}</h3>
+
+                <p>{{ 'Мы изучим Вашу заявку<br>и ответим в ближайшее время.'|trans|raw }}</p>
+            </div>
+        </div>
+    </div>
+</form>
