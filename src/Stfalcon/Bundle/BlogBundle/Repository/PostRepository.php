@@ -109,25 +109,27 @@ class PostRepository extends EntityRepository
      * Find related posts by tags
      *
      * @param string $locale Locale
-     * @param Post $post Current post
+     * @param Post   $post   Current post
+     * @param int    $limit  Related posts count
      *
      * @return array
      */
-    public function findRelatedPostsToCurrentPost($locale, $post)
+    public function findRelatedPostsToCurrentPost($locale, $post, $limit = 6)
     {
         $qb = $this->createQueryBuilder('p');
 
         $qb->where($qb->expr()->in('t.text', $post->getTags()->getValues()))
-            ->andWhere($qb->expr()->neq('p', ':post'))
-            ->setParameter('post', $post)
-            ->addOrderBy('p.created', 'desc')
-            ->join('p.tags', 't');
+           ->andWhere($qb->expr()->eq('p.published', true))
+           ->andWhere($qb->expr()->neq('p', ':post'))
+           ->setParameter('post', $post)
+           ->addOrderBy('p.created', 'desc')
+           ->join('p.tags', 't');
 
         $this->addLocaleFilter($locale, $qb);
 
-        return $qb->setMaxResults(6)
-            ->getQuery()
-            ->getResult();
+        return $qb->setMaxResults($limit)
+                  ->getQuery()
+                  ->getResult();
     }
 
     /**

@@ -131,4 +131,14 @@ return array(
     'Вы не указали e-mail адрес' => 'You haven’t told us your email',
     'Недопустимый адрес электронной почты' => 'Invalid email address',
     'Мы записали ваш адрес. Обещаем не спамить.' => 'Your email was saved. We promise not to spam you, no matter what.',
+
+    // contacts, direct order form
+    'Пожалуйста, введите ваше имя'                      => 'Please enter your name',
+    'Введите имя не меньше 3 символов'                  => 'Name cannot be shorter than 3 characters',
+    'Пожалуйста, введите адрес вашей эл.почты'          => 'Please enter your email address',
+    'Ваша эл.адрес должен быть формата name@domain.com' => 'Email address format is name@domain.com',
+    'Пожалуйста, введите телефон'                       => 'Please enter your phone number',
+    'Введите телефон не меньше 7 символов'              => 'Enter phone number that has 7 characters or more',
+    'Пожалуйста, введите сообщение'                     => 'Please enter your message',
+    'Введите сообщение не меньше 30 символов'           => 'Message length should be 30 characters or more',
 );
