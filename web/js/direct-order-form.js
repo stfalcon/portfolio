@@ -85,4 +85,8 @@ $(function () {
             }
         });
     }
+
+    jQuery.extend(jQuery.validator.messages, {
+        email: directOrderFormMessage.email.defaultMessage
+    });
 });
