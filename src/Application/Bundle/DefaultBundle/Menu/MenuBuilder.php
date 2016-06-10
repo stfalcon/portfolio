@@ -3,8 +3,8 @@
 namespace Application\Bundle\DefaultBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Main menu builder.
@@ -13,24 +13,23 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class MenuBuilder
 {
-
     /**
-     * @var FactoryInterface
+     * @var FactoryInterface $factory Factory interface
      */
     private $factory;
 
     /**
-     * @var Translator
+     * @var TranslatorInterface $translator Translator interface
      */
     private $translator;
 
     /**
-     * Constructor injection
+     * Constructor
      *
-     * @param FactoryInterface $factory
-     * @param Translator       $translator
+     * @param FactoryInterface    $factory    Factory interface
+     * @param TranslatorInterface $translator Translator interface
      */
-    public function __construct(FactoryInterface $factory, Translator $translator)
+    public function __construct(FactoryInterface $factory, TranslatorInterface $translator)
     {
         $this->factory = $factory;
         $this->translator = $translator;
@@ -39,7 +38,7 @@ class MenuBuilder
     /**
      * Main menu
      *
-     * @param Request $request
+     * @param Request $request Request
      *
      * @return mixed
      */
@@ -64,7 +63,7 @@ class MenuBuilder
     /**
      * Breadcrumbs
      *
-     * @param Request $request
+     * @param Request $request Request
      *
      * @return mixed
      */

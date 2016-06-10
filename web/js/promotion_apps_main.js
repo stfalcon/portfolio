@@ -152,6 +152,7 @@ $(window).scroll(function (e) {
                         $('#feedback-form').find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
                         $('#feedback-form').find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
                         $(form).trigger('reset');
+                        grecaptcha.reset();
                     } else {
                         alert('Error!');
                     }

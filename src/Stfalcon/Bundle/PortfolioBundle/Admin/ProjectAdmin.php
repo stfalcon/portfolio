@@ -3,6 +3,7 @@ namespace Stfalcon\Bundle\PortfolioBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
@@ -32,12 +33,65 @@ class ProjectAdmin extends Admin
         }
     }
 
+    /**
+     * @param array $templates
+     */
+    public function setTemplates(array $templates)
+    {
+        $templates['list'] = 'StfalconPortfolioBundle:ProjectAdmin:list.html.twig';
+        parent::setTemplates($templates);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist($project)
+    {
+        $this->postUpdate($project);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postUpdate($project)
+    {
+        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($project)
+    {
+        $this->preUpdate($project);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($project)
+    {
+        /** @var UserWithPosition $userWithPosition */
+        foreach ($project->getUsersWithPositions() as $userWithPosition) {
+            $userWithPosition->setProject($project);
+
+            /** @var UserWithPositionTranslation $translation */
+            foreach ($userWithPosition->getTranslations() as $translation) {
+                $translation->setObject($userWithPosition);
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $currentProject = $this->getSubject();
 
         $formMapper
-            ->add('translations', 'a2lix_translations_gedmo', array(
+            ->with('Projects')
+                ->add('translations', 'a2lix_translations_gedmo', array(
                     'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
                     'fields' => array(
                         'name' => array(
@@ -128,32 +182,32 @@ class ProjectAdmin extends Admin
                         ),
                     ),
                     'label' => 'Перевод',
-                )
-            )
-            ->add('slug')
-            ->add('url')
-            ->add('imageFile', 'file', array('required' => false))
-            ->add('date', 'date')
-            ->add('categories', null, array('required' => true))
-            ->add('published', 'checkbox', array('required' => false))
-            ->add('shadow', 'checkbox', array('required' => false))
-            ->add('onFrontPage', 'checkbox', array('required' => false))
-            ->add('showCase', 'checkbox', array('required' => false))
-            ->add('relativeProjects', 'entity', array(
-                'required' => false,
-                'label' => 'Похожие проекты',
-                'class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
-                'multiple' => true,
-                'query_builder' => function(EntityRepository $repository) use ($currentProject) {
-                    $qb = $repository->createQueryBuilder('p');
+                ))
+                ->add('slug')
+                ->add('url')
+                ->add('imageFile', 'file', array('required' => false))
+                ->add('date', 'date')
+                ->add('categories', null, array('required' => true))
+                ->add('published', 'checkbox', array('required' => false))
+                ->add('shadow', 'checkbox', array('required' => false))
+                ->add('onFrontPage', 'checkbox', array('required' => false))
+                ->add('showCase', 'checkbox', array('required' => false))
+                ->add('relativeProjects', 'entity', array(
+                    'required' => false,
+                    'label' => 'Похожие проекты',
+                    'class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
+                    'multiple' => true,
+                    'query_builder' => function(EntityRepository $repository) use ($currentProject) {
+                        $qb = $repository->createQueryBuilder('p');
 
-                    if ($currentProject->getId()) {
-                        $qb->andWhere($qb->expr()->neq('p.id', $currentProject->getId()));
-                    }
+                        if ($currentProject->getId()) {
+                            $qb->andWhere($qb->expr()->neq('p.id', $currentProject->getId()));
+                        }
 
-                    return $qb;
-                },
-            ))
+                        return $qb;
+                    },
+                ))
+            ->end()
             ->with('Participants')
                 ->add('usersWithPositions', 'sonata_type_collection',
                     [
@@ -198,51 +252,12 @@ class ProjectAdmin extends Admin
     }
 
     /**
-     * @param array $templates
-     */
-    public function setTemplates(array $templates)
-    {
-        $templates['list'] = 'StfalconPortfolioBundle:ProjectAdmin:list.html.twig';
-        parent::setTemplates($templates);
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function postPersist($project)
+    protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
-        $this->postUpdate($project);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postUpdate($project)
-    {
-        $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function prePersist($project)
-    {
-        $this->preUpdate($project);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function preUpdate($project)
-    {
-        /** @var UserWithPosition $userWithPosition */
-        foreach ($project->getUsersWithPositions() as $userWithPosition) {
-            $userWithPosition->setProject($project);
-
-            /** @var UserWithPositionTranslation $translation */
-            foreach ($userWithPosition->getTranslations() as $translation) {
-                $translation->setObject($userWithPosition);
-            }
-        }
+        $filterMapper
+            ->add('slug')
+            ->add('name');
     }
 }

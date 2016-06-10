@@ -16,7 +16,6 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
  */
 class EntitiesToStringTransformer implements DataTransformerInterface
 {
-
     /**
      * @var EntityManager
      */
@@ -78,7 +77,7 @@ class EntitiesToStringTransformer implements DataTransformerInterface
             throw new UnexpectedTypeException($data, 'string');
         }
 
-        foreach ($this->_stringToArray($data) as $text) {
+        foreach ($this->stringToArray($data) as $text) {
             $tag = $this->em->getRepository("StfalconBlogBundle:Tag")
                     ->findOneBy(array('text' => $text));
             if (!$tag) {
@@ -98,7 +97,7 @@ class EntitiesToStringTransformer implements DataTransformerInterface
      *
      * @return array
      */
-    private function _stringToArray($string)
+    private function stringToArray($string)
     {
         $tags = explode(',', $string);
         // strip whitespaces from beginning and end of a tag text
@@ -109,5 +108,4 @@ class EntitiesToStringTransformer implements DataTransformerInterface
         // removes duplicates
         return array_unique($tags);
     }
-
 }

@@ -5,21 +5,27 @@ imports:
 
 framework:
     #esi:             ~
-    translator:       { fallback: %locale% }
-    secret:           %secret%
-    router:           { resource: "%kernel.root_dir%/config/routing.yml" }
-    form:             true
-    csrf_protection:  true
-    validation:       { enable_annotations: true }
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:   %locale%
-    session:          ~
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
+    http_method_override: true
 
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
     form:
         resources:
             - 'StfalconReCaptchaBundle:Form:recaptcha_widget.html.twig'
@@ -147,6 +153,8 @@ sonata_admin:
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
         # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+    title: "Portfolio"
+    title_logo: img/pages/promotions/apps/falcon-img.png
     templates:
         layout: "::admin.html.twig"
 

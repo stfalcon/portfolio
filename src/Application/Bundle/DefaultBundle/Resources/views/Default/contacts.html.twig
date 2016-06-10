@@ -2,6 +2,38 @@
 
 {% block title %}{{ 'Контактная информация'|trans }}{{ parent() }}{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var directOrderFormMessage = {
+            name: {
+                required: "{{ 'Пожалуйста, введите ваше имя'|trans }}",
+                minlength: "{{ 'Введите имя не меньше 3 символов'|trans }}"
+            },
+            email: {
+                required: "{{ 'Пожалуйста, введите адрес вашей эл.почты'|trans }}",
+                minlength: "{{ 'Ваша эл.адрес должен быть формата name@domain.com'|trans }}",
+                defaultMessage: "{{ 'Пожалуйста введите правильный имейл'|trans }}"
+            },
+            phone: {
+                required: "{{ 'Пожалуйста, введите телефон'|trans }}",
+                minlength: "{{ 'Введите телефон не меньше 7 символов'|trans }}"
+            },
+            message: {
+                required: "{{ 'Пожалуйста, введите сообщение'|trans }}",
+                minlength: "{{ 'Введите сообщение не меньше 30 символов'|trans }}"
+            }
+        };
+    </script>
+
+    {% javascripts
+        'js/direct-order-form.js'
+        output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}
+
 {% block content_wrapper %}
     <section class="contacts-wrapper">
         <h1>

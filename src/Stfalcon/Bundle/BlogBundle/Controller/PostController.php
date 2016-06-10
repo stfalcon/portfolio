@@ -37,10 +37,10 @@ class PostController extends AbstractController
      */
     public function indexAction(Request $request, $page)
     {
-        $allPostsQuery = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post')
-                              ->getAllPublishedPostsAsQuery($request->getLocale());
+        $postRepository = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post');
 
-        $posts = $this->get('knp_paginator')->paginate($allPostsQuery, $page, 10);
+        $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
+        $posts      = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
 
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))

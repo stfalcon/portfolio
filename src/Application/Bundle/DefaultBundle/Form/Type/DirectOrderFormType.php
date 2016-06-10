@@ -1,10 +1,14 @@
 <?php
 namespace Application\Bundle\DefaultBundle\Form\Type;
 
-use Stfalcon\ReCaptchaBundle\Validator\Constraints\ValidCaptcha;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Stfalcon\ReCaptchaBundle\Form\Type\ReCaptchaFormType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -13,14 +17,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class DirectOrderFormType extends AbstractType
 {
     /**
-     * @var Translator
+     * @var TranslatorInterface $translator Translator interface
      */
     private $translator;
 
     /**
-     * @param Translator $translator
+     * @param TranslatorInterface $translator Translator interface
      */
-    public function __construct(Translator $translator)
+    public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
@@ -35,73 +39,76 @@ class DirectOrderFormType extends AbstractType
                 'name',
                 'text',
                 [
-                    'attr' => [
-                        'placeholder' => $this->translator->trans('Ваше имя')
+                    'attr'        => [
+                        'placeholder' => $this->translator->trans('Ваше имя'),
                     ],
-                    'label' => false,
+                    'label'       => false,
                     'constraints' => [
                         new Assert\NotBlank(),
-                        new Assert\Length(array('max' => 64))
-                    ]
+                        new Assert\Length(['max' => 64]),
+                    ],
                 ]
             )
             ->add(
                 'email',
                 'email',
                 [
-                    'attr' => [
-                        'placeholder' => $this->translator->trans('Электронная почта')
+                    'attr'        => [
+                        'placeholder' => $this->translator->trans('Электронная почта'),
                     ],
-                    'label' => false,
+                    'label'       => false,
                     'constraints' => [
                         new Assert\NotBlank(),
-                        new Assert\Length(array('max' => 64))
-                    ]
+                        new Assert\Length(['max' => 64]),
+                    ],
                 ]
             )
             ->add(
                 'phone',
                 'text',
                 [
-                    'attr' => [
-                        'placeholder' => $this->translator->trans('Телефон')
+                    'attr'        => [
+                        'placeholder' => $this->translator->trans('Телефон'),
                     ],
-                    'label' => false,
+                    'label'       => false,
                     'constraints' => [
                         new Assert\NotBlank(),
-                        new Assert\Length(array('max' => 64)),
+                        new Assert\Length(['max' => 64]),
                         new Assert\Regex([
                             'pattern' => '/^\+?[0-9\(\)\/ \-]+$/',
-                            'message' => 'Неверный формат телефона'
-                        ])
-                    ]
+                            'message' => 'Неверный формат телефона',
+                        ]),
+                    ],
                 ]
             )
             ->add(
                 'message',
                 'textarea',
                 [
-                    'attr' => [
-                        'placeholder' => $this->translator->trans('Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...')
+                    'attr'        => [
+                        'placeholder' => $this->translator->trans(<<<TEXT
+Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...
+TEXT
+                        ),
                     ],
-                    'label' => false,
+                    'label'       => false,
                     'constraints' => [
                         new Assert\NotBlank(),
                         new Assert\Length([
                             'min' => 30,
-                            'max' => 5000
-                        ])
-                    ]
+                            'max' => 5000,
+                        ]),
+                    ],
                 ]
             )
             ->add('attach', 'file', [
-                'label'         => false,
-                'required'      => false,
-                'constraints'   => [
+                'label'       => false,
+                'required'    => false,
+                'constraints' => [
                     new Assert\File([
                         'maxSize' => '20M',
-                    ])
-                ]
+                    ]),
+                ],
             ])
             ->add('captcha', 'recaptcha', [
                 'label' => false,
