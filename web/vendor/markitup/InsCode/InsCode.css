@@ -31,6 +31,7 @@
 #ins-code-form textarea,
 #ins-code-form select {
 	width: 470px;
+	color: black;
 }
 
 #ins-code-form .buttonset {
