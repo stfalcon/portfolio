@@ -3,7 +3,7 @@
 namespace Stfalcon\RedirectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Fresh\Bundle\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 use Stfalcon\RedirectBundle\Entity\Types\RedirectCodeType;
 use Stfalcon\RedirectBundle\Entity\Types\RedirectStatusType;
 use Symfony\Component\Validator\Constraints as Assert;

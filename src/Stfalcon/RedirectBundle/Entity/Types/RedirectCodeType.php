@@ -2,7 +2,7 @@
 
 namespace Stfalcon\RedirectBundle\Entity\Types;
 
-use Fresh\Bundle\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
+use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
 /**
  * Enum order status type

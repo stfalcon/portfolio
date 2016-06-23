@@ -52,7 +52,7 @@ class AppKernel extends Kernel
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new Stfalcon\RedirectBundle\StfalconRedirectBundle(),
-            new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
+            new Fresh\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
             new Hype\MailchimpBundle\HypeMailchimpBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
