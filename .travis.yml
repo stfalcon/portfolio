@@ -10,7 +10,6 @@ cache:
         - $HOME/.composer/cache/files
 
 before_install:
-    - phpenv config-add myconfig.ini
     - composer self-update
 
 install:
