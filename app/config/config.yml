@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.ini }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: sphinx/sphinx.yml }
 
@@ -33,12 +33,13 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        server_version: "%database_server_version%"
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
@@ -47,19 +48,16 @@ doctrine:
         mapping_types:
             enum: string
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
+        auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-
-
 
 # DoctrineMigrationsBundle
 doctrine_migrations:
-    dir_name: %kernel.root_dir%/DoctrineMigrations
-
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
 
 # DoctrineExtensionsBundle
 stof_doctrine_extensions:
-    default_locale: %locale%
+    default_locale: "%locale%"
     orm:
         default:
             loggable: false
@@ -68,24 +66,23 @@ stof_doctrine_extensions:
             translatable: true
             tree: false
 
-
 # AsseticBundle
 assetic:
-    debug:          %kernel.debug%
+    debug:          "%kernel.debug%"
     use_controller: false
     filters:
         uglifyjs2:
-            node: %node_path%
-            bin: %uglify_js_path%
+            node: "%node_path%"
+            bin: "%uglify_js_path%"
             apply_to: "\.js$"
         uglifycss:
-            node: %node_path%
-            bin: %uglify_css_path%
+            node: "%node_path%"
+            bin: "%uglify_css_path%"
 #            apply_to: "\.css$"
         cssrewrite: ~
         less:
-            node: %node_path%
-            node_paths: %node_lib_path%
+            node: "%node_path%"
+            node_paths: "%node_lib_path%"
     assets:
         jquery: vendor/jquery/jquery-1.7.2.min.js
         jquery_ui: vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js
@@ -107,7 +104,7 @@ knp_paginator:
 sensio_framework_extra: ~
 
 application_default:
-    web_root: %kernel.root_dir%/../web
+    web_root: "%kernel.root_dir%/../web"
     upload_dir: /uploads/images
 
 stfalcon_blog:
@@ -128,17 +125,17 @@ vich_uploader:
     db_driver: orm
     mappings:
         project_image:
-            upload_destination: %kernel.root_dir%/../web/uploads/portfolio/projects
+            upload_destination: "%kernel.root_dir%/../web/uploads/portfolio/projects"
             namer: vich_uploader.namer_uniqid
             delete_on_update: true
             delete_on_remove: true
         user_avatar:
             uri_prefix: /uploads/avatar
-            upload_destination: %kernel.root_dir%/../web/uploads/avatar
+            upload_destination: "%kernel.root_dir%/../web/uploads/avatar"
             namer: vich_uploader.namer_uniqid
         user_caricature:
             uri_prefix: /uploads/avatar/caricature
-            upload_destination: %kernel.root_dir%/../web/uploads/avatar/caricature
+            upload_destination: "%kernel.root_dir%/../web/uploads/avatar/caricature"
             namer: vich_uploader.namer_uniqid
 
 sonata_admin:
@@ -237,8 +234,8 @@ a2lix_translation_form:
     manager_registry: doctrine
 
 hype_mailchimp:
-    api_key: %mc_api_key%
-    default_list: %mc_default_list%
+    api_key: "%mc_api_key%"
+    default_list: "%mc_default_list%"
     ssl: true
 
 sonata_seo:
@@ -248,8 +245,8 @@ sonata_seo:
                 'og:image': http://stfalcon.com/img/facebook_cover.jpg
 
 stfalcon_re_captcha:
-    site_key: %recaptcha.site_key%
-    secret: %recaptcha.secret%
+    site_key: "%recaptcha.site_key%"
+    secret: "%recaptcha.secret%"
     theme: light
 
 sensio_buzz:
