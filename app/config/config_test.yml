@@ -9,7 +9,7 @@ framework:
 doctrine:
     dbal:
         driver:   pdo_sqlite
-        path:     %kernel.cache_dir%/test.db
+        path:     "%kernel.cache_dir%/test.db"
 
 web_profiler:
     toolbar: false

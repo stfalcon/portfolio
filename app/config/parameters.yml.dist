@@ -1,0 +1,48 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     portfolio
+    database_user:     root
+    database_password: ~
+    database_server_version: 5.5
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    mailer_from:   info@stfalcon.com
+    mailer_name:   stfalcon.com
+    mailer_notify: info@stfalcon.com
+
+    locale: ru
+    locales:
+        - ru
+        - en
+        - de
+
+    secret: ThisTokenIsNotSoSecretChangeIt
+
+    admin_password: SomeAdminPassword
+
+    security.acl.permission.map.class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+
+    node_path:       "/usr/local/bin/node"
+    node_lib_path:
+        - "/usr/local/lib/node_modules"
+
+    uglify_css_path: "/usr/local/bin/uglifycss"
+    uglify_js_path:  "/usr/local/bin/uglifyjs"
+
+    mc_api_key:      SomeApiKey
+    mc_default_list: SomeDefaultList
+
+    graylog_hostname: 10.0.0.1
+    graylog_port:     12201
+
+    sphinx_host: 127.0.0.1
+    sphinx_port: 9312
+
+    recaptcha.site_key: SomeSiteKey
+    recaptcha.secret:   SomeSecret

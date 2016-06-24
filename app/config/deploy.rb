@@ -20,6 +20,6 @@ set :use_sudo,      false
 set :use_composer,  true
 #set :deploy_via,    :rsync_with_remote_cache
 
-set :shared_files,        ["app/config/parameters.ini", "web/sitemap.xml"]
+set :shared_files,        ["app/config/parameters.yml", "web/sitemap.xml"]
 set :shared_children,     [app_path + "/logs", web_path + "/uploads", web_path + "/bundles", web_path + "/media", web_path + "/sitemap"]
 set :dump_assetic_assets, true
