@@ -8,7 +8,7 @@ _stfalcon_blog:
     resource: "@StfalconBlogBundle/Resources/config/routing.yml"
 
 admin:
-    resource: '@ApplicationDefaultBundle/Resources/config/custom_sonata_admin.xml'
+    resource: "@ApplicationDefaultBundle/Resources/config/custom_sonata_admin.xml"
     options:
         i18n: false
 
@@ -46,7 +46,7 @@ fos_js_routing:
 #    prefix: /profile
 
 sonata_user:
-    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    resource: "@SonataUserBundle/Resources/config/routing/admin_security.xml"
     prefix: /admin
     options:
         i18n: false
@@ -56,13 +56,13 @@ _imagine:
     type:     imagine
 
 gallery:
-    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    resource: "@SonataMediaBundle/Resources/config/routing/gallery.xml"
     prefix: /media/gallery
     options:
         i18n: false
 
 media:
-    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    resource: "@SonataMediaBundle/Resources/config/routing/media.xml"
     prefix: /media
     options:
         i18n: false

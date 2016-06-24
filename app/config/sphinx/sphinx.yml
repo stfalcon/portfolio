@@ -2,5 +2,5 @@ sphinxsearch:
     indexes:
         postSearchIndex: "StfalconBlogBundle:Post"
     searchd:
-        host: %sphinx_host%
-        port: %sphinx_port%
+        host: "%sphinx_host%"
+        port: "%sphinx_port%"

@@ -9,20 +9,16 @@ cache:
     directories:
         - $HOME/.composer/cache/files
 
-before_install:
-    - composer self-update
-
-install:
-    - composer install --dev --prefer-dist --no-interaction
-
 before_script:
-    - ./bin/console doctrine:database:create -e=test -n --no-debug
-    - ./bin/console doctrine:schema:create -e=test -n --no-debug
-    - ./bin/console assets:install -e=test -n --no-debug
-    - ./bin/console cache:warmup -e=test -n --no-debug
+    - cp app/config/parameters.yml.dist app/config/parameters.yml
+    - composer install --dev --prefer-dist --no-interaction
+    - app/console doctrine:database:create -e=test -n --no-debug
+    - app/console doctrine:schema:create -e=test -n --no-debug
+    - app/console assets:install -e=test -n --no-debug
+    - app/console cache:warmup -e=test -n --no-debug
 
 script:
-    - ./bin/phpunit -c app/
+    - phpunit -c app/
 
 notifications:
     email:
