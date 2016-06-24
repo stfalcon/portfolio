@@ -42,9 +42,9 @@ doctrine:
         server_version: "%database_server_version%"
         charset:  UTF8
         types:
-            json: Sonata\Doctrine\Types\JsonType
+            json:               Sonata\Doctrine\Types\JsonType
             RedirectStatusType: Stfalcon\RedirectBundle\Entity\Types\RedirectStatusType
-            RedirectCodeType: Stfalcon\RedirectBundle\Entity\Types\RedirectCodeType
+            RedirectCodeType:   Stfalcon\RedirectBundle\Entity\Types\RedirectCodeType
         mapping_types:
             enum: string
     orm:
@@ -60,11 +60,11 @@ stof_doctrine_extensions:
     default_locale: "%locale%"
     orm:
         default:
-            loggable: false
-            sluggable: true
+            loggable:      false
+            sluggable:     true
             timestampable: true
-            translatable: true
-            tree: false
+            translatable:  true
+            tree:          false
 
 # AsseticBundle
 assetic:
@@ -84,7 +84,7 @@ assetic:
             node: "%node_path%"
             node_paths: "%node_lib_path%"
     assets:
-        jquery: vendor/jquery/jquery-1.7.2.min.js
+        jquery:    vendor/jquery/jquery-1.7.2.min.js
         jquery_ui: vendor/jquery-ui/jquery-ui-1.8.19.custom.min.js
     workers:
         cache_busting: ~
@@ -96,10 +96,10 @@ knp_menu:
 
 knp_paginator:
     default_options:
-        page_name: page                # page query parameter name
-        distinct: false                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+        page_name: page  # page query parameter name
+        distinct: false  # ensure distinct results, useful when ORM queries are using GROUP BY statements
     template:
-        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig # sliding pagination controls template
 
 sensio_framework_extra: ~
 
@@ -194,8 +194,8 @@ avalanche_imagine:
 
 sonata_media:
     class:
-        media: Application\Bundle\MediaBundle\Entity\Media
-        gallery: Application\Bundle\MediaBundle\Entity\Gallery
+        media:             Application\Bundle\MediaBundle\Entity\Media
+        gallery:           Application\Bundle\MediaBundle\Entity\Gallery
         gallery_has_media: Application\Bundle\MediaBundle\Entity\GalleryHasMedia
     default_context: default
     db_driver: doctrine_orm
@@ -206,16 +206,15 @@ sonata_media:
 
             formats:
                 small: { width: 100 , quality: 95}
-                slide:   { width: 720 , quality: 95}
-
+                slide: { width: 720 , quality: 95}
     cdn:
         server:
             path: /uploads/media
 
     filesystem:
         local:
-            directory:  %kernel.root_dir%/../web/uploads/media
-            create:     true        group: Application\Bundle\UserBundle\Entity\Group
+            directory: "%kernel.root_dir%/../web/uploads/media"
+            create:    true
 
 services:
     twig.extension.intl:
@@ -234,7 +233,7 @@ a2lix_translation_form:
     manager_registry: doctrine
 
 hype_mailchimp:
-    api_key: "%mc_api_key%"
+    api_key:      "%mc_api_key%"
     default_list: "%mc_default_list%"
     ssl: true
 
@@ -246,7 +245,7 @@ sonata_seo:
 
 stfalcon_re_captcha:
     site_key: "%recaptcha.site_key%"
-    secret: "%recaptcha.secret%"
+    secret:   "%recaptcha.secret%"
     theme: light
 
 sensio_buzz:
