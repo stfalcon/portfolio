@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %}{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }}{% endblock %}</title>
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="http://stfalcon.com/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml" />
 
     <meta property="og:title" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
     <meta property="og:description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}" />

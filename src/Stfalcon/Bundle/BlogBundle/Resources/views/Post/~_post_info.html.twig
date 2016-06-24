@@ -11,7 +11,7 @@
         {{ post.created|date("d M Y") }}
     </li>
     {#<li class="author">
-        <a href="http://blog.stfalcon.com">Степан Танасийчук</a>,
+        <a href="https://blog.stfalcon.com">Степан Танасийчук</a>,
     </li>#}
     <li class="comments">
         <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#disqus_thread" data-disqus-identifier="{{ post.id }}">

@@ -76,7 +76,7 @@
         </service>
 
         <service id="application_default.gelf.publisher" class="Application\Bundle\DefaultBundle\Publisher\MessagePublisher">
-            <argument>http://stfalcon.com</argument>
+            <argument>https://stfalcon.com</argument>
             <argument>%graylog_hostname%</argument>
             <argument>%graylog_port%</argument>
         </service>

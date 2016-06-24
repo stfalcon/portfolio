@@ -50,7 +50,7 @@
             <div class="copyright">&copy; 2009–{{ "now"|date("Y") }},
                 {% if app.request.locale != 'de' %}
                     <span class="category">{{ 'студия'|trans }}</span>
-                    <a href="http://stfalcon.com" title="stfalcon" class="fn org">Stfalcon.com</a>
+                    <a href="{{ url('homepage') }}" title="stfalcon" class="fn org">Stfalcon.com</a>
                 {% else %}
                     Stfalcon.com
                 {% endif %}
@@ -66,8 +66,8 @@
                     <li><a href="{{ path('privacy_policy_page') }}">Privacy Policy</a></li>
                     <li><a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a></li>
                 {% else %}
-                    <li><a href="http://stfalcon.com/en/privacy-policy">Privacy Policy</a></li>
-                    <li><a href="http://stfalcon.com/en/terms-of-service">Terms &amp; Conditions</a></li>
+                    <li><a href="{{ app.request.scheme }}://stfalcon.com/en/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="{{ app.request.scheme }}://stfalcon.com/en/terms-of-service">Terms &amp; Conditions</a></li>
                 {% endif %}
 
             </ul>

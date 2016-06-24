@@ -5,7 +5,7 @@ The StfalconBlogBundle adds some basic support for blogs and tags.
 This bundle requires configured SonataAdminBundle with ORM support for administration
 and StofDoctrineExtensionsBundle for timestamps
 
-Studio stfalcon.com use this bundle for blog http://stfalcon.com/blog
+Studio stfalcon.com use this bundle for blog https://stfalcon.com/blog
 
 Features include:
 - Posts & Tags can be stored via Doctrine ORM
