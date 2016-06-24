@@ -92,7 +92,9 @@ class SitemapService
         $enXmlSitemap = $this->getXMLSitemapByLocale('en');
         $enXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'en.xml');
 
-        $renderedSitemapIndex = $this->twig->render('::sitemap.xml.twig');
+        $scheme = $this->router->getContext()->getScheme();
+
+        $renderedSitemapIndex = $this->twig->render('::sitemap.xml.twig', ['scheme' => $scheme]);
         file_put_contents($this->webRoot.'/sitemap.xml', $renderedSitemapIndex);
     }
 

@@ -8,7 +8,7 @@
     {% block abtest %}{% endblock abtest %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% block title %}{% endblock %}</title>
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="http://stfalcon.com/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml" />
 
     {{ sonata_seo_metadatas() }}
     {{ sonata_seo_link_canonical() }}

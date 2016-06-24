@@ -24,6 +24,8 @@ parameters:
 
     secret: ThisTokenIsNotSoSecretChangeIt
 
+    router.request_context.scheme: http
+
     admin_password: SomeAdminPassword
 
     security.acl.permission.map.class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
