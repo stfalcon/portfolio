@@ -16,6 +16,7 @@ install:
     - composer install --dev --prefer-dist --no-interaction
 
 before_script:
+    - cp ./app/config/parameters.yml.dist ./app/config/parameters.yml
     - ./bin/console doctrine:database:create -e=test -n --no-debug
     - ./bin/console doctrine:schema:create -e=test -n --no-debug
     - ./bin/console assets:install -e=test -n --no-debug
