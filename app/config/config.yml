@@ -17,7 +17,7 @@ framework:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
+    trusted_proxies: 127.0.0.1
     session:         ~
     fragments:       ~
     http_method_override: true
