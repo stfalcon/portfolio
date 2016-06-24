@@ -3,11 +3,17 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+/**
+ * AppKernel.
+ */
 class AppKernel extends Kernel
 {
+    /**
+     * {@inheritdoc}
+     */
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -29,8 +35,12 @@ class AppKernel extends Kernel
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\MediaBundle\SonataMediaBundle(),
 
             new Vich\UploaderBundle\VichUploaderBundle(),
 
@@ -40,12 +50,9 @@ class AppKernel extends Kernel
 
             new Application\Bundle\DefaultBundle\ApplicationDefaultBundle(),
 
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new FOS\UserBundle\FOSUserBundle(),
             new Application\Bundle\UserBundle\ApplicationUserBundle(),
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
-            new Sonata\MediaBundle\SonataMediaBundle(),
             new Application\Bundle\MediaBundle\ApplicationMediaBundle(),
 
             new JMS\TranslationBundle\JMSTranslationBundle(),
@@ -57,22 +64,20 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
-        );
+        ];
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'])) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
-//        if ($this->getEnvironment() == 'test') {
-//            $bundles[] = new Behat\BehatBundle\BehatBundle();
-//            $bundles[] = new Behat\MinkBundle\MinkBundle();
-//        }
-
         return $bundles;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
