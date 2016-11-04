@@ -72,17 +72,22 @@ class DefaultController extends Controller
                     $attachments[] = $attachFile;
                 }
 
-                $mailer_name = $container->getParameter('mailer_name');
-                $mailer_notify = $container->getParameter('mailer_notify');
                 $subject = $this->get('translator')->trans('Stfalcon.com direct order');
-                if ($this->get('application_default.service.mailer')->send(
-                    [$mailer_notify, $mailer_name],
-                    $subject,
-                    '@ApplicationDefault/emails/direct_order.html.twig',
-                    $formData,
-                    $attachments
-                    )
-                ) {
+                $mailerNotify = $container->getParameter('mailer_notify');
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject($subject)
+                    ->setFrom($formData['email'])
+                    ->setTo($mailerNotify)
+                    ->setBody(
+                        $this->renderView(
+                            '@ApplicationDefault/emails/direct_order.html.twig',
+                            $formData
+                        ),
+                        'text/html'
+                    );
+                $resultSending = $this->get('mailer')->send($message);
+                if ($resultSending) {
                     if ($request->isXmlHttpRequest()) {
                         return new JsonResponse([
                             'result'    => 'success',
