@@ -2,6 +2,7 @@
 namespace Application\Bundle\DefaultBundle\Controller;
 
 use Application\Bundle\DefaultBundle\Form\Type\DirectOrderFormType;
+use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -23,16 +24,34 @@ class PromotionController extends Controller
     /**
      * Promotion index page by type
      *
+     * @param Request $request Request
+     * @param string  $type    Promotion type
+     *
+     * @return Response
+     *
      * @Route("/{type}", requirements={"type" = "design|apps|development|sysadmin|mobilegames"}, name="page_promotion")
      */
-    public function indexAction($type)
+    public function indexAction(Request $request, $type)
     {
         $form = $this->createForm(new PromotionOrderFormType());
 
-        return $this->render(
-            'ApplicationDefaultBundle:Default:promotion_' . $type . '.html.twig',
-            ['form' => $form->createView()]
-        );
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta(
+            'property',
+            'og:url',
+            $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'type' => $type,
+                ],
+                true
+            )
+        )
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::ARTICLE);
+
+        return $this->render('ApplicationDefaultBundle:Default:promotion_'.$type.'.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -62,20 +81,28 @@ class PromotionController extends Controller
             $name  = $data['name'];
 
             $container = $this->get('service_container');
-            $mailer_name = $container->getParameter('mailer_name');
-            $mailer_notify = $container->getParameter('mailer_notify');
+            $mailerNotify = $container->getParameter('mailer_notify');
             $subject = $translated->trans('promotion.order.' . $type . '.mail.subject', ['%email%' => $email]);
 
-            if ($this->get('application_default.service.mailer')->send(
-                [$mailer_notify, $mailer_name],
-                $subject,
-                '@ApplicationDefault/emails/order_app.html.twig',
-                [
-                    'message' => $data['message'],
-                    'name'    => $name,
-                    'email'   => $email
-                ]
-            )) {
+            $message = \Swift_Message::newInstance()
+                ->setSubject($subject)
+                ->setFrom($mailerNotify)
+                ->setReplyTo($email)
+                ->setTo($mailerNotify)
+                ->setBody(
+                    $this->renderView(
+                        '@ApplicationDefault/emails/order_app.html.twig',
+                        [
+                            'message' => $data['message'],
+                            'name'    => $name,
+                            'email'   => $email
+                        ]
+                    ),
+                    'text/html'
+                );
+            $resultSending = $this->get('mailer')->send($message);
+
+            if ($resultSending) {
                 return new JsonResponse(['status' => 'success']);
             } else {
                 return new JsonResponse(['status' => 'error']);

@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,14 +21,21 @@ class DefaultController extends Controller
     /**
      * Categories/projects list
      *
+     * @param Request $request Request
+     *
      * @return array()
+     *
      * @Cache(expires="tomorrow")
      * @Route("/{_locale}", name="homepage", defaults={"_locale": "en"}, requirements={"_locale": "en|ru"}, options={"i18n"=false})
      *
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
         return [];
     }
 
@@ -35,7 +43,7 @@ class DefaultController extends Controller
     /**
      * Contacts page
      *
-     * @param Request $request
+     * @param Request $request Request
      *
      * @return array()
      * @Template()
@@ -64,17 +72,28 @@ class DefaultController extends Controller
                     $attachments[] = $attachFile;
                 }
 
-                $mailer_name = $container->getParameter('mailer_name');
-                $mailer_notify = $container->getParameter('mailer_notify');
                 $subject = $this->get('translator')->trans('Stfalcon.com direct order');
-                if ($this->get('application_default.service.mailer')->send(
-                    [$mailer_notify, $mailer_name],
-                    $subject,
-                    '@ApplicationDefault/emails/direct_order.html.twig',
-                    $formData,
-                    $attachments
-                    )
-                ) {
+                $mailerNotify = $container->getParameter('mailer_notify');
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject($subject)
+                    ->setFrom($mailerNotify)
+                    ->setReplyTo($formData['email'])
+                    ->setTo($mailerNotify);
+
+                foreach ($attachments as $file) {
+                    $message->attach(\Swift_Attachment::fromPath($file->getRealPath())->setFilename($file->getFilename()));
+                }
+
+                $message->setBody(
+                    $this->renderView(
+                        '@ApplicationDefault/emails/direct_order.html.twig',
+                        $formData
+                    ),
+                    'text/html'
+                );
+                $resultSending = $this->get('mailer')->send($message);
+                if ($resultSending) {
                     if ($request->isXmlHttpRequest()) {
                         return new JsonResponse([
                             'result'    => 'success',
@@ -92,6 +111,10 @@ class DefaultController extends Controller
             }
         }
 
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse([
                 'result'    => 'error',
@@ -105,26 +128,38 @@ class DefaultController extends Controller
     /**
      * Privacy Policy static page
      *
+     * @param Request $request Request
+     *
      * @return array
      *
      * @Template()
      * @Route("/privacy-policy", name="privacy_policy_page")
      */
-    public function privacyPolicyAction()
+    public function privacyPolicyAction(Request $request)
     {
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
         return [];
     }
 
     /**
      * Terms of Service static page
      *
+     * @param Request $request Request
+     *
      * @return array
      *
      * @Template()
      * @Route("/terms-of-service", name="terms_of_service_page")
      */
-    public function termsOfServiceAction()
+    public function termsOfServiceAction(Request $request)
     {
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
         return [];
     }
 }

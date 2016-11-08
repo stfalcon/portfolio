@@ -132,7 +132,7 @@ class ProjectAdmin extends Admin
             )
             ->add('slug')
             ->add('url')
-            ->add('imageFile', 'file', array('required' => true, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'))
+            ->add('imageFile', 'file', array('required' => false))
             ->add('date', 'date')
             ->add('categories', null, array('required' => true))
             ->add('published', 'checkbox', array('required' => false))
