@@ -141,7 +141,8 @@ class WidgetsController extends Controller
 
             $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
-                ->setFrom($email)
+                ->setFrom($mailerNotify)
+                ->setReplyTo($email)
                 ->setTo($mailerNotify)
                 ->setBody(
                     $this->renderView(

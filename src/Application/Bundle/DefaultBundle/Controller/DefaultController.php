@@ -77,15 +77,21 @@ class DefaultController extends Controller
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject($subject)
-                    ->setFrom($formData['email'])
-                    ->setTo($mailerNotify)
-                    ->setBody(
-                        $this->renderView(
-                            '@ApplicationDefault/emails/direct_order.html.twig',
-                            $formData
-                        ),
-                        'text/html'
-                    );
+                    ->setFrom($mailerNotify)
+                    ->setReplyTo($formData['email'])
+                    ->setTo($mailerNotify);
+
+                foreach ($attachments as $file) {
+                    $message->attach(\Swift_Attachment::fromPath($file->getRealPath())->setFilename($file->getFilename()));
+                }
+
+                $message->setBody(
+                    $this->renderView(
+                        '@ApplicationDefault/emails/direct_order.html.twig',
+                        $formData
+                    ),
+                    'text/html'
+                );
                 $resultSending = $this->get('mailer')->send($message);
                 if ($resultSending) {
                     if ($request->isXmlHttpRequest()) {
