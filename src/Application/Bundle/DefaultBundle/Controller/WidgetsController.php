@@ -136,20 +136,26 @@ class WidgetsController extends Controller
             $name  = $data['name'];
 
             $container    = $this->get('service_container');
-            $mailerName   = $container->getParameter('mailer_name');
             $mailerNotify = $container->getParameter('mailer_notify');
             $subject      = $translated->trans('promotion.order.hire.us.mail.subject', ['%email%' => $email]);
 
-            $resultSending = $this->get('application_default.service.mailer')->send(
-                [$mailerNotify, $mailerName],
-                $subject,
-                '@ApplicationDefault/emails/order_app.html.twig',
-                [
-                    'message' => $data['message'],
-                    'name'    => $name,
-                    'email'   => $email,
-                ]
-            );
+            $message = \Swift_Message::newInstance()
+                ->setSubject($subject)
+                ->setFrom($mailerNotify)
+                ->setReplyTo($email)
+                ->setTo($mailerNotify)
+                ->setBody(
+                    $this->renderView(
+                        '@ApplicationDefault/emails/order_app.html.twig',
+                        [
+                            'message' => $data['message'],
+                            'name'    => $name,
+                            'email'   => $email,
+                        ]
+                    ),
+                    'text/html'
+                );
+            $resultSending = $this->get('mailer')->send($message);
 
 //            if ($resultSending) {
                 return new JsonResponse([
