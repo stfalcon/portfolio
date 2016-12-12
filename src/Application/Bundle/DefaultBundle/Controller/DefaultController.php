@@ -72,7 +72,7 @@ class DefaultController extends Controller
                     $attachments[] = $attachFile;
                 }
 
-                $subject = $this->get('translator')->trans('Stfalcon.com direct order');
+                $subject = $this->get('translator')->trans('Stfalcon.com direct order from "%email%"', ['%email%' => $formData['email']]);
                 $mailerNotify = $container->getParameter('mailer_notify');
 
                 $message = \Swift_Message::newInstance()
