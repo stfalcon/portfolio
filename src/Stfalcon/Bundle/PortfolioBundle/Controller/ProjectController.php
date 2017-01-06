@@ -100,11 +100,11 @@ class ProjectController extends Controller
             $nextPartCategoriesCount = $repository->findAllExamplesProjectsByCategory(
                 $category,
                 $nextLimit,
-                count($projects) + $nextLimit
+                count($projects)
             );
         } else {
             $projects = $repository->getAllProjectPortfolio(8);
-            $nextPartCategoriesCount = $repository->getAllProjectPortfolio($nextLimit, count($projects) + $nextLimit);
+            $nextPartCategoriesCount = $repository->getAllProjectPortfolio($nextLimit, count($projects));
         }
         $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
 
