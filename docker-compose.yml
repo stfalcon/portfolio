@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+   db:
+     image: mysql:5.6
+     volumes:
+       - db_data:/var/lib/mysql
+       - ./docker-files/mysql-conf.d:/etc/mysql/conf.d
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: qwerty
+   portfolio:
+     depends_on:
+       - db
+     build: .
+     volumes:
+      - .:/var/www/html
+     ports:
+       - "8080:80"
+       - "9090:9000"
+     restart: always
+volumes:
+    db_data:
