@@ -77,6 +77,5 @@ You can set environment `test` for command if you add `--env=test` to it.
     $ docker-compose build
     $ docker-compose up
     
-Portfolio : http://127.0.0.1:8080/
-
+Portfolio: http://127.0.0.1:8080/
 Phpmyadmin: http://127.0.0.1:8080/phpmyadmin
