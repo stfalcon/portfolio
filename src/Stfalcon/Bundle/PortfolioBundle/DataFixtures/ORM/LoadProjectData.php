@@ -17,7 +17,51 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
 {
+    private $files = [
+        '55f18a561ca39.jpeg',
+        '55f18d6a43d1a.jpeg',
+    ];
 
+    /**
+     * @param $number
+     * @param $name
+     * @param $url
+     * @param array         $categories
+     * @param array         $users
+     * @param ObjectManager $manager
+     */
+    public function createProject($number, $name, $url, $categories, $users, $manager, $referenceName = '')
+    {
+        $project = new Project();
+        $project->setName($name);
+        $project->setSlug($name);
+        $project->setUrl($url);
+        $project->setDate(new \DateTime('now'));
+        $project->setDescription('Some test description');
+        $project->setTags('design, HTML markup, development');
+        $project->setShortDescription('design, HTML markup, development');
+        $project->setOnFrontPage(1);
+        $project->setOrdernum($number);
+        $i = 0;
+        while (isset($categories[$i])) {
+            $project->addCategory($categories[$i]);
+            $manager->merge($categories[$i]);
+            $i++;
+        }
+        $i = 0;
+        while (isset($users[$i])) {
+            $project->addParticipant($users[$i]);
+            $i++;
+        }
+        $project->setPublished(true);
+        $project->setImageFile($this->copyFile($this->files[array_rand($this->files)]));
+        $manager->persist($project);
+        if (empty($referenceName)) {
+            $this->addReference('project-' . $number, $project);
+        } else {
+            $this->addReference($referenceName, $project);
+        }
+    }
     /**
      * Create and load projects fixtures to database
      *
@@ -25,59 +69,21 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $files = array(
-            '55f18a561ca39.jpeg',
-            '55f18d6a43d1a.jpeg'
-        );
-        $webCategory = $this->getReference('category-development');
+        $webCategory = $this->getReference('web-development');
         $mobileCategory = $this->getReference('mobile-development');
+        $webDesign = $this->getReference('web-design');
 
         $adminUser = $this->getReference('user-admin');
         $firstUser = $this->getReference('user-first');
         $secondUser = $this->getReference('user-second');
 
-        // projects
-        $preOrder = new Project();
-        $preOrder->setName('preorder.it');
-        $preOrder->setSlug('preorder-it');
-        $preOrder->setUrl('http://preorder.it');
-        $preOrder->setDate(new \DateTime('now'));
-        $preOrder->setDescription('Press-releases and reviews of the latest electronic novelties. The possibility to leave a pre-order.');
-        $preOrder->setTags('design, HTML markup, development');
-        $preOrder->setShortDescription('design, HTML markup, development');
-        $preOrder->setOnFrontPage(1);
-        $preOrder->setOrdernum(0);
-        $preOrder->addCategory($webCategory);
-        $preOrder->addParticipant($adminUser);
-        $preOrder->addParticipant($secondUser);
-        $preOrder->setPublished(true);
-        $preOrder->setImageFile($this->copyFile($files[array_rand($files)]));
-        $manager->persist($preOrder);
-        $manager->merge($webCategory);
+        $this->createProject(0, 'meinfernbus-de', 'http://meinfernbus.de/', [$webCategory], [$adminUser], $manager);
+        $this->createProject(1, 'keepsnap-com', 'https://keepsnap.com/', [$webCategory], [$firstUser], $manager);
+        $this->createProject(2, 'naberezhny-kvartal-crm', '', [$webDesign], [$adminUser], $manager);
+        $this->createProject(3, 'uaroads-com', 'http://uaroads.com/', [$webCategory], [$secondUser], $manager);
 
-        $ePrice = new Project();
-        $ePrice->setName('eprice.kz');
-        $ePrice->setSlug('eprice-kz');
-        $ePrice->setUrl('http://eprice.kz');
-        $ePrice->setDate(new \DateTime('now'));
-        $ePrice->setDescription('Comparison of the prices of mobile phones, computers, monitors, audio and video in Kazakhstan');
-        $ePrice->setTags('design');
-        $ePrice->setShortDescription('design');
-        $ePrice->setOnFrontPage(1);
-        $ePrice->setPublished(true);
-        $ePrice->setOrdernum(1);
-        $ePrice->addCategory($webCategory);
-        $ePrice->addCategory($mobileCategory);
-//        $ePrice->addParticipant($adminUser);
-//        $ePrice->addParticipant($firstUser);
-        $ePrice->setImageFile($this->copyFile($files[array_rand($files)]));
-        $manager->persist($ePrice);
-        $manager->merge($webCategory);
-
-        $manager->flush();
-
-        $this->addReference('project-preorder', $preOrder);
-        $this->addReference('project-eprice', $ePrice);
+        $this->createProject(4, 'preorder.it', 'http://preorder.it', [$webCategory], [$adminUser, $secondUser], $manager, 'project-preorder');
+        $this->createProject(5, 'eprice.kz', 'http://eprice.kz', [$webCategory, $mobileCategory], [], $manager, 'project-eprice');
 
         for ($i = 0; $i < 20; $i++) {
             $example = new Project();
@@ -89,7 +95,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             $example->setTags('design, HTML markup, development');
             $example->setShortDescription('design, HTML markup, development');
             $example->setOnFrontPage(0);
-            $example->setOrdernum(2 + $i);
+            $example->setOrdernum(5 + $i);
             if ($i % 2){
                 $example->addCategory($webCategory);
             } else {
@@ -99,7 +105,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             $example->addParticipant($firstUser);
             $example->addParticipant($secondUser);
             $example->setPublished(true);
-            $example->setImageFile($this->copyFile($files[array_rand($files)]));
+            $example->setImageFile($this->copyFile($this->files[array_rand($this->files)]));
             $manager->persist($example);
             $manager->merge($webCategory);
         }
