@@ -29,17 +29,31 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
      * @param array         $categories
      * @param array         $users
      * @param ObjectManager $manager
+     * @param $referenceName
+     * @param $description
+
      */
-    public function createProject($number, $name, $url, $categories, $users, $manager, $referenceName = '')
-    {
+    public function createProject(
+        $number,
+        $name,
+        $slug,
+        $url,
+        $categories,
+        $users,
+        $manager,
+        $referenceName = '',
+        $description = 'Some test description'
+    ) {
+
         $project = new Project();
         $project->setName($name);
-        $project->setSlug($name);
+        $project->setSlug($slug);
         $project->setUrl($url);
         $project->setDate(new \DateTime('now'));
-        $project->setDescription('Some test description');
+        $project->setDescription($description);
         $project->setTags('design, HTML markup, development');
         $project->setShortDescription('design, HTML markup, development');
+
         $project->setOnFrontPage(1);
         $project->setOrdernum($number);
         $i = 0;
@@ -57,11 +71,12 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $project->setImageFile($this->copyFile($this->files[array_rand($this->files)]));
         $manager->persist($project);
         if (empty($referenceName)) {
-            $this->addReference('project-' . $number, $project);
+            $this->addReference('project-'.$number, $project);
         } else {
             $this->addReference($referenceName, $project);
         }
     }
+
     /**
      * Create and load projects fixtures to database
      *
@@ -77,13 +92,27 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $firstUser = $this->getReference('user-first');
         $secondUser = $this->getReference('user-second');
 
-        $this->createProject(0, 'meinfernbus-de', 'http://meinfernbus.de/', [$webCategory], [$adminUser], $manager);
-        $this->createProject(1, 'keepsnap-com', 'https://keepsnap.com/', [$webCategory], [$firstUser], $manager);
-        $this->createProject(2, 'naberezhny-kvartal-crm', '', [$webDesign], [$adminUser], $manager);
-        $this->createProject(3, 'uaroads-com', 'http://uaroads.com/', [$webCategory], [$secondUser], $manager);
-
-        $this->createProject(4, 'preorder.it', 'http://preorder.it', [$webCategory], [$adminUser, $secondUser], $manager, 'project-preorder');
-        $this->createProject(5, 'eprice.kz', 'http://eprice.kz', [$webCategory, $mobileCategory], [], $manager, 'project-eprice');
+        $this->createProject(
+            0,
+            'preorder.it',
+            'preorder-it',
+            'http://preorder.it',
+            [$webCategory],
+            [$adminUser, $secondUser],
+            $manager,
+            'project-preorder',
+            'Press-releases and reviews of the latest electronic novelties. The possibility to leave a pre-order.'
+        );
+        $this->createProject(
+            1,
+            'eprice.kz',
+            'eprice-kz',
+            'http://eprice.kz',
+            [$webCategory, $mobileCategory],
+            [],
+            $manager,
+            'project-eprice'
+        );
 
         for ($i = 0; $i < 20; $i++) {
             $example = new Project();
@@ -95,7 +124,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             $example->setTags('design, HTML markup, development');
             $example->setShortDescription('design, HTML markup, development');
             $example->setOnFrontPage(0);
-            $example->setOrdernum(5 + $i);
+            $example->setOrdernum(2 + $i);
             if ($i % 2){
                 $example->addCategory($webCategory);
             } else {
@@ -109,6 +138,11 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($example);
             $manager->merge($webCategory);
         }
+        $this->createProject(22, 'meinfernbus-de','meinfernbus-de', 'http://meinfernbus.de/', [$webCategory], [$adminUser], $manager);
+        $this->createProject(23, 'keepsnap-com','keepsnap-com', 'https://keepsnap.com/', [$webCategory], [$firstUser], $manager);
+        $this->createProject(24, 'naberezhny-kvartal-crm', 'naberezhny-kvartal-crm', '', [$webDesign], [$adminUser], $manager);
+        $this->createProject(25, 'uaroads-com', 'uaroads-com', 'http://uaroads.com/', [$webCategory], [$secondUser], $manager);
+
         $manager->flush();
     }
 
