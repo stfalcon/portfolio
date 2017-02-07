@@ -3,7 +3,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: db
     database_port: null
-    database_name: portfolio
+    database_name: stfalcon_com_development
     database_user: root
     database_password: qwerty
     database_server_version: 5.5
