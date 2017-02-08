@@ -33,3 +33,5 @@ web/css/style.css
 web/css/style.min.css
 web/assets/css/style.css
 web/assets/css/style.min.css
+
+web/app_dev.php

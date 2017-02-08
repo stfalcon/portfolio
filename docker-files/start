@@ -1,0 +1,30 @@
+#!/bin/bash
+
+sed -i s/app.php/app_dev.php/ /var/www/html/web/.htaccess
+cp /var/www/html/docker-files/app_dev_docker.php /var/www/html/web/app_dev.php
+cp /var/www/html/app/config/parameters.yml.docker /var/www/html/app/config/parameters.yml
+cd /var/www/html && curl -s https://getcomposer.org/installer | php
+cd /var/www/html && ./composer.phar install
+cd /var/www/html && npm install
+
+/etc/init.d/apache2 start
+git submodule init
+git submodule update
+
+./console doctrine:database:create
+./console doctrine:migrations:migrate
+./console init:acl
+./console doctrine:fixtures:load
+./console sonata:admin:setup-acl
+./console sonata:admin:generate-object-acl
+./console assets:install web
+
+chmod -R 777 /var/www/html/app/cache
+chmod -R 777 /var/www/html/app/logs
+chmod -R 777 /var/www/html/web/uploads
+mkdir /var/www/html/web/uploads/media
+chmod -R 777 /var/www/html/web/uploads/media
+mkdir /var/www/html/web/media
+chmod -R 777 /var/www/html/web/media
+
+while true; do sleep 10000; done
