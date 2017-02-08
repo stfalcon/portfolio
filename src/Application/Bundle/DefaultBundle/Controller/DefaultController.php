@@ -35,8 +35,9 @@ class DefaultController extends Controller
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+        $projects = $this->get('app.homepage.repository')->findProjectsForHomePage();
 
-        return [];
+        return ['projects' => $projects];
     }
 
 
