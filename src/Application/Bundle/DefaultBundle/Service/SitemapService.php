@@ -86,16 +86,20 @@ class SitemapService
      */
     public function generateSitemap()
     {
-        $ruXmlSitemap = $this->getXMLSitemapByLocale('ru');
-        $ruXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'ru.xml');
+        if (is_writeable($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'ru.xml')) {
+            $ruXmlSitemap = $this->getXMLSitemapByLocale('ru');
+            $ruXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'ru.xml');
+        }
+        if (is_writeable($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'en.xml')) {
+            $enXmlSitemap = $this->getXMLSitemapByLocale('en');
+            $enXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'en.xml');
+        }
 
-        $enXmlSitemap = $this->getXMLSitemapByLocale('en');
-        $enXmlSitemap->saveXML($this->webRoot.DIRECTORY_SEPARATOR.'sitemap'.DIRECTORY_SEPARATOR.'en.xml');
-
-        $scheme = $this->router->getContext()->getScheme();
-
-        $renderedSitemapIndex = $this->twig->render('::sitemap.xml.twig', ['scheme' => $scheme]);
-        file_put_contents($this->webRoot.'/sitemap.xml', $renderedSitemapIndex);
+        if (is_writeable($this->webRoot.'/sitemap.xml')) {
+            $scheme = $this->router->getContext()->getScheme();
+            $renderedSitemapIndex = $this->twig->render('::sitemap.xml.twig', ['scheme' => $scheme]);
+            file_put_contents($this->webRoot.'/sitemap.xml', $renderedSitemapIndex);
+        }
     }
 
     /**

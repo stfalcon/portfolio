@@ -69,3 +69,13 @@ You can set environment `test` for command if you add `--env=test` to it.
 ### g) Install Assets (if they hadn't been installed in **d** step or if you want to update them )
 
     $ ./console assets:install web
+    
+
+**Installation with docker** 
+ ------------------
+    $ cd portfolio
+    $ docker-compose build
+    $ docker-compose up
+    
+Portfolio: http://127.0.0.1:8080/
+Phpmyadmin: http://127.0.0.1:8080/phpmyadmin
