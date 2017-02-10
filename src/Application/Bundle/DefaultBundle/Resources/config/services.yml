@@ -1,0 +1,8 @@
+parameters:
+
+services:
+    app.repository.homepage_projects:
+        class: Doctrine\ORM\EntityRepository
+        factory: 'doctrine.orm.default_entity_manager:getRepository'
+        arguments:
+            - 'StfalconPortfolioBundle:Project'
