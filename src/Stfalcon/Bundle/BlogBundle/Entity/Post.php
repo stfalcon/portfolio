@@ -106,7 +106,7 @@ class Post implements Translatable
     /**
      * @var boolean
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="published", type="boolean")
      */
     protected $published = true;
 
