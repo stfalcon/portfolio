@@ -41,8 +41,32 @@
     <section class="projects-list equal-list">
         <div class="projects-row">
             <div class="project-cell">
+                <a href="{{ path('portfolio_project_view', {'projectSlug': 'novaposhta-ua', 'categorySlug': 'web-development'}) }}">
+                    <img alt="NovaPoshtaDashboard" src="{{ asset('assets/img/homepage/np-dashboard.jpeg') }}" width="920">
+                    <span class="project-info">
+                        <span class="project-info-text">
+                            <span  class="project-name">{{ '«Нова пошта» — Личный кабинет'|trans }}</span>
+                            <span class="project-description">{{ 'Новый взгляд на работу с посылками.'|trans }}</span>
+                        </span>
+                        <span class="helper"></span>
+                    </span>
+                </a>
+            </div>
+            <div class="project-cell">
+                <a href="{{ path('portfolio_project_view', {'projectSlug': 'nic-ua', 'categorySlug': 'web-development'}) }}">
+                    <img alt="NIC.UA" src="{{ asset('assets/img/homepage/nic-ua.jpeg') }}" width="920">
+                    <span class="project-info">
+                        <span class="project-info-text">
+                            <span  class="project-name">NIC.UA</span>
+                            <span class="project-description">{{ 'Сайт регистратора доменных имен.'|trans }}</span>
+                        </span>
+                        <span class="helper"></span>
+                    </span>
+                </a>
+            </div>
+            <div class="project-cell">
                 <a href="{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-development'}) }}">
-                    <img alt="MeinFernbus" src="{{ asset('assets/img/homepage/home-project-mfb.jpg') }}" width="920">
+                    <img alt="MeinFernbus" src="{{ asset('assets/img/homepage/meinfernbus.jpeg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
                             <span class="project-name">MeinFernbus</span>
@@ -53,36 +77,12 @@
                 </a>
             </div>
             <div class="project-cell">
-                <a href="{{ path('portfolio_project_view', {'projectSlug': 'keepsnap-com', 'categorySlug': 'web-development'}) }}">
-                    <img alt="KeepSnap" src="{{ asset('assets/img/homepage/home-project-keepsnap.jpg') }}" width="920">
+                <a href="{{ path('portfolio_project_view', {'projectSlug': 'npshopping-ua', 'categorySlug': 'web-development'}) }}">
+                    <img alt="NovaPoshtaShopping" src="{{ asset('assets/img/homepage/np-shoping.jpeg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
-                            <span class="project-name">KeepSnap</span>
-                            <span class="project-description">{{ 'Сервис продажи фотографий для профессиональных фотографов'|trans }}</span>
-                        </span>
-                        <span class="helper"></span>
-                    </span>
-                </a>
-            </div>
-            <div class="project-cell">
-                <a href="{{ path('portfolio_project_view', {'projectSlug': 'naberezhny-kvartal-crm', 'categorySlug': 'web-design'}) }}">
-                    <img alt="Real Estate CRM" src="{{ asset('assets/img/homepage/home-project-crm.jpg') }}" width="920">
-                    <span class="project-info">
-                        <span class="project-info-text">
-                            <span  class="project-name">Real Estate CRM</span>
-                            <span class="project-description">{{ 'Система по работе с клиентами для строительной компании'|trans }}</span>
-                        </span>
-                        <span class="helper"></span>
-                    </span>
-                </a>
-            </div>
-            <div class="project-cell">
-                <a href="{{ path('portfolio_project_view', {'projectSlug': 'uaroads-com', 'categorySlug': 'web-development'}) }}">
-                    <img alt="UARoads" src="{{ asset('assets/img/homepage/home-project-uaroads.jpg') }}" width="920">
-                    <span class="project-info">
-                        <span class="project-info-text">
-                            <span  class="project-name">UARoads</span>
-                            <span class="project-description">{{ 'Социальный стартап по оценке качества дорог Украины'|trans }}</span>
+                            <span class="project-name">Nova Poshta Shopping</span>
+                            <span class="project-description">{{ 'Доставка из зарубежных магазинов.'|trans }}</span>
                         </span>
                         <span class="helper"></span>
                     </span>
