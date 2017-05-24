@@ -78,7 +78,7 @@ class SitemapService
             $xmlSitemap,
             $this->router->generate('contacts', ['_locale' => $lang], true),
             null,
-            'yearly',
+            'monthly',
             0.9
         );
 
