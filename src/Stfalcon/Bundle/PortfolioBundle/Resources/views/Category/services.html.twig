@@ -40,7 +40,8 @@
             <p>
                 {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи'|trans }}.
             </p>
-            <a class="link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" href="{{ path('contacts') }}">
+            <a class="link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" href="{{ path('contacts') }}"
+               onclick="ga('send', 'event', 'Order_{{ category.slug }}', 'click');">
                 {% set order_text = '_order-' ~ category.slug %}
                 {{ order_text|trans }}
             </a>
