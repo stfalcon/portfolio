@@ -47,6 +47,8 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $preOrder->setShortDescription('design, HTML markup, development');
         $preOrder->setOnFrontPage(1);
         $preOrder->setOrdernum(0);
+        $preOrder->setShowCase(true);
+        $preOrder->setCaseContent('TestCase Content');
         $preOrder->addCategory($webCategory);
         $preOrder->addParticipant($adminUser);
         $preOrder->addParticipant($secondUser);
@@ -66,6 +68,8 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $ePrice->setOnFrontPage(1);
         $ePrice->setPublished(true);
         $ePrice->setOrdernum(1);
+        $preOrder->setShowCase(true);
+        $preOrder->setCaseContent('TestCase Content');
         $ePrice->addCategory($webCategory);
         $ePrice->addCategory($mobileCategory);
 //        $ePrice->addParticipant($adminUser);
