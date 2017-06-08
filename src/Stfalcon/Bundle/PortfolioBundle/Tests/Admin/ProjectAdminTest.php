@@ -217,7 +217,7 @@ class ProjectAdminTest extends WebTestCase
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_portfolio_project_list'));
         $tds = $crawler->filter('table tbody tr');
         $tds->last();
-        $this->assertContains('preorder.it', $tds->current()->textContent);
+        $this->assertContains('uaroads-com', $tds->current()->textContent);
     }
 
     /**
