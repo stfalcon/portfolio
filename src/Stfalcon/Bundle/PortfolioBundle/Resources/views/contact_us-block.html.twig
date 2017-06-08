@@ -1,0 +1,15 @@
+<div class="contact-us">
+
+    <p class="h2">
+        {{ 'Наша миссия - Упрощать жизнь людей создавая полезное и удобное программное обеспечение'|trans }}
+    </p>
+
+    <p>
+        {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи'|trans }}.
+    </p>
+    <a class="link-order hire_us_land" id="hire_us-js" href="#" onclick="ga('send', 'event', 'Zakazat_proekt', 'Otpravka_formyi');">
+        {% set order_text = '_order-' ~ category.slug %}
+        {{ order_text|trans }}
+    </a>
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+</div>

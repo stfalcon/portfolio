@@ -13,6 +13,7 @@
         </div>
     </div>
     {{ project.caseContent | raw }}
+    {% include '@StfalconPortfolio/contact_us-block.html.twig' with {'category' : category} %}
     {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions, 'class': 'row worked-on-project' } %}
     {% if project.relativeProjects | length %}
         <div class="row similar-projects">

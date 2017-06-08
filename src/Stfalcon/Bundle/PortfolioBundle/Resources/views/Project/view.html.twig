@@ -37,6 +37,7 @@
             <p>
                 {{ project.description | raw }}
             </p>
+            {% include '@StfalconPortfolio/contact_us-block.html.twig' with {'category' : category} %}
             {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions } %}
         </aside>
         <div class="project-slider-wrapper">
