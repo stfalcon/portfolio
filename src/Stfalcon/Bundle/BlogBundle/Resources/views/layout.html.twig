@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block after_body %}
-    <button id="hire_us-js" class="hire_us {% if app.request.locale == 'en' %}en-btn{% endif %}">{{ 'Работать с нами!'|trans }}</button>
+    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
 
     {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
 {% endblock %}
