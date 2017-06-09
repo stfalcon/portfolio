@@ -24,51 +24,45 @@
     {% if project.showCase %}
         {% include 'StfalconPortfolioBundle:Project:_case.html.twig' %}
     {% else %}
-    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+        {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+        <div class="project-wrapper clearfix">
+            <aside class="project-info">
+                <h2>{{ project.name }}</h2>
+                {% if project.url %}
+                    <a href="{{ project.url }}" rel="nofollow" target="_blank">{{ project.url }}</a>
+                {% endif %}
 
-    <div class="project-wrapper clearfix">
-        <aside class="project-info">
-            <h2>{{ project.name }}</h2>
-            {% if project.url %}
-                <a href="{{ project.url }}" rel="nofollow" target="_blank">{{ project.url }}</a>
-            {% endif %}
-
-            <span>{{ project.tags }}</span>
-            <p>
-                {{ project.description | raw }}
-            </p>
-            {% include '@StfalconPortfolio/contact_us-block.html.twig' with {'category' : category} %}
-            {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions } %}
-        </aside>
-        <div class="project-slider-wrapper">
-            <div class="project-slider-cnt no-controls">
-                <div class="slider-nav">
-                    <a class="prev-slide"></a>
-                    <a class="next-slide"></a>
-                </div>
-                <div class="fixed-nav">
-                    <a class="fix-prev-slide prev-slide"></a>
-                    <a class="fix-next-slide next-slide "></a>
-                </div>
-                <div class="slider-pages"></div>
-                <div class="project-slider">
-                    {% if project.media|length %}
-                        <ul>
-                            {% set filter = project.shadow?'slide':'reference' %}
-                            {% for mediaGallery in project.media %}
-                                <li {{ not project.shadow?'class="no-shadow"' }}><img src="{% path mediaGallery.media, filter %}" alt="{{ project.name }}"/></li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                <span>{{ project.tags }}</span>
+                <p>
+                    {{ project.description | raw }}
+                </p>
+                {% include '@StfalconPortfolio/contact_us-block.html.twig' with {'category' : category} %}
+                {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions } %}
+            </aside>
+            <div class="project-slider-wrapper">
+                <div class="project-slider-cnt no-controls">
+                    <div class="slider-nav">
+                        <a class="prev-slide"></a>
+                        <a class="next-slide"></a>
+                    </div>
+                    <div class="fixed-nav">
+                        <a class="fix-prev-slide prev-slide"></a>
+                        <a class="fix-next-slide next-slide "></a>
+                    </div>
+                    <div class="slider-pages"></div>
+                    <div class="project-slider">
+                        {% if project.media|length %}
+                            <ul>
+                                {% set filter = project.shadow?'slide':'reference' %}
+                                {% for mediaGallery in project.media %}
+                                    <li {{ not project.shadow?'class="no-shadow"' }}><img src="{% path mediaGallery.media, filter %}" alt="{{ project.name }}"/></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+        {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
     {% endif %}
-{% endblock %}
-{% block after_body %}
-    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
-
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
 {% endblock %}
