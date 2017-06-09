@@ -34,7 +34,7 @@
             <p class="header-sub-title">
                 {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
             </p>
-            <button id="hire_us-js" type="button" class="hire_us button button--big button--blue">{{ 'Заказать проект'|trans }}</button>
+            <button id="hire_us-js" type="button" class="hire_us button button--big button--blue" onclick="ga('send', 'event', 'Order_project', 'click');">{{ 'Заказать проект'|trans }}</button>
             {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
         </div>
     </header>

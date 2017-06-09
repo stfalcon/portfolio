@@ -1,6 +1,6 @@
 {% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
 
-<form action="" method="post" id="direct-order-form" enctype="multipart/form-data">
+<form action="" method="post" id="direct-order-form" enctype="multipart/form-data" onsubmit="ga('send', 'event', 'Order_project', 'Send_form');">
     <h3>{{ "Заявка на сотрудничество" | trans() }}</h3>
     {{ form_errors(form) }}
     <div class="line">
