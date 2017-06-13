@@ -23,6 +23,14 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     public function load(ObjectManager $manager)
     {
         // categories
+        $design = new Category();
+        $design->setName('Web Design');
+        $design->setSlug('web-design');
+        $design->setDetails('web-design');
+        $design->setDescription('In work we use Symfony2.');
+        $design->setCost('10 000');
+        $manager->persist($design);
+
         $development = new Category();
         $development->setName('Web Development');
         $development->setSlug('web-development');
@@ -42,8 +50,9 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $manager->persist($mobileDevelopment);
         $manager->flush();
 
-        $this->addReference('category-development', $development);
+        $this->addReference('web-development', $development);
         $this->addReference('mobile-development', $mobileDevelopment);
+        $this->addReference('web-design', $design);
     }
 
     /**
