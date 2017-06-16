@@ -12,7 +12,7 @@ $(document).on('click', '.close-hire_us', function(){
 });
 
 //Show hire us
-$(document).on('click', '.hire_us, .hire_us_land', function () {
+$(document).on('click', '.hire_us, .hire_us_land, .hire_us_main' , function () {
     $('body').addClass('open-hire_us');
 });
 

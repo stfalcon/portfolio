@@ -4,15 +4,22 @@
   text-align: center;
   padding: 0px 15px 60px 15px;
 
-  .h2 {
-    position: relative;
-    left: 25%;
+
+  &__title {
     width: 50%;
-    font-size: 1.8rem;
+    font-size: 25px;
     font-weight: 700;
     padding-top: 65px;
-    margin-bottom: 0;
-    text-align: center;
+    margin:0 auto 23px;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 28px;
   }
 
   p {
@@ -20,17 +27,25 @@
     font-weight: 300;
     line-height: 35px;
     margin-top: 0;
-    margin-bottom: 50px;
+    margin-bottom: 16px;
   }
 
   .link-order {
-    font-weight: 300;
+    height: 45px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 45px;
     text-decoration: none;
     text-transform: uppercase;
-    background-color: #ff0033;
+    background-color: #ea0d34;
     color: #fff;
-    padding: 15px 40px;
     border-radius: 4px;
+    border: none;
+    padding: 0 35px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    z-index: 998;
     &:hover {
       color: #000011;
     }
@@ -70,6 +85,19 @@
     display: none;
   }
 }
+
+@media (max-height: 850px) {
+  .hire_us {
+    top: 40%;
+  }
+}
+
+@media (max-height: 750px) {
+  .hire_us {
+    top: 30%;
+  }
+}
+
 .hire_us.en-btn {
   right: -27px;
   padding: 0px 20px;
