@@ -4,15 +4,19 @@
   text-align: center;
   padding: 0px 15px 60px 15px;
 
-  .h2 {
-    position: relative;
-    left: 25%;
+
+  &__title {
     width: 50%;
-    font-size: 1.8rem;
+    font-size: 25px;
     font-weight: 700;
     padding-top: 65px;
-    margin-bottom: 16px;
-    text-align: center;
+    margin:0 auto 23px;
+  }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 28px;
   }
 
   p {
@@ -24,13 +28,21 @@
   }
 
   .link-order {
-    font-weight: 300;
+    height: 45px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 45px;
     text-decoration: none;
     text-transform: uppercase;
-    background-color: #ff0033;
+    background-color: #ea0d34;
     color: #fff;
-    padding: 15px 40px;
     border-radius: 4px;
+    border: none;
+    padding: 0 35px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    z-index: 998;
     &:hover {
       color: #000011;
     }
