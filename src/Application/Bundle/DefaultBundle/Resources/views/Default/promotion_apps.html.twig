@@ -3,7 +3,7 @@
 {% block body %}
     <div class="slide scrollto-line {{ app.request.locale == 'de'?'de':'' }}">
         <div class="wrap">
-            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', 'Order_an_app', 'click');fbq('track', 'Order_an_app');">{{ 'Заказать приложение'|trans }}</a>
+            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', 'Order_an_app', 'click');fbq('trackCustom', 'Order_an_app');">{{ 'Заказать приложение'|trans }}</a>
         </div>
     </div>
     <section class="slide header-slide">
@@ -20,7 +20,7 @@
                     <div class="icon icon-android"></div>
                     <div class="icon icon-apple"></div>
                 </div>
-                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', 'Order_an_app', 'click');fbq('track', 'Order_an_app');">{{ "Заказать приложение" | trans() }}</a>
+                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', 'Order_an_app', 'click');fbq('trackCustom', 'Order_an_app');">{{ "Заказать приложение" | trans() }}</a>
             </div>
         </div>
     </section>
