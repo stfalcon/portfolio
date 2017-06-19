@@ -42,7 +42,7 @@
             </div>
             {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
             {% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':category } %}
-            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': category.slug })) }}
 
         </div>
     </section>

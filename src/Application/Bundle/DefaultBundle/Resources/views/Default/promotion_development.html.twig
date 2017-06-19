@@ -3,7 +3,7 @@
 {% block body %}
     <div class="slide scrollto-line">
         <div class="wrap">
-            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', 'Order_development', 'click');">{{ 'Заказать сайт'|trans }}</a>
+            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', 'Order_development', 'click');fbq('track', 'Order_development');">{{ 'Заказать сайт'|trans }}</a>
         </div>
     </div>
     <section class="slide header-slide">
@@ -18,7 +18,7 @@
 
                 <p>{{ 'Мы специализируемся на разработке больших и средних сайтов с нестандартной функциональностью.'|trans|raw }}</p>
 
-                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', 'Order_development', 'click');">{{ 'Заказать сайт'|trans }}</a>
+                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', 'Order_development', 'click');fbq('track', 'Order_development');">{{ 'Заказать сайт'|trans }}</a>
             </div>
         </div>
     </section>
