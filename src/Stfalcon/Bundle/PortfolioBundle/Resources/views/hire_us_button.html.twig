@@ -1,4 +1,4 @@
-<button type="button" class="hire_us_land link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" onclick="ga('send', 'event', 'Zakazat_{{ category.slug }}', 'click');">
+<button type="button" class="hire_us_land link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" onclick="ga('send', 'event', 'Zakazat_{{ category.slug }}', 'click');fbq('track', 'Order_{{ category.slug }}');">
     {% set order_text = '_order-' ~ category.slug %}
     {{ order_text|trans }}
 </button>

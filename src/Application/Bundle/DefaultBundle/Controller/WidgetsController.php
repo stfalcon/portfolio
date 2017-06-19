@@ -95,17 +95,18 @@ class WidgetsController extends Controller
 
     /**
      * Hire us action
-     *
+     * @param $slug
      * @return Response
      *
      * @Route(name="hire_us")
      */
-    public function hireUsAction()
+    public function hireUsAction($slug = null)
     {
         $form = $this->createForm(new PromotionOrderFormType());
 
         return $this->render('ApplicationDefaultBundle:Widgets:_hire_us_form.html.twig', [
             'form' => $form->createView(),
+            'slug' => $slug,
         ]);
     }
 

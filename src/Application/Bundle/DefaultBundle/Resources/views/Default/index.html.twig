@@ -23,6 +23,15 @@
             output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+    {% else %}
+        <script type="text/javascript">
+            function ga(send, event, Order_project, click) {
+                console.log('ga', send, event, Order_project, click)
+            }
+            function fbq(track, track_name) {
+                console.log('fbq', track, track_name)
+            }
+        </script>
     {% endif %}
 </head>
 <body>
@@ -34,7 +43,7 @@
             <p class="header-sub-title">
                 {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
             </p>
-            <button id="hire_us-js" type="button" class="hire_us_main button button--big button--blue" onclick="ga('send', 'event', 'Order_project', 'click');">{{ 'Заказать проект'|trans }}</button>
+            <button id="hire_us-js" type="button" class="hire_us_main button button--big button--blue" onclick="ga('send', 'event', 'Order_project', 'click');fbq('track', 'Order_project');">{{ 'Заказать проект'|trans }}</button>
             {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
         </div>
     </header>
@@ -211,28 +220,6 @@
         minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
     });
 </script>
-
-{% if app.request.host == 'stfalcon.com' %}
-    <!-- Google Code for Remarketing Tag -->
-    <script type="text/javascript">
-        /* <![CDATA[ */
-        var google_conversion_id = 1047640200;
-        var google_custom_params = window.google_tag_params;
-        var google_remarketing_only = true;
-        /* ]]> */
-    </script>
-    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
-    <noscript>
-        <div style="display:inline;">
-            <img height="1" width="1" style="border-style:none;" alt="Google conversion" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1047640200/?value=0&amp;guid=ON&amp;script=0"/>
-        </div>
-    </noscript>
-
-    {% javascripts
-        'js/metrics/footer.js'
-        output='cache/js/*.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endif %}
+{% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
 </body>
 </html>
