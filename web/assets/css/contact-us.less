@@ -1,0 +1,104 @@
+.contact-us {
+  font-family: 'museo_sans_cyrl';
+  background-color: #dfe6e6;
+  text-align: center;
+  padding: 0px 15px 60px 15px;
+
+
+  &__title {
+    width: 50%;
+    font-size: 25px;
+    font-weight: 700;
+    padding-top: 65px;
+    margin:0 auto 23px;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 35px;
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  .link-order {
+    height: 45px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 45px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #ea0d34;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    padding: 0 35px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    z-index: 998;
+    &:hover {
+      color: #000011;
+    }
+  }
+
+  .link-order-mobile{
+    @media (max-width: 400px) {
+      padding: 15px 10px;
+    }
+  }
+}
+.hire_us {
+  height: 51px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0px 15px;
+  text-transform: uppercase;
+  border-radius: 4px 4px 0px 0px;
+  color: #ffffff;
+  background-color: #ea0d34;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
+  position: fixed;
+  right: -63px;
+  top: 50%;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  z-index: 998;
+}
+.hire_us:active {
+  outline: none;
+}
+@media (max-width: 838px) {
+  .hire_us {
+    display: none;
+  }
+}
+
+@media (max-height: 850px) {
+  .hire_us {
+    top: 40%;
+  }
+}
+
+@media (max-height: 750px) {
+  .hire_us {
+    top: 30%;
+  }
+}
+
+.hire_us.en-btn {
+  right: -27px;
+  padding: 0px 20px;
+}

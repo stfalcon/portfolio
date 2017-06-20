@@ -33,17 +33,17 @@
             {{ category.details|raw }}
         </div>
         <div class="contact-us">
-            <p class="h2">
+            <div class="h2 contact-us__title">
                 {{ 'Давайте сделаем что-то классное вместе'|trans }}
-            </p>
+            </div>
 
-            <p>
+            <div class="contact-us__text">
                 {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи'|trans }}.
-            </p>
-            <a class="link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" href="{{ path('contacts') }}">
-                {% set order_text = '_order-' ~ category.slug %}
-                {{ order_text|trans }}
-            </a>
+            </div>
+            {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
+            {% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':category } %}
+            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': category.slug })) }}
+
         </div>
     </section>
 {% endblock %}

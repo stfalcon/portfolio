@@ -6,7 +6,10 @@
                   d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
         </svg>
             </div>
-        <form id="hire-us-form" class="webdev-form feedback-form" action="{{ path('ajax_hire_us') }}" method="post">
+        {% if slug is not defined or slug is null %}
+            {% set slug = 'project'%}
+        {% endif %}
+        <form id="hire-us-form" class="webdev-form feedback-form" action="{{ path('ajax_hire_us') }}" method="post" onsubmit="ga('send', 'event', 'order_{{ slug }}', 'submit_form');fbq('trackCustom', 'order_{{ slug }}_submit');">
             <div class="form-pad">
                 <h2>{{ 'Заказать проект'|trans }}</h2>
                 <div class="line line-mob">

@@ -1,0 +1,4 @@
+{% if page_from is not defined or slug is null %}
+    {% set page_from = '' %}
+{% endif %}
+<button id="hire_us-js" class="hire_us {% if app.request.locale == 'en' %}en-btn{% endif %}" onclick="ga('send', 'event', 'Hire_us{{ page_from }}', 'click');fbq('trackCustom', 'Hire_us{{ page_from }}');">{{ 'Работать с нами!'|trans }}</button>

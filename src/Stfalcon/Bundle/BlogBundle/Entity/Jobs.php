@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -54,6 +55,43 @@ class Jobs
      * @ORM\Column(name="slug", type="string", length=128, unique=true)
      */
     private $slug;
+
+    /**
+     * Tags for post
+     *
+     * @var ArrayCollection
+     * @Assert\NotBlank()
+     * @ORM\ManyToMany(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\Tag", inversedBy="posts")
+     * @ORM\JoinTable(name="jobs_tags",
+     *      joinColumns={@ORM\JoinColumn(name="jobs_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     *      )
+     */
+    private $tags;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_keywords", type="text", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $metaKeywords;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_description", type="text", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $metaDescription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="meta_title", type="text", nullable=true)
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $metaTitle;
 
     public function getId()
     {

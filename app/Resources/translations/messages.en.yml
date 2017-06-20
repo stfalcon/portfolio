@@ -201,6 +201,7 @@ Cоздаем нативные мобильные приложения (боле
 Примеры разработки веб-сайтов: 'Examples of website development'
 Подробнее про веб-разработку: 'More about web development'
 Давайте сделаем что-то классное вместе: "Let's make something awesome together"
+Наша миссия — упрощать жизнь людей, создавая полезное и удобное программное обеспечение: "Our goal is to create useful and convenient software."
 'Свяжитесь с нами, и мы поможем решить ваши задачи': 'Contact us, and we will help to solve your problem'
 Примеры дизайна сайтов и интерфейсов: 'Examples of website and UI design'
 Подробнее про дизайн сайта интерфейсов: 'More about UI design'
@@ -260,6 +261,7 @@ _order-web-design: 'Order design'
 _order-mobile-development: 'Order mobile application'
 _order-game-development: 'Order game'
 _order-consulting-audit: 'Order consulting and audit'
+_order-project: 'Order a project'
 Опишите ваш проект: 'Tell us a few words about the project'
 
 Об авторе: 'About author'

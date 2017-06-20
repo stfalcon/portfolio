@@ -1,0 +1,13 @@
+<div class="contact-us">
+
+    <div class="h2 contact-us__title">
+        {{ 'Наша миссия — упрощать жизнь людей, создавая полезное и удобное программное обеспечение'|trans }}
+    </div>
+
+    <div class="contact-us__text">
+        {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи'|trans }}.
+    </div>
+    {% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':category } %}
+    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': category.slug })) }}
+</div>

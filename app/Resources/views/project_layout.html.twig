@@ -16,7 +16,16 @@
 
 
 {% block javascripts %}
-    {% javascripts 'js/vendor/jquery-1.7.2.min.js' 'js/plugins.js' 'js/autosize.min.js' 'js/headroom.js' 'js/lazy_load_projects.js' 'js/main.js'  output='cache/js/*.js' %}
+    {% javascripts
+    'js/vendor/jquery-1.7.2.min.js'
+    'js/plugins.js'
+    'js/autosize.min.js'
+    'js/headroom.js'
+    'js/lazy_load_projects.js'
+    'js/jquery.validate.min.js'
+    'js/main.js'
+    'js/widgets.js'
+    output='cache/js/*.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

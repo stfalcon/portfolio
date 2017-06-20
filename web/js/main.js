@@ -598,7 +598,7 @@ $(function () {
 
     $(document).scroll(function () {
         fixedButtonUp();
-        fixedHireUs();
+        //fixedHireUs();
     });
 
     function placeholderReplace() {

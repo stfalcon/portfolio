@@ -3,10 +3,6 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {% javascripts 'js/jquery.validate.min.js' 'js/widgets.js' output='cache/js/*.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
     <script type="text/javascript">
         jQuery.extend(jQuery.validator.messages, {
             required: "{{ 'Заполните это поле'|trans }}",
@@ -18,7 +14,7 @@
 {% endblock %}
 
 {% block after_body %}
-    <button id="hire_us-js" class="hire_us {% if app.request.locale == 'en' %}en-btn{% endif %}">{{ 'Работать с нами!'|trans }}</button>
+    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') with {'page_from': '_blog' } %}
 
     {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
 {% endblock %}

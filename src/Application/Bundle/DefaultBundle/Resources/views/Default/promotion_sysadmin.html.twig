@@ -1,9 +1,10 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    {% set eventName = 'order_admin' %}
     <div class="slide scrollto-line">
         <div class="wrap">
-            <a class="btn" id="scrollto-btn" href="#">{{ 'Заказать администрирование'|trans }}</a>
+            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', {{ eventName }}, 'click');fbq('trackCustom', {{ eventName }});">{{ 'Заказать администрирование'|trans }}</a>
         </div>
     </div>
     <section class="slide header-slide">
@@ -16,7 +17,7 @@
             <div class="inner-content wider-text">
                 <h1>{{ "Администрирование веб&#8209;серверов" | trans() | raw }}</h1>
                 <p>{{ "Мы специализируемся на администрировании больших и средних сайтов с нестандартной функциональностью." | trans() }}</p>
-                <a class="btn" id="to-feedback-btn" href="">{{ "Заказать администрирование" | trans() }}</a>
+                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', {{ eventName }}, 'click');fbq('trackCustom', {{ eventName }});">{{ "Заказать администрирование" | trans() }}</a>
             </div>
         </div>
     </section>
