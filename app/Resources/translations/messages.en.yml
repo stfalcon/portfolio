@@ -261,6 +261,7 @@ _order-web-design: 'Order design'
 _order-mobile-development: 'Order mobile application'
 _order-game-development: 'Order game'
 _order-consulting-audit: 'Order consulting and audit'
+_order-project: 'Order a project'
 Опишите ваш проект: 'Tell us a few words about the project'
 
 Об авторе: 'About author'
