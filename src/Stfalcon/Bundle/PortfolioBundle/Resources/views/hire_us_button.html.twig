@@ -1,4 +1,8 @@
-<button type="button" class="hire_us_land link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" onclick="ga('send', 'event', 'Zakazat_{{ category.slug }}', 'click');fbq('trackCustom', 'Order_{{ category.slug }}');">
-    {% set order_text = '_order-' ~ category.slug %}
+<button type="button" class="hire_us_land link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}" onclick="ga('send', 'event', 'Zakazat_{{ category.slug }}', 'click');">
+    {% if category.slug in ['web-development', 'web-design', 'mobile-development', 'game-development', 'consulting-audit'] %}
+        {% set order_text = '_order-' ~ category.slug %}
+    {% else %}
+        {% set order_text = '_order-project'%}
+    {% endif %}
     {{ order_text|trans }}
 </button>
