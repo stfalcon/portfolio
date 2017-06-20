@@ -9,5 +9,5 @@
     </div>
     {% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':category } %}
     {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': category.slug })) }}
 </div>
