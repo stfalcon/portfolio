@@ -39,7 +39,7 @@
     class="feedback-form webdev-form"
     action="{{ url('promotion_order', url_params) }}"
     method="post"
-    onsubmit="ga('send', 'event', 'Order_{{ type }}', 'Otpravka_formyi'); fbq('trackCustom', 'Order_{{ type }}_submit');"
+    onsubmit="ga('send', 'event', 'order_{{ type }}', 'submit_form'); fbq('trackCustom', 'order_{{ type }}_submit');"
     {{ form_enctype(form) }}>
     <div class="form-pad">
         <h1>{{ labels[type].title|trans }}</h1>
