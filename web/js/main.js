@@ -596,10 +596,10 @@ $(function () {
         }
     }
 
-    // $(document).scroll(function () {
-    //     fixedButtonUp();
-    //     fixedHireUs();
-    // });
+    $(document).scroll(function () {
+        fixedButtonUp();
+        //fixedHireUs();
+    });
 
     function placeholderReplace() {
         if ($(window).width() < 540) {
