@@ -5,6 +5,7 @@ namespace Stfalcon\Bundle\PortfolioBundle\Controller;
 use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -75,7 +76,7 @@ class ProjectController extends Controller
      * @param Request     $request Request
      * @param string|null $slug    Project slug
      *
-     * @return array
+     * @return mixed
      * @Route("/portfolio/{slug}", name="portfolio_category_project")
      * @Route("/portfolio", name="portfolio_all_projects")
      * @Template("StfalconPortfolioBundle:Project:all_projects.html.twig")
@@ -83,6 +84,7 @@ class ProjectController extends Controller
     public function allProjectsAction(Request $request, $slug = null)
     {
         $category = null;
+        $project = null;
         $nextLimit = 4;
         if ($slug) {
             $category = $this->getDoctrine()
@@ -90,7 +92,13 @@ class ProjectController extends Controller
                 ->getRepository('StfalconPortfolioBundle:Category')
                 ->findOneBy(['slug' => $slug]);
             if (!$category) {
-                throw $this->createNotFoundException();
+                $project = $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('StfalconPortfolioBundle:Project')
+                    ->findOneBy(['slug' => $slug]);
+                if (!$project) {
+                    throw $this->createNotFoundException();
+                }
             }
         }
 
@@ -106,30 +114,31 @@ class ProjectController extends Controller
             $projects = $repository->getAllProjectPortfolio(8);
             $nextPartCategoriesCount = $repository->getAllProjectPortfolio($nextLimit, count($projects));
         }
-        $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')->findAll();
+        $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')
+            ->getProjectsCategories();
 
-        $seo = $this->get('sonata.seo.page');
-        $seo->addMeta(
-            'property',
-            'og:url',
-            $this->generateUrl(
-                $request->get('_route'),
+        if ($project) {
+            $this->setPageSeo($request, $project);
+
+            return $this->render('StfalconPortfolioBundle:Project:view.html.twig',
                 [
-                    'slug' => $slug,
-                ],
-                true
-            )
-        )
-            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+                    'project'  => $project,
+                    'category' => $project->getCategories()->first(),
+                ]
+            );
 
-        return [
-            'categories'   => $categories,
-            'active'       => $category ? $category->getSlug() : 'all',
-            'projects'     => $projects,
-            'nextCount'    => count($nextPartCategoriesCount),
-            'itemCount'    => count($projects),
-            'categorySlug' => $slug,
-        ];
+        } else {
+            $this->setPageSeo($request, $category, $slug);
+
+            return [
+                'categories' => $categories,
+                'active' => $category ? $category->getSlug() : 'all',
+                'projects' => $projects,
+                'nextCount' => count($nextPartCategoriesCount),
+                'itemCount' => count($projects),
+                'categorySlug' => $slug,
+            ];
+        }
     }
 
     /**
@@ -168,51 +177,17 @@ class ProjectController extends Controller
      * @param Category $category Category
      * @param Project  $project  Project
      *
-     * @return array
+     * @return RedirectResponse
      *
      * @Route("/portfolio/{categorySlug}/{projectSlug}", name="portfolio_project_view")
      *
-     * @Template()
      *
      * @ParamConverter("category", options={"mapping": {"categorySlug": "slug"}})
      * @ParamConverter("project", options={"mapping": {"projectSlug": "slug"}})
      */
     public function viewAction(Request $request, Category $category, Project $project)
     {
-        $categorySlug = $project->getCategories()->first()->getSlug();
-        $canonicalUrl = $this->generateUrl(
-            $request->get('_route'),
-            [
-                'categorySlug' => $categorySlug,
-                'projectSlug'  => $project->getSlug(),
-            ],
-            true
-        );
-
-        $seo = $this->get('sonata.seo.page');
-
-        $seo->addMeta('name', 'description', $project->getMetaDescription())
-            ->addMeta('name', 'keywords', $project->getMetaKeywords())
-            ->addMeta('property', 'og:title', $project->getName())
-            ->addMeta('property', 'og:url', $canonicalUrl)
-            ->addMeta('property', 'og:type', SeoOpenGraphEnum::ARTICLE)
-            ->addMeta('property', 'og:description', $project->getMetaDescription())
-            ->setLinkCanonical($canonicalUrl);
-
-        if ($project->getImage()) {
-            $vichUploader = $this->get('vich_uploader.templating.helper.uploader_helper');
-
-            $seo->addMeta(
-                'property',
-                'og:image',
-                $request->getSchemeAndHttpHost().$vichUploader->asset($project, 'imageFile')
-            );
-        }
-
-        return [
-            'project'  => $project,
-            'category' => $category,
-        ];
+        return $this->redirectToRoute('portfolio_category_project', ['slug' => $project->getSlug()], 301);
     }
 
     /**
@@ -316,5 +291,57 @@ class ProjectController extends Controller
             'projects' => $projects,
             'category' => $category
         ]);
+    }
+
+    /**
+     * code from portfolio_project_view for refactoring and use in portfolio_category_project
+     *
+     * @param Request $request
+     * @param Project|Category $entity
+     * @param $slug
+     */
+    private function setPageSeo(Request $request, $entity, $slug = null)
+    {
+        $seo = $this->get('sonata.seo.page');
+        if ($entity instanceof Project || $entity instanceof Category) {
+            $canonicalUrl = $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'slug' => $entity->getSlug(),
+                ],
+                true
+            );
+
+            $seo->addMeta('name', 'description', $entity->getMetaDescription())
+                ->addMeta('name', 'keywords', $entity->getMetaKeywords())
+                ->addMeta('property', 'og:title', $entity->getName())
+                ->addMeta('property', 'og:url', $canonicalUrl)
+                ->addMeta('property', 'og:type', SeoOpenGraphEnum::ARTICLE)
+                ->addMeta('property', 'og:description', $entity->getMetaDescription())
+                ->setLinkCanonical($canonicalUrl);
+
+            if ($entity instanceof Project && $entity->getImage()) {
+                $vichUploader = $this->get('vich_uploader.templating.helper.uploader_helper');
+
+                $seo->addMeta(
+                    'property',
+                    'og:image',
+                    $request->getSchemeAndHttpHost() . $vichUploader->asset($entity, 'imageFile')
+                );
+            }
+        } else {
+            $seo->addMeta(
+                'property',
+                'og:url',
+                $this->generateUrl(
+                    $request->get('_route'),
+                    [
+                        'slug' => $slug,
+                    ],
+                    true
+                )
+            )
+                ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+        }
     }
 }

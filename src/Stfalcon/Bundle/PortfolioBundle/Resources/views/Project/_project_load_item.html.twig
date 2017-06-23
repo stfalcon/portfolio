@@ -9,7 +9,7 @@
 {% else %}
     {% set filter_name = 'portfolio_small' %}
 {% endif %}
-<a href="{% if slug %}{{ path('portfolio_project_view', { 'categorySlug': slug, 'projectSlug': project.slug }) }}{% endif %}">
+<a href="{% if slug %}{{ path('portfolio_category_project', { 'slug': project.slug }) }}{% endif %}">
     {% if project.imageFile is not null %}
         <img src="{{ vich_uploader_asset(project, 'imageFile')|apply_filter(filter_name) }}" alt="{{ project.name }}" />
     {% endif %}
