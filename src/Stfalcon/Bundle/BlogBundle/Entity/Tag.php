@@ -52,6 +52,13 @@ class Tag implements Translatable
     private $posts;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Bundle\DefaultBundle\Entity\Jobs", mappedBy="tags")
+     */
+    private $jobs;
+
+    /**
      * @var Collection|TagTranslation[] $translations
      *
      * @ORM\OneToMany(targetEntity="TagTranslation", mappedBy="object", cascade={"persist", "remove"})
@@ -67,6 +74,7 @@ class Tag implements Translatable
     {
         $this->text         = $text;
         $this->posts        = new ArrayCollection();
+        $this->jobs         = new ArrayCollection();
         $this->translations = new ArrayCollection();
     }
 
@@ -112,6 +120,16 @@ class Tag implements Translatable
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Get jobs for this tag
+     *
+     * @return ArrayCollection
+     */
+    public function getJobs()
+    {
+        return $this->jobs;
     }
 
     /**

@@ -1,0 +1,18 @@
+<div class="posts-list">
+    {% for job in jobs %}
+        <article class="blog-post">
+            {% include 'ApplicationDefaultBundle:Jobs:_jobs_header.html.twig' with {'job': job, 'linkTitle': true} %}
+            <div class="post-content">
+                <p>
+                    {{ job.description|cutMore|highlightCode|raw }}
+                </p>
+                {% if hasMore(job.description) %}
+                    <a class="read-more  next-page" href="{{ path('jobs_job_view', { 'slug': job.slug }) }}#more">
+                        {{ 'Читать дальше'|trans }}
+                    </a>
+                {% endif %}
+            </div>
+            {% include 'ApplicationDefaultBundle:Jobs:_jobs_tags.html.twig' with {'job': job} %}
+        </article>
+    {% endfor %}
+</div>

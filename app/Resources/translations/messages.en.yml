@@ -10,6 +10,7 @@ title: __title
 
 Аватарка: Avatar
 Блог: Blog
+Вакансии: Vacancy
 Поиск: Search
 
 'Веб-студия stfalcon':
@@ -262,6 +263,11 @@ _order-mobile-development: 'Order mobile application'
 _order-game-development: 'Order game'
 _order-consulting-audit: 'Order consulting and audit'
 _order-project: 'Order a project'
+_order-responsive: 'Order a project'
+_order-ux-ui: 'Order a project'
+_order-symfony2: 'Order a project'
+_order-ios: 'Order an app'
+_order-android: 'Order an app'
 Опишите ваш проект: 'Tell us a few words about the project'
 
 Об авторе: 'About author'

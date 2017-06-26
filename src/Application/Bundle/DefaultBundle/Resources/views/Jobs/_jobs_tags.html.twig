@@ -1,0 +1,13 @@
+<ul class="tags">
+    {% for tag in job.tags %}
+        <li>
+            {% if tag.jobs.count > 1 %}
+                <a href="{{ path('jobs_tag_view', { 'text': tag.text }) }}">{{ tag.text }}</a>
+            {% else %}
+                <span>{{ tag.text }}</span>
+            {% endif %}
+
+            {% if not loop.last %},{% endif %}
+        </li>
+    {% endfor %}
+</ul>

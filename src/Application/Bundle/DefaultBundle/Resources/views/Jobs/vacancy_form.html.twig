@@ -1,0 +1,28 @@
+{% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
+
+<form action="" method="post" id="direct-order-form" enctype="multipart/form-data" onsubmit="ga('send', 'event', 'vacancy_form', 'submit_form');fbq('trackCustom', 'vacancy_form', 'submit_form');">
+    <h3>{{ "Ответить на вакансию" | trans() }}</h3>
+    {{ form_errors(form) }}
+    <div class="line">
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div class="line">
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <div class="line btn-line">
+        <div class="file-input">
+            <p class="filename">{{ "Прикрепить резюме" | trans() }}</p>
+            <p class="filesize">{{ "до 20 МБ" | trans() }}</p>
+            {{ form_widget(form.attach) }}
+            {{ form_errors(form.attach) }}
+        </div>
+        <div class="google-captcha contact-captcha">
+            {{ form_widget(form.captcha) }}
+            {{ form_errors(form.captcha) }}
+        </div>
+        <button class="btn" type="submit">{{ "Отправить" | trans() }}</button>
+    </div>
+    {{ form_rest(form) }}
+</form>

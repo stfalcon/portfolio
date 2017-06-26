@@ -13,12 +13,22 @@
 
         <parameter key="application_default.service.geo_ip.class">Application\Bundle\DefaultBundle\Service\GeoIpService</parameter>
         <parameter key="geo_ip_database_path">%kernel.root_dir%/../bin/GeoLite2-Country.mmdb</parameter>
+
+        <parameter key="application_default.admin.jobs.class">Application\Bundle\DefaultBundle\Admin\JobsAdmin</parameter>
+        <parameter key="application_default.admin.jobs.entity">Application\Bundle\DefaultBundle\Entity\Jobs</parameter>
     </parameters>
 
     <services>
         <service id="application_default.menu_builder" class="%application_default.menu_builder.class%">
             <argument type="service" id="knp_menu.factory" />
             <argument type="service" id="translator" />
+        </service>
+
+        <service id="application_default.admin.job" class="%application_default.admin.jobs.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Vacancy" label="Jobs" />
+            <argument />
+            <argument>%application_default.admin.jobs.entity%</argument>
+            <argument />
         </service>
 
         <!-- main menu -->
@@ -73,6 +83,11 @@
         <service class="Application\Bundle\DefaultBundle\Form\Type\SubscribeFormType" id="application_bundle.defaultbundle.form.type.subscribe">
             <tag alias="subscribe" name="form.type"/>
             <argument id="translator" type="service"/>
+        </service>
+
+        <service id="application_bundle.defaultbundle.form.type.vacancy" class="Application\Bundle\DefaultBundle\Form\Type\VacancyFormType" >
+            <tag alias="vacancy_form" name="form.type"/>
+            <argument />
         </service>
 
         <service id="application_default.gelf.publisher" class="Application\Bundle\DefaultBundle\Publisher\MessagePublisher">
