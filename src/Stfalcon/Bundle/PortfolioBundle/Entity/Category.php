@@ -165,7 +165,7 @@ class Category implements Translatable
 
     /**
      *
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="show_in_projects", type="boolean")
      */
@@ -503,7 +503,7 @@ class Category implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isShowInProjects()
     {
@@ -511,7 +511,7 @@ class Category implements Translatable
     }
 
     /**
-     * @param boolean $showInProjects
+     * @param bool $showInProjects
      */
     public function setShowInProjects($showInProjects)
     {

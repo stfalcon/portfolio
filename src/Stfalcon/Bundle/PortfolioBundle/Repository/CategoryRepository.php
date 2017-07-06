@@ -39,7 +39,7 @@ class CategoryRepository extends EntityRepository
                     ->getResult();
     }
 
-    public function getProjectsCategories()
+    public function getProjectCategories()
     {
         return $this->createQueryBuilder('c')
             ->where('c.showInProjects = 1')

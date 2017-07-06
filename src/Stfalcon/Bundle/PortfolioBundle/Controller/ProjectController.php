@@ -115,7 +115,7 @@ class ProjectController extends Controller
             $nextPartCategoriesCount = $repository->getAllProjectPortfolio($nextLimit, count($projects));
         }
         $categories = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')
-            ->getProjectsCategories();
+            ->getProjectCategories();
 
         if ($project) {
             $this->setPageSeo($request, $project);
@@ -294,8 +294,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * code from portfolio_project_view for refactoring and use in portfolio_category_project
-     *
      * @param Request $request
      * @param Project|Category $entity
      * @param $slug
