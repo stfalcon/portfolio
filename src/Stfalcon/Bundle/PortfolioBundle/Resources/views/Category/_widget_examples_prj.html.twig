@@ -1,7 +1,7 @@
 <ul class="project-list">
     {% for project in projects %}
         <li>
-            <a href="{{ path('portfolio_project_view', { 'categorySlug': category.slug, 'projectSlug': project.slug }) }}">
+            <a href="{{ path('portfolio_category_project', { 'slug': project.slug }) }}">
                 {% if project.image %}
                     <img src="{{ vich_uploader_asset(project, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ project.name }}" />
                 {% endif %}

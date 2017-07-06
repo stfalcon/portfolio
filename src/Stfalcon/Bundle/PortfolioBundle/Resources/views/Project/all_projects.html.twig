@@ -7,6 +7,7 @@
 {% endblock additional %}
 
 {% block content_wrapper %}
+
     <div class="section-offer">
         <p class="h1">{{ "Проекты"|trans }}</p>
         {% include('@StfalconPortfolio/Project/_project_categories_list.html.twig') with {'categories': categories} %}

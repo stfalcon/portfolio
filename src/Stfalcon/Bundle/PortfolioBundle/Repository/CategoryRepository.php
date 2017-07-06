@@ -39,6 +39,15 @@ class CategoryRepository extends EntityRepository
                     ->getResult();
     }
 
+    public function getProjectCategories()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.showInProjects = 1')
+            ->orderBy('c.ordernum', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * Find category by slug and locale
      *
