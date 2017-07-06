@@ -164,6 +164,13 @@ class Category implements Translatable
     private $showInServices = false;
 
     /**
+     *
+     * @var bool
+     *
+     * @ORM\Column(name="show_in_projects", type="boolean")
+     */
+    private $showInProjects = true;
+    /**
      * Initialization properties for new category entity
      */
     public function __construct()
@@ -493,6 +500,22 @@ class Category implements Translatable
     public function setShowInServices($showInServices)
     {
         $this->showInServices = $showInServices;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isShowInProjects()
+    {
+        return $this->showInProjects;
+    }
+
+    /**
+     * @param bool $showInProjects
+     */
+    public function setShowInProjects($showInProjects)
+    {
+        $this->showInProjects = $showInProjects;
     }
 
     /**

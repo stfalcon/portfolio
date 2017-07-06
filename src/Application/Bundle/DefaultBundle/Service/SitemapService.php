@@ -164,8 +164,7 @@ class SitemapService
                 $this->addUrlElement(
                     $xmlSitemap,
                     $this->router->generate(
-                        'portfolio_project_view',
-                        ['categorySlug' => $category->getSlug(), 'projectSlug' => $project->getSlug(), '_locale' => $locale],
+                        'portfolio_category_view', ['slug' => $project->getSlug(), '_locale' => $locale],
                         true),
                     $project->getUpdated(),
                     'monthly',
