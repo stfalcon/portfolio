@@ -18,7 +18,7 @@ class Version20170629093920 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE portfolio_categories ADD show_in_projects TINYINT(1) NOT NULL DEFAULT (1)');
+        $this->addSql('ALTER TABLE portfolio_categories ADD show_in_projects TINYINT(1) NOT NULL');
     }
 
     /**
