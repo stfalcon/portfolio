@@ -33,14 +33,11 @@
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% else %}
-        <script type="text/javascript">
-            function ga(send, event, Order_project, click) {
-                console.log('ga', send, event, Order_project, click)
-            }
-            function fbq(track, track_name) {
-                console.log('fbq', track, track_name)
-            }
-        </script>
+        {% javascripts
+            'js/devstub.js'
+            output='cache/js/*.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endif %}
 </head>
 <body>
