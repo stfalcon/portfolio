@@ -30,8 +30,8 @@ return array(
     'Посмотреть на большой карте' => 'View in a larger map',
 
     //promotion page
-    'Разработка мобильных игр&nbsp;и&nbsp;приложений' => 'Mobile apps and games<br>development',
-    'Мы разрабатываем игры и приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop games and apps for iOS and Android<br>smartphones and tablets.',
+    'Разработка мобильных приложений' => 'Mobile apps development',
+    'Мы разрабатываем приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop apps for iOS and Android<br>smartphones and tablets.',
     'Заказать приложение' => 'Order an app',
     'Почему мы?' => 'Why us?',
     'Индивидуальный подход к менеджменту проекта и организации рабочего процесса' => 'Individual approach for project management and workflow',
