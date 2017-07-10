@@ -1,5 +1,11 @@
 {% extends '::base.html.twig' %}
-
+{% block title %}{{ 'promotion.app.meta.title'|trans()|raw }}{% endblock %}
+{% block additional %}
+    <meta name="og:description" content="{{ 'promotion.app.meta.description'|trans()|raw }}">
+    <meta name="og:title" content="{{ 'promotion.app.meta.title'|trans()|raw }}">
+    <meta name="description" content="{{ 'promotion.app.meta.description'|trans()|raw }}">
+    <meta name="title" content="{{ 'promotion.app.meta.title'|trans()|raw }}">
+{% endblock additional %}
 {% block body %}
     {% set eventName = 'order_apps' %}
     <div class="slide scrollto-line {{ app.request.locale == 'de'?'de':'' }}">
