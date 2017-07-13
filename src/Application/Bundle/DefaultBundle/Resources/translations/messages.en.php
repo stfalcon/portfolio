@@ -30,8 +30,8 @@ return array(
     'Посмотреть на большой карте' => 'View in a larger map',
 
     //promotion page
-    'Разработка мобильных игр&nbsp;и&nbsp;приложений' => 'Mobile apps and games<br>development',
-    'Мы разрабатываем игры и приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop games and apps for iOS and Android<br>smartphones and tablets.',
+    'Разработка мобильных приложений' => 'Mobile apps development',
+    'Мы разрабатываем приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop apps for iOS and Android<br>smartphones and tablets.',
     'Заказать приложение' => 'Order an app',
     'Почему мы?' => 'Why us?',
     'Индивидуальный подход к менеджменту проекта и организации рабочего процесса' => 'Individual approach for project management and workflow',
@@ -65,7 +65,8 @@ return array(
     'promotion.order.development_form.mail.subject' => 'The application for Web development by "%email%"',
 
     'promotion.order.hire.us.mail.subject' => 'Hiring request by "%email%"',
-
+    'promotion.app.meta.description' => 'We develop applications for iOS and Android devices. Individual approach for project management and workflow. Order an app right now. ✆ +380 67 334-40-40',
+    'promotion.app.meta.title' => 'Mobile apps development for Android and iOS platforms | stfalcon.com',
     'Кукорама' => 'Cookorama',
     'Радиалка' => 'Twiseller',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',

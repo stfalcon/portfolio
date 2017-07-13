@@ -21,17 +21,14 @@
         {% javascripts
             'js/metrics/header.js'
             output='cache/js/*.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+            <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% else %}
-        <script type="text/javascript">
-            function ga(send, event, Order_project, click) {
-                console.log('ga', send, event, Order_project, click)
-            }
-            function fbq(track, track_name) {
-                console.log('fbq', track, track_name)
-            }
-        </script>
+        {% javascripts
+            'js/devstub.js'
+            output='cache/js/*.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endif %}
 </head>
 <body>
@@ -50,7 +47,7 @@
     <section class="projects-list equal-list">
         <div class="projects-row">
             <div class="project-cell">
-                <a href="{{ path('portfolio_project_view', {'projectSlug': 'novaposhta-ua', 'categorySlug': 'web-development'}) }}">
+                <a href="{{ path('portfolio_category_project', {'slug': 'novaposhta-ua'}) }}">
                     <img alt="NovaPoshtaDashboard" src="{{ asset('assets/img/homepage/home-project-np-dashboard.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
@@ -62,7 +59,7 @@
                 </a>
             </div>
             <div class="project-cell">
-                <a href="{{ path('portfolio_project_view', {'projectSlug': 'nic-ua', 'categorySlug': 'web-development'}) }}">
+                <a href="{{ path('portfolio_category_project', {'slug': 'nic-ua'}) }}">
                     <img alt="NIC.UA" src="{{ asset('assets/img/homepage/home-project-nic-ua.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
@@ -74,7 +71,7 @@
                 </a>
             </div>
             <div class="project-cell">
-                <a href="{{ path('portfolio_project_view', {'projectSlug': 'meinfernbus-de', 'categorySlug': 'web-development'}) }}">
+                <a href="{{ path('portfolio_category_project', {'slug': 'meinfernbus-de'}) }}">
                     <img alt="MeinFernbus" src="{{ asset('assets/img/homepage/home-project-meinfernbus.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">
@@ -86,7 +83,7 @@
                 </a>
             </div>
             <div class="project-cell">
-                <a href="{{ path('portfolio_project_view', {'projectSlug': 'npshopping-ua', 'categorySlug': 'web-development'}) }}">
+                <a href="{{ path('portfolio_category_project', {'slug': 'npshopping-ua'}) }}">
                     <img alt="NovaPoshtaShopping" src="{{ asset('assets/img/homepage/home-project-np-shoping.jpg') }}" width="920">
                     <span class="project-info">
                         <span class="project-info-text">

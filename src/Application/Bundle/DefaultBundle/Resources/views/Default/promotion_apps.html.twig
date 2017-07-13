@@ -1,10 +1,16 @@
 {% extends '::base.html.twig' %}
-
+{% block title %}{{ 'promotion.app.meta.title'|trans()|raw }}{% endblock %}
+{% block additional %}
+    <meta name="og:description" content="{{ 'promotion.app.meta.description'|trans()|raw }}">
+    <meta name="og:title" content="{{ 'promotion.app.meta.title'|trans()|raw }}">
+    <meta name="description" content="{{ 'promotion.app.meta.description'|trans()|raw }}">
+    <meta name="title" content="{{ 'promotion.app.meta.title'|trans()|raw }}">
+{% endblock additional %}
 {% block body %}
     {% set eventName = 'order_apps' %}
     <div class="slide scrollto-line {{ app.request.locale == 'de'?'de':'' }}">
         <div class="wrap">
-            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event',{{ eventName }}, 'click');fbq('trackCustom',{{ eventName }});">{{ 'Заказать приложение'|trans }}</a>
+            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event','{{ eventName }}', 'click');fbq('trackCustom','{{ eventName }}');">{{ 'Заказать приложение'|trans }}</a>
         </div>
     </div>
     <section class="slide header-slide">
@@ -15,13 +21,13 @@
             <div id="scroll-down" class="icon"></div>
 
             <div class="inner-content">
-                <h1>{{ "Разработка мобильных игр&nbsp;и&nbsp;приложений" | trans() | raw }}</h1>
-                <p>{{ "Мы разрабатываем игры и приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS." | trans() | raw }}</p>
+                <h1>{{ "Разработка мобильных приложений" | trans() | raw }}</h1>
+                <p>{{ "Мы разрабатываем приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS." | trans() | raw }}</p>
                 <div class="platforms">
                     <div class="icon icon-android"></div>
                     <div class="icon icon-apple"></div>
                 </div>
-                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', {{ eventName }}, 'click');fbq('trackCustom', {{ eventName }});">{{ "Заказать приложение" | trans() }}</a>
+                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', '{{ eventName }}', 'click');fbq('trackCustom', '{{ eventName }}');">{{ "Заказать приложение" | trans() }}</a>
             </div>
         </div>
     </section>
@@ -161,28 +167,28 @@
             <h1>{{ 'Наши приложения'|trans }}</h1>
             <ul class="apps-list">
                 <li>
-                    <a href="https://itunes.apple.com/de/app/meinfernbus-die-fernbus-app/id938123192?mt=8">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'meinfernbus-ios'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img01.png" width="140" height="140" alt=""/>
                         <p class="name">MeinFernbus</p>
                         <span class="icon icon-appstore"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://play.google.com/store/apps/details?id=com.stfalcon.keepsnap">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'keepsnap-android'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img02.png" width="140" height="140" alt=""/>
                         <p class="name">KeepSnap</p>
                         <span class="icon icon-google-play"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://itunes.apple.com/us/app/dorogi-ukraini/id860682693?mt=8">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'uaroads-ios'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img03.png" width="140" height="140" alt=""/>
                         <p class="name">UA Roads</p>
                         <span class="icon icon-appstore"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://play.google.com/store/apps/details?id=com.megasos">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'megasos-com-android'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img04.png" width="140" height="140" alt=""/>
                         <p class="name">MegaS.O.S</p>
                         <span class="icon icon-google-play"></span>
@@ -190,28 +196,28 @@
                 </li>
 
                 <li>
-                    <a href="https://play.google.com/store/apps/details?id=com.stfalcon.cookorama">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'cookorama-app'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img05.png" width="140" height="140" alt=""/>
                         <p class="name">Cookorama</p>
                         <span class="icon icon-google-play"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://itunes.apple.com/ua/app/map-case/id700693582?mt=8">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'map-case-ios'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img06.png" width="140" height="140" alt=""/>
                         <p class="name">MapCase</p>
                         <span class="icon icon-appstore"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://play.google.com/store/apps/details?id=com.stfalcon.unlocker">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'unlocker-3d-android'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img07.png" width="140" height="140" alt=""/>
                         <p class="name">Unlocker 3D</p>
                         <span class="icon icon-google-play"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://itunes.apple.com/ua/app/lsgallery/id902957529?mt=8">
+                    <a href="{{ path('portfolio_category_project', {'slug': 'lsgallery-ios'}) }}">
                         <img src="/img/pages/promotions/apps/app_small_img08.png" width="140" height="140" alt=""/>
                         <p class="name">LS Gallery Uploader</p>
                         <span class="icon icon-appstore"></span>

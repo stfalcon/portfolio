@@ -21,7 +21,7 @@
             <ul class="projects">
                 {% for relativeProject in project.relativeProjects %}
                     <li>
-                        <a href="{{ path('portfolio_project_view', {'categorySlug': relativeProject.categories.first.slug, 'projectSlug': relativeProject.slug}) }}">
+                        <a href="{{ path('portfolio_category_project', {'slug': relativeProject.slug}) }}">
                             {% if relativeProject.image %}
                                 <img src="{{ vich_uploader_asset(relativeProject, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ relativeProject.name }}" />
                             {% endif %}
