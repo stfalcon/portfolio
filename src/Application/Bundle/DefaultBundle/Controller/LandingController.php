@@ -40,7 +40,7 @@ class LandingController extends Controller
             ->addMeta('property', 'og:url', $canonicalUrl)
             ->addMeta('property', 'og:type', 'website')
             ->addMeta('property', 'og:description', $landingPage->getMetaDescription())
-            ->addMeta('property', 'og:image', 'https://stfalcon.com/img/facebook_cover.jpg')
+            ->addMeta('property', 'og:image', 'https://stfalcon.com/img/og_image.png')
             ->setLinkCanonical($canonicalUrl);
 
 
