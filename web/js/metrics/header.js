@@ -23,3 +23,7 @@ ga('send', 'pageview');
 fbq('init', '1630153670628895');
 fbq('track', 'ViewContent');
 <!-- End Facebook Pixel Code -->
+
+function getUserEmail(emailId) {
+    return $(emailId).val();
+}

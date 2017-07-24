@@ -14,4 +14,6 @@ return array(
     'promotion.order.mobilegames_form.mail.subject' => 'Заявка на разработку мобильной игры от "%email%"',
 
     'promotion.order.hire.us.mail.subject' => '"%email%" хочет заказать разработку проекта',
+    'promotion.app.meta.description' => 'Мы разрабатываем мобильные приложения для iOS и Android. Индивидуальный подход к управлению проектами и рабочему процессу. Заказать приложение. ✆ ‎+380 67 334-40-40',
+    'promotion.app.meta.title' => 'Разработка приложений для Android и iOS платформ | stfalcon.com'
 );

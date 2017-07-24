@@ -30,10 +30,17 @@ class JobsController extends Controller
      */
     public function indexAction(Request $request, $page)
     {
+        $itemsPerPage = 10;
         $jobsRepository = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:Jobs');
 
-        $jobsQuery = $jobsRepository->findAll();
-        $jobs      = $this->get('knp_paginator')->paginate($jobsQuery, $page, 10);
+        $jobsQuery = $jobsRepository->findBy(['active' => true]);
+        $cnt = count($jobsQuery);
+        $maxPages = intdiv ($cnt, $itemsPerPage);
+        if ($cnt / $itemsPerPage > intdiv ($cnt, $itemsPerPage)) {
+            $maxPages++;
+        }
+        $page = $page > $maxPages ? $maxPages : $page;
+        $jobs = $this->get('knp_paginator')->paginate($jobsQuery, $page, $itemsPerPage);
 
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))

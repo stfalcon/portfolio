@@ -4,7 +4,7 @@
     {% set eventName = 'order_design' %}
     <div class="slide scrollto-line">
         <div class="wrap">
-            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', {{ eventName }}, 'click');fbq('trackCustom', {{ eventName }});">{{ 'Заказать дизайн веб-сайта'|trans }}</a>
+            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', '{{ eventName }}', 'click');fbq('trackCustom', '{{ eventName }}');">{{ 'Заказать дизайн веб-сайта'|trans }}</a>
         </div>
     </div>
     <section class="slide header-slide">
@@ -20,7 +20,7 @@
                 <p>{{ 'Мы создаем дизайн веб-сайтов и интерфейсов<br>веб&#8209;приложений.'|trans|raw }}</p>
 
 
-                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', {{ eventName }}, 'click');fbq('trackCustom', {{ eventName }});">{{ 'Заказать дизайн веб-сайта'|trans }}</a>
+                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', '{{ eventName }}', 'click');fbq('trackCustom', '{{ eventName }}');">{{ 'Заказать дизайн веб-сайта'|trans }}</a>
             </div>
         </div>
     </section>

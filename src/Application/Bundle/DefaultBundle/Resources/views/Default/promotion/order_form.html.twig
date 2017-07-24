@@ -1,29 +1,29 @@
 {% set labels = {
     'apps': {
-        'title': 'Заказать приложение',
+        'title': 'Отправьте заявку',
         'message': 'Напишите пару слов о приложении',
         'button': 'Заказать приложение'
     },
     'design': {
-        'title': 'Заказать дизайн веб-сайта',
+        'title': 'Отправьте заявку',
         'message': 'Напишите пару слов о сайте',
-        'button': 'Заказать приложение'
+        'button': 'Заказать дизайн веб-сайта'
     },
     'development': {
         'title': 'Отправьте заявку',
         'message': 'Напишите пару слов о сайте',
-        'button': 'Заказать приложение',
+        'button': 'Заказать сайт',
         'tip': 'И мы поможем решить вашу задачу'
     },
     'mobilegames': {
-        'title': 'Заказать игру',
+        'title': 'Отправьте заявку',
         'message': 'Напишите пару слов о приложении',
-        'button': 'Заказать приложение'
+        'button': 'Заказать игру'
     },
     'sysadmin': {
         'title': 'Отправьте заявку',
         'message': 'Напишите пару слов о необходимой услуге',
-        'button': 'Заказать приложение',
+        'button': 'Заказать администрирование',
         'tip': 'И мы поможем решить вашу задачу'
     },
 } %}
@@ -39,7 +39,7 @@
     class="feedback-form webdev-form"
     action="{{ url('promotion_order', url_params) }}"
     method="post"
-    onsubmit="ga('send', 'event', 'order_{{ type }}', 'submit_form'); fbq('trackCustom', 'order_{{ type }}_submit');"
+    onsubmit="ga('send', 'event', 'order_{{ type }}', 'submit_form'); fbq('trackCustom', 'order_{{ type }}_submit', getUserEmail('#order_promotion_email'));"
     {{ form_enctype(form) }}>
     <div class="form-pad">
         <h1>{{ labels[type].title|trans }}</h1>
