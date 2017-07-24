@@ -12,9 +12,9 @@ title: __title
 Блог: Blog
 Поиск: Search
 
-'Веб-студия stfalcon':
+'Stfalcon':
     'com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат':
-        '': 'Web studio Stfalcon.com is a team of professionals. We like our job and focus on high-quality results.'
+        '': 'Stfalcon.com is a team of professionals. We like our job and focus on high-quality results.'
 
 'Вернуться к списку записей': 'Return to list'
 'Все проекты': 'All projects'
@@ -133,8 +133,9 @@ title: __title
 'Увлекательный мобильный вариант одноименной настольной игры': Fascinating mobile version of the puzzle board game
 'Двумерный аркадный шутер, оружие и враги в ассортименте': 2D arcade shooter, weapons and enemies in range
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
-'Принимаем активное участие в развитии популярного PHP фреймворка <a href="%link%" rel="nofollow" target="_blank">Symfony2</a>. Благодаря этому имеем большой опыт разработки сайтов на этом фреймворке.': We're participating in the development of the <a href="%link%" rel="nofollow" target="_blank">Symfony2</a> PHP framework. Because of this, we have extensive experience in developing websites with this framework.
-'Создали целый набор полезных плагинов для системы управления контентом <a href="%link%" rel="nofollow" target="_blank">LiveStreet</a>.': We've created a set of useful plugins for <a href="%link%" rel="nofollow" target="_blank">LiveStreet</a> content management systems.
+'__main.we_contribution_text': 'Our contribution to the development of <a href="%link%" rel="nofollow" target="_blank">Symfony</a> PHP framework proves our extensive experience in developing web services with this framework. We actively participate in the buildout of <a href="%android_link%" rel="nofollow" target="_blank">Android</a> open source libraries and constantly update our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a> repository with new open source projects.'
+
+'Мы принимаем активное участие в создании библиотек для Android-разработчиков, а так же постоянно добавляем новые open-source проекты в наш GitHub-репозиторий.': We actively participate in the buildout of Android open source libraries and constantly update our GitHub repository with new open source projects.
 
 разработка<br/>веб-сайтов: Web<br/>Development
 Разработка веб-сайтов: Web Development
@@ -171,15 +172,16 @@ title: __title
 '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, шаблон, который нашел своих поклонников, был разработан нами специально для <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.' : '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, a popular template, was developed by us specifically for <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.'
 
 'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony2.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony2 framework.'
+'__Footer.homepage.link': 'Software Development Company <a href="%homepage%">Stfalcon LLC</a>'
 'студия веб дизайна, разработки сайтов и мобильных приложений': 'web design and development company'
-Stfalcon &mdash; студия веб-дизайна и разработки сайтов: Stfalcon &mdash; Studio of web design and sites development
+Stfalcon LLC &mdash; разработки сайтов и мобильных приложений: Software Development Company Stfalcon LLC
 'Есть ли смысл дальше изучать наш сайт? <br/> да, если:': 'Does it make sense to learn more about our website?<br> Yes if:'
-'Вы ищите web студию разработки сайтов, приложений, мобильных игр с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов.': 'Are you looking for web studio to develop sites, apps, mobile games or you want to order an expert consulting / audit in this area to get the perfect result;'
+'Вы ищите компанию для разработки сайтов, приложений с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов.': 'Are you looking for a company to develop sites, apps or you want to order an expert consulting / audit in this area to get the perfect result;'
 'Вам нужны нестандартные решения, выходящие за рамки шаблонов, которые предлагает рынок.': You have a dream and the others are afraid to make it true (we shall evaluate your ideas and implement them no matter what);
 У Вас есть мечта, за воплощение которой другие боятся браться (мы оценим стоящие идеи и во что бы то ни стало реализуем).: You need innovative solutions that go beyond the ordinary patterns the market offers;
 Для реализации Вашей идеи требуются высоконагруженные системы.: You require a highly loaded system for your project.
 Как именно мы решаем нестандартные задачи?: How exactly do we solve non standard tasks?
-Для создания сайтов на заказ наша веб студия использует самые передовые технологии (фреймворк Symfony2 и его компоненты,  Silex, MySQL, MongoDB, Sphinx, RabbitMQ, Ember.js, и др).: To create custom sites, our Web Studio uses the most advanced technologies (Symfony2 framework and its components, Silex, MySQL, MongoDB, Sphinx, RabbitMQ, Ember.js, etc.);
+Для создания сайтов на заказ наша компания использует самые передовые технологии (фреймворк Symfony и его компоненты,  Silex, MySQL, MongoDB, Sphinx, RabbitMQ, Ember.js, и др).: To create custom sites, our company uses the most advanced technologies (Symfony framework and its components, Silex, MySQL, MongoDB, Sphinx, RabbitMQ, Ember.js, etc.);
 Cоздаем нативные мобильные приложения (более производительные и стабильные, чем кросс-платформенные), используем самые популярные библиотеки (ORM, Robospice, Gson, UniversalImageLoader) и технологические решения.: We create efficient and stable native mobile applications, and use the most popular libraries (ORM, Robospice, Gson, UniversalImageLoader) and technological solutions;
 Думаем наперед (чтобы вы могли легко анализировать, монетизировать и использовать продукт на полную катушку, а сторонним специалистам было удобно сопровождать его в дальнейшем).: We think ahead (so you could easily analyze, monetize and use the product to its fullest, while outside experts feel convenient to accompany it in the future);
 Любим свою работу (мы просто не беремся за проекты, к которым у нас не лежит душа и за успех которых мы искренне не болеем).: We don't undertake projects we are not keen to do, and for the success of which we don't really care.
@@ -188,7 +190,7 @@ Cоздаем нативные мобильные приложения (боле
 100% наших партнеров (именно так мы воспринимаем клиентов) остались довольны;: 100% of our partners (that is how we perceive the customers) are satisfied;
 'У нас идеально отлажены коммуникации внутри команды, а это значит: <br/> а) проект будет выполнен в минимальные сроки; <br/> б) пока он дойдет до вас, мы уже найдем и исправим все «косяки»;': 'We have a perfectly tweaked communication within the team, which means: <br/> a) The project will be executed in the shortest terms; <br /> b) Until it comes to you, we will already find and fix all the «issues».'
 Мы имеем непосредственное отношение к развитию технологий (продвигаем фреймворк Symfony, создали множество полезных плагинов для LiveStreet, совершенствуем OpenCart CMS и сделали для нее шаблон Tecard, разработали шаблон Snowberry для Wordpress);: We have a direct bearing on the development of technologies (developing  Symfony framework, created a lot of useful plugins for LiveStreet, developing OpenCart CMS did Tecard template for it, developed the Snowberry template for Wordpress)
-Экспертному мнению студии web дизайна Stfalcon доверяют на рынке (на ивентах, которые мы организуем, всегда аншлаг, а в блоге – сотни благодарных отзывов (почитайте).: Market trust to the expert opinion of Stfalcon web design studio (events we organize are always sold out, and a blog contains hundreds of grateful comments (just read them)).
+Экспертному мнению компании Stfalcon LLC доверяют на рынке (на ивентах, которые мы организуем, всегда аншлаг, а в блоге – сотни благодарных отзывов (почитайте).:  Market trust to the expert opinion of Stfalcon company (events we organize are always sold out, and a blog contains hundreds of grateful comments (just read them)).
 Подробнее: Read more
 Консалтинг и аудит: Consulting and audit
 
