@@ -8,8 +8,8 @@ deploy_callbacks:
         - "sed -i 's/database_password:.*/database_password: `mysql_password`/' app/config/parameters.yml"
         - "sed -i \"s/database_name:.*/database_name: `echo -n $STAGING_BRANCH|md5sum | awk '{print $1}'`/\" app/config/parameters.yml"
         - 'cp app/config/sphinx.conf /etc/sphinxsearch/sphinx.conf'
-        - "sed -i 's/recaptcha.secret:.*/recaptcha.secret:   `echo -n $APP_GOOGLE_CAPTCHA_SECRET_KEY`/' app/config/parameters.yml"
-        - "sed -i 's/recaptcha.site_key:.*/recaptcha.site_key: `echo -n $APP_GOOGLE_CAPTCHA_SITE_KEY`/' app/config/parameters.yml"
+        - "sed -i 's/recaptcha.secret:   .*/recaptcha.secret:   `echo -n $APP_GOOGLE_CAPTCHA_SECRET_KEY`/' app/config/parameters.yml"
+        - "sed -i 's/recaptcha.site_key: .*/recaptcha.site_key: `echo -n $APP_GOOGLE_CAPTCHA_SITE_KEY`/' app/config/parameters.yml"
         - 'sed -i "s/sql_host        =.*/sql_host        = portfolio-mysql/" /etc/sphinxsearch/sphinx.conf'
         - 'sed -i "s/sql_pass        =.*/sql_pass        = `mysql_password`/" /etc/sphinxsearch/sphinx.conf'
         - "sed -i \"s/sql_db          =.*/sql_db          = `echo -n $STAGING_BRANCH|md5sum | awk '{print $1}'`/\" /etc/sphinxsearch/sphinx.conf"
