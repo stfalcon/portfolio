@@ -241,7 +241,7 @@ sonata_seo:
     page:
         metas:
             property:
-                'og:image': https://stfalcon.com/img/facebook_cover.jpg
+                'og:image': https://stfalcon.com/img/og_image.png
 
 stfalcon_re_captcha:
     site_key: "%recaptcha.site_key%"
