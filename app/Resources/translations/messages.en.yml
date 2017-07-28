@@ -70,6 +70,7 @@ title: __title
 Учасники: Participants
 Фамилия: Surname
 Хмельницкий: Khmelnytskyi
+Киев: Kiev
 'Чем мы занимаемся': 'What we do'
 'Читать дальше': 'Read more'
 'все статьи': 'All articles'
@@ -80,7 +81,8 @@ title: __title
 'проектов мы запустили к концу': 'projects we released till the end of'
 'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
 
-'ул. Заречанская 3/2': '3/2 Zarichanska str.'
+'улица Заречанская 3/2': '3/2 Zarichanska street'
+'переулок Ахтырский 7': '7 Okhtyrskyi Lane'
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
@@ -154,8 +156,8 @@ title: __title
 Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ.: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
 ІТ ивент с несколькими краткими докладами, кофе, новыми знакомствами и доброжелательной атмосферой.: IT event with several short presentations, coffee, and new acquaintances. Friendly atmosphere included.
 
-'ул. Заречанская 3/2, Хмельницкий, Украина': 3/2 Zarichanska str., Khmelnytskyi, Ukraine
-
+'улица Заречанская 3/2, Хмельницкий, Украина': 3/2 Zarichanska street, Khmelnytskyi, Ukraine
+'переулок Ахтырский 7, Киев, Украина': 7 Okhtyrskyi Lane, Kiev, Ukraine
 Подписаться на новые записи: Subscribe for new posts
 
 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony2, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'

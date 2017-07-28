@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class JobsController extends Controller
 {
     /**
-     * List of posts for admin
+     * List of Jobs
      *
      * @param Request $request Request
      * @param int     $page    Page number
