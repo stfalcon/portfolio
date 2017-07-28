@@ -69,6 +69,7 @@ title: __title
 Учасники: Participants
 Фамилия: Surname
 Хмельницкий: Khmelnytskyi
+Киев: Kiev
 'Чем мы занимаемся': 'What we do'
 'Читать дальше': 'Read more'
 'все статьи': 'All articles'
@@ -79,7 +80,8 @@ title: __title
 'проектов мы запустили к концу': 'projects we released till the end of'
 'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
 
-'ул. Заречанская 3/2': '3/2 Zarichanska str.'
+'улица Заречанская 3/2': '3/2 Zarichanska street'
+'переулок Ахтырский 7': '7 Okhtyrskyi Lane'
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
@@ -135,7 +137,7 @@ title: __title
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
 '__main.we_contribution_text': 'Our contribution to the development of <a href="%link%" rel="nofollow" target="_blank">Symfony</a> PHP framework proves our extensive experience in developing web services with this framework. We actively participate in the buildout of <a href="%android_link%" rel="nofollow" target="_blank">Android</a> open source libraries and constantly update our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a> repository with new open source projects.'
 
-'Мы принимаем активное участие в создании библиотек для Android-разработчиков, а так же постоянно добавляем новые open-source проекты в наш GitHub-репозиторий.': We actively participate in the buildout of Android open source libraries and constantly update our GitHub repository with new open source projects.
+'Мы принимаем активное участие в создании библиотек для Android-разработчиков, а также постоянно добавляем новые open-source проекты в наш GitHub-репозиторий.': We actively participate in the buildout of Android open source libraries and constantly update our GitHub repository with new open source projects.
 
 разработка<br/>веб-сайтов: Web<br/>Development
 Разработка веб-сайтов: Web Development
@@ -154,8 +156,8 @@ title: __title
 Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ.: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
 ІТ ивент с несколькими краткими докладами, кофе, новыми знакомствами и доброжелательной атмосферой.: IT event with several short presentations, coffee, and new acquaintances. Friendly atmosphere included.
 
-'ул. Заречанская 3/2, Хмельницкий, Украина': 3/2 Zarichanska str., Khmelnytskyi, Ukraine
-
+'улица Заречанская 3/2, Хмельницкий, Украина': 3/2 Zarichanska street, Khmelnytskyi, Ukraine
+'переулок Ахтырский 7, Киев, Украина': 7 Okhtyrskyi Lane, Kiev, Ukraine
 Подписаться на новые записи: Subscribe for new posts
 
 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony2, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'
@@ -176,7 +178,7 @@ title: __title
 'студия веб дизайна, разработки сайтов и мобильных приложений': 'web design and development company'
 Stfalcon LLC &mdash; разработки сайтов и мобильных приложений: Software Development Company Stfalcon LLC
 'Есть ли смысл дальше изучать наш сайт? <br/> да, если:': 'Does it make sense to learn more about our website?<br> Yes if:'
-'Вы ищите компанию для разработки сайтов, приложений с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов.': 'Are you looking for a company to develop sites, apps or you want to order an expert consulting / audit in this area to get the perfect result;'
+'Вы ищите компанию для разработки сайтов, приложений с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов.': 'You are looking for a company to develop sites, apps or you want to order an expert consulting / audit in this area to get the perfect result;'
 'Вам нужны нестандартные решения, выходящие за рамки шаблонов, которые предлагает рынок.': You have a dream and the others are afraid to make it true (we shall evaluate your ideas and implement them no matter what);
 У Вас есть мечта, за воплощение которой другие боятся браться (мы оценим стоящие идеи и во что бы то ни стало реализуем).: You need innovative solutions that go beyond the ordinary patterns the market offers;
 Для реализации Вашей идеи требуются высоконагруженные системы.: You require a highly loaded system for your project.
@@ -190,7 +192,7 @@ Cоздаем нативные мобильные приложения (боле
 100% наших партнеров (именно так мы воспринимаем клиентов) остались довольны;: 100% of our partners (that is how we perceive the customers) are satisfied;
 'У нас идеально отлажены коммуникации внутри команды, а это значит: <br/> а) проект будет выполнен в минимальные сроки; <br/> б) пока он дойдет до вас, мы уже найдем и исправим все «косяки»;': 'We have a perfectly tweaked communication within the team, which means: <br/> a) The project will be executed in the shortest terms; <br /> b) Until it comes to you, we will already find and fix all the «issues».'
 Мы имеем непосредственное отношение к развитию технологий (продвигаем фреймворк Symfony, создали множество полезных плагинов для LiveStreet, совершенствуем OpenCart CMS и сделали для нее шаблон Tecard, разработали шаблон Snowberry для Wordpress);: We have a direct bearing on the development of technologies (developing  Symfony framework, created a lot of useful plugins for LiveStreet, developing OpenCart CMS did Tecard template for it, developed the Snowberry template for Wordpress)
-Экспертному мнению компании Stfalcon LLC доверяют на рынке (на ивентах, которые мы организуем, всегда аншлаг, а в блоге – сотни благодарных отзывов (почитайте).:  Market trust to the expert opinion of Stfalcon company (events we organize are always sold out, and a blog contains hundreds of grateful comments (just read them)).
+Экспертному мнению компании Stfalcon LLC доверяют на рынке (на ивентах, которые мы организовываем, всегда аншлаг, а в блоге – сотни благодарных отзывов (почитайте).:  Market trust to the expert opinion of Stfalcon company (events we organize are always sold out, and a blog contains hundreds of grateful comments (just read them)).
 Подробнее: Read more
 Консалтинг и аудит: Consulting and audit
 
