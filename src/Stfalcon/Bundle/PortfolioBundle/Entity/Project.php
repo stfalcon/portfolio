@@ -82,6 +82,13 @@ class Project implements Translatable
     private $shortDescription;
 
     /**
+     * @var string $additionalInfo
+     * @Gedmo\Translatable(fallback=true)
+     * @ORM\Column(name="additional_info", type="text", options={"default":""}, nullable=true)
+     */
+    private $additionalInfo;
+
+    /**
      * @var string $url
      *
      * @Assert\Url
@@ -954,5 +961,21 @@ class Project implements Translatable
         $this->usersWithPositions->add($userWithPosition);
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdditionalInfo()
+    {
+        return $this->additionalInfo;
+    }
+
+    /**
+     * @param string $additionalInfo
+     */
+    public function setAdditionalInfo($additionalInfo)
+    {
+        $this->additionalInfo = $additionalInfo;
     }
 }
