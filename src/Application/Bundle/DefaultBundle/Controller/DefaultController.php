@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Entity\SeoHomepage;
 use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -32,18 +33,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $seoHomepage = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:SeoHomepage')->findOneBy([]);
-
         $seo = $this->get('sonata.seo.page');
         $seo
-            ->setTitle($seoHomepage->getTitle())
-            ->addMeta('name', 'keywords', $seoHomepage->getKeywords())
-            ->addMeta('name', 'description', $seoHomepage->getDescription())
-            ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
-            ->addMeta('property', 'og:description', $seoHomepage->getDescription())
             ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
-            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE)
-            ->addMeta('property', 'og:image', '/img/'.$seoHomepage->getOgImage());
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
+        $seoHomepage = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:SeoHomepage')->findOneBy([]);
+        if ($seoHomepage instanceof SeoHomepage) {
+            $seo
+                ->setTitle($seoHomepage->getTitle())
+                ->addMeta('name', 'keywords', $seoHomepage->getKeywords())
+                ->addMeta('name', 'description', $seoHomepage->getDescription())
+                ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
+                ->addMeta('property', 'og:description', $seoHomepage->getDescription())
+                ->addMeta('property', 'og:image', '/img/' . $seoHomepage->getOgImage());
+        }
 
         return [];
     }
