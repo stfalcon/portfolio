@@ -32,13 +32,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $seoHomepage = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:SeoHomepage')->findOneBy([]);
+
         $seo = $this->get('sonata.seo.page');
-        $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
-            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+        $seo
+            ->setTitle($seoHomepage->getTitle())
+            ->addMeta('name', 'keywords', $seoHomepage->getKeywords())
+            ->addMeta('name', 'description', $seoHomepage->getDescription())
+            ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
+            ->addMeta('property', 'og:description', $seoHomepage->getDescription())
+            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE)
+            ->addMeta('property', 'og:image', '/img/'.$seoHomepage->getOgImage());
 
         return [];
     }
-
 
     /**
      * Contacts page

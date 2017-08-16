@@ -2,13 +2,11 @@
 <html xmlns:og="http://ogp.me/ns#">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>{% block title %}{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }}{% endblock %}</title>
+
+    {{ sonata_seo_title() }}
+
     <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml" />
 
-    <meta property="og:title" content="{{ 'Веб студия разработки сайтов, дизайна сайтов. Разработка мобильных приложений' | trans }} | {{ 'Web cтудия Stfalcon.com'|trans }}" />
-    <meta property="og:description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}" />
-
-    <meta name="description" content="{{ 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40'|trans }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
