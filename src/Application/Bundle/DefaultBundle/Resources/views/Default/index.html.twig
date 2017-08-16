@@ -31,7 +31,9 @@
         {% endjavascripts %}
     {% endif %}
 
-    {% include '_carrot_quest.html.twig' %}
+    {% if app.request.locale == 'en' %}
+        {% include '_carrot_quest.html.twig' %}
+    {% endif %}
 </head>
 <body>
 <section class="page-wrapper home-page">
