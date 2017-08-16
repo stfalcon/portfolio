@@ -14,11 +14,14 @@ class SeoHomepageAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('translations', 'a2lix_translations_gedmo', [
+            ->add(
+                'translations',
+                'a2lix_translations_gedmo',
+                [
                     'translatable_class' => 'Application\Bundle\DefaultBundle\Entity\SeoHomepage',
-                    'fields'             => [
-                        'title'         => [
-                            'label'          => 'Meta title',
+                    'fields' => [
+                        'title' => [
+                            'label' => 'Meta title',
                             'locale_options' => [
                                 'ru' => [
                                     'required' => true,
@@ -28,8 +31,8 @@ class SeoHomepageAdmin extends Admin
                                 ],
                             ],
                         ],
-                        'keywords'      => [
-                            'label'          => 'Meta keywords',
+                        'keywords' => [
+                            'label' => 'Meta keywords',
                             'locale_options' => [
                                 'ru' => [
                                     'required' => false,
@@ -39,8 +42,8 @@ class SeoHomepageAdmin extends Admin
                                 ],
                             ],
                         ],
-                        'description'   => [
-                            'label'          => 'Meta description',
+                        'description' => [
+                            'label' => 'Meta description',
                             'locale_options' => [
                                 'ru' => [
                                     'required' => true,
@@ -50,8 +53,8 @@ class SeoHomepageAdmin extends Admin
                                 ],
                             ],
                         ],
-                        'ogTitle'       => [
-                            'label'          => 'og:title',
+                        'ogTitle' => [
+                            'label' => 'og:title',
                             'locale_options' => [
                                 'ru' => [
                                     'required' => true,
@@ -62,7 +65,7 @@ class SeoHomepageAdmin extends Admin
                             ],
                         ],
                         'ogDescription' => [
-                            'label'          => 'og:description',
+                            'label' => 'og:description',
                             'locale_options' => [
                                 'ru' => [
                                     'required' => true,
@@ -73,12 +76,12 @@ class SeoHomepageAdmin extends Admin
                             ],
                         ],
                     ],
-                    'label'              => 'Перевод',
+                    'label' => 'Перевод',
                 ]
             )
             ->add('ogImageFile', 'file', [
                 'label' => 'og:image',
-                'required' => false
+                'required' => false,
             ]);
     }
 
@@ -90,11 +93,15 @@ class SeoHomepageAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->addIdentifier('title')
-            ->add('_action', 'actions', [
-                'label'   => 'Действия',
-                'actions' => [
-                    'edit' => [],
-                ],
-            ]);
+            ->add(
+                '_action',
+                'actions',
+                [
+                    'label' => 'Действия',
+                    'actions' => [
+                        'edit' => [],
+                    ],
+                ]
+            );
     }
 }
