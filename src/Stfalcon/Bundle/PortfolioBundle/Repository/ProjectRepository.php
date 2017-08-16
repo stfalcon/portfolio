@@ -72,8 +72,9 @@ class ProjectRepository extends EntityRepository
      */
     public function findAllProjectsOrderingByDateAsQuery($orderBy = 'p.date', $orderDirection = 'DESC')
     {
-        return $this->getQueryBuilderWithOrdering($orderBy, $orderDirection)
-            ->getQuery();
+        return $this->createQueryBuilder('p')
+                    ->orderBy($orderBy, $orderDirection)
+                    ->getQuery();
     }
 
     /**
