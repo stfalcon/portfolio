@@ -42,7 +42,7 @@
 </div>
 <div class="copyright-cnt">
     <div class="copyright">
-        &copy; 2009–{{ "now"|date("Y") }}, <a href="{{ url('homepage') }}">stfalcon.com</a> &mdash; {{ 'студия веб дизайна, разработки сайтов и мобильных приложений' |trans }}
+        &copy; 2009–{{ "now"|date("Y") }}, {{ '__Footer.homepage.link'|trans({'%homepage%':url('homepage')})|raw }}
         <div class="rules">
             <a href="{{ path('privacy_policy_page') }}">Privacy Policy</a>
             <a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a>
