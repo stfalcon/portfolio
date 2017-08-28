@@ -147,6 +147,20 @@ class ProjectAdmin extends Admin
                                 'class' => 'markitup',
                             ),
                         ],
+                        'additionalInfo' => [
+                            'label' => 'Additional info',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => false,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
+                            ],
+                            'attr' => array(
+                                'class' => 'markitup',
+                            ),
+                        ],
                         'tags' => array(
                             'label' => 'Tags',
                             'locale_options' => array(

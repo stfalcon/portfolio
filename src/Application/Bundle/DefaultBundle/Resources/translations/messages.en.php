@@ -3,7 +3,7 @@
 return array(
     // main.html.twig
     'Веб-студия'  => 'Web studio',
-    'Студия stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.'  => 'Studio stfalcon.com is a team of professionals who love their work and focus on quality results.',
+    'Stfalcon.com — это команда профессионалов, которые любят свою работу и нацелены на качественный результат.'  => 'Stfalcon.com is a team of professionals who love their work and focus on quality results.',
     'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!'  => 'Cooperating with us, you choose a reliable business partner!',
     'Сайт работает на'  => 'Powered by',
     'Позвонить' => 'Phone',
@@ -65,7 +65,8 @@ return array(
     'promotion.order.development_form.mail.subject' => 'The application for Web development by "%email%"',
 
     'promotion.order.hire.us.mail.subject' => 'Hiring request by "%email%"',
-
+    'promotion.app.meta.description' => 'We develop applications for iOS and Android devices. Individual approach for project management and workflow. Order an app right now. ✆ +380 67 334-40-40',
+    'promotion.app.meta.title' => 'Mobile apps development for Android and iOS platforms | stfalcon.com',
     'Кукорама' => 'Cookorama',
     'Радиалка' => 'Twiseller',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',
