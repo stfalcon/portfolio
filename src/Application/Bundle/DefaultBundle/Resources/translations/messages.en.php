@@ -33,6 +33,7 @@ return array(
     'Разработка мобильных приложений' => 'Mobile apps development',
     'Мы разрабатываем приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop apps for iOS and Android<br>smartphones and tablets.',
     'Заказать приложение' => 'Order an app',
+    'Связаться с нами' => 'Contact us',
     'Почему мы?' => 'Why us?',
     'Индивидуальный подход к менеджменту проекта и организации рабочего процесса' => 'Individual approach for project management and workflow',
     'Соблюдаем сроки, используем разные методологии разработки' => 'We meet time limits and we use different development methods',
