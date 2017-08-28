@@ -3,6 +3,11 @@
         <div class="col col-1"></div>
         <div class="col col-4">
             <h1>{{ project.name }}</h1>
+            {% if project.additionalInfo %}
+                <div class="additional-info">
+                    {{ project.additionalInfo | raw }}
+                </div>
+            {% endif %}
             <a href="{{ project.url }}" rel="nofollow" target="_blank" class="project-link">{{ project.url }}</a>
             {#<ul class="tags">#}
                 {#<li><a href="#">Проектирование</a></li>#}

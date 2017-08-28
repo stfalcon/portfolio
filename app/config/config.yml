@@ -137,6 +137,8 @@ vich_uploader:
             uri_prefix: /uploads/avatar/caricature
             upload_destination: "%kernel.root_dir%/../web/uploads/avatar/caricature"
             namer: vich_uploader.namer_uniqid
+        seo_homepage:
+            upload_destination: "%kernel.root_dir%/../web/img"
 
 sonata_admin:
     security:
@@ -241,7 +243,7 @@ sonata_seo:
     page:
         metas:
             property:
-                'og:image': https://stfalcon.com/img/facebook_cover.jpg
+                'og:image': https://stfalcon.com/img/og_image.png
 
 stfalcon_re_captcha:
     site_key: "%recaptcha.site_key%"
