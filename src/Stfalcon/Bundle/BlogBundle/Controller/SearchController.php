@@ -93,13 +93,13 @@ class SearchController extends AbstractController
     private function search($locale, $text, $type)
     {
         $sphinxSearch = $this->get('iakumai.sphinxsearch.search');
-        $sphinxSearch->SetMatchMode(SPH_MATCH_EXTENDED);
+        $sphinxSearch->SetMatchMode(SPH_MATCH_ANY);
         $sphinxSearch->SetFilter('locale', [
             crc32($locale),
         ]);
 
         try {
-            $searchResults = $sphinxSearch->searchEx('*'.$text.'*', [
+            $searchResults = $sphinxSearch->searchEx($text, [
                 $type,
             ]);
         } catch (\Exception $e) {
