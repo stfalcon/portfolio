@@ -77,8 +77,8 @@ class PostController extends AbstractController
             $post = $this->getDoctrine()
                 ->getRepository('StfalconBlogBundle:Post')
                 ->findPostBySlugInLocale($slug, $locale);
-            if (!$post) {
 
+            if (!$post) {
                 return $this->redirect($this->generateUrl('blog'));
             }
         }
