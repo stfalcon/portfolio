@@ -5,6 +5,7 @@ namespace Stfalcon\Bundle\BlogBundle\Controller;
 use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Application\Bundle\UserBundle\Entity\User;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -57,7 +58,7 @@ class PostController extends AbstractController
      * @param Request $request
      * @param string  $slug
      *
-     * @return array
+     * @return array | RedirectResponse
      *
      * @throws NotFoundHttpException
      *
@@ -72,7 +73,14 @@ class PostController extends AbstractController
                      ->findPostBySlugInLocale($slug, $request->getLocale());
 
         if (!$post) {
-            return $this->redirect($this->generateUrl('blog'));
+            $locale = 'ru' === $request->getLocale() ? 'en' : 'ru';
+            $post = $this->getDoctrine()
+                ->getRepository('StfalconBlogBundle:Post')
+                ->findPostBySlugInLocale($slug, $locale);
+
+            if (!$post) {
+                return $this->redirect($this->generateUrl('blog'));
+            }
         }
 
         $seo = $this->get('sonata.seo.page');
