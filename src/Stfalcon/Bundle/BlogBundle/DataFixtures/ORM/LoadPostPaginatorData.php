@@ -50,7 +50,7 @@ class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInt
 
             $manager->persist($post);
             $manager->merge($phpTag);
-            $locale = ($locale === 'en') ? 'ru' : 'en';
+            $locale = $locale === 'en' ? 'ru' : 'en';
         }
 
         $manager->flush();
