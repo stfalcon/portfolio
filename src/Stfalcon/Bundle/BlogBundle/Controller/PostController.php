@@ -71,8 +71,9 @@ class PostController extends AbstractController
         $post = $this->getDoctrine()
                      ->getRepository('StfalconBlogBundle:Post')
                      ->findPostBySlugInLocale($slug, $request->getLocale());
+
         if (!$post) {
-            $locale = ('ru' === $request->getLocale()) ? 'en' : 'ru';
+            $locale = 'ru' === $request->getLocale() ? 'en' : 'ru';
             $post = $this->getDoctrine()
                 ->getRepository('StfalconBlogBundle:Post')
                 ->findPostBySlugInLocale($slug, $locale);
