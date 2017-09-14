@@ -51,6 +51,19 @@ class DefaultController extends Controller
 
         return [];
     }
+    /**
+     * Opensource page
+     *
+     * @param Request $request Request
+     *
+     * @return array()
+     * @Template()
+     * @Route("/opensource", name="opensource")
+     */
+    public function opensourceAction(Request $request)
+    {
+        return [];
+    }
 
     /**
      * Contacts page

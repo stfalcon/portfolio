@@ -1,0 +1,149 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}{{ 'Контактная информация'|trans }}{{ parent() }}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var directOrderFormMessage = {
+            name: {
+                required: "{{ 'Пожалуйста, введите ваше имя'|trans }}",
+                minlength: "{{ 'Введите имя не меньше 3 символов'|trans }}"
+            },
+            email: {
+                required: "{{ 'Пожалуйста, введите адрес вашей эл.почты'|trans }}",
+                minlength: "{{ 'Ваша эл.адрес должен быть формата name@domain.com'|trans }}",
+                defaultMessage: "{{ 'Пожалуйста введите правильный имейл'|trans }}"
+            },
+            phone: {
+                required: "{{ 'Пожалуйста, введите телефон'|trans }}",
+                minlength: "{{ 'Введите телефон не меньше 7 символов'|trans }}"
+            },
+            message: {
+                required: "{{ 'Пожалуйста, введите сообщение'|trans }}",
+                minlength: "{{ 'Введите сообщение не меньше 30 символов'|trans }}"
+            }
+        };
+    </script>
+
+    {% javascripts
+    'js/direct-order-form.js'
+    output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}
+
+{% block content_wrapper %}
+    <section class="opensource">
+        <h1 class="opensource__title">We contribute to Open Source</h1>
+        <div class="opensource__container">
+            <aside class="opensource__sidebar">
+            <ul class="sidebar-menu opensource__sidebar-menu">
+                <li class="sidebar-menu__item">
+                    <a href="#" class="sidebar-menu__link sidebar-menu__link--active">All</a>
+                </li>
+                <li class="sidebar-menu__item">
+                    <a href="#" class="sidebar-menu__link">Android</a>
+                </li>
+                <li class="sidebar-menu__item">
+                    <a href="#" class="sidebar-menu__link">iOS</a>
+                </li>
+                <li class="sidebar-menu__item">
+                    <a href="#" class="sidebar-menu__link">Front End</a>
+                </li>
+                <li class="sidebar-menu__item">
+                    <a href="#" class="sidebar-menu__link">Back End</a>
+                </li>
+            </ul>
+            </aside>
+            <div class="opensource-list opensource__opensource-list">
+                <article class="opensource-item">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/chatkit.jpg') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title">ChatKi<span class="opensource-item__category">Kotlin</span></div>
+                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>143</div>
+                        </div>
+                        <div class="opensource-item__text">Android library. Flexible components for chat UI implementation with
+                            flexible possibilities for styling, customizing and data management
+                        </div>
+                        <div class="opensource-item__links">
+                            <a href="#" class="opensource-item__link">google play</a>
+                            <a href="#" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="opensource-item">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/java.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title">Uaroads iOS<span class="opensource-item__category">Java</span></div>
+                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>101</div>
+                        </div>
+                        <div class="opensource-item__text">UaRoads is a unique service for road condition monitoring. It provides
+                            safety and comfort to drivers. Project goal is to build routes through better roads with
+                            surface of higher quality
+                        </div>
+                        <div class="opensource-item__links">
+                            <a href="#" class="opensource-item__link">medium</a>
+                            <a href="#" class="opensource-item__link">app store</a>
+                            <a href="#" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="opensource-item">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/php.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title">Livestreet<span class="opensource-item__category">PHP</span></div>
+                        </div>
+                        <div class="opensource-item__text">LiveStreet is a free engine for blog and social networks.</div>
+                        <div class="opensource-item__links">
+                            <a href="#" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="opensource-item">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/php.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title">Opencart-theme_tecart<span class="opensource-item__category">PHP</span></div>
+                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>88</div>
+                        </div>
+                        <div class="opensource-item__text">Tecart is awesome OpenCart template. It's specially designed for
+                            electronics, computers, mobile stores. Intuitive navigation. Great colors combination of
+                            blue, green and gray. It's compatible with features of default template. All sub pages are
+                            carefully customized.
+                        </div>
+                    </div>
+                </article>
+                <article class="opensource-item">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/typescript.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title">Stf-ng-select<span class="opensource-item__category">TypeScript</span></div>
+                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>45</div>
+                        </div>
+                        <div class="opensource-item__text">The most flexible, reusable and customise select</div>
+                        <div class="opensource-item__links">
+                            <a href="#" class="opensource-item__link">medium</a>
+                            <a href="#" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

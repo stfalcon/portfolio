@@ -1,0 +1,213 @@
+.opensource {
+  font-family: 'museo_sans_cyrl';
+
+  &__title {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+
+  &__container {
+    display: flex;
+    max-width: 962px;
+    margin: 0 auto;
+  }
+
+  &__pagination {
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  &__sidebar {
+    flex-shrink: 0;
+    width: 182px;
+    margin-right: 46px;
+  }
+
+  &__opensource-list {
+    margin-bottom: 30px;
+    flex: 1;
+  }
+}
+
+.sidebar-menu {
+  &__item {
+    margin-bottom: 1px;
+  }
+
+  &__link {
+    width: 100%;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    color: #2C373C;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: left;
+    background-color: #FFFFFF;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 0 0 0 28px;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #2C59C2;
+    }
+
+    &--active {
+      color: #2C59C2;
+    }
+  }
+}
+
+.opensource-item {
+    display: flex;
+    padding-bottom: 34px;
+    border-bottom: 1px solid rgba(209, 213, 218, 0.64);
+    margin-bottom: 34px;
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 34px;
+    }
+
+  &__description {
+    flex: 1;
+    padding-top: 6px;
+  }
+
+  &__photo {
+    flex-shrink: 0;
+    width: 156px;
+    height: 126px;
+    margin-right: 26px;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+
+  &__top {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 24px;
+    color: #2C373C;
+  }
+
+  &__category {
+    position: relative;
+    bottom: 3px;
+    color: #8b8b8c;
+    font-size: 11px;
+    border-radius: 1px;
+    background-color: #e4e4e4;
+    padding: 0 4px;
+    margin-left: 14px;
+  }
+
+  &__rating {
+    flex-shrink: 0;
+    font-size: 16px;
+    line-height: 29px;
+    color: #A3ACB0;
+    margin-left: auto;
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+    background: url('/img/svg/star.svg');
+    margin-right: 6px;
+  }
+
+  &__text {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #3C4F57;
+    font-size: 16px;
+    line-height: 22px;
+
+    & + .opensource-item__links {
+      margin-top: 18px;
+    }
+  }
+
+  &__link {
+    color: #2C59C2;
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .opensource {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__sidebar {
+      width: 100%;
+      max-width: 320px;
+      align-self: center;
+      margin-bottom: 34px;
+      margin-right: 0;
+    }
+
+    &__sidebar-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+
+
+  .sidebar-menu {
+    &__link {
+      text-align: center;
+      background: none;
+      padding: 0 31px;
+      margin-bottom: 10px;
+
+      &--active {
+        border: 1px solid #D7C76E;
+      }
+
+    &:hover {
+      border-color: #D7C76E !important;
+    }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .opensource-item {
+      flex-direction: column;
+
+    &__photo {
+      width: 100%;
+      height: 272px;
+      margin-right: 0;
+      margin-bottom: 25px;
+    }
+
+    &__img {
+      height: 100%;
+    }
+  }
+}
