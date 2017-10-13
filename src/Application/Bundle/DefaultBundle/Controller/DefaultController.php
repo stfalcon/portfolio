@@ -53,6 +53,20 @@ class DefaultController extends Controller
     }
 
     /**
+     * index-new page
+     *
+     * @param Request $request Request
+     *
+     * @return array()
+     * @Template("ApplicationDefaultBundle:Default:index-new.html.twig")
+     * @Route("/index-new", name="index-new")
+     */
+
+    public function indexnewAction(Request $request){
+        return [];
+    }
+
+    /**
      * Contacts page
      *
      * @param Request $request Request

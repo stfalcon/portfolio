@@ -2,7 +2,8 @@
 
 {% block stylesheets %}
     {% if project.showCase %}
-        <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+        {#<link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>#}
+        <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
     {% else %}
         {{ parent() }}
     {% endif %}
