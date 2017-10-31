@@ -15,11 +15,12 @@
     {{ sonata_seo_link_canonical() }}
     {{ sonata_seo_lang_alternates() }}
 
-    {% if app.request.host == 'stfalcon.com' %}
+    {% if app.environment == 'prod' %}
         {% javascripts
             'js/metrics/header.js'
             output='cache/js/*.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% include "::google_analytics.html.twig" %}
         {% endjavascripts %}
     {% else %}
         {% javascripts

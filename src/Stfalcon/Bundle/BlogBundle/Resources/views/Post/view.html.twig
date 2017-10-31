@@ -33,7 +33,7 @@
         {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
 
-        {% if app.request.host == 'stfalcon.com' %}
+        {% if app.environment == 'prod' %}
             <p>
                 <div id="disqus_thread"></div>
             </p>
