@@ -20,6 +20,7 @@
             'js/metrics/header.js'
             output='cache/js/*.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% include "::google_analytics.html.twig" %}
         {% endjavascripts %}
     {% else %}
         {% javascripts
