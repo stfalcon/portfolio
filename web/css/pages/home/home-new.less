@@ -1,6 +1,6 @@
 #bg-wrapper {
   background: #2C373C;
-  transition: background .6s ease-out;
+  transition: background .3s ease-out;
   overflow: hidden;
 }
 
@@ -275,6 +275,7 @@
   display: flex;
   align-items: center;
   color: #2C373C;
+  padding: 100px 0;
 
   &--white-text {
     color: #FFFFFF;
@@ -291,10 +292,10 @@
 
   &__description {
     opacity: 0;
-    transform: translateY(50%);
+    transform: translateY(25%);
     padding: 0 30px;
     flex: 1;
-    transition: all .6s ease-out;
+    transition: all .3s ease-out;
 
     &--visible {
       opacity: 1;
@@ -563,7 +564,7 @@
 .subscribe {
   max-width: 600px;
   background-color: #F5F7F7;
-  padding: 16px 11px;
+  padding: 16px 19px;
   margin: 0 auto;
 
   &__title {
@@ -576,6 +577,7 @@
 
   &__form {
     display: flex;
+    align-items: flex-end;
   }
 
   &__input {
@@ -725,7 +727,7 @@
   }
 }
 
-@media screen and (max-width:1280px){
+@media screen and (max-width:1279px){
   .side-projects {
     &__title {
       margin-bottom: 50px;
@@ -837,21 +839,18 @@
   .project-item {
     flex-direction: column;
     overflow: hidden;
+    padding: 50px 0;
 
     &__img-block {
-      transform: translateX(-30%);
+      padding: 0 30px;
+      margin-bottom: 30px;
     }
 
-    &--left-text {
-      .project-item__img-block {
-        transform: translateX(30%);
-      }
-
-      .project-item__description {
-        order: 1;
-      }
+    .project-item__description {
+      order: 1;
     }
   }
+
 
   // end project list
 
@@ -1046,6 +1045,34 @@
   // end detail info
 }
 
+
+@media screen and (max-width: 639px) {
+
+  .project-item {
+    overflow: hidden;
+    align-items: flex-end;
+
+    &__img-block {
+      .project-item__img {
+        width: 600px;
+      }
+
+    }
+
+    &--left-text {
+      align-items: flex-start;
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+
+  .project-item {
+    &__img-block {
+      margin-bottom: 15px;
+    }
+  }
+}
 
 
 
