@@ -848,6 +848,8 @@
 
     .project-item__description {
       order: 1;
+      opacity: 1;
+      transform: initial;
     }
   }
 
@@ -1021,6 +1023,27 @@
   }
 
   // end blog
+
+  // services list
+
+  .services-list {
+    justify-content: flex-start;
+
+    &__item {
+      flex-basis: 50%;
+      margin: 0 0 48px;
+    }
+    &__text {
+      display: none;
+    }
+
+    &__name {
+      max-width: 150px;
+      margin: 0 auto;
+    }
+  }
+
+  // end services list
 
   // detail info
 

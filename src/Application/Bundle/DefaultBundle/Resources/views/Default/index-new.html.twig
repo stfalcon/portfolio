@@ -46,7 +46,6 @@
                 {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
             </p>
             <button id="hire_us-js" type="button" class="hire_us_main button home-btn home-btn--blue header__btn" onclick="ga('send', 'event', 'order_project', 'click');fbq('trackCustom', 'order_project');">{{ 'Заказать проект'|trans }}</button>
-            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
         </div>
     </header>
     <section data-bg="#2C373C" class="achievements bg-item">
@@ -379,6 +378,7 @@
     </footer>
 </section>
 </div>
+{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 {% javascripts
     'assets/js/libs/jquery.history.min.js'

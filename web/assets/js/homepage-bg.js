@@ -7,7 +7,10 @@ $(document).ready(function () {
         bgClass.each(function (i, elem) {
             if ($(window).scrollTop() + heightWindow - $(elem).outerHeight() / 1.5 >= $(elem).offset().top) {
                 bgWrapper.css('background', $(elem).attr('data-bg'));
-                $(elem).find('.project-item__description').addClass('project-item__description--visible');
+
+                if(window.innerWidth > 1023) {
+                    $(elem).find('.project-item__description').addClass('project-item__description--visible');
+                }
 
                 if ($(elem).attr('data-bg') === ('#FFFFFF')) {
                     $(elem).parent('.our-services').siblings('.projects-list').find('.bg-item--last').css('color', '#2c373c');
@@ -27,7 +30,7 @@ $(document).ready(function () {
         });
     }
 
-    $(window).scroll(function () {
+    $(window).on('scroll load', function () {
         bgScroll();
     });
 });
