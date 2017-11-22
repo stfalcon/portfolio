@@ -2,7 +2,6 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
-use Application\Bundle\DefaultBundle\Form\Type\VacancyFormType;
 use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -11,13 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class JobsController extends Controller
 {
     /**
-     * List of Jobs
+     * List of Jobs.
      *
      * @param Request $request Request
      * @param int     $page    Page number
@@ -40,9 +38,9 @@ class JobsController extends Controller
 
         $jobsQuery = $jobsRepository->findBy(['active' => true]);
         $cnt = count($jobsQuery);
-        $maxPages = intdiv ($cnt, $itemsPerPage);
-        if ($cnt / $itemsPerPage > intdiv ($cnt, $itemsPerPage)) {
-            $maxPages++;
+        $maxPages = intdiv($cnt, $itemsPerPage);
+        if ($cnt / $itemsPerPage > intdiv($cnt, $itemsPerPage)) {
+            ++$maxPages;
         }
         $page = $page > $maxPages ? $maxPages : $page;
         $jobs = $this->get('knp_paginator')->paginate($jobsQuery, $page, $itemsPerPage);
@@ -57,7 +55,7 @@ class JobsController extends Controller
     }
 
     /**
-     * View job
+     * View job.
      *
      * @param Request $request
      * @param string  $slug
@@ -95,7 +93,7 @@ class JobsController extends Controller
                 if ($formData['attach']) {
                     /** @var UploadedFile $attach */
                     $attach = $formData['attach'];
-                    $attachFile = $attach->move(realpath($container->getParameter('kernel.root_dir') . '/../attachments/'), $attach->getClientOriginalName());
+                    $attachFile = $attach->move(realpath($container->getParameter('kernel.root_dir').'/../attachments/'), $attach->getClientOriginalName());
                     $attachments[] = $attachFile;
                 }
 
@@ -123,8 +121,8 @@ class JobsController extends Controller
                 if ($resultSending) {
                     if ($request->isXmlHttpRequest()) {
                         return new JsonResponse([
-                            'result'    => 'success',
-                            'view'      => $this->renderView('@ApplicationDefault/Default/_direct_order_form_success.html.twig')
+                            'result' => 'success',
+                            'view' => $this->renderView('@ApplicationDefault/Default/_direct_order_form_success.html.twig'),
                         ]);
                     }
 
@@ -134,7 +132,6 @@ class JobsController extends Controller
                 } else {
                     $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('Произошла ошибка при отправке письма.'));
                 }
-
             }
         }
 
@@ -152,7 +149,7 @@ class JobsController extends Controller
 
         return [
             'job' => $job,
-            'form' => $vacancyForm->createView()
+            'form' => $vacancyForm->createView(),
         ];
     }
 }
