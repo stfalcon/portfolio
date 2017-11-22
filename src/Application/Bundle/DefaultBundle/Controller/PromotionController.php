@@ -119,7 +119,7 @@ class PromotionController extends Controller
      *
      * @return BinaryFileResponse
      *
-     * @Route("/show_pdf/{pdfFilename}", name="show_pdf")
+     * @Route("/show-pdf/{pdfFilename}", name="show_pdf")
      */
     public function showPdfAction($pdfFilename)
     {
