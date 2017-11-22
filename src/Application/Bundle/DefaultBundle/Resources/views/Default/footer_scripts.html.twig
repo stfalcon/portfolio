@@ -1,4 +1,4 @@
-{% if app.request.host == 'stfalcon.com' %}
+{% if app.environment == 'prod' %}
     <!-- Google Code for Remarketing Tag -->
     <script type="text/javascript">
         /* <![CDATA[ */
@@ -16,8 +16,9 @@
     </noscript>
     <!--linkedin -->
     <script type="text/javascript">
-        _linkedin_data_partner_id = "57979";
-    </script><script type="text/javascript">
+        _linkedin_data_partner_id = "112676";
+    </script>
+    <script type="text/javascript">
     (function(){var s = document.getElementsByTagName("script")[0];
         var b = document.createElement("script");
         b.type = "text/javascript";b.async = true;
@@ -25,7 +26,8 @@
         s.parentNode.insertBefore(b, s);})();
     </script>
     <noscript>
-        <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=57979&fmt=gif" />
+        <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=112676&fmt=gif" />
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=542276379449174&ev=ViewContent&noscript=1"/>
     </noscript>
     <!--END linkedin -->
     {% javascripts
