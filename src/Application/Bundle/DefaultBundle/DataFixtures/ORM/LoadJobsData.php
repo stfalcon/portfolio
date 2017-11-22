@@ -73,7 +73,8 @@ LESS,SCSS,PostCss
         $jobFirst->addTag($kmTag);
         $jobFirst->addTag($kievTag);
         $jobFirst->addTag($remoteTag);
-        $jobFirst->setActive(true);
+        $jobFirst->setActive(true)
+        ->setCreated(new \DateTime('17-05-2016'));
         $manager->persist($jobFirst);
         $manager->merge($kmTag);
         $manager->merge($kievTag);

@@ -36,7 +36,7 @@ class JobsController extends Controller
         $itemsPerPage = 10;
         $jobsRepository = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:Jobs');
 
-        $jobsQuery = $jobsRepository->findBy(['active' => true]);
+        $jobsQuery = $jobsRepository->findBy(['active' => true], ['created' => 'DESC']);
         $cnt = count($jobsQuery);
         $maxPages = intdiv($cnt, $itemsPerPage);
         if ($cnt / $itemsPerPage > intdiv($cnt, $itemsPerPage)) {
