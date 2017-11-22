@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class JobsController extends Controller
@@ -21,7 +22,7 @@ class JobsController extends Controller
      * @param Request $request Request
      * @param int     $page    Page number
      *
-     * @return array
+     * @return array|RedirectResponse
      *
      * @Route("/jobs/{title}/{page}", name="jobs_list",
      *      requirements={"page"="\d+", "title"="page"},
@@ -30,6 +31,10 @@ class JobsController extends Controller
      */
     public function indexAction(Request $request, $page)
     {
+        if ('ru' !== $request->getLocale()) {
+            return $this->redirectToRoute('jobs_list', ['page' => $page, '_locale' => 'ru']);
+        }
+
         $itemsPerPage = 10;
         $jobsRepository = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:Jobs');
 
@@ -62,10 +67,15 @@ class JobsController extends Controller
      * @throws NotFoundHttpException
      *
      * @Route("/jobs/job/{slug}", name="jobs_job_view")
+     *
      * @Template()
      */
     public function viewAction(Request $request, $slug)
     {
+        if ('ru' !== $request->getLocale()) {
+            return $this->redirectToRoute('jobs_job_view', ['slug' => $slug, '_locale' => 'ru']);
+        }
+
         /** @var Jobs $job */
         $job = $this->getDoctrine()
             ->getRepository('ApplicationDefaultBundle:Jobs')
