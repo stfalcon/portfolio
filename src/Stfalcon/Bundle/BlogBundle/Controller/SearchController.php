@@ -99,7 +99,7 @@ class SearchController extends AbstractController
         ]);
 
         try {
-            $searchResults = $sphinxSearch->search('*'.$text.'*', [
+            $searchResults = $sphinxSearch->searchEx($text, [
                 $type,
             ]);
         } catch (\Exception $e) {

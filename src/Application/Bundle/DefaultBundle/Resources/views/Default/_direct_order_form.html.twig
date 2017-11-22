@@ -30,7 +30,7 @@
             {{ form_widget(form.captcha) }}
             {{ form_errors(form.captcha) }}
         </div>
-        <button class="btn" type="submit">{{ "Отправить" | trans() }}</button>
+        <button id="contact-submit" class="btn" type="submit" onclick="gtag_report_conversion_from_contacts()">{{ "Отправить" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>

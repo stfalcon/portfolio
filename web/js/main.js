@@ -1,6 +1,5 @@
 $(function () {
 
-
     $(document).on('submit', '#direct-order-form', function (e) {
         e.preventDefault();
         var $directOrderForm = $(this);
@@ -13,9 +12,13 @@ $(function () {
             contentType: false,
             success: function (response) {
                 $directOrderForm.replaceWith(response.view);
-                if (response.result == 'success' && window.ga && window.yaCounter27048220) {
-                    ga('send', 'event', 'order', 'contacts');
-                    yaCounter27048220.reachGoal('contacts');
+                if (response.result === 'success') {
+                    if (window.ga) {
+                        ga('send', 'event', 'order', 'contacts');
+                    }
+                    if (window.yaCounter27048220) {
+                        yaCounter27048220.reachGoal('contacts');
+                    }
                 }
             }
         });

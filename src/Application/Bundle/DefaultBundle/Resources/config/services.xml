@@ -16,6 +16,10 @@
 
         <parameter key="application_default.admin.jobs.class">Application\Bundle\DefaultBundle\Admin\JobsAdmin</parameter>
         <parameter key="application_default.admin.jobs.entity">Application\Bundle\DefaultBundle\Entity\Jobs</parameter>
+
+        <parameter key="app.default.admin.seo_homepage.class">Application\Bundle\DefaultBundle\Admin\SeoHomepageAdmin</parameter>
+        <parameter key="app.default.admin.seo_homepage.entity">Application\Bundle\DefaultBundle\Entity\SeoHomepage</parameter>
+
     </parameters>
 
     <services>
@@ -131,6 +135,14 @@
             <argument id="app.default.seo_alternate.post" type="service" />
             <argument id="app.default.seo_alternate.category" type="service" />
             <argument id="app.default.seo_alternate.user" type="service" />
+        </service>
+
+        <service id="app.default.admin.seo_homepage" class="%app.default.admin.seo_homepage.class%">
+            <tag name="sonata.admin" manager_type="orm" group="DefaultBundle" label="SEO homepage" />
+            <argument />
+            <argument>%app.default.admin.seo_homepage.entity%</argument>
+            <!--<argument />-->
+            <argument>ApplicationDefaultBundle:Admin\SeoHomepageAdmin</argument>
         </service>
     </services>
 
