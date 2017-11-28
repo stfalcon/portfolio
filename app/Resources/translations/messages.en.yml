@@ -135,7 +135,7 @@ title: __title
 'Увлекательный мобильный вариант одноименной настольной игры': Fascinating mobile version of the puzzle board game
 'Двумерный аркадный шутер, оружие и враги в ассортименте': 2D arcade shooter, weapons and enemies in range
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
-'__main.we_contribution_text': 'Our contribution to the development of <a href="%link%" rel="nofollow" target="_blank">Symfony</a> PHP framework proves our extensive experience in developing web services with this framework. We actively participate in the buildout of <a href="%android_link%" rel="nofollow" target="_blank">Android</a> open source libraries and constantly update our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a> repository with new open source projects.'
+'__main.we_contribution_text': 'Our team loves open-source! </br> We create solutions for <a href="%link%" rel="nofollow" target="_blank">Symfony</a> framework,<br> <a href="%android_link%" rel="nofollow" target="_blank">Android</a> & iOS platfroms and share this stuff to our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a>.'
 
 'Мы принимаем активное участие в создании библиотек для Android-разработчиков, а также постоянно добавляем новые open-source проекты в наш GitHub-репозиторий.': We actively participate in the buildout of Android open source libraries and constantly update our GitHub repository with new open source projects.
 
