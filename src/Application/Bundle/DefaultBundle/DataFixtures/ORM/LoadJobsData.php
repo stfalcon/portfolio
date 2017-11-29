@@ -75,10 +75,9 @@ LESS,SCSS,PostCss
         ->setActive(true)
         ->setCreated(new \DateTime('17-05-2016'));
         $manager->persist($jobFirst);
-        $manager
-            ->merge($kmTag)
-            ->merge($kievTag)
-            ->merge($remoteTag);
+        $manager->merge($kmTag);
+        $manager->merge($kievTag);
+        $manager->merge($remoteTag);
 
         $jobAboutPhp = (new Job())
             ->setTitle('PHP Middle/Senior (Symfony) Developer')
@@ -131,12 +130,12 @@ LESS,SCSS,PostCss
         ->setActive(true);
 
         $manager->persist($jobAboutPhp);
-        $manager->merge($kmTag)
-            ->merge($kievTag)
-            ->merge($remoteTag)
-            ->merge($symfonyTag)
-            ->merge($doctrine2Tag)
-            ->merge($phpTag);
+        $manager->merge($kmTag);
+        $manager->merge($kievTag);
+        $manager->merge($remoteTag);
+        $manager->merge($symfonyTag);
+        $manager->merge($doctrine2Tag);
+        $manager->merge($phpTag);
 
         $manager->flush();
 
