@@ -88,7 +88,7 @@ class JobsController extends Controller
         if ($vacancyForm->isSubmitted() && $vacancyForm->isValid()) {
             $formData = $vacancyForm->getData();
 
-            $resultSending = $this->get('application_default.service.mailer')->sendCandidateProfile($formData);
+            $resultSending = $this->get('application_default.service.mailer')->sendCandidateProfile($formData, $job->getTitle());
             if ($resultSending) {
                 $request->getSession()->getFlashBag()->add('vacancy_send', $this->get('translator')->trans('Спасибо! Мы с Вами свяжемся в ближайшее время.'));
 

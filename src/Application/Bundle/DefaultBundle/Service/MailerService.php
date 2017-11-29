@@ -58,11 +58,12 @@ class MailerService
     /**
      * send vacancy form to our mail
      *
-     * @param array $params
+     * @param array  $params
+     * @param string $jobTitle
      *
      * @return int
      */
-    public function sendCandidateProfile(array $params)
+    public function sendCandidateProfile(array $params, $jobTitle)
     {
         $attachments = [];
         if ($params['attach']) {
@@ -72,7 +73,7 @@ class MailerService
             $attachments[] = $attachFile;
         }
 
-        $subject = sprintf('Анкета кандидата на вакансію від "%s"', $params['email']);
+        $subject = sprintf('Анкета кандидата на вакансію %s від %s', $jobTitle, $params['email']);
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
