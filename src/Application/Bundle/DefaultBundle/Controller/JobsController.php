@@ -79,7 +79,7 @@ class JobsController extends Controller
             return $this->redirect($this->generateUrl('jobs_list'));
         }
         $vacancyForm = $this->createForm(
-            VacancyFormType::class,
+            'vacancy_form',
             [
                 'environment' => $this->getParameter('kernel.environment'),
             ]
