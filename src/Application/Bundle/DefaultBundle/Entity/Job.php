@@ -10,14 +10,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="jobs")
- * @ORM\Entity(repositoryClass="Application\Bundle\DefaultBundle\Repository\JobsRepository")
+ * @ORM\Entity(repositoryClass="Application\Bundle\DefaultBundle\Repository\JobRepository")
  */
-class Jobs
+class Job
 {
     /**
-     * Tag id
+     * Tag id.
      *
-     * @var integer $id
+     * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,16 +25,16 @@ class Jobs
     private $id;
 
     /**
-     * Job title
+     * Job title.
      *
-     * @var string $title
+     * @var string
      * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
-     * @var string $description
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -45,7 +45,7 @@ class Jobs
     private $description;
 
     /**
-     * @var string $slug
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -57,7 +57,7 @@ class Jobs
     private $slug;
 
     /**
-     * Tags for post
+     * Tags for post.
      *
      * @var ArrayCollection
      * @Assert\NotBlank()
@@ -91,7 +91,7 @@ class Jobs
     private $metaTitle;
 
     /**
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      */
@@ -104,7 +104,7 @@ class Jobs
     private $active = true;
 
     /**
-     * Initialization properties for new post entity
+     * Initialization properties for new post entity.
      */
     public function __construct()
     {
@@ -114,6 +114,7 @@ class Jobs
 
     /**
      * @param bool $active
+     *
      * @return $this
      */
     public function setActive($active)
@@ -130,8 +131,9 @@ class Jobs
     {
         return $this->active;
     }
+
     /**
-     * Set tags to post
+     * Set tags to post.
      *
      * @param ArrayCollection $tags
      */
@@ -141,7 +143,7 @@ class Jobs
     }
 
     /**
-     * Get all tags
+     * Get all tags.
      *
      * @return ArrayCollection
      */
@@ -152,10 +154,14 @@ class Jobs
 
     /**
      * @param Tag $tag
+     *
+     * @return $this
      */
     public function addTag(Tag $tag)
     {
         $this->tags->add($tag);
+
+        return $this;
     }
 
     /**
@@ -167,19 +173,21 @@ class Jobs
     }
 
     /**
-     * Set time when post created
+     * Set time when post created.
      *
      * @param \DateTime $created A time when post created
      *
-     * @return void
+     * @return $this
      */
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
+
+        return $this;
     }
 
     /**
-     * Get time when post created
+     * Get time when post created.
      *
      * @return \DateTime
      */
@@ -266,6 +274,7 @@ class Jobs
 
     /**
      * @param $title
+     *
      * @return $this
      */
     public function setTitle($title)
@@ -284,7 +293,8 @@ class Jobs
     }
 
     /**
-     * @param $description
+     * @param string $description
+     *
      * @return $this
      */
     public function setDescription($description)
@@ -304,6 +314,7 @@ class Jobs
 
     /**
      * @param $slug
+     *
      * @return $this
      */
     public function setSlug($slug)

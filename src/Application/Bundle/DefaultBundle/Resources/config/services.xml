@@ -14,8 +14,8 @@
         <parameter key="application_default.service.geo_ip.class">Application\Bundle\DefaultBundle\Service\GeoIpService</parameter>
         <parameter key="geo_ip_database_path">%kernel.root_dir%/../bin/GeoLite2-Country.mmdb</parameter>
 
-        <parameter key="application_default.admin.jobs.class">Application\Bundle\DefaultBundle\Admin\JobsAdmin</parameter>
-        <parameter key="application_default.admin.jobs.entity">Application\Bundle\DefaultBundle\Entity\Jobs</parameter>
+        <parameter key="application_default.admin.job.class">Application\Bundle\DefaultBundle\Admin\JobAdmin</parameter>
+        <parameter key="application_default.admin.job.entity">Application\Bundle\DefaultBundle\Entity\Job</parameter>
 
         <parameter key="app.default.admin.seo_homepage.class">Application\Bundle\DefaultBundle\Admin\SeoHomepageAdmin</parameter>
         <parameter key="app.default.admin.seo_homepage.entity">Application\Bundle\DefaultBundle\Entity\SeoHomepage</parameter>
@@ -28,10 +28,10 @@
             <argument type="service" id="translator" />
         </service>
 
-        <service id="application_default.admin.job" class="%application_default.admin.jobs.class%">
+        <service id="application_default.admin.job" class="%application_default.admin.job.class%">
             <tag name="sonata.admin" manager_type="orm" group="Vacancy" label="Jobs" />
             <argument />
-            <argument>%application_default.admin.jobs.entity%</argument>
+            <argument>%application_default.admin.job.entity%</argument>
             <argument />
         </service>
 
@@ -76,6 +76,7 @@
             <argument type="collection">
                 <argument key="fromEmail">%mailer_notify%</argument>
                 <argument key="fromName">%mailer_name%</argument>
+                <argument key="kernelRootDir">%kernel.root_dir%</argument>
             </argument>
         </service>
 

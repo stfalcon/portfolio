@@ -54,7 +54,7 @@ class Tag implements Translatable
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Application\Bundle\DefaultBundle\Entity\Jobs", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Application\Bundle\DefaultBundle\Entity\Job", mappedBy="tags")
      */
     private $jobs;
 

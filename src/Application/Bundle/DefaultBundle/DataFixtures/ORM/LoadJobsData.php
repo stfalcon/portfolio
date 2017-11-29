@@ -2,21 +2,20 @@
 
 namespace Application\Bundle\DefaultBundle\DataFixtures\ORM;
 
-use Application\Bundle\DefaultBundle\Entity\Jobs;
+use Application\Bundle\DefaultBundle\Entity\Job;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
 /**
- * jobs fixtures
+ * jobs fixtures.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class LoadJobsData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * Create and load jobs fixtures to database
+     * Create and load jobs fixtures to database.
      *
      * @param ObjectManager $manager Entity manager object
      */
@@ -30,10 +29,10 @@ class LoadJobsData extends AbstractFixture implements OrderedFixtureInterface
         $remoteTag = $this->getReference('tag-remote');
 
         // jobs
-        $jobFirst = new Jobs();
-        $jobFirst->setTitle('Middle/ Senior Angular Developer');
-        $jobFirst->setSlug('angular-developer');
-        $jobFirst->setDescription('В связи с ростом компании ищем опытного Middle/Senior JavaScript (Angular) Developer в свою команду профессионалов, который будет заниматься  разработкой веб приложений с использованием последних технологий и лучших практик. 
+        $jobFirst = (new Job())
+            ->setTitle('Middle/ Senior Angular Developer')
+            ->setSlug('angular-developer')
+            ->setDescription('В связи с ростом компании ищем опытного Middle/Senior JavaScript (Angular) Developer в свою команду профессионалов, который будет заниматься  разработкой веб приложений с использованием последних технологий и лучших практик. 
  
 Что вам понадобиться для работы:
 HTML5/CSS3, не менее 2 лет
@@ -68,23 +67,23 @@ LESS,SCSS,PostCss
 возможность обучения и карьерного роста
 отличный коллектив
 
-');
+')
 
-        $jobFirst->addTag($kmTag);
-        $jobFirst->addTag($kievTag);
-        $jobFirst->addTag($remoteTag);
-        $jobFirst->setActive(true)
+        ->addTag($kmTag)
+        ->addTag($kievTag)
+        ->addTag($remoteTag)
+        ->setActive(true)
         ->setCreated(new \DateTime('17-05-2016'));
         $manager->persist($jobFirst);
-        $manager->merge($kmTag);
-        $manager->merge($kievTag);
-        $manager->merge($remoteTag);
+        $manager
+            ->merge($kmTag)
+            ->merge($kievTag)
+            ->merge($remoteTag);
 
-
-        $jobAboutPhp = new Jobs();
-        $jobAboutPhp->setTitle('PHP Middle/Senior (Symfony) Developer');
-        $jobAboutPhp->setSlug('php-developer');
-        $jobAboutPhp->setDescription('
+        $jobAboutPhp = (new Job())
+            ->setTitle('PHP Middle/Senior (Symfony) Developer')
+            ->setSlug('php-developer')
+            ->setDescription('
         PHP Middle/Senior (Symfony) Developer
  
  Киев, Хмельницкий
@@ -122,22 +121,22 @@ LESS,SCSS,PostCss
 — помощь по релокейту (компания оплачивает услуги риелтора и первый месяц проживания);
 — и это ты еще не видел наш офис:) inna-dove.com.ua/...olio/stfalcon/pano/1.html.
 
-        ');
-        $jobAboutPhp->addTag($symfonyTag);
-        $jobAboutPhp->addTag($doctrine2Tag);
-        $jobAboutPhp->addTag($phpTag);
-        $jobAboutPhp->addTag($kmTag);
-        $jobAboutPhp->addTag($kievTag);
-        $jobAboutPhp->addTag($remoteTag);
-        $jobAboutPhp->setActive(true);
+        ')
+        ->addTag($symfonyTag)
+        ->addTag($doctrine2Tag)
+        ->addTag($phpTag)
+        ->addTag($kmTag)
+        ->addTag($kievTag)
+        ->addTag($remoteTag)
+        ->setActive(true);
 
         $manager->persist($jobAboutPhp);
-        $manager->merge($kmTag);
-        $manager->merge($kievTag);
-        $manager->merge($remoteTag);
-        $manager->merge($symfonyTag);
-        $manager->merge($doctrine2Tag);
-        $manager->merge($phpTag);
+        $manager->merge($kmTag)
+            ->merge($kievTag)
+            ->merge($remoteTag)
+            ->merge($symfonyTag)
+            ->merge($doctrine2Tag)
+            ->merge($phpTag);
 
         $manager->flush();
 
@@ -146,13 +145,12 @@ LESS,SCSS,PostCss
     }
 
     /**
-     * Get the number for sorting fixture
+     * Get the number for sorting fixture.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
         return 5; // the order in which fixtures will be loaded
     }
-
 }

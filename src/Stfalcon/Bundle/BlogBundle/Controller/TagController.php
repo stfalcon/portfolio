@@ -99,7 +99,7 @@ class TagController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $jobsRepository           = $em->getRepository('ApplicationDefaultBundle:Jobs');
+        $jobsRepository           = $em->getRepository('Job.php');
         $tagTranslationRepository = $em->getRepository('StfalconBlogBundle:TagTranslation');
         $tagRepository            = $em->getRepository('StfalconBlogBundle:Tag');
 

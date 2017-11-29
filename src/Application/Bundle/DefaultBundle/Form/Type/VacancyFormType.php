@@ -45,6 +45,26 @@ class VacancyFormType extends AbstractType
                     ],
                 ]
             )
+            ->add(
+                'phone',
+                'text',
+                [
+                    'attr'        => [
+                        'placeholder' => 'Номер телефона',
+                    ],
+                    'label'       => false,
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Length(['min' => 10, 'max' => 17]),
+                        new Assert\Regex(
+                            [
+                                'pattern' => "/\d+$/",
+                                'match' => true,
+                            ]
+                        ),
+                    ],
+                ]
+            )
             ->add('attach', 'file', [
                 'label'       => false,
                 'required'    => false,
@@ -53,10 +73,11 @@ class VacancyFormType extends AbstractType
                         'maxSize' => '20M',
                     ]),
                 ],
-            ])
-            ->add('captcha', 'recaptcha', [
-                'label' => false,
             ]);
+
+        if (isset($options['data']['environment']) && $options['data']['environment'] === 'prod') {
+            $builder->add('captcha', 'recaptcha');
+        }
     }
 
     /**

@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class JobsAdmin  extends Admin
+class JobAdmin extends Admin
 {
     /**
      * {@inheritdoc}
@@ -25,6 +25,7 @@ class JobsAdmin  extends Admin
             ->add('tags', null)
         ;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -38,12 +39,13 @@ class JobsAdmin  extends Admin
             ->add('_action', 'actions', [
                 'label' => 'Действия',
                 'actions' => [
-                    'edit'   => [],
+                    'edit' => [],
                     'delete' => [],
                 ],
             ])
         ;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -56,4 +58,3 @@ class JobsAdmin  extends Admin
         ;
     }
 }
-

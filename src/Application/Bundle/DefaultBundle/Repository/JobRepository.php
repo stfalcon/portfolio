@@ -4,15 +4,15 @@ namespace Application\Bundle\DefaultBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
-use Application\Bundle\DefaultBundle\Entity\Jobs;
+use Application\Bundle\DefaultBundle\Entity\Job;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 
-class JobsRepository extends EntityRepository
+class JobRepository extends EntityRepository
 {
     /**
      * @param string $slug
      *
-     * @return Jobs|null
+     * @return Job|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findJobBySlug($slug)
