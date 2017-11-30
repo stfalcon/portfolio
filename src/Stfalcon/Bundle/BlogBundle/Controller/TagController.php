@@ -10,6 +10,7 @@ use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 use Stfalcon\Bundle\BlogBundle\Entity\TagTranslation;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -87,13 +88,11 @@ class TagController extends AbstractController
      * @param string  $text    Tag text
      * @param int     $page    Page number
      *
-     * @return array | RedirectResponse
+     * @return Response
      *
      * @Route("/jobs/tag/{text}/{title}/{page}", name="jobs_tag_view",
      *      requirements={"page"="\d+", "title"="page"},
      *      defaults={"page"="1", "title"="page"})
-     *
-     * @Template()
      */
     public function jobTagAction(Request $request, $text, $page)
     {
@@ -132,12 +131,9 @@ class TagController extends AbstractController
         $jobs = $this->get('knp_paginator')->paginate($query, $page, 10);
 
         if (count($jobs) > 1) {
-            return [
-                'tag'   => $tag,
-                'jobs'  => $jobs,
-            ];
-        } else {
-            return $this->redirect($this->generateUrl('jobs_list'));
+            return $this->render('@StfalconBlog/Tag/jobTag.html.twig', ['tag' => $tag, 'jobs' => $jobs]);
         }
+
+        return $this->redirect($this->generateUrl('jobs_list'));
     }
 }

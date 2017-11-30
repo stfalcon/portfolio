@@ -78,12 +78,7 @@ class JobsController extends Controller
         if (!$job) {
             return $this->redirect($this->generateUrl('jobs_list'));
         }
-        $vacancyForm = $this->createForm(
-            'vacancy_form',
-            [
-                'environment' => $this->getParameter('kernel.environment'),
-            ]
-        );
+        $vacancyForm = $this->createForm('vacancy_form');
         $vacancyForm->handleRequest($request);
         if ($vacancyForm->isSubmitted() && $vacancyForm->isValid()) {
             $formData = $vacancyForm->getData();

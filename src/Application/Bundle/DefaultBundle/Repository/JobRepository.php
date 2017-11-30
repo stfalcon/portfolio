@@ -17,9 +17,10 @@ class JobRepository extends EntityRepository
      */
     public function findJobBySlug($slug)
     {
-        $qb = $this->createQueryBuilder('j')
-            ->andWhere('j.active = 1')
-            ->andWhere('j.slug = :slug')
+        $qb = $this->createQueryBuilder('j');
+
+        $qb->where($qb->expr()->eq('j.active', true))
+            ->andWhere($qb->expr()->eq('j.slug', ':slug'))
             ->setParameter('slug', $slug)
             ->setMaxResults(1);
 

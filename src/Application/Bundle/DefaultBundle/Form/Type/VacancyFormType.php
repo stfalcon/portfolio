@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class VacancyFormType
+ * Class VacancyFormType.
  */
 class VacancyFormType extends AbstractType
 {
@@ -21,10 +21,10 @@ class VacancyFormType extends AbstractType
                 'name',
                 'text',
                 [
-                    'attr'        => [
+                    'attr' => [
                         'placeholder' => 'Ваше имя',
                     ],
-                    'label'       => false,
+                    'label' => false,
                     'constraints' => [
                         new Assert\NotBlank(),
                         new Assert\Length(['max' => 64]),
@@ -35,10 +35,10 @@ class VacancyFormType extends AbstractType
                 'email',
                 'email',
                 [
-                    'attr'        => [
+                    'attr' => [
                         'placeholder' => 'Электронная почта',
                     ],
-                    'label'       => false,
+                    'label' => false,
                     'constraints' => [
                         new Assert\NotBlank(),
                         new Assert\Length(['max' => 64]),
@@ -49,10 +49,10 @@ class VacancyFormType extends AbstractType
                 'phone',
                 'text',
                 [
-                    'attr'        => [
+                    'attr' => [
                         'placeholder' => 'Номер телефона',
                     ],
-                    'label'       => false,
+                    'label' => false,
                     'constraints' => [
                         new Assert\NotBlank(),
                         new Assert\Length(['min' => 10, 'max' => 17]),
@@ -66,18 +66,16 @@ class VacancyFormType extends AbstractType
                 ]
             )
             ->add('attach', 'file', [
-                'label'       => false,
-                'required'    => false,
+                'label' => false,
+                'required' => false,
                 'constraints' => [
                     new Assert\File([
                         'maxSize' => '20M',
                     ]),
                 ],
-            ]);
-
-        if (isset($options['data']['environment']) && $options['data']['environment'] === 'prod') {
-            $builder->add('captcha', 'recaptcha');
-        }
+            ])
+            ->add('captcha', 'recaptcha')
+        ;
     }
 
     /**
