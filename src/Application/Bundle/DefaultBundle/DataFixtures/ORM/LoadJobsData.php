@@ -32,7 +32,8 @@ class LoadJobsData extends AbstractFixture implements OrderedFixtureInterface
         $jobFirst = (new Job())
             ->setTitle('Middle/ Senior Angular Developer')
             ->setSlug('angular-developer')
-            ->setDescription('В связи с ростом компании ищем опытного Middle/Senior JavaScript (Angular) Developer в свою команду профессионалов, который будет заниматься  разработкой веб приложений с использованием последних технологий и лучших практик. 
+            ->setDescription(<<<DESCRIPTION
+В связи с ростом компании ищем опытного Middle/Senior JavaScript (Angular) Developer в свою команду профессионалов, который будет заниматься  разработкой веб приложений с использованием последних технологий и лучших практик. 
  
 Что вам понадобиться для работы:
 HTML5/CSS3, не менее 2 лет
@@ -66,9 +67,8 @@ LESS,SCSS,PostCss
 веселые и активные корпоративы
 возможность обучения и карьерного роста
 отличный коллектив
-
-')
-
+DESCRIPTION
+            )
         ->addTag($kmTag)
         ->addTag($kievTag)
         ->addTag($remoteTag)
@@ -82,8 +82,8 @@ LESS,SCSS,PostCss
         $jobAboutPhp = (new Job())
             ->setTitle('PHP Middle/Senior (Symfony) Developer')
             ->setSlug('php-developer')
-            ->setDescription('
-        PHP Middle/Senior (Symfony) Developer
+            ->setDescription(<<<DESCRIPTION
+PHP Middle/Senior (Symfony) Developer
  
  Киев, Хмельницкий
 Необходимые навыки
@@ -119,8 +119,8 @@ LESS,SCSS,PostCss
 — хороший коллектив;
 — помощь по релокейту (компания оплачивает услуги риелтора и первый месяц проживания);
 — и это ты еще не видел наш офис:) inna-dove.com.ua/...olio/stfalcon/pano/1.html.
-
-        ')
+DESCRIPTION
+            )
         ->addTag($symfonyTag)
         ->addTag($doctrine2Tag)
         ->addTag($phpTag)
