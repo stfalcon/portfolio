@@ -9,10 +9,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * jobs fixtures.
- *
- * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
-class LoadJobsData extends AbstractFixture implements OrderedFixtureInterface
+class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Create and load jobs fixtures to database.
@@ -32,7 +30,7 @@ class LoadJobsData extends AbstractFixture implements OrderedFixtureInterface
         $jobFirst = (new Job())
             ->setTitle('Middle/ Senior Angular Developer')
             ->setSlug('angular-developer')
-            ->setDescription(<<<DESCRIPTION
+            ->setDescription(<<<'DESCRIPTION'
 В связи с ростом компании ищем опытного Middle/Senior JavaScript (Angular) Developer в свою команду профессионалов, который будет заниматься  разработкой веб приложений с использованием последних технологий и лучших практик. 
  
 Что вам понадобиться для работы:
@@ -82,7 +80,7 @@ DESCRIPTION
         $jobAboutPhp = (new Job())
             ->setTitle('PHP Middle/Senior (Symfony) Developer')
             ->setSlug('php-developer')
-            ->setDescription(<<<DESCRIPTION
+            ->setDescription(<<<'DESCRIPTION'
 PHP Middle/Senior (Symfony) Developer
  
  Киев, Хмельницкий

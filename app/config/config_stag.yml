@@ -22,7 +22,3 @@ doctrine:
         result_cache_driver: apc
         query_cache_driver: apc
 
-# AsseticBundle
-#assetic:
-#    filters:
-#        cssrewrite: ~
