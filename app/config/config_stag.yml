@@ -1,0 +1,24 @@
+imports:
+    - { resource: config.yml }
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:         stream
+            path:         "%kernel.logs_dir%/%kernel.environment%.log"
+            level:        debug
+        gelf:
+            type: service
+            id: application_default.monolog.gelf_handler
+            level: error
+
+doctrine:
+    orm:
+        metadata_cache_driver: apc
+        result_cache_driver: apc
+        query_cache_driver: apc
+

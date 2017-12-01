@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 use Stfalcon\Bundle\BlogBundle\Entity\TagTranslation;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -77,5 +79,61 @@ class TagController extends AbstractController
         } else {
             return $this->redirect($this->generateUrl('blog'));
         }
+    }
+
+    /**
+     * View tag
+     *
+     * @param Request $request Request
+     * @param string  $text    Tag text
+     * @param int     $page    Page number
+     *
+     * @return Response
+     *
+     * @Route("/jobs/tag/{text}/{title}/{page}", name="jobs_tag_view",
+     *      requirements={"page"="\d+", "title"="page"},
+     *      defaults={"page"="1", "title"="page"})
+     */
+    public function jobTagAction(Request $request, $text, $page)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $jobsRepository           = $em->getRepository('Job.php');
+        $tagTranslationRepository = $em->getRepository('StfalconBlogBundle:TagTranslation');
+        $tagRepository            = $em->getRepository('StfalconBlogBundle:Tag');
+
+        $seo = $this->get('sonata.seo.page');
+        $seo->addMeta(
+            'property',
+            'og:url',
+            $this->generateUrl(
+                $request->get('_route'),
+                [
+                    'text' => $text,
+                ],
+                true
+            )
+        )
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
+        $tagTranslation = $tagTranslationRepository->findOneBy(['content' => $text]);
+        if (null === $tagTranslation) {
+            $tag = $tagRepository->findOneBy(['text' => $text]);
+        } else {
+            $tag = $tagTranslation->getObject();
+        }
+
+        if (null === $tag) {
+            throw new NotFoundHttpException();
+        }
+
+        $query = $jobsRepository->findJobsByTagAsQuery($tag);
+        $jobs = $this->get('knp_paginator')->paginate($query, $page, 10);
+
+        if (count($jobs) > 1) {
+            return $this->render('@StfalconBlog/Tag/jobTag.html.twig', ['tag' => $tag, 'jobs' => $jobs]);
+        }
+
+        return $this->redirect($this->generateUrl('jobs_list'));
     }
 }

@@ -56,6 +56,40 @@ class MailerService
     }
 
     /**
+     * send vacancy form to our mail
+     *
+     * @param array  $params
+     * @param string $jobTitle
+     *
+     * @return int
+     */
+    public function sendCandidateProfile(array $params, $jobTitle)
+    {
+        $attachments = [];
+        if ($params['attach']) {
+            /** @var UploadedFile $attach */
+            $attach = $params['attach'];
+            $attachFile = $attach->move(realpath($this->options['kernelRootDir'].'/../attachments/'), $attach->getClientOriginalName());
+            $attachments[] = $attachFile;
+        }
+
+        $subject = sprintf('Анкета кандидата на вакансію %s від %s', $jobTitle, $params['email']);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($params['email'])
+            ->setTo($this->options['fromEmail']);
+
+        foreach ($attachments as $file) {
+            $message->attach(\Swift_Attachment::fromPath($file->getRealPath())->setFilename($file->getFilename()));
+        }
+
+        $message->setBody($this->getBody('@ApplicationDefault/emails/vacancy.html.twig', $params));
+
+        return $this->mailer->send($message);
+    }
+
+    /**
      * @param string $template
      * @param array  $templateParams
      *

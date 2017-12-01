@@ -1,0 +1,29 @@
+{% extends 'StfalconBlogBundle::layout.html.twig' %}
+
+{% block title %}{% trans %}Вакансии{% endtrans %}{{ parent() }}{% endblock %}
+
+{% block additional %}
+    <link rel="canonical" href="{{ url('jobs_list') }}" />
+{% endblock additional %}
+
+{% block team_image %}
+    <div class="team-image">
+        <video class="team-image__video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto">
+            <source src="{{ asset('assets/img/STFalconCR3.mp4') }}">
+        </video>
+        <h2 class="team-image__title">Приглашаем в нашу команду</h2>
+        <p class="team-image__sub-title">У нас большой и уютный офис, дружый колектив и современные технологии в работе</p>
+    </div>
+{% endblock %}
+
+{% block content_wrapper %}
+    <div class="jobs-content">
+    {% if jobs %}
+        {% include 'ApplicationDefaultBundle:Jobs:_jobs.html.twig' with {'jobs': jobs} %}
+
+        {{ knp_pagination_render(jobs) }}
+    {% endif %}
+    </div>
+    <button id="scroll-top" class="button-up scroll-to-top"></button>
+{% endblock %}
+
