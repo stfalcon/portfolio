@@ -16,7 +16,6 @@
             phone: {
                 required: "{{ 'Пожалуйста, введите телефон'|trans }}",
                 minlength: "{{ 'Введите телефон не меньше {0} символов'|trans }}",
-                pattern: "{{ 'Не верний формат номера'|trans }}"
             }
         };
     </script>
@@ -47,6 +46,7 @@
                     {% endfor %}
                 </div>
             {% else %}
+            <section class="contacts-wrapper">
                 {% if app.session.flashBag.has('vacancy_error') %}
                     <div class="alert alert-success">
                         {% for msg in app.session.flashBag.get('vacancy_error') %}
@@ -58,6 +58,7 @@
                     {% include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' with {'form':form} %}
                 </div>
             {% endif %}
+            </section>
             <a class="read-more prev-page" href="{{ path('jobs_list') }}"><span>{{ 'Вернуться к списку вакансий'|trans }}</span>
                 <span>{{ 'К списку записей'|trans }}</span>
             </a>
