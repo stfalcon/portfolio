@@ -1,6 +1,6 @@
 {% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
 
-<form action="{{ path('jobs_job_view', {'slug':job.slug}) }}" id="direct-vacancy-form" method="post" {{ form_enctype(form) }}
+<form action="{{ path('jobs_job_view', {'slug':job.slug}) }}" id="direct-vacancy-form" method="post" enctype="multipart/form-data"
       onsubmit="ga('send', 'event', 'vacancy_form', 'submit_form'); fbq('trackCustom', 'vacancy_form', 'submit_form');">
     <h3>{{ "Ответить на вакансию" | trans() }}</h3>
     {{ form_errors(form) }}
