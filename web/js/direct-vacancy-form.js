@@ -2,6 +2,10 @@ $(function () {
     var vacancy_form = $('#direct-vacancy-form');
     if (vacancy_form.length) {
         vacancy_form.validate({
+            submitHandler: function(form) {
+                form.submit();
+                $('#direct-vacancy-form').find('.btn').attr('disabled', true);
+            },
             rules: {
                 'vacancy_form[name]': {
                     required: true,
@@ -36,7 +40,6 @@ $(function () {
                 label.insertAfter(element);
             },
             wrapper: 'div',
-            debug: true
         });
 
         $.validator.addClassRules({
@@ -75,7 +78,7 @@ $(function () {
         });
     }
 
-    jQuery.extend(jQuery.validator.messages, {
-        email: directVacancyFormMessage.email.defaultMessage
-    });
+    // jQuery.extend(jQuery.validator.messages, {
+    //     email: directVacancyFormMessage.email.defaultMessage
+    // });
 });
