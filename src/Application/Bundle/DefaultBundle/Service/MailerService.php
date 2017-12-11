@@ -1,9 +1,11 @@
 <?php
+
 namespace Application\Bundle\DefaultBundle\Service;
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class MailerService
+ * Class MailerService.
  */
 class MailerService
 {
@@ -26,7 +28,7 @@ class MailerService
      * @param \Swift_Mailer     $mailer
      * @param \Twig_Environment $twig
      * @param array             $options
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, array $options)
@@ -56,7 +58,7 @@ class MailerService
     }
 
     /**
-     * send vacancy form to our mail
+     * send vacancy form to our mail.
      *
      * @param array  $params
      * @param string $jobTitle
@@ -84,7 +86,10 @@ class MailerService
             $message->attach(\Swift_Attachment::fromPath($file->getRealPath())->setFilename($file->getFilename()));
         }
 
-        $message->setBody($this->getBody('@ApplicationDefault/emails/vacancy.html.twig', $params));
+        $message->setBody(
+            $this->getBody('@ApplicationDefault/emails/vacancy.html.twig', $params),
+            'text/html'
+        );
 
         return $this->mailer->send($message);
     }
@@ -97,9 +102,7 @@ class MailerService
      */
     private function getBody($template, array $templateParams = [])
     {
-        $templateContent = $this->twig->loadTemplate(
-            $template
-        );
+        $templateContent = $this->twig->loadTemplate($template);
 
         return $templateContent->render($templateParams);
     }
@@ -140,4 +143,4 @@ class MailerService
             return false;
         }
     }
-} 
+}
