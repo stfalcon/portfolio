@@ -57,19 +57,6 @@ class Job
     private $slug;
 
     /**
-     * Tags for post.
-     *
-     * @var ArrayCollection
-     * @Assert\NotBlank()
-     * @ORM\ManyToMany(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\Tag", inversedBy="jobs")
-     * @ORM\JoinTable(name="jobs_tags",
-     *      joinColumns={@ORM\JoinColumn(name="jobs_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
-     *      )
-     */
-    private $tags;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="meta_keywords", type="text", nullable=true)
@@ -108,7 +95,6 @@ class Job
      */
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
         $this->created = new \DateTime();
     }
 
@@ -130,46 +116,6 @@ class Job
     public function getActive()
     {
         return $this->active;
-    }
-
-    /**
-     * Set tags to post.
-     *
-     * @param ArrayCollection $tags
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-    }
-
-    /**
-     * Get all tags.
-     *
-     * @return ArrayCollection
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param Tag $tag
-     *
-     * @return $this
-     */
-    public function addTag(Tag $tag)
-    {
-        $this->tags->add($tag);
-
-        return $this;
-    }
-
-    /**
-     * @param Tag $tag
-     */
-    public function removeTag(Tag $tag)
-    {
-        $this->tags->removeElement($tag);
     }
 
     /**

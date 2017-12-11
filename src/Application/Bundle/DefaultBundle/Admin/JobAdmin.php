@@ -22,7 +22,6 @@ class JobAdmin extends Admin
             ->add('metaKeywords', null, ['label' => 'Meta keywords', 'required' => false])
             ->add('metaDescription', null, ['label' => 'Meta description', 'required' => false])
             ->add('metaTitle', null, ['label' => 'Meta title', 'required' => false])
-            ->add('tags', null)
         ;
     }
 

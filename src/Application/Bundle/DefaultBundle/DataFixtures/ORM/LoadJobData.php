@@ -67,9 +67,6 @@ LESS,SCSS,PostCss
 отличный коллектив
 DESCRIPTION
             )
-        ->addTag($kmTag)
-        ->addTag($kievTag)
-        ->addTag($remoteTag)
         ->setActive(true)
         ->setCreated(new \DateTime('17-05-2016'));
         $manager->persist($jobFirst);
@@ -119,12 +116,6 @@ PHP Middle/Senior (Symfony) Developer
 — и это ты еще не видел наш офис:) inna-dove.com.ua/...olio/stfalcon/pano/1.html.
 DESCRIPTION
             )
-        ->addTag($symfonyTag)
-        ->addTag($doctrine2Tag)
-        ->addTag($phpTag)
-        ->addTag($kmTag)
-        ->addTag($kievTag)
-        ->addTag($remoteTag)
         ->setActive(true);
 
         $manager->persist($jobAboutPhp);
