@@ -14,7 +14,7 @@
     {{ sonata_seo_link_canonical() }}
     {{ sonata_seo_lang_alternates() }}
 
-    {% if app.request.host == 'stfalcon.com' %}
+    {% if app.environment == 'prod' %}
         {% javascripts
             'js/metrics/header.js'
             output='cache/js/*.js' %}
@@ -26,10 +26,6 @@
             output='cache/js/*.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-    {% endif %}
-
-    {% if app.request.locale == 'en' %}
-        {% include '_carrot_quest.html.twig' %}
     {% endif %}
 </head>
 <body>
@@ -49,39 +45,38 @@
         </div>
     </header>
     <section data-bg="#2C373C" class="achievements bg-item">
-        <h2 class="promo-title promo-title--bold achievements__title">Your Partner in Web and Mobile Development</h2>
-        <p class="achievements__text">Our mission is move forward technical progress and create opportunities in the
-            world with innovative and useful websites and mobile applications.</p>
+        <h2 class="promo-title promo-title--bold achievements__title">{{ 'main.promo.title1'|trans }}</h2>
+        <p class="achievements__text">{{ 'main.promo.title1.desc'|trans }}</p>
         <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
     </section>
     <section class="solutions">
-        <h2 class="promo-title promo-title--bold solutions__title">Efficient Business Solutions</h2>
+        <h2 class="promo-title promo-title--bold solutions__title">{{ 'main.promo.title2'|trans }}</h2>
         <ul class="solutions__list">
             <li class="solutions__item">
                 <img src="{{ asset('img/solutions_logistics.svg') }}" alt="" class="solutions__icon">
-                <div class="solutions__name">Logistics</div>
-                <div class="solutions__text">Smart Solutions for transportation companies</div>
+                <div class="solutions__name">{{ 'main.promo.title2_1'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_1.desc'|trans }}</div>
             </li>
             <li class="solutions__item">
                 <img src="{{ asset('img/solutions_travel.svg') }}" alt="" class="solutions__icon">
-                <div class="solutions__name">Travel</div>
-                <div class="solutions__text">Apps for those tho love exploring the world</div>
+                <div class="solutions__name">{{ 'main.promo.title2_2'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_2.desc'|trans }}</div>
             </li>
             <li class="solutions__item">
                 <img src="{{ asset('img/solutions_booking.svg') }}" alt="" class="solutions__icon">
-                <div class="solutions__name">Booking</div>
-                <div class="solutions__text">Web-systems for selling tickets or appartments</div>
+                <div class="solutions__name">{{ 'main.promo.title2_3'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_3.desc'|trans }}</div>
             </li>
             <li class="solutions__item">
                 <img src="{{ asset('img/solutions_ondemand.svg') }}" alt="" class="solutions__icon">
-                <div class="solutions__name">On Demand</div>
-                <div class="solutions__text">Different services also know as Uber for X</div>
+                <div class="solutions__name">{{ 'main.promo.title2_4'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_4.desc'|trans }}</div>
             </li>
         </ul>
-        <button type="button" class="solutions__btn home-btn home-btn--white">GET IN TOUCH</button>
+        <button type="button" class="solutions__btn home-btn home-btn--white">{{ 'main.btn.title2_4'|trans }}</button>
     </section>
     <section class="trusted">
-        <h2 class="promo-title promo-title--bold trusted__title">Trusted by</h2>
+        <h2 class="promo-title promo-title--bold trusted__title">{{ 'main.promo.title3'|trans }}</h2>
         <ul class="trusted__list">
             <li class="trusted__item">
                 <img src="{{ asset('img/trusted_np.svg') }}" alt="" class="trusted__img">
@@ -203,141 +198,47 @@
             </div>
         </article>
     </section>
+
     <section class="our-services">
-        <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span><!-- helper for change color description on last project-item -->
-        <h2 class="promo-title our-services__title">Your full-cycle development partner</h2>
+        <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
+        <h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>
+        {% if services|length > 0 %}
         <ul class="services-list">
-            <li class="services-list__item">
-                <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">Research and Prototyping</div>
-                <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                    of an audience — identifying their behaviors and genuine needs, thus uncovering new design opportunities.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features2.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">User Interface Design</div>
-                <p class="services-list__text">We design digital products and services that
-                    transform businesses that also resonate with their users. We specialize in mobile apps,
-                    responsive web apps and IoT.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features3.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">Native Mobile Development</div>
-                <p class="services-list__text">We develop native apps for iPhone, iPad and Android devices.
-                    Our designers and engineers work in tandem to create reliable and easily scalable products.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features4.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">High Load Systems</div>
-                <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                    of an audience — identifying their behaviors and genuine needs, thus uncovering new design opportunities.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features5.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">Data Science</div>
-                <p class="services-list__text">We design digital products and services that
-                    transform businesses that also resonate with their users. We specialize in mobile apps,
-                    responsive web apps and IoT.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features6.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">Cloud Solutions</div>
-                <p class="services-list__text">We develop native apps for iPhone, iPad and Android devices.
-                    Our designers and engineers work in tandem to create reliable and easily scalable products.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features7.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">QA and Testing</div>
-                <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                    of an audience — identifying their behaviors and genuine needs, thus uncovering new design opportunities.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features8.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">DevOps</div>
-                <p class="services-list__text">We design digital products and services that
-                    transform businesses that also resonate with their users. We specialize in mobile apps,
-                    responsive web apps and IoT.</p>
-            </li>
-            <li class="services-list__item">
-                <img src="{{ asset('img/features9.svg') }}" alt="" class="services-list__icon">
-                <div class="services-list__name">Technical Support</div>
-                <p class="services-list__text">We develop native apps for iPhone, iPad and Android devices.
-                    Our designers and engineers work in tandem to create reliable and easily scalable products.</p>
-            </li>
+            {% for service in services %}
+                {% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'service' : service} %}
+            {% endfor %}
         </ul>
-        <button type="button" class="our-services__btn home-btn home-btn--grey">HIRE US</button>
+        {% endif %}
+        <button type="button" class="our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>
     </section>
+
     <section class="side-projects">
-        <h2 class="promo-title side-projects__title">Side-projects</h2>
+        <h2 class="promo-title side-projects__title">{{ 'main.promo.title5'|trans }}</h2>
         <div class="side-projects__list">
             <div class="side-projects__item side-projects__item--fwdays">
                 <img src="{{ asset('img/fwdays.svg') }}" alt="" class="side-projects__logo">
-                <div class="side-projects__text">Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.</div>
-                <a class="arrow-button" href="http://frameworksdays.com/" rel="nofollow" target="_blank"></a>
+                <div class="side-projects__text">{{ 'main.promo.title5_1.desc'|trans }}</div>
+                <a class="arrow-button" href="https://frameworksdays.com/" rel="nofollow" target="_blank"></a>
             </div>
             <div class="side-projects__item side-projects__item--cnc">
                 <img src="{{ asset('img/cnc.svg') }}" alt="" class="side-projects__logo">
-                <div class="side-projects__text">Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.</div>
+                <div class="side-projects__text">{{ 'main.promo.title5_2.desc'|trans }}</div>
                 <a class="arrow-button" href="http://kmcnc.stfalcon.com//" rel="nofollow" target="_blank"></a>
             </div>
             <div class="side-projects__item side-projects__item--academy">
                 <img src="{{ asset('img/logo_academy.svg') }}" alt="" class="side-projects__logo">
-                <div class="side-projects__text">Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.</div>
+                <div class="side-projects__text">{{ 'main.promo.title5_3.desc'|trans }}</div>
                 <a class="arrow-button" href="http://academy.stfalcon.com/" rel="nofollow" target="_blank"></a>
             </div>
         </div>
     </section>
     <section class="blog">
         <h2 class="blog__title">
-            <a href="#" class="promo-title">Fresh from our blog</a>
-            <a href="/en/blog/rss" target="_blank"><i class="icon icon-rss"></i></a>
+            <a href="{{ path('blog') }}" class="promo-title">{{ "ведем блог" | trans() }}</a>
+            <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-rss"></i></a>
         </h2>
-        <ul class="blog__list">
-            <li class="blog-article">
-                <a href="#" class="blog-article__link">Will iPhone X release influence mobile app design?</a>
-                <p class="blog-article__text">iPhone X release (read as iPhone 10) was timed to the 10th
-                    anniversary of the Apple Smartphone. The event was a surprise to Apple f…</p>
-                <div class="article-author">
-                    <img class="article-author__img" src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
-                    <div class="article-author__right">
-                        <div class="article-author__name">First User</div>
-                        <div class="article-author__date">August 21, 2017</div>
-                    </div>
-                </div>
-            </li>
-            <li class="blog-article">
-                <a href="#" class="blog-article__link">GitHub: manual for non-technical entrepreneurs</a>
-                <p class="blog-article__text">GitHub is the world’s largest hosting service for storing and working with IT-projects, but that’s not all. The resource cooperates nearly 24M develo…</p>
-                <div class="article-author">
-                    <img class="article-author__img" src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
-                    <div class="article-author__right">
-                        <div class="article-author__name">Second User</div>
-                        <div class="article-author__date">August 21, 2017</div>
-                    </div>
-                </div>
-            </li>
-            <li class="blog-article">
-                <a href="#" class="blog-article__link">How to create an apartment rental service like Airbnb</a>
-                <p class="blog-article__text">Airbnb has changed the way people tend to search for accommodations all over the world. This startup has conquered a global market of the apartment ren…</p>
-                <div class="article-author">
-                    <img class="article-author__img" src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
-                    <div class="article-author__right">
-                        <div class="article-author__name">Third User</div>
-                        <div class="article-author__date">August 21, 2017</div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <div class="subscribe">
-            <form action="#">
-                <div class="subscribe__title">Subscribe for new posts</div>
-                <div class="subscribe__form">
-                    <input class="subscribe__input" type="text" placeholder="E-mail">
-                    <button class="subscribe__button" type="submit">Subscribe</button>
-                </div>
-                <ul class="success-list"></ul>
-            </form>
-        </div>
+        {% include "@StfalconBlog/Post/_posts_main.html.twig" with {'posts' : posts} %}
+        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog', 'forPage': 'main'})) }}
     </section>
     <section class="details-info">
         <h1>{{ "Stfalcon LLC &mdash; разработки сайтов и мобильных приложений" | trans()|raw }}</h1>

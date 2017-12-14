@@ -12,3 +12,6 @@ _order-ios: 'Связаться с нами'
 _order-android: 'Связаться с нами'
 '__main.we_contribution_text': 'Наша команда любит open-source! </br> Мы создаем полезные решения для <a href="%link%" rel="nofollow" target="_blank">Symfony</a>, <a href="%android_link%" rel="nofollow" target="_blank">Android</a>/iOS платформ и делимся ими на <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a>.'
 '__Footer.homepage.link': '<a href="%homepage%">Stfalcon LLC</a> &mdash; разработки сайтов и мобильных приложений'
+
+main.promo.title1: Your Partner in Web and Mobile Development
+main.promo.title1.desc: Our mission is move forward technical progress and create opportunities in the world with innovative and useful websites and mobile applications.

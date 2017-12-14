@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Default controller. For single actions for project
@@ -57,13 +58,25 @@ class DefaultController extends Controller
      *
      * @param Request $request Request
      *
-     * @return array()
-     * @Template("ApplicationDefaultBundle:Default:index-new.html.twig")
+     * @return Response
+     *
      * @Route("/index-new", name="index-new")
      */
+    public function indexNewAction(Request $request)
+    {
+        $services = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Category')
+            ->findBy(['showInServices' => true], ['ordernum' => 'ASC']);
+        $locale = $request->getLocale() ? $request->getLocale() : 'en';
+        $posts = $this->get('doctrine')->getManager()
+            ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, 3);
 
-    public function indexnewAction(Request $request){
-        return [];
+        return $this->render(
+            '@ApplicationDefault/Default/index-new.html.twig',
+            [
+                'services' => $services,
+                'posts' => $posts,
+            ]
+        );
     }
 
     /**

@@ -112,7 +112,9 @@ class CategoryController extends Controller
      * Ajax order projects
      *
      * @return string
+     *
      * @Route("/admin/portfolio/category/applyOrder", name="portfolioProjectsApplyOrder")
+     *
      * @Method({"POST"})
      */
     public function orderProjects()

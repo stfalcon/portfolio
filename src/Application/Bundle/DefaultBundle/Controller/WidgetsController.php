@@ -48,8 +48,9 @@ class WidgetsController extends Controller
      *
      * @param Request $request  Request
      * @param string  $category Category
+     * @param string  $forPage
      *
-     * @return array
+     * @return Response
      *
      * @Template("ApplicationDefaultBundle:Widgets:_subscribe_form.html.twig")
      * @Route(
@@ -58,7 +59,7 @@ class WidgetsController extends Controller
      *      name="post_subscribe"
      * )
      */
-    public function subscribeWidgetAction(Request $request, $category)
+    public function subscribeWidgetAction(Request $request, $category, $forPage = 'old')
     {
         $form = $this->createForm('subscribe');
 
@@ -86,11 +87,16 @@ class WidgetsController extends Controller
                 ])
             ]);
         }
+        $template = $forPage === 'old' ? '@ApplicationDefault/Widgets/_subscribe_form.html.twig'
+            : '@ApplicationDefault/Widgets/_subscribe_new_form.html.twig';
 
-        return [
-            'form' => $form->createView(),
-            'category' => $category
-        ];
+        return $this->render(
+            $template,
+            [
+                'form' => $form->createView(),
+                'category' => $category,
+            ]
+        );
     }
 
     /**
