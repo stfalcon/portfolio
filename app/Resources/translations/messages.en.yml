@@ -10,6 +10,7 @@ title: __title
 
 Аватарка: Avatar
 Блог: Blog
+Вакансии: Vacancies
 Поиск: Search
 
 'Stfalcon':
@@ -135,7 +136,7 @@ title: __title
 'Увлекательный мобильный вариант одноименной настольной игры': Fascinating mobile version of the puzzle board game
 'Двумерный аркадный шутер, оружие и враги в ассортименте': 2D arcade shooter, weapons and enemies in range
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
-'__main.we_contribution_text': 'Our contribution to the development of <a href="%link%" rel="nofollow" target="_blank">Symfony</a> PHP framework proves our extensive experience in developing web services with this framework. We actively participate in the buildout of <a href="%android_link%" rel="nofollow" target="_blank">Android</a> open source libraries and constantly update our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a> repository with new open source projects.'
+'__main.we_contribution_text': 'Our team loves open-source! </br> We create solutions for <a href="%link%" rel="nofollow" target="_blank">Symfony</a> framework,<br> <a href="%android_link%" rel="nofollow" target="_blank">Android</a> & iOS platfroms and share this stuff to our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a>.'
 
 'Мы принимаем активное участие в создании библиотек для Android-разработчиков, а также постоянно добавляем новые open-source проекты в наш GitHub-репозиторий.': We actively participate in the buildout of Android open source libraries and constantly update our GitHub repository with new open source projects.
 
@@ -260,17 +261,17 @@ Cоздаем нативные мобильные приложения (боле
 Благодаря интеграции приложений с социальными сетями пользователи могут легко регистрироваться и делиться информацией с друзьями: 'Users can easily register and share information with friends thanks to app integration with social media'
 Определяем способы монетизации и стратегии продвижения: 'We determine monetization options and promotion strategies'
 Наполняем игровой мир: 'We fill the game world'
-_order-web-development: 'Order a website'
-_order-web-design: 'Order a design'
-_order-mobile-development: 'Order mobile application'
-_order-game-development: 'Order a game'
-_order-consulting-audit: 'Order consulting and audit'
-_order-project: 'Order a project'
-_order-responsive: 'Order a project'
-_order-ux-ui: 'Order a project'
-_order-symfony2: 'Order a project'
-_order-ios: 'Order an app'
-_order-android: 'Order an app'
+_order-web-development: 'Contact us'
+_order-web-design: 'Contact us'
+_order-mobile-development: 'Contact us'
+_order-game-development: 'Contact us'
+_order-consulting-audit: 'Contact us'
+_order-project: 'Contact us'
+_order-responsive: 'Contact us'
+_order-ux-ui: 'Contact us'
+_order-symfony2: 'Contact us'
+_order-ios: 'Contact us'
+_order-android: 'Contact us'
 Опишите ваш проект: 'Tell us a few words about the project'
 
 Об авторе: 'About author'

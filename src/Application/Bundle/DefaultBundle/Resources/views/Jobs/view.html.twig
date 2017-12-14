@@ -1,0 +1,71 @@
+{% extends 'StfalconBlogBundle::layout.html.twig' %}
+{% block title %}{{ job.metaTitle }} | {{ 'Вакансия'|trans }}{{ parent() }}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var directVacancyFormMessage = {
+            name: {
+                required: "{{ 'Пожалуйста, введите ваше имя'|trans }}",
+                minlength: "{{ 'Введите имя не меньше {0} символов'|trans }}"
+            },
+            email: {
+                required: "{{ 'Пожалуйста, введите адрес вашей эл.почты'|trans }}",
+                minlength: "{{ 'Ваша эл.адрес должен быть формата name@domain.com'|trans }}",
+                defaultMessage: "{{ 'Пожалуйста введите правильный имейл'|trans }}"
+            },
+            phone: {
+                required: "{{ 'Пожалуйста, введите телефон'|trans }}",
+                minlength: "{{ 'Введите телефон не меньше {0} символов'|trans }}",
+            }
+        };
+    </script>
+    {% javascripts
+    'js/direct-vacancy-form.js'
+    output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}
+{% block content_wrapper %}
+    {{ parent() }}
+    <article class="blog-post">
+        {% include 'ApplicationDefaultBundle:Jobs:_jobs_header.html.twig' with {'job': job, 'linkTitle': false} %}
+
+        {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'top'} %}
+
+        <div class="post-content">
+            {{ job.description|moreToSpan|highlightCode|raw }}
+            {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
+
+            <div class="contact-us hire_us-mob">
+                <button class="hire_us hire_us-button-mob">{{ 'Связаться с нами!'|trans }}</button>
+            </div>
+            {% if app.session.flashBag.has('vacancy_send') %}
+                <div class="alert alert-success">
+                    {% for msg in app.session.flashBag.get('vacancy_send') %}
+                    <h3>{{ msg }}</h3>
+                    {% endfor %}
+                </div>
+            {% else %}
+            <section class="contacts-wrapper">
+                {% if app.session.flashBag.has('vacancy_error') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashBag.get('vacancy_error') %}
+                            <div class="error-list">{{ msg }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="contacts-form-wr">
+                    {% include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' %}
+                </div>
+            {% endif %}
+            </section>
+            <a class="read-more prev-page" href="{{ path('jobs_list') }}"><span>{{ 'Вернуться к списку вакансий'|trans }}</span>
+                <span>{{ 'К списку записей'|trans }}</span>
+            </a>
+        </div>
+
+    </article>
+
+    <button class="button-up scroll-to-top"></button>
+{% endblock %}
+

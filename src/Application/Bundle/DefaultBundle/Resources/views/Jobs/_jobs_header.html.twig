@@ -1,0 +1,13 @@
+<header>
+    <h1>
+        {% if linkTitle %}
+            <a href="{{ path('jobs_job_view', { 'slug': job.slug }) }}">{{ job.title }}</a>
+        {% else %}
+            {{ job.title }}
+        {% endif %}
+    </h1>
+
+    <div class="post-info">
+        <time pubdate="pubdate">{{ job.created|localizeddate('long', 'none', app.request.locale) }}</time>
+    </div>
+</header>

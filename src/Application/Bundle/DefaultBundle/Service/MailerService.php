@@ -1,9 +1,11 @@
 <?php
+
 namespace Application\Bundle\DefaultBundle\Service;
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class MailerService
+ * Class MailerService.
  */
 class MailerService
 {
@@ -26,7 +28,7 @@ class MailerService
      * @param \Swift_Mailer     $mailer
      * @param \Twig_Environment $twig
      * @param array             $options
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, array $options)
@@ -56,6 +58,43 @@ class MailerService
     }
 
     /**
+     * send vacancy form to our mail.
+     *
+     * @param array  $params
+     * @param string $jobTitle
+     *
+     * @return int
+     */
+    public function sendCandidateProfile(array $params, $jobTitle)
+    {
+        $attachments = [];
+        if ($params['attach']) {
+            /** @var UploadedFile $attach */
+            $attach = $params['attach'];
+            $attachFile = $attach->move(realpath($this->options['kernelRootDir'].'/../attachments/'), $attach->getClientOriginalName());
+            $attachments[] = $attachFile;
+        }
+
+        $subject = sprintf('Анкета кандидата на вакансію %s від %s', $jobTitle, $params['email']);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($params['email'])
+            ->setTo($this->options['fromEmail']);
+
+        foreach ($attachments as $file) {
+            $message->attach(\Swift_Attachment::fromPath($file->getRealPath())->setFilename($file->getFilename()));
+        }
+
+        $message->setBody(
+            $this->getBody('@ApplicationDefault/emails/vacancy.html.twig', $params),
+            'text/html'
+        );
+
+        return $this->mailer->send($message);
+    }
+
+    /**
      * @param string $template
      * @param array  $templateParams
      *
@@ -63,9 +102,7 @@ class MailerService
      */
     private function getBody($template, array $templateParams = [])
     {
-        $templateContent = $this->twig->loadTemplate(
-            $template
-        );
+        $templateContent = $this->twig->loadTemplate($template);
 
         return $templateContent->render($templateParams);
     }
@@ -106,4 +143,4 @@ class MailerService
             return false;
         }
     }
-} 
+}
