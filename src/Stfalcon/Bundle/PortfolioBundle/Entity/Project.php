@@ -12,10 +12,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Imagine;
 
 /**
- * Project entity
+ * Project entity.
  *
  * @ORM\Table(name="portfolio_projects")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\PortfolioBundle\Repository\ProjectRepository")
@@ -24,9 +23,8 @@ use Imagine;
  */
 class Project implements Translatable
 {
-
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,19 +33,20 @@ class Project implements Translatable
     private $id;
 
     /**
-     * @var string $name
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name = '';
 
     /**
-     * @var string $slug
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -58,69 +57,76 @@ class Project implements Translatable
     private $slug;
 
     /**
-     * @var string $description
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "10"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
-     * @var string $shortDescription
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="short_description", type="text")
      */
     private $shortDescription;
 
     /**
-     * @var string $additionalInfo
+     * @var string
+     *
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="additional_info", type="text", options={"default":""}, nullable=true)
      */
     private $additionalInfo;
 
     /**
-     * @var string $url
+     * @var string
      *
      * @Assert\Url
+     *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
 
     /**
-     * @var \DateTime $date
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     *
      * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     *
      * @Gedmo\Timestampable(on="update")
      */
     private $updated;
 
     /**
-     * @var File $image
+     * @var File
      *
      * @Assert\File(
      *     maxSize="4M",
@@ -131,23 +137,23 @@ class Project implements Translatable
     protected $imageFile;
 
     /**
-     * @var string $image
+     * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
-     * @var int $ordernum
+     * @var int
      *
      * @ORM\Column(name="ordernum", type="integer")
      */
     private $ordernum = 0;
 
     /**
-     * Check if this project can be published on main page of the site
+     * Check if this project can be published on main page of the site.
      *
-     * @var bool $onFrontPage
+     * @var bool
      *
      * @ORM\Column(name="onFrontPage", type="boolean")
      */
@@ -201,19 +207,23 @@ class Project implements Translatable
 
     /**
      * @var string
+     *
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="tags", type="string", nullable=true, length=255)
      */
     protected $tags;
 
     /**
-     * @var boolean
+     * @var bool
+     *
      * @ORM\Column(name="published", type="boolean")
      */
     protected $published;
 
     /**
-     * @var boolean
+     * @var bool
+     *
      * @ORM\Column(name="shadow", type="boolean", options={"default" = true})
      */
     protected $shadow = true;
@@ -228,6 +238,18 @@ class Project implements Translatable
     private $translations;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *   targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReview",
+     *   mappedBy="project",
+     *   cascade={"persist", "remove"},
+     *   orphanRemoval=true
+     * )
+     */
+    private $projectReviews;
+
+    /**
      * @Gedmo\Locale
      */
     private $locale;
@@ -236,6 +258,7 @@ class Project implements Translatable
      * @var string
      *
      * @ORM\Column(name="meta_keywords", type="text", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      */
     private $metaKeywords;
@@ -244,6 +267,7 @@ class Project implements Translatable
      * @var string
      *
      * @ORM\Column(name="meta_description", type="text", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      */
     private $metaDescription;
@@ -252,12 +276,13 @@ class Project implements Translatable
      * @var string
      *
      * @ORM\Column(name="case_content", type="text", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      */
     private $caseContent;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="show_case", type="boolean")
      */
@@ -273,7 +298,7 @@ class Project implements Translatable
     private $relativeProjects;
 
     /**
-     * @var Collection|UserWithPosition[] $usersWithPositions Users with positions
+     * @var Collection|UserWithPosition[] Users with positions
      *
      * @ORM\OneToMany(targetEntity="UserWithPosition", mappedBy="project", cascade={"persist", "remove"}, orphanRemoval=true)
      *
@@ -282,17 +307,18 @@ class Project implements Translatable
     private $usersWithPositions;
 
     /**
-     * Initialization properties for new project entity
+     * Initialization properties for new project entity.
      */
     public function __construct()
     {
-        $this->categories                   = new ArrayCollection();
-        $this->participants                 = new ArrayCollection();
-        $this->media                        = new ArrayCollection();
-        $this->published                    = true;
-        $this->translations                 = new ArrayCollection();
-        $this->relativeProjects             = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->participants = new ArrayCollection();
+        $this->media = new ArrayCollection();
+        $this->published = true;
+        $this->translations = new ArrayCollection();
+        $this->relativeProjects = new ArrayCollection();
         $this->usersWithPositions = new ArrayCollection();
+        $this->projectReviews = new ArrayCollection();
     }
 
     /**
@@ -310,7 +336,56 @@ class Project implements Translatable
     }
 
     /**
-     * Get post id
+     * @return mixed
+     */
+    public function getProjectReviews()
+    {
+        return $this->projectReviews;
+    }
+
+    /**
+     * @param mixed $projectReviews
+     *
+     * @return $this
+     */
+    public function setProjectReviews($projectReviews)
+    {
+        $this->projectReviews = $projectReviews;
+
+        return $this;
+    }
+
+    /**
+     * @param ProjectReview $projectReview
+     *
+     * @return $this
+     */
+    public function addProjectReview($projectReview)
+    {
+        if (!$this->projectReviews->contains($projectReview)) {
+            $this->projectReviews->add($projectReview);
+            $projectReview->setProject($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ProjectReview $projectReview
+     *
+     * @return $this
+     */
+    public function removeProjectReview($projectReview)
+    {
+        if ($this->projectReviews->contains($projectReview)) {
+            $this->projectReviews->removeElement($projectReview);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get post id.
      *
      * @return int
      */
@@ -320,7 +395,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get project categories
+     * Get project categories.
      *
      * @return ArrayCollection
      */
@@ -330,7 +405,7 @@ class Project implements Translatable
     }
 
     /**
-     * Add category to project
+     * Add category to project.
      *
      * @param Category $category Category entity
      */
@@ -340,7 +415,7 @@ class Project implements Translatable
     }
 
     /**
-     * Remove category
+     * Remove category.
      *
      * @param Category $category Category
      *
@@ -354,7 +429,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set categories collection to project
+     * Set categories collection to project.
      *
      * @param ArrayCollection $categories Categories collection
      */
@@ -364,7 +439,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set project name
+     * Set project name.
      *
      * @param string $name A text of project name
      */
@@ -374,7 +449,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get project name
+     * Get project name.
      *
      * @return string
      */
@@ -384,7 +459,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set project slug
+     * Set project slug.
      *
      * @param string $slug Unique text identifier
      */
@@ -394,7 +469,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get project slug
+     * Get project slug.
      *
      * @return string
      */
@@ -404,7 +479,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set project description
+     * Set project description.
      *
      * @param string $description A text of description
      */
@@ -414,7 +489,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get project description
+     * Get project description.
      *
      * @return string
      */
@@ -424,7 +499,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set project url
+     * Set project url.
      *
      * @param string $url A url for project
      */
@@ -434,7 +509,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get project url
+     * Get project url.
      *
      * @return string
      */
@@ -444,7 +519,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set date when project has been realized
+     * Set date when project has been realized.
      *
      * @param \DateTime $date Date when project has been realized
      */
@@ -454,7 +529,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get date when project has been realized
+     * Get date when project has been realized.
      *
      * @return \DateTime
      */
@@ -464,7 +539,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get image filename
+     * Get image filename.
      *
      * @return string
      */
@@ -474,7 +549,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set image and create thumbnail
+     * Set image and create thumbnail.
      *
      * @param string $image Full path to image file
      */
@@ -484,7 +559,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set time when project created
+     * Set time when project created.
      *
      * @param \DateTime $created A time when project created
      */
@@ -494,7 +569,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get time when project created
+     * Get time when project created.
      *
      * @return \DateTime
      */
@@ -504,7 +579,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set time when project updated
+     * Set time when project updated.
      *
      * @param \DateTime $updated A time when project updated
      */
@@ -514,7 +589,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get time when project updated
+     * Get time when project updated.
      *
      * @return \DateTime
      */
@@ -524,7 +599,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set project ordernum
+     * Set project ordernum.
      *
      * @param int $ordernum
      */
@@ -534,7 +609,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get project ordernum
+     * Get project ordernum.
      *
      * @return int
      */
@@ -544,7 +619,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set onFrontPage
+     * Set onFrontPage.
      *
      * @param bool $onFrontPage
      */
@@ -554,7 +629,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get onFrontPage
+     * Get onFrontPage.
      *
      * @return bool
      */
@@ -564,7 +639,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set imageFile
+     * Set imageFile.
      *
      * @param File $imageFile
      */
@@ -575,7 +650,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get imageFile
+     * Get imageFile.
      *
      * @return File
      */
@@ -643,7 +718,7 @@ class Project implements Translatable
     /**
      * @param Media $media
      */
-    public function removeMedia( $media)
+    public function removeMedia($media)
     {
         $this->media->removeElement($media);
     }
@@ -665,7 +740,7 @@ class Project implements Translatable
     }
 
     /**
-     * @param boolean $published
+     * @param bool $published
      */
     public function setPublished($published)
     {
@@ -673,7 +748,7 @@ class Project implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPublished()
     {
@@ -681,7 +756,7 @@ class Project implements Translatable
     }
 
     /**
-     * @param boolean $shadow
+     * @param bool $shadow
      */
     public function setShadow($shadow)
     {
@@ -689,7 +764,7 @@ class Project implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getShadow()
     {
@@ -697,7 +772,7 @@ class Project implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasShadow()
     {
@@ -714,6 +789,7 @@ class Project implements Translatable
             $projectTranslation->setObject($this);
         }
     }
+
     /**
      * @param ProjectTranslation $projectTranslation
      */
@@ -834,7 +910,7 @@ class Project implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isShowCase()
     {
@@ -842,7 +918,7 @@ class Project implements Translatable
     }
 
     /**
-     * @param boolean $showCase
+     * @param bool $showCase
      *
      * @return Project
      */
@@ -910,7 +986,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get users with positions
+     * Get users with positions.
      *
      * @return Collection|UserWithPosition[] Users with positions
      */
@@ -920,7 +996,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set users with positions
+     * Set users with positions.
      *
      * @param Collection|UserWithPosition[] $usersWithPositions Users with positions
      *
@@ -934,7 +1010,7 @@ class Project implements Translatable
     }
 
     /**
-     * Remove user with position
+     * Remove user with position.
      *
      * @param UserWithPosition $userWithPosition User with position
      *
@@ -948,7 +1024,7 @@ class Project implements Translatable
     }
 
     /**
-     * Add user with position
+     * Add user with position.
      *
      * @param UserWithPosition $userWithPosition User with position
      *
