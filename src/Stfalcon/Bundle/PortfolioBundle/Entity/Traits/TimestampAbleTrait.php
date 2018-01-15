@@ -13,8 +13,6 @@ trait TimestampAbleTrait
      * @ORM\Column(type="datetime")
      *
      * @Gedmo\Timestampable(on="create")
-     *
-     * @JMS\Expose
      */
     protected $createdAt;
 
@@ -24,8 +22,6 @@ trait TimestampAbleTrait
      * @ORM\Column(type="datetime")
      *
      * @Gedmo\Timestampable(on="update")
-     *
-     * @JMS\Expose
      */
     protected $updatedAt;
 

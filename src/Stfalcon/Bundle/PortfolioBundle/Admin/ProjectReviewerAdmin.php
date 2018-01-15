@@ -23,7 +23,7 @@ class ProjectReviewerAdmin extends Admin
                     'translations',
                     'a2lix_translations_gedmo',
                     [
-                        'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReview',
+                        'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReviewer',
                         'fields' => [
                             'name' => [
                                 'label' => 'имя',
@@ -37,7 +37,7 @@ class ProjectReviewerAdmin extends Admin
                 )
             ->end()
             ->with('Основное')
-                ->add('fotoFile', 'file')
+                ->add('photoFile', 'file')
                 ->add('projectReviews')
             ->end()
         ;

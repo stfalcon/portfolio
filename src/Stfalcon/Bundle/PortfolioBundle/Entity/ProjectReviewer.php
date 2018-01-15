@@ -7,7 +7,7 @@ use Gedmo\Translatable\Translatable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Traits\TimestampAbleTrait;
-use Stfalcon\Bundle\PortfolioBundle\Traits\TranslateTrait;
+use Stfalcon\Bundle\PortfolioBundle\Entity\Traits\TranslateTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -37,6 +37,16 @@ class ProjectReviewer implements Translatable
     private $id;
 
     /**
+     * @ORM\OneToMany(
+     *   targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Translation\ProjectReviewerTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"},
+     *   orphanRemoval=true
+     * )
+     */
+    private $translations;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReview", mappedBy="reviewer"
@@ -50,7 +60,7 @@ class ProjectReviewer implements Translatable
      * @Assert\NotBlank()
      * @Assert\Length(min="3")
      *
-     * @ORM\Column(name="name", type="string", nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      *
      * @Gedmo\Translatable(fallback=true)
      */
@@ -63,22 +73,29 @@ class ProjectReviewer implements Translatable
      *     maxSize="4M",
      *     mimeTypes={"image/png", "image/jpeg", "image/jpg"}
      * )
-     * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="foto")
+     * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="photo")
      */
-    protected $fotoFile;
+    protected $photoFile;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="foto", type="string", length=255, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
-    private $foto;
+    private $photo;
 
+    /**
+     * ProjectReviewer constructor.
+     */
     public function __construct()
     {
         $this->projectReviews = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -127,20 +144,20 @@ class ProjectReviewer implements Translatable
     /**
      * @return File
      */
-    public function getFotoFile()
+    public function getPhotoFile()
     {
-        return $this->fotoFile;
+        return $this->photoFile;
     }
 
     /**
-     * @param File $fotoFile
+     * @param File $photoFile
      *
      * @return $this
      */
-    public function setFotoFile($fotoFile)
+    public function setPhotoFile($photoFile)
     {
         $this->setUpdatedAt(new \DateTime());
-        $this->fotoFile = $fotoFile;
+        $this->photoFile = $photoFile;
 
         return $this;
     }
@@ -148,20 +165,28 @@ class ProjectReviewer implements Translatable
     /**
      * @return string
      */
-    public function getFoto()
+    public function getPhoto()
     {
-        return $this->foto;
+        return $this->photo;
     }
 
     /**
-     * @param string $foto
+     * @param string $photo
      *
      * @return $this
      */
-    public function setFoto($foto)
+    public function setPhoto($photo)
     {
-        $this->foto = $foto;
+        $this->photo = $photo;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

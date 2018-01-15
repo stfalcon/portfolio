@@ -2,11 +2,12 @@
 
 namespace Stfalcon\Bundle\PortfolioBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Translatable\Translatable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Traits\TimestampAbleTrait;
-use Stfalcon\Bundle\PortfolioBundle\Traits\TranslateTrait;
+use Stfalcon\Bundle\PortfolioBundle\Entity\Traits\TranslateTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,12 +31,24 @@ class ProjectReview implements Translatable
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Translation\ProjectReviewTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"},
+     *   orphanRemoval=true
+     * )
+     */
+    private $translations;
+
     /**
      * @var ProjectReviewer
      *
      * @ORM\ManyToOne(targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReviewer", inversedBy="projectReviews")
      */
     private $reviewer;
+
     /**
      * @var Project
      *
@@ -46,23 +59,58 @@ class ProjectReview implements Translatable
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text", nullable=false)
-     *
      * @Gedmo\Translatable(fallback=true)
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "10"
      * )
+     *
+     * @ORM\Column(name="text", type="text", nullable=false)
      */
     private $text;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="active", type="boolean", nullable=false)
+     * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reviewer_project_status", type="string", length=255, nullable=true)
+     */
+    private $reviewerProjectStatus;
+
+    /**
+     * ProjectReview constructor.
+     */
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getReviewerProjectStatus()
+    {
+        return $this->reviewerProjectStatus;
+    }
+
+    /**
+     * @param string $reviewerProjectStatus
+     *
+     * @return $this
+     */
+    public function setReviewerProjectStatus($reviewerProjectStatus)
+    {
+        $this->reviewerProjectStatus = $reviewerProjectStatus;
+
+        return $this;
+    }
 
     /**
      * @return bool
@@ -150,5 +198,17 @@ class ProjectReview implements Translatable
         $this->text = $text;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $result = $this->getProject() ? $this->getProject()->getName() : '';
+        $result .= ' - ';
+        $result .= $this->getReviewer() ? $this->getReviewer()->getName() : '';
+
+        return $result;
     }
 }

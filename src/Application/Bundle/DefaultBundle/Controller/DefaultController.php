@@ -28,6 +28,7 @@ class DefaultController extends Controller
      * @return array()
      *
      * @Cache(expires="tomorrow")
+     *
      * @Route("/{_locale}", name="homepage", defaults={"_locale": "en"}, requirements={"_locale": "en|ru"}, options={"i18n"=false})
      *
      * @Template()
@@ -60,7 +61,7 @@ class DefaultController extends Controller
      *
      * @return Response
      *
-     * @Route("/index-new", name="index-new")
+     * @Route("/index-new", name="index-new", defaults={"_locale": "en"})
      */
     public function indexNewAction(Request $request)
     {
@@ -70,11 +71,19 @@ class DefaultController extends Controller
         $posts = $this->get('doctrine')->getManager()
             ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, 3);
 
+        $projects = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Project')
+            ->findBy(['onFrontPage' => true]);
+
+        $activeReviews = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:ProjectReview')
+            ->getActiveReviews($projects);
+
+
         return $this->render(
             '@ApplicationDefault/Default/index-new.html.twig',
             [
                 'services' => $services,
                 'posts' => $posts,
+                'reviews' => $activeReviews,
             ]
         );
     }

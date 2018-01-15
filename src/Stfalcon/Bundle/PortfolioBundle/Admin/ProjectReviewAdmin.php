@@ -63,6 +63,13 @@ class ProjectReviewAdmin extends Admin
                                 ],
                                 'attr' => ['class' => 'markitup'],
                             ],
+                            'reviewerProjectStatus' => [
+                                'label' => 'статус ревьвера',
+                                'locale_options' => [
+                                    'ru' => ['required' => true],
+                                    'en' => ['required' => false],
+                                ],
+                            ],
                         ],
                     ]
                 )

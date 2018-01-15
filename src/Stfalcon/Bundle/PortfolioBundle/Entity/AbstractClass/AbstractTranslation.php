@@ -3,9 +3,11 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Entity\AbstractClass;
 
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Translation\TranslatableEntity;
 
-abstract class AbstractTranslation extends AbstractPersonalTranslation implements TranslatableEntity
+/**
+ * Class AbstractTranslation
+ */
+abstract class AbstractTranslation extends AbstractPersonalTranslation
 {
     /**
      * Convenient constructor

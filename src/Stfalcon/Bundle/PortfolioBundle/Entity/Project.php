@@ -18,7 +18,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="portfolio_projects")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\PortfolioBundle\Repository\ProjectRepository")
+ *
  * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\PortfolioBundle\Entity\ProjectTranslation")
+ *
  * @Vich\Uploadable
  */
 class Project implements Translatable
@@ -142,6 +144,13 @@ class Project implements Translatable
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="background_color", type="string", length=7, options={"default":"#4D9CC9"}, nullable=false)
+     */
+    private $backgroundColor = '#4D9CC9';
 
     /**
      * @var int
@@ -319,6 +328,26 @@ class Project implements Translatable
         $this->relativeProjects = new ArrayCollection();
         $this->usersWithPositions = new ArrayCollection();
         $this->projectReviews = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackgroundColor()
+    {
+        return $this->backgroundColor;
+    }
+
+    /**
+     * @param string $backgroundColor
+     *
+     * @return $this
+     */
+    public function setBackgroundColor($backgroundColor)
+    {
+        $this->backgroundColor = $backgroundColor;
+
+        return $this;
     }
 
     /**

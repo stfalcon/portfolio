@@ -1,14 +1,17 @@
 <?php
 
-namespace Stfalcon\Bundle\PortfolioBundle\Traits;
+namespace Stfalcon\Bundle\PortfolioBundle\Entity\Traits;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Translation\TranslatableEntity;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
+/**
+ * Trait TranslateTrait
+ */
 trait TranslateTrait
 {
     /**
-     * @param TranslatableEntity $translation
+     * @param AbstractPersonalTranslation $translation
      */
     public function addTranslation($translation)
     {
@@ -18,7 +21,7 @@ trait TranslateTrait
         }
     }
     /**
-     * @param TranslatableEntity $translation
+     * @param AbstractPersonalTranslation $translation
      */
     public function addTranslations($translation)
     {
@@ -28,11 +31,13 @@ trait TranslateTrait
         }
     }
     /**
-     * @param TranslatableEntity $translation
+     * @param AbstractPersonalTranslation $translation
      */
     public function removeTranslation($translation)
     {
-        $this->translations->removeElement($translation);
+        if ($this->translations->contains($translation)) {
+            $this->translations->removeElement($translation);
+        }
     }
 
     /**

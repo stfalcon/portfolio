@@ -201,6 +201,7 @@ class ProjectAdmin extends Admin
                 ->add('slug')
                 ->add('url')
                 ->add('imageFile', 'file', array('required' => false))
+                ->add('backgroundColor')
                 ->add('date', 'date')
                 ->add('categories', null, array('required' => true))
                 ->add('published', 'checkbox', array('required' => false))

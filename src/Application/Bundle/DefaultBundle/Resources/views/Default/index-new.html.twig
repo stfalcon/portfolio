@@ -95,108 +95,65 @@
             </li>
         </ul>
     </section>
+    {% set add_class = ' project-item--left-text' %}
     <section class="projects-list">
-        <article data-bg="#4D9CC9" class="project-item project-item--white-text bg-item">
-            <div class="project-item__img-block">
-                <img class="project-item__img" src="{{ asset('img/p2.png') }}" alt="">
-            </div>
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">SmartSeeds</h2>
-                <div class="project-item__comment">Stfalcon was very involved and committed to our success.
-                    After the projects are completed, they kept on giving us support as needed.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="{{ asset('img/kiril.png') }}" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Kirill Podolsky,</div>
-                        <div class="comment-author__position">Product Owner at SmartSeeds</div>
-                    </div>
+        {% for project_review in reviews %}
+            {% set project = project_review['project'] %}
+            {% set review = project_review['review'] %}
+            {% if review != null %}
+                {% set reviewer = review.reviewer %}
+            {% endif %}
+
+            {% if add_class == ' project-item--left-text' %}
+                {% set add_class = '' %}
+            {% else %}
+                {% set add_class = ' project-item--left-text' %}
+            {% endif %}
+
+            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} project-item--white-text bg-item">
+            {% if add_class == '' %}
+                <div class="project-item__img-block">
+                    <img class="project-item__img" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="">
                 </div>
-                <a href="#" class="project-item__link">Read the Story</a>
-            </div>
-        </article>
-        <article data-bg="#EC584E" class="project-item project-item--left-text project-item--white-text bg-item">
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">Nova poshta
-                    Dashboard</h2>
-                <div class="project-item__comment">Stfalcon was very involved and committed to our success. After the projects are completed, they kept on giving us support as needed.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="{{ asset('img/artem.png') }}" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Artyom Volkhonskyi,</div>
-                        <div class="comment-author__position">Product Owner at Novaposhta</div>
-                    </div>
-                </div>
-                <a href="#" class="project-item__link">Read the Story</a>
-            </div>
-            <div class="project-item__img-block">
-                <img class="project-item__img" src="{{ asset('img/p3.png') }}" alt="">
-            </div>
-        </article>
-        <article data-bg="#F4F4F4" class="project-item bg-item project-item--dark-text">
-            <div class="project-item__img-block">
-                <img class="project-item__img" src="{{ asset('img/p4.png') }}" alt="">
-            </div>
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">Nic.ua — Domains and hosting</h2>
-                <div class="project-item__comment">Stfalcon was very involved and committed to our success.
-                    After the projects are completed, they kept on giving us support as needed.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="{{ asset('img/khatkevich.png') }}" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Andrew Khvetkevich,
+                <div class="project-item__description">
+                    <h2 class="promo-title promo-title--bold project-item__name">{{ project.name }}</h2>
+                    {% if review != null %}
+                        <div class="project-item__comment">{{ review.text }}</div>
+                        <div class="comment-author project-item__comment-author">
+                            <img class="comment-author__img" src="{{ vich_uploader_asset(reviewer, 'photoFile') }}" alt="">
+                            <div class="comment-author__left">
+                                <div class="comment-author__name">{{ reviewer.name }},</div>
+                                <div class="comment-author__position">{{ review.reviewerProjectStatus }}</div>
+                            </div>
                         </div>
-                        <div class="comment-author__position">Co-Founder at nic.ua</div>
-                    </div>
+                    {% else %}
+                        <div class="project-item__text">{{ project.shortDescription }}</div>
+                    {% endif %}
+                    <a href="{{ path('portfolio_category_project', {'slug': project.slug}) }}" class="project-item__link">{{ 'main.read.story.title'|trans }}</a>
                 </div>
-                <a href="#" class="project-item__link">Read the Story</a>
-            </div>
-        </article>
-        <article data-bg="#624F4F" class="project-item project-item--left-text project-item--white-text bg-item">
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">Nova poshta
-                    Shopping</h2>
-                <div class="project-item__comment">Stfalcon was very involved and committed to our success. After the projects are completed, they kept on giving us support as needed.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="{{ asset('img/artem.png') }}" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Artyom Volkhonskyi,</div>
-                        <div class="comment-author__position">Product Owner at Novaposhta</div>
-                    </div>
+            {% else %}
+                <div class="project-item__description">
+                    <h2 class="promo-title promo-title--bold project-item__name">{{ project.name }}</h2>
+                    {% if review != null %}
+                        <div class="project-item__comment">{{ review.text }}</div>
+                        <div class="comment-author project-item__comment-author">
+                            <img class="comment-author__img" src="{{ vich_uploader_asset(reviewer, 'photoFile') }}" alt="">
+                            <div class="comment-author__left">
+                                <div class="comment-author__name">{{ reviewer.name }},</div>
+                                <div class="comment-author__position">{{ review.reviewerProjectStatus }}</div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="project-item__text">{{ project.shortDescription }}</div>
+                    {% endif %}
+                    <a href="{{ path('portfolio_category_project', {'slug': project.slug}) }}" class="project-item__link">{{ 'main.read.story.title'|trans }}</a>
                 </div>
-                <a href="#" class="project-item__link">Read the Story</a>
-            </div>
-            <div class="project-item__img-block">
-                <img class="project-item__img" src="{{ asset('img/p5.png') }}" alt="">
-            </div>
-        </article>
-        <article data-bg="#D3D9D9" class="project-item bg-item project-item--dark-text">
-            <div class="project-item__img-block">
-                <img class="project-item__img" src="{{ asset('img/p6.png') }}" alt="">
-            </div>
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">MeinFernbus</h2>
-                <div class="project-item__text">The largest passenger transportation company in Germany.
-                    For 3 years we have participated in the development of a project.</div>
-                <a href="#" class="project-item__link">Read the Story</a>
-            </div>
-        </article>
-        <article data-bg="#5B717E" class="project-item project-item--left-text project-item--white-text bg-item bg-item--last">
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">KeepSnap</h2>
-                <div class="project-item__comment">Stfalcon was very involved and committed to our success. After the projects are completed, they kept on giving us support as needed.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="{{ asset('img/liveStreetCms_icon.png') }}" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Igor Shubovsky,</div>
-                        <div class="comment-author__position">CEO at KeepSnap</div>
-                    </div>
+                <div class="project-item__img-block">
+                    <img class="project-item__img" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="">
                 </div>
-                <a href="#" class="project-item__link">Read the Story</a>
-            </div>
-            <div class="project-item__img-block">
-                <img class="project-item__img" src="{{ asset('img/p7.png') }}" alt="">
-            </div>
-        </article>
+            {% endif %}
+            </article>
+        {% endfor %}
     </section>
 
     <section class="our-services">
