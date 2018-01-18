@@ -1,0 +1,18 @@
+<div class="project-item__description">
+    <h2 class="promo-title promo-title--bold project-item__name">{{ project.name }}</h2>
+    {% if review != null %}
+        <div class="project-item__comment">{{ review.text }}</div>
+        <div class="comment-author project-item__comment-author">
+            {% if reviewer.photoFile is not empty %}
+                <img class="comment-author__img" src="{{ vich_uploader_asset(reviewer, 'photoFile') }}" alt="">
+            {% endif %}
+            <div class="comment-author__left">
+                <div class="comment-author__name">{{ reviewer.name }},</div>
+                <div class="comment-author__position">{{ review.reviewerProjectStatus }}</div>
+            </div>
+        </div>
+    {% else %}
+        <div class="project-item__text">{{ project.shortDescription }}</div>
+    {% endif %}
+    <a href="{{ path('portfolio_category_project', {'slug': project.slug}) }}" class="project-item__link">{{ 'main.read.story.title'|trans }}</a>
+</div>

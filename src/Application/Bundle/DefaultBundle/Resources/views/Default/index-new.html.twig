@@ -102,6 +102,8 @@
             {% set review = project_review['review'] %}
             {% if review != null %}
                 {% set reviewer = review.reviewer %}
+            {% else %}
+                {% set reviewer = null %}
             {% endif %}
 
             {% if add_class == ' project-item--left-text' %}
@@ -112,45 +114,11 @@
 
             <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} project-item--white-text bg-item">
             {% if add_class == '' %}
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="">
-                </div>
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">{{ project.name }}</h2>
-                    {% if review != null %}
-                        <div class="project-item__comment">{{ review.text }}</div>
-                        <div class="comment-author project-item__comment-author">
-                            <img class="comment-author__img" src="{{ vich_uploader_asset(reviewer, 'photoFile') }}" alt="">
-                            <div class="comment-author__left">
-                                <div class="comment-author__name">{{ reviewer.name }},</div>
-                                <div class="comment-author__position">{{ review.reviewerProjectStatus }}</div>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="project-item__text">{{ project.shortDescription }}</div>
-                    {% endif %}
-                    <a href="{{ path('portfolio_category_project', {'slug': project.slug}) }}" class="project-item__link">{{ 'main.read.story.title'|trans }}</a>
-                </div>
+                {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
+                {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
             {% else %}
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">{{ project.name }}</h2>
-                    {% if review != null %}
-                        <div class="project-item__comment">{{ review.text }}</div>
-                        <div class="comment-author project-item__comment-author">
-                            <img class="comment-author__img" src="{{ vich_uploader_asset(reviewer, 'photoFile') }}" alt="">
-                            <div class="comment-author__left">
-                                <div class="comment-author__name">{{ reviewer.name }},</div>
-                                <div class="comment-author__position">{{ review.reviewerProjectStatus }}</div>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="project-item__text">{{ project.shortDescription }}</div>
-                    {% endif %}
-                    <a href="{{ path('portfolio_category_project', {'slug': project.slug}) }}" class="project-item__link">{{ 'main.read.story.title'|trans }}</a>
-                </div>
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="">
-                </div>
+                {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
+                {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
             {% endif %}
             </article>
         {% endfor %}
