@@ -80,7 +80,7 @@ class MailerService
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom($params['email'])
-            ->setTo($this->options['fromEmail']);
+            ->setTo('hr@stfalcon.com');
 
         foreach ($attachments as $file) {
             $message->attach(\Swift_Attachment::fromPath($file->getRealPath())->setFilename($file->getFilename()));
