@@ -2,7 +2,6 @@
 
 namespace Application\Bundle\DefaultBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -91,6 +90,13 @@ class Job
     private $active = true;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="sort_order", type="integer")
+     */
+    private $sortOrder;
+
+    /**
      * Initialization properties for new post entity.
      */
     public function __construct()
@@ -116,6 +122,26 @@ class Job
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * @param int $sortOrder
+     *
+     * @return $this
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
     }
 
     /**
