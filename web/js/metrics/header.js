@@ -20,8 +20,8 @@ ga('send', 'pageview');
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '542276379449174');
-fbq('track', 'ViewContent');
+fbq('init', '136092340447865');
+fbq('track', 'PageView');
 <!-- End Facebook Pixel Code -->
 
 function getUserEmail(emailId) {
