@@ -92,9 +92,9 @@ class Job
     /**
      * @var int
      *
-     * @ORM\Column(name="sort_order", type="integer")
+     * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
-    private $sortOrder;
+    private $sortOrder = 0;
 
     /**
      * Initialization properties for new post entity.
