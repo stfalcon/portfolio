@@ -29,7 +29,7 @@
             {{ form_errors(form.captcha) }}
         </div>
         {% endif %}
-        <button class="btn" type="submit">{{ "Отправить" | trans() }}</button>
+        <button class="btn" onclick="ga('send', 'event', 'jobs', 'cv_sent');" type="submit">{{ "Отправить" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>
