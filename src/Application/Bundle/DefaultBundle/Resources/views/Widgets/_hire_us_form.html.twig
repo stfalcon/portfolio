@@ -28,7 +28,7 @@
                 </div>
                 <div class="line">
                     <button class="btn send-request"
-                            onclick="ga('send','event', 'order_project', 'order_sent'); gtag_report_conversion_from_popup()"
+                            onclick="ga('send','event', 'order_project', 'order_sent', {{ slug }}); gtag_report_conversion_from_popup()"
                             style="display: none;">{{ 'Отправить заявку'|trans }}
                     </button>
                 </div>
