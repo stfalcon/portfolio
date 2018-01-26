@@ -22,6 +22,7 @@ class JobAdmin extends Admin
             ->add('metaKeywords', null, ['label' => 'Meta keywords', 'required' => false])
             ->add('metaDescription', null, ['label' => 'Meta description', 'required' => false])
             ->add('metaTitle', null, ['label' => 'Meta title', 'required' => false])
+            ->add('sortOrder')
         ;
     }
 
@@ -35,6 +36,7 @@ class JobAdmin extends Admin
             ->addIdentifier('slug')
             ->add('active')
             ->add('created')
+            ->addIdentifier('sortOrder')
             ->add('_action', 'actions', [
                 'label' => 'Действия',
                 'actions' => [
@@ -54,6 +56,7 @@ class JobAdmin extends Admin
             ->add('title')
             ->add('slug')
             ->add('active')
+            ->add('sortOrder')
         ;
     }
 }
