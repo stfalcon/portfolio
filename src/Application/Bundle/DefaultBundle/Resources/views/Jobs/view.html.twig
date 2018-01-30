@@ -1,5 +1,7 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
+
 {% block title %}{{ job.metaTitle }} | {{ 'Вакансия'|trans }}{{ parent() }}{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script>
@@ -25,6 +27,9 @@
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock javascripts %}
+
+{% block after_body %}{% endblock %}
+
 {% block content_wrapper %}
     {{ parent() }}
     <article class="blog-post">

@@ -40,7 +40,7 @@
                 {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
             </p>
             <button id="hire_us-js" type="button" class="hire_us_main button button--big button--blue" onclick="ga('send', 'event', 'order_project', 'click');fbq('trackCustom', 'order_project');">{{ 'Заказать проект'|trans }}</button>
-            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'main_page'})) }}
         </div>
     </header>
     <section class="projects-list equal-list">

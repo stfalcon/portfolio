@@ -27,7 +27,13 @@
                     {{ form_widget(form.captcha, {'theme': 'dark' }) }}
                 </div>
                 <div class="line">
-                    <button class="btn send-request" style="display: none;" onclick="gtag_report_conversion_from_popup()">{{ 'Отправить заявку'|trans }}</button>
+                    {% if slug != 'main_page' %}
+                        {% set slug = '' %}
+                    {% endif %}
+                    <button class="btn send-request"
+                            onclick="ga('send','event', 'order_project', 'order_sent', '{{ slug }}'); gtag_report_conversion_from_popup()"
+                            style="display: none;">{{ 'Отправить заявку'|trans }}
+                    </button>
                 </div>
                 <div class="line">
                     <div class="col3">

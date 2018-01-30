@@ -24,7 +24,7 @@ class LoadTagData extends AbstractFixture implements OrderedFixtureInterface
     {
         $kmTag = new Tag('Khmelnitsky');
         $manager->persist($kmTag);
-        $kievTag = new Tag('Kiev');
+        $kievTag = new Tag('Kyiv');
         $manager->persist($kievTag);
         $remoteTag = new Tag('remote');
         $manager->persist($remoteTag);
