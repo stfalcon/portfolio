@@ -200,7 +200,7 @@ class ProjectAdmin extends Admin
                 ))
                 ->add('slug')
                 ->add('url')
-                ->add('imageFile', 'file', array('required' => false))
+                ->add('imageFile', 'file', array('required' => !is_null($currentProject->getId())))
                 ->add('backgroundColor')
                 ->add('date', 'date')
                 ->add('categories', null, array('required' => true))
@@ -256,6 +256,9 @@ class ProjectAdmin extends Admin
                     'sonata_type_collection',
                     [
                         'by_reference' => false,
+                        'btn_add' => is_null($currentProject->getId()) ? false : 'Добавить отзыв',
+                        'help' => is_null($currentProject->getId()) ? 'добавление отзыва возможно только после создания события'
+                            : 'добавьте отзыв',
                     ],
                     [
                         'edit' => 'inline',
