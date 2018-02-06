@@ -5,8 +5,8 @@ deploy_callbacks:
         - 'npm install -g grunt'
         - 'npm install -g grunt-cli'
     before_composer_run:
-        - "sed -i \"s/recaptcha.secret:.*/recaptcha.secret: `echo -n $APP_GOOGLE_CAPTCHA_SECRET_KEY`/\" app/config/parameters.yml"
-        - "sed -i \"s/recaptcha.site_key:.*/recaptcha.site_key: `echo -n $APP_GOOGLE_CAPTCHA_SITE_KEY`/\" app/config/parameters.yml"
+        - 'sed -i "s/recaptcha.secret:.*/recaptcha.secret: `echo -n $APP_GOOGLE_CAPTCHA_SECRET_KEY`/\" app/config/parameters.yml'
+        - 'sed -i "s/recaptcha.site_key:.*/recaptcha.site_key: `echo -n $APP_GOOGLE_CAPTCHA_SITE_KEY`/" app/config/parameters.yml'
     after_deploy:
         - 'cp app/config/sphinx.conf /etc/sphinxsearch/sphinx.conf'
         - 'sed -i "s/sql_host        =.*/sql_host        = portfolio-mysql/" /etc/sphinxsearch/sphinx.conf'
