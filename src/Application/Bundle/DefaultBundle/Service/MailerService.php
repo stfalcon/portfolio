@@ -79,7 +79,8 @@ class MailerService
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
-            ->setFrom($params['email'])
+            ->setFrom($this->options['fromEmail'])
+            ->setReplyTo($params['email'])
             ->setTo('hr@stfalcon.com');
 
         foreach ($attachments as $file) {
