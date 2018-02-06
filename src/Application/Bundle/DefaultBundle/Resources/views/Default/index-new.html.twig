@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html xmlns:og="http://ogp.me/ns#">
-<head lang="en">
-    <meta charset="UTF-8">
+{% extends 'base.html.twig' %}
 
-    {{ sonata_seo_title() }}
-
-    <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
-    <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
-    {{ sonata_seo_metadatas() }}
-    {{ sonata_seo_link_canonical() }}
-    {{ sonata_seo_lang_alternates() }}
-
-    {% if app.environment == 'prod' %}
-        {% javascripts
-            'js/metrics/header.js'
-            output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% else %}
-        {% javascripts
-            'js/devstub.js'
-            output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endif %}
-</head>
-<body>
+{% block body %}
 <div id="bg-wrapper">
 <section class="page-wrapper home-page">
     <header class="header header--after header--fixed">
@@ -151,7 +123,7 @@
                 <a class="arrow-button" href="http://kmcnc.stfalcon.com//" rel="nofollow" target="_blank"></a>
             </div>
             <div class="side-projects__item side-projects__item--academy">
-                <img src="{{ asset('img/logo_academy.svg') }}" alt="" class="side-projects__logo">
+                <img src="{{ asset('img/academy_ukr.svg') }}" alt="" class="side-projects__logo">
                 <div class="side-projects__text">{{ 'main.promo.title5_3.desc'|trans }}</div>
                 <a class="arrow-button" href="http://academy.stfalcon.com/" rel="nofollow" target="_blank"></a>
             </div>
@@ -227,5 +199,6 @@
     });
 </script>
 {% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
-</body>
-</html>
+
+{% endblock body %}
+
