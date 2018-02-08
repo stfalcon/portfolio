@@ -13,6 +13,22 @@ _order-android: 'Связаться с нами'
 '__main.we_contribution_text': 'Наша команда любит open-source! </br> Мы создаем полезные решения для <a href="%link%" rel="nofollow" target="_blank">Symfony</a>, <a href="%android_link%" rel="nofollow" target="_blank">Android</a>/iOS платформ и делимся ими на <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a>.'
 '__Footer.homepage.link': '<a href="%homepage%">Stfalcon LLC</a> &mdash; разработки сайтов и мобильных приложений'
 
-main.promo.title1: Your Partner in Web and Mobile Development
-main.promo.title1.desc: Our mission is move forward technical progress and create opportunities in the world with innovative and useful websites and mobile applications.
+main.promo.title1: Ваш надежный партнер в разработке веб и мобильных решений
+main.promo.title2: Эффективные решения для бизнеса
+main.promo.title3: Trusted by
+main.promo.title4: Мы предлагаем полный цикл разработки проектов
+main.promo.title5: Наши проекты
+main.promo.title2_1: Логистика
+main.promo.title2_2: Туризм
+main.promo.title2_3: Букинг
+main.promo.title2_4: On-demand
+main.btn.title2_4: Связаться с нами
+main.promo.title1.desc: Наша миссия — упрощать жизнь людей, создавая полезное и удобное программное обеспечение
+main.promo.title2_1.desc: Умные решения для транспортных компаний
+main.promo.title2_2.desc: Приложения для тех, кто любит путешествовать
+main.promo.title2_3.desc: Веб-системы для продажи билетов или недвижимости
+main.promo.title2_4.desc: Модель Uber для любого типа бизнеса
+main.promo.title5_1.desc: Масштабные IT-конференции в комфортабельных залах Киева с участием лучших украинских экспертов и иностранных специалистов.
+main.promo.title5_2.desc: IT-конференции с несколькими докладами, вкусным кофе-брейком и полезным общением в г. Хмельницком.
+main.promo.title5_3.desc: Курсы подготовки IT-специалистов в г. Хмельницком. Реализуй себя в сфере информационных технологий!
 main.read.story.title: Читать о проекте

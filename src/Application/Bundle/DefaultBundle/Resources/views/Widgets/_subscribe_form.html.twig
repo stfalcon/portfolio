@@ -6,7 +6,7 @@
           onsubmit="ga('send', 'event', 'Podpisatsya_novosti', 'Send_form');fbq('trackCustom', 'SubscribePosts');"
           class="subscribe-form" novalidate="novalidate">
         <button class="arrow-button" type="submit"></button>
-            {{ form_widget(form.email, {'attr': {'placeholder': 'Подписаться на новые записи'|trans }}) }}
+            {{ form_widget(form.email, {'attr': {'placeholder': 'E-mail' }}) }}
             {{ form_errors(form.email) }}
             <ul class="success-list"></ul>
         </div>

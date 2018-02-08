@@ -151,7 +151,7 @@ title: __title
 Консалтинг<br/>и аудит: Consulting<br/>and Audit
 
 проводим конференции: We organize conferences
-ведем блог: Fresh from our Blog
+Обновления в нашем блоге: Fresh from our Blog
 Участвуем в Open Source: We contribute to Open Source
 
 Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ.: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
@@ -159,7 +159,7 @@ title: __title
 
 'улица Заречанская 3/2, Хмельницкий, Украина': 3/2 Zarichanska street, Khmelnytskyi, Ukraine
 'переулок Ахтырский 7, Киев, Украина': 7 Okhtyrskyi Lane, Kyiv, Ukraine
-Подписаться на новые записи: Subscribe for new posts
+Подписаться на новые публикации: Subscribe for new posts
 
 'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony2, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'
 
@@ -279,19 +279,19 @@ _order-android: 'Contact us'
 main.promo.title1: Your Partner in Web and Mobile Development
 main.promo.title2: Efficient Business Solutions
 main.promo.title3: Trusted by
-main.promo.title4: Your full-cycle development partner
+main.promo.title4: We offer full-cycle project development
 main.promo.title5: Side-projects
 main.promo.title2_1: Logistics
 main.promo.title2_2: Travel
 main.promo.title2_3: Booking
 main.promo.title2_4: On Demand
 main.btn.title2_4: GET IN TOUCH
-main.promo.title1.desc: Our mission is move forward technical progress and create opportunities in the world with innovative and useful websites and mobile applications.
+main.promo.title1.desc: Our mission is to simplify people’s lives by creating useful and convenient software.
 main.promo.title2_1.desc: Smart Solutions for transportation companies
 main.promo.title2_2.desc: Apps for those tho love exploring the world
 main.promo.title2_3.desc: Web-systems for selling tickets or appartments
 main.promo.title2_4.desc: Different services also know as Uber for X
-main.promo.title5_1.desc: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
-main.promo.title5_2.desc: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
-main.promo.title5_3.desc: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
+main.promo.title5_1.desc: Large-scale IT-conferences held in comfortable halls of Kiev with participation of leading Ukrainian experts and foreign specialists.
+main.promo.title5_2.desc: IT-conferences with useful lectures, delicious coffee-break and networking in Khmelnytsky.
+main.promo.title5_3.desc: Training courses for IT-specialists in Khmelnytsky. Realize yourself in the field of Information Technology!
 main.read.story.title: Read the Story

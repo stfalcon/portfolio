@@ -604,19 +604,6 @@ $(function () {
         //fixedHireUs();
     });
 
-    function placeholderReplace() {
-        if ($(window).width() < 540) {
-            $("#subscribe_email").attr("placeholder", subscribeShortText);
-        } else {
-            $("#subscribe_email").attr("placeholder", subscribeFullText);
-        }
-    }
-
-    placeholderReplace();
-    $(window).resize(function () {
-        placeholderReplace();
-    });
-
     autosize(document.querySelectorAll('#order_promotion_message'));
 });
 
