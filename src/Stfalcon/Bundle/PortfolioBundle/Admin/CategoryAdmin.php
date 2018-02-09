@@ -70,7 +70,7 @@ class CategoryAdmin extends Admin
                         'label' => 'description',
                         'locale_options' => array(
                             'ru' => array(
-                                'required' => true,
+                                'required' => false,
                             ),
                             'en' => array(
                                 'required' => false,
