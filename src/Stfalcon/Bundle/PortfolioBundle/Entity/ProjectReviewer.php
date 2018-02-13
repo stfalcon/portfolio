@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Translatable\Translatable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Traits\TimestampAbleTrait;
+use Stfalcon\Bundle\PortfolioBundle\Entity\Traits\TimestampableTrait;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Traits\TranslateTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class ProjectReviewer implements Translatable
 {
-    use TimestampAbleTrait;
+    use TimestampableTrait;
     use TranslateTrait;
 
     /**

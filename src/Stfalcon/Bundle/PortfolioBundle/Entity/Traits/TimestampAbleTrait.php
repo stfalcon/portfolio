@@ -3,9 +3,9 @@
 namespace Stfalcon\Bundle\PortfolioBundle\Entity\Traits;
 
 /**
- * Trait TimestampAbleTrait.
+ * Trait TimestampableTrait.
  */
-trait TimestampAbleTrait
+trait TimestampableTrait
 {
     /**
      * @var \DateTime
