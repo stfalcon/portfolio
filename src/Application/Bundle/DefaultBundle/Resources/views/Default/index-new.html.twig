@@ -7,7 +7,7 @@
         <video class="header__video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto">
             <source src="{{ asset('img/STFalconCR1.mp4') }}">
         </video>
-        {% include '::_header_index.html.twig' %}
+        {% include '::_header_index.html.twig' with {'with_about':true} %}
         <div class="header__text">
             <h1 class="header__title">{{ 'We Code Your Ideas'|trans }}</h1>
             <p class="header__sub-title">

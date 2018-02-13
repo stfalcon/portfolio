@@ -33,7 +33,7 @@
 <body>
 <section class="page-wrapper home-page">
     <header class="header">
-        {% include '::_header_index.html.twig' %}
+        {% include '::_header_index.html.twig'  with {'with_about':false}  %}
         <div class="header-text">
             <h2 class="header-title small-margin">{{ 'We Code Your Ideas'|trans }}</h2>
             <p class="header-sub-title">
