@@ -41,9 +41,6 @@
             {{ job.description|moreToSpan|highlightCode|raw }}
             {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
 
-            <div class="contact-us hire_us-mob">
-                <button class="hire_us hire_us-button-mob">{{ 'Связаться с нами!'|trans }}</button>
-            </div>
             {% if app.session.flashBag.has('vacancy_send') %}
                 <div class="alert alert-success">
                     {% for msg in app.session.flashBag.get('vacancy_send') %}
