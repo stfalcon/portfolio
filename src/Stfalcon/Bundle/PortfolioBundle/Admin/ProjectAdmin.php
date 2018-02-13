@@ -200,7 +200,7 @@ class ProjectAdmin extends Admin
                 ))
                 ->add('slug')
                 ->add('url')
-                ->add('imageFile', 'file', array('required' => !is_null($currentProject->getId())))
+                ->add('imageFile', 'file', array('required' => null === $currentProject->getId()))
                 ->add('backgroundColor')
                 ->add('date', 'date')
                 ->add('categories', null, array('required' => true))
