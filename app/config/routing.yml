@@ -9,6 +9,8 @@ _stfalcon_blog:
 
 admin:
     resource: "@ApplicationDefaultBundle/Resources/config/custom_sonata_admin.xml"
+    defaults:
+        _locale: ru
     options:
         i18n: false
 
@@ -16,6 +18,8 @@ _sonata_admin:
     resource: .
     type: sonata_admin
     prefix: /admin
+    defaults:
+        _locale: ru
     options:
         i18n: false
 
@@ -48,6 +52,8 @@ fos_js_routing:
 sonata_user:
     resource: "@SonataUserBundle/Resources/config/routing/admin_security.xml"
     prefix: /admin
+    defaults:
+        _locale: ru
     options:
         i18n: false
 

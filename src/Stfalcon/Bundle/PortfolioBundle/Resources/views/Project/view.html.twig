@@ -2,7 +2,8 @@
 
 {% block stylesheets %}
     {% if project.showCase %}
-        <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+        {#<link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>#}
+        <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
     {% else %}
         {{ parent() }}
     {% endif %}
@@ -11,7 +12,7 @@
 {% block header_content %}
     {% if project.showCase %}
         <header class="header white">
-            {% include '::_header_index.html.twig' %}
+            {% include '::_header_index.html.twig' with {'with_about':false} %}
         </header>
     {% else %}
         {{ parent() }}

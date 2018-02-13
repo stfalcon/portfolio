@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Default controller. For single actions for project
@@ -27,6 +28,7 @@ class DefaultController extends Controller
      * @return array()
      *
      * @Cache(expires="tomorrow")
+     *
      * @Route("/{_locale}", name="homepage", defaults={"_locale": "en"}, requirements={"_locale": "en|ru"}, options={"i18n"=false})
      *
      * @Template()
@@ -50,6 +52,40 @@ class DefaultController extends Controller
         }
 
         return [];
+    }
+
+    /**
+     * index-new page
+     *
+     * @param Request $request Request
+     *
+     * @return Response
+     *
+     * @Route("/index-new", name="index-new", defaults={"_locale": "en"})
+     */
+    public function indexNewAction(Request $request)
+    {
+        $services = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Category')
+            ->findBy(['showInServices' => true], ['ordernum' => 'ASC']);
+        $locale = $request->getLocale() ? $request->getLocale() : 'en';
+        $posts = $this->get('doctrine')->getManager()
+            ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, 3);
+
+        $projects = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Project')
+            ->findBy(['onFrontPage' => true]);
+
+        $activeReviews = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:ProjectReview')
+            ->getActiveReviews($projects);
+
+
+        return $this->render(
+            '@ApplicationDefault/Default/index-new.html.twig',
+            [
+                'services' => $services,
+                'posts' => $posts,
+                'reviews' => $activeReviews,
+            ]
+        );
     }
 
     /**

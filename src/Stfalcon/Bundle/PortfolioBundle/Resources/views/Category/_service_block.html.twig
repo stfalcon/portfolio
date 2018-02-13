@@ -1,0 +1,7 @@
+<li class="services-list__item">
+    <img src="{{ asset('img/'~service.slug~'.svg') }}" alt="" class="services-list__icon">
+    <div class="services-list__name">{{ service.name }}</div>
+    {% if service.description is not empty  %}
+        <p class="services-list__text">{{ service.description|raw }}</p>
+    {% endif %}
+</li>

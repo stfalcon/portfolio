@@ -1,8 +1,12 @@
-
 .header-line {
   height: 68px;
   border-bottom: 1px solid #E3E5E4;
-  margin-bottom: 37px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #F5F7F7;
+  z-index: 4;
 
   a {
     text-decoration: none;
@@ -17,6 +21,11 @@
     a {
       color: #ed002d;
     }
+  }
+
+  &__btn {
+    float: right;
+    margin: 17px 18px 0 0;
   }
 }
 
@@ -180,7 +189,11 @@
   }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1170px) {
+  .logo {
+    margin-right: 24px;
+  }
+
   .main-nav {
     li {
       margin-right: 20px;
@@ -203,9 +216,12 @@
   }
 }
 
-@media (max-width: 915px) {
+@media (max-width: 1023px) {
   .header {
     .socials-links {
+      display: none;
+    }
+    .header-line__btn {
       display: none;
     }
   }

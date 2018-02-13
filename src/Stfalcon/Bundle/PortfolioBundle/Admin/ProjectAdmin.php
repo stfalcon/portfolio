@@ -1,4 +1,5 @@
 <?php
+
 namespace Stfalcon\Bundle\PortfolioBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
@@ -10,7 +11,7 @@ use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPositionTranslation;
 
 /**
- * Class ProjectAdmin
+ * Class ProjectAdmin.
  */
 class ProjectAdmin extends Admin
 {
@@ -28,7 +29,7 @@ class ProjectAdmin extends Admin
                 '_page' => 1,
                 '_per_page' => 1,
                 '_sort_order' => 'ASC', // sort direction
-                '_sort_by' => 'ordernum' // field name
+                '_sort_by' => 'ordernum', // field name
             );
         }
     }
@@ -199,7 +200,8 @@ class ProjectAdmin extends Admin
                 ))
                 ->add('slug')
                 ->add('url')
-                ->add('imageFile', 'file', array('required' => false))
+                ->add('imageFile', 'file', array('required' => !is_null($currentProject->getId())))
+                ->add('backgroundColor')
                 ->add('date', 'date')
                 ->add('categories', null, array('required' => true))
                 ->add('published', 'checkbox', array('required' => false))
@@ -211,7 +213,7 @@ class ProjectAdmin extends Admin
                     'label' => 'Похожие проекты',
                     'class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
                     'multiple' => true,
-                    'query_builder' => function(EntityRepository $repository) use ($currentProject) {
+                    'query_builder' => function (EntityRepository $repository) use ($currentProject) {
                         $qb = $repository->createQueryBuilder('p');
 
                         if ($currentProject->getId()) {
@@ -228,9 +230,9 @@ class ProjectAdmin extends Admin
                         'by_reference' => true,
                     ],
                     [
-                        'edit'            => 'inline',
-                        'inline'          => 'table',
-                        'sortable'        => 'position',
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable' => 'position',
                         'link_parameters' => [
                             'context' => 'default',
                         ],
@@ -241,13 +243,31 @@ class ProjectAdmin extends Admin
                 ->add('media', 'sonata_type_collection', array(
                     'cascade_validation' => true,
                 ), array(
-                    'edit'              => 'inline',
-                    'inline'            => 'table',
-                    'sortable'          => 'position',
-                    'link_parameters'   => array('context' => 'default'),
-                    'admin_code'        => 'sonata.media.admin.gallery_has_media',
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
+                    'link_parameters' => array('context' => 'default'),
+                    'admin_code' => 'sonata.media.admin.gallery_has_media',
                 ))
-            ->end();
+            ->end()
+            ->with('Reviews')
+                ->add(
+                    'projectReviews',
+                    'sonata_type_collection',
+                    [
+                        'by_reference' => false,
+                        'btn_add' => is_null($currentProject->getId()) ? false : 'Добавить отзыв',
+                        'help' => is_null($currentProject->getId()) ? 'добавление отзыва возможно только после создания события'
+                            : 'добавьте отзыв',
+                    ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable' => 'position',
+                    ]
+                )
+            ->end()
+        ;
     }
 
     // @todo с sortable проблемы начиная со второй страницы (проекты перемещаются на первую страницу)
@@ -259,7 +279,7 @@ class ProjectAdmin extends Admin
             ->add('date')
             ->add('_action', 'actions', [
                 'actions' => [
-                    'edit'   => [],
+                    'edit' => [],
                     'delete' => [],
                 ],
             ]);

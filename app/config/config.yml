@@ -193,6 +193,9 @@ avalanche_imagine:
         portfolio_small:
             type:    thumbnail
             options: { size: [674, 379], mode: outbound }
+        portfolio_new:
+            type:    thumbnail
+            options: { size: [852, 544], mode: outbound }
 
 sonata_media:
     class:

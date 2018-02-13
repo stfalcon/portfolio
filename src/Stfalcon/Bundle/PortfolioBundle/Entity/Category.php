@@ -68,7 +68,6 @@ class Category implements Translatable
     /**
      * @var string $description
      *
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
