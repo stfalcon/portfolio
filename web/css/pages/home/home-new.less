@@ -23,7 +23,7 @@
   text-transform: uppercase;
   font-size: 17px;
   font-weight: 500;
-  width: 260px;
+  min-width: 260px;
   height: 56px;
   line-height: 56px;
   border: 0;
@@ -63,7 +63,8 @@
   }
 
   &--sm {
-    width: 107px;
+    min-width: initial;
+    padding: 0 18px;
     height: 35px;
     line-height: 35px;
     border-radius: 3px;
@@ -158,6 +159,11 @@
   }
 }
 
+.main-nav {
+  .last {
+    display: none;
+  }
+}
 //end header
 
 // achievements
@@ -702,20 +708,20 @@
   .side-projects {
 
     &__logo {
-      margin-bottom: 100px;
+      margin-bottom: 60px;
     }
 
     &__item {
       &--cnc {
         margin-top: 140px;
         .side-projects__logo {
-          margin-bottom: 118px;
+          margin-bottom: 88px;
         }
       }
 
       &--academy {
         .side-projects__logo {
-          margin-bottom: 160px;
+          margin-bottom: 150px;
         }
       }
     }
@@ -1014,6 +1020,7 @@
     &__form {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
     }
 
     &__input {
@@ -1106,11 +1113,11 @@ body {
   background: #F5F7F7;
 }
 
-.content {
-  max-width: 100%;
-  width: 100%;
-  margin: 0;
-}
+//.content {
+//  max-width: 100%;
+//  width: 100%;
+//  margin: 0;
+//}
 .project-case {
   padding-top: 51px;
   line-height: 1.5;
