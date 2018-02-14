@@ -68,6 +68,9 @@ class MenuBuilder
         )
             ->setLinkAttributes(['class' => 'header-line__btn home-btn home-btn--sm home-btn--dark', 'target' => '_blank']);
 
+        $projectsMenu = $menu->getChild($this->translator->trans('Проекты'));
+        $projectsMenu->setCurrent($projectsMenu->getUri() === $request->getRequestUri());
+
         return $menu;
     }
 
