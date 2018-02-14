@@ -9,7 +9,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
 
-    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('YmdHi') }}"/>
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
     {{ sonata_seo_metadatas() }}
     {{ sonata_seo_link_canonical() }}
