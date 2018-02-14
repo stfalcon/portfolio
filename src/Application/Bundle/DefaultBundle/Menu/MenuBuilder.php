@@ -60,7 +60,7 @@ class MenuBuilder
         }
         $menu->addChild($this->translator->trans('Контакты'), array('route' => 'contacts'));
         $menu->addChild(
-            $this->translator->trans('About us'),
+            $this->translator->trans('about_us'),
             [
                 'route' => 'show_pdf',
                 'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2018.pdf'],

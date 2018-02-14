@@ -57,7 +57,7 @@ title: __title
     '': 'Project does not exist.'
 
 Проекты: Projects
-'About us': 'О нас'
+about_us: 'About us'
 Таг: Tag
 
 'Следующий проект': 'Next project'

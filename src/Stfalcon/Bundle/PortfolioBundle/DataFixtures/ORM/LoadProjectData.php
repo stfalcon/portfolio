@@ -41,8 +41,9 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
     {
         $files = ['55f18a561ca39.jpeg', '55f18d6a43d1a.jpeg'];
 
-        $webCategory = $this->getReference('category-development');
-        $mobileCategory = $this->getReference('mobile-development');
+        $devCategory = $this->getReference('category-development');
+        $mobileCategory = $this->getReference('category-mobile');
+        $webDesign = $this->getReference('category-web');
 
         $adminUser = $this->getReference('user-admin');
         $firstUser = $this->getReference('user-first');
@@ -68,14 +69,16 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             ->setOrdernum(0)
             ->setShowCase(true)
             ->setCaseContent('TestCase Content')
-            ->addCategory($webCategory)
+            ->addCategory($devCategory)
+            ->addCategory($webDesign)
             ->addParticipant($adminUser)
             ->addParticipant($secondUser)
             ->setPublished(true)
             ->setImageFile($this->generateUploadedFile('p3.png'));
 
         $manager->persist($novaPochta);
-//        $manager->merge($webCategory);
+        $manager->merge($devCategory);
+        $manager->merge($webDesign);
 
         $nicUa = (new Project())
             ->setName('NIC.UA')
@@ -97,12 +100,13 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             ->setOrdernum(1)
             ->setShowCase(true)
             ->setCaseContent('TestCase Content')
-            ->addCategory($webCategory)
+            ->addCategory($devCategory)
             ->addCategory($mobileCategory)
             ->setImageFile($this->generateUploadedFile('p4.png'));
 
         $manager->persist($nicUa);
-//        $manager->merge($webCategory);
+        $manager->merge($devCategory);
+        $manager->merge($mobileCategory);
 
         $meinFernbus = (new Project())
             ->setName('MeinFernbus')
@@ -123,11 +127,13 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             ->setOrdernum(2)
             ->setShowCase(true)
             ->setCaseContent('TestCase Content')
-            ->addCategory($webCategory)
+            ->addCategory($devCategory)
             ->addCategory($mobileCategory)
             ->setImageFile($this->generateUploadedFile('p6.png'));
 
         $manager->persist($meinFernbus);
+        $manager->merge($devCategory);
+        $manager->merge($mobileCategory);
 
         $manager->flush();
 
@@ -135,7 +141,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('project-eprice', $nicUa);
         $this->addReference('project-meinfernbus', $meinFernbus);
 
-        for ($i = 0; $i < 20; ++$i) {
+        for ($i = 0; $i < 10; ++$i) {
             $example = (new Project())
                 ->setName('example.com_'.$i)
                 ->setSlug('example-com_'.$i)
@@ -149,7 +155,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
                 ->setOnFrontPage(0)
                 ->setOrdernum(2 + $i);
             if ($i % 2) {
-                $example->addCategory($webCategory);
+                $example->addCategory($devCategory);
             } else {
                 $example->addCategory($mobileCategory);
             }
@@ -159,7 +165,8 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
                 ->setPublished(true)
                 ->setImageFile($this->copyFile($files[array_rand($files)]));
             $manager->persist($example);
-            $manager->merge($webCategory);
+            $manager->merge($devCategory);
+            $manager->merge($mobileCategory);
         }
         $manager->flush();
     }
