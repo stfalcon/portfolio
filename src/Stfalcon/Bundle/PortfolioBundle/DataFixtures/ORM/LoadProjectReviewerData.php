@@ -40,6 +40,8 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
             ->setPhotoFile($this->generateUploadedFile($fileName));
 
         $manager->persist($reviewer);
+
+        return $reviewer;
     }
     /**
      * Create and load projects fixtures to database.
@@ -49,7 +51,12 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
     public function load(ObjectManager $manager)
     {
 
+        $reviwer1 = $this->addReviewer($manager, 'Andrew Khvetkevich', 'khatkevich.png');
+        $this->addReference('reviwer1', $reviwer1);
+        $reviwer2 = $this->addReviewer($manager, 'Kirill Podolsky', 'kiril.png');
+        $this->addReference('reviwer2', $reviwer2);
 
+        $manager->flush();
     }
 
     /**
