@@ -34,3 +34,23 @@ main.promo.title5_1.desc: Масштабные IT-конференции с уч
 main.promo.title5_2.desc: IT-конференции с несколькими докладами, вкусным кофе-брейком и полезным общением в г. Хмельницком.
 main.promo.title5_3.desc: Курсы подготовки IT-специалистов в г. Хмельницком. Реализуй себя в сфере информационных технологий!
 main.read.story.title: Читать о проекте
+
+main_page.service1.title: Research and Prototyping
+main_page.service2.title: User Interface Design
+main_page.service3.title: Native Mobile Development
+main_page.service4.title: High Load Systems
+main_page.service5.title: Data Science
+main_page.service6.title: Cloud Solutions
+main_page.service7.title: QA and Testing
+main_page.service8.title: DevOps
+main_page.service9.title: Technical Support
+
+main_page.service1.description: ''
+main_page.service2.description: ''
+main_page.service3.description: ''
+main_page.service4.description: ''
+main_page.service5.description: ''
+main_page.service6.description: ''
+main_page.service7.description: ''
+main_page.service8.description: ''
+main_page.service9.description: ''

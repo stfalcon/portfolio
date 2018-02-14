@@ -105,13 +105,11 @@
     <section class="our-services">
         <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
         <h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>
-        {% if services|length > 0 %}
         <ul class="services-list">
-            {% for service in services %}
-                {% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'service' : service} %}
+            {% for i in 1..9 %}
+                {% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'index' : i} %}
             {% endfor %}
         </ul>
-        {% endif %}
         <button type="button" class="hire_us_main our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>
     </section>
 
@@ -141,7 +139,7 @@
             <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-rss"></i></a>
         </h2>
         {% include "@StfalconBlog/Post/_posts_main.html.twig" with {'posts' : posts} %}
-        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog', 'forPage': 'main'})) }}
+        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
     </section>
     <section class="details-info">
         <h1>{{ "Stfalcon LLC &mdash; разработки сайтов и мобильных приложений" | trans()|raw }}</h1>
