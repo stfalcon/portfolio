@@ -42,6 +42,12 @@
     {% endif %}
 </head>
 <body>
+    {% if app.environment == 'prod' %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ3V27V"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
     {% block body %}{% endblock %}
     {% block after_body %}{% endblock %}
 
