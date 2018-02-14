@@ -84,7 +84,13 @@
                 {% set add_class = ' project-item--left-text' %}
             {% endif %}
 
-            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} project-item--white-text bg-item">
+            {% if project.useDarkTextColor is defined and project.useDarkTextColor == true %}
+                {% set text_color_class = 'project-item--dark-text' %}
+            {% else %}
+                {% set text_color_class = 'project-item--white-text' %}
+            {% endif %}
+
+            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item">
             {% if add_class == '' %}
                 {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
                 {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}

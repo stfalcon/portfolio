@@ -153,6 +153,15 @@ class Project implements Translatable
     private $backgroundColor = '#4D9CC9';
 
     /**
+     * Text color for preview on main.
+     *
+     * @var bool
+     *
+     * @ORM\Column(name="use_dark_text_color", type="boolean")
+     */
+    private $useDarkTextColor = false;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="ordernum", type="integer")
@@ -346,6 +355,26 @@ class Project implements Translatable
     public function setBackgroundColor($backgroundColor)
     {
         $this->backgroundColor = $backgroundColor;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUseDarkTextColor()
+    {
+        return $this->useDarkTextColor;
+    }
+
+    /**
+     * @param bool $useDarkTextColor
+     *
+     * @return $this
+     */
+    public function setUseDarkTextColor($useDarkTextColor)
+    {
+        $this->useDarkTextColor = $useDarkTextColor;
 
         return $this;
     }

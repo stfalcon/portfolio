@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180115181859 extends AbstractMigration
+class Version20180214104756 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -26,7 +26,7 @@ class Version20180115181859 extends AbstractMigration
         $this->addSql('ALTER TABLE project_review_translations ADD CONSTRAINT FK_A579224C232D562B FOREIGN KEY (object_id) REFERENCES portfolio_projects_review (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE portfolio_projects_review ADD CONSTRAINT FK_133AB9E470574616 FOREIGN KEY (reviewer_id) REFERENCES portfolio_projects_reviewer (id)');
         $this->addSql('ALTER TABLE portfolio_projects_review ADD CONSTRAINT FK_133AB9E4166D1F9C FOREIGN KEY (project_id) REFERENCES portfolio_projects (id)');
-        $this->addSql('ALTER TABLE portfolio_projects ADD background_color VARCHAR(7) DEFAULT \'#4D9CC9\' NOT NULL');
+        $this->addSql('ALTER TABLE portfolio_projects ADD background_color VARCHAR(7) DEFAULT \'#4D9CC9\' NOT NULL, ADD use_dark_text_color TINYINT(1) NOT NULL');
     }
 
     /**
@@ -44,6 +44,6 @@ class Version20180115181859 extends AbstractMigration
         $this->addSql('DROP TABLE project_review_translations');
         $this->addSql('DROP TABLE portfolio_projects_reviewer');
         $this->addSql('DROP TABLE portfolio_projects_review');
-        $this->addSql('ALTER TABLE portfolio_projects DROP background_color');
+        $this->addSql('ALTER TABLE portfolio_projects DROP background_color, DROP use_dark_text_color');
     }
 }
