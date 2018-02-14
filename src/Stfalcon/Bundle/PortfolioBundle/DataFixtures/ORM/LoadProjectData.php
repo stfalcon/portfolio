@@ -6,29 +6,41 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Projects fixtures
+ * Projects fixtures.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
-class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
+class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
 
     /**
-     * Create and load projects fixtures to database
+     * @param ContainerInterface|null $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Create and load projects fixtures to database.
      *
      * @param ObjectManager $manager Entity manager object
      */
     public function load(ObjectManager $manager)
     {
-        $files = array(
-            '55f18a561ca39.jpeg',
-            '55f18d6a43d1a.jpeg'
-        );
+        $files = ['55f18a561ca39.jpeg', '55f18d6a43d1a.jpeg'];
+
         $webCategory = $this->getReference('category-development');
         $mobileCategory = $this->getReference('mobile-development');
 
@@ -37,73 +49,115 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $secondUser = $this->getReference('user-second');
 
         // projects
-        $preOrder = new Project();
-        $preOrder->setName('preorder.it');
-        $preOrder->setSlug('preorder-it');
-        $preOrder->setUrl('http://preorder.it');
-        $preOrder->setDate(new \DateTime('now'));
-        $preOrder->setDescription('Press-releases and reviews of the latest electronic novelties. The possibility to leave a pre-order.');
-        $preOrder->setTags('design, HTML markup, development');
-        $preOrder->setShortDescription('design, HTML markup, development');
-        $preOrder->setOnFrontPage(1);
-        $preOrder->setOrdernum(0);
-        $preOrder->setShowCase(true);
-        $preOrder->setCaseContent('TestCase Content');
-        $preOrder->addCategory($webCategory);
-        $preOrder->addParticipant($adminUser);
-        $preOrder->addParticipant($secondUser);
-        $preOrder->setPublished(true);
-        $preOrder->setImageFile($this->copyFile($files[array_rand($files)]));
-        $manager->persist($preOrder);
-        $manager->merge($webCategory);
+        $novaPochta = (new Project())
+            ->setName('novaposhta.ua')
+            ->setSlug('novaposhta-ua')
+            ->setUrl('https://new.novaposhta.ua/')
+            ->setDate(new \DateTime('now'))
+            ->setDescription('
+                Nova Poshta, the Ukrainian company, during the past 16 years has become a market leader in the delivery and a driver of 
+                its development. The company actively works on the elaboration and improvement of user-friendly online services. 
+                Nova Posta and stfalcon.com cooperation was intended to substantially improve the current Personal Dashboard to bring 
+                the user experience to a next level.
+            ')
+            ->setTags('design, HTML markup, development')
+            ->setShortDescription('design, HTML markup, development')
+            ->setOnFrontPage(1)
+            ->setBackgroundColor('#FF0000')
+            ->setUseDarkTextColor(true)
+            ->setOrdernum(0)
+            ->setShowCase(true)
+            ->setCaseContent('TestCase Content')
+            ->addCategory($webCategory)
+            ->addParticipant($adminUser)
+            ->addParticipant($secondUser)
+            ->setPublished(true)
+            ->setImageFile($this->generateUploadedFile('p3.png'));
 
-        $ePrice = new Project();
-        $ePrice->setName('eprice.kz');
-        $ePrice->setSlug('eprice-kz');
-        $ePrice->setUrl('http://eprice.kz');
-        $ePrice->setDate(new \DateTime('now'));
-        $ePrice->setDescription('Comparison of the prices of mobile phones, computers, monitors, audio and video in Kazakhstan');
-        $ePrice->setTags('design');
-        $ePrice->setShortDescription('design');
-        $ePrice->setOnFrontPage(1);
-        $ePrice->setPublished(true);
-        $ePrice->setOrdernum(1);
-        $preOrder->setShowCase(true);
-        $preOrder->setCaseContent('TestCase Content');
-        $ePrice->addCategory($webCategory);
-        $ePrice->addCategory($mobileCategory);
-//        $ePrice->addParticipant($adminUser);
-//        $ePrice->addParticipant($firstUser);
-        $ePrice->setImageFile($this->copyFile($files[array_rand($files)]));
-        $manager->persist($ePrice);
-        $manager->merge($webCategory);
+        $manager->persist($novaPochta);
+//        $manager->merge($webCategory);
+
+        $nicUa = (new Project())
+            ->setName('NIC.UA')
+            ->setSlug('NIC-UA')
+            ->setUrl('https://nic.ua')
+            ->setDate(new \DateTime('now'))
+            ->setDescription('
+                NIC.UA is one of the largest domain name registrar and hosting provider in Ukraine. 
+                Previously it was using a monolith server but together with NIC.UA team we have divided this system into back 
+                end and front end parts. Now the service is flexible, scalable and has a smart domain search satisfying clients’ 
+                needs.
+            ')
+            ->setTags('design, development')
+            ->setShortDescription('design development')
+            ->setOnFrontPage(1)
+            ->setBackgroundColor('#777777')
+            ->setUseDarkTextColor(false)
+            ->setPublished(true)
+            ->setOrdernum(1)
+            ->setShowCase(true)
+            ->setCaseContent('TestCase Content')
+            ->addCategory($webCategory)
+            ->addCategory($mobileCategory)
+            ->setImageFile($this->generateUploadedFile('p4.png'));
+
+        $manager->persist($nicUa);
+//        $manager->merge($webCategory);
+
+        $meinFernbus = (new Project())
+            ->setName('MeinFernbus')
+            ->setSlug('MeinFernbus')
+            ->setUrl('https://meinfernbus.de/')
+            ->setDate(new \DateTime('now'))
+            ->setDescription('
+                MeinFernbus is a leading German supplier of transport services in the area of passenger coaches. 
+                The company is considered to be a partner and an innovative progenitor of small and medium tourism businesses 
+                in Germany. It functions independently of the big tourist corporations.
+            ')
+            ->setTags('design, development')
+            ->setShortDescription('design development')
+            ->setOnFrontPage(1)
+            ->setBackgroundColor('#00FF00')
+            ->setUseDarkTextColor(true)
+            ->setPublished(true)
+            ->setOrdernum(2)
+            ->setShowCase(true)
+            ->setCaseContent('TestCase Content')
+            ->addCategory($webCategory)
+            ->addCategory($mobileCategory)
+            ->setImageFile($this->generateUploadedFile('p6.png'));
+
+        $manager->persist($meinFernbus);
 
         $manager->flush();
 
-        $this->addReference('project-preorder', $preOrder);
-        $this->addReference('project-eprice', $ePrice);
+        $this->addReference('project-preorder', $novaPochta);
+        $this->addReference('project-eprice', $nicUa);
+        $this->addReference('project-meinfernbus', $meinFernbus);
 
-        for ($i = 0; $i < 20; $i++) {
-            $example = new Project();
-            $example->setName('example.com_' . $i);
-            $example->setSlug('example-com_' . $i);
-            $example->setUrl('http://example.com');
-            $example->setDate(new \DateTime('now'));
-            $example->setDescription('As described in RFC 2606, we maintain a number of domains such as EXAMPLE.COM and EXAMPLE.ORG for documentation purposes. These domains may be used as illustrative examples in documents without prior coordination with us. They are not available for registration.');
-            $example->setTags('design, HTML markup, development');
-            $example->setShortDescription('design, HTML markup, development');
-            $example->setOnFrontPage(0);
-            $example->setOrdernum(2 + $i);
-            if ($i % 2){
+        for ($i = 0; $i < 20; ++$i) {
+            $example = (new Project())
+                ->setName('example.com_'.$i)
+                ->setSlug('example-com_'.$i)
+                ->setUrl('http://example.com')
+                ->setDate(new \DateTime('now'))
+                ->setDescription('As described in RFC 2606, we maintain a number of domains such as 
+                    EXAMPLE.COM and EXAMPLE.ORG for documentation purposes. These domains may be used as illustrative 
+                    examples in documents without prior coordination with us. They are not available for registration.')
+                ->setTags('design, HTML markup, development')
+                ->setShortDescription('design, HTML markup, development')
+                ->setOnFrontPage(0)
+                ->setOrdernum(2 + $i);
+            if ($i % 2) {
                 $example->addCategory($webCategory);
             } else {
                 $example->addCategory($mobileCategory);
             }
-            $example->addParticipant($adminUser);
-            $example->addParticipant($firstUser);
-            $example->addParticipant($secondUser);
-            $example->setPublished(true);
-            $example->setImageFile($this->copyFile($files[array_rand($files)]));
+            $example->addParticipant($adminUser)
+                ->addParticipant($firstUser)
+                ->addParticipant($secondUser)
+                ->setPublished(true)
+                ->setImageFile($this->copyFile($files[array_rand($files)]));
             $manager->persist($example);
             $manager->merge($webCategory);
         }
@@ -111,9 +165,9 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
-     * Get order number
+     * Get order number.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -121,7 +175,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
-     * Copy file to tmp directory
+     * Copy file to tmp directory.
      *
      * @param string $originalFileName
      *
@@ -129,17 +183,43 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function copyFile($originalFileName)
     {
-        $tempDir = sys_get_temp_dir() . '/';
+        $tempDir = sys_get_temp_dir().'/';
 
         $absolutePath = dirname(dirname(__FILE__));
         $fs = new Filesystem();
         $tmpFilename = uniqid();
         try {
-            $fs->copy($absolutePath .'/Files/'. $originalFileName, $tempDir . $tmpFilename, true);
+            $fs->copy($absolutePath.'/Files/'.$originalFileName, $tempDir.$tmpFilename, true);
         } catch (IOException $e) {
-            echo "An error occurred while coping file form " . $absolutePath . '/Files/' . $originalFileName . ' to ' . $tempDir . '.' . $originalFileName;
+            echo 'An error occurred while coping file form '.$absolutePath.'/Files/'.$originalFileName.' to '.$tempDir.'.'.$originalFileName;
         }
 
-        return new UploadedFile($tempDir . $tmpFilename, $originalFileName, null, null, null, true);
+        return new UploadedFile($tempDir.$tmpFilename, $originalFileName, null, null, null, true);
+    }
+
+    /**
+     * Generate UploadedFile object from local file. For VichUploader
+     *
+     * @param string $filename
+     *
+     * @return UploadedFile
+     */
+    private function generateUploadedFile($filename)
+    {
+        $fullPath = realpath($this->getKernelDir().'/../web/img/'.$filename);
+        if ($fullPath) {
+            $tmpFile = tempnam(sys_get_temp_dir(), 'event');
+            copy($fullPath, $tmpFile);
+            return new UploadedFile($tmpFile,
+                $filename, null, null, null, true
+            );
+        } else {
+            return null;
+        }
+    }
+
+    private function getKernelDir()
+    {
+        return $this->container->get('kernel')->getRootDir();
     }
 }

@@ -29,25 +29,25 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
         $doctrine2Tag = $this->getReference('tag-doctrine2');
         // posts
         $postFirst = new Post();
-        $postFirst->setTitle('My first post');
-        $postFirst->setSlug('my-first-post');
-        $postFirst->setText('In work we use Symfony2.<!--more-->And text after cut');
-        $postFirst->addTag($symfonyTag);
-        $postFirst->addTag($doctrine2Tag);
-        $postFirst->setAuthor($adminUser);
-        $postFirst->setPublished(true);
+        $postFirst->setTitle('My first post')
+        ->setSlug('my-first-post')
+        ->setText('In work we use Symfony2.<!--more-->And text after cut')
+        ->addTag($symfonyTag)
+        ->addTag($doctrine2Tag)
+        ->setAuthor($adminUser)
+        ->setPublished(true);
         $manager->persist($postFirst);
         $manager->merge($symfonyTag);
         $manager->merge($doctrine2Tag);
 
         $postAboutPhp = new Post();
-        $postAboutPhp->setTitle('Post about php');
-        $postAboutPhp->setSlug('post-about-php');
-        $postAboutPhp->setText('The PHP development team would like to announce the immediate availability of PHP 5.3.6.');
-        $postAboutPhp->addTag($symfonyTag);
-        $postAboutPhp->addTag($doctrine2Tag);
-        $postAboutPhp->setAuthor($secondUser);
-        $postAboutPhp->setPublished(true);
+        $postAboutPhp->setTitle('Post about php')
+        ->setSlug('post-about-php')
+        ->setText('The PHP development team would like to announce the immediate availability of PHP 5.3.6.')
+        ->addTag($symfonyTag)
+        ->addTag($doctrine2Tag)
+        ->setAuthor($secondUser)
+        ->setPublished(true);
         $manager->persist($postAboutPhp);
         $manager->merge($symfonyTag);
         $manager->merge($doctrine2Tag);
@@ -67,5 +67,4 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
     {
         return 2; // the order in which fixtures will be loaded
     }
-
 }
