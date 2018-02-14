@@ -133,7 +133,7 @@
       text-align: right;
     }
     .contacts-info {
-        text-align: inherit;
+        text-align: left;
     }
     @media (max-width: 690px) {
       width: 100%;
@@ -141,6 +141,13 @@
       margin-right: 0;
       .contacts-info {
           text-align: left;
+
+          &__left {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 8px;
+            color: #606364;
+          }
       }
     }
   }
@@ -312,7 +319,7 @@
     text-align: left;
     font-size: 15px;
     &__left {
-        display: inline-block;
+        display: block;
         vertical-align: top;
         margin-right: 8px;
         color: #606364;
