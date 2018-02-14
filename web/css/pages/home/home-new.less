@@ -588,11 +588,12 @@
 
   &__input {
     margin-right: 20px;
+    height: 49px;
   }
 
   &__button {
     flex-shrink: 0;
-    width: 159px;
+    min-width: 159px;
     height: 49px;
     line-height: 49px;
     color: #FFFFFF;
@@ -604,10 +605,33 @@
     text-align: center;
     cursor: pointer;
     border: none;
-    padding: 0;
+    padding: 0 14px;
 
     &:hover {
       background: #525658;
+    }
+  }
+
+  .error-list, .success-list {
+    display: block;
+    position: relative;
+    z-index: 11;
+    color: rgb(44, 55, 60);
+    margin: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    &:before {
+      content: none;
+    }
+    li {
+      font-size: 15px!important;
+      padding: 0!important;
+      margin: 0!important;
+      &:before {
+        content: none;
+      }
     }
   }
 }
