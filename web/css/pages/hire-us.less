@@ -68,32 +68,35 @@
     opacity: 0.3;
   }
 
-  h2{
-    font-size: 42px;
-    color: #ffffff;
-    font-weight: 500;
-    margin-top: 176px;
-    margin-bottom: 12px;
-    line-height: 1.1em;
-    text-shadow: 0 1px #fff;
-    text-transform: none;
-    text-align: center;
-    letter-spacing: 0;
-    @media (max-width: 690px) {
-      margin-top: 0px;
+
+  .form-pad {
+    h2{
+      font-size: 42px;
+      color: #ffffff;
+      font-weight: 500;
+      margin-top: 176px;
+      margin-bottom: 12px;
+      line-height: 1.1em;
+      text-shadow: 0 1px #fff;
+      text-transform: none;
+      text-align: center;
+      letter-spacing: 0;
+      @media (max-width: 690px) {
+        margin-top: 0px;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 32px;
+      }
     }
 
-    @media (max-width: 400px) {
-      font-size: 32px;
+    p{
+      font-size: 18px;
+      font-weight: 500;
+      color: #ffffff;
+      margin-top: 0;
+      margin-bottom: 64px;
     }
-  }
-
-  p{
-    font-size: 18px;
-    font-weight: 500;
-    color: #ffffff;
-    margin-top: 0;
-    margin-bottom: 64px;
   }
 
   .line {
@@ -339,11 +342,18 @@
     .phone-link {
         margin-bottom: 10px;
     }
+
+  .contacts-info__item {
     a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 400;
+      
+      &:hover {
         color: #fff;
-        text-decoration: none;
-        font-weight: 400;
+      }
     }
+  }
 }
 
 form {
