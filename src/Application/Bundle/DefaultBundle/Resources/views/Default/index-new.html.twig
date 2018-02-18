@@ -7,7 +7,7 @@
         <video class="header__video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto">
             <source src="{{ asset('uploads/video/STFalconCR1.mp4') }}">
         </video>
-        {% include '::_header_index.html.twig' with {'with_about':true} %}
+        {% include '::_header_index.html.twig' %}
         <div class="header__text">
             <h1 class="header__title">{{ 'We Code Your Ideas'|trans }}</h1>
             <p class="header__sub-title">
@@ -102,16 +102,29 @@
         {% endfor %}
     </section>
 
-    <section class="our-services">
-        <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
-        <h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>
-        <ul class="services-list">
-            {% for i in 1..9 %}
-                {% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'index' : i} %}
-            {% endfor %}
-        </ul>
-        <button type="button" class="hire_us_main our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>
+    <section class="open-source">
+        <h2>{{ "Участвуем в Open Source" | trans() }}</h2>
+        <div class="tabs-cnt">
+            <ul class="tabs-content">
+                <li class="tab active">
+                    <p>
+                        {{ '__main.we_contribution_text'|trans({'%link%': 'http://symfony.com', '%github_link%':'https://github.com/stfalcon/', '%android_link%':url('blog_post_view', {'slug':'useful-Android-libraries-from-stfalcon-com'})})|raw }}
+                    </p>
+                </li>
+            </ul>
+        </div>
     </section>
+
+    {#<section class="our-services">#}
+        {#<span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>#}
+        {#<h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>#}
+        {#<ul class="services-list">#}
+            {#{% for i in 1..9 %}#}
+                {#{% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'index' : i} %}#}
+            {#{% endfor %}#}
+        {#</ul>#}
+        {#<button type="button" class="hire_us_main our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>#}
+    {#</section>#}
 
     <section class="side-projects">
         <h2 class="promo-title side-projects__title">{{ 'main.promo.title5'|trans }}</h2>

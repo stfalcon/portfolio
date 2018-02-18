@@ -7,9 +7,7 @@
         {{ knp_menu_render('main') }}
         <svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/></svg>
     </nav>
-    {% if with_about %}
     <a class="header-line__btn home-btn home-btn--sm home-btn--dark" target="_blank" href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2018.pdf'}) }}">{{ 'about_us'|trans }}</a>
-    {% endif %}
     {{ include('::_social_links.html.twig') }}
     {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
 </div>
