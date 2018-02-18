@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d35e6a2f72452732d7aed2986502fb1a",
+    "content-hash": "92a99d99bd579b1a75c17a049aaec675",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -3978,6 +3978,129 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2015-11-07T08:07:40+00:00"
+        },
+        {
+            "name": "sentry/sentry",
+            "version": "1.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsentry/sentry-php.git",
+                "reference": "512661046e403dc5eb5ae192d5a6cda10e068a95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/512661046e403dc5eb5ae192d5a6cda10e068a95",
+                "reference": "512661046e403dc5eb5ae192d5a6cda10e068a95",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": "^5.3|^7.0"
+            },
+            "conflict": {
+                "raven/raven": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.8.0",
+                "monolog/monolog": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7"
+            },
+            "suggest": {
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "monolog/monolog": "Automatically capture Monolog events as breadcrumbs"
+            },
+            "bin": [
+                "bin/sentry"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Raven_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "David Cramer",
+                    "email": "dcramer@gmail.com"
+                }
+            ],
+            "description": "A PHP client for Sentry (http://getsentry.com)",
+            "homepage": "http://getsentry.com",
+            "keywords": [
+                "log",
+                "logging"
+            ],
+            "time": "2018-02-07T11:26:52+00:00"
+        },
+        {
+            "name": "sentry/sentry-symfony",
+            "version": "0.8.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsentry/sentry-symfony.git",
+                "reference": "65bbda9e2f036a6fac2999ed6a6ef0b6dbfc7a79"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getsentry/sentry-symfony/zipball/65bbda9e2f036a6fac2999ed6a6ef0b6dbfc7a79",
+                "reference": "65bbda9e2f036a6fac2999ed6a6ef0b6dbfc7a79",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "sentry/sentry": ">=1.5.0",
+                "symfony/config": "^2.7|^3.0",
+                "symfony/console": "^2.7|^3.0",
+                "symfony/dependency-injection": "^2.7|^3.0",
+                "symfony/event-dispatcher": "^2.7|^3.0",
+                "symfony/http-kernel": "^2.7|^3.0",
+                "symfony/security-core": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.8.0",
+                "phpunit/phpunit": "^4.6.6"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sentry\\SentryBundle\\": "src/Sentry/SentryBundle"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Cramer",
+                    "email": "dcramer@gmail.com"
+                }
+            ],
+            "description": "Symfony integration for Sentry (http://getsentry.com)",
+            "homepage": "http://getsentry.com",
+            "keywords": [
+                "errors",
+                "logging",
+                "sentry",
+                "symfony"
+            ],
+            "time": "2017-10-23T15:08:51+00:00"
         },
         {
             "name": "sonata-project/admin-bundle",

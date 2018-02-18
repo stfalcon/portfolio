@@ -12,6 +12,7 @@ deploy_callbacks:
         - 'sed -i "s/sql_host        =.*/sql_host        = portfolio-mysql/" /etc/sphinxsearch/sphinx.conf'
         - 'sed -i "s/sql_pass        =.*/sql_pass        = `mysql_password`/" /etc/sphinxsearch/sphinx.conf'
         - "sed -i \"s/sql_db          =.*/sql_db          = `echo -n $STAGING_BRANCH|md5sum | awk '{print $1}'`/\" /etc/sphinxsearch/sphinx.conf"
+#        - 'cp -a web/app_stag.php web/app.php'
         - 'sed -i "s/START=no/START=yes/" /etc/default/sphinxsearch'
         - './console init:acl'
         - 'indexer --all'

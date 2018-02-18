@@ -58,15 +58,26 @@
             'js/autosize.min.js'
             'js/headroom.js'
             'js/underscore-min.js'
-            'js/search.js'
-            'js/subscribe.js'
             'js/jquery.validate.min.js'
-            'js/main.js'
-            'js/widgets.js'
+            'assets/js/libs/jquery.history.min.js'
             output='cache/js/*.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        {% if app.environment == 'prod' %}
+        <script src="https://cdn.ravenjs.com/3.22.3/raven.min.js" crossorigin="anonymous"></script>
+        <script>Raven.config('https://95577bd7784045d582ef0b36904c88b5@sentry.stfalcon.com/52').install()</script>
+        {% endif %}
+        {% javascripts
+            'js/search.js'
+            'js/subscribe.js'
+            'js/main.js'
+            'js/widgets.js'
+            output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
     {% endblock %}
-    {% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
+
 </body>
 </html>
