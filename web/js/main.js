@@ -562,7 +562,7 @@ $(function () {
                 $('.scroll-to-top').fadeOut();
             }
 
-            if ($(window).width() <= 320) {
+            if ($(window).width() < 320) {
                 $('.scroll-to-top').hide();
                 return false;
             }
@@ -577,7 +577,7 @@ $(function () {
 
     function fixedButtonUp() {
         if ($('.scroll-to-top').length) {
-            if ($('.scroll-to-top').offset().top + $('.scroll-to-top').height() >= $('.footer').offset().top - 69) {
+            if ($('.scroll-to-top').offset().top >= $('.footer').offset().top - 69) {
                 $('.scroll-to-top').addClass('fixed-scroll-top');
             }
 
