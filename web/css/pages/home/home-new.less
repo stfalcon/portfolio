@@ -1144,7 +1144,7 @@ body {
 //  margin: 0;
 //}
 .project-case {
-  padding-top: 51px;
+  //padding-top: 51px;
   line-height: 1.5;
   background: #F5F7F7;
 
@@ -2005,10 +2005,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
       overflow: visible;
       transform-origin: 0 0 ;
       transform: scale(2.25);
-
-      li {
-        margin-right: 16px;
-      }
     }
   }
 }
@@ -2145,10 +2141,11 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 ul.error-list li {
   font-size: 1em;
+  padding-left: 0 !important;
+  text-align: left;
 
   &:before {
     content: none !important;
-    padding-left: 0 !important;
   }
 }
 
