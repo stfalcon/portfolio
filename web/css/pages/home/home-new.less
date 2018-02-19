@@ -437,7 +437,7 @@
   &__title {
     font-weight: 300;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
   }
 
   &__list {
@@ -2145,6 +2145,11 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 ul.error-list li {
   font-size: 1em;
+
+  &:before {
+    content: none !important;
+    padding-left: 0 !important;
+  }
 }
 
 .subscribe-form-wrap {
@@ -2168,6 +2173,119 @@ ul.error-list li {
       &:before {
         content: none;
       }
+    }
+  }
+}
+
+
+//open source
+
+.open-source {
+  position: relative;
+  text-align: center;
+  padding: 0 24px;
+
+  h2 {
+    margin-bottom: 60px;
+    font-weight: 300;
+  }
+}
+
+.tabs-cnt {
+  max-width: 812px;
+  margin: 0 auto 94px;
+
+  .tabs-header {
+    margin-bottom: 24px;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 9px;
+    }
+  }
+  .tab-title {
+    display: block;
+    border: solid 1px transparent;
+    padding: 7px 11px;
+    font-size: 16px;
+    color: #3457c0;
+    cursor: pointer;
+
+    &.active {
+      border-color: #d7c76e;
+      color: #2c373c;
+    }
+  }
+  .tabs-content {
+
+    a {
+      color: #3457c0;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: #ed002d;
+        border-bottom: solid 1px;
+      }
+    }
+  }
+  .tab {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+  p {
+    font-size: 32px;
+    font-weight: 100;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .open-source {
+    h2 {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tabs-cnt {
+    p {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  div.tabs-cnt {
+    margin-bottom: 74px;
+
+    .tabs-content {
+      padding: 0 33px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+  }
+
+  .open-source {
+    h2 {
+      margin-top: 78px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .open-source {
+    .tabs-cnt .tabs-header li {
+      width: 44%;
+      margin: 0;
     }
   }
 }
