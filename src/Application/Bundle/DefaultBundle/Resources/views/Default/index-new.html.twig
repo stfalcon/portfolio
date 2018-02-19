@@ -90,7 +90,7 @@
                 {% set text_color_class = 'project-item--white-text' %}
             {% endif %}
 
-            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item">
+            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item{% if loop.last %} bg-item--last{% endif %}">
             {% if add_class == '' %}
                 {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
                 {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
