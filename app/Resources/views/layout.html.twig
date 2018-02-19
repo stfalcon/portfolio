@@ -7,9 +7,13 @@
         {{ render(controller('StfalconBlogBundle:Search:searchPosts')) }}
     {% endblock %}
     {% block team_image %}{% endblock %}
+
+    {% block div_content %}
     <div class="content">
         {% block content_wrapper %}{% endblock %}
     </div>
+    {% endblock div_content %}
+
     <footer id="footer" class="footer vcard">
         {{ include('_footer.html.twig') }}
     </footer>

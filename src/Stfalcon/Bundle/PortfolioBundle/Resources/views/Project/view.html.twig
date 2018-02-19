@@ -21,48 +21,52 @@
 
 {% block title %}{{ project.name }} | {{ "Проекты"|trans }}{{ parent() }}{% endblock %}
 
-{% block content_wrapper %}
-    {% if project.showCase %}
-        {% include 'StfalconPortfolioBundle:Project:_case.html.twig' %}
-    {% else %}
-        {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
-        <div class="project-wrapper clearfix">
-            <aside class="project-info">
-                <h2>{{ project.name }}</h2>
-                {% if project.url %}
-                    <a href="{{ project.url }}" rel="nofollow" target="_blank">{{ project.url }}</a>
-                {% endif %}
+{% if project.showCase %}
+    {% block div_content %}
+        <div class="content full-width-content">
+            {% include 'StfalconPortfolioBundle:Project:_case.html.twig' %}
+        </div>
+    {% endblock div_content %}
+{% else %}
+    {% block content_wrapper %}
+            {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+            <div class="project-wrapper clearfix">
+                <aside class="project-info">
+                    <h2>{{ project.name }}</h2>
+                    {% if project.url %}
+                        <a href="{{ project.url }}" rel="nofollow" target="_blank">{{ project.url }}</a>
+                    {% endif %}
 
-                <span>{{ project.tags }}</span>
-                <p>
-                    {{ project.description | raw }}
-                </p>
-                {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions } %}
-            </aside>
-            <div class="project-slider-wrapper">
-                <div class="project-slider-cnt no-controls">
-                    <div class="slider-nav">
-                        <a class="prev-slide"></a>
-                        <a class="next-slide"></a>
-                    </div>
-                    <div class="fixed-nav">
-                        <a class="fix-prev-slide prev-slide"></a>
-                        <a class="fix-next-slide next-slide "></a>
-                    </div>
-                    <div class="slider-pages"></div>
-                    <div class="project-slider">
-                        {% if project.media|length %}
-                            <ul>
-                                {% set filter = project.shadow?'slide':'reference' %}
-                                {% for mediaGallery in project.media %}
-                                    <li {{ not project.shadow?'class="no-shadow"' }}><img src="{% path mediaGallery.media, filter %}" alt="{{ project.name }}"/></li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+                    <span>{{ project.tags }}</span>
+                    <p>
+                        {{ project.description | raw }}
+                    </p>
+                    {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions } %}
+                </aside>
+                <div class="project-slider-wrapper">
+                    <div class="project-slider-cnt no-controls">
+                        <div class="slider-nav">
+                            <a class="prev-slide"></a>
+                            <a class="next-slide"></a>
+                        </div>
+                        <div class="fixed-nav">
+                            <a class="fix-prev-slide prev-slide"></a>
+                            <a class="fix-next-slide next-slide "></a>
+                        </div>
+                        <div class="slider-pages"></div>
+                        <div class="project-slider">
+                            {% if project.media|length %}
+                                <ul>
+                                    {% set filter = project.shadow?'slide':'reference' %}
+                                    {% for mediaGallery in project.media %}
+                                        <li {{ not project.shadow?'class="no-shadow"' }}><img src="{% path mediaGallery.media, filter %}" alt="{{ project.name }}"/></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
-    {% endif %}
-{% endblock %}
+            {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+    {% endblock %}
+{% endif %}
