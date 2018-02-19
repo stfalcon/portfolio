@@ -566,6 +566,9 @@ $(function () {
                 $('.scroll-to-top').hide();
                 return false;
             }
+
+            console.log($('.scroll-to-top').offset().top,
+                ($('.footer').offset().top)- 69);
         });
         $(".scroll-to-top").click(function () {
             $('body,html').animate({
