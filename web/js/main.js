@@ -567,8 +567,6 @@ $(function () {
                 return false;
             }
 
-            console.log($('.scroll-to-top').offset().top,
-                ($('.footer').offset().top)- 69);
         });
         $(".scroll-to-top").click(function () {
             $('body,html').animate({
@@ -580,7 +578,7 @@ $(function () {
 
     function fixedButtonUp() {
         if ($('.scroll-to-top').length) {
-            if ($('.scroll-to-top').offset().top >= $('.footer').offset().top - 69) {
+            if ($('.scroll-to-top').offset().top + $('.scroll-to-top').height() >= $('.footer').offset().top - 69) {
                 $('.scroll-to-top').addClass('fixed-scroll-top');
             }
 
