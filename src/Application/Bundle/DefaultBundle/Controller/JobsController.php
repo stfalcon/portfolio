@@ -93,12 +93,14 @@ class JobsController extends Controller
         }
         $seo = $this->getSeo($job, $request);
         $this->get('app.default.seo_alternate')->addAlternate($job, $seo, $request);
+        $errors = $vacancyForm->getErrors(true);
 
         return $this->render(
             '@ApplicationDefault/Jobs/view.html.twig',
             [
                 'job' => $job,
                 'form' => $vacancyForm->createView(),
+                'is_errors' => count($errors),
             ]
         );
     }

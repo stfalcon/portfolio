@@ -82,3 +82,12 @@ $(function () {
     //     email: directVacancyFormMessage.email.defaultMessage
     // });
 });
+
+$(document).ready(function () {
+    if (typeof isErrors != 'undefined' && isErrors > 0) {
+        var elem = $('#vacancy-form');
+        $('html, body').animate({
+            scrollTop: elem.offset().top-70
+        }, 2000);
+    }
+});
