@@ -17,3 +17,5 @@ deploy_callbacks:
         - './console init:acl'
         - 'indexer --all'
         - '/etc/init.d/sphinxsearch start'
+        - 'rm -rf web/uploads/video'
+        - 'ln -s /stag/shared/video web/uploads/video'
