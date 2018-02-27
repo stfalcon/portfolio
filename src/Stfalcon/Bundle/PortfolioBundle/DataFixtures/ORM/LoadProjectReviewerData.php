@@ -33,11 +33,13 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
         $this->container = $container;
     }
 
-    public function addReviewer(ObjectManager $manager, $name, $fileName)
+    public function addReviewer(ObjectManager $manager, $name, $fileName, $status)
     {
         $reviewer = (new ProjectReviewer())
             ->setName($name)
-            ->setPhotoFile($this->generateUploadedFile($fileName));
+            ->setPhotoFile($this->generateUploadedFile($fileName))
+            ->setStatus($status)
+        ;
 
         $manager->persist($reviewer);
 
@@ -51,9 +53,9 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
     public function load(ObjectManager $manager)
     {
 
-        $reviwer1 = $this->addReviewer($manager, 'Andrew Khvetkevich', 'khatkevich.png');
+        $reviwer1 = $this->addReviewer($manager, 'Andrew Khvetkevich', 'khatkevich.png', 'Nic.ua');
         $this->addReference('reviwer1', $reviwer1);
-        $reviwer2 = $this->addReviewer($manager, 'Kirill Podolsky', 'kiril.png');
+        $reviwer2 = $this->addReviewer($manager, 'Kirill Podolsky', 'kiril.png', 'менеджер');
         $this->addReference('reviwer2', $reviwer2);
 
         $manager->flush();

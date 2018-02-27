@@ -78,38 +78,11 @@ class ProjectReview implements Translatable
     private $active;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="reviewer_project_status", type="string", length=255, nullable=true)
-     */
-    private $reviewerProjectStatus;
-
-    /**
      * ProjectReview constructor.
      */
     public function __construct()
     {
         $this->translations = new ArrayCollection();
-    }
-
-    /**
-     * @return string
-     */
-    public function getReviewerProjectStatus()
-    {
-        return $this->reviewerProjectStatus;
-    }
-
-    /**
-     * @param string $reviewerProjectStatus
-     *
-     * @return $this
-     */
-    public function setReviewerProjectStatus($reviewerProjectStatus)
-    {
-        $this->reviewerProjectStatus = $reviewerProjectStatus;
-
-        return $this;
     }
 
     /**

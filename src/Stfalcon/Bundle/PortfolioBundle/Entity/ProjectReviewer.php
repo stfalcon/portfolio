@@ -83,6 +83,12 @@ class ProjectReviewer implements Translatable
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     */
+    private $status;
 
     /**
      * ProjectReviewer constructor.
@@ -91,6 +97,26 @@ class ProjectReviewer implements Translatable
     {
         $this->projectReviews = new ArrayCollection();
         $this->translations = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     *
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
     }
 
     /**
