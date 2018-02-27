@@ -282,6 +282,7 @@ class ProjectAdmin extends Admin
             ->addIdentifier('slug')
             ->add('name')
             ->add('date')
+            ->add('onFrontPage')
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],
