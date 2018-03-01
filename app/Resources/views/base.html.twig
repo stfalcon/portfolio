@@ -24,34 +24,36 @@
         <![endif]-->
         <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('YmdHi') }}"/>
     {% endblock %}
-
-    <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
-    {% if app.environment == 'prod' %}
-        {% javascripts
-            'js/metrics/header.js'
-            output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% include "::google_analytics.html.twig" %}
-        {% endjavascripts %}
-    {% else %}
-        {% javascripts
-            'js/devstub.js'
-            output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endif %}
 </head>
 <body>
     {% if app.environment == 'prod' %}
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ3V27V"
-                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZ3V27V"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
     {% endif %}
+
     {% block body %}{% endblock %}
+
     {% block after_body %}{% endblock %}
 
     {% block javascripts %}
+        <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
+        {% if app.environment == 'prod' %}
+            {% javascripts
+                'js/metrics/header.js'
+                output='cache/js/*.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% include "::google_analytics.html.twig" %}
+            {% endjavascripts %}
+        {% else %}
+            {% javascripts
+                'js/devstub.js'
+                output='cache/js/*.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endif %}
+
         {% javascripts
             'js/vendor/jquery-1.7.2.min.js'
             'js/plugins.js'

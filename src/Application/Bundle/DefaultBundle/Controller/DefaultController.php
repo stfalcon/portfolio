@@ -14,14 +14,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Default controller. For single actions for project
+ * Default controller. For single actions for project.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class DefaultController extends Controller
 {
     /**
-     * Categories/projects list
+     * Categories/projects list.
      *
      * @param Request $request Request
      *
@@ -48,14 +48,14 @@ class DefaultController extends Controller
                 ->addMeta('name', 'description', $seoHomepage->getDescription())
                 ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
                 ->addMeta('property', 'og:description', $seoHomepage->getDescription())
-                ->addMeta('property', 'og:image', '/img/' . $seoHomepage->getOgImage());
+                ->addMeta('property', 'og:image', '/img/'.$seoHomepage->getOgImage());
         }
 
         return [];
     }
 
     /**
-     * index-new page
+     * index-new page.
      *
      * @param Request $request Request
      *
@@ -69,7 +69,7 @@ class DefaultController extends Controller
             ->findBy(['showInServices' => true], ['ordernum' => 'ASC']);
         $locale = $request->getLocale() ? $request->getLocale() : 'en';
         $posts = $this->get('doctrine')->getManager()
-            ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, 3);
+            ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, 3);
 
         $projects = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Project')
             ->findBy(['onFrontPage' => true]);
@@ -77,6 +77,21 @@ class DefaultController extends Controller
         $activeReviews = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:ProjectReview')
             ->getActiveReviews($projects);
 
+        $seo = $this->get('sonata.seo.page');
+        $seo
+            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
+            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
+
+        $seoHomepage = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:SeoHomepage')->findOneBy([]);
+        if ($seoHomepage instanceof SeoHomepage) {
+            $seo
+                ->setTitle($seoHomepage->getTitle())
+                ->addMeta('name', 'keywords', $seoHomepage->getKeywords())
+                ->addMeta('name', 'description', $seoHomepage->getDescription())
+                ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
+                ->addMeta('property', 'og:description', $seoHomepage->getDescription())
+                ->addMeta('property', 'og:image', '/img/'.$seoHomepage->getOgImage());
+        }
 
         return $this->render(
             '@ApplicationDefault/Default/index-new.html.twig',
@@ -89,7 +104,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Contacts page
+     * Contacts page.
      *
      * @param Request $request Request
      *
@@ -116,7 +131,7 @@ class DefaultController extends Controller
                 if ($formData['attach']) {
                     /** @var UploadedFile $attach */
                     $attach = $formData['attach'];
-                    $attachFile = $attach->move(realpath($container->getParameter('kernel.root_dir') . '/../attachments/'), $attach->getClientOriginalName());
+                    $attachFile = $attach->move(realpath($container->getParameter('kernel.root_dir').'/../attachments/'), $attach->getClientOriginalName());
                     $attachments[] = $attachFile;
                 }
 
@@ -144,8 +159,8 @@ class DefaultController extends Controller
                 if ($resultSending) {
                     if ($request->isXmlHttpRequest()) {
                         return new JsonResponse([
-                            'result'    => 'success',
-                            'view'      => $this->renderView('@ApplicationDefault/Default/_direct_order_form_success.html.twig')
+                            'result' => 'success',
+                            'view' => $this->renderView('@ApplicationDefault/Default/_direct_order_form_success.html.twig'),
                         ]);
                     }
 
@@ -155,7 +170,6 @@ class DefaultController extends Controller
                 } else {
                     $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('Произошла ошибка при отправке письма.'));
                 }
-
             }
         }
 
@@ -165,8 +179,8 @@ class DefaultController extends Controller
 
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse([
-                'result'    => 'error',
-                'view'      => $this->renderView('@ApplicationDefault/Default/_direct_order_form.html.twig', ['form' => $directOrderForm->createView()])
+                'result' => 'error',
+                'view' => $this->renderView('@ApplicationDefault/Default/_direct_order_form.html.twig', ['form' => $directOrderForm->createView()]),
             ]);
         }
 
@@ -174,7 +188,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Privacy Policy static page
+     * Privacy Policy static page.
      *
      * @param Request $request Request
      *
@@ -193,7 +207,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Terms of Service static page
+     * Terms of Service static page.
      *
      * @param Request $request Request
      *

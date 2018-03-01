@@ -20,6 +20,7 @@
                 minlength: "{{ 'Введите телефон не меньше {0} символов'|trans }}",
             }
         };
+        var isErrors = {{ is_errors }};
     </script>
     {% javascripts
     'js/direct-vacancy-form.js'
@@ -56,7 +57,7 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <div class="contacts-form-wr">
+                <div class="contacts-form-wr" id="vacancy-form">
                     {% include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' %}
                 </div>
             {% endif %}
