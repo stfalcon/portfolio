@@ -6,15 +6,18 @@ monolog:
         main:
             type:         fingers_crossed
             action_level: error
-            handler:      nested
+            handler:      grouped_main
         nested:
-            type:         stream
-            path:         "%kernel.logs_dir%/%kernel.environment%.log"
-            level:        debug
-        gelf:
-            type: service
-            id: application_default.monolog.gelf_handler
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+        sentry:
+            type:  raven
+            dsn: "%sentry_dsn_host%"
             level: error
+        grouped_main:
+            type:    group
+            members: [nested, sentry]
 
 doctrine:
     orm:

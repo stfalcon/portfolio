@@ -562,10 +562,11 @@ $(function () {
                 $('.scroll-to-top').fadeOut();
             }
 
-            if ($(window).width() <= 320) {
+            if ($(window).width() < 320) {
                 $('.scroll-to-top').hide();
                 return false;
             }
+
         });
         $(".scroll-to-top").click(function () {
             $('body,html').animate({

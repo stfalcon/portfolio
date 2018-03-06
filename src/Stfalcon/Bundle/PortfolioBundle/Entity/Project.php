@@ -153,6 +153,15 @@ class Project implements Translatable
     private $backgroundColor = '#4D9CC9';
 
     /**
+     * Text color for preview on main.
+     *
+     * @var bool
+     *
+     * @ORM\Column(name="use_dark_text_color", type="boolean")
+     */
+    private $useDarkTextColor = false;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="ordernum", type="integer")
@@ -351,6 +360,26 @@ class Project implements Translatable
     }
 
     /**
+     * @return bool
+     */
+    public function isUseDarkTextColor()
+    {
+        return $this->useDarkTextColor;
+    }
+
+    /**
+     * @param bool $useDarkTextColor
+     *
+     * @return $this
+     */
+    public function setUseDarkTextColor($useDarkTextColor)
+    {
+        $this->useDarkTextColor = $useDarkTextColor;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
@@ -441,6 +470,8 @@ class Project implements Translatable
     public function addCategory(Category $category)
     {
         $this->categories[] = $category;
+
+        return $this;
     }
 
     /**
@@ -465,6 +496,8 @@ class Project implements Translatable
     public function setCategories(ArrayCollection $categories)
     {
         $this->categories = $categories;
+
+        return $this;
     }
 
     /**
@@ -475,6 +508,8 @@ class Project implements Translatable
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -495,6 +530,8 @@ class Project implements Translatable
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
@@ -515,6 +552,8 @@ class Project implements Translatable
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -535,6 +574,8 @@ class Project implements Translatable
     public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
     }
 
     /**
@@ -555,6 +596,8 @@ class Project implements Translatable
     public function setDate(\DateTime $date)
     {
         $this->date = $date;
+
+        return $this;
     }
 
     /**
@@ -585,6 +628,8 @@ class Project implements Translatable
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
     }
 
     /**
@@ -595,6 +640,8 @@ class Project implements Translatable
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
+
+        return $this;
     }
 
     /**
@@ -615,6 +662,8 @@ class Project implements Translatable
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
+
+        return $this;
     }
 
     /**
@@ -635,6 +684,8 @@ class Project implements Translatable
     public function setOrdernum($ordernum)
     {
         $this->ordernum = $ordernum;
+
+        return $this;
     }
 
     /**
@@ -655,6 +706,8 @@ class Project implements Translatable
     public function setOnFrontPage($onFrontPage)
     {
         $this->onFrontPage = $onFrontPage;
+
+        return $this;
     }
 
     /**
@@ -676,6 +729,8 @@ class Project implements Translatable
     {
         $this->setUpdated(new \DateTime());
         $this->imageFile = $imageFile;
+
+        return $this;
     }
 
     /**
@@ -694,6 +749,8 @@ class Project implements Translatable
     public function setParticipants($participants)
     {
         $this->participants = $participants;
+
+        return $this;
     }
 
     /**
@@ -710,6 +767,8 @@ class Project implements Translatable
     public function addParticipant(User $participant)
     {
         $this->participants->add($participant);
+
+        return $this;
     }
 
     /**
@@ -718,6 +777,8 @@ class Project implements Translatable
     public function removeParticipant(User $participant)
     {
         $this->participants->removeElement($participant);
+
+        return $this;
     }
 
     /**
@@ -726,6 +787,8 @@ class Project implements Translatable
     public function setMedia($media)
     {
         $this->media = $media;
+
+        return $this;
     }
 
     /**
@@ -742,6 +805,8 @@ class Project implements Translatable
     public function addMedia($media)
     {
         $this->media->add($media);
+
+        return $this;
     }
 
     /**
@@ -750,6 +815,8 @@ class Project implements Translatable
     public function removeMedia($media)
     {
         $this->media->removeElement($media);
+
+        return $this;
     }
 
     /**
@@ -758,6 +825,8 @@ class Project implements Translatable
     public function setTags($tags)
     {
         $this->tags = $tags;
+
+        return $this;
     }
 
     /**
@@ -774,6 +843,8 @@ class Project implements Translatable
     public function setPublished($published)
     {
         $this->published = $published;
+
+        return $this;
     }
 
     /**
@@ -790,6 +861,8 @@ class Project implements Translatable
     public function setShadow($shadow)
     {
         $this->shadow = $shadow;
+
+        return $this;
     }
 
     /**
@@ -817,6 +890,8 @@ class Project implements Translatable
             $this->translations->add($projectTranslation);
             $projectTranslation->setObject($this);
         }
+
+        return $this;
     }
 
     /**
@@ -828,6 +903,8 @@ class Project implements Translatable
             $this->translations->add($projectTranslation);
             $projectTranslation->setObject($this);
         }
+
+        return $this;
     }
 
     /**
@@ -836,6 +913,8 @@ class Project implements Translatable
     public function removeTranslation(ProjectTranslation $projectTranslation)
     {
         $this->translations->removeElement($projectTranslation);
+
+        return $this;
     }
 
     /**
@@ -844,6 +923,8 @@ class Project implements Translatable
     public function setTranslations($translations)
     {
         $this->translations = $translations;
+
+        return $this;
     }
 
     /**
@@ -852,6 +933,8 @@ class Project implements Translatable
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -868,6 +951,8 @@ class Project implements Translatable
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -986,6 +1071,8 @@ class Project implements Translatable
         if (!$this->relativeProjects->contains($project)) {
             $this->relativeProjects->add($project);
         }
+
+        return $this;
     }
 
     /**
@@ -996,6 +1083,8 @@ class Project implements Translatable
         if ($this->relativeProjects->contains($project)) {
             $this->relativeProjects->removeElement($project);
         }
+
+        return $this;
     }
 
     /**
@@ -1012,6 +1101,8 @@ class Project implements Translatable
     public function setShortDescription($shortDescription)
     {
         $this->shortDescription = $shortDescription;
+
+        return $this;
     }
 
     /**
@@ -1082,5 +1173,7 @@ class Project implements Translatable
     public function setAdditionalInfo($additionalInfo)
     {
         $this->additionalInfo = $additionalInfo;
+
+        return $this;
     }
 }

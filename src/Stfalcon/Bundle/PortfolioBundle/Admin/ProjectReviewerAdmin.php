@@ -32,12 +32,19 @@ class ProjectReviewerAdmin extends Admin
                                     'en' => ['required' => false],
                                 ],
                             ],
+                            'status' => [
+                                'label' => 'должность',
+                                'locale_options' => [
+                                    'ru' => ['required' => true],
+                                    'en' => ['required' => false],
+                                ],
+                            ],
                         ],
                     ]
                 )
             ->end()
             ->with('Основное')
-                ->add('photoFile', 'file')
+                ->add('photoFile', 'file', ['required' => false])
                 ->add('projectReviews')
             ->end()
         ;

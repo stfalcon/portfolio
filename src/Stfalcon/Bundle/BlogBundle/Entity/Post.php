@@ -10,7 +10,7 @@ use Gedmo\Translatable\Translatable;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Post entity
+ * Post entity.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  * @ORM\Table(name="blog_posts")
@@ -20,9 +20,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Post implements Translatable
 {
     /**
-     * Post id
+     * Post id.
      *
-     * @var integer $id
+     * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -30,9 +30,9 @@ class Post implements Translatable
     private $id;
 
     /**
-     * Post title
+     * Post title.
      *
-     * @var string $title
+     * @var string
      * @Assert\NotBlank()
      * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="title", type="string", length=255)
@@ -40,7 +40,7 @@ class Post implements Translatable
     private $title = '';
 
     /**
-     * @var string $slug
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -51,9 +51,9 @@ class Post implements Translatable
     private $slug;
 
     /**
-     * Post text
+     * Post text.
      *
-     * @var string $text
+     * @var string
      * @Assert\NotBlank()
      * @Gedmo\Translatable(fallback=true)
      * @ORM\Column(name="text", type="text")
@@ -61,7 +61,7 @@ class Post implements Translatable
     private $text;
 
     /**
-     * Tags for post
+     * Tags for post.
      *
      * @var ArrayCollection
      * @Assert\NotBlank()
@@ -74,14 +74,14 @@ class Post implements Translatable
     private $tags;
 
     /**
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      */
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="update")
@@ -89,14 +89,14 @@ class Post implements Translatable
     private $updated;
 
     /**
-     * @var int $commentsCount
+     * @var int
      *
      * @ORM\Column(type="integer")
      */
     private $commentsCount = 0;
 
     /**
-     * @var User $author
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="Application\Bundle\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
@@ -104,7 +104,7 @@ class Post implements Translatable
     protected $author;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(type="boolean")
      */
@@ -156,7 +156,7 @@ class Post implements Translatable
     private $metaTitle;
 
     /**
-     * Initialization properties for new post entity
+     * Initialization properties for new post entity.
      */
     public function __construct()
     {
@@ -166,7 +166,7 @@ class Post implements Translatable
     }
 
     /**
-     * Get post id
+     * Get post id.
      *
      * @return int
      */
@@ -176,17 +176,19 @@ class Post implements Translatable
     }
 
     /**
-     * Set tags to post
+     * Set tags to post.
      *
      * @param ArrayCollection $tags
      */
     public function setTags($tags)
     {
         $this->tags = $tags;
+
+        return $this;
     }
 
     /**
-     * Get all tags
+     * Get all tags.
      *
      * @return ArrayCollection
      */
@@ -201,6 +203,8 @@ class Post implements Translatable
     public function addTag(Tag $tag)
     {
         $this->tags->add($tag);
+
+        return $this;
     }
 
     /**
@@ -209,22 +213,24 @@ class Post implements Translatable
     public function removeTag(Tag $tag)
     {
         $this->tags->removeElement($tag);
+
+        return $this;
     }
 
     /**
-     * Set post title
+     * Set post title.
      *
      * @param string $title Text of the title
-     *
-     * @return void
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     /**
-     * Get post title
+     * Get post title.
      *
      * @return string
      */
@@ -234,19 +240,19 @@ class Post implements Translatable
     }
 
     /**
-     * Set post slug
+     * Set post slug.
      *
      * @param string $slug Unique text identifier
-     *
-     * @return void
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
-     * Get post slug
+     * Get post slug.
      *
      * @return string
      */
@@ -256,19 +262,19 @@ class Post implements Translatable
     }
 
     /**
-     * Set post text
+     * Set post text.
      *
      * @param string $text Text for post
-     *
-     * @return void
      */
     public function setText($text)
     {
         $this->text = $text;
+
+        return $this;
     }
 
     /**
-     * Get post text
+     * Get post text.
      *
      * @return string
      */
@@ -278,19 +284,19 @@ class Post implements Translatable
     }
 
     /**
-     * Set time when post created
+     * Set time when post created.
      *
      * @param \DateTime $created A time when post created
-     *
-     * @return void
      */
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
+
+        return $this;
     }
 
     /**
-     * Get time when post created
+     * Get time when post created.
      *
      * @return \DateTime
      */
@@ -300,19 +306,19 @@ class Post implements Translatable
     }
 
     /**
-     * Set time when post updated
+     * Set time when post updated.
      *
      * @param \DateTime $updated A time when post updated
-     *
-     * @return void
      */
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
+
+        return $this;
     }
 
     /**
-     * Get time when post updated
+     * Get time when post updated.
      *
      * @return \DateTime
      */
@@ -322,19 +328,19 @@ class Post implements Translatable
     }
 
     /**
-     * Set comments count for post
+     * Set comments count for post.
      *
      * @param int $commentsCount A count of comments for post
-     *
-     * @return void
      */
     public function setCommentsCount($commentsCount)
     {
         $this->commentsCount = $commentsCount;
+
+        return $this;
     }
 
     /**
-     * Get comments count for post
+     * Get comments count for post.
      *
      * @return int
      */
@@ -344,7 +350,7 @@ class Post implements Translatable
     }
 
     /**
-     * This method allows a class to decide how it will react when it is treated like a string
+     * This method allows a class to decide how it will react when it is treated like a string.
      *
      * @return string
      */
@@ -359,6 +365,8 @@ class Post implements Translatable
     public function setAuthor($author)
     {
         $this->author = $author;
+
+        return $this;
     }
 
     /**
@@ -370,15 +378,17 @@ class Post implements Translatable
     }
 
     /**
-     * @param boolean $published
+     * @param bool $published
      */
     public function setPublished($published)
     {
         $this->published = $published;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getPublished()
     {
@@ -402,7 +412,10 @@ class Post implements Translatable
             $this->translations->add($postTranslation);
             $postTranslation->setObject($this);
         }
+
+        return $this;
     }
+
     /**
      * @param PostTranslation $postTranslation
      */
@@ -412,6 +425,8 @@ class Post implements Translatable
             $this->translations->add($postTranslation);
             $postTranslation->setObject($this);
         }
+
+        return $this;
     }
 
     /**
@@ -420,6 +435,8 @@ class Post implements Translatable
     public function removeTranslation(PostTranslation $postTranslation)
     {
         $this->translations->removeElement($postTranslation);
+
+        return $this;
     }
 
     /**
@@ -428,6 +445,8 @@ class Post implements Translatable
     public function setTranslations($translations)
     {
         $this->translations = $translations;
+
+        return $this;
     }
 
     /**
@@ -436,6 +455,8 @@ class Post implements Translatable
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -452,6 +473,8 @@ class Post implements Translatable
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -520,6 +543,8 @@ class Post implements Translatable
     public function setMetaTitle($metaTitle)
     {
         $this->metaTitle = $metaTitle;
+
+        return $this;
     }
 
     /**

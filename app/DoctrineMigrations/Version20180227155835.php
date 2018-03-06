@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180115181859 extends AbstractMigration
+class Version20180227155835 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -20,13 +20,13 @@ class Version20180115181859 extends AbstractMigration
 
         $this->addSql('CREATE TABLE project_reviewer_translations (id INT AUTO_INCREMENT NOT NULL, object_id INT DEFAULT NULL, locale VARCHAR(8) NOT NULL, field VARCHAR(32) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_79E23B21232D562B (object_id), UNIQUE INDEX project_reviewer_lookup_unique_idx (locale, object_id, field), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE project_review_translations (id INT AUTO_INCREMENT NOT NULL, object_id INT DEFAULT NULL, locale VARCHAR(8) NOT NULL, field VARCHAR(32) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_A579224C232D562B (object_id), UNIQUE INDEX project_review_lookup_unique_idx (locale, object_id, field), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE portfolio_projects_reviewer (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, photo VARCHAR(255) DEFAULT NULL, createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE portfolio_projects_review (id INT AUTO_INCREMENT NOT NULL, reviewer_id INT DEFAULT NULL, project_id INT DEFAULT NULL, text LONGTEXT NOT NULL, active TINYINT(1) NOT NULL, reviewer_project_status VARCHAR(255) DEFAULT NULL, createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, INDEX IDX_133AB9E470574616 (reviewer_id), INDEX IDX_133AB9E4166D1F9C (project_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE portfolio_projects_reviewer (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, photo VARCHAR(255) DEFAULT NULL, status VARCHAR(255) DEFAULT NULL, createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE portfolio_projects_review (id INT AUTO_INCREMENT NOT NULL, reviewer_id INT DEFAULT NULL, project_id INT DEFAULT NULL, text LONGTEXT NOT NULL, active TINYINT(1) NOT NULL, createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, INDEX IDX_133AB9E470574616 (reviewer_id), INDEX IDX_133AB9E4166D1F9C (project_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE project_reviewer_translations ADD CONSTRAINT FK_79E23B21232D562B FOREIGN KEY (object_id) REFERENCES portfolio_projects_reviewer (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE project_review_translations ADD CONSTRAINT FK_A579224C232D562B FOREIGN KEY (object_id) REFERENCES portfolio_projects_review (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE portfolio_projects_review ADD CONSTRAINT FK_133AB9E470574616 FOREIGN KEY (reviewer_id) REFERENCES portfolio_projects_reviewer (id)');
         $this->addSql('ALTER TABLE portfolio_projects_review ADD CONSTRAINT FK_133AB9E4166D1F9C FOREIGN KEY (project_id) REFERENCES portfolio_projects (id)');
-        $this->addSql('ALTER TABLE portfolio_projects ADD background_color VARCHAR(7) DEFAULT \'#4D9CC9\' NOT NULL');
+        $this->addSql('ALTER TABLE portfolio_projects ADD background_color VARCHAR(7) DEFAULT \'#4D9CC9\' NOT NULL, ADD use_dark_text_color TINYINT(1) NOT NULL');
     }
 
     /**
@@ -44,6 +44,6 @@ class Version20180115181859 extends AbstractMigration
         $this->addSql('DROP TABLE project_review_translations');
         $this->addSql('DROP TABLE portfolio_projects_reviewer');
         $this->addSql('DROP TABLE portfolio_projects_review');
-        $this->addSql('ALTER TABLE portfolio_projects DROP background_color');
+        $this->addSql('ALTER TABLE portfolio_projects DROP background_color, DROP use_dark_text_color');
     }
 }

@@ -7,7 +7,7 @@
         <video class="header__video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto">
             <source src="{{ asset('uploads/video/STFalconCR1.mp4') }}">
         </video>
-        {% include '::_header_index.html.twig' with {'with_about':true} %}
+        {% include '::_header_index.html.twig' %}
         <div class="header__text">
             <h1 class="header__title">{{ 'We Code Your Ideas'|trans }}</h1>
             <p class="header__sub-title">
@@ -60,7 +60,7 @@
                 <img src="{{ asset('img/trusted_ks.svg') }}" alt="" class="trusted__img">
             </li>
             <li class="trusted__item">
-                <img src="{{ asset('img/trusted_keepsnap.svg') }}" alt="" class="trusted__img">
+                <img src="{{ asset('img/trusted_busfor.svg') }}" alt="" class="trusted__img">
             </li>
             <li class="trusted__item">
                 <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
@@ -84,7 +84,13 @@
                 {% set add_class = ' project-item--left-text' %}
             {% endif %}
 
-            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} project-item--white-text bg-item">
+            {% if project.useDarkTextColor is defined and project.useDarkTextColor == true %}
+                {% set text_color_class = 'project-item--dark-text' %}
+            {% else %}
+                {% set text_color_class = 'project-item--white-text' %}
+            {% endif %}
+
+            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item{% if loop.last %} bg-item--last{% endif %}">
             {% if add_class == '' %}
                 {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
                 {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
@@ -96,18 +102,31 @@
         {% endfor %}
     </section>
 
-    <section class="our-services">
+    <section class="open-source">
         <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
-        <h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>
-        {% if services|length > 0 %}
-        <ul class="services-list">
-            {% for service in services %}
-                {% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'service' : service} %}
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <button type="button" class="hire_us_main our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>
+        <h2 class="promo-title">{{ "Участвуем в Open Source" | trans() }}</h2>
+        <div class="tabs-cnt">
+            <ul class="tabs-content">
+                <li class="tab active">
+                    <p>
+                        {{ '__main.we_contribution_text'|trans({'%link%': 'http://symfony.com', '%github_link%':'https://github.com/stfalcon/', '%android_link%':url('blog_post_view', {'slug':'useful-Android-libraries-from-stfalcon-com'})})|raw }}
+                    </p>
+                </li>
+            </ul>
+        </div>
     </section>
+
+    {#закоментовано до часу, поки не будуть готові тексти для сервісів#}
+    {#<section class="our-services">#}
+        {#<span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>#}
+        {#<h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>#}
+        {#<ul class="services-list">#}
+            {#{% for i in 1..9 %}#}
+                {#{% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'index' : i} %}#}
+            {#{% endfor %}#}
+        {#</ul>#}
+        {#<button type="button" class="hire_us_main our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>#}
+    {#</section>#}
 
     <section class="side-projects">
         <h2 class="promo-title side-projects__title">{{ 'main.promo.title5'|trans }}</h2>
@@ -135,7 +154,7 @@
             <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-rss"></i></a>
         </h2>
         {% include "@StfalconBlog/Post/_posts_main.html.twig" with {'posts' : posts} %}
-        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog', 'forPage': 'main'})) }}
+        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
     </section>
     <section class="details-info">
         <h1>{{ "Stfalcon LLC &mdash; разработки сайтов и мобильных приложений" | trans()|raw }}</h1>
@@ -177,28 +196,26 @@
 </section>
 </div>
 {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-{% javascripts
-    'assets/js/libs/jquery.history.min.js'
-    'assets/js/libs/sly.js'
-    'assets/js/homepage.js'
-    'assets/js/homepage-bg.js'
-    'js/jquery.validate.min.js'
-    'js/widgets.js'
-    'js/subscribe.js'
-    output='cache/js/*.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-
-<script type="text/javascript">
-    jQuery.extend(jQuery.validator.messages, {
-        required: "{{ 'Заполните это поле'|trans }}",
-        email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
-        maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
-        minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
-    });
-</script>
-{% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
-
 {% endblock body %}
 
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    {{ parent() }}
+
+    {% javascripts
+        'assets/js/libs/sly.js'
+        'assets/js/homepage.js'
+        'assets/js/homepage-bg.js'
+        output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        jQuery.extend(jQuery.validator.messages, {
+            required: "{{ 'Заполните это поле'|trans }}",
+            email: "{{ 'Недопустимый адрес электронной почты'|trans }}",
+            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+        });
+    </script>
+{% endblock %}

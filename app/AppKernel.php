@@ -66,6 +66,10 @@ class AppKernel extends Kernel
             new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
         ];
 
+        if (in_array($this->getEnvironment(), ['prod'], true)) {
+            $bundles[] = new Sentry\SentryBundle\SentryBundle();
+        }
+
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

@@ -23,7 +23,7 @@
   text-transform: uppercase;
   font-size: 17px;
   font-weight: 500;
-  width: 260px;
+  min-width: 260px;
   height: 56px;
   line-height: 56px;
   border: 0;
@@ -63,9 +63,10 @@
   }
 
   &--sm {
-    width: 107px;
+    min-width: auto;
+    padding: 0 18px;
     height: 35px;
-    line-height: 35px;
+    line-height: 34px;
     border-radius: 3px;
     font-size: 12px;
     letter-spacing: 1px;
@@ -158,6 +159,11 @@
   }
 }
 
+.main-nav {
+  .last {
+    display: none;
+  }
+}
 //end header
 
 // achievements
@@ -582,11 +588,12 @@
 
   &__input {
     margin-right: 20px;
+    height: 49px;
   }
 
   &__button {
     flex-shrink: 0;
-    width: 159px;
+    min-width: 159px;
     height: 49px;
     line-height: 49px;
     color: #FFFFFF;
@@ -598,10 +605,33 @@
     text-align: center;
     cursor: pointer;
     border: none;
-    padding: 0;
+    padding: 0 14px;
 
     &:hover {
       background: #525658;
+    }
+  }
+
+  .error-list, .success-list {
+    display: block;
+    position: relative;
+    z-index: 11;
+    color: rgb(44, 55, 60);
+    margin: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    &:before {
+      content: none;
+    }
+    li {
+      font-size: 15px!important;
+      padding: 0!important;
+      margin: 0!important;
+      &:before {
+        content: none;
+      }
     }
   }
 }
@@ -702,20 +732,20 @@
   .side-projects {
 
     &__logo {
-      margin-bottom: 100px;
+      margin-bottom: 60px;
     }
 
     &__item {
       &--cnc {
         margin-top: 140px;
         .side-projects__logo {
-          margin-bottom: 118px;
+          margin-bottom: 88px;
         }
       }
 
       &--academy {
         .side-projects__logo {
-          margin-bottom: 160px;
+          margin-bottom: 150px;
         }
       }
     }
@@ -952,6 +982,7 @@
 
     &__text {
       font-size: 16px;
+      line-height: 22px;
     }
   }
 
@@ -1014,6 +1045,7 @@
     &__form {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
     }
 
     &__input {
@@ -1106,13 +1138,8 @@ body {
   background: #F5F7F7;
 }
 
-.content {
-  max-width: 100%;
-  width: 100%;
-  margin: 0;
-}
 .project-case {
-  padding-top: 51px;
+  //padding-top: 51px;
   line-height: 1.5;
   background: #F5F7F7;
 
@@ -1774,7 +1801,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   padding: 30px 36px 0 35px;
   color: #fff;
   background: #1E2528;
-  margin-bottom: -17px;
   font-family: 'museo_sans_cyrl', sans-serif;
 
   a {
@@ -1859,7 +1885,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     }
   }
   .email, .skype {
-    color: #d7c76e;
+    color: #d7c86f;
     text-decoration: underline;
   }
   .write-to {
@@ -1973,10 +1999,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
       overflow: visible;
       transform-origin: 0 0 ;
       transform: scale(2.25);
-
-      li {
-        margin-right: 16px;
-      }
     }
   }
 }
@@ -1996,7 +2018,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 @media (max-width: 620px){
   .footer {
     padding: 30px 16px 0;
-    margin: 0px 0px -17px;
+    margin: 0px 0px 0px;
   }
   .copyright-cnt {
     margin-top: 19px;
@@ -2046,6 +2068,13 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     .write-to {
       clear: none;
       margin-right: 0;
+    }
+  }
+
+  .footer {
+    .socials-links {
+      margin: 13px 0 0 -12px;
+      transform: scale(1.6);
     }
   }
 }
@@ -2104,6 +2133,16 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
 }
 
+ul.error-list li {
+  font-size: 1em;
+  padding-left: 0 !important;
+  text-align: left;
+
+  &:before {
+    content: none !important;
+  }
+}
+
 .subscribe-form-wrap {
   .error-list, .success-list {
     display: block;
@@ -2125,6 +2164,119 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
       &:before {
         content: none;
       }
+    }
+  }
+}
+
+
+//open source
+
+.open-source {
+  position: relative;
+  text-align: center;
+  padding: 0 24px;
+
+  h2 {
+    margin-bottom: 60px;
+    font-weight: 300;
+  }
+}
+
+.tabs-cnt {
+  max-width: 812px;
+  margin: 0 auto 94px;
+
+  .tabs-header {
+    margin-bottom: 24px;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 9px;
+    }
+  }
+  .tab-title {
+    display: block;
+    border: solid 1px transparent;
+    padding: 7px 11px;
+    font-size: 16px;
+    color: #3457c0;
+    cursor: pointer;
+
+    &.active {
+      border-color: #d7c76e;
+      color: #2c373c;
+    }
+  }
+  .tabs-content {
+
+    a {
+      color: #3457c0;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: #ed002d;
+        border-bottom: solid 1px;
+      }
+    }
+  }
+  .tab {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+  p {
+    font-size: 32px;
+    font-weight: 100;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .open-source {
+    h2 {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tabs-cnt {
+    p {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  div.tabs-cnt {
+    margin-bottom: 74px;
+
+    .tabs-content {
+      padding: 0 33px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+  }
+
+  .open-source {
+    h2 {
+      margin-top: 78px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .open-source {
+    .tabs-cnt .tabs-header li {
+      width: 44%;
+      margin: 0;
     }
   }
 }

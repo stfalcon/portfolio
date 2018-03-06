@@ -91,7 +91,7 @@ class ProjectAdmin extends Admin
         $currentProject = $this->getSubject();
 
         $formMapper
-            ->with('Projects')
+            ->with('Переводы')
                 ->add('translations', 'a2lix_translations_gedmo', array(
                     'translatable_class' => 'Stfalcon\Bundle\PortfolioBundle\Entity\Project',
                     'fields' => array(
@@ -198,10 +198,10 @@ class ProjectAdmin extends Admin
                     ),
                     'label' => 'Перевод',
                 ))
+            ->end()
+            ->with('Обшие')
                 ->add('slug')
                 ->add('url')
-                ->add('imageFile', 'file', array('required' => null === $currentProject->getId()))
-                ->add('backgroundColor')
                 ->add('date', 'date')
                 ->add('categories', null, array('required' => true))
                 ->add('published', 'checkbox', array('required' => false))
@@ -223,6 +223,11 @@ class ProjectAdmin extends Admin
                         return $qb;
                     },
                 ))
+            ->end()
+            ->with('Цвета и Логотип')
+                ->add('imageFile', 'file', array('required' => null === $currentProject->getId()))
+                ->add('backgroundColor')
+                ->add('useDarkTextColor', null, ['label' => 'Использовать темный цвет текста'])
             ->end()
             ->with('Participants')
                 ->add('usersWithPositions', 'sonata_type_collection',
@@ -277,6 +282,7 @@ class ProjectAdmin extends Admin
             ->addIdentifier('slug')
             ->add('name')
             ->add('date')
+            ->add('onFrontPage')
             ->add('_action', 'actions', [
                 'actions' => [
                     'edit' => [],

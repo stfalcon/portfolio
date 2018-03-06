@@ -8,14 +8,30 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 use Stfalcon\Bundle\BlogBundle\Entity\PostTranslation;
 use Faker;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Posts fixtures.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
-class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInterface
+class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * @param ContainerInterface|null $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     /**
      * Create and load posts fixtures to database.
      *
@@ -40,14 +56,14 @@ class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInt
                 $text = $fakerRu->realText();
                 $title = $fakerRu->realText(50);
             }
-            $post->setTitle($title);
-            $post->setText($text);
-            $post->addTag($phpTag);
-            $post->setAuthor($firstUser);
-            $post->setCreated(clone $createdAt->modify("+$i day"));
-            $post->setPublished(true);
-            $post->addTranslation(new PostTranslation($locale, 'title', $title));
-            $post->addTranslation(new PostTranslation($locale, 'text', $text));
+            $post->setTitle($title)
+                ->setText($text)
+                ->addTag($phpTag)
+                ->setAuthor($firstUser)
+                ->setCreated(clone $createdAt->modify("+$i day"))
+                ->setPublished(true)
+                ->addTranslation(new PostTranslation($locale, 'title', $title))
+                ->addTranslation(new PostTranslation($locale, 'text', $text));
 
             $manager->persist($post);
             $manager->merge($phpTag);
@@ -65,5 +81,30 @@ class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInt
     public function getOrder()
     {
         return 3; // the order in which fixtures will be loaded
+    }
+
+    /**
+     * Generate UploadedFile object from local file. For VichUploader
+     *
+     * @param string $filename
+     *
+     * @return UploadedFile
+     */
+    private function generateUploadedFile($filename)
+    {
+        $fullPath = realpath($this->getKernelDir().'/../web/img/'.$filename);
+        if ($fullPath) {
+            $tmpFile = tempnam(sys_get_temp_dir(), 'event');
+            copy($fullPath, $tmpFile);
+
+            return new UploadedFile($tmpFile, $filename, null, null, null, true);
+        }
+
+        return null;
+    }
+
+    private function getKernelDir()
+    {
+        return $this->container->get('kernel')->getRootDir();
     }
 }
