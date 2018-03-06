@@ -13,7 +13,7 @@ monolog:
             level: debug
         sentry:
             type:  raven
-            dsn: "https://95577bd7784045d582ef0b36904c88b5:a40bd26e2ef849ae82031ba9e22bb653@sentry.stfalcon.com/52"
+            dsn: "%sentry_dsn_host%"
             level: error
         grouped_main:
             type:    group

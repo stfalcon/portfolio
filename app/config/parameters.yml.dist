@@ -45,6 +45,6 @@ parameters:
 
     sphinx_host: 127.0.0.1
     sphinx_port: 9312
-
+    sentry_dsn_host: your_sentry_dsn_host
     recaptcha.site_key: SomeSiteKey
     recaptcha.secret:   SomeSecret

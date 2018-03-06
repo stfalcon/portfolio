@@ -110,12 +110,10 @@ class LoadProjectReviewData extends AbstractFixture implements OrderedFixtureInt
             $tmpFile = tempnam(sys_get_temp_dir(), 'event');
             copy($fullPath, $tmpFile);
 
-            return new UploadedFile($tmpFile,
-                $filename, null, null, null, true
-            );
-        } else {
-            return null;
+            return new UploadedFile($tmpFile, $filename, null, null, null, true);
         }
+
+        return null;
     }
 
     private function getKernelDir()

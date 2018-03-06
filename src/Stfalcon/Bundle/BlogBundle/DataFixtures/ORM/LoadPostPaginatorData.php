@@ -96,12 +96,11 @@ class LoadPostPaginatorData extends AbstractFixture implements OrderedFixtureInt
         if ($fullPath) {
             $tmpFile = tempnam(sys_get_temp_dir(), 'event');
             copy($fullPath, $tmpFile);
-            return new UploadedFile($tmpFile,
-                $filename, null, null, null, true
-            );
-        } else {
-            return null;
+
+            return new UploadedFile($tmpFile, $filename, null, null, null, true);
         }
+
+        return null;
     }
 
     private function getKernelDir()

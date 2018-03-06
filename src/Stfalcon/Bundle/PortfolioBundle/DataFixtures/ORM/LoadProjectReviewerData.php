@@ -5,7 +5,6 @@ namespace Stfalcon\Bundle\PortfolioBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Stfalcon\Bundle\PortfolioBundle\Entity\Project;
 use Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReviewer;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -45,6 +44,7 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
 
         return $reviewer;
     }
+
     /**
      * Create and load projects fixtures to database.
      *
@@ -52,7 +52,6 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
      */
     public function load(ObjectManager $manager)
     {
-
         $reviwer1 = $this->addReviewer($manager, 'Andrew Khvetkevich', 'khatkevich.png', 'Nic.ua');
         $this->addReference('reviwer1', $reviwer1);
         $reviwer2 = $this->addReviewer($manager, 'Kirill Podolsky', 'kiril.png', 'менеджер');
@@ -95,7 +94,7 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
     }
 
     /**
-     * Generate UploadedFile object from local file. For VichUploader
+     * Generate UploadedFile object from local file. For VichUploader.
      *
      * @param string $filename
      *
@@ -107,12 +106,11 @@ class LoadProjectReviewerData extends AbstractFixture implements OrderedFixtureI
         if ($fullPath) {
             $tmpFile = tempnam(sys_get_temp_dir(), 'event');
             copy($fullPath, $tmpFile);
-            return new UploadedFile($tmpFile,
-                $filename, null, null, null, true
-            );
-        } else {
-            return null;
+
+            return new UploadedFile($tmpFile, $filename, null, null, null, true);
         }
+
+        return null;
     }
 
     private function getKernelDir()
