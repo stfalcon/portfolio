@@ -72,7 +72,7 @@ class DefaultController extends Controller
             ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, 3);
 
         $projects = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Project')
-            ->findBy(['onFrontPage' => true]);
+            ->findBy(['onFrontPage' => true], ['orderNumber' => 'ASC']);
 
         $activeReviews = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:ProjectReview')
             ->getActiveReviews($projects);
