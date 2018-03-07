@@ -138,7 +138,7 @@ class CategoryAdmin extends Admin
             ->add('showInProjects', null, array('required' => false))
             ->add('cost')
             // @todo сделать сортировку через sortable (по аналогии с проектами)
-            ->add('ordernum');
+            ->add('orderNumber');
     }
 
     /**
