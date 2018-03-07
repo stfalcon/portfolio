@@ -66,7 +66,7 @@ class DefaultController extends Controller
     public function indexNewAction(Request $request)
     {
         $services = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Category')
-            ->findBy(['showInServices' => true], ['orderNumber' => 'ASC']);
+            ->findBy(['showInServices' => true], ['ordernum' => 'ASC']);
         $locale = $request->getLocale() ? $request->getLocale() : 'en';
         $posts = $this->get('doctrine')->getManager()
             ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, 3);
