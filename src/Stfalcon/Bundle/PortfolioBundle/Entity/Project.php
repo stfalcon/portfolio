@@ -166,7 +166,7 @@ class Project implements Translatable
      *
      * @ORM\Column(name="ordernum", type="integer")
      */
-    private $ordernum = 0;
+    private $orderNumber = 0;
 
     /**
      * Check if this project can be published on main page of the site.
@@ -677,25 +677,25 @@ class Project implements Translatable
     }
 
     /**
-     * Set project ordernum.
+     * Set project orderNumber.
      *
-     * @param int $ordernum
+     * @param int $orderNumber
      */
-    public function setOrdernum($ordernum)
+    public function setOrderNumber($orderNumber)
     {
-        $this->ordernum = $ordernum;
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }
 
     /**
-     * Get project ordernum.
+     * Get project orderNumber.
      *
      * @return int
      */
-    public function getOrdernum()
+    public function getOrderNumber()
     {
-        return $this->ordernum;
+        return $this->orderNumber;
     }
 
     /**
