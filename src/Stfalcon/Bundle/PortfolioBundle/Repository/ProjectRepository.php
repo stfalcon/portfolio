@@ -114,7 +114,7 @@ class ProjectRepository extends EntityRepository
      */
     public function findAllExamplesProjectsByCategory(Category $category, $limit = 3, $offset = 0)
     {
-        $qb = $this->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC')
+        $qb = $this->getQueryForSelectProjectsByCategory($category, 'p.orderNumber', 'ASC')
             ->setFirstResult($offset)
             ->setMaxResults($limit);
 
@@ -129,7 +129,7 @@ class ProjectRepository extends EntityRepository
      *
      * @return array
      */
-    public function getAllProjectPortfolio($limit = 7, $offset = 0, $orderBy = 'p.ordernum', $orderDirection = 'ASC')
+    public function getAllProjectPortfolio($limit = 7, $offset = 0, $orderBy = 'p.orderNumber', $orderDirection = 'ASC')
     {
         $qb = $this->getQueryBuilderWithOrdering($orderBy, $orderDirection);
         $qb->setFirstResult($offset)

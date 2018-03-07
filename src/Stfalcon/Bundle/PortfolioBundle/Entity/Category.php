@@ -122,7 +122,7 @@ class Category implements Translatable
      *      targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Project",
      *      mappedBy="categories", fetch="EXTRA_LAZY"
      * )
-     * @ORM\OrderBy({"ordernum" = "ASC", "date" = "DESC"})
+     * @ORM\OrderBy({"orderNumber" = "ASC", "date" = "DESC"})
      */
     private $projects;
 
