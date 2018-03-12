@@ -82,7 +82,7 @@ class CategoryController extends Controller
     {
         $query = $this->getDoctrine()
                       ->getRepository("StfalconPortfolioBundle:Project")
-                      ->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC');
+                      ->getQueryForSelectProjectsByCategory($category, 'p.orderNumber', 'ASC');
 
         $paginatedProjects = $this->get('knp_paginator')->paginate($query, $page, 12);
         $paginatedProjects->setUsedRoute('portfolio_category_view');

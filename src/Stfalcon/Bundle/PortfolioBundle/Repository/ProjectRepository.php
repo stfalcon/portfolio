@@ -44,7 +44,7 @@ class ProjectRepository extends EntityRepository
      *
      * @return array
      */
-    public function getProjectsByCategory(Category $category, $orderBy = 'p.ordernum', $orderDirection = 'ASC')
+    public function getProjectsByCategory(Category $category, $orderBy = 'p.orderNumber', $orderDirection = 'ASC')
     {
         return $this->getQueryForSelectProjectsByCategory($category, $orderBy, $orderDirection)
             ->getResult();
