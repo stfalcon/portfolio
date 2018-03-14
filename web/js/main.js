@@ -439,8 +439,9 @@ $(function () {
 
         $('a[href="#feedback-form"]').click(function () {
             var el = $(this).attr('href');
+            var headerHeight = parseInt($('.header-line').css('height'));
             $('html, body').animate({
-                scrollTop: $(el).offset().top
+                scrollTop: $(el).offset().top - headerHeight
             }, 1000);
             return false;
         });
@@ -451,7 +452,7 @@ $(function () {
         $('a[href="#scroll"]').click(function () {
             var el = $(this).attr('href');
             $('html, body').animate({
-                scrollTop: $(el).offset().top + 34
+                scrollTop: $(el).offset().top
             }, 1000);
             return false;
         });
