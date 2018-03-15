@@ -146,6 +146,24 @@ class Project implements Translatable
     private $image;
 
     /**
+     * @var File
+     *
+     * @Assert\File(
+     *     maxSize="4M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
+     * @Vich\UploadableField(mapping="project_image", fileNameProperty="image")
+     */
+    protected $mainPageImageFile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="main_page_image", type="string", length=255, nullable=true)
+     */
+    private $mainPageImage;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="background_color", type="string", length=7, options={"default":"#4D9CC9"}, nullable=false)
@@ -1173,6 +1191,47 @@ class Project implements Translatable
     public function setAdditionalInfo($additionalInfo)
     {
         $this->additionalInfo = $additionalInfo;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getMainPageImageFile()
+    {
+        return $this->mainPageImageFile;
+    }
+
+    /**
+     * @param File $mainPageImageFile
+     *
+     * @return $this
+     */
+    public function setMainPageImageFile($mainPageImageFile)
+    {
+        $this->setUpdated(new \DateTime());
+        $this->mainPageImageFile = $mainPageImageFile;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMainPageImage()
+    {
+        return $this->mainPageImage;
+    }
+
+    /**
+     * @param string $mainPageImage
+     *
+     * @return $this
+     */
+    public function setMainPageImage($mainPageImage)
+    {
+        $this->mainPageImage = $mainPageImage;
 
         return $this;
     }

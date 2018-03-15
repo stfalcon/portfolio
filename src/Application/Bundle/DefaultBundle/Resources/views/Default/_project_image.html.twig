@@ -1,5 +1,5 @@
 <div class="project-item__img-block">
     {% if project.imageFile is not empty %}
-        <img class="project-item__img" src="{{ vich_uploader_asset(project, 'imageFile')|apply_filter('portfolio_new') }}" alt="">
+        <img class="project-item__img" src="{{ vich_uploader_asset(project, 'mainPageImageFile') }}" alt="">
     {% endif %}
 </div>

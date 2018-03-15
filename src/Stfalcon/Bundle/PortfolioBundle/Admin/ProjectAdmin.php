@@ -228,6 +228,7 @@ class ProjectAdmin extends Admin
                 ->end()
                 ->with('Цвета и Логотип')
                     ->add('imageFile', 'file', array('required' => null === $currentProject->getId()))
+                    ->add('mainPageImageFile', 'file', ['required' => false])
                     ->add('backgroundColor')
                     ->add('useDarkTextColor', null, ['label' => 'Использовать темный цвет текста'])
                 ->end()
