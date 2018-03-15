@@ -152,7 +152,7 @@ class Project implements Translatable
      *     maxSize="4M",
      *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
      * )
-     * @Vich\UploadableField(mapping="project_image", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="project_image", fileNameProperty="mainPageImage")
      */
     protected $mainPageImageFile;
 
