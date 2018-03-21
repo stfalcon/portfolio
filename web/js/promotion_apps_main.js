@@ -262,7 +262,7 @@ $(window).scroll(function (e) {
         $('a[href="#scroll"]').click(function () {
             var el = $(this).attr('href');
             $('html, body').animate({
-                scrollTop: $(el).offset().top + 34
+                scrollTop: $(el).offset().top
             }, 1000);
             return false;
         });
@@ -283,8 +283,9 @@ $(window).scroll(function (e) {
 
         $('a[href="#feedback-form"]').click(function () {
             var el = $(this).attr('href');
+            var headerHeight = $('.header-line').outerHeight();
             $('html, body').animate({
-                scrollTop: $(el).offset().top
+                scrollTop: $(el).offset().top - headerHeight
             }, 1000);
             return false;
         });
