@@ -3,8 +3,6 @@
 namespace Application\Bundle\DefaultBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Faker\Provider\DateTime;
-use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
