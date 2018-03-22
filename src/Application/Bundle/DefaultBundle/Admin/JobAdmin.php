@@ -35,7 +35,8 @@ class JobAdmin extends Admin
             ->add('title')
             ->addIdentifier('slug')
             ->add('active')
-            ->add('created')
+            ->add('createdAt')
+            ->add('updatedAt')
             ->addIdentifier('sortOrder')
             ->add('_action', 'actions', [
                 'label' => 'Действия',

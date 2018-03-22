@@ -8,6 +8,6 @@
     </h1>
 
     <div class="post-info">
-        <time pubdate="pubdate">{{ job.created|localizeddate('long', 'none', app.request.locale) }}</time>
+        <time pubdate="pubdate">{{ job.updatedAt|localizeddate('long', 'none', app.request.locale) }}</time>
     </div>
 </header>
