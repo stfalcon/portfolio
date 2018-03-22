@@ -3,6 +3,7 @@
 namespace Application\Bundle\DefaultBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Provider\DateTime;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -80,8 +81,19 @@ class Job
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     *
+     * @Gedmo\Timestampable(on="create")
      */
     private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     *
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updated;
 
     /**
      * @var bool
@@ -95,14 +107,6 @@ class Job
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder = 0;
-
-    /**
-     * Initialization properties for new post entity.
-     */
-    public function __construct()
-    {
-        $this->created = new \DateTime();
-    }
 
     /**
      * @param bool $active
@@ -147,7 +151,7 @@ class Job
     /**
      * Set time when post created.
      *
-     * @param \DateTime $created A time when post created
+     * @param \DateTime $created A time when job created
      *
      * @return $this
      */
@@ -166,6 +170,30 @@ class Job
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        if (0 > $this->updated->getTimestamp()) {
+            $this->updated = new \DateTime();
+        }
+
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     *
+     * @return $this
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
     }
 
     /**
