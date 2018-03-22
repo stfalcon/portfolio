@@ -19,7 +19,7 @@ class TagControllerTest extends WebTestCase
                 'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagData',
                 'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadTagTranslationData',
                 'Stfalcon\Bundle\BlogBundle\DataFixtures\ORM\LoadPostData'));
-        $crawler = $this->fetchCrawler($this->getUrl('blog_tag_view', array('text' => 'symfony2')));
+        $crawler = $this->fetchCrawler($this->getUrl('blog_tag_view', array('text' => 'symfony')));
 
         // check all posts count
         $this->assertCount(2, $crawler->filter('article.blog-post'));
@@ -29,12 +29,12 @@ class TagControllerTest extends WebTestCase
         // check display post title
         $this->assertCount(1, $crawlerFirstPost->filter('h1 a:contains("My first post")'));
         // check display post text
-        $this->assertCount(1, $crawlerFirstPost->filter('div.post-content p:contains("In work we use Symfony2.")'));
+        $this->assertCount(1, $crawlerFirstPost->filter('div.post-content p:contains("In work we use Symfony.")'));
         // check display link to post
         $url = $this->getUrl('blog_post_view', array('slug' => 'my-first-post'));
         $this->assertCount(1, $crawlerFirstPost->filter('h1 a[href="' . $url . '"]'));
         // check post tags
-        $this->assertCount(1, $crawlerFirstPost->filter('ul.tags:contains("symfony2")'));
+        $this->assertCount(1, $crawlerFirstPost->filter('ul.tags:contains("symfony")'));
         $this->assertCount(1, $crawlerFirstPost->filter('ul.tags:contains("doctrine2")'));
     }
 

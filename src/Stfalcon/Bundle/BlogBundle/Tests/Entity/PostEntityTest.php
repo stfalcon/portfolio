@@ -46,7 +46,7 @@ class PostEntityTest extends \PHPUnit_Framework_TestCase
 
     public function testSetAndGetPostText()
     {
-        $text = "This week, Symfony2 reintroduced parameters in the DIC of several bundles, error page template customization was greatly simplified and Assetic introduced configuration for automatically apply filters to assets based on path.";
+        $text = "This week, Symfony reintroduced parameters in the DIC of several bundles, error page template customization was greatly simplified and Assetic introduced configuration for automatically apply filters to assets based on path.";
 
         $post = new Post();
         $post->setText($text);
@@ -57,7 +57,7 @@ class PostEntityTest extends \PHPUnit_Framework_TestCase
     public function testAddTagToPostAndGetTags()
     {
         $post = new Post();
-        $tag1 = new Tag('symfony2');
+        $tag1 = new Tag('symfony');
         $tag2 = new Tag('doctrine2');
         $post->setTags(array($tag1, $tag2));
 

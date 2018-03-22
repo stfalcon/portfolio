@@ -29,7 +29,7 @@ class LoadTagData extends AbstractFixture implements OrderedFixtureInterface
         $remoteTag = new Tag('remote');
         $manager->persist($remoteTag);
 
-        $symfony2 = new Tag('symfony2');
+        $symfony2 = new Tag('symfony');
         $manager->persist($symfony2);
 
         $doctrine2 = new Tag('doctrine2');
