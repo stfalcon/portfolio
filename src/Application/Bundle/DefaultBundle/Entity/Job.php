@@ -97,6 +97,8 @@ class Job
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     *
+     * @gedmo\Timestampable(on="change", field="active")
      */
     private $activeAt;
 
@@ -130,7 +132,6 @@ class Job
     public function setActive($active)
     {
         $this->active = $active;
-        $this->activeAt = new \DateTime();
 
         return $this;
     }
