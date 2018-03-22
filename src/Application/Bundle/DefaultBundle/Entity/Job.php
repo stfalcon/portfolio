@@ -94,15 +94,6 @@ class Job
     private $updated;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     *
-     * @gedmo\Timestampable(on="change", field="active")
-     */
-    private $activeAt;
-
-    /**
      * @var bool
      *
      * @ORM\Column(type="boolean")
@@ -115,14 +106,6 @@ class Job
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder = 0;
-
-    /**
-     * Job constructor.
-     */
-    public function __construct()
-    {
-        $this->activeAt = new \DateTime();
-    }
 
     /**
      * @param bool $active
@@ -160,30 +143,6 @@ class Job
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getActiveAt()
-    {
-        if (0 > $this->activeAt->getTimestamp()) {
-            $this->activeAt = new \DateTime();
-        }
-
-        return $this->activeAt;
-    }
-
-    /**
-     * @param \DateTime $activeAt
-     *
-     * @return $this
-     */
-    public function setActiveAt($activeAt)
-    {
-        $this->activeAt = $activeAt;
 
         return $this;
     }
