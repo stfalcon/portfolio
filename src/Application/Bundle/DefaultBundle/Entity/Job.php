@@ -5,6 +5,7 @@ namespace Application\Bundle\DefaultBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Table(name="jobs")
@@ -12,10 +13,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Job
 {
+    use TimestampableEntity;
+
     /**
      * Tag id.
      *
      * @var int
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,7 +30,9 @@ class Job
      * Job title.
      *
      * @var string
+     *
      * @Assert\NotBlank()
+     *
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -50,6 +56,7 @@ class Job
      *      min = "3"
      * )
      * @Gedmo\Slug(fields={"title"})
+     *
      * @ORM\Column(name="slug", type="string", length=128, unique=true)
      */
     private $slug;
@@ -74,24 +81,6 @@ class Job
      * @ORM\Column(name="meta_title", type="text", nullable=true)
      */
     private $metaTitle;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     *
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $created;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     *
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updated;
 
     /**
      * @var bool
@@ -148,51 +137,15 @@ class Job
     }
 
     /**
-     * Set time when post created.
-     *
-     * @param \DateTime $created A time when job created
-     *
-     * @return $this
-     */
-    public function setCreated(\DateTime $created)
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    /**
-     * Get time when post created.
-     *
      * @return \DateTime
      */
-    public function getCreated()
+    public function getUpdatedAt()
     {
-        return $this->created;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdated()
-    {
-        if (0 > $this->updated->getTimestamp()) {
-            $this->updated = new \DateTime();
+        if (0 > $this->updatedAt->getTimestamp()) {
+            $this->updatedAt = new \DateTime();
         }
 
-        return $this->updated;
-    }
-
-    /**
-     * @param \DateTime $updated
-     *
-     * @return $this
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-
-        return $this;
+        return $this->updatedAt;
     }
 
     /**
@@ -272,7 +225,7 @@ class Job
     }
 
     /**
-     * @param $title
+     * @param string $title
      *
      * @return $this
      */
@@ -312,7 +265,7 @@ class Job
     }
 
     /**
-     * @param $slug
+     * @param string $slug
      *
      * @return $this
      */
