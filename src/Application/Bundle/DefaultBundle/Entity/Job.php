@@ -96,7 +96,15 @@ class Job
     private $updated;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $activeAt;
+
+    /**
      * @var bool
+     *
      * @ORM\Column(type="boolean")
      */
     private $active = true;
@@ -109,6 +117,14 @@ class Job
     private $sortOrder = 0;
 
     /**
+     * Job constructor.
+     */
+    public function __construct()
+    {
+        $this->activeAt = new \DateTime();
+    }
+
+    /**
      * @param bool $active
      *
      * @return $this
@@ -116,6 +132,7 @@ class Job
     public function setActive($active)
     {
         $this->active = $active;
+        $this->activeAt = new \DateTime();
 
         return $this;
     }
@@ -144,6 +161,30 @@ class Job
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getActiveAt()
+    {
+        if (0 > $this->activeAt->getTimestamp()) {
+            $this->activeAt = new \DateTime();
+        }
+
+        return $this->activeAt;
+    }
+
+    /**
+     * @param \DateTime $activeAt
+     *
+     * @return $this
+     */
+    public function setActiveAt($activeAt)
+    {
+        $this->activeAt = $activeAt;
 
         return $this;
     }
