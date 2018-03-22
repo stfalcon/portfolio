@@ -66,7 +66,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             ->setOnFrontPage(1)
             ->setBackgroundColor('#EC584E')
             ->setUseDarkTextColor(false)
-            ->setOrdernum(0)
+            ->setOrderNumber(0)
             ->setShowCase(true)
             ->setCaseContent('TestCase Content')
             ->addCategory($devCategory)
@@ -97,7 +97,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             ->setBackgroundColor('#F4F4F4')
             ->setUseDarkTextColor(true)
             ->setPublished(true)
-            ->setOrdernum(1)
+            ->setOrderNumber(1)
             ->setShowCase(true)
             ->setCaseContent('TestCase Content')
             ->addCategory($devCategory)
@@ -124,7 +124,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
             ->setBackgroundColor('#4D9CC9')
             ->setUseDarkTextColor(false)
             ->setPublished(true)
-            ->setOrdernum(2)
+            ->setOrderNumber(2)
             ->setShowCase(true)
             ->setCaseContent('TestCase Content')
             ->addCategory($devCategory)
@@ -153,7 +153,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
                 ->setTags('design, HTML markup, development')
                 ->setShortDescription('design, HTML markup, development')
                 ->setOnFrontPage(0)
-                ->setOrdernum(2 + $i);
+                ->setOrderNumber(2 + $i);
             if ($i % 2) {
                 $example->addCategory($devCategory);
             } else {
