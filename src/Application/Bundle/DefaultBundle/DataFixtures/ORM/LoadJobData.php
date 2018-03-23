@@ -68,7 +68,7 @@ LESS,SCSS,PostCss
 DESCRIPTION
             )
         ->setActive(true)
-        ->setCreated(new \DateTime('17-05-2016'));
+        ->setCreatedAt(new \DateTime('17-05-2016'));
         $manager->persist($jobFirst);
         $manager->merge($kmTag);
         $manager->merge($kievTag);
