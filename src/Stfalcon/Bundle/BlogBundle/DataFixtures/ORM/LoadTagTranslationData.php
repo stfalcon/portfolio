@@ -34,7 +34,7 @@ class LoadTagTranslationData extends AbstractFixture implements OrderedFixtureIn
         $symfony2 = (new TagTranslation())
             ->setLocale('en')
             ->setField('text')
-            ->setContent('symfony2')
+            ->setContent('symfony')
             ->setObject($symfony2Tag);
         $manager->persist($symfony2);
 

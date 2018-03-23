@@ -161,7 +161,7 @@ about_us: 'About us'
 'переулок Ахтырский, 7, Киев, Украина': 7 Okhtyrskyi Lane, Kyiv, Ukraine
 Подписаться на новые записи: Subscribe for new posts
 
-'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony2, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'
+'Разработка и проектирование сложных сайтов на Symfony, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'
 
 Наши приложения: Our Apps
 
@@ -174,7 +174,7 @@ about_us: 'About us'
 
 '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, шаблон, который нашел своих поклонников, был разработан нами специально для <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.' : '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, a popular template, was developed by us specifically for <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.'
 
-'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony2.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony2 framework.'
+'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony framework.'
 '__Footer.homepage.link': 'Software Development Company <a href="%homepage%">Stfalcon LLC</a>'
 'студия веб дизайна, разработки сайтов и мобильных приложений': 'web design and development company'
 Stfalcon LLC &mdash; разработки сайтов и мобильных приложений: Software Development Company Stfalcon LLC
@@ -200,8 +200,6 @@ Cоздаем нативные мобильные приложения (боле
 Все: 'All'
 
 В работе мы используем: 'While working at projects, we use'
-Мы — официальный партнер: 'We are the affiliated partner of'
-создателя фреймворка Symfony2: 'creator of Symfony2 framework'
 Разрабатываем с использованием CMS: 'Development using CMS'
 Примеры разработки веб-сайтов: 'Examples of website development'
 Подробнее про веб-разработку: 'More about web development'
