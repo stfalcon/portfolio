@@ -55,7 +55,6 @@ class DefaultController extends Controller
         $seoHomepage = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:SeoHomepage')->findOneBy([]);
         if ($seoHomepage instanceof SeoHomepage) {
             $seo
-                ->setTitle($seoHomepage->getTitle())
                 ->addMeta('name', 'keywords', $seoHomepage->getKeywords())
                 ->addMeta('name', 'description', $seoHomepage->getDescription())
                 ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
