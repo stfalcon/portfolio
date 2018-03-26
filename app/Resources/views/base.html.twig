@@ -6,7 +6,7 @@
 <html xmlns:og="http://ogp.me/ns#">
 <head {{ sonata_seo_head_attributes() }}>
     {% block abtest %}{% endblock abtest %}
-    <title>{% block title %}Web and mobile app development, web design company | Stfalcon.com{% endblock %}</title>
+    <title>{% block title %}{{ 'main_title'|trans }}{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml" />
 
