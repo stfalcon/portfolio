@@ -16,18 +16,7 @@
     {{ sonata_seo_lang_alternates() }}
 
     {% if app.environment == 'prod' %}
-        {% javascripts
-            'js/metrics/header.js'
-            output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% include "::google_analytics.html.twig" %}
-        {% endjavascripts %}
-    {% else %}
-        {% javascripts
-            'js/devstub.js'
-            output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        {% include "::google_tag_manager.html.twig" %}
     {% endif %}
 </head>
 <body>
@@ -45,7 +34,7 @@
             <p class="header-sub-title">
                 {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
             </p>
-            <button id="hire_us-js" type="button" class="hire_us_main button button--big button--blue" onclick="ga('send', 'event', 'order_project', 'click');fbq('trackCustom', 'order_project');">{{ 'Заказать проект'|trans }}</button>
+            <button id="hire_us-js" type="button" class="hire_us_main button button--big button--blue">{{ 'Заказать проект'|trans }}</button>
             {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'main_page'})) }}
         </div>
     </header>
@@ -199,6 +188,5 @@
         minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
     });
 </script>
-{% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
 </body>
 </html>

@@ -1,7 +1,6 @@
 {% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
 
-<form action="{{ path('jobs_job_view', {'slug':job.slug}) }}" id="direct-vacancy-form" method="post" enctype="multipart/form-data"
-      onsubmit="ga('send', 'event', 'vacancy_form', 'submit_form'); fbq('trackCustom', 'vacancy_form', 'submit_form');">
+<form action="{{ path('jobs_job_view', {'slug':job.slug}) }}" id="direct-vacancy-form" method="post" enctype="multipart/form-data">
     <h3>{{ "Ответить на вакансию" | trans() }}</h3>
     {{ form_errors(form) }}
     <div class="line">
@@ -29,7 +28,7 @@
             {{ form_errors(form.captcha) }}
         </div>
         {% endif %}
-        <button class="btn" onclick="ga('send', 'event', 'jobs', 'cv_sent');" type="submit">{{ "Отправить" | trans() }}</button>
+        <button class="btn" type="submit">{{ "Отправить" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>
