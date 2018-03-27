@@ -431,7 +431,7 @@ $(function () {
 
         $('a[href="#feedback-form"]').click(function () {
             var el = $(this).attr('href');
-            var headerHeight = parseInt($('.header-line').css('height'));
+            var headerHeight = $('.header-line').outerHeight();
             $('html, body').animate({
                 scrollTop: $(el).offset().top - headerHeight
             }, 1000);

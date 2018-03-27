@@ -30,9 +30,12 @@ body {
   height: auto !important;
   line-height: 1.4;
   font-size: 1em;
+  font-weight: 300;
   color: @global-text-color;
   font-family: @global-font;
   background-color: @bg-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .content {
@@ -771,7 +774,6 @@ input.error {
     li {
       &>span:first-child {
         margin-bottom: -2px;
-        font-size: 0.75rem;
       }
     }
   }
