@@ -20,7 +20,7 @@ class TagEntityTest extends \PHPUnit_Framework_TestCase
 
     public function testSetAndGetTagText()
     {
-        $text = "symfony2";
+        $text = "symfony";
 
         $tag = new Tag();
         $tag->setText($text);
@@ -30,8 +30,8 @@ class TagEntityTest extends \PHPUnit_Framework_TestCase
 
     public function testTagConstructor()
     {
-        $text = "symfony2";
-        $tag = new Tag('symfony2');
+        $text = "symfony";
+        $tag = new Tag('symfony');
 
         $this->assertEquals($tag->getText(), $text);
     }

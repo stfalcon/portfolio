@@ -127,7 +127,7 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
 
-        $tags = 'php, symfony2';
+        $tags = 'php, symfony';
         $project->setTags($tags);
 
         $this->assertEquals($project->getTags(), $tags);
@@ -170,7 +170,7 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
 
-        $keywords = 'php, symfony2';
+        $keywords = 'php, symfony';
         $project->setMetaKeywords($keywords);
 
         $this->assertEquals($project->getMetaKeywords(), $keywords);
@@ -180,7 +180,7 @@ class ProjectEntityTest extends \PHPUnit_Framework_TestCase
     {
         $project = new Project();
 
-        $description = 'php symfony2 performance';
+        $description = 'php symfony performance';
         $project->setMetaDescription($description);
 
         $this->assertEquals($project->getMetaDescription(), $description);

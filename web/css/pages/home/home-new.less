@@ -169,7 +169,7 @@
 // achievements
 
 .achievements {
-  padding: 165px 24px 0;
+  padding: 0 24px;
   margin-bottom: 200px;
 
   &__title {
@@ -201,8 +201,8 @@
 
 .solutions {
   max-width: 1000px;
-  margin: 0 auto 205px;
-  padding: 0 24px;
+  margin: 0 auto 200px;
+  padding: 165px 24px 0;
 
   &__title {
     color: #ffffff;
@@ -252,7 +252,7 @@
 
 .trusted {
   max-width: 1000px;
-  margin: 0 auto 225px;
+  margin: 0 auto 200px;
   padding: 0 24px;
 
   &__title {
@@ -274,14 +274,13 @@
 
 .projects-list {
   max-width: 1294px;
-  margin: 0 auto 103px;
+  margin: 0 auto 150px;
 }
 
 .project-item {
   display: flex;
   align-items: center;
   color: #2C373C;
-  padding: 100px 0;
 
   &--white-text {
     color: #FFFFFF;
@@ -432,25 +431,40 @@
 // side-projects
 
 .side-projects {
-  margin-bottom: 53px;
+  margin-bottom: 62px;
 
   &__title {
     font-weight: 300;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
   }
 
   &__list {
-    height: 740px;
-    background: url(../img/conf-bg2.jpg) no-repeat center;
-    background-size: cover;
+    background: url(../img/conf-bg2.jpg) no-repeat center top;
+    background-size: contain;
     display: flex;
     justify-content: space-between;
-    padding: 0 40px;
+    padding-bottom: 40%;
+    height: 0;
   }
 
   &__logo {
     margin-bottom: 200px;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: center;
+
+    &--fwdays {
+      flex-basis: 28%;
+    }
+    &--cnc {
+      flex-basis: 42%;
+    }
+    &--academy {
+      flex-basis: 30%;
+    }
   }
 
   &__item {
@@ -725,10 +739,11 @@
 .icon-rss {
   width: 17px;
   height: 16px;
+  margin-bottom: 2px;
   background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNyAxNyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+cnNzPC90aXRsZT48ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNFOTY4MDAiPjxwYXRoIGQ9Ik0zLjAyIDEyLjY3Yy0xLjE3OCAwLTIuMTMzLjk1LTIuMTMzIDIuMTI0IDAgMS4xNzMuOTU1IDIuMTI0IDIuMTMzIDIuMTI0IDEuMTc3IDAgMi4xMzItLjk1IDIuMTMyLTIuMTI0IDAtMS4xNzMtLjk1Ni0yLjEyNC0yLjEzMi0yLjEyNHpNLjg5IDYuMzcydjMuMDY2YzEuOTk4IDAgMy44NzYuNzc4IDUuMjg3IDIuMTkgMS40MTQgMS40MTYgMi4xOTIgMy4zIDIuMTkyIDUuMzA0aDMuMDc4YzAtNS44MjMtNC43MzctMTAuNTYtMTAuNTU4LTEwLjU2ek0uODk1LjkzNnYzLjA2N2M3LjEyIDAgMTIuOTEzIDUuODAyIDEyLjkxMyAxMi45MzNoMy4wNzhjMC04LjgyMy03LjE3NC0xNi0xNS45OS0xNnoiLz48L2c+PC9nPjwvc3ZnPg==);
 }
 
-@media screen and (max-width:1500px){
+@media screen and (max-width:1760px){
   .side-projects {
 
     &__logo {
@@ -736,26 +751,29 @@
     }
 
     &__item {
+      &--fwdays {
+        margin-top: 60px;
+      }
+
       &--cnc {
-        margin-top: 140px;
+        margin-top: 100px;
+
         .side-projects__logo {
           margin-bottom: 88px;
         }
       }
 
       &--academy {
+        margin-top: 80px;
+
         .side-projects__logo {
           margin-bottom: 150px;
         }
       }
     }
-
-    &__list {
-      height: 580px;
-      background-size: contain;
-    }
   }
 }
+
 
 @media screen and (max-width:1279px){
   .side-projects {
@@ -869,17 +887,16 @@
   .project-item {
     flex-direction: column;
     overflow: hidden;
-    padding: 50px 0;
 
     &__img-block {
       padding: 0 30px;
-      margin-bottom: 30px;
     }
 
     .project-item__description {
       order: 1;
       opacity: 1;
       transform: initial;
+      margin-top: -70px;
     }
   }
 
@@ -973,7 +990,6 @@
   // achievements
 
   .achievements {
-    padding-top: 74px;
     margin-bottom: 100px;
 
     &__title {
@@ -991,6 +1007,7 @@
   // solutions
 
   .solutions {
+    padding-top: 74px;
     margin-bottom: 100px;
     &__list {
       justify-content: center;
@@ -1040,7 +1057,7 @@
   .subscribe {
     max-width: none;
     margin: 0 -24px;
-    padding:16px 20px;
+    padding: 20px 20px 0 20px;
 
     &__form {
       display: flex;
@@ -1119,17 +1136,6 @@
     }
   }
 }
-
-@media screen and (max-width: 375px) {
-
-  .project-item {
-    &__img-block {
-      margin-bottom: 15px;
-    }
-  }
-}
-
-
 
 
 // project-case
@@ -2153,14 +2159,14 @@ ul.error-list li {
   padding: 0 24px;
 
   h2 {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     font-weight: 300;
   }
 }
 
 .tabs-cnt {
   max-width: 812px;
-  margin: 0 auto 94px;
+  margin: 0 auto 150px;
 
   .tabs-header {
     margin-bottom: 24px;

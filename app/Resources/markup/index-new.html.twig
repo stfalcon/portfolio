@@ -5,31 +5,17 @@
 
     {{ sonata_seo_title() }}
 
-    <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
     <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}"/>
     {{ sonata_seo_metadatas() }}
     {{ sonata_seo_link_canonical() }}
     {{ sonata_seo_lang_alternates() }}
 
-    {% if app.request.host == 'stfalcon.com' %}
-        {% javascripts
-            'js/metrics/header.js'
-            output='cache/js/*.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% else %}
-        {% javascripts
-            'js/devstub.js'
-            output='cache/js/*.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endif %}
-
-    {% if app.request.locale == 'en' %}
-        {% include '_carrot_quest.html.twig' %}
+    {% if app.environment == 'prod' %}
+        {% include "::google_tag_manager.html.twig" %}
     {% endif %}
 </head>
 <body>
@@ -45,11 +31,13 @@
                 <p class="header__sub-title">
                     {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
                 </p>
-                <button id="hire_us-js" type="button" class="hire_us_main button home-btn home-btn--blue header__btn" onclick="ga('send', 'event', 'order_project', 'click');fbq('trackCustom', 'order_project');">{{ 'Заказать проект'|trans }}</button>
+                <button id="hire_us-js" type="button" class="hire_us_main button home-btn home-btn--blue header__btn"
+                        >{{ 'Заказать проект'|trans }}</button>
             </div>
         </header>
         <section data-bg="#2C373C" class="achievements bg-item">
-            <h2 class="promo-title promo-title--bold achievements__title">Your Partner in Web and Mobile Development</h2>
+            <h2 class="promo-title promo-title--bold achievements__title">Your Partner in Web and Mobile
+                Development</h2>
             <p class="achievements__text">Our mission is move forward technical progress and create opportunities in the
                 world with innovative and useful websites and mobile applications.</p>
             <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
@@ -108,7 +96,8 @@
                 <div class="project-item__description">
                     <h2 class="promo-title promo-title--bold project-item__name">SmartSeeds</h2>
                     <div class="project-item__comment">Stfalcon was very involved and committed to our success.
-                        After the projects are completed, they kept on giving us support as needed.</div>
+                        After the projects are completed, they kept on giving us support as needed.
+                    </div>
                     <div class="comment-author project-item__comment-author">
                         <img class="comment-author__img" src="{{ asset('img/kiril.png') }}" alt="">
                         <div class="comment-author__left">
@@ -123,7 +112,9 @@
                 <div class="project-item__description">
                     <h2 class="promo-title promo-title--bold project-item__name">Nova poshta
                         Dashboard</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After the projects are completed, they kept on giving us support as needed.</div>
+                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After
+                        the projects are completed, they kept on giving us support as needed.
+                    </div>
                     <div class="comment-author project-item__comment-author">
                         <img class="comment-author__img" src="{{ asset('img/artem.png') }}" alt="">
                         <div class="comment-author__left">
@@ -144,7 +135,8 @@
                 <div class="project-item__description">
                     <h2 class="promo-title promo-title--bold project-item__name">Nic.ua — Domains and hosting</h2>
                     <div class="project-item__comment">Stfalcon was very involved and committed to our success.
-                        After the projects are completed, they kept on giving us support as needed.</div>
+                        After the projects are completed, they kept on giving us support as needed.
+                    </div>
                     <div class="comment-author project-item__comment-author">
                         <img class="comment-author__img" src="{{ asset('img/khatkevich.png') }}" alt="">
                         <div class="comment-author__left">
@@ -160,7 +152,9 @@
                 <div class="project-item__description">
                     <h2 class="promo-title promo-title--bold project-item__name">Nova poshta
                         Shopping</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After the projects are completed, they kept on giving us support as needed.</div>
+                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After
+                        the projects are completed, they kept on giving us support as needed.
+                    </div>
                     <div class="comment-author project-item__comment-author">
                         <img class="comment-author__img" src="{{ asset('img/artem.png') }}" alt="">
                         <div class="comment-author__left">
@@ -181,14 +175,18 @@
                 <div class="project-item__description">
                     <h2 class="promo-title promo-title--bold project-item__name">MeinFernbus</h2>
                     <div class="project-item__text">The largest passenger transportation company in Germany.
-                        For 3 years we have participated in the development of a project.</div>
+                        For 3 years we have participated in the development of a project.
+                    </div>
                     <a href="#" class="project-item__link">Read the Story</a>
                 </div>
             </article>
-            <article data-bg="#5B717E" class="project-item project-item--left-text project-item--white-text bg-item bg-item--last">
+            <article data-bg="#5B717E"
+                     class="project-item project-item--left-text project-item--white-text bg-item bg-item--last">
                 <div class="project-item__description">
                     <h2 class="promo-title promo-title--bold project-item__name">KeepSnap</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After the projects are completed, they kept on giving us support as needed.</div>
+                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After
+                        the projects are completed, they kept on giving us support as needed.
+                    </div>
                     <div class="comment-author project-item__comment-author">
                         <img class="comment-author__img" src="{{ asset('img/liveStreetCms_icon.png') }}" alt="">
                         <div class="comment-author__left">
@@ -204,14 +202,16 @@
             </article>
         </section>
         <section class="our-services">
-            <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span><!-- helper for change color description on last project-item -->
+            <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
+            <!-- helper for change color description on last project-item -->
             <h2 class="promo-title our-services__title">Your full-cycle development partner</h2>
             <ul class="services-list">
                 <li class="services-list__item">
                     <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">Research and Prototyping</div>
                     <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design opportunities.</p>
+                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design
+                        opportunities.</p>
                 </li>
                 <li class="services-list__item">
                     <img src="{{ asset('img/features2.svg') }}" alt="" class="services-list__icon">
@@ -230,7 +230,8 @@
                     <img src="{{ asset('img/features4.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">High Load Systems</div>
                     <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design opportunities.</p>
+                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design
+                        opportunities.</p>
                 </li>
                 <li class="services-list__item">
                     <img src="{{ asset('img/features5.svg') }}" alt="" class="services-list__icon">
@@ -249,7 +250,8 @@
                     <img src="{{ asset('img/features7.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">QA and Testing</div>
                     <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design opportunities.</p>
+                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design
+                        opportunities.</p>
                 </li>
                 <li class="services-list__item">
                     <img src="{{ asset('img/features8.svg') }}" alt="" class="services-list__icon">
@@ -270,20 +272,32 @@
         <section class="side-projects">
             <h2 class="promo-title side-projects__title">Side-projects</h2>
             <div class="side-projects__list">
-                <div class="side-projects__item side-projects__item--fwdays">
-                    <img src="{{ asset('img/fwdays.svg') }}" alt="" class="side-projects__logo">
-                    <div class="side-projects__text">Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.</div>
-                    <a class="arrow-button" href="http://frameworksdays.com/" rel="nofollow" target="_blank"></a>
+                <div class="side-projects__box side-projects__box--fwdays">
+                    <div class="side-projects__item side-projects__item--fwdays">
+                        <img src="{{ asset('img/fwdays.svg') }}" alt="" class="side-projects__logo">
+                        <div class="side-projects__text">Unique conference in its kind. It brings together fans of software
+                            frameworks for all possible platforms.
+                        </div>
+                        <a class="arrow-button" href="http://frameworksdays.com/" rel="nofollow" target="_blank"></a>
+                    </div>
                 </div>
-                <div class="side-projects__item side-projects__item--cnc">
-                    <img src="{{ asset('img/cnc.svg') }}" alt="" class="side-projects__logo">
-                    <div class="side-projects__text">Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.</div>
-                    <a class="arrow-button" href="http://kmcnc.stfalcon.com//" rel="nofollow" target="_blank"></a>
+                <div class="side-projects__box side-projects__box--cnc">
+                    <div class="side-projects__item side-projects__item--cnc">
+                        <img src="{{ asset('img/cnc.svg') }}" alt="" class="side-projects__logo">
+                        <div class="side-projects__text">Unique conference in its kind. It brings together fans of software
+                            frameworks for all possible platforms.
+                        </div>
+                        <a class="arrow-button" href="http://kmcnc.stfalcon.com//" rel="nofollow" target="_blank"></a>
+                    </div>
                 </div>
-                <div class="side-projects__item side-projects__item--academy">
-                    <img src="{{ asset('img/logo_academy.svg') }}" alt="" class="side-projects__logo">
-                    <div class="side-projects__text">Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.</div>
-                    <a class="arrow-button" href="http://academy.stfalcon.com/" rel="nofollow" target="_blank"></a>
+                <div class="side-projects__box side-projects__box--academy">
+                    <div class="side-projects__item side-projects__item--academy">
+                        <img src="{{ asset('img/logo_academy.svg') }}" alt="" class="side-projects__logo">
+                        <div class="side-projects__text">Unique conference in its kind. It brings together fans of software
+                            frameworks for all possible platforms.
+                        </div>
+                        <a class="arrow-button" href="http://academy.stfalcon.com/" rel="nofollow" target="_blank"></a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -298,7 +312,8 @@
                     <p class="blog-article__text">iPhone X release (read as iPhone 10) was timed to the 10th
                         anniversary of the Apple Smartphone. The event was a surprise to Apple f…</p>
                     <div class="article-author">
-                        <img class="article-author__img" src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
+                        <img class="article-author__img"
+                             src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
                         <div class="article-author__right">
                             <div class="article-author__name">First User</div>
                             <div class="article-author__date">August 21, 2017</div>
@@ -307,9 +322,11 @@
                 </li>
                 <li class="blog-article">
                     <a href="#" class="blog-article__link">GitHub: manual for non-technical entrepreneurs</a>
-                    <p class="blog-article__text">GitHub is the world’s largest hosting service for storing and working with IT-projects, but that’s not all. The resource cooperates nearly 24M develo…</p>
+                    <p class="blog-article__text">GitHub is the world’s largest hosting service for storing and working
+                        with IT-projects, but that’s not all. The resource cooperates nearly 24M develo…</p>
                     <div class="article-author">
-                        <img class="article-author__img" src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
+                        <img class="article-author__img"
+                             src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
                         <div class="article-author__right">
                             <div class="article-author__name">Second User</div>
                             <div class="article-author__date">August 21, 2017</div>
@@ -318,9 +335,11 @@
                 </li>
                 <li class="blog-article">
                     <a href="#" class="blog-article__link">How to create an apartment rental service like Airbnb</a>
-                    <p class="blog-article__text">Airbnb has changed the way people tend to search for accommodations all over the world. This startup has conquered a global market of the apartment ren…</p>
+                    <p class="blog-article__text">Airbnb has changed the way people tend to search for accommodations
+                        all over the world. This startup has conquered a global market of the apartment ren…</p>
                     <div class="article-author">
-                        <img class="article-author__img" src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
+                        <img class="article-author__img"
+                             src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
                         <div class="article-author__right">
                             <div class="article-author__name">Third User</div>
                             <div class="article-author__date">August 21, 2017</div>
@@ -400,6 +419,5 @@
         minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
     });
 </script>
-{% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
 </body>
 </html>

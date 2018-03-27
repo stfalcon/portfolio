@@ -35,36 +35,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $seo = $this->get('sonata.seo.page');
-        $seo
-            ->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
-            ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
-
-        $seoHomepage = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:SeoHomepage')->findOneBy([]);
-        if ($seoHomepage instanceof SeoHomepage) {
-            $seo
-                ->setTitle($seoHomepage->getTitle())
-                ->addMeta('name', 'keywords', $seoHomepage->getKeywords())
-                ->addMeta('name', 'description', $seoHomepage->getDescription())
-                ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
-                ->addMeta('property', 'og:description', $seoHomepage->getDescription())
-                ->addMeta('property', 'og:image', '/img/'.$seoHomepage->getOgImage());
-        }
-
-        return [];
-    }
-
-    /**
-     * index-new page.
-     *
-     * @param Request $request Request
-     *
-     * @return Response
-     *
-     * @Route("/index-new", name="index-new", defaults={"_locale": "en"})
-     */
-    public function indexNewAction(Request $request)
-    {
         $services = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Category')
             ->findBy(['showInServices' => true], ['ordernum' => 'ASC']);
         $locale = $request->getLocale() ? $request->getLocale() : 'en';
@@ -85,7 +55,6 @@ class DefaultController extends Controller
         $seoHomepage = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:SeoHomepage')->findOneBy([]);
         if ($seoHomepage instanceof SeoHomepage) {
             $seo
-                ->setTitle($seoHomepage->getTitle())
                 ->addMeta('name', 'keywords', $seoHomepage->getKeywords())
                 ->addMeta('name', 'description', $seoHomepage->getDescription())
                 ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())

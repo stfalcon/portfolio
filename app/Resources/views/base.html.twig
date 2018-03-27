@@ -6,8 +6,8 @@
 <html xmlns:og="http://ogp.me/ns#">
 <head {{ sonata_seo_head_attributes() }}>
     {% block abtest %}{% endblock abtest %}
+    <title>{% block title %}{{ 'main_title'|trans }}{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block title %}{% endblock %}</title>
     <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml" />
 
     {{ sonata_seo_metadatas() }}
@@ -40,18 +40,7 @@
     {% block javascripts %}
         <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
         {% if app.environment == 'prod' %}
-            {% javascripts
-                'js/metrics/header.js'
-                output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% include "::google_analytics.html.twig" %}
-            {% endjavascripts %}
-        {% else %}
-            {% javascripts
-                'js/devstub.js'
-                output='cache/js/*.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+            {% include "::google_tag_manager.html.twig" %}
         {% endif %}
 
         {% javascripts
@@ -77,8 +66,6 @@
             output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
-        {% include '@ApplicationDefault/Default/footer_scripts.html.twig' %}
     {% endblock %}
 
 </body>

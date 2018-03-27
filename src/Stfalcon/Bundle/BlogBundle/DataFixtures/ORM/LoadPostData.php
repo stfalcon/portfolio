@@ -31,7 +31,7 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
         $postFirst = new Post();
         $postFirst->setTitle('My first post')
         ->setSlug('my-first-post')
-        ->setText('In work we use Symfony2.<!--more-->And text after cut')
+        ->setText('In work we use Symfony.<!--more-->And text after cut')
         ->addTag($symfonyTag)
         ->addTag($doctrine2Tag)
         ->setAuthor($adminUser)

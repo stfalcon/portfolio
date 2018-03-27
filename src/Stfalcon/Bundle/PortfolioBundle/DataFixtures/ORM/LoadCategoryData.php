@@ -28,7 +28,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
             ->setShortName('Web Development')
             ->setSlug('web-development')
             ->setDetails('web-development')
-            ->setDescription('In work we use Symfony2.')
+            ->setDescription('In work we use Symfony.')
             ->setShowInServices(true)
             ->setShowInProjects(true)
             ->setCost('20 000');
