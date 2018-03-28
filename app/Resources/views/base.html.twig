@@ -55,8 +55,8 @@
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         {% if app.environment == 'prod' %}
-        <script src="https://cdn.ravenjs.com/3.22.3/raven.min.js" crossorigin="anonymous"></script>
-        <script>Raven.config('https://b8b6eda034094d00b8a2f666080f72b0@sentry.stfalcon.com/52').install()</script>
+            <script src="https://cdn.ravenjs.com/3.22.3/raven.min.js" crossorigin="anonymous"></script>
+            <script>Raven.config('https://b8b6eda034094d00b8a2f666080f72b0@sentry.stfalcon.com/52').install()</script>
         {% endif %}
         {% javascripts
             'js/search.js'
