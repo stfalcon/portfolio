@@ -87,6 +87,8 @@ class ProjectReviewer implements Translatable
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     *
+     * @Gedmo\Translatable(fallback=true)
      */
     private $status;
 
