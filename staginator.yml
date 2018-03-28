@@ -1,6 +1,7 @@
 apt_packages: ['sphinxsearch']
 deploy_callbacks:
     after_clone:
+        - 'cp -a web/app_stag.php web/app.php'
         - 'npm install -g uglify-js'
         - 'npm install -g grunt'
         - 'npm install -g grunt-cli'
