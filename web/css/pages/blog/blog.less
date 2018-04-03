@@ -1329,6 +1329,9 @@
     top: 0;
     margin: auto;
     z-index: 3;
+    @media (max-width: 1024px) {
+      align-items: flex-start;
+    }
   }
 
   &__title {
@@ -1339,9 +1342,17 @@
     z-index: 2;
     font-size: 70px;
     font-weight: 900;
+    text-align: center;
+    transform: translateY(-40px);
+
+    @media (max-width: 1024px) {
+      text-align: left;
+    }
+
     @media (max-width: 767px) {
       font-size: 40px;
       line-height: 46px;
+      transform: none;
     }
   }
 }
