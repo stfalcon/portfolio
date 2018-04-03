@@ -3,13 +3,15 @@
     {% if review != null %}
         <div class="project-item__comment">{{ review.text }}</div>
         <div class="comment-author project-item__comment-author">
-            {% if reviewer.photoFile is not empty %}
-                <img class="comment-author__img" src="{{ vich_uploader_asset(reviewer, 'photoFile') }}" alt="">
+            {% if reviewer is not null %}
+                {% if reviewer.photoFile is not empty %}
+                    <img class="comment-author__img" src="{{ vich_uploader_asset(reviewer, 'photoFile') }}" alt="">
+                {% endif %}
+                <div class="comment-author__left">
+                    <div class="comment-author__name">{{ reviewer.name }},</div>
+                    <div class="comment-author__position">{{ reviewer.status }}</div>
+                </div>
             {% endif %}
-            <div class="comment-author__left">
-                <div class="comment-author__name">{{ reviewer.name }},</div>
-                <div class="comment-author__position">{{ reviewer.status }}</div>
-            </div>
         </div>
     {% else %}
         <div class="project-item__text">{{ project.shortDescription }}</div>
