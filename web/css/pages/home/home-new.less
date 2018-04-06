@@ -95,6 +95,8 @@
 .header {
   position: relative;
   overflow: hidden;
+  background: url(../assets/img/team.png) no-repeat center;
+  background-size: cover;
 
   &--after {
     &:after {
@@ -106,6 +108,10 @@
       left: 0;
       background: rgba(255, 255, 255, 0.6);
       z-index: 2;
+    }
+
+    &:before {
+
     }
   }
 
@@ -843,18 +849,9 @@
   // header
 
   .header {
-    background: url(../img/bg-mob.png) no-repeat center;
-    background-size: cover;
-
     &__video {
       display: none;
     }
-
-    &--after {
-        &:after {
-          content: none;
-        }
-      }
   }
 
   // end header
