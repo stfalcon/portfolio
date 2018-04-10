@@ -1,7 +1,7 @@
 {% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
 
 <form action="{{ path('jobs_job_view', {'slug':job.slug}) }}" id="direct-vacancy-form" method="post" enctype="multipart/form-data">
-    <h3>{{ "Ответить на вакансию" | trans() }}</h3>
+    <h3>{{ "__reply_to_vacancy" | trans() }}</h3>
     {{ form_errors(form) }}
     <div class="line">
         {{ form_widget(form.name) }}
@@ -17,8 +17,8 @@
     </div>
     <div class="line btn-line">
         <div class="file-input">
-            <p class="filename">{{ "Прикрепить резюме" | trans() }}</p>
-            <p class="filesize">{{ "до 20 МБ" | trans() }}</p>
+            <p class="filename">{{ "__attach_resume" | trans() }}</p>
+            <p class="filesize">{{ "__before_20" | trans() }}</p>
             {{ form_widget(form.attach) }}
             {{ form_errors(form.attach) }}
         </div>
@@ -28,7 +28,7 @@
             {{ form_errors(form.captcha) }}
         </div>
         {% endif %}
-        <button class="btn" type="submit">{{ "Отправить" | trans() }}</button>
+        <button class="btn" type="submit">{{ "__send_text" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>

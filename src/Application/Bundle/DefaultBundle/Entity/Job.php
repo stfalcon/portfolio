@@ -2,16 +2,21 @@
 
 namespace Application\Bundle\DefaultBundle\Entity;
 
+use Application\Bundle\DefaultBundle\Entity\Translation\JobTranslation;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Table(name="jobs")
  * @ORM\Entity(repositoryClass="Application\Bundle\DefaultBundle\Repository\JobRepository")
+ *
+ * @Gedmo\TranslationEntity(class="Application\Bundle\DefaultBundle\Entity\Translation\JobTranslation")
  */
-class Job
+class Job implements Translatable
 {
     use TimestampableEntity;
 
@@ -27,11 +32,24 @@ class Job
     private $id;
 
     /**
+     * @var ArrayCollection|JobTranslation[] $translations Translations
+     *
+     * @ORM\OneToMany(
+     *   targetEntity="Application\Bundle\DefaultBundle\Entity\Translation\JobTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    /**
      * Job title.
      *
      * @var string
      *
      * @Assert\NotBlank()
+     *
+     * @Gedmo\Translatable(fallback=true)
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
@@ -45,6 +63,8 @@ class Job
      *      min = "3"
      * )
      * @ORM\Column(name="description", type="text")
+     *
+     * @Gedmo\Translatable(fallback=true)
      */
     private $description;
 
@@ -65,6 +85,8 @@ class Job
      * @var string
      *
      * @ORM\Column(name="meta_keywords", type="text", nullable=true)
+     *
+     * @Gedmo\Translatable(fallback=true)
      */
     private $metaKeywords;
 
@@ -72,6 +94,8 @@ class Job
      * @var string
      *
      * @ORM\Column(name="meta_description", type="text", nullable=true)
+     *
+     * @Gedmo\Translatable(fallback=true)
      */
     private $metaDescription;
 
@@ -79,6 +103,8 @@ class Job
      * @var string
      *
      * @ORM\Column(name="meta_title", type="text", nullable=true)
+     *
+     * @Gedmo\Translatable(fallback=true)
      */
     private $metaTitle;
 
@@ -95,6 +121,14 @@ class Job
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder = 0;
+
+    /**
+     * Job constructor.
+     */
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
 
     /**
      * @param bool $active
@@ -274,5 +308,48 @@ class Job
         $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * Add translation
+     *
+     * @param JobTranslation $jobTranslation Seo homepage translation
+     */
+    public function addTranslation(JobTranslation $jobTranslation)
+    {
+        if (!$this->translations->contains($jobTranslation)) {
+            $this->translations->add($jobTranslation);
+            $jobTranslation->setObject($this);
+        }
+    }
+
+    /**
+     * Remove translations
+     *
+     * @param JobTranslation $jobTranslation Seo homepage translation
+     */
+    public function removeTranslation(JobTranslation $jobTranslation)
+    {
+        $this->translations->removeElement($jobTranslation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * Set translations
+     *
+     * @param ArrayCollection $translations Translations
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
     }
 }

@@ -54,3 +54,11 @@ main_page.service6.description: ''
 main_page.service7.description: ''
 main_page.service8.description: ''
 main_page.service9.description: ''
+
+__menu.vacancies: Вакансии
+__back_to_vacansy_list: Вернуться к списку вакансий
+__invite_to_our_team: Приглашаем в нашу команду
+__reply_to_vacancy: Ответить на вакансию
+__attach_resume: Прикрепить резюме
+__before_20: до 20 МБ
+__send_text: Отправить

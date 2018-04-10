@@ -15,13 +15,72 @@ class JobAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
+            ->add(
+                'translations',
+                'a2lix_translations_gedmo',
+                [
+                    'translatable_class' => 'Application\Bundle\DefaultBundle\Entity\Job',
+                    'fields' => [
+                        'title' => [
+                            'label' => 'Title',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => true,
+                                ],
+                                'en' => [
+                                    'required' => true,
+                                ],
+                            ],
+                        ],
+                        'description' => [
+                            'label' => 'Описание',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => true,
+                                ],
+                                'en' => [
+                                    'required' => true,
+                                ],
+                            ],
+                        ],
+                        'metaTitle' => [
+                            'label' => 'Meta title',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => true,
+                                ],
+                                'en' => [
+                                    'required' => true,
+                                ],
+                            ],
+                        ],
+                        'metaKeywords' => [
+                            'label' => 'Meta keywords',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => false,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
+                            ],
+                        ],
+                        'metaDescription' => [
+                            'label' => 'Meta description',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => false,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
+                            ],
+                        ],
+                    ],
+                ]
+            )
             ->add('slug')
             ->add('active')
-            ->add('description', null, ['attr' => ['class' => 'markitup']])
-            ->add('metaKeywords', null, ['label' => 'Meta keywords', 'required' => false])
-            ->add('metaDescription', null, ['label' => 'Meta description', 'required' => false])
-            ->add('metaTitle', null, ['label' => 'Meta title', 'required' => false])
             ->add('sortOrder')
         ;
     }
