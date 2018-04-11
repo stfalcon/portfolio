@@ -55,9 +55,7 @@ class MenuBuilder
         ));
         $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));
         $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
-        if ('ru' === $request->getLocale()) {
-            $menu->addChild($this->translator->trans('Вакансии'), array('route' => 'jobs_list'));
-        }
+        $menu->addChild($this->translator->trans('__menu.vacancies'), array('route' => 'jobs_list'));
         $menu->addChild($this->translator->trans('Контакты'), array('route' => 'contacts'));
         $menu->addChild(
             $this->translator->trans('about_us'),

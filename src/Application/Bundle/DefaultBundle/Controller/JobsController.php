@@ -29,10 +29,6 @@ class JobsController extends Controller
      */
     public function indexAction(Request $request, $page)
     {
-        if ('ru' !== $request->getLocale()) {
-            return $this->redirectToRoute('jobs_list', ['page' => $page, '_locale' => 'ru']);
-        }
-
         $itemsPerPage = 10;
         $jobsRepository = $this->getDoctrine()->getRepository('ApplicationDefaultBundle:Job');
 
@@ -66,10 +62,6 @@ class JobsController extends Controller
      */
     public function viewAction(Request $request, $slug)
     {
-        if ('ru' !== $request->getLocale()) {
-            return $this->redirectToRoute('jobs_job_view', ['slug' => $slug, '_locale' => 'ru']);
-        }
-
         /** @var Job $job */
         $job = $this->getDoctrine()
             ->getRepository('ApplicationDefaultBundle:Job')

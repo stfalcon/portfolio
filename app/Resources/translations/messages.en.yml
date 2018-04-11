@@ -10,7 +10,7 @@ title: __title
 
 Аватарка: Avatar
 Блог: Blog
-Вакансии: Vacancies
+__menu.vacancies: Career
 Поиск: Search
 
 'Stfalcon':
@@ -313,3 +313,11 @@ main_page.service6.description: ''
 main_page.service7.description: ''
 main_page.service8.description: ''
 main_page.service9.description: ''
+
+__back_to_vacansy_list: Back to vacancies
+__invite_to_our_team: Welcome to our team
+__reply_to_vacancy: Reply to vacancy
+__attach_resume: Attach resume
+__before_20: up to 20 MB
+__send_text: Send
+Номер телефона: Phone number

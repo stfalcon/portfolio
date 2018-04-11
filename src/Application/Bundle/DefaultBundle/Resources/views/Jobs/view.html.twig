@@ -1,6 +1,6 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
 
-{% block title %}{{ job.metaTitle }} | {{ 'Вакансия'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ job.metaTitle }} | {{ '__menu.vacancies'|trans }} | {{ parent() }}{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -62,8 +62,9 @@
                 </div>
             {% endif %}
             </section>
-            <a class="read-more prev-page" href="{{ path('jobs_list') }}"><span>{{ 'Вернуться к списку вакансий'|trans }}</span>
-                <span>{{ 'К списку записей'|trans }}</span>
+            <a class="read-more prev-page" href="{{ path('jobs_list') }}">
+                <span>{{ '__back_to_vacansy_list'|trans }}</span>
+                <span>{{ '__back_to_vacansy_list'|trans }}</span>
             </a>
         </div>
 
