@@ -28,7 +28,7 @@ class JobAdmin extends Admin
                                     'required' => true,
                                 ],
                                 'en' => [
-                                    'required' => true,
+                                    'required' => false,
                                 ],
                             ],
                         ],
@@ -39,7 +39,7 @@ class JobAdmin extends Admin
                                     'required' => true,
                                 ],
                                 'en' => [
-                                    'required' => true,
+                                    'required' => false,
                                 ],
                             ],
                         ],
@@ -50,7 +50,7 @@ class JobAdmin extends Admin
                                     'required' => true,
                                 ],
                                 'en' => [
-                                    'required' => true,
+                                    'required' => false,
                                 ],
                             ],
                         ],
