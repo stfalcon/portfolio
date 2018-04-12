@@ -1291,9 +1291,6 @@
     top: 0;
     margin: auto;
     z-index: 3;
-    @media (max-width: 1024px) {
-      align-items: flex-start;
-    }
   }
 
   &__title {
@@ -1307,14 +1304,16 @@
     text-align: center;
     transform: translateY(-40px);
 
-    @media (max-width: 1024px) {
-      text-align: left;
-    }
-
     @media (max-width: 767px) {
       font-size: 40px;
       line-height: 46px;
       transform: none;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      font-size: 24px;
+      line-height: 36px;
     }
   }
 }
@@ -1335,5 +1334,31 @@
 
   .blog-post .tags{
     margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .team-image + .content {
+    padding-top: 50px;
+
+    .blog-post {
+      margin-bottom: 50px;
+
+      &:last-child {
+        margin-bottom: 84px;
+      }
+    }
+
+    .blog-post h1 {
+      margin-bottom: 8px;
+    }
+
+    .blog-post .post-info {
+      margin-bottom: 25px;
+    }
+
+    .post-content h3 {
+     margin-top: 0;
+    }
   }
 }
