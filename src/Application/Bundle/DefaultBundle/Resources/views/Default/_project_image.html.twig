@@ -1,5 +1,5 @@
-<div class="project-item__img-block">
+<a href="{{ path('portfolio_category_project', {'slug': project.slug}) }}" class="project-item__img-block">
     {% if project.mainPageImageFile is not empty %}
         <img class="project-item__img" src="{{ vich_uploader_asset(project, 'mainPageImageFile') }}" alt="">
     {% endif %}
-</div>
+</a>
