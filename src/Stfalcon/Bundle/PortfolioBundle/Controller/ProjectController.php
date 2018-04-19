@@ -16,11 +16,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * Project controller
+ * Project controller.
  */
 class ProjectController extends Controller
 {
-
     /**
      * @param null $slug
      *
@@ -63,15 +62,14 @@ class ProjectController extends Controller
                 ['project' => $project]);
         }
 
-
         return new JsonResponse([
             'data' => $data,
-            'nextCount' => count($nextPartCategoriesCount)
+            'nextCount' => count($nextPartCategoriesCount),
         ]);
     }
 
     /**
-     * All projects
+     * All projects.
      *
      * @param Request     $request Request
      * @param string|null $slug    Project slug
@@ -122,11 +120,10 @@ class ProjectController extends Controller
 
             return $this->render('StfalconPortfolioBundle:Project:view.html.twig',
                 [
-                    'project'  => $project,
+                    'project' => $project,
                     'category' => $project->getCategories()->first(),
                 ]
             );
-
         } else {
             $this->setPageSeo($request, $category, $slug);
 
@@ -142,7 +139,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Projects counter widget
+     * Projects counter widget.
      *
      * @return array()
      * @Template("StfalconPortfolioBundle:Project:_projects_counter.html.twig")
@@ -157,12 +154,12 @@ class ProjectController extends Controller
         foreach ($projects as $project) {
             $year = (int) $project->getDate()->format('Y');
             if (isset($projectYears[$year]['counter'])) {
-                $projectYears[$year]['counter']++;
+                ++$projectYears[$year]['counter'];
             } else {
                 $projectYears[$year] = array('year' => $year, 'counter' => $projectBefore);
             }
 
-            $projectBefore++;
+            ++$projectBefore;
         }
 
         $projectYears = array_slice($projectYears, -4);
@@ -171,7 +168,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * View project
+     * View project.
      *
      * @param Request  $request  Request
      * @param Category $category Category
@@ -191,7 +188,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Display links to prev/next projects
+     * Display links to prev/next projects.
      *
      * @param string $categorySlug Object of category
      * @param string $projectSlug  Object of project
@@ -210,7 +207,7 @@ class ProjectController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // get all projects from this category
-        $projects = $em->getRepository("StfalconPortfolioBundle:Project")
+        $projects = $em->getRepository('StfalconPortfolioBundle:Project')
             ->getProjectsByCategory($category);
 
         // get next and previous projects from this category
@@ -223,25 +220,26 @@ class ProjectController extends Controller
                 $nextProject = isset($projects[$i + 1]) ? $projects[$i + 1] : null;
                 break;
             }
-            $i++;
+            ++$i;
         }
 
         return array('category' => $category, 'previousProject' => $previousProject, 'nextProject' => $nextProject);
     }
 
     /**
-     * Try find category by slug
+     * Try find category by slug.
      *
      * @param string $slug Slug of category
      *
      * @return Category
+     *
      * @throws NotFoundHttpException
      */
     private function _findCategoryBySlug($slug)
     {
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository("StfalconPortfolioBundle:Category")
+        $category = $em->getRepository('StfalconPortfolioBundle:Category')
             ->findOneBy(array('slug' => $slug));
 
         if (!$category) {
@@ -252,18 +250,19 @@ class ProjectController extends Controller
     }
 
     /**
-     * Try find project by slug
+     * Try find project by slug.
      *
      * @param string $slug Slug of project
      *
      * @return Project
+     *
      * @throws NotFoundHttpException
      */
     private function _findProjectBySlug($slug)
     {
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
-        $project = $em->getRepository("StfalconPortfolioBundle:Project")
+        $project = $em->getRepository('StfalconPortfolioBundle:Project')
             ->findOneBy(array('slug' => $slug));
 
         if (!$project) {
@@ -274,7 +273,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Widget examples work for page services
+     * Widget examples work for page services.
      *
      * @param $category
      *
@@ -284,17 +283,17 @@ class ProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository("StfalconPortfolioBundle:Project")
+        $projects = $em->getRepository('StfalconPortfolioBundle:Project')
             ->findAllExamplesProjectsByCategory($category, 4);
 
         return $this->render('StfalconPortfolioBundle:Category:_widget_examples_prj.html.twig', [
             'projects' => $projects,
-            'category' => $category
+            'category' => $category,
         ]);
     }
 
     /**
-     * @param Request $request
+     * @param Request          $request
      * @param Project|Category $entity
      * @param $slug
      */
@@ -320,11 +319,17 @@ class ProjectController extends Controller
 
             if ($entity instanceof Project && $entity->getImage()) {
                 $vichUploader = $this->get('vich_uploader.templating.helper.uploader_helper');
+                $imagePath = $this->get('imagine.cache.path.resolver')
+                    ->getBrowserPath(
+                        $vichUploader->asset($entity, 'imageFile'),
+                        'portfolio_large',
+                        true
+                    );
 
                 $seo->addMeta(
                     'property',
                     'og:image',
-                    $request->getSchemeAndHttpHost() . $vichUploader->asset($entity, 'imageFile')
+                    $imagePath
                 );
             }
         } else {
