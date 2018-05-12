@@ -24,6 +24,9 @@
         <![endif]-->
         <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('YmdHi') }}"/>
     {% endblock %}
+    {% if app.environment == 'prod' %}
+        {% include "::google_tag_manager.html.twig" %}
+    {% endif %}
 </head>
 <body>
     {% if app.environment == 'prod' %}
@@ -39,10 +42,6 @@
 
     {% block javascripts %}
         <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
-        {% if app.environment == 'prod' %}
-            {% include "::google_tag_manager.html.twig" %}
-        {% endif %}
-
         {% javascripts
             'js/vendor/jquery-1.7.2.min.js'
             'js/plugins.js'
