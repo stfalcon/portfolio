@@ -11,7 +11,7 @@ _order-symfony2: 'Связаться с нами'
 _order-ios: 'Связаться с нами'
 _order-android: 'Связаться с нами'
 '__main.we_contribution_text': 'Наша команда любит open-source! </br> Мы создаем полезные решения для <a href="%link%" rel="nofollow" target="_blank">Symfony</a>, <a href="%android_link%" rel="nofollow" target="_blank">Android</a>/iOS платформ и делимся ими на <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a>.'
-'__Footer.homepage.link': '<a href="%homepage%">Stfalcon LLC</a> &mdash; разработки сайтов и мобильных приложений'
+'__Footer.homepage.link': '<a href="%homepage%">Stfalcon LLC</a> &mdash; разработка сайтов и мобильных приложений'
 
 about_us: 'О нас'
 main_title: Разработка и дизайн сайтов и мобильных приложений | Компания Stfalcon.com
