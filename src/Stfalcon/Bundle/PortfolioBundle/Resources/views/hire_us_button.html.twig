@@ -1,4 +1,7 @@
-<button type="button" class="hire_us_land link-order {% if category.slug in ['mobile-development',  'consulting-audit' ]%}link-order-mobile{% endif %}">
+<button type="button" class="hire_us_land link-order
+    {%- if category.slug in ['mobile-development',  'consulting-audit' ] %} link-order-mobile{% endif %}
+    {%- if category.slug in ['web-design'] %} design{% endif %}
+">
     {% set order_text = '_order-' ~ category.slug %}
     {{ order_text|trans }}
 </button>
