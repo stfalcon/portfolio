@@ -49,7 +49,7 @@ $(function () {
             e.preventDefault();
 
             $.ajax({
-                url: $(form).attr('action'),
+                url: $(form).data('url'),
                 type: "POST",
                 dataType: "json",
                 data: $(form).serialize(),
