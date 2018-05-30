@@ -1,19 +1,17 @@
 <section class="amount-projects">
     <div class="projects-counter">
         {% set lastYear = years|last %}
-        {% set year_text_now = "проект мы запустили на сегодняшний день|проекта мы запустили на сегодняшний день|проектов мы запустили на сегодняшний день" %}
         <span class="years-count">{{ lastYear.counter }}</span><span>+</span>
-        <p id="view-year"><time>{{ year_text_now|transchoice(lastYear.counter, {'%year%':lastYear.year}) }}</time> {{ ""|trans }}</p>
+        <p id="view-year"><time>{{ '__projects_text_now'|trans()|transchoice(lastYear.counter, {'%year%':lastYear.year}) }}</time> {{ ""|trans }}</p>
     </div>
     <div class="year-slider-wrapp">
         <div id="year-slider"></div>
         <ul>
-            {% set year_text_end = "проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года" %}
             {% for year in years %}
                 {%- if year.year == lastYear.year -%}
-                    <li data-val="{{ year.counter }}" data-text="{{ year_text_now|transchoice(year.counter) }}">{{ year.year }}</li>
+                    <li data-val="{{ year.counter }}" data-text="{{ '__projects_text_now'|trans()|transchoice(year.counter) }}">{{ year.year }}</li>
                 {% else %}
-                    <li data-val="{{ year.counter }}" data-text="{{ year_text_end|transchoice(year.counter, {'%year%':year.year}) }}">{{ year.year }}</li>
+                    <li data-val="{{ year.counter }}" data-text="{{ '__projects_text_year'|trans()|transchoice(year.counter, {'%year%':year.year}) }}">{{ year.year }}</li>
                 {% endif %}
             {% endfor %}
         </ul>
