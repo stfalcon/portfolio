@@ -2,7 +2,7 @@
     <div class="projects-counter">
         {% set lastYear = years|last %}
         <span class="years-count">{{ lastYear.counter }}</span><span>+</span>
-        <p id="view-year"><time>{{ '__projects_text_now'|trans()|transchoice(lastYear.counter, {'%year%':lastYear.year}) }}</time> {{ ""|trans }}</p>
+        <p id="view-year"><time>{{ '__projects_text_now'|trans()|transchoice(lastYear.counter) }}</time> {{ ""|trans }}</p>
     </div>
     <div class="year-slider-wrapp">
         <div id="year-slider"></div>
