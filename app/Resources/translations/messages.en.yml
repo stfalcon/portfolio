@@ -80,6 +80,7 @@ about_us: 'About us'
 'посмотреть примеры проектов %project%': 'view examples of %project% projects'
 'проектов мы запустили к концу': 'projects we released till the end of'
 'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
+'проект мы запустили на сегодняшний день|проекта мы запустили на сегодняшний день|проектов мы запустили на сегодняшний день': 'projects launched by now|projects launched by now|projects launched by now'
 
 'улица Заречанская, 3/2': '3/2 Zarichanska street'
 'переулок Ахтырский, 7': '7 Okhtyrskyi Lane'
