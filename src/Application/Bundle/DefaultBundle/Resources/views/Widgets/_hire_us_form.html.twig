@@ -1,3 +1,4 @@
+
 <section id="hire-us-widget" class="hire_us-form">
     <div class="wrap_form">
         <div class="wrap_close">
@@ -14,14 +15,14 @@
                 <h2>{{ 'Заказать проект'|trans }}</h2>
                 <div class="line line-mob">
                     <div class="col2 float-left">
-                        {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans, 'oninvalid': 'InvalidMsg(this);', 'oninput': 'InvalidMsg(this);' }}) }}
+                        {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}
                     </div>
                     <div class="col2 float-right">
-                        {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans, 'oninvalid': 'InvalidMsg(this);', 'oninput': 'InvalidMsg(this);' } }) }}
+                        {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
                     </div>
                 </div>
                 <div class="line">
-                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'oninvalid': 'InvalidMsg(this);', 'oninput': 'InvalidMsg(this);' , 'rows':'1'} }) }}
+                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans 'rows':'1'} }) }}
                 </div>
                 <div class="google-captcha">
                     {{ form_widget(form.captcha, {'theme': 'dark' }) }}
@@ -81,18 +82,8 @@
         </form>
     </div>
 </section>
-
 <script>
     var showSubmitButton = function () {
         $('.send-request').show();
     };
-    function InvalidMsg(textbox) {
-        if (textbox.value === '') {
-            textbox.setCustomValidity("{{ 'Заполните это поле'|trans }}");
-        } else if (textbox.validity.typeMismatch) {
-            textbox.setCustomValidity("{{ 'Недопустимый адрес электронной почты'|trans }}");
-        } else {
-            textbox.setCustomValidity('');
-        }
-    }
 </script>

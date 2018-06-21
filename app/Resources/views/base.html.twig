@@ -64,6 +64,14 @@
             'js/widgets.js'
             output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script type="text/javascript">
+            jQuery.extend(jQuery.validator.messages, {
+                required: "{{ 'Заполните это поле'|trans }}",
+                email: "{{ 'Недопустимый адрес электронной почты'|trans }}",
+                maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+                minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+            });
+        </script>
         {% endjavascripts %}
     {% endblock %}
 
