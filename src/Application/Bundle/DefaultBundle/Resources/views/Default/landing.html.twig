@@ -17,7 +17,7 @@
     {% endif %}
     <div class="{{ land_style }}">
         {% if landing_page %}
-            {% if render_html is defined %}
+            {% if render_html is not null %}
                 <div class="header">
                     {% include '::_header_index.html.twig' %}
                 </div>
