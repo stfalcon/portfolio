@@ -15,7 +15,7 @@
     {% else %}
         {% set land_style = 'landing-wrapper' %}
     {% endif %}
-    <div class="wrapper_landing {{ styles[app.request.get('type')] }}">
+    <div class="wrapper_landing {{ land_style }}">
         {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
         {% if landing_page %}
             {{ landing_page.text|raw }}
