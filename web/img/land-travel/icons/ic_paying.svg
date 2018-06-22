@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_paying</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="transport&amp;logistic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Travel&amp;Hospitality" transform="translate(-1308.000000, -3250.000000)">
+            <g id="3" transform="translate(0.000000, 2732.000000)">
+                <g id="txt" transform="translate(994.000000, 236.000000)">
+                    <g id="Group-4" transform="translate(0.000000, 206.000000)">
+                        <g id="2" transform="translate(314.000000, 0.000000)">
+                            <g id="ic_paying" transform="translate(0.000000, 76.000000)">
+                                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                                <g id="Group" opacity="0.8" transform="translate(3.000000, 6.000000)" fill="#7C828C" fill-rule="nonzero">
+                                    <path d="M19,0 L3,0 C1.35,0 0,1.35 0,3 L0,13.5 C0,15.15 1.35,16.5 3,16.5 L19,16.5 C20.65,16.5 22,15.15 22,13.5 L22,3 C22,1.35 20.65,0 19,0 Z M3,2 L19,2 C19.55,2 20,2.45 20,3 L20,4.5 L2,4.5 L2,3 C2,2.45 2.45,2 3,2 Z M19,14.5 L3,14.5 C2.45,14.5 2,14.05 2,13.5 L2,6.5 L20,6.5 L20,13.5 C20,14.05 19.55,14.5 19,14.5 Z" id="Shape"></path>
+                                    <rect id="Rectangle-path" x="3.675" y="8" width="5.3" height="2"></rect>
+                                    <rect id="Rectangle-path" x="3.675" y="11" width="11.35" height="2"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

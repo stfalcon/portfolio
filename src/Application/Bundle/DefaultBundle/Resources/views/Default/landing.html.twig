@@ -11,11 +11,11 @@
 
 {% block body %}
     {% if styles[app.request.get('type')] is defined %}
-        {% set land_style = styles[app.request.get('type')] %}
+        {% set land_style = 'wrapper_landing '~styles[app.request.get('type')] %}
     {% else %}
         {% set land_style = 'landing-wrapper' %}
     {% endif %}
-    <div class="wrapper_landing {{ land_style }}">
+    <div class="{{ land_style }}">
         {% if landing_page %}
             {% if render_html is defined %}
                 <div class="header">
