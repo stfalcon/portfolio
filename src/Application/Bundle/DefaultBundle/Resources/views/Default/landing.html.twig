@@ -1,14 +1,27 @@
 {% extends '::base.html.twig' %}
 {% block title %}{{ title }}{% endblock title %}
-{% set styles = {'mobile-app-design': 'mob_design_land', 'responsive-design':'adaptive_land', 'ui-design':'projection_land','ember-js':'ember_land','silex':'silex_land', 'sylius':'sylius_land'} %}
+{% set styles = {
+    'mobile-app-design': 'mob_design_land',
+    'responsive-design':'adaptive_land',
+    'ui-design':'projection_land',
+    'ember-js':'ember_land',
+    'silex':'silex_land',
+    'sylius':'sylius_land'}
+%}
+
 {% block body %}
+    {% if styles[app.request.get('type')] is defined %}
+        {% set land_style = styles[app.request.get('type')] %}
+    {% else %}
+        {% set land_style = 'landing-wrapper' %}
+    {% endif %}
     <div class="wrapper_landing {{ styles[app.request.get('type')] }}">
         {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
         {% if landing_page %}
             {{ landing_page.text|raw }}
         {% endif %}
         {% if landing_page.projects|length > 0 -%}
-            <div class="section-cms landing-examples">
+            <div class="section-cms">
                 <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
                 {% include ('@StfalconPortfolio/Category/_widget_examples_prj.html.twig') with {'projects': landing_page.projects} %}
             </div>

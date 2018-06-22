@@ -14,10 +14,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class LandingController extends Controller
 {
+//mobile-app-design|responsive-design|ui-design|ember-js|silex|sylius
     /**
      * Promotion index page by type
      *
-     * @Route("/{type}", requirements={"type" = "mobile-app-design|responsive-design|ui-design|ember-js|silex|sylius"}, name="page_landing")
+     * @Route("/{type}", name="page_landing")
+     *
      * @param string $type
      *
      * @return Response
