@@ -322,3 +322,4 @@ __attach_resume: Attach resume
 __before_20: up to 20 MB
 __send_text: Send
 Номер телефона: Phone number
+__last_posts: Latest

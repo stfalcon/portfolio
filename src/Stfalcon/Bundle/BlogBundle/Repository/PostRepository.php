@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
+use Stfalcon\Bundle\BlogBundle\Entity\PostCategory;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 
 /**
@@ -47,6 +48,24 @@ class PostRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.published = 1')
+            ->orderBy('p.created', 'DESC');
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->getQuery();
+    }
+
+    /**
+     * @param string       $locale
+     * @param PostCategory $category
+     *
+     * @return Query
+     */
+    public function getAllPublishedPostsWithCtgAsQuery($locale, $category)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where('p.published = 1')
+            ->andWhere($qb->expr()->eq('p.category', ':category'))
+            ->setParameter('category', $category)
             ->orderBy('p.created', 'DESC');
         $this->addLocaleFilter($locale, $qb);
 

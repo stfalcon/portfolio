@@ -104,6 +104,7 @@ class PostAdmin extends Admin
                 )
             )
             ->add('slug')
+            ->add('category')
             ->add('tags', null)
             ->add('image', null, ['required' => false])
             ->add('author', null, array(

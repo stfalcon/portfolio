@@ -1,0 +1,26 @@
+services:
+#    stfalcon.bundle.blog.example:
+#        class:     Stfalcon\Bundle\BlogBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+#        calls:
+#            - [setService, ["@service_id"]]
+#        tags:
+#            - { name: twig.extension }
+#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+    stfalcon.bundle.blog_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: 'doctrine:getRepository'
+        arguments: [ 'Stfalcon\Bundle\BlogBundle\Entity\PostCategory' ]
+
+
+    stfalcon.bundle.blog_menu_builder:
+        class: Stfalcon\Bundle\BlogBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@stfalcon.bundle.blog_repository", "@translator"]
+
+    stfalcon.bundle.blog_menu:
+        class: Knp\Menu\MenuItem
+        factory: ["@stfalcon.bundle.blog_menu_builder", createMainMenu]
+        scope: "request"
+        arguments: ["@request"]
+        tags:
+            - { name: knp_menu.menu, alias: blog }

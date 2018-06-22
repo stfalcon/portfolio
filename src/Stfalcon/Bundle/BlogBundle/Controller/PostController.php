@@ -27,21 +27,32 @@ class PostController extends AbstractController
      * List of posts for admin
      *
      * @param Request $request Request
+     * @param string  $title
      * @param int     $page    Page number
      *
      * @return array
      *
      * @Route("/blog/{title}/{page}", name="blog",
-     *      requirements={"page"="\d+", "title"="page"},
-     *      defaults={"page"="1", "title"="page"})
+     *      requirements={"page"="\d+"},
+     *      defaults={"page"="1", "title"="all"})
      * @Template()
      */
-    public function indexAction(Request $request, $page)
+    public function indexAction(Request $request, $title, $page)
     {
         $postRepository = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post');
+        $postsCategory = null;
+        if ('all' !== $title) {
+            $postsCategory = $this->getDoctrine()->getRepository('StfalconBlogBundle:PostCategory')
+                ->findOneBy(['name' => $title]);
+        }
 
-        $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
-        $posts      = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
+        if ($postsCategory) {
+            $postsQuery = $postRepository->getAllPublishedPostsWithCtgAsQuery($request->getLocale(), $postsCategory);
+        } else {
+            $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
+        }
+
+        $posts = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
 
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))

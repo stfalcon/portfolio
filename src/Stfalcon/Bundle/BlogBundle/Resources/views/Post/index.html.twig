@@ -8,6 +8,7 @@
 
 {% block content_wrapper %}
     {{ parent() }}
+    {{ knp_menu_render('blog') }}
     {% if posts %}
         {% include 'StfalconBlogBundle:Post:_posts.html.twig' with {'posts': posts} %}
 
