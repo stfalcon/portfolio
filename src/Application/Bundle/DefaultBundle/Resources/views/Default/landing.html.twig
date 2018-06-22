@@ -16,11 +16,14 @@
         {% set land_style = 'landing-wrapper' %}
     {% endif %}
     <div class="wrapper_landing {{ land_style }}">
-        {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
         {% if landing_page %}
             {% if render_html is defined %}
+                <div class="header">
+                    {% include '::_header_index.html.twig' %}
+                </div>
                 {{ render_html|raw }}
             {% else %}
+                {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
                 {{ landing_page.text|raw }}
             {% endif %}
         {% endif %}
