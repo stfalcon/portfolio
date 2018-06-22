@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_time</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="transport&amp;logistic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-1300.000000, -2735.000000)" id="3">
+            <g transform="translate(0.000000, 2262.000000)">
+                <g id="txt" transform="translate(994.000000, 236.000000)">
+                    <g id="Group-6" transform="translate(306.000000, 237.000000)">
+                        <g id="ic_time">
+                            <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                            <path d="M26,14 C26,20.627417 20.627417,26 14,26 C7.372583,26 2,20.627417 2,14 C2,7.372583 7.372583,2 14,2 C17.1825979,2 20.2348448,3.26428208 22.4852814,5.51471863 C24.7357179,7.76515517 26,10.8174021 26,14 Z M24,14 C24,8.4771525 19.5228475,4 14,4 C8.4771525,4 4,8.4771525 4,14 C4,19.5228475 8.4771525,24 14,24 C19.5228475,24 24,19.5228475 24,14 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero" opacity="0.8"></path>
+                            <path d="M15,14 L20,14 C20.5522847,14 21,14.4477153 21,15 C21,15.5522847 20.5522847,16 20,16 L13,16 L13,14 L13,8 C13,7.44771525 13.4477153,7 14,7 C14.5522847,7 15,7.44771525 15,8 L15,14 Z" id="Combined-Shape" fill="#FFFFFF" opacity="0.8"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

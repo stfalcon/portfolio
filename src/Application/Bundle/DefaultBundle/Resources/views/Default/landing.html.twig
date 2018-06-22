@@ -18,7 +18,11 @@
     <div class="wrapper_landing {{ land_style }}">
         {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
         {% if landing_page %}
-            {{ landing_page.text|raw }}
+            {% if render_html is defined %}
+                {{ render_html|raw }}
+            {% else %}
+                {{ landing_page.text|raw }}
+            {% endif %}
         {% endif %}
         {% if landing_page.projects|length > 0 -%}
             <div class="section-cms">
