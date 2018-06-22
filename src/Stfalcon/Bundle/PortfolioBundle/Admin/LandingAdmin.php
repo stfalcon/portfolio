@@ -57,7 +57,7 @@ class LandingAdmin extends Admin
                                 'required' => true,
                             ),
                             'en' => array(
-                                'required' => true,
+                                'required' => false,
                             ),
                         ),
                         'required' => false,
@@ -89,16 +89,10 @@ class LandingAdmin extends Admin
                 ),
                 'label' => 'Перевод',
             ))
-            ->add('slug', 'choice', [
-                'choices' => array(
-                    'mobile-app-design' => 'mobile-app-design',
-                    'responsive-design' => 'responsive-design',
-                    'ui-design' => 'ui-design',
-                    'ember-js' => 'ember-js',
-                    'silex' => 'silex',
-                    'sylius' => 'sylius',
-                ),
-            ]);
+            ->add('slug')
+            ->add('projects')
+            ->add('posts')
+        ;
     }
 
     /**

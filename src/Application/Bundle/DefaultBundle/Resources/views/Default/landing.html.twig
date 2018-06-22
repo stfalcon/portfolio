@@ -7,34 +7,30 @@
         {% if landing_page %}
             {{ landing_page.text|raw }}
         {% endif %}
-        {% include('@ApplicationDefault/Default/_landing_order_form.html.twig') %}
+        {% if landing_page.projects|length > 0 -%}
+            <div class="section-cms landing-examples">
+                <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
+                {% include ('@StfalconPortfolio/Category/_widget_examples_prj.html.twig') with {'projects': landing_page.projects} %}
+            </div>
+        {% endif %}
+        {% if landing_page.posts|length > 0 %}
+            <div class="blog-post post-content">
+                {% include ('@StfalconBlog/Post/relatedPosts.twig') with {'related_posts': landing_page.posts} %}
+            </div>
+        {% endif %}
+        <div class="contact-us">
+            <div class="h2 contact-us__title">
+                {{ 'Давайте сделаем что-то классное вместе'|trans }}
+            </div>
+            <div class="contact-us__text">
+                {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи.'|trans }}
+            </div>
+            {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
+            {% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':landing_page } %}
+            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': landing_page.slug })) }}
+        </div>
     </div>
 <footer class="footer vcard">
     {% include('::_footer.html.twig') %}
 </footer>
 {% endblock body %}
-{% block javascripts %}
-
-    {% set locale = app.request.locale %}
-
-    {% javascripts 'js/vendor/jquery-1.11.1.min.js' 'js/sly.js' 'js/jquery.validate.min.js'  'js/promotion_apps_main.js' output='cache/js/*.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
-    {% if locale == 'en' %}
-        {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endif %}
-    {% if locale == 'ru' %}
-        {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endif %}
-    {% if locale == 'de' %}
-        {% javascripts 'js/locales/order_application_form.de.js' output='cache/js/*.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endif %}
-
-{% endblock javascripts %}
