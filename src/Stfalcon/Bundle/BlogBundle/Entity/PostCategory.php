@@ -41,7 +41,7 @@ class PostCategory implements Translatable
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\Post", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\Post", mappedBy="category", cascade={"persist"})
      */
     private $posts;
 
@@ -117,6 +117,24 @@ class PostCategory implements Translatable
         $this->posts = $posts;
 
         return $this;
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function addPost(Post $post)
+    {
+        $post->setCategory($this);
+        $this->posts[] = $post;
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function removePost(Post $post)
+    {
+        $this->posts->removeElement($post);
+        $post->setCategory(null);
     }
 
     /**

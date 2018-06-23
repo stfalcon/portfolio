@@ -77,7 +77,7 @@ class Post implements Translatable
      * @var PostCategory
      *
      * @ORM\ManyToOne(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\PostCategory", inversedBy="posts")
-     * @ORM\JoinColumn(name="posts_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $category;
 
