@@ -8,7 +8,7 @@
         "symfony/symfony": "2.8.*",
         "symfony/assetic-bundle": "2.8.*",
         "symfony/swiftmailer-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.9.*",
         "sensio/distribution-bundle": "4.0.*",
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
