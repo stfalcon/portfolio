@@ -1,6 +1,10 @@
 imports:
     - { resource: config.yml }
 
+sentry:
+    skip_capture:
+        - 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'
+
 monolog:
     handlers:
         main:
@@ -15,6 +19,7 @@ monolog:
             type:  raven
             dsn: "%sentry_dsn_host%"
             level: error
+            client_id: 'sentry.client'
         grouped_main:
             type:    group
             members: [nested, sentry]
