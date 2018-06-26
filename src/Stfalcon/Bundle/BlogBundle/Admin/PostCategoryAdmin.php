@@ -6,14 +6,46 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Stfalcon\Bundle\BlogBundle\Entity\Post;
+use Stfalcon\Bundle\BlogBundle\Entity\PostCategory;
 
 /**
  * Class PostCategoryAdmin.
  */
 class PostCategoryAdmin extends Admin
 {
+    private $prevPosts = null;
+
+    /**
+     * @param PostCategory $object
+     *
+     * @return mixed|void
+     */
+    public function preUpdate($object)
+    {
+        /** @var Post $post */
+        foreach ($this->prevPosts as $post) {
+            if (!$object->getPosts()->contains($post)) {
+                $post->setCategory(null);
+            }
+        }
+        /** @var Post $post */
+        foreach ($object->getPosts() as $post) {
+            $post->setCategory($object);
+        }
+    }
+
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        /** @var PostCategory $postCategory */
+        $postCategory = $this->getSubject();
+        if ($postCategory->getId()) {
+            $this->prevPosts = clone $postCategory->getPosts();
+        }
+
         $formMapper
             ->add(
                 'translations',
