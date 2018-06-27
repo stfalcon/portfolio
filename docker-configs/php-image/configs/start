@@ -1,0 +1,15 @@
+#!/bin/bash
+
+usermod -u `stat -c '%u' /app` www-data
+chown -R www-data /var/www/
+
+df_info=`df -h|grep '/app'|awk '{print $1}'`
+if [ "$df_info" == "osxfs" ]
+then
+    sudo cp /.macos_conigs/mac_xdebug.ini /etc/php5/mods-available/xdebug.ini
+    sudo cp /.macos_conigs/mac_xdebug-cli /usr/local/bin/xdebug-cli
+    sudo chmod a+x /usr/local/bin/xdebug-cli
+fi
+
+/etc/init.d/php5-fpm start
+tail -f /var/log/php5-fpm.log
