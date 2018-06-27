@@ -1,0 +1,3 @@
+#!/bin/bash
+
+php -d xdebug.remote_host=10.254.254.254 $1
