@@ -16,13 +16,13 @@
 
 
 {% block javascripts %}
+    <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
     {% javascripts
-    'js/vendor/jquery-1.7.2.min.js'
     'js/plugins.js'
     'js/autosize.min.js'
     'js/headroom.js'
     'js/lazy_load_projects.js'
-    'js/jquery.validate.min.js'
     'js/main.js'
     'js/widgets.js'
     output='cache/js/*.js' %}

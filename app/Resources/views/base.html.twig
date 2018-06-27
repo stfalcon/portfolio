@@ -42,17 +42,16 @@
 
     {% block javascripts %}
         <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
         {% javascripts
-            'js/vendor/jquery-1.7.2.min.js'
             'js/plugins.js'
-            'js/autosize.min.js'
             'js/headroom.js'
-            'js/underscore-min.js'
-            'js/jquery.validate.min.js'
-            'assets/js/libs/jquery.history.min.js'
             output='cache/js/*.js' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        <script src="{{ asset('js/autosize.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/underscore-min.js') }}" type="text/javascript"></script>
         {% if app.environment == 'prod' %}
             <script src="https://cdn.ravenjs.com/3.22.3/raven.min.js" crossorigin="anonymous"></script>
             <script>Raven.config('https://b8b6eda034094d00b8a2f666080f72b0@sentry.stfalcon.com/52').install()</script>
