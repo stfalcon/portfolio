@@ -27,7 +27,9 @@ class CategoryController extends Controller
      * @return array
      *
      * @Route("/services/{slug}", name="portfolio_categories_list")
+     *
      * @ParamConverter("category", class="StfalconPortfolioBundle:Category", options={"mapping": {"slug": "slug"}})
+     *
      * @Template()
      */
     public function servicesAction(Request $request, Category $category)
