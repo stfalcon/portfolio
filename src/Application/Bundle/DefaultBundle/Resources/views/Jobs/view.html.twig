@@ -32,7 +32,6 @@
 {% block after_body %}{% endblock %}
 
 {% block content_wrapper %}
-    {{ parent() }}
     <article class="blog-post">
         {% include 'ApplicationDefaultBundle:Jobs:_jobs_header.html.twig' with {'job': job, 'linkTitle': false} %}
 

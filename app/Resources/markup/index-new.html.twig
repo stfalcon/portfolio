@@ -1,423 +1,232 @@
-<!DOCTYPE html>
-<html xmlns:og="http://ogp.me/ns#">
-<head lang="en">
-    <meta charset="UTF-8">
+{% extends 'base.html.twig' %}
 
-    {{ sonata_seo_title() }}
-
-    <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
-    <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}"/>
-    {{ sonata_seo_metadatas() }}
-    {{ sonata_seo_link_canonical() }}
-    {{ sonata_seo_lang_alternates() }}
-
-    {% if app.environment == 'prod' %}
-        {% include "::google_tag_manager.html.twig" %}
-    {% endif %}
-</head>
-<body>
-<div id="bg-wrapper">
-    <section class="page-wrapper home-page">
-        <header class="header header--after header--fixed">
-            <video class="header__video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto">
-                <source src="{{ asset('img/STFalconCR1.mp4') }}">
-            </video>
-            {% include '::_header_index.html.twig' %}
-            <div class="header__text">
-                <h1 class="header__title">{{ 'We Code Your Ideas'|trans }}</h1>
-                <p class="header__sub-title">
-                    {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
-                </p>
-                <button id="hire_us-js" type="button" class="hire_us_main button home-btn home-btn--blue header__btn"
-                        >{{ 'Заказать проект'|trans }}</button>
-            </div>
-        </header>
-        <section data-bg="#2C373C" class="achievements bg-item">
-            <h2 class="promo-title promo-title--bold achievements__title">Your Partner in Web and Mobile
-                Development</h2>
-            <p class="achievements__text">Our mission is move forward technical progress and create opportunities in the
-                world with innovative and useful websites and mobile applications.</p>
-            <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
-        </section>
-        <section class="solutions">
-            <h2 class="promo-title promo-title--bold solutions__title">Efficient Business Solutions</h2>
-            <ul class="solutions__list">
-                <li class="solutions__item">
-                    <img src="{{ asset('img/solutions_logistics.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">Logistics</div>
-                    <div class="solutions__text">Smart Solutions for transportation companies</div>
-                </li>
-                <li class="solutions__item">
-                    <img src="{{ asset('img/solutions_travel.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">Travel</div>
-                    <div class="solutions__text">Apps for those tho love exploring the world</div>
-                </li>
-                <li class="solutions__item">
-                    <img src="{{ asset('img/solutions_booking.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">Booking</div>
-                    <div class="solutions__text">Web-systems for selling tickets or appartments</div>
-                </li>
-                <li class="solutions__item">
-                    <img src="{{ asset('img/solutions_ondemand.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">On Demand</div>
-                    <div class="solutions__text">Different services also know as Uber for X</div>
-                </li>
-            </ul>
-            <button type="button" class="solutions__btn home-btn home-btn--white">GET IN TOUCH</button>
-        </section>
-        <section class="trusted">
-            <h2 class="promo-title promo-title--bold trusted__title">Trusted by</h2>
-            <ul class="trusted__list">
-                <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_np.svg') }}" alt="" class="trusted__img">
-                </li>
-                <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_nic.svg') }}" alt="" class="trusted__img">
-                </li>
-                <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_ks.svg') }}" alt="" class="trusted__img">
-                </li>
-                <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_keepsnap.svg') }}" alt="" class="trusted__img">
-                </li>
-                <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
-                </li>
-            </ul>
-        </section>
-        <section class="projects-list">
-            <article data-bg="#4D9CC9" class="project-item project-item--white-text bg-item">
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ asset('img/p2.png') }}" alt="">
+{% block body %}
+    <div id="bg-wrapper">
+        <section class="page-wrapper home-page">
+            <header class="header header--after header--fixed">
+                <!--googleoff: all-->
+                <video class="header__video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto">
+                    <source src="{{ asset('uploads/video/STFalconCR1.mp4') }}">
+                </video>
+                <!--googleon: all-->
+                {% include '::_header_index.html.twig' %}
+                <div class="header__text">
+                    <h1 class="header__title">{{ 'We Code Your Ideas'|trans }}</h1>
+                    <p class="header__sub-title">
+                        {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
+                    </p>
+                    <button id="hire_us-js" type="button" class="hire_us_main button home-btn home-btn--blue header__btn">{{ 'Заказать проект'|trans }}</button>
                 </div>
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">SmartSeeds</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success.
-                        After the projects are completed, they kept on giving us support as needed.
-                    </div>
-                    <div class="comment-author project-item__comment-author">
-                        <img class="comment-author__img" src="{{ asset('img/kiril.png') }}" alt="">
-                        <div class="comment-author__left">
-                            <div class="comment-author__name">Kirill Podolsky,</div>
-                            <div class="comment-author__position">Product Owner at SmartSeeds</div>
-                        </div>
-                    </div>
-                    <a href="#" class="project-item__link">Read the Story</a>
-                </div>
-            </article>
-            <article data-bg="#EC584E" class="project-item project-item--left-text project-item--white-text bg-item">
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">Nova poshta
-                        Dashboard</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After
-                        the projects are completed, they kept on giving us support as needed.
-                    </div>
-                    <div class="comment-author project-item__comment-author">
-                        <img class="comment-author__img" src="{{ asset('img/artem.png') }}" alt="">
-                        <div class="comment-author__left">
-                            <div class="comment-author__name">Artyom Volkhonskyi,</div>
-                            <div class="comment-author__position">Product Owner at Novaposhta</div>
-                        </div>
-                    </div>
-                    <a href="#" class="project-item__link">Read the Story</a>
-                </div>
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ asset('img/p3.png') }}" alt="">
-                </div>
-            </article>
-            <article data-bg="#F4F4F4" class="project-item bg-item project-item--dark-text">
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ asset('img/p4.png') }}" alt="">
-                </div>
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">Nic.ua — Domains and hosting</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success.
-                        After the projects are completed, they kept on giving us support as needed.
-                    </div>
-                    <div class="comment-author project-item__comment-author">
-                        <img class="comment-author__img" src="{{ asset('img/khatkevich.png') }}" alt="">
-                        <div class="comment-author__left">
-                            <div class="comment-author__name">Andrew Khvetkevich,
-                            </div>
-                            <div class="comment-author__position">Co-Founder at nic.ua</div>
-                        </div>
-                    </div>
-                    <a href="#" class="project-item__link">Read the Story</a>
-                </div>
-            </article>
-            <article data-bg="#624F4F" class="project-item project-item--left-text project-item--white-text bg-item">
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">Nova poshta
-                        Shopping</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After
-                        the projects are completed, they kept on giving us support as needed.
-                    </div>
-                    <div class="comment-author project-item__comment-author">
-                        <img class="comment-author__img" src="{{ asset('img/artem.png') }}" alt="">
-                        <div class="comment-author__left">
-                            <div class="comment-author__name">Artyom Volkhonskyi,</div>
-                            <div class="comment-author__position">Product Owner at Novaposhta</div>
-                        </div>
-                    </div>
-                    <a href="#" class="project-item__link">Read the Story</a>
-                </div>
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ asset('img/p5.png') }}" alt="">
-                </div>
-            </article>
-            <article data-bg="#D3D9D9" class="project-item bg-item project-item--dark-text">
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ asset('img/p6.png') }}" alt="">
-                </div>
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">MeinFernbus</h2>
-                    <div class="project-item__text">The largest passenger transportation company in Germany.
-                        For 3 years we have participated in the development of a project.
-                    </div>
-                    <a href="#" class="project-item__link">Read the Story</a>
-                </div>
-            </article>
-            <article data-bg="#5B717E"
-                     class="project-item project-item--left-text project-item--white-text bg-item bg-item--last">
-                <div class="project-item__description">
-                    <h2 class="promo-title promo-title--bold project-item__name">KeepSnap</h2>
-                    <div class="project-item__comment">Stfalcon was very involved and committed to our success. After
-                        the projects are completed, they kept on giving us support as needed.
-                    </div>
-                    <div class="comment-author project-item__comment-author">
-                        <img class="comment-author__img" src="{{ asset('img/liveStreetCms_icon.png') }}" alt="">
-                        <div class="comment-author__left">
-                            <div class="comment-author__name">Igor Shubovsky,</div>
-                            <div class="comment-author__position">CEO at KeepSnap</div>
-                        </div>
-                    </div>
-                    <a href="#" class="project-item__link">Read the Story</a>
-                </div>
-                <div class="project-item__img-block">
-                    <img class="project-item__img" src="{{ asset('img/p7.png') }}" alt="">
-                </div>
-            </article>
-        </section>
-        <section class="our-services">
-            <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
-            <!-- helper for change color description on last project-item -->
-            <h2 class="promo-title our-services__title">Your full-cycle development partner</h2>
-            <ul class="services-list">
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">Research and Prototyping</div>
-                    <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design
-                        opportunities.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features2.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">User Interface Design</div>
-                    <p class="services-list__text">We design digital products and services that
-                        transform businesses that also resonate with their users. We specialize in mobile apps,
-                        responsive web apps and IoT.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features3.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">Native Mobile Development</div>
-                    <p class="services-list__text">We develop native apps for iPhone, iPad and Android devices.
-                        Our designers and engineers work in tandem to create reliable and easily scalable products.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features4.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">High Load Systems</div>
-                    <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design
-                        opportunities.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features5.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">Data Science</div>
-                    <p class="services-list__text">We design digital products and services that
-                        transform businesses that also resonate with their users. We specialize in mobile apps,
-                        responsive web apps and IoT.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features6.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">Cloud Solutions</div>
-                    <p class="services-list__text">We develop native apps for iPhone, iPad and Android devices.
-                        Our designers and engineers work in tandem to create reliable and easily scalable products.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features7.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">QA and Testing</div>
-                    <p class="services-list__text">Through in-depth research, we develop a holistic understanding
-                        of an audience — identifying their behaviors and genuine needs, thus uncovering new design
-                        opportunities.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features8.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">DevOps</div>
-                    <p class="services-list__text">We design digital products and services that
-                        transform businesses that also resonate with their users. We specialize in mobile apps,
-                        responsive web apps and IoT.</p>
-                </li>
-                <li class="services-list__item">
-                    <img src="{{ asset('img/features9.svg') }}" alt="" class="services-list__icon">
-                    <div class="services-list__name">Technical Support</div>
-                    <p class="services-list__text">We develop native apps for iPhone, iPad and Android devices.
-                        Our designers and engineers work in tandem to create reliable and easily scalable products.</p>
-                </li>
-            </ul>
-            <button type="button" class="our-services__btn home-btn home-btn--grey">HIRE US</button>
-        </section>
-        <section class="side-projects">
-            <h2 class="promo-title side-projects__title">Side-projects</h2>
-            <div class="side-projects__list">
-                <div class="side-projects__box side-projects__box--fwdays">
-                    <div class="side-projects__item side-projects__item--fwdays">
-                        <img src="{{ asset('img/fwdays.svg') }}" alt="" class="side-projects__logo">
-                        <div class="side-projects__text">Unique conference in its kind. It brings together fans of software
-                            frameworks for all possible platforms.
-                        </div>
-                        <a class="arrow-button" href="http://frameworksdays.com/" rel="nofollow" target="_blank"></a>
-                    </div>
-                </div>
-                <div class="side-projects__box side-projects__box--cnc">
-                    <div class="side-projects__item side-projects__item--cnc">
-                        <img src="{{ asset('img/cnc.svg') }}" alt="" class="side-projects__logo">
-                        <div class="side-projects__text">Unique conference in its kind. It brings together fans of software
-                            frameworks for all possible platforms.
-                        </div>
-                        <a class="arrow-button" href="http://kmcnc.stfalcon.com//" rel="nofollow" target="_blank"></a>
-                    </div>
-                </div>
-                <div class="side-projects__box side-projects__box--academy">
-                    <div class="side-projects__item side-projects__item--academy">
-                        <img src="{{ asset('img/logo_academy.svg') }}" alt="" class="side-projects__logo">
-                        <div class="side-projects__text">Unique conference in its kind. It brings together fans of software
-                            frameworks for all possible platforms.
-                        </div>
-                        <a class="arrow-button" href="http://academy.stfalcon.com/" rel="nofollow" target="_blank"></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="blog">
-            <h2 class="blog__title">
-                <a href="#" class="promo-title">Fresh from our blog</a>
-                <a href="/en/blog/rss" target="_blank"><i class="icon icon-rss"></i></a>
-            </h2>
-            <ul class="blog__list">
-                <li class="blog-article">
-                    <a href="#" class="blog-article__link">Will iPhone X release influence mobile app design?</a>
-                    <p class="blog-article__text">iPhone X release (read as iPhone 10) was timed to the 10th
-                        anniversary of the Apple Smartphone. The event was a surprise to Apple f…</p>
-                    <div class="article-author">
-                        <img class="article-author__img"
-                             src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
-                        <div class="article-author__right">
-                            <div class="article-author__name">First User</div>
-                            <div class="article-author__date">August 21, 2017</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="blog-article">
-                    <a href="#" class="blog-article__link">GitHub: manual for non-technical entrepreneurs</a>
-                    <p class="blog-article__text">GitHub is the world’s largest hosting service for storing and working
-                        with IT-projects, but that’s not all. The resource cooperates nearly 24M develo…</p>
-                    <div class="article-author">
-                        <img class="article-author__img"
-                             src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
-                        <div class="article-author__right">
-                            <div class="article-author__name">Second User</div>
-                            <div class="article-author__date">August 21, 2017</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="blog-article">
-                    <a href="#" class="blog-article__link">How to create an apartment rental service like Airbnb</a>
-                    <p class="blog-article__text">Airbnb has changed the way people tend to search for accommodations
-                        all over the world. This startup has conquered a global market of the apartment ren…</p>
-                    <div class="article-author">
-                        <img class="article-author__img"
-                             src="/app_dev.php/media/cache/avatar/uploads/avatar/59438ec2cb102.jpeg" alt="First User">
-                        <div class="article-author__right">
-                            <div class="article-author__name">Third User</div>
-                            <div class="article-author__date">August 21, 2017</div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="subscribe">
-                <form action="#">
-                    <div class="subscribe__title">Subscribe for new posts</div>
-                    <div class="subscribe__form">
-                        <input class="subscribe__input" type="text" placeholder="E-mail">
-                        <button class="subscribe__button" type="submit">Subscribe</button>
-                    </div>
-                    <ul class="success-list"></ul>
-                </form>
-            </div>
-        </section>
-        <section class="details-info">
-            <h1>{{ "Stfalcon LLC &mdash; разработка сайтов и мобильных приложений" | trans()|raw }}</h1>
-            <h3>{{ "Есть ли смысл дальше изучать наш сайт? <br/> да, если:" | trans() | raw }}</h3>
-            <div class="more-detail-wrap">
-                <ul class="more-detail">
-                    <li>{{ "Вы ищите компанию для разработки сайтов, приложений с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов." | trans() }}</li>
-                    <li>{{ "Вам нужны нестандартные решения, выходящие за рамки шаблонов, которые предлагает рынок." | trans() }}</li>
-                    <li>{{ "У Вас есть мечта, за воплощение которой другие боятся браться (мы оценим стоящие идеи и во что бы то ни стало реализуем)." | trans() }}</li>
-                    <li>{{ "Для реализации Вашей идеи требуются высоконагруженные системы." | trans() }}</li>
+            </header>
+            <section class="solutions">
+                <h2 class="promo-title promo-title--bold solutions__title">{{ 'main.promo.title2'|trans }}</h2>
+                <ul class="solutions__list">
+                    <li class="solutions__item">
+                        <img src="{{ asset('img/solutions_logistics.svg') }}" alt="" class="solutions__icon">
+                        <div class="solutions__name">{{ 'main.promo.title2_1'|trans }}</div>
+                        <div class="solutions__text">{{ 'main.promo.title2_1.desc'|trans }}</div>
+                    </li>
+                    <li class="solutions__item">
+                        <img src="{{ asset('img/solutions_travel.svg') }}" alt="" class="solutions__icon">
+                        <div class="solutions__name">{{ 'main.promo.title2_2'|trans }}</div>
+                        <div class="solutions__text">{{ 'main.promo.title2_2.desc'|trans }}</div>
+                    </li>
+                    <li class="solutions__item">
+                        <img src="{{ asset('img/solutions_booking.svg') }}" alt="" class="solutions__icon">
+                        <div class="solutions__name">{{ 'main.promo.title2_3'|trans }}</div>
+                        <div class="solutions__text">{{ 'main.promo.title2_3.desc'|trans }}</div>
+                    </li>
+                    <li class="solutions__item">
+                        <img src="{{ asset('img/solutions_ondemand.svg') }}" alt="" class="solutions__icon">
+                        <div class="solutions__name">{{ 'main.promo.title2_4'|trans }}</div>
+                        <div class="solutions__text">{{ 'main.promo.title2_4.desc'|trans }}</div>
+                    </li>
                 </ul>
-            </div>
-            <div class="hidden-content hidden">
-                <h3>{{ "Как именно мы решаем нестандартные задачи?" | trans() }}</h3>
-                <div class="more-detail-wrap">
-                    <ul class="more-detail">
-                        <li>{{ "Для создания сайтов на заказ наша компания использует самые передовые технологии (фреймворк Symfony и его компоненты,  Silex, MySQL, MongoDB, Sphinx, RabbitMQ, Ember.js, и др)." | trans() }}</li>
-                        <li>{{ "Cоздаем нативные мобильные приложения (более производительные и стабильные, чем кросс-платформенные), используем самые популярные библиотеки (ORM, Robospice, Gson, UniversalImageLoader) и технологические решения." | trans() }}</li>
-                        <li>{{ "Думаем наперед (чтобы вы могли легко анализировать, монетизировать и использовать продукт на полную катушку, а сторонним специалистам было удобно сопровождать его в дальнейшем)." | trans() }}</li>
-                        <li>{{ "Любим свою работу (мы просто не беремся за проекты, к которым у нас не лежит душа и за успех которых мы искренне не болеем)." | trans() }}</li>
-                    </ul>
-                </div>
-                <h3>{{ "Чем докажем, что мы – лучшие?" | trans() }}</h3>
-                <div class="more-detail-wrap">
-                    <ul class="more-detail">
-                        <li>{{ "Более 100 успешных проектов;" | trans() }}</li>
-                        <li>{{ "100% наших партнеров (именно так мы воспринимаем клиентов) остались довольны;" | trans() }}</li>
-                        <li>{{ "У нас идеально отлажены коммуникации внутри команды, а это значит: <br/> а) проект будет выполнен в минимальные сроки; <br/> б) пока он дойдет до вас, мы уже найдем и исправим все «косяки»;" | trans() | raw }}</li>
-                        <li>{{ "Мы имеем непосредственное отношение к развитию технологий (продвигаем фреймворк Symfony, создали множество полезных плагинов для LiveStreet, совершенствуем OpenCart CMS и сделали для нее шаблон Tecard, разработали шаблон Snowberry для Wordpress);" | trans() }}</li>
-                        <li>{{ "Экспертному мнению компании Stfalcon LLC доверяют на рынке (на ивентах, которые мы организовываем, всегда аншлаг, а в блоге – сотни благодарных отзывов (почитайте)." | trans() }}</li>
-                    </ul>
-                </div>
-            </div>
-            <a class="show-more-info">{{ "Подробнее" | trans() }}</a>
-        </section>
-        <footer class="footer">
-            {{ include('_footer.html.twig') }}
-        </footer>
-    </section>
-</div>
-{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-{% javascripts
-    'assets/js/libs/jquery.history.min.js'
-    'assets/js/libs/sly.js'
-    'assets/js/homepage.js'
-    'assets/js/homepage-bg.js'
-    'js/jquery.validate.min.js'
-    'js/widgets.js'
-    'js/subscribe.js'
-    output='cache/js/*.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+                <button type="button" class="hire_us_main solutions__btn home-btn home-btn--white">{{ 'main.btn.title2_4'|trans }}</button>
+            </section>
+            <section data-bg="#2C373C" class="achievements bg-item">
+                <h2 class="promo-title promo-title--bold achievements__title">{{ 'main.promo.title1'|trans }}</h2>
+                <p class="achievements__text">{{ 'main.promo.title1.desc'|trans }}</p>
+                <a href="https://clutch.co/profile/stfalcon" target="_blank">
+                    <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
+                </a>
+            </section>
+            <section class="trusted">
+                <h2 class="promo-title promo-title--bold trusted__title">{{ 'main.promo.title3'|trans }}</h2>
+                <ul class="trusted__list">
+                    <li class="trusted__item">
+                        <img src="{{ asset('img/trusted_np.svg') }}" alt="" class="trusted__img">
+                    </li>
+                    <li class="trusted__item">
+                        <img src="{{ asset('img/trusted_nic.svg') }}" alt="" class="trusted__img">
+                    </li>
+                    <li class="trusted__item">
+                        <img src="{{ asset('img/trusted_ks.svg') }}" alt="" class="trusted__img">
+                    </li>
+                    <li class="trusted__item">
+                        <img src="{{ asset('img/trusted_busfor.svg') }}" alt="" class="trusted__img">
+                    </li>
+                    <li class="trusted__item">
+                        <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                    </li>
+                </ul>
+            </section>
+            {% set add_class = ' project-item--left-text' %}
+            <section class="projects-list">
+                {% for project_review in reviews %}
+                    {% set project = project_review['project'] %}
+                    {% set review = project_review['review'] %}
+                    {% if review != null %}
+                        {% set reviewer = review.reviewer %}
+                    {% else %}
+                        {% set reviewer = null %}
+                    {% endif %}
 
-<script type="text/javascript">
-    jQuery.extend(jQuery.validator.messages, {
-        required: "{{ 'Заполните это поле'|trans }}",
-        email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
-        maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
-        minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
-    });
-</script>
-</body>
-</html>
+                    {% if add_class == ' project-item--left-text' %}
+                        {% set add_class = '' %}
+                    {% else %}
+                        {% set add_class = ' project-item--left-text' %}
+                    {% endif %}
+
+                    {% if project.useDarkTextColor is defined and project.useDarkTextColor == true %}
+                        {% set text_color_class = 'project-item--dark-text' %}
+                    {% else %}
+                        {% set text_color_class = 'project-item--white-text' %}
+                    {% endif %}
+
+                    <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item{% if loop.last %} bg-item--last{% endif %}">
+                        {% if add_class == '' %}
+                            {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
+                            {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
+                        {% else %}
+                            {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
+                            {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
+                        {% endif %}
+                    </article>
+                {% endfor %}
+            </section>
+
+            <section class="open-source">
+                <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
+                <h2 class="promo-title">{{ "Участвуем в Open Source" | trans() }}</h2>
+                <div class="tabs-cnt">
+                    <ul class="tabs-content">
+                        <li class="tab active">
+                            <p>
+                                {{ '__main.we_contribution_text'|trans({'%link%': 'http://symfony.com', '%github_link%':'https://github.com/stfalcon/', '%android_link%':url('blog_post_view', {'slug':'useful-Android-libraries-from-stfalcon-com'})})|raw }}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            {#закоментовано до часу, поки не будуть готові тексти для сервісів#}
+            {#<section class="our-services">#}
+            {#<span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>#}
+            {#<h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>#}
+            {#<ul class="services-list">#}
+            {#{% for i in 1..9 %}#}
+            {#{% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'index' : i} %}#}
+            {#{% endfor %}#}
+            {#</ul>#}
+            {#<button type="button" class="hire_us_main our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>#}
+            {#</section>#}
+
+            <section class="side-projects">
+                <h2 class="promo-title side-projects__title">{{ 'main.promo.title5'|trans }}</h2>
+                <div class="side-projects__list">
+                    <div class="side-projects__box side-projects__box--fwdays">
+                        <div class="side-projects__item side-projects__item--fwdays">
+                            <img src="{{ asset('img/fwdays.svg') }}" alt="" class="side-projects__logo">
+                            <div class="side-projects__text">{{ 'main.promo.title5_1.desc'|trans }}</div>
+                            <a class="arrow-button" href="https://fwdays.com" rel="nofollow" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="side-projects__box side-projects__box--cnc">
+                        <div class="side-projects__item side-projects__item--cnc">
+                            <img src="{{ asset('img/cnc.svg') }}" alt="" class="side-projects__logo">
+                            <div class="side-projects__text">{{ 'main.promo.title5_2.desc'|trans }}</div>
+                            <a class="arrow-button" href="http://kmcnc.stfalcon.com" rel="nofollow" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="side-projects__box side-projects__box--academy">
+                        <div class="side-projects__item side-projects__item--academy">
+                            <img src="{{ asset('img/academy_' ~ app.request.locale ~ '.svg') }}" alt=""
+                                 class="side-projects__logo">
+                            <div class="side-projects__text">{{ 'main.promo.title5_3.desc'|trans }}</div>
+                            <a class="arrow-button" href="http://academy.stfalcon.com" rel="nofollow" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="blog">
+                <h2 class="blog__title">
+                    <a href="{{ path('blog') }}" class="promo-title">{{ "Обновления в нашем блоге" | trans() }}</a>
+                    <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-rss"></i></a>
+                </h2>
+                {% include "@StfalconBlog/Post/_posts_main.html.twig" with {'posts' : posts} %}
+                {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
+            </section>
+            <section class="details-info">
+                <h1>{{ "Stfalcon LLC &mdash; разработка сайтов и мобильных приложений" | trans()|raw }}</h1>
+                <h3>{{ "Есть ли смысл дальше изучать наш сайт? <br/> да, если:" | trans() | raw }}</h3>
+                <div class="more-detail-wrap">
+                    <ul class="more-detail">
+                        <li>{{ "Вы ищите компанию для разработки сайтов, приложений с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов." | trans() }}</li>
+                        <li>{{ "Вам нужны нестандартные решения, выходящие за рамки шаблонов, которые предлагает рынок." | trans() }}</li>
+                        <li>{{ "У Вас есть мечта, за воплощение которой другие боятся браться (мы оценим стоящие идеи и во что бы то ни стало реализуем)." | trans() }}</li>
+                        <li>{{ "Для реализации Вашей идеи требуются высоконагруженные системы." | trans() }}</li>
+                    </ul>
+                </div>
+                <div class="hidden-content hidden">
+                    <h3>{{ "Как именно мы решаем нестандартные задачи?" | trans() }}</h3>
+                    <div class="more-detail-wrap">
+                        <ul class="more-detail">
+                            <li>{{ "Для создания сайтов на заказ наша компания использует самые передовые технологии (фреймворк Symfony и его компоненты,  Silex, MySQL, MongoDB, Sphinx, RabbitMQ, Ember.js, и др)." | trans() }}</li>
+                            <li>{{ "Cоздаем нативные мобильные приложения (более производительные и стабильные, чем кросс-платформенные), используем самые популярные библиотеки (ORM, Robospice, Gson, UniversalImageLoader) и технологические решения." | trans() }}</li>
+                            <li>{{ "Думаем наперед (чтобы вы могли легко анализировать, монетизировать и использовать продукт на полную катушку, а сторонним специалистам было удобно сопровождать его в дальнейшем)." | trans() }}</li>
+                            <li>{{ "Любим свою работу (мы просто не беремся за проекты, к которым у нас не лежит душа и за успех которых мы искренне не болеем)." | trans() }}</li>
+                        </ul>
+                    </div>
+                    <h3>{{ "Чем докажем, что мы – лучшие?" | trans() }}</h3>
+                    <div class="more-detail-wrap">
+                        <ul class="more-detail">
+                            <li>{{ "Более 100 успешных проектов;" | trans() }}</li>
+                            <li>{{ "100% наших партнеров (именно так мы воспринимаем клиентов) остались довольны;" | trans() }}</li>
+                            <li>{{ "У нас идеально отлажены коммуникации внутри команды, а это значит: <br/> а) проект будет выполнен в минимальные сроки; <br/> б) пока он дойдет до вас, мы уже найдем и исправим все «косяки»;" | trans() | raw }}</li>
+                            <li>{{ "Мы имеем непосредственное отношение к развитию технологий (продвигаем фреймворк Symfony, создали множество полезных плагинов для LiveStreet, совершенствуем OpenCart CMS и сделали для нее шаблон Tecard, разработали шаблон Snowberry для Wordpress);" | trans() }}</li>
+                            <li>{{ "Экспертному мнению компании Stfalcon LLC доверяют на рынке (на ивентах, которые мы организовываем, всегда аншлаг, а в блоге – сотни благодарных отзывов (почитайте)." | trans() }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="show-more-info">{{ "Подробнее" | trans() }}</a>
+            </section>
+            <footer class="footer">
+                {{ include('_footer.html.twig') }}
+            </footer>
+        </section>
+    </div>
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+{% endblock body %}
+
+{% block javascripts %}
+    {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>#}
+    {{ parent() }}
+
+    {% javascripts
+        'assets/js/libs/sly.js'
+        'assets/js/homepage.js'
+        'assets/js/homepage-bg.js'
+        output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        jQuery.extend(jQuery.validator.messages, {
+            required: "{{ 'Заполните это поле'|trans }}",
+            email: "{{ 'Недопустимый адрес электронной почты'|trans }}",
+            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+        });
+    </script>
+{% endblock %}
