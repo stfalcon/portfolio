@@ -30,7 +30,7 @@ $(function () {
             },
             'order_promotion[email]': {
                 required: true,
-                minlength: 3,
+                minlength: 6,
                 maxlength: 72
             },
             'order_promotion[message]': {
