@@ -45,8 +45,9 @@ class PostRepository extends EntityRepository
      */
     public function getAllPublishedPostsAsQuery($locale)
     {
-        $qb = $this->createQueryBuilder('p')
-            ->andWhere('p.published = 1')
+        $qb = $this->createQueryBuilder('p');
+        $qb->andWhere('p.published = 1')
+            ->andWhere($qb->expr()->neq('p.title', ''))
             ->orderBy('p.created', 'DESC');
         $this->addLocaleFilter($locale, $qb);
 

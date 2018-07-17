@@ -1,4 +1,5 @@
 <?php
+
 namespace Stfalcon\Bundle\BlogBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
@@ -7,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
 /**
- * Class PostAdmin
+ * Class PostAdmin.
  */
 class PostAdmin extends Admin
 {
@@ -15,7 +16,7 @@ class PostAdmin extends Admin
      * {@inheritdoc}
      */
     protected $datagridValues = [
-        '_page'       => 1,
+        '_page' => 1,
         '_sort_order' => 'DESC',
     ];
 
@@ -45,65 +46,66 @@ class PostAdmin extends Admin
                             'label' => 'title',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'text' => array(
                             'label' => 'text',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
+                                    'required' => false,
+                                ),
                             ),
                             'attr' => array(
-                                'class' => 'markitup'
-                            )
+                                'class' => 'markitup',
+                            ),
                         ),
                         'metaKeywords' => array(
                             'label' => 'Meta keywords',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => false
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'metaDescription' => array(
                             'label' => 'Meta description',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => false
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
+                                    'required' => false,
+                                ),
+                            ),
                         ),
                         'metaTitle' => array(
                             'label' => 'Meta title',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => false
+                                    'required' => false,
                                 ),
                                 'en' => array(
-                                    'required' => false
-                                )
-                            )
-                        )
+                                    'required' => false,
+                                ),
+                            ),
+                        ),
                     ),
-                    'label' => 'Перевод'
+                    'label' => 'Перевод',
                 )
             )
             ->add('slug')
+            ->add('category', 'sonata_type_model', ['multiple' => false, 'required' => false])
             ->add('tags', null)
             ->add('image', null, ['required' => false])
             ->add('author', null, array(
@@ -126,10 +128,11 @@ class PostAdmin extends Admin
             ->addIdentifier('slug')
             ->add('title')
             ->add('created')
+            ->add('category')
             ->add('_action', 'actions', [
                 'label' => 'Действия',
                 'actions' => [
-                    'edit'   => [],
+                    'edit' => [],
                     'delete' => [],
                 ],
             ]);
