@@ -37,9 +37,9 @@ class Post implements Translatable
      *
      * @Gedmo\Translatable(fallback=true)
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
-    private $title = '';
+    private $title;
 
     /**
      * @var string
@@ -59,9 +59,9 @@ class Post implements Translatable
      *
      * @Gedmo\Translatable(fallback=true)
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="text", type="text", nullable=true)
      */
-    private $text = '';
+    private $text;
 
     /**
      * Tags for post.
