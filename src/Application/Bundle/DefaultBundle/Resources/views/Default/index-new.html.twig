@@ -209,7 +209,7 @@
 {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
 {% endblock body %}
 
-{% block javascripts %}
+{% block javascripts -%}
     {{ parent() }}
 
     {% javascripts
@@ -221,13 +221,4 @@
         output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    <script type="text/javascript">
-        jQuery.extend(jQuery.validator.messages, {
-            required: "{{ 'Заполните это поле'|trans }}",
-            email: "{{ 'Недопустимый адрес электронной почты'|trans }}",
-            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
-            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
-        });
-    </script>
 {% endblock %}
