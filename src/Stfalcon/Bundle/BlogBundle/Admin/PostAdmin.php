@@ -19,6 +19,18 @@ class PostAdmin extends Admin
         '_page' => 1,
         '_sort_order' => 'DESC',
     ];
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($post)
+    {
+        if (null === $post->getTitle()) {
+            $post->setTitle('');
+        }
+        if (null === $post->getText()) {
+            $post->setText('');
+        }
+    }
 
     /**
      * {@inheritdoc}

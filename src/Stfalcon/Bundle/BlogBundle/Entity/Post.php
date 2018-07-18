@@ -61,7 +61,7 @@ class Post implements Translatable
      *
      * @ORM\Column(name="text", type="text")
      */
-    private $text;
+    private $text = '';
 
     /**
      * Tags for post.
