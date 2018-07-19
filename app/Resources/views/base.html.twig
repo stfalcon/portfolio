@@ -65,7 +65,7 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}
         <script type="text/javascript">
-            $(document).ready(function () {
+            document.addEventListener("DOMContentLoaded", function(event) {
                 $.extend($.validator.messages, {
                     required: "{{ 'Заполните это поле'|trans }}",
                     email: "{{ 'Недопустимый адрес электронной почты'|trans }}",
