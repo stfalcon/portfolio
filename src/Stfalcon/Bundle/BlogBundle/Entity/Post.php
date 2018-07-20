@@ -23,6 +23,7 @@ class Post implements Translatable
      * Post id.
      *
      * @var int
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -33,11 +34,12 @@ class Post implements Translatable
      * Post title.
      *
      * @var string
-     * @Assert\NotBlank()
+     *
      * @Gedmo\Translatable(fallback=true)
-     * @ORM\Column(name="title", type="string", length=255)
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
-    private $title = '';
+    private $title;
 
     /**
      * @var string
@@ -54,9 +56,10 @@ class Post implements Translatable
      * Post text.
      *
      * @var string
-     * @Assert\NotBlank()
+     *
      * @Gedmo\Translatable(fallback=true)
-     * @ORM\Column(name="text", type="text")
+     *
+     * @ORM\Column(name="text", type="text", nullable=true)
      */
     private $text;
 

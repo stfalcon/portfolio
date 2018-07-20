@@ -46,7 +46,7 @@ class PostAdmin extends Admin
                             'label' => 'title',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true,
+                                    'required' => false,
                                 ),
                                 'en' => array(
                                     'required' => false,
@@ -57,7 +57,7 @@ class PostAdmin extends Admin
                             'label' => 'text',
                             'locale_options' => array(
                                 'ru' => array(
-                                    'required' => true,
+                                    'required' => false,
                                 ),
                                 'en' => array(
                                     'required' => false,
