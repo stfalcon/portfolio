@@ -38,7 +38,7 @@
         {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'top'} %}
 
         <div class="post-content">
-            {{ job.description|moreToSpan|highlightCode|raw }}
+            {{ job.description|highlightCode|raw }}
             {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
 
             {% if app.session.flashBag.has('vacancy_send') %}

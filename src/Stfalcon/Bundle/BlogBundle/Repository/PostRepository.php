@@ -45,8 +45,8 @@ class PostRepository extends EntityRepository
      */
     public function getAllPublishedPostsAsQuery($locale)
     {
-        $qb = $this->createQueryBuilder('p')
-            ->andWhere('p.published = 1')
+        $qb = $this->createQueryBuilder('p');
+        $qb->andWhere('p.published = 1')
             ->orderBy('p.created', 'DESC');
         $this->addLocaleFilter($locale, $qb);
 
@@ -173,17 +173,20 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param string $locale
+     * @param string       $locale
      * @param QueryBuilder $qb
      */
     private function addLocaleFilter($locale, QueryBuilder $qb)
     {
-        if ($locale != 'ru') {
+        if ('ru' !== $locale) {
             $qb->innerJoin('p.translations', 'tr')
                 ->andWhere('tr.locale = :locale')
                 ->setParameter('locale', $locale)
                 ->andWhere($qb->expr()->isNotNull('tr.content'))
                 ->addGroupBy('p.id');
+        } else {
+            $qb->andWhere($qb->expr()->neq('p.title', ':empty'))
+                ->setParameter('empty', '');
         }
     }
 

@@ -54,3 +54,29 @@
     {% include('::_footer.html.twig') %}
 </footer>
 {% endblock body %}
+{% block javascripts %}
+
+    {% set locale = app.request.locale %}
+    <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
+    {% javascripts 'js/sly.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% if locale == 'en' %}
+        {% javascripts 'js/locales/order_application_form.en.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'ru' %}
+        {% javascripts 'js/locales/order_application_form.ru.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+    {% if locale == 'de' %}
+        {% javascripts 'js/locales/order_application_form.de.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+{% endblock javascripts %}

@@ -56,7 +56,7 @@ class SeoRequestListener
             }
 
             foreach ($langs as $lang) {
-                if ($lang !== $attributes['_locale']) {
+                if (!isset($attributes['_locale']) || $lang !== $attributes['_locale']) {
                     $attributes['_locale'] = $lang;
 
                     $this->seoPage->addLangAlternate(
