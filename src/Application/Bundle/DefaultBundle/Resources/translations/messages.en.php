@@ -76,7 +76,7 @@ return array(
     'до 20 МБ' => '20 MB max',
     'Отправить' => 'Send',
     'Телефон' => 'Phone',
-    'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...' => "Hello! I'd like to create a mobile app for iOS. My budget is $10000. The idea of this app is...",
+    'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 40 000$. Идея приложения состоит в том, что...' => "Hello! I'd like to create a mobile app for iOS. My budget is $40000. The idea of this app is...",
     //design landing
     'Дизайн веб-сайтов' => 'Websites design',
     'Мы создаем дизайн веб-сайтов и интерфейсов<br>веб&#8209;приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',
