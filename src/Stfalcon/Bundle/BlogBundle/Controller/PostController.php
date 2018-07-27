@@ -17,14 +17,14 @@ use Zend\Feed\Writer\Entry;
 use Zend\Feed\Writer\Feed;
 
 /**
- * PostController
+ * PostController.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class PostController extends AbstractController
 {
     /**
-     * List of posts for admin
+     * List of posts for admin.
      *
      * @param Request $request Request
      * @param int     $page    Page number
@@ -41,7 +41,7 @@ class PostController extends AbstractController
         $postRepository = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post');
 
         $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
-        $posts      = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
+        $posts = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
 
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
@@ -53,7 +53,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * View post
+     * View post.
      *
      * @param Request $request
      * @param string  $slug
@@ -77,6 +77,18 @@ class PostController extends AbstractController
             $post = $this->getDoctrine()
                 ->getRepository('StfalconBlogBundle:Post')
                 ->findPostBySlugInLocale($slug, $locale);
+
+            if ($post && is_null($post->getTitle())) {
+                return $this->redirect(
+                    $this->generateUrl(
+                        'blog_post_view',
+                        [
+                            'slug' => $post->getSlug(),
+                            '_locale' => $locale,
+                        ]
+                    )
+                );
+            }
 
             if (!$post) {
                 return $this->redirect($this->generateUrl('blog'));
@@ -105,7 +117,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * RSS feed
+     * RSS feed.
      *
      * @param Request $request Request
      *
@@ -124,7 +136,7 @@ class PostController extends AbstractController
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
         $posts = $this->get('doctrine')->getManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPublishedPosts($request->getLocale());
+                ->getRepository('StfalconBlogBundle:Post')->getAllPublishedPosts($request->getLocale());
         /** @var Post $post */
         foreach ($posts as $post) {
             $entry = new Entry();
@@ -141,7 +153,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * Show last blog posts
+     * Show last blog posts.
      *
      * @param string $locale Locale
      * @param int    $count  A count of posts
@@ -153,13 +165,13 @@ class PostController extends AbstractController
     public function lastAction($locale, $count = 1)
     {
         $posts = $this->get('doctrine')->getManager()
-                ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, $count);
+                ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, $count);
 
         return array('posts' => $posts);
     }
 
     /**
-     * Show last blog posts
+     * Show last blog posts.
      *
      * @param string $locale Locale
      * @param int    $count  A count of posts
@@ -171,13 +183,13 @@ class PostController extends AbstractController
     public function lastHomepageAction($locale, $count = 1)
     {
         $posts = $this->get('doctrine')->getManager()
-            ->getRepository("StfalconBlogBundle:Post")->getLastPosts($locale, $count);
+            ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, $count);
 
         return array('posts' => $posts);
     }
 
     /**
-     * Related posts action
+     * Related posts action.
      *
      * @param string $locale Site locale
      * @param Post   $post   Current post
@@ -195,7 +207,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * Users post action
+     * Users post action.
      *
      * @param Request $request Request
      * @param User    $user    User
@@ -220,15 +232,15 @@ class PostController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $postRepository = $em->getRepository('StfalconBlogBundle:Post');
-        $postsQuery     = $postRepository->getPostsQueryByUser($user, $request->getLocale());
+        $postsQuery = $postRepository->getPostsQueryByUser($user, $request->getLocale());
 
         /** @var SlidingPagination $paginatedPosts */
         $paginatedPosts = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);
-        $totalCount     = $paginatedPosts->getTotalItemCount();
+        $totalCount = $paginatedPosts->getTotalItemCount();
 
-        if ((int) $totalCount === 0) {
+        if (0 === (int) $totalCount) {
             return $this->redirect($this->generateUrl('blog', [
-                'page'  => 1,
+                'page' => 1,
                 'title' => 'page',
             ]));
         }
