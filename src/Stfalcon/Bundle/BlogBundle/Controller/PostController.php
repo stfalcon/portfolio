@@ -79,7 +79,15 @@ class PostController extends AbstractController
                 ->findPostBySlugInLocale($slug, $locale);
 
             if ($post && is_null($post->getTitle())) {
-                return $this->redirect($this->generateUrl('blog_post_view', ['slug' => $post->getSlug(), '_locale' => $locale]));
+                return $this->redirect(
+                    $this->generateUrl(
+                        'blog_post_view',
+                        [
+                            'slug' => $post->getSlug(),
+                            '_locale' => $locale,
+                        ]
+                    )
+                );
             }
 
             if (!$post) {
