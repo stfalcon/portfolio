@@ -4,6 +4,7 @@ imports:
 sentry:
     skip_capture:
         - 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'
+    dsn: "%sentry_dsn_host%"
 
 monolog:
     handlers:
@@ -15,14 +16,14 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
-        sentry:
-            type:  raven
-            dsn: "%sentry_dsn_host%"
-            level: error
-            client_id: 'sentry.client'
+#        sentry:
+#            type:  raven
+#
+#            level: error
+#            client_id: 'sentry.client'
         grouped_main:
             type:    group
-            members: [nested, sentry]
+            members: [nested]
 
 doctrine:
     orm:

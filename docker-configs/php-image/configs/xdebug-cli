@@ -1,0 +1,5 @@
+#!/bin/bash
+
+host_ip=`ip route show|grep default|sed 's/default via \(.*\) dev.*/\1/'`
+
+php -d xdebug.remote_host=$host_ip $1

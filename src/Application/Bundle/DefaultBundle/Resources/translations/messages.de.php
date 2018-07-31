@@ -74,7 +74,7 @@ return array( # Rückkehr Datenfeld
     'до 20 МБ' => 'Max 20 MB',
     'Отправить' => 'Senden',
     'Телефон' => 'Telefon',
-    'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...' => 'Hallo! Ich möchte eine mobile applikation für iOS bestellen. Mein Budget ist 10000$. Die Idee von dieser App ist...',
+    'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 40 000$. Идея приложения состоит в том, что...' => 'Hallo! Ich möchte eine mobile applikation für iOS bestellen. Mein Budget ist 40000$. Die Idee von dieser App ist...',
     //design landing # 'Design Absatz'
     'Дизайн веб-сайтов' => 'Design von Webseiten',
     'Мы создаем дизайн веб-сайтов и интерфейсов<br>веб&#8209;приложений.' => 'Wir entwickeln Design für Webseiten und Schnittstellen<br/>von WebApps',

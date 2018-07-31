@@ -14,18 +14,27 @@
     </footer>
 {% endblock body %}
 
-
 {% block javascripts %}
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
     {% javascripts
-    'js/plugins.js'
-    'js/autosize.min.js'
-    'js/headroom.js'
-    'js/lazy_load_projects.js'
-    'js/main.js'
-    'js/widgets.js'
-    output='cache/js/*.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+        'js/plugins.js'
+        'js/autosize.min.js'
+        'js/headroom.js'
+        'js/lazy_load_projects.js'
+        'js/main.js'
+        'js/widgets.js'
+        output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.extend($.validator.messages, {
+                required: "{{ 'Заполните это поле'|trans }}",
+                email: "{{ 'Недопустимый адрес электронной почты'|trans }}",
+                maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+                minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+            });
+        });
+    </script>
 {% endblock %}
