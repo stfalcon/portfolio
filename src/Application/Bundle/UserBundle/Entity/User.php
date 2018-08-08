@@ -182,6 +182,7 @@ class User extends BaseUser
         parent::__construct();
         $this->groups = new ArrayCollection();
         $this->translations = new ArrayCollection();
+        $this->setEnabled(true);
     }
 
     /**
