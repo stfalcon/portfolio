@@ -14,7 +14,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class LandingController extends Controller
 {
-//mobile-app-design|responsive-design|ui-design|ember-js|silex|sylius
     /**
      * Promotion index page by type
      *
