@@ -2,6 +2,6 @@
     {%- if category.slug in ['mobile-development',  'consulting-audit' ] %} link-order-mobile{% endif %}
     {%- if category.slug in ['web-design'] %} design{% endif %}
 ">
-    {% set order_text = '_order-' ~ category.slug %}
+    {% set order_text = '_order-web-development'%}
     {{ order_text|trans }}
 </button>

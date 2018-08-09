@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Stfalcon\Bundle\PortfolioBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,18 +8,18 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
- * Project entity
+ * Project entity.
  *
  * @ORM\Table(name="portfolio_landing")
  * @ORM\Entity()
+ *
  * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\PortfolioBundle\Entity\LandingTranslation")
  */
 class Landing implements Translatable
 {
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +28,39 @@ class Landing implements Translatable
     private $id;
 
     /**
-     * @var string $name
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(
+     *      targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Project",
+     *      fetch="EXTRA_LAZY"
+     * )
+     * @ORM\JoinTable(name="landings_projects",
+     *      joinColumns={@ORM\JoinColumn(name="landing_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
+     *      )
+     *
+     * @ORM\OrderBy({"date" = "DESC"})
+     */
+    private $projects;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(
+     *      targetEntity="Stfalcon\Bundle\BlogBundle\Entity\Post",
+     *      fetch="EXTRA_LAZY"
+     * )
+     * @ORM\JoinTable(name="landings_posts",
+     *      joinColumns={@ORM\JoinColumn(name="landing_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")}
+     *      )
+     *
+     * @ORM\OrderBy({"created" = "DESC"})
+     */
+    private $posts;
+
+    /**
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -40,31 +71,33 @@ class Landing implements Translatable
     private $slug;
 
     /**
-     * @var string $name
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="title", type="text")
      */
     private $title;
 
     /**
-     * @var string $name
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="text", type="text")
      */
     private $text;
 
     /**
-     * @var string $title Title
+     * @var string Title
      *
      * @Gedmo\Translatable(fallback=true)
      *
@@ -73,7 +106,7 @@ class Landing implements Translatable
     private $metaTitle;
 
     /**
-     * @var string $metaDescription Meta description
+     * @var string Meta description
      *
      * @Gedmo\Translatable(fallback=true)
      *
@@ -82,7 +115,7 @@ class Landing implements Translatable
     private $metaDescription;
 
     /**
-     * @var string $metaKeywords Meta keywords
+     * @var string Meta keywords
      *
      * @Gedmo\Translatable(fallback=true)
      *
@@ -91,7 +124,7 @@ class Landing implements Translatable
     private $metaKeywords;
 
     /**
-     * @var  ArrayCollection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(
      *   targetEntity="LandingTranslation",
@@ -101,9 +134,52 @@ class Landing implements Translatable
      */
     private $translations;
 
+    /**
+     * Landing constructor.
+     */
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param ArrayCollection $projects
+     *
+     * @return $this
+     */
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param ArrayCollection $posts
+     *
+     * @return $this
+     */
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+
+        return $this;
     }
 
     /**
@@ -114,7 +190,7 @@ class Landing implements Translatable
         $result = 'New Landing';
 
         if (null !== $this->getId()) {
-            $result = $this->getTitle();
+            $result = strip_tags($this->getTitle());
         }
 
         return $result;

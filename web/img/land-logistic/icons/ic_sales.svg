@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_sales</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="transport&amp;logistic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-390.000000, -1885.000000)" id="2">
+            <g transform="translate(0.000000, 1470.000000)">
+                <g id="Group-4" transform="translate(390.000000, 399.000000)">
+                    <g id="1">
+                        <g id="ic_sales" transform="translate(0.000000, 16.000000)">
+                            <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                            <g id="Group" opacity="0.8" transform="translate(3.000000, 3.000000)" stroke="#7C828C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                <path d="M8,13.9 C8,15.5 9.3,16.8 11,16.8 C12.7,16.8 14,15.5 14,13.9 C14,12.3 12.7,11 11,11 C9.3,11 8,9.7 8,8.1 C8,6.5 9.3,5.2 11,5.2 C12.7,5.2 14,6.5 14,8.1" id="Shape"></path>
+                                <path d="M11,5.2 L11,4" id="Shape"></path>
+                                <path d="M11,18 L11,16.8" id="Shape"></path>
+                                <circle id="Oval" cx="11" cy="11" r="11"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
