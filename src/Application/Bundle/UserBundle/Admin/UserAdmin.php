@@ -103,6 +103,7 @@ class UserAdmin extends Admin
                 )
                 ->add('avatar', 'file', array('required' => false, 'label' => 'Аватарка'))
                 ->add('caricature', 'file', array('required' => false, 'label' => 'Карикатура'))
+                ->add('hideFromTeamSection', null, ['label' => 'не показывать в секции команда'])
             ->end()
             ->with('Interests', array('label' => 'Интересы'))
                 ->add('interests', 'choice', array(
