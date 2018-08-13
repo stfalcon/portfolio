@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>914212E9-96AE-4A89-9E59-6BA041028F06</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="medicine" transform="translate(-390.000000, -4048.000000)">
+            <g id="4" transform="translate(0.000000, 3521.000000)">
+                <g id="txt" transform="translate(390.000000, 277.000000)">
+                    <g id="Group-4" transform="translate(0.000000, 170.000000)">
+                        <g id="1" transform="translate(0.000000, 80.000000)">
+                            <g id="ic_hotels">
+                                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                                <g id="Group" opacity="0.8" transform="translate(4.000000, 3.000000)">
+                                    <rect id="Rectangle-21" fill="#7C828C" x="8" y="12" width="5" height="2" rx="1"></rect>
+                                    <g id="Group-14">
+                                        <path d="M2,0 L17,0 C18.1045695,-2.02906125e-16 19,0.8954305 19,2 L19,16.0478516 L19,20 C19,21.1045695 18.1045695,22 17,22 L2,22 C0.8954305,22 1.3527075e-16,21.1045695 0,20 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z" id="Rectangle-25" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <g id="Group-16" transform="translate(6.000000, 3.000000)" fill="#7C828C">
+                                            <circle id="Oval-7" cx="3.5" cy="2.5" r="2.5"></circle>
+                                            <path d="M7,8 C7,5.790861 5.43299662,4 3.5,4 C1.56700338,4 0,5.790861 0,8" id="Oval-7-Copy"></path>
+                                        </g>
+                                        <rect id="Rectangle-21" fill="#7C828C" x="3" y="12" width="13" height="2" rx="1"></rect>
+                                        <rect id="Rectangle-21" fill="#7C828C" x="3" y="16" width="9" height="2" rx="1"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
