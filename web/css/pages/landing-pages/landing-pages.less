@@ -52,13 +52,29 @@
     background-size: cover;
   }
 
+  &--e-commerce {
+    background: url(../img/land-e-commerce/p1.jpg) no-repeat center;
+    background-size: cover;
+  }
+
+  &--medicine {
+    background: url(../img/land-medicine/p1.jpg) no-repeat center;
+    background-size: cover;
+  }
+
+  &--realestate {
+    background: url(../img/land-realestate/p1.jpg) no-repeat center;
+    background-size: cover;
+  }
+
   &__title {
     color: #FFFFFF;
     font-size: 70px;
     line-height: 84px;
     font-weight: 900;
-    margin-bottom: 10px;
     text-shadow: none;
+    max-width: 1120px;
+    margin:0 auto 10px;
   }
 
   &__text {
@@ -86,8 +102,8 @@
   &__text {
     max-width: 890px;
     color: #454D5C;
-    font-size: 19px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 24px;
     margin: 0 0 15px 0;
     text-shadow: none;
   }
@@ -106,14 +122,33 @@
     .land-text-list__text {
       color: #FFFFFF;
     }
+
+    .land-description__link {
+      color: #FFFFFF;
+      opacity: 0.8;
+    }
   }
 
   &__land-text-list {
-    margin-top: 44px;
+    margin-top: 36px;
+  }
+
+  &__link {
+    display: inline-block;
+    color: #4770BC;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    margin-top: 20px;
+
+    &:hover {
+      color: #ed002d;
+    }
   }
 }
 
 .land-section {
+  position: relative;
   background-color: #FFFFFF;
 
   &__container {
@@ -137,10 +172,25 @@
 
   &__img {
     width: 100%;
+
+    &--mob {
+      display: none;
+    }
   }
 
   &__col {
     flex: 1;
+
+    &--abs {
+      width: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      .land-description {
+        max-width: 640px;
+      }
+    }
   }
 
   &--col-2 {
@@ -148,7 +198,7 @@
     align-items: center;
 
     .land-description {
-      max-width: 600px;
+      max-width: 640px;
     }
   }
 
@@ -157,6 +207,10 @@
       display: flex;
       justify-content: flex-end;
       padding: 70px 20px;
+    }
+
+    .land-section__col--abs {
+      left: 20px;
     }
   }
 
@@ -167,13 +221,16 @@
       justify-content: flex-start;
       padding: 70px 20px;
     }
+
+    .land-section__col--abs {
+      right: 20px;
+    }
   }
 }
 
 .land-text-list {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: -40px;
   padding-right: -10px;
 
   &--col-1 {
@@ -188,27 +245,27 @@
     align-items: flex-start;
     flex-basis: 50%;
     max-width: 50%;
-    margin-bottom: 40px;
-    padding-right: 10px;
+    margin-bottom: 30px;
+    padding-right: 20px;
     box-sizing: border-box;
   }
 
   &__icon {
     display: block;
     margin-right: 10px;
+    opacity: 0.8;
   }
 
   &__text {
     color: #454D5C;
-    font-size: 19px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 20px;
     margin-top: 4px;
   }
 }
 
 @media (max-width: 1180px) {
   .land-text-list {
-    margin-bottom: -20px;
     &__item {
       margin-bottom: 20px;
     }
@@ -240,6 +297,7 @@
   .land-section {
     &__container {
       padding-bottom: 0;
+      padding-top: 60px;
     }
 
     &--col-2 {
@@ -255,18 +313,49 @@
 
       .land-section__col:first-child {
         justify-content: center;
-        padding: 160px 20px 0 20px;
+        padding: 120px 20px 0 20px;
       }
 
       .land-section__col:last-child {
         padding: 0;
       }
+
+      .land-section__col--sm-pad:first-child {
+        padding-top: 100px;
+      }
+    }
+
+    &__col--abs {
+      width: auto;
+      position: static;
+      transform: none;
+
+      .land-description {
+        max-width: 890px;
+      }
+    }
+
+    &__img-box--full {
+      .land-section__img--mob {
+        width: 100%;
+      }
+    }
+
+    &__img {
+      width: 100%;
+
+      &--mob {
+        display: block;
+      }
+
+      &--desk {
+        display: none;
+      }
+
     }
   }
 
   .land-text-list {
-    margin-bottom: -20px;
-
     &__item {
       margin-bottom: 20px;
     }
@@ -285,13 +374,13 @@
       padding: 80px 20px 80px;
     }
   }
-  
+
   .land-promo {
     padding: 134px 0 188px;
 
     &__title {
-      font-size: 42px;
-      line-height: 48px;
+      font-size: 36px;
+      line-height: 42px;
     }
 
     &__text {
@@ -308,6 +397,10 @@
         padding-top: 100px;
         padding-bottom: 0;
       }
+
+      .land-section__col--sm-pad:first-child {
+        padding-top: 60px;
+      }
     }
   }
 
@@ -318,13 +411,18 @@
     }
 
     &__title {
-      font-size: 32px;
-      line-height: 38px;
+      font-size: 28px;
+      line-height: 32px;
     }
 
     &__text {
       font-size: 16px;
       line-height: 22px;
+    }
+
+    &__link {
+      font-size: 14px;
+      line-height: 16px;
     }
   }
 
