@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Promotion controller. For promotions actions
  *
- * @Route("/services/web-development")
+ * @Route("/industries")
  */
 class LandingController extends Controller
 {

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>3CEB0ACB-D123-46A8-B804-C104274A7DAD</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="realestate" transform="translate(-994.000000, -3162.000000)">
+            <g id="3" transform="translate(-378.000000, 2564.000000)">
+                <g id="txt" transform="translate(1372.000000, 296.000000)">
+                    <g id="Group-4" transform="translate(0.000000, 212.000000)">
+                        <g id="3" transform="translate(0.000000, 90.000000)">
+                            <g id="ic_sales_copy">
+                                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                                <g id="Group" opacity="0.8" transform="translate(1.000000, 1.000000)">
+                                    <g id="Group-7" transform="translate(8.000000, 8.000000)" stroke="#7C828C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                        <circle id="Oval" cx="5" cy="2.78409091" r="2.27272727"></circle>
+                                        <path d="M9.77272727,9.25 L0.227272727,9.25 C0.227272727,7.20454545 1.52272727,5.5 3.29545455,4.81818182 L6.70454545,4.81818182 C8.47727273,5.5 9.77272727,7.20454545 9.77272727,9.25 Z" id="Shape"></path>
+                                    </g>
+                                    <circle id="Oval" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="12.9318182" cy="12.9318182" r="12.9318182"></circle>
+                                    <path d="M1,12 L4,12 C4.55228475,12 5,12.4477153 5,13 L5,13 C5,13.5522847 4.55228475,14 4,14 L1,14 L1,12 Z" id="Rectangle-9" fill="#7C828C" fill-rule="nonzero"></path>
+                                    <path d="M21,12 L24,12 C24.5522847,12 25,12.4477153 25,13 L25,13 C25,13.5522847 24.5522847,14 24,14 L21,14 L21,12 Z" id="Rectangle-9-Copy" fill="#7C828C" fill-rule="nonzero" transform="translate(23.000000, 13.000000) scale(-1, 1) translate(-23.000000, -13.000000) "></path>
+                                    <path d="M11,2 L14,2 C14.5522847,2 15,2.44771525 15,3 L15,3 C15,3.55228475 14.5522847,4 14,4 L11,4 L11,2 Z" id="Rectangle-9-Copy" fill="#7C828C" fill-rule="nonzero" transform="translate(13.000000, 3.000000) rotate(90.000000) translate(-13.000000, -3.000000) "></path>
+                                    <path d="M11,22 L14,22 C14.5522847,22 15,22.4477153 15,23 L15,23 C15,23.5522847 14.5522847,24 14,24 L11,24 L11,22 Z" id="Rectangle-9-Copy" fill="#7C828C" fill-rule="nonzero" transform="translate(13.000000, 23.000000) scale(1, -1) rotate(90.000000) translate(-13.000000, -23.000000) "></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
