@@ -178,7 +178,7 @@ __projects_text_now: 'projects launched by now|projects launched by now|projects
 'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony framework.'
 '__Footer.homepage.link': 'Software Development Company <a href="%homepage%">Stfalcon LLC</a>'
 'студия веб дизайна, разработки сайтов и мобильных приложений': 'web design and development company'
-Stfalcon LLC &mdash; разработки сайтов и мобильных приложений: Software Development Company Stfalcon LLC
+Stfalcon LLC &mdash; разработка сайтов и мобильных приложений: Software Development Company Stfalcon LLC
 'Есть ли смысл дальше изучать наш сайт? <br/> да, если:': 'Does it make sense to learn more about our website?<br> Yes if:'
 'Вы ищите компанию для разработки сайтов, приложений с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов.': 'You are looking for a company to develop sites, apps or you want to order an expert consulting / audit in this area to get the perfect result;'
 'Вам нужны нестандартные решения, выходящие за рамки шаблонов, которые предлагает рынок.': You have a dream and the others are afraid to make it true (we shall evaluate your ideas and implement them no matter what);
@@ -205,8 +205,8 @@ Cоздаем нативные мобильные приложения (боле
 Примеры разработки веб-сайтов: 'Examples of website development'
 Подробнее про веб-разработку: 'More about web development'
 Давайте сделаем что-то классное вместе: "Let's make something awesome together"
-Наша миссия — упрощать жизнь людей, создавая полезное и удобное программное обеспечение: "Our goal is to create useful and convenient software."
-'Свяжитесь с нами, и мы поможем решить ваши задачи.': 'Contact us, and we will help to solve your problem.'
+Наша миссия — упрощать жизнь людей, создавая полезное и удобное программное обеспечение: "Our goal is to create useful and convenient software"
+'Свяжитесь с нами, и мы поможем решить ваши задачи': 'Contact us, and we will help to solve your problem'
 Примеры дизайна сайтов и интерфейсов: 'Examples of website and UI design'
 Подробнее про дизайн сайта интерфейсов: 'More about UI design'
 Все больше людей выходят в интернет через свои смартфоны и планшеты, потому адаптивность стала неотъемлемой частью любого современного сайта: 'More and more people surf the Internet via their smartphones and tablets, because adaptability has become an integral part of any modern website'
