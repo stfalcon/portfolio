@@ -38,17 +38,7 @@
                 {% include ('@StfalconBlog/Post/relatedPosts.twig') with {'related_posts': landing_page.posts} %}
             </div>
         {% endif %}
-        <div class="contact-us">
-            <div class="h2 contact-us__title">
-                {{ 'Давайте сделаем что-то классное вместе'|trans }}
-            </div>
-            <div class="contact-us__text">
-                {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи.'|trans }}
-            </div>
-            {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
-            {% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':landing_page } %}
-            {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': landing_page.slug })) }}
-        </div>
+        {% include "@StfalconPortfolio/contact_us-block.html.twig" with {'category' : landing_page} %}
     </div>
 <footer class="footer vcard">
     {% include('::_footer.html.twig') %}
@@ -59,8 +49,8 @@
     {% set locale = app.request.locale %}
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
-    {% javascripts 'js/sly.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% javascripts 'js/widgets.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
     {% if locale == 'en' %}
