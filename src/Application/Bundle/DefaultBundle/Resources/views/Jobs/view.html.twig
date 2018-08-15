@@ -41,10 +41,10 @@
         <div class="post-content vacancy-page__content">
             <p></p>
             <p>
-                Stfalcon.com — компания полного цикла разработки веб-сервисов и мобильных приложений для среднего бизнеса и крупных корпораций. Нетривиальные задачи — наш конек.
+                Stfalcon.com — компания полного цикла разработки <a href="#">веб-сервисов</a> и <a href="#">мобильных приложений</a> для среднего бизнеса и крупных корпораций. Нетривиальные задачи — наш конек.
             </p>
             <p>
-                Принимаем участие в организации профильных конференций и ивентов – Fwdays, Сode and Сoffee. Активно поддерживаем и развиваем open source продукты.
+                Принимаем участие в организации профильных конференций и ивентов – <a href="#">Fwdays</a>, <a href="#">Сode and Сoffee</a>. Активно поддерживаем и развиваем open source продукты.
             </p>
             <p>
                 На данный момент занимаемся расширением команды в двух офисах – Киев (17 сотрудников) и Хмельницкий (42 сотрудника). Также работаем удаленно со специалистами из других регионов Украины.
@@ -157,28 +157,6 @@
                 </a>
             </div>
 
-            {#<div class="share-cnt clearfix">#}
-
-            {#<span class="ru">#}
-                {#<script src="//platform.linkedin.com/in.js" type="text/javascript">lang:ru_RU</script>#}
-                {#<span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1534237661816_1"><a id="li_ui_li_gen_1534237661816_1-link" href="javascript:void(0);"><span id="li_ui_li_gen_1534237661816_1-logo">in</span><span id="li_ui_li_gen_1534237661816_1-title"><span id="li_ui_li_gen_1534237661816_1-mark"></span><span id="li_ui_li_gen_1534237661816_1-title-text">Поделиться</span></span></a></span></span></span><script type="IN/Share+init" data-counter="right"></script>#}
-            {#</span>#}
-
-                {#<div id="fb-root"></div>#}
-                {#<script>#}
-                    {#(function (d, s, id) {#}
-                        {#var js, fjs = d.getElementsByTagName(s)[0];#}
-                        {#if (d.getElementById(id)) {#}
-                            {#return;#}
-                        {#}#}
-                        {#js = d.createElement(s);#}
-                        {#js.id = id;#}
-                        {#js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";#}
-                        {#fjs.parentNode.insertBefore(js, fjs);#}
-                    {#}(document, 'script', 'facebook-jssdk'));#}
-                {#</script>#}
-            {#</div>#}
-
             <section class="contacts-wrapper">
                 <div class="contacts-form-wr" id="vacancy-form">
 
@@ -215,6 +193,15 @@
                         <input type="hidden" id="vacancy_form__token" name="vacancy_form[_token]" value="yGOQcxxUWVRiRjpr7zcGHGOOZD1OGah5NO1IfM7ib1k">
                     </form>
                 </div>
+
+                <div class="contacts-person">
+                    <div class="contacts-person__photo contacts-person__photo--sm">
+                        <img src="/img/photo_yanabiluk.png" alt="" class="contacts-person__img">
+                    </div>
+                    <p class="contacts-person__description">
+                        Возникли вопросы? Напишите рекрутеру Яне Билык в <a href="#">linkedin</a> или <a href="#">skype</a>
+                    </p>
+                </div>
             </section>
             <a class="read-more prev-page" href="/ru/jobs">
                 <span>Вернуться к списку вакансий</span>
@@ -222,8 +209,41 @@
             </a>
         </div>
 
-        <div class="vacancy-page__inf">
+        <div class="vacancy-page__sidebar">
+            <div class="vacancy-inf">
+                <div class="vacancy-inf__item">
+                    <div class="vacancy-inf__title">Город</div>
+                    <div class="vacancy-inf__txt">Киев, Хмельницкий</div>
+                </div>
+                <div class="vacancy-inf__item">
+                    <div class="vacancy-inf__title">График работы</div>
+                    <div class="vacancy-inf__txt">Полный 8-ми рабочий день с 9:00 или 10:00</div>
+                </div>
+                <div class="vacancy-inf__item">
+                    <div class="vacancy-inf__title">Занятость</div>
+                    <div class="vacancy-inf__txt">Полная занятость</div>
+                </div>
+                <div class="vacancy-inf__item">
+                    <div class="vacancy-inf__title">Контактное лицо</div>
+                    <div class="vacancy-inf__txt">Яна Билык</div>
+                </div>
+            </div>
 
+            <div class="contacts-person">
+                <div class="contacts-person__photo">
+                    <img src="/img/photo_yanabiluk.png" alt="" class="contacts-person__img">
+                </div>
+                <div class="contacts-person__list">
+                    <a href="#" class="contacts-person__item">
+                        <div class="contacts-person__icon"><img src="/img/ic_linkedin.svg" alt=""></div>
+                        <div class="contacts-person__title">yana.recruiter</div>
+                    </a>
+                    <a href="#" class="contacts-person__item">
+                        <div class="contacts-person__icon"><img src="/img/ic_skype.svg" alt=""></div>
+                        <div class="contacts-person__title">joanna.travel.b</div>
+                    </a>
+                </div>
+            </div>
         </div>
 
         {#{% include 'ApplicationDefaultBundle:Jobs:_jobs_header.html.twig' with {'job': job, 'linkTitle': false} %}#}

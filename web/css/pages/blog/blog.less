@@ -1405,6 +1405,11 @@
     font-size: 16px;
     line-height: 21px;
     list-style: disc;
+    margin-bottom: 0.7em;
+  }
+
+  .vacancy-page__content a {
+    color: #6d84d2;
   }
 
   li:before {
@@ -1424,20 +1429,31 @@
 
   &__content {
     float: left;
-    width: 60%;
+    width: 540px;
+
+
   }
 
-  &__inf {
+  &__sidebar {
     float: right;
-    width: 30%;
+    width: 210px;
   }
 
   .contacts-wrapper {
+    position: relative;
+    overflow: visible;
     margin-left: 0;
     margin-right: 0;
 
+    .contacts-person {
+      position: absolute;
+      top: 40px;
+      left: 468px;
+      width: 264px;
+    }
+
     .contacts-form-wr {
-      width: 75%;
+      width: 432px;
     }
   }
 
@@ -1445,10 +1461,10 @@
     margin-top: 10px;
   }
 
-  form .btn-line .btn {
+  .btn-line .btn {
     margin-top: 22px;
-    padding: 0;
-    width: 112px;
+    padding: 0 8px;
+    width: auto;
   }
 }
 
@@ -1458,6 +1474,7 @@
 
   &__item {
     margin-right: 4px;
+    margin-bottom: 4px;
 
     &:last-child {
       margin-right: 0;
@@ -1503,5 +1520,64 @@
     line-height: 32px;
     font-size: 11px;
     font-weight: 800;
+  }
+}
+
+.contacts-person {
+
+   &__photo {
+     margin-bottom: 12px;
+
+     .contacts-person__img {
+       margin: 0;
+       max-width: 100%;
+     }
+
+     &--sm {
+       width: 52px;
+     }
+  }
+
+  &__item {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-bottom: 14px;
+    color: #6d84d2;
+  }
+
+  &__title {
+    padding-left: 30px;
+  }
+
+  &__icon {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 0;
+    top: 50%;
+    margin-top: -10px;
+  }
+}
+
+.vacancy-inf {
+  color: #1C252C;
+  font-size: 14px;
+  line-height: 17px;
+
+  &__item {
+    margin-bottom: 34px;
+
+    &:last-child {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__txt {
+    font-weight: 300;
   }
 }
