@@ -4,7 +4,7 @@
     {% set eventName = 'order_development' %}
     <div class="slide scrollto-line">
         <div class="wrap">
-            <a class="btn" id="scrollto-btn" href="#" onclick="ga('send', 'event', '{{ eventName }}', 'click');fbq('trackCustom', '{{ eventName }}');">{{ 'Заказать сайт'|trans }}</a>
+            <a class="btn" id="scrollto-btn" href="#">{{ 'Связаться с нами'|trans }}</a>
         </div>
     </div>
     <section class="slide header-slide">
@@ -19,7 +19,7 @@
 
                 <p>{{ 'Мы специализируемся на разработке больших и средних сайтов с нестандартной функциональностью.'|trans|raw }}</p>
 
-                <a class="btn" id="to-feedback-btn" href="#" onclick="ga('send', 'event', '{{ eventName }}', 'click');fbq('trackCustom', '{{ eventName }}');">{{ 'Заказать сайт'|trans }}</a>
+                <a class="btn" id="to-feedback-btn" href="#">{{ 'Связаться с нами'|trans }}</a>
             </div>
         </div>
     </section>
@@ -232,11 +232,10 @@
 {% block javascripts %}
 
     {% set locale = app.request.locale %}
-
+    <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
     {% javascripts
-        'js/vendor/jquery-1.11.1.min.js'
         'js/sly.js'
-        'js/jquery.validate.min.js'
         'js/promotion_apps_main.js'
         output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>

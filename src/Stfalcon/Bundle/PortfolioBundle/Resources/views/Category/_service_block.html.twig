@@ -1,0 +1,7 @@
+<li class="services-list__item">
+    <img src="{{ asset('img/features'~index~'.svg') }}" alt="" class="services-list__icon">
+    {% set service_name = 'main_page.service'~index~'.title' %}
+    {% set service_description = 'main_page.service'~index~'.description' %}
+    <div class="services-list__name">{{ service_name|trans }}</div>
+        <p class="services-list__text">{{ service_description|trans }}</p>
+</li>

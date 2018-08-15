@@ -27,7 +27,9 @@ class CategoryController extends Controller
      * @return array
      *
      * @Route("/services/{slug}", name="portfolio_categories_list")
+     *
      * @ParamConverter("category", class="StfalconPortfolioBundle:Category", options={"mapping": {"slug": "slug"}})
+     *
      * @Template()
      */
     public function servicesAction(Request $request, Category $category)
@@ -82,7 +84,7 @@ class CategoryController extends Controller
     {
         $query = $this->getDoctrine()
                       ->getRepository("StfalconPortfolioBundle:Project")
-                      ->getQueryForSelectProjectsByCategory($category, 'p.ordernum', 'ASC');
+                      ->getQueryForSelectProjectsByCategory($category, 'p.orderNumber', 'ASC');
 
         $paginatedProjects = $this->get('knp_paginator')->paginate($query, $page, 12);
         $paginatedProjects->setUsedRoute('portfolio_category_view');
@@ -112,7 +114,9 @@ class CategoryController extends Controller
      * Ajax order projects
      *
      * @return string
+     *
      * @Route("/admin/portfolio/category/applyOrder", name="portfolioProjectsApplyOrder")
+     *
      * @Method({"POST"})
      */
     public function orderProjects()

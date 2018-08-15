@@ -19,6 +19,20 @@
     </parameters>
 
     <services>
+        <service id="stfalcon_portfolio.admin.project_review" class="Stfalcon\Bundle\PortfolioBundle\Admin\ProjectReviewAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="PortfolioBundle" label="Project review" />
+            <argument />
+            <argument>Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReview</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
+        <service id="stfalcon_portfolio.admin.project_reviewer" class="Stfalcon\Bundle\PortfolioBundle\Admin\ProjectReviewerAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="PortfolioBundle" label="Project reviewer" />
+            <argument />
+            <argument>Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReviewer</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
         <service id="stfalcon_portfolio.admin.category" class="%stfalcon_portfolio.admin.category.class%">
             <tag name="sonata.admin" manager_type="orm" group="PortfolioBundle" label="Categories" />
             <argument />

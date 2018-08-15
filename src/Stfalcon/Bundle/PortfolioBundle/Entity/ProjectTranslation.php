@@ -11,7 +11,6 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
  * Project Translation entity.
  *
  * @ORM\Entity()
- *
  * @ORM\Table(name="project_translations",
  *     uniqueConstraints={@ORM\UniqueConstraint(name="project_lookup_unique_idx", columns={
  *         "locale", "object_id", "field"
@@ -20,6 +19,12 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
  */
 class ProjectTranslation extends AbstractPersonalTranslation
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="translations")
+     * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $object;
+
     /**
      * Convenient constructor
      *
@@ -33,12 +38,6 @@ class ProjectTranslation extends AbstractPersonalTranslation
         $this->setField($field);
         $this->setContent($content);
     }
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="translations")
-     * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    protected $object;
 
     /**
      * @return string

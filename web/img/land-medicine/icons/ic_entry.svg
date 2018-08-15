@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>F66C4265-A8E5-470E-805D-40849E3524D9</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="medicine" transform="translate(-994.000000, -3073.000000)">
+            <g id="3" transform="translate(-3.000000, 2575.000000)">
+                <g id="txt" transform="translate(997.000000, 270.000000)">
+                    <g id="Group-4" transform="translate(0.000000, 168.000000)">
+                        <g id="3" transform="translate(0.000000, 60.000000)">
+                            <g id="ic_hotels">
+                                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                                <g id="Group" opacity="0.8" transform="translate(4.000000, 3.000000)">
+                                    <path d="M8.87304688,22 L2,22 C0.8954305,22 0,21.1045695 0,20 L0,2 C0,0.8954305 0.8954305,2.02906125e-16 2,0 L18,0 C19.1045695,-2.02906125e-16 20,0.8954305 20,2 L20,9.95849609" id="Rectangle-20" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <polyline id="Path-2" stroke="#7C828C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="13.0393066 19.2843172 16.2519531 22.2197266 22.0393066 14.0323362"></polyline>
+                                    <rect id="Rectangle-21" fill="#7C828C" x="3" y="4" width="14" height="2" rx="1"></rect>
+                                    <rect id="Rectangle-21" fill="#7C828C" x="3" y="8" width="8" height="2" rx="1"></rect>
+                                    <rect id="Rectangle-21" fill="#7C828C" x="3" y="12" width="11" height="2" rx="1"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

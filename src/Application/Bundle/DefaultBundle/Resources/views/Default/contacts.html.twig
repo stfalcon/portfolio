@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}{{ 'Контактная информация'|trans }}{{ parent() }}{% endblock %}
+{% block title %}{{ 'Контактная информация'|trans }} | {{ parent() }}{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -56,10 +56,10 @@
                 </div>
                 <div class="info-group">
                     <span>{{ "Зайти в гости" | trans() }}:</span>
-                    <b>{{ "улица Заречанская 3/2"|trans() }}, <br> {{ "Хмельницкий"|trans() }}, {{ "Украина"|trans() }}{{ ", 29000"|trans() }}</b>
+                    <b>{{ "улица Заречанская, 3/2"|trans() }}, <br> {{ "Хмельницкий"|trans() }}, {{ "Украина"|trans() }}{{ ", 29000"|trans() }}</b>
                     <br>
                     <div style="margin-top: 10px">
-                        <b>{{ "переулок Ахтырский 7"|trans() }}, <br> {{ "Киев"|trans() }}, {{ "Украина"|trans() }}</b>
+                        <b>{{ "переулок Ахтырский, 7"|trans() }}, <br> {{ "Киев"|trans() }}, {{ "Украина"|trans() }}</b>
                     </div>
                 </div>
                 <ul class="socials">

@@ -1,7 +1,7 @@
 // global variables
 @sprite : url(../img/sprite.png);
 @spriteSVG : url(../img/svg/sprite.svg);
-@global-font: Helvetica, Arial, serif;
+@global-font: 'museo_sans_cyrl', Helvetica, Arial, serif;
 @bg-color: #f5f7f7;
 @global-text-color: #2c373c;
 @link-color: #3457c0;
@@ -30,15 +30,19 @@ body {
   height: auto !important;
   line-height: 1.4;
   font-size: 1em;
+  font-weight: 300;
   color: @global-text-color;
   font-family: @global-font;
   background-color: @bg-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .content {
   max-width: 1290px;
   width: 93.71%;
   margin: 0 auto;
+  padding-top: 105px;
 }
 
 hr {
@@ -770,7 +774,6 @@ input.error {
     li {
       &>span:first-child {
         margin-bottom: -2px;
-        font-size: 0.75rem;
       }
     }
   }

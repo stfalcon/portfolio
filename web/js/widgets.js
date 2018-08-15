@@ -30,7 +30,7 @@ $(function () {
             },
             'order_promotion[email]': {
                 required: true,
-                minlength: 3,
+                minlength: 6,
                 maxlength: 72
             },
             'order_promotion[message]': {
@@ -49,7 +49,7 @@ $(function () {
             e.preventDefault();
 
             $.ajax({
-                url: $(form).attr('action'),
+                url: $(form).data('url'),
                 type: "POST",
                 dataType: "json",
                 data: $(form).serialize(),
@@ -60,9 +60,6 @@ $(function () {
                 async: false,
                 success: function (response) {
                     if ('success' === response.status) {
-                        if (window.ga) {
-                            ga('send', 'event', 'Knopka', 'Otpravit_zayavku');
-                        }
                         $(form).find('.form-pad').animate({opacity: 0}, 300);
                         $(form).find('.form-success').fadeIn(300);
                         windowCloseTimerId = setTimeout(function () {

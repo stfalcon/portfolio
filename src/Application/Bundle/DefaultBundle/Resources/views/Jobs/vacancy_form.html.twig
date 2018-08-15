@@ -1,0 +1,34 @@
+{% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
+
+<form action="{{ path('jobs_job_view', {'slug':job.slug}) }}" id="direct-vacancy-form" method="post" enctype="multipart/form-data">
+    <h3>{{ "__reply_to_vacancy" | trans() }}</h3>
+    {{ form_errors(form) }}
+    <div class="line">
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div class="line">
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <div class="line">
+        {{ form_widget(form.phone) }}
+        {{ form_errors(form.phone) }}
+    </div>
+    <div class="line btn-line">
+        <div class="file-input">
+            <p class="filename">{{ "__attach_resume" | trans() }}</p>
+            <p class="filesize">{{ "__before_20" | trans() }}</p>
+            {{ form_widget(form.attach) }}
+            {{ form_errors(form.attach) }}
+        </div>
+        {% if form.captcha is defined %}
+        <div class="google-captcha contact-captcha">
+            {{ form_widget(form.captcha) }}
+            {{ form_errors(form.captcha) }}
+        </div>
+        {% endif %}
+        <button class="btn" type="submit">{{ "__send_text" | trans() }}</button>
+    </div>
+    {{ form_rest(form) }}
+</form>

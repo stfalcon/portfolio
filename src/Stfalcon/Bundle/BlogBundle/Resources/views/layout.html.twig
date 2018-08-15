@@ -1,18 +1,5 @@
 {% extends '::layout.html.twig' %}
 
-{% block javascripts %}
-    {{ parent() }}
-
-    <script type="text/javascript">
-        jQuery.extend(jQuery.validator.messages, {
-            required: "{{ 'Заполните это поле'|trans }}",
-            email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
-            maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
-            minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
-        });
-    </script>
-{% endblock %}
-
 {% block after_body %}
     {% include('@StfalconPortfolio/hire_us_right_button.html.twig') with {'page_from': '_blog' } %}
 

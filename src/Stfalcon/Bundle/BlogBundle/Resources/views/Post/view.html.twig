@@ -1,5 +1,5 @@
 {% extends 'StfalconBlogBundle::layout.html.twig' %}
-{% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }}{{ parent() }}{% endblock %}
+{% block title %}{{ post.metaTitle }} | {{ 'Блог'|trans }} | {{ parent() }}{% endblock %}
 {% block content_wrapper %}
     {{ parent() }}
     <article class="blog-post">
@@ -33,7 +33,7 @@
         {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
 
-        {% if app.request.host == 'stfalcon.com' %}
+        {% if app.environment == 'prod' %}
             <p>
                 <div id="disqus_thread"></div>
             </p>

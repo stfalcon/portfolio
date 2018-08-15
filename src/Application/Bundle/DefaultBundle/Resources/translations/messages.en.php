@@ -33,6 +33,7 @@ return array(
     'Разработка мобильных приложений' => 'Mobile apps development',
     'Мы разрабатываем приложения для смартфонов и планшетов на базе платформ Android&nbsp;и&nbsp;iOS.' => 'We develop apps for iOS and Android<br>smartphones and tablets.',
     'Заказать приложение' => 'Order an app',
+    'Связаться с нами' => 'Contact us',
     'Почему мы?' => 'Why us?',
     'Индивидуальный подход к менеджменту проекта и организации рабочего процесса' => 'Individual approach for project management and workflow',
     'Соблюдаем сроки, используем разные методологии разработки' => 'We meet time limits and we use different development methods',
@@ -75,7 +76,7 @@ return array(
     'до 20 МБ' => '20 MB max',
     'Отправить' => 'Send',
     'Телефон' => 'Phone',
-    'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 10 000$. Идея приложения состоит в том, что...' => "Hello! I'd like to create a mobile app for iOS. My budget is $10000. The idea of this app is...",
+    'Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 40 000$. Идея приложения состоит в том, что...' => "Hello! I'd like to create a mobile app for iOS. My budget is $40000. The idea of this app is...",
     //design landing
     'Дизайн веб-сайтов' => 'Websites design',
     'Мы создаем дизайн веб-сайтов и интерфейсов<br>веб&#8209;приложений.' => 'We create design for websites and interfaces<br/>of the web apps.',

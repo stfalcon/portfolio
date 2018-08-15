@@ -1,8 +1,9 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layout_project.html.twig' %}
 
 {% block stylesheets %}
     {% if project.showCase %}
-        <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+        {#<link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>#}
+        <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
     {% else %}
         {{ parent() }}
     {% endif %}
@@ -18,12 +19,13 @@
     {% endif %}
 {% endblock %}
 
-{% block title %}{{ project.name }} | {{ "Проекты"|trans }}{{ parent() }}{% endblock %}
+{% block title %}{{ project.name }} | {{ "Проекты"|trans }} | {{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
     {% if project.showCase %}
-        {% include 'StfalconPortfolioBundle:Project:_case.html.twig' %}
+         {% include 'StfalconPortfolioBundle:Project:_case.html.twig' %}
     {% else %}
+        <div class="content-limited">
         {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
         <div class="project-wrapper clearfix">
             <aside class="project-info">
@@ -63,5 +65,6 @@
             </div>
         </div>
         {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
+        </div>
     {% endif %}
 {% endblock %}

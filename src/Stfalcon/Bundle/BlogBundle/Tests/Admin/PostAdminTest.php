@@ -58,7 +58,7 @@ class PostAdminTest extends WebTestCase
         /** @var Tag $phpTag */
         /** @var Tag $symfonyTag */
         $phpTag     = $tagRepository->findOneBy(['text' => 'php']);
-        $symfonyTag = $tagRepository->findOneBy(['text' => 'symfony2']);
+        $symfonyTag = $tagRepository->findOneBy(['text' => 'symfony']);
 
         $form[$formId . '[translations][defaultLocale][ru][title]'] = 'Post title';
         $form[$formId . '[translations][defaultLocale][ru][text]'] = 'Post text';
@@ -108,7 +108,7 @@ class PostAdminTest extends WebTestCase
         /** @var Tag $phpTag */
         /** @var Tag $symfonyTag */
         $phpTag     = $tagRepository->findOneBy(['text' => 'php']);
-        $symfonyTag = $tagRepository->findOneBy(['text' => 'symfony2']);
+        $symfonyTag = $tagRepository->findOneBy(['text' => 'symfony']);
 
         $crawler = $this->client->request('GET', $this->getUrl('admin_stfalcon_blog_post_edit', array('id' => $post->getId())));
 

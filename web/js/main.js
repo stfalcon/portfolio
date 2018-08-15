@@ -1,6 +1,5 @@
 $(function () {
 
-
     $(document).on('submit', '#direct-order-form', function (e) {
         e.preventDefault();
         var $directOrderForm = $(this);
@@ -13,10 +12,6 @@ $(function () {
             contentType: false,
             success: function (response) {
                 $directOrderForm.replaceWith(response.view);
-                if (response.result == 'success' && window.ga && window.yaCounter27048220) {
-                    ga('send', 'event', 'order', 'contacts');
-                    yaCounter27048220.reachGoal('contacts');
-                }
             }
         });
     });
@@ -436,8 +431,9 @@ $(function () {
 
         $('a[href="#feedback-form"]').click(function () {
             var el = $(this).attr('href');
+            var headerHeight = $('.header-line').outerHeight();
             $('html, body').animate({
-                scrollTop: $(el).offset().top
+                scrollTop: $(el).offset().top - headerHeight
             }, 1000);
             return false;
         });
@@ -448,7 +444,7 @@ $(function () {
         $('a[href="#scroll"]').click(function () {
             var el = $(this).attr('href');
             $('html, body').animate({
-                scrollTop: $(el).offset().top + 34
+                scrollTop: $(el).offset().top
             }, 1000);
             return false;
         });
@@ -559,10 +555,11 @@ $(function () {
                 $('.scroll-to-top').fadeOut();
             }
 
-            if ($(window).width() <= 320) {
+            if ($(window).width() < 320) {
                 $('.scroll-to-top').hide();
                 return false;
             }
+
         });
         $(".scroll-to-top").click(function () {
             $('body,html').animate({
@@ -599,19 +596,6 @@ $(function () {
     $(document).scroll(function () {
         fixedButtonUp();
         //fixedHireUs();
-    });
-
-    function placeholderReplace() {
-        if ($(window).width() < 540) {
-            $("#subscribe_email").attr("placeholder", subscribeShortText);
-        } else {
-            $("#subscribe_email").attr("placeholder", subscribeFullText);
-        }
-    }
-
-    placeholderReplace();
-    $(window).resize(function () {
-        placeholderReplace();
     });
 
     autosize(document.querySelectorAll('#order_promotion_message'));

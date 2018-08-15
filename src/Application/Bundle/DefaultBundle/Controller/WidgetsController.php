@@ -48,10 +48,11 @@ class WidgetsController extends Controller
      *
      * @param Request $request  Request
      * @param string  $category Category
+     * @param string  $forPage
      *
-     * @return array
+     * @return Response
      *
-     * @Template("ApplicationDefaultBundle:Widgets:_subscribe_form.html.twig")
+     * @Template("ApplicationDefaultBundle:Widgets:_subscribe_new_form.html.twig")
      * @Route(
      *      "/subscribe/{category}",
      *      requirements={"category" = "blog"},
@@ -80,17 +81,20 @@ class WidgetsController extends Controller
 
             return new JsonResponse([
                 'success' => false,
-                'view' => $this->renderView('ApplicationDefaultBundle:Widgets:_subscribe_form.html.twig', [
+                'view' => $this->renderView('ApplicationDefaultBundle:Widgets:_subscribe_new_form.html.twig', [
                     'form' => $form->createView(),
                     'category' => $category
                 ])
             ]);
         }
 
-        return [
-            'form' => $form->createView(),
-            'category' => $category
-        ];
+        return $this->render(
+            '@ApplicationDefault/Widgets/_subscribe_new_form.html.twig',
+            [
+                'form' => $form->createView(),
+                'category' => $category,
+            ]
+        );
     }
 
     /**

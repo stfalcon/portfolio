@@ -1,0 +1,17 @@
+{% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
+
+<div class="subscribe">
+    {{ form_errors(form) }}
+    <form action="{{ path('post_subscribe', {'category': category}) }}" method="post"
+          class="subscribe-form" novalidate="novalidate">
+        <div class="subscribe__title">{{ 'Подписаться на новые записи'|trans }}</div>
+        <div class="subscribe__form">
+            {{ form_widget(form.email, {'attr': {'placeholder': 'E-mail',
+                'class':'subscribe__input' }}) }}
+            {{ form_errors(form.email) }}
+            <button class="subscribe__button" type="submit">{{ 'Подписаться'|trans }}</button>
+        </div>
+        <ul class="success-list"></ul>
+        {{ form_rest(form) }}
+    </form>
+</div>

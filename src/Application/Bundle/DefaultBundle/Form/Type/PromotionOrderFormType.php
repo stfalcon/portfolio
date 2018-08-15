@@ -27,7 +27,11 @@ class PromotionOrderFormType extends AbstractType
                 'text',
                 [
                     'label'       => 'Your name',
-                    'constraints' => [new Assert\Length(['max' => 64])],
+                    'constraints' =>
+                        [
+                            new Assert\NotBlank(),
+                            new Assert\Length(['min' => 3, 'max' => 64]),
+                        ],
                 ]
             )
             ->add(
@@ -35,6 +39,11 @@ class PromotionOrderFormType extends AbstractType
                 'email',
                 [
                     'label' => 'Your email',
+                    'constraints' =>
+                        [
+                            new Assert\NotBlank(),
+                            new Assert\Length(['min' => 6, 'max' => 72]),
+                        ],
                 ]
             )
             ->add(
@@ -42,7 +51,11 @@ class PromotionOrderFormType extends AbstractType
                 'textarea',
                 [
                     'label'       => 'Your message',
-                    'constraints' => [new Assert\Length(['max' => 5000])],
+                    'constraints' =>
+                        [
+                            new Assert\NotBlank(),
+                            new Assert\Length(['min' => 30, 'max' => 5000]),
+                        ],
                 ]
             )
             ->add('captcha', 'recaptcha', [

@@ -1,23 +1,53 @@
 version: '2'
-
 services:
-   db:
-     image: mysql:5.6
-     volumes:
-       - db_data:/var/lib/mysql
-       - ./docker-files/mysql-conf.d:/etc/mysql/conf.d
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: qwerty
-   portfolio:
-     depends_on:
-       - db
-     build: .
-     volumes:
-      - .:/var/www/html
-     ports:
-       - "8080:80"
-       - "9090:9000"
-     restart: always
+    nginx:
+        image: jekakm/nginx-core:201802261
+        ports:
+            - "127.0.0.1:8000:80"
+        volumes:
+            - "./docker-configs/nginx.conf:/etc/nginx/sites-enabled/default"
+            - ".:/app:cached"
+        depends_on:
+            - "php"
+
+    php:
+        build:
+            context: ./docker-configs/php-image
+        environment:
+            - "PHP_IDE_CONFIG=serverName=portfolio-docker"
+        volumes:
+            - "./docker-configs/php-fpm.ini:/etc/php5/fpm/php.ini"
+            - "./docker-configs/php-cli.ini:/etc/php5/cli/php.ini"
+            - ".:/app:cached"
+        depends_on:
+            - "mysql"
+            - "mailcatcher"
+
+    mysql:
+        image: jekakm/mysql-core:201802281
+        volumes:
+            - "mysqldata:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: qwerty
+        ports:
+            - "127.0.0.1:13306:3306"
+
+    mailcatcher:
+        image: jekakm/mailcatcher:201803011
+        ports:
+            - "127.0.0.1:1080:1080"
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+            PMA_USER: root
+            PMA_PASSWORD: qwerty
+        ports:
+            - "127.0.0.1:6789:80"
+        depends_on:
+            - "mysql"
+
 volumes:
-    db_data:
+    mysqldata:

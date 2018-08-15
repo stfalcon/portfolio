@@ -1,7 +1,7 @@
 # This file is auto-generated during the composer install
 parameters:
     database_driver: pdo_mysql
-    database_host: db
+    database_host: mysql
     database_port: null
     database_name: stfalcon_com_development
     database_user: root
@@ -9,7 +9,7 @@ parameters:
     database_server_version: 5.5
 
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
+    mailer_host: mailcatcher
     mailer_user: null
     mailer_password: null
 
@@ -46,6 +46,6 @@ parameters:
 
     sphinx_host: 127.0.0.1
     sphinx_port: 9312
-
+    sentry_dsn_host: "https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy@sentry.domain.com/01"
     recaptcha.site_key: SomeSiteKey
     recaptcha.secret:   SomeSecret

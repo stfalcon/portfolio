@@ -12,21 +12,21 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Imagine;
 
 /**
- * Project entity
+ * Project entity.
  *
  * @ORM\Table(name="portfolio_projects")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\PortfolioBundle\Repository\ProjectRepository")
+ *
  * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\PortfolioBundle\Entity\ProjectTranslation")
+ *
  * @Vich\Uploadable
  */
 class Project implements Translatable
 {
-
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,19 +35,20 @@ class Project implements Translatable
     private $id;
 
     /**
-     * @var string $name
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name = '';
 
     /**
-     * @var string $slug
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -58,69 +59,76 @@ class Project implements Translatable
     private $slug;
 
     /**
-     * @var string $description
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "10"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
-     * @var string $shortDescription
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="short_description", type="text")
      */
     private $shortDescription;
 
     /**
-     * @var string $additionalInfo
+     * @var string
+     *
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="additional_info", type="text", options={"default":""}, nullable=true)
      */
     private $additionalInfo;
 
     /**
-     * @var string $url
+     * @var string
      *
      * @Assert\Url
+     *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
 
     /**
-     * @var \DateTime $date
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     *
      * @Gedmo\Timestampable(on="create")
      */
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime")
+     *
      * @Gedmo\Timestampable(on="update")
      */
     private $updated;
 
     /**
-     * @var File $image
+     * @var File
      *
      * @Assert\File(
      *     maxSize="4M",
@@ -131,23 +139,57 @@ class Project implements Translatable
     protected $imageFile;
 
     /**
-     * @var string $image
+     * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
-     * @var int $ordernum
+     * @var File
+     *
+     * @Assert\File(
+     *     maxSize="4M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
+     * @Vich\UploadableField(mapping="project_image", fileNameProperty="mainPageImage")
+     */
+    protected $mainPageImageFile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="main_page_image", type="string", length=255, nullable=true)
+     */
+    private $mainPageImage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="background_color", type="string", length=7, options={"default":"#4D9CC9"}, nullable=false)
+     */
+    private $backgroundColor = '#4D9CC9';
+
+    /**
+     * Text color for preview on main.
+     *
+     * @var bool
+     *
+     * @ORM\Column(name="use_dark_text_color", type="boolean")
+     */
+    private $useDarkTextColor = false;
+
+    /**
+     * @var int
      *
      * @ORM\Column(name="ordernum", type="integer")
      */
-    private $ordernum = 0;
+    private $orderNumber = 0;
 
     /**
-     * Check if this project can be published on main page of the site
+     * Check if this project can be published on main page of the site.
      *
-     * @var bool $onFrontPage
+     * @var bool
      *
      * @ORM\Column(name="onFrontPage", type="boolean")
      */
@@ -201,19 +243,23 @@ class Project implements Translatable
 
     /**
      * @var string
+     *
      * @Gedmo\Translatable(fallback=true)
+     *
      * @ORM\Column(name="tags", type="string", nullable=true, length=255)
      */
     protected $tags;
 
     /**
-     * @var boolean
+     * @var bool
+     *
      * @ORM\Column(name="published", type="boolean")
      */
     protected $published;
 
     /**
-     * @var boolean
+     * @var bool
+     *
      * @ORM\Column(name="shadow", type="boolean", options={"default" = true})
      */
     protected $shadow = true;
@@ -228,6 +274,18 @@ class Project implements Translatable
     private $translations;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *   targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\ProjectReview",
+     *   mappedBy="project",
+     *   cascade={"persist", "remove"},
+     *   orphanRemoval=true
+     * )
+     */
+    private $projectReviews;
+
+    /**
      * @Gedmo\Locale
      */
     private $locale;
@@ -236,6 +294,7 @@ class Project implements Translatable
      * @var string
      *
      * @ORM\Column(name="meta_keywords", type="text", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      */
     private $metaKeywords;
@@ -244,6 +303,7 @@ class Project implements Translatable
      * @var string
      *
      * @ORM\Column(name="meta_description", type="text", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      */
     private $metaDescription;
@@ -252,12 +312,13 @@ class Project implements Translatable
      * @var string
      *
      * @ORM\Column(name="case_content", type="text", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      */
     private $caseContent;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="show_case", type="boolean")
      */
@@ -273,7 +334,7 @@ class Project implements Translatable
     private $relativeProjects;
 
     /**
-     * @var Collection|UserWithPosition[] $usersWithPositions Users with positions
+     * @var Collection|UserWithPosition[] Users with positions
      *
      * @ORM\OneToMany(targetEntity="UserWithPosition", mappedBy="project", cascade={"persist", "remove"}, orphanRemoval=true)
      *
@@ -282,17 +343,58 @@ class Project implements Translatable
     private $usersWithPositions;
 
     /**
-     * Initialization properties for new project entity
+     * Initialization properties for new project entity.
      */
     public function __construct()
     {
-        $this->categories                   = new ArrayCollection();
-        $this->participants                 = new ArrayCollection();
-        $this->media                        = new ArrayCollection();
-        $this->published                    = true;
-        $this->translations                 = new ArrayCollection();
-        $this->relativeProjects             = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->participants = new ArrayCollection();
+        $this->media = new ArrayCollection();
+        $this->published = true;
+        $this->translations = new ArrayCollection();
+        $this->relativeProjects = new ArrayCollection();
         $this->usersWithPositions = new ArrayCollection();
+        $this->projectReviews = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackgroundColor()
+    {
+        return $this->backgroundColor;
+    }
+
+    /**
+     * @param string $backgroundColor
+     *
+     * @return $this
+     */
+    public function setBackgroundColor($backgroundColor)
+    {
+        $this->backgroundColor = $backgroundColor;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUseDarkTextColor()
+    {
+        return $this->useDarkTextColor;
+    }
+
+    /**
+     * @param bool $useDarkTextColor
+     *
+     * @return $this
+     */
+    public function setUseDarkTextColor($useDarkTextColor)
+    {
+        $this->useDarkTextColor = $useDarkTextColor;
+
+        return $this;
     }
 
     /**
@@ -310,7 +412,56 @@ class Project implements Translatable
     }
 
     /**
-     * Get post id
+     * @return mixed
+     */
+    public function getProjectReviews()
+    {
+        return $this->projectReviews;
+    }
+
+    /**
+     * @param mixed $projectReviews
+     *
+     * @return $this
+     */
+    public function setProjectReviews($projectReviews)
+    {
+        $this->projectReviews = $projectReviews;
+
+        return $this;
+    }
+
+    /**
+     * @param ProjectReview $projectReview
+     *
+     * @return $this
+     */
+    public function addProjectReview($projectReview)
+    {
+        if (!$this->projectReviews->contains($projectReview)) {
+            $this->projectReviews->add($projectReview);
+            $projectReview->setProject($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ProjectReview $projectReview
+     *
+     * @return $this
+     */
+    public function removeProjectReview($projectReview)
+    {
+        if ($this->projectReviews->contains($projectReview)) {
+            $this->projectReviews->removeElement($projectReview);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get post id.
      *
      * @return int
      */
@@ -320,7 +471,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get project categories
+     * Get project categories.
      *
      * @return ArrayCollection
      */
@@ -330,17 +481,19 @@ class Project implements Translatable
     }
 
     /**
-     * Add category to project
+     * Add category to project.
      *
      * @param Category $category Category entity
      */
     public function addCategory(Category $category)
     {
         $this->categories[] = $category;
+
+        return $this;
     }
 
     /**
-     * Remove category
+     * Remove category.
      *
      * @param Category $category Category
      *
@@ -354,27 +507,31 @@ class Project implements Translatable
     }
 
     /**
-     * Set categories collection to project
+     * Set categories collection to project.
      *
      * @param ArrayCollection $categories Categories collection
      */
     public function setCategories(ArrayCollection $categories)
     {
         $this->categories = $categories;
+
+        return $this;
     }
 
     /**
-     * Set project name
+     * Set project name.
      *
      * @param string $name A text of project name
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * Get project name
+     * Get project name.
      *
      * @return string
      */
@@ -384,17 +541,19 @@ class Project implements Translatable
     }
 
     /**
-     * Set project slug
+     * Set project slug.
      *
      * @param string $slug Unique text identifier
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
-     * Get project slug
+     * Get project slug.
      *
      * @return string
      */
@@ -404,17 +563,19 @@ class Project implements Translatable
     }
 
     /**
-     * Set project description
+     * Set project description.
      *
      * @param string $description A text of description
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
-     * Get project description
+     * Get project description.
      *
      * @return string
      */
@@ -424,17 +585,19 @@ class Project implements Translatable
     }
 
     /**
-     * Set project url
+     * Set project url.
      *
      * @param string $url A url for project
      */
     public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
     }
 
     /**
-     * Get project url
+     * Get project url.
      *
      * @return string
      */
@@ -444,17 +607,19 @@ class Project implements Translatable
     }
 
     /**
-     * Set date when project has been realized
+     * Set date when project has been realized.
      *
      * @param \DateTime $date Date when project has been realized
      */
     public function setDate(\DateTime $date)
     {
         $this->date = $date;
+
+        return $this;
     }
 
     /**
-     * Get date when project has been realized
+     * Get date when project has been realized.
      *
      * @return \DateTime
      */
@@ -464,7 +629,7 @@ class Project implements Translatable
     }
 
     /**
-     * Get image filename
+     * Get image filename.
      *
      * @return string
      */
@@ -474,27 +639,31 @@ class Project implements Translatable
     }
 
     /**
-     * Set image and create thumbnail
+     * Set image and create thumbnail.
      *
      * @param string $image Full path to image file
      */
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
     }
 
     /**
-     * Set time when project created
+     * Set time when project created.
      *
      * @param \DateTime $created A time when project created
      */
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
+
+        return $this;
     }
 
     /**
-     * Get time when project created
+     * Get time when project created.
      *
      * @return \DateTime
      */
@@ -504,17 +673,19 @@ class Project implements Translatable
     }
 
     /**
-     * Set time when project updated
+     * Set time when project updated.
      *
      * @param \DateTime $updated A time when project updated
      */
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
+
+        return $this;
     }
 
     /**
-     * Get time when project updated
+     * Get time when project updated.
      *
      * @return \DateTime
      */
@@ -524,37 +695,41 @@ class Project implements Translatable
     }
 
     /**
-     * Set project ordernum
+     * Set project orderNumber.
      *
-     * @param int $ordernum
+     * @param int $orderNumber
      */
-    public function setOrdernum($ordernum)
+    public function setOrderNumber($orderNumber)
     {
-        $this->ordernum = $ordernum;
+        $this->orderNumber = $orderNumber;
+
+        return $this;
     }
 
     /**
-     * Get project ordernum
+     * Get project orderNumber.
      *
      * @return int
      */
-    public function getOrdernum()
+    public function getOrderNumber()
     {
-        return $this->ordernum;
+        return $this->orderNumber;
     }
 
     /**
-     * Set onFrontPage
+     * Set onFrontPage.
      *
      * @param bool $onFrontPage
      */
     public function setOnFrontPage($onFrontPage)
     {
         $this->onFrontPage = $onFrontPage;
+
+        return $this;
     }
 
     /**
-     * Get onFrontPage
+     * Get onFrontPage.
      *
      * @return bool
      */
@@ -564,7 +739,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set imageFile
+     * Set imageFile.
      *
      * @param File $imageFile
      */
@@ -572,10 +747,12 @@ class Project implements Translatable
     {
         $this->setUpdated(new \DateTime());
         $this->imageFile = $imageFile;
+
+        return $this;
     }
 
     /**
-     * Get imageFile
+     * Get imageFile.
      *
      * @return File
      */
@@ -590,6 +767,8 @@ class Project implements Translatable
     public function setParticipants($participants)
     {
         $this->participants = $participants;
+
+        return $this;
     }
 
     /**
@@ -606,6 +785,8 @@ class Project implements Translatable
     public function addParticipant(User $participant)
     {
         $this->participants->add($participant);
+
+        return $this;
     }
 
     /**
@@ -614,6 +795,8 @@ class Project implements Translatable
     public function removeParticipant(User $participant)
     {
         $this->participants->removeElement($participant);
+
+        return $this;
     }
 
     /**
@@ -622,6 +805,8 @@ class Project implements Translatable
     public function setMedia($media)
     {
         $this->media = $media;
+
+        return $this;
     }
 
     /**
@@ -638,14 +823,18 @@ class Project implements Translatable
     public function addMedia($media)
     {
         $this->media->add($media);
+
+        return $this;
     }
 
     /**
      * @param Media $media
      */
-    public function removeMedia( $media)
+    public function removeMedia($media)
     {
         $this->media->removeElement($media);
+
+        return $this;
     }
 
     /**
@@ -654,6 +843,8 @@ class Project implements Translatable
     public function setTags($tags)
     {
         $this->tags = $tags;
+
+        return $this;
     }
 
     /**
@@ -665,15 +856,17 @@ class Project implements Translatable
     }
 
     /**
-     * @param boolean $published
+     * @param bool $published
      */
     public function setPublished($published)
     {
         $this->published = $published;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPublished()
     {
@@ -681,15 +874,17 @@ class Project implements Translatable
     }
 
     /**
-     * @param boolean $shadow
+     * @param bool $shadow
      */
     public function setShadow($shadow)
     {
         $this->shadow = $shadow;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getShadow()
     {
@@ -697,7 +892,7 @@ class Project implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasShadow()
     {
@@ -713,7 +908,10 @@ class Project implements Translatable
             $this->translations->add($projectTranslation);
             $projectTranslation->setObject($this);
         }
+
+        return $this;
     }
+
     /**
      * @param ProjectTranslation $projectTranslation
      */
@@ -723,6 +921,8 @@ class Project implements Translatable
             $this->translations->add($projectTranslation);
             $projectTranslation->setObject($this);
         }
+
+        return $this;
     }
 
     /**
@@ -731,6 +931,8 @@ class Project implements Translatable
     public function removeTranslation(ProjectTranslation $projectTranslation)
     {
         $this->translations->removeElement($projectTranslation);
+
+        return $this;
     }
 
     /**
@@ -739,6 +941,8 @@ class Project implements Translatable
     public function setTranslations($translations)
     {
         $this->translations = $translations;
+
+        return $this;
     }
 
     /**
@@ -747,6 +951,8 @@ class Project implements Translatable
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -763,6 +969,8 @@ class Project implements Translatable
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -834,7 +1042,7 @@ class Project implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isShowCase()
     {
@@ -842,7 +1050,7 @@ class Project implements Translatable
     }
 
     /**
-     * @param boolean $showCase
+     * @param bool $showCase
      *
      * @return Project
      */
@@ -881,6 +1089,8 @@ class Project implements Translatable
         if (!$this->relativeProjects->contains($project)) {
             $this->relativeProjects->add($project);
         }
+
+        return $this;
     }
 
     /**
@@ -891,6 +1101,8 @@ class Project implements Translatable
         if ($this->relativeProjects->contains($project)) {
             $this->relativeProjects->removeElement($project);
         }
+
+        return $this;
     }
 
     /**
@@ -907,10 +1119,12 @@ class Project implements Translatable
     public function setShortDescription($shortDescription)
     {
         $this->shortDescription = $shortDescription;
+
+        return $this;
     }
 
     /**
-     * Get users with positions
+     * Get users with positions.
      *
      * @return Collection|UserWithPosition[] Users with positions
      */
@@ -920,7 +1134,7 @@ class Project implements Translatable
     }
 
     /**
-     * Set users with positions
+     * Set users with positions.
      *
      * @param Collection|UserWithPosition[] $usersWithPositions Users with positions
      *
@@ -934,7 +1148,7 @@ class Project implements Translatable
     }
 
     /**
-     * Remove user with position
+     * Remove user with position.
      *
      * @param UserWithPosition $userWithPosition User with position
      *
@@ -948,7 +1162,7 @@ class Project implements Translatable
     }
 
     /**
-     * Add user with position
+     * Add user with position.
      *
      * @param UserWithPosition $userWithPosition User with position
      *
@@ -977,5 +1191,48 @@ class Project implements Translatable
     public function setAdditionalInfo($additionalInfo)
     {
         $this->additionalInfo = $additionalInfo;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getMainPageImageFile()
+    {
+        return $this->mainPageImageFile;
+    }
+
+    /**
+     * @param File $mainPageImageFile
+     *
+     * @return $this
+     */
+    public function setMainPageImageFile($mainPageImageFile)
+    {
+        $this->setUpdated(new \DateTime());
+        $this->mainPageImageFile = $mainPageImageFile;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMainPageImage()
+    {
+        return $this->mainPageImage;
+    }
+
+    /**
+     * @param string $mainPageImage
+     *
+     * @return $this
+     */
+    public function setMainPageImage($mainPageImage)
+    {
+        $this->mainPageImage = $mainPageImage;
+
+        return $this;
     }
 }

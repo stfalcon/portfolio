@@ -17,3 +17,7 @@ _application_default_upload:
 _application_default_widget:
     resource: "@ApplicationDefaultBundle/Controller/WidgetsController.php"
     type:     annotation
+
+_application_default_jobs:
+    resource: "@ApplicationDefaultBundle/Controller/JobsController.php"
+    type:     annotation

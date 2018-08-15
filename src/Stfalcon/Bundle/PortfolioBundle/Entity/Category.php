@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * Category entity. It groups projects in portfolio
+ * Category entity. It groups projects in portfolio.
  *
  * @ORM\Table(name="portfolio_categories")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\PortfolioBundle\Repository\CategoryRepository")
@@ -22,7 +22,7 @@ class Category implements Translatable
     use TimestampableEntity;
 
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -31,7 +31,7 @@ class Category implements Translatable
     private $id;
 
     /**
-     * @var string $name
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -43,7 +43,7 @@ class Category implements Translatable
     private $name = '';
 
     /**
-     * @var string $shortName
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -55,7 +55,7 @@ class Category implements Translatable
     private $shortName = '';
 
     /**
-     * @var string $slug
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -66,9 +66,8 @@ class Category implements Translatable
     private $slug;
 
     /**
-     * @var string $description
+     * @var string
      *
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
@@ -78,7 +77,7 @@ class Category implements Translatable
     private $description;
 
     /**
-     * @var string $details
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -90,7 +89,7 @@ class Category implements Translatable
     private $details;
 
     /**
-     * @var string $title Title
+     * @var string Title
      *
      * @Gedmo\Translatable(fallback=true)
      *
@@ -99,7 +98,7 @@ class Category implements Translatable
     private $title;
 
     /**
-     * @var string $metaDescription Meta description
+     * @var string Meta description
      *
      * @Gedmo\Translatable(fallback=true)
      *
@@ -108,7 +107,7 @@ class Category implements Translatable
     private $metaDescription;
 
     /**
-     * @var string $metaKeywords Meta keywords
+     * @var string Meta keywords
      *
      * @Gedmo\Translatable(fallback=true)
      *
@@ -123,13 +122,12 @@ class Category implements Translatable
      *      targetEntity="Stfalcon\Bundle\PortfolioBundle\Entity\Project",
      *      mappedBy="categories", fetch="EXTRA_LAZY"
      * )
-     * @ORM\OrderBy({"ordernum" = "ASC", "date" = "DESC"})
+     * @ORM\OrderBy({"orderNumber" = "ASC", "date" = "DESC"})
      */
     private $projects;
 
     /**
-     *
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="ordernum", type="integer")
      */
@@ -156,22 +154,21 @@ class Category implements Translatable
     private $locale;
 
     /**
-     *
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="show_in_services", type="boolean")
      */
     private $showInServices = false;
 
     /**
-     *
      * @var bool
      *
      * @ORM\Column(name="show_in_projects", type="boolean")
      */
     private $showInProjects = true;
+
     /**
-     * Initialization properties for new category entity
+     * Initialization properties for new category entity.
      */
     public function __construct()
     {
@@ -195,9 +192,9 @@ class Category implements Translatable
     }
 
     /**
-     * Get category id
+     * Get category id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -205,19 +202,19 @@ class Category implements Translatable
     }
 
     /**
-     * Set category name
+     * Set category name.
      *
      * @param string $name Text for category name
-     *
-     * @return void
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * Get category name
+     * Get category name.
      *
      * @return string
      */
@@ -227,19 +224,19 @@ class Category implements Translatable
     }
 
     /**
-     * Set category slug
+     * Set category slug.
      *
      * @param string $slug Unique text identifier
-     *
-     * @return void
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
-     * Get category slug
+     * Get category slug.
      *
      * @return string
      */
@@ -249,19 +246,19 @@ class Category implements Translatable
     }
 
     /**
-     * Set category description
+     * Set category description.
      *
      * @param string $description Text for category description
-     *
-     * @return void
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
-     * Get category description
+     * Get category description.
      *
      * @return string
      */
@@ -271,7 +268,7 @@ class Category implements Translatable
     }
 
     /**
-     * Get category projects
+     * Get category projects.
      *
      * @return ArrayCollection
      */
@@ -281,21 +278,21 @@ class Category implements Translatable
     }
 
     /**
-     * Add project to category
+     * Add project to category.
      *
      * @param Project $project Project object
-     *
-     * @return void
      */
     public function addProject(Project $project)
     {
         $this->projects[] = $project;
+
+        return $this;
     }
 
     /**
-     * Get order num
+     * Get order num.
      *
-     * @return integer
+     * @return int
      */
     public function getOrdernum()
     {
@@ -303,13 +300,15 @@ class Category implements Translatable
     }
 
     /**
-     * Set order num
+     * Set order num.
      *
-     * @param integer $ordernum
+     * @param int $ordernum
      */
     public function setOrdernum($ordernum)
     {
         $this->ordernum = $ordernum;
+
+        return $this;
     }
 
     /**
@@ -318,6 +317,8 @@ class Category implements Translatable
     public function setCost($cost)
     {
         $this->cost = $cost;
+
+        return $this;
     }
 
     /**
@@ -337,6 +338,8 @@ class Category implements Translatable
             $this->translations->add($categoryTranslation);
             $categoryTranslation->setObject($this);
         }
+
+        return $this;
     }
 
     /**
@@ -348,6 +351,8 @@ class Category implements Translatable
             $this->translations->add($categoryTranslation);
             $categoryTranslation->setObject($this);
         }
+
+        return $this;
     }
 
     /**
@@ -356,6 +361,8 @@ class Category implements Translatable
     public function removeTranslation(CategoryTranslation $categoryTranslation)
     {
         $this->translations->removeElement($categoryTranslation);
+
+        return $this;
     }
 
     /**
@@ -364,6 +371,8 @@ class Category implements Translatable
     public function setTranslations($translations)
     {
         $this->translations = $translations;
+
+        return $this;
     }
 
     /**
@@ -372,6 +381,8 @@ class Category implements Translatable
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -388,6 +399,8 @@ class Category implements Translatable
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
     }
 
     /**
@@ -399,7 +412,7 @@ class Category implements Translatable
     }
 
     /**
-     * Get metaDescription
+     * Get metaDescription.
      *
      * @return string MetaDescription
      */
@@ -409,7 +422,7 @@ class Category implements Translatable
     }
 
     /**
-     * Set meta description
+     * Set meta description.
      *
      * @param string $metaDescription Meta description
      *
@@ -423,7 +436,7 @@ class Category implements Translatable
     }
 
     /**
-     * Get meta keywords
+     * Get meta keywords.
      *
      * @return string Meta keywords
      */
@@ -433,7 +446,7 @@ class Category implements Translatable
     }
 
     /**
-     * Set meta keywords
+     * Set meta keywords.
      *
      * @param string $metaKeywords Meta keywords
      *
@@ -447,7 +460,7 @@ class Category implements Translatable
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string Title
      */
@@ -457,7 +470,7 @@ class Category implements Translatable
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title title
      *
@@ -484,10 +497,12 @@ class Category implements Translatable
     public function setDetails($details)
     {
         $this->details = $details;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isShowInServices()
     {
@@ -495,11 +510,13 @@ class Category implements Translatable
     }
 
     /**
-     * @param boolean $showInServices
+     * @param bool $showInServices
      */
     public function setShowInServices($showInServices)
     {
         $this->showInServices = $showInServices;
+
+        return $this;
     }
 
     /**
@@ -516,6 +533,8 @@ class Category implements Translatable
     public function setShowInProjects($showInProjects)
     {
         $this->showInProjects = $showInProjects;
+
+        return $this;
     }
 
     /**
@@ -532,5 +551,7 @@ class Category implements Translatable
     public function setShortName($shortName)
     {
         $this->shortName = $shortName;
+
+        return $this;
     }
 }

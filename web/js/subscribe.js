@@ -16,9 +16,6 @@ $(document).ready(function () {
                     $form.closest('.subscribe-form-wrap').replaceWith($renderedForm);
                     inputChange();
                 } else {
-                    if (window.ga) {
-                        ga('send', 'event', 'subscribe', 'success');
-                    }
                     $form.find('input[type="email"]').val('');
                     $form.find('.error-list').remove();
                     $form.addClass('success-status');

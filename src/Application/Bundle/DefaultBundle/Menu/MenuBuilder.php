@@ -55,7 +55,19 @@ class MenuBuilder
         ));
         $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));
         $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
+        $menu->addChild($this->translator->trans('__menu.vacancies'), array('route' => 'jobs_list'));
         $menu->addChild($this->translator->trans('Контакты'), array('route' => 'contacts'));
+        $menu->addChild(
+            $this->translator->trans('about_us'),
+            [
+                'route' => 'show_pdf',
+                'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2018.pdf'],
+            ]
+        )
+            ->setLinkAttributes(['class' => 'header-line__btn home-btn home-btn--sm home-btn--dark', 'target' => '_blank']);
+
+        $projectsMenu = $menu->getChild($this->translator->trans('Проекты'));
+        $projectsMenu->setCurrent($projectsMenu->getUri() === $request->getRequestUri());
 
         return $menu;
     }

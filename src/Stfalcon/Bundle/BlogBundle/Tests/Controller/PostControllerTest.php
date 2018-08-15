@@ -24,12 +24,12 @@ class PostControllerTest extends WebTestCase
         // check display post title
         $this->assertCount(1, $crawler->filter('article.blog-post h1:contains("My first post")'));
         // check display post text
-        $this->assertCount(1, $crawler->filter('article.blog-post div.post-content:contains("In work we use Symfony2.")'));
+        $this->assertCount(1, $crawler->filter('article.blog-post div.post-content:contains("In work we use Symfony.")'));
         // and find <span id="more">
         $this->assertCount(1, $crawler->filter('article.blog-post div.post-content span#more'));
 
         // check post tags
-        $this->assertCount(1, $crawler->filter('article.blog-post ul.tags:contains("symfony2")'));
+        $this->assertCount(1, $crawler->filter('article.blog-post ul.tags:contains("symfony")'));
         $this->assertCount(1, $crawler->filter('article.blog-post ul.tags:contains("doctrine2")'));
     }
 
@@ -70,7 +70,7 @@ class PostControllerTest extends WebTestCase
 
         // check exist posts tags
         $this->assertCount(0, $crawler->filter('article.blog-post ul.tags:contains("php")'));
-        $this->assertCount(2, $crawler->filter('article.blog-post ul.tags:contains("symfony2")'));
+        $this->assertCount(2, $crawler->filter('article.blog-post ul.tags:contains("symfony")'));
         $this->assertCount(2, $crawler->filter('article.blog-post ul.tags:contains("doctrine2")'));
 
         // check links to posts commets

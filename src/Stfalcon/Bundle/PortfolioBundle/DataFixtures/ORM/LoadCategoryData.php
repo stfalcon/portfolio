@@ -8,52 +8,73 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Stfalcon\Bundle\PortfolioBundle\Entity\Category;
 
 /**
- * Categories fixtures
+ * Categories fixtures.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
 class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
-
     /**
-     * Create and load categories fixtures to database
+     * Create and load categories fixtures to database.
      *
      * @param ObjectManager $manager Entity manager object
      */
     public function load(ObjectManager $manager)
     {
         // categories
-        $development = new Category();
-        $development->setName('Web Development');
-        $development->setSlug('web-development');
-        $development->setDetails('web-development');
-        $development->setDescription('In work we use Symfony2.');
-        $development->setCost('20 000');
+        $development = (new Category())
+            ->setName('Web Development')
+            ->setTitle('Web Development')
+            ->setShortName('Web Development')
+            ->setSlug('web-development')
+            ->setDetails('web-development')
+            ->setDescription('In work we use Symfony.')
+            ->setShowInServices(true)
+            ->setShowInProjects(true)
+            ->setCost('20 000');
 
         $manager->persist($development);
 
-        $mobileDevelopment = new Category();
-        $mobileDevelopment->setName('Mobile Development');
-        $mobileDevelopment->setSlug('mobile-development');
-        $mobileDevelopment->setDetails('mobile-development');
-        $mobileDevelopment->setDescription('In work we use Android and IOS.');
-        $mobileDevelopment->setCost('30 000');
+        $mobileDevelopment = (new Category())
+            ->setName('Mobile Development')
+            ->setTitle('Mobile Development')
+            ->setShortName('Mobile Development')
+            ->setSlug('mobile-development')
+            ->setDetails('mobile-development')
+            ->setDescription('In work we use Android and IOS.')
+            ->setShowInServices(true)
+            ->setShowInProjects(true)
+            ->setCost('30 000');
 
         $manager->persist($mobileDevelopment);
+
+        $webDesign = (new Category())
+            ->setName('Consulting audit')
+            ->setTitle('Consulting audit')
+            ->setShortName('Consulting audit')
+            ->setSlug('consulting-audit')
+            ->setDetails('Consulting audit')
+            ->setDescription('In work we use Paint.')
+            ->setShowInServices(true)
+            ->setShowInProjects(false)
+            ->setCost('30 000');
+
+        $manager->persist($webDesign);
+
         $manager->flush();
 
         $this->addReference('category-development', $development);
-        $this->addReference('mobile-development', $mobileDevelopment);
+        $this->addReference('category-web', $webDesign);
+        $this->addReference('category-mobile', $mobileDevelopment);
     }
 
     /**
-     * Get order number
+     * Get order number.
      *
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
         return 1; // the order in which fixtures will be loaded
     }
-
 }

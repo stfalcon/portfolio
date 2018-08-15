@@ -1,20 +1,29 @@
 imports:
     - { resource: config.yml }
 
+sentry:
+    skip_capture:
+        - 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException'
+    dsn: "%sentry_dsn_host%"
+
 monolog:
     handlers:
         main:
             type:         fingers_crossed
             action_level: error
-            handler:      nested
+            handler:      grouped_main
         nested:
-            type:         stream
-            path:         "%kernel.logs_dir%/%kernel.environment%.log"
-            level:        debug
-        gelf:
-            type: service
-            id: application_default.monolog.gelf_handler
-            level: error
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+#        sentry:
+#            type:  raven
+#
+#            level: error
+#            client_id: 'sentry.client'
+        grouped_main:
+            type:    group
+            members: [nested]
 
 doctrine:
     orm:

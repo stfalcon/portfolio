@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% block header_content %}
+        {{ include('_header.html.twig') }}
+
+        {{ render(controller('StfalconBlogBundle:Search:searchPosts')) }}
+    {% endblock %}
+    {% block team_image %}{% endblock %}
+    <div class="content full-width-content">
+        {% block content_wrapper %}{% endblock %}
+    </div>
+    <footer id="footer" class="footer vcard">
+        {{ include('_footer.html.twig') }}
+    </footer>
+{% endblock body %}

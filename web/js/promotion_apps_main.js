@@ -144,11 +144,6 @@ $(window).scroll(function (e) {
                 async: false,
                 success: function (response) {
                     if (response.status == "success") {
-                        if (window.ga && window.yaCounter27048220) {
-                            ga('send', 'event', 'order', 'landing');
-                            yaCounter27048220.reachGoal('landing');
-                        }
-
                         $('#feedback-form').find('.form-pad').animate({opacity: 0}, 300).delay(formDelay).animate({opacity: 1}, 300);
                         $('#feedback-form').find('.form-success').fadeIn(300).delay(formDelay).fadeOut(300);
                         $(form).trigger('reset');
@@ -178,11 +173,6 @@ $(window).scroll(function (e) {
             async: false,
             success: function(response) {
                 if (response.result == "success") {
-                    if (window.ga && window.yaCounter27048220) {
-                        ga('send', 'event', 'order', 'landing');
-                        yaCounter27048220.reachGoal('landing');
-                    }
-
                     $directOrderForm.trigger('reset');
                     $('.file-input input').trigger('change');
                     $directOrderForm.find('.error-list').remove();
@@ -262,7 +252,7 @@ $(window).scroll(function (e) {
         $('a[href="#scroll"]').click(function () {
             var el = $(this).attr('href');
             $('html, body').animate({
-                scrollTop: $(el).offset().top + 34
+                scrollTop: $(el).offset().top
             }, 1000);
             return false;
         });
@@ -283,8 +273,9 @@ $(window).scroll(function (e) {
 
         $('a[href="#feedback-form"]').click(function () {
             var el = $(this).attr('href');
+            var headerHeight = $('.header-line').outerHeight();
             $('html, body').animate({
-                scrollTop: $(el).offset().top
+                scrollTop: $(el).offset().top - headerHeight
             }, 1000);
             return false;
         });

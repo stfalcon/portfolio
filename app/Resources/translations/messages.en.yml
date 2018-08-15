@@ -10,6 +10,7 @@ title: __title
 
 Аватарка: Avatar
 Блог: Blog
+__menu.vacancies: Careers
 Поиск: Search
 
 'Stfalcon':
@@ -56,7 +57,7 @@ title: __title
     '': 'Project does not exist.'
 
 Проекты: Projects
-
+about_us: 'About us'
 Таг: Tag
 
 'Следующий проект': 'Next project'
@@ -69,7 +70,7 @@ title: __title
 Учасники: Participants
 Фамилия: Surname
 Хмельницкий: Khmelnytskyi
-Киев: Kiev
+Киев: Kyiv
 'Чем мы занимаемся': 'What we do'
 'Читать дальше': 'Read more'
 'все статьи': 'All articles'
@@ -78,10 +79,11 @@ title: __title
 'подробно о проекте': 'project details'
 'посмотреть примеры проектов %project%': 'view examples of %project% projects'
 'проектов мы запустили к концу': 'projects we released till the end of'
-'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года': 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
+__projects_text_year: 'projects launched at the end of %year%|projects launched at the end of %year%|projects launched at the end of %year%'
+__projects_text_now: 'projects launched by now|projects launched by now|projects launched by now'
 
-'улица Заречанская 3/2': '3/2 Zarichanska street'
-'переулок Ахтырский 7': '7 Okhtyrskyi Lane'
+'улица Заречанская, 3/2': '3/2 Zarichanska street'
+'переулок Ахтырский, 7': '7 Okhtyrskyi Lane'
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
@@ -135,7 +137,7 @@ title: __title
 'Увлекательный мобильный вариант одноименной настольной игры': Fascinating mobile version of the puzzle board game
 'Двумерный аркадный шутер, оружие и враги в ассортименте': 2D arcade shooter, weapons and enemies in range
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
-'__main.we_contribution_text': 'Our contribution to the development of <a href="%link%" rel="nofollow" target="_blank">Symfony</a> PHP framework proves our extensive experience in developing web services with this framework. We actively participate in the buildout of <a href="%android_link%" rel="nofollow" target="_blank">Android</a> open source libraries and constantly update our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a> repository with new open source projects.'
+'__main.we_contribution_text': 'Our team loves open-source! </br> We create solutions for <a href="%link%" rel="nofollow" target="_blank">Symfony</a> framework,<br> <a href="%android_link%" rel="nofollow" target="_blank">Android</a> & iOS platforms and share this stuff to our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a>.'
 
 'Мы принимаем активное участие в создании библиотек для Android-разработчиков, а также постоянно добавляем новые open-source проекты в наш GitHub-репозиторий.': We actively participate in the buildout of Android open source libraries and constantly update our GitHub repository with new open source projects.
 
@@ -150,17 +152,17 @@ title: __title
 Консалтинг<br/>и аудит: Consulting<br/>and Audit
 
 проводим конференции: We organize conferences
-ведем блог: Fresh from our Blog
+Обновления в нашем блоге: Fresh from our Blog
 Участвуем в Open Source: We contribute to Open Source
 
 Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ.: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
 ІТ ивент с несколькими краткими докладами, кофе, новыми знакомствами и доброжелательной атмосферой.: IT event with several short presentations, coffee, and new acquaintances. Friendly atmosphere included.
 
-'улица Заречанская 3/2, Хмельницкий, Украина': 3/2 Zarichanska street, Khmelnytskyi, Ukraine
-'переулок Ахтырский 7, Киев, Украина': 7 Okhtyrskyi Lane, Kiev, Ukraine
+'улица Заречанская, 3/2, Хмельницкий, Украина': 3/2 Zarichanska street, Khmelnytskyi, Ukraine
+'переулок Ахтырский, 7, Киев, Украина': 7 Okhtyrskyi Lane, Kyiv, Ukraine
 Подписаться на новые записи: Subscribe for new posts
 
-'Разработка и проектирование сложных сайтов на Symfony2, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony2, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'
+'Разработка и проектирование сложных сайтов на Symfony, разработка мобильных приложений и игр. Продающий дизайн сайтов и интерфейсов. Консультации по тел.:+380 67 334-40-40': 'Development and design of complex sites on Symfony, development of mobile applications and games. Website design and interfaces that increase sales. Phone consultations. + 380 67 334-40-40'
 
 Наши приложения: Our Apps
 
@@ -173,10 +175,10 @@ title: __title
 
 '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, шаблон, который нашел своих поклонников, был разработан нами специально для <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.' : '<a href="%link%" target="_blank" title="Snowberry">Snowberry</a>, a popular template, was developed by us specifically for <a href="%link2%" target="_blank" title="Wordpress">Wordpress</a>.'
 
-'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony2.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony2 framework.'
+'Мы &mdash;&nbsp;официальный партнер <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a>, создателя фреймворка Symfony.': 'We are the affiliated partner of <a href="%link%" rel="nofollow" target="_blank">SensioLabs</a> creator of Symfony framework.'
 '__Footer.homepage.link': 'Software Development Company <a href="%homepage%">Stfalcon LLC</a>'
 'студия веб дизайна, разработки сайтов и мобильных приложений': 'web design and development company'
-Stfalcon LLC &mdash; разработки сайтов и мобильных приложений: Software Development Company Stfalcon LLC
+Stfalcon LLC &mdash; разработка сайтов и мобильных приложений: Software Development Company Stfalcon LLC
 'Есть ли смысл дальше изучать наш сайт? <br/> да, если:': 'Does it make sense to learn more about our website?<br> Yes if:'
 'Вы ищите компанию для разработки сайтов, приложений с нуля или хотите заказать экспертный консалтинг/аудит в данной сфере и, при этом, получить результат, к которому не возникнет вопросов.': 'You are looking for a company to develop sites, apps or you want to order an expert consulting / audit in this area to get the perfect result;'
 'Вам нужны нестандартные решения, выходящие за рамки шаблонов, которые предлагает рынок.': You have a dream and the others are afraid to make it true (we shall evaluate your ideas and implement them no matter what);
@@ -199,13 +201,11 @@ Cоздаем нативные мобильные приложения (боле
 Все: 'All'
 
 В работе мы используем: 'While working at projects, we use'
-Мы — официальный партнер: 'We are the affiliated partner of'
-создателя фреймворка Symfony2: 'creator of Symfony2 framework'
 Разрабатываем с использованием CMS: 'Development using CMS'
 Примеры разработки веб-сайтов: 'Examples of website development'
 Подробнее про веб-разработку: 'More about web development'
 Давайте сделаем что-то классное вместе: "Let's make something awesome together"
-Наша миссия — упрощать жизнь людей, создавая полезное и удобное программное обеспечение: "Our goal is to create useful and convenient software."
+Наша миссия — упрощать жизнь людей, создавая полезное и удобное программное обеспечение: "Our goal is to create useful and convenient software"
 'Свяжитесь с нами, и мы поможем решить ваши задачи': 'Contact us, and we will help to solve your problem'
 Примеры дизайна сайтов и интерфейсов: 'Examples of website and UI design'
 Подробнее про дизайн сайта интерфейсов: 'More about UI design'
@@ -260,17 +260,65 @@ Cоздаем нативные мобильные приложения (боле
 Благодаря интеграции приложений с социальными сетями пользователи могут легко регистрироваться и делиться информацией с друзьями: 'Users can easily register and share information with friends thanks to app integration with social media'
 Определяем способы монетизации и стратегии продвижения: 'We determine monetization options and promotion strategies'
 Наполняем игровой мир: 'We fill the game world'
-_order-web-development: 'Order a website'
-_order-web-design: 'Order a design'
-_order-mobile-development: 'Order mobile application'
-_order-game-development: 'Order a game'
-_order-consulting-audit: 'Order consulting and audit'
-_order-project: 'Order a project'
-_order-responsive: 'Order a project'
-_order-ux-ui: 'Order a project'
-_order-symfony2: 'Order a project'
-_order-ios: 'Order an app'
-_order-android: 'Order an app'
+_order-web-development: 'Contact us'
+_order-web-design: 'Contact us'
+_order-mobile-development: 'Contact us'
+_order-game-development: 'Contact us'
+_order-consulting-audit: 'Contact us'
+_order-project: 'Contact us'
+_order-responsive: 'Contact us'
+_order-ux-ui: 'Contact us'
+_order-symfony2: 'Contact us'
+_order-ios: 'Contact us'
+_order-android: 'Contact us'
 Опишите ваш проект: 'Tell us a few words about the project'
 
 Об авторе: 'About author'
+main_title: Web and mobile app development, web design company | Stfalcon.com
+main.promo.title1: Our goal is to create useful and convenient software
+main.promo.title2: Efficient Business Solutions
+main.promo.title3: Trusted by
+main.promo.title4: We offer full-cycle project development
+main.promo.title5: We support and organize
+main.promo.title2_1: Logistics
+main.promo.title2_2: Travel
+main.promo.title2_3: Healthcare
+main.promo.title2_4: E-commerce
+main.btn.title2_4: GET IN TOUCH
+main.promo.title1.desc: We are trusted partner for well-known companies and brands, our solutions efficiently serve businesses and client’s gratifying experience.
+main.promo.title2_1.desc: Transport and logistics IT solutions for your business
+main.promo.title2_2.desc: Excellent travel experience for your customers
+main.promo.title2_3.desc: Medical software beneficial for clients, doctors, and businesses
+main.promo.title2_4.desc: E-commerce services and marketplace development
+main.promo.title5_1.desc: We are regular partner of popular IT-conferences with participation of leading Ukrainian and foreign experts.
+main.promo.title5_2.desc: We hold IT-conferences with useful lectures, delicious coffee-breaks and networking in Khmelnytsky.
+main.promo.title5_3.desc: Training courses for IT-specialists in Khmelnytsky. Realize yourself in the field of Information Technology!
+main.read.story.title: Read the Story
+
+main_page.service1.title: Research and Prototyping
+main_page.service2.title: User Interface Design
+main_page.service3.title: Native Mobile Development
+main_page.service4.title: High Load Systems
+main_page.service5.title: Data Science
+main_page.service6.title: Cloud Solutions
+main_page.service7.title: QA and Testing
+main_page.service8.title: DevOps
+main_page.service9.title: Technical Support
+
+main_page.service1.description: ''
+main_page.service2.description: ''
+main_page.service3.description: ''
+main_page.service4.description: ''
+main_page.service5.description: ''
+main_page.service6.description: ''
+main_page.service7.description: ''
+main_page.service8.description: ''
+main_page.service9.description: ''
+
+__back_to_vacansy_list: Back to vacancies
+__invite_to_our_team: Welcome to our team
+__reply_to_vacancy: Reply to vacancy
+__attach_resume: Attach resume
+__before_20: up to 20 MB
+__send_text: Send
+Номер телефона: Phone number

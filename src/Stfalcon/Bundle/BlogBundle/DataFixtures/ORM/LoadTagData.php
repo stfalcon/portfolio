@@ -22,7 +22,14 @@ class LoadTagData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $symfony2 = new Tag('symfony2');
+        $kmTag = new Tag('Khmelnitsky');
+        $manager->persist($kmTag);
+        $kievTag = new Tag('Kyiv');
+        $manager->persist($kievTag);
+        $remoteTag = new Tag('remote');
+        $manager->persist($remoteTag);
+
+        $symfony2 = new Tag('symfony');
         $manager->persist($symfony2);
 
         $doctrine2 = new Tag('doctrine2');
@@ -41,6 +48,10 @@ class LoadTagData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('tag-php', $php);
         $this->addReference('tag-doctrine2', $doctrine2);
         $this->addReference('tag-symfony2', $symfony2);
+
+        $this->addReference('tag-km', $kmTag);
+        $this->addReference('tag-kiev', $kievTag);
+        $this->addReference('tag-remote', $remoteTag);
     }
 
     /**
