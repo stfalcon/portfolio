@@ -23,36 +23,36 @@
         <ul class="solutions__list">
             <li class="solutions__item">
                 {#розкоментувати після додавання лендінгів в базу #}
-                {#<a href="{{ path('page_landing', {'type':'logistics'}) }}" class="solutions__link">#}
+                <a href="{{ path('page_landing', {'type':'logistics'}) }}" class="solutions__link">
                     <img src="{{ asset('img/solutions_logistics.svg') }}" alt="" class="solutions__icon">
                     <div class="solutions__name">{{ 'main.promo.title2_1'|trans }}</div>
                     <div class="solutions__text">{{ 'main.promo.title2_1.desc'|trans }}</div>
-                    {#<img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">#}
-                {#</a>#}
+                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
+                </a>
             </li>
             <li class="solutions__item">
-                {#<a href="{{ path('page_landing', {'type':'travel'}) }}" class="solutions__link">#}
+                <a href="{{ path('page_landing', {'type':'travel'}) }}" class="solutions__link">
                     <img src="{{ asset('img/solutions_travel.svg') }}" alt="" class="solutions__icon">
                     <div class="solutions__name">{{ 'main.promo.title2_2'|trans }}</div>
                     <div class="solutions__text">{{ 'main.promo.title2_2.desc'|trans }}</div>
-                    {#<img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">#}
-                {#</a>#}
+                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
+                </a>
             </li>
             <li class="solutions__item">
-                {#<a href="#" class="solutions__link">#}
+                <a href="{{ path('page_landing', {'type':'medicine'}) }}" class="solutions__link">
                     <img src="{{ asset('img/solutions_healthcare.svg') }}" alt="" class="solutions__icon">
                     <div class="solutions__name">{{ 'main.promo.title2_3'|trans }}</div>
                     <div class="solutions__text">{{ 'main.promo.title2_3.desc'|trans }}</div>
-                    {#<img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">#}
-                {#</a>#}
+                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
+                </a>
             </li>
             <li class="solutions__item">
-                {#<a href="#" class="solutions__link">#}
+                <a href="{{ path('page_landing', {'type':'e-commerce'}) }}" class="solutions__link">
                     <img src="{{ asset('img/ecommerce.svg') }}" alt="" class="solutions__icon">
                     <div class="solutions__name">{{ 'main.promo.title2_4'|trans }}</div>
                     <div class="solutions__text">{{ 'main.promo.title2_4.desc'|trans }}</div>
-                    {#<img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">#}
-                {#</a>#}
+                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
+                </a>
             </li>
         </ul>
         <button type="button" class="hire_us_main solutions__btn home-btn home-btn--white">{{ 'main.btn.title2_4'|trans }}</button>
