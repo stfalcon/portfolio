@@ -19,3 +19,4 @@ deploy_callbacks:
         - '/etc/init.d/sphinxsearch start'
         - 'rm -rf web/uploads/video'
         - 'ln -s /stag/shared/video web/uploads/video'
+        - 'php app/console assets:install web'
