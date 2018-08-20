@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
-    <title>4EEB9787-5389-4CA5-90F3-82B17D714D63</title>
-    <desc>Created with sketchtool.</desc>
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_apps_forpersonal</title>
+    <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="medicine" transform="translate(-716.000000, -2253.000000)">
-            <g id="2" transform="translate(0.000000, 1645.000000)">
-                <g id="txt" transform="translate(390.000000, 254.000000)">
-                    <g id="Group-6" transform="translate(0.000000, 192.000000)">
-                        <g id="3-copy-3" transform="translate(326.000000, 162.000000)">
-                            <g id="ic_hotels">
-                                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
-                                <g id="Group" opacity="0.8" transform="translate(3.000000, 6.000000)">
-                                    <rect id="Rectangle-24" fill="#7C828C" x="4" y="7" width="8" height="2" rx="1"></rect>
-                                    <path d="M14.9450712,7 L23,7 C23.5522847,7 24,7.44771525 24,8 C24,8.55228475 23.5522847,9 23,9 L14.4878829,9 C14.7129668,8.36317903 14.8684128,7.69346243 14.9450712,7 Z" id="Combined-Shape" fill="#7C828C"></path>
-                                    <rect id="Rectangle-24" fill="#7C828C" x="4" y="3" width="8" height="2" rx="1"></rect>
-                                    <path d="M14.4878829,3 L17,3 C17.5522847,3 18,3.44771525 18,4 C18,4.55228475 17.5522847,5 17,5 L14.9450712,5 C14.8684128,4.30653757 14.7129668,3.63682097 14.4878829,3 Z" id="Combined-Shape" fill="#7C828C"></path>
-                                    <circle id="Oval-6" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="6" cy="6" r="6"></circle>
-                                    <rect id="Rectangle-23" fill="#7C828C" transform="translate(12.535534, 12.535534) rotate(-45.000000) translate(-12.535534, -12.535534) " x="11.5355339" y="8.53553391" width="2" height="8" rx="1"></rect>
-                                </g>
-                            </g>
-                        </g>
-                    </g>
-                </g>
+        <g id="Artboard" transform="translate(-21.000000, -17.000000)">
+            <g id="ic_hotels" transform="translate(21.000000, 17.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <path d="M14,7 L14,26 L24,26 L24,7 L14,7 Z M13,5 L25,5 C25.5522847,5 26,5.44771525 26,6 L26,27 C26,27.5522847 25.5522847,28 25,28 L13,28 C12.4477153,28 12,27.5522847 12,27 L12,6 C12,5.44771525 12.4477153,5 13,5 Z" id="Rectangle-18-Copy" fill="#7C828C" fill-rule="nonzero"></path>
+                <circle id="Oval-5" fill="#7C828C" fill-rule="nonzero" cx="19" cy="22" r="2"></circle>
+                <path d="M5,22 L5,23 C5,22.4477153 4.55228475,22 4,22 L5,22 Z M5,22 L5,3 L15,3 L15,5.14355469 L17,5.14355469 L17,2 C17,1.44771525 16.5522847,1 16,1 L4,1 C3.44771525,1 3,1.44771525 3,2 L3,23 C3,23.5522847 3.44771525,24 4,24 L12.0761719,24 L12.0761719,22 L5,22 Z M5,3 L4,3 C4.55228475,3 5,2.55228475 5,2 L5,3 Z M15,3 L15,5.14355469 L17,5.14355469 L17,2 C17,1.44771525 16.5522847,1 16,1 L4,1 C3.44771525,1 3,1.44771525 3,2 L3,23 C3,23.5522847 3.44771525,24 4,24 L12.0761719,24 L12.0761719,22 L5,22 L5,3 L15,3 Z" id="Rectangle-18-Copy" fill="#7C828C" fill-rule="nonzero"></path>
+                <circle id="Oval-5" fill="#7C828C" fill-rule="nonzero" cx="10" cy="18" r="2"></circle>
             </g>
         </g>
     </g>
