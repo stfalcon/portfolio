@@ -34,6 +34,7 @@ class JobAdmin extends Admin
                         ],
                         'description' => [
                             'label' => 'Описание',
+                            'field_type' => 'ckeditor',
                             'locale_options' => [
                                 'ru' => [
                                     'required' => true,
