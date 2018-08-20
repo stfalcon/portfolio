@@ -203,10 +203,6 @@
                     </p>
                 </div>
             </section>
-            {#<a class="read-more prev-page" href="/ru/jobs">#}
-                {#<span>Вернуться к списку вакансий</span>#}
-                {#<span>Вернуться к списку вакансий</span>#}
-            {#</a>#}
         </div>
 
         <div class="vacancy-page__sidebar">
@@ -245,75 +241,42 @@
                 </div>
             </div>
         </div>
-
-        {#{% include 'ApplicationDefaultBundle:Jobs:_jobs_header.html.twig' with {'job': job, 'linkTitle': false} %}#}
-
-        {#{% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'top'} %}#}
-
-        {#<div class="post-content">#}
-            {#{{ job.description|highlightCode|raw }}#}
-            {#{% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}#}
-
-            {#{% if app.session.flashBag.has('vacancy_send') %}#}
-                {#<div class="alert alert-success">#}
-                    {#{% for msg in app.session.flashBag.get('vacancy_send') %}#}
-                    {#<h3>{{ msg }}</h3>#}
-                    {#{% endfor %}#}
-                {#</div>#}
-            {#{% else %}#}
-            {#<section class="contacts-wrapper">#}
-                {#{% if app.session.flashBag.has('vacancy_error') %}#}
-                    {#<div class="alert alert-success">#}
-                        {#{% for msg in app.session.flashBag.get('vacancy_error') %}#}
-                            {#<div class="error-list">{{ msg }}</div>#}
-                        {#{% endfor %}#}
-                    {#</div>#}
-                {#{% endif %}#}
-                {#<div class="contacts-form-wr" id="vacancy-form">#}
-                    {#{% include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' %}#}
-                {#</div>#}
-            {#{% endif %}#}
-            {#</section>#}
-            {#<a class="read-more prev-page" href="{{ path('jobs_list') }}">#}
-                {#<span>{{ '__back_to_vacansy_list'|trans }}</span>#}
-                {#<span>{{ '__back_to_vacansy_list'|trans }}</span>#}
-            {#</a>#}
-        {#</div>#}
-
     </article>
 
-    <div class="section-cms">
-        <h3>Примеры разработки веб-сайтов</h3>
-        <ul class="project-list">
-            <li>
-                <a href="/ru/portfolio/smartseeds-ru">
-                    <img src="/media/cache/project_thumb/uploads/portfolio/projects/5af6f396a7562.jpeg" alt="SmartSeeds">
-                    <h3>SmartSeeds</h3>
-                </a>
-                <p>smartseeds, transportation, symfony, перевозка, поиск заказов</p>
-            </li>
-            <li>
-                <a href="/ru/portfolio/novaposhta-ua">
-                    <img src="/media/cache/project_thumb/uploads/portfolio/projects/5aaa48186f38d.jpeg" alt="«Нова Пошта» — Личный кабинет">
-                    <h3>«Нова Пошта» — Личный кабинет</h3>
-                </a>
-                <p>development, design</p>
-            </li>
-            <li>
-                <a href="/ru/portfolio/nic-ua">
-                    <img src="/media/cache/project_thumb/uploads/portfolio/projects/5af6ed02c3f0c.jpeg" alt="NIC.UA">
-                    <h3>NIC.UA</h3>
-                </a>
-                <p>программирование</p>
-            </li>
-            <li>
-                <a href="/ru/portfolio/npshopping-ua">
-                    <img src="/media/cache/project_thumb/uploads/portfolio/projects/5aaa48661a794.jpeg" alt="Нова Пошта Шоппинг">
-                    <h3>Нова Пошта Шоппинг</h3>
-                </a>
-                <p>development, design</p>
-            </li>
-        </ul>
+    <div class="services-tabs">
+        <div class="section-cms">
+            <h3>Примеры разработки веб-сайтов</h3>
+            <ul class="project-list">
+                <li>
+                    <a href="/ru/portfolio/smartseeds-ru">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5af6f396a7562.jpeg" alt="SmartSeeds">
+                        <h3>SmartSeeds</h3>
+                    </a>
+                    <p>smartseeds, transportation, symfony, перевозка, поиск заказов</p>
+                </li>
+                <li>
+                    <a href="/ru/portfolio/novaposhta-ua">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5aaa48186f38d.jpeg" alt="«Нова Пошта» — Личный кабинет">
+                        <h3>«Нова Пошта» — Личный кабинет</h3>
+                    </a>
+                    <p>development, design</p>
+                </li>
+                <li>
+                    <a href="/ru/portfolio/nic-ua">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5af6ed02c3f0c.jpeg" alt="NIC.UA">
+                        <h3>NIC.UA</h3>
+                    </a>
+                    <p>программирование</p>
+                </li>
+                <li>
+                    <a href="/ru/portfolio/npshopping-ua">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5aaa48661a794.jpeg" alt="Нова Пошта Шоппинг">
+                        <h3>Нова Пошта Шоппинг</h3>
+                    </a>
+                    <p>development, design</p>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="blog-post post-content vacancy-page">

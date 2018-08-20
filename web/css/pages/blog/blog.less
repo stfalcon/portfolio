@@ -388,7 +388,7 @@
         padding: 5px 5px 6px 8px;
       }
       &.prev-page {
-        right: -14px;
+        //right: -14px;
 
         span:first-child {
           display: none;
@@ -1432,11 +1432,24 @@
   &__content {
     float: left;
     width: 540px;
+    margin-bottom: 80px;
+
+    &:after {
+      display: none;
+    }
+
+    @media (max-width: 572px) {
+      width: 100%;
+    }
   }
 
   &__sidebar {
     float: right;
     width: 210px;
+
+    @media (max-width: 1023px) {
+      display: none;
+    }
   }
 
   .contacts-wrapper {
@@ -1444,16 +1457,32 @@
     overflow: visible;
     margin-left: 0;
     margin-right: 0;
+    //margin-bottom: 80px;
 
     .contacts-person {
       position: absolute;
       top: 40px;
       left: 468px;
-      width: 264px;
+      width: 20vw;
+      max-width: 264px;
+
+      @media (max-width: 1023px) {
+        width: 30vw;
+      }
+
+      @media (max-width: 767px) {
+        position: static;
+        width: 100%;
+        margin-top: 52px;
+      }
     }
 
     .contacts-form-wr {
       width: 432px;
+
+      @media (max-width: 462px) {
+        width: auto;
+      }
     }
   }
 
@@ -1462,8 +1491,10 @@
   }
 
   .btn-line .btn {
-    margin-top: 22px;
-    padding: 0 8px;
+    display: block;
+    float: none;
+    margin: 0;
+    //padding: 0 8px;
     width: auto;
   }
 
@@ -1474,6 +1505,12 @@
   .prev-page {
     margin-top: 54px;
   }
+
+  @media (max-width: 767px) {
+    .contacts-wrapper .contacts-form-wr {
+      float: none;
+    }
+  }
 }
 
 
@@ -1482,7 +1519,7 @@
 
   &__item {
     margin-right: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 
     &:last-child {
       margin-right: 0;
