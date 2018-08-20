@@ -127,6 +127,15 @@
       color: #FFFFFF;
       opacity: 0.8;
     }
+
+    .land-description__link--glassy {
+      color: #FFFFFF;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: .9;
+      }
+    }
   }
 
   &__land-text-list {
@@ -143,6 +152,13 @@
 
     &:hover {
       color: #ed002d;
+    }
+
+    &--glassy {
+      &:hover {
+        color: #ffffff;
+        opacity: 1;
+      }
     }
   }
 }
@@ -198,8 +214,7 @@
     align-items: center;
 
     .land-description {
-      max-width: 640px;
-      padding-right: 26px;
+      max-width: 600px;
     }
   }
 
