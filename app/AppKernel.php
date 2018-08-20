@@ -64,6 +64,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['prod'], true)) {
