@@ -8,7 +8,7 @@
         <g id="Artboard-Copy-2" transform="translate(-704.000000, -243.000000)">
             <g id="ic_geo" transform="translate(704.000000, 243.000000)">
                 <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
-                <g id="Group-6" transform="translate(3.000000, 3.000000)">
+                <g id="Group-6" opacity="0.6" transform="translate(3.000000, 3.000000)">
                     <circle id="Oval" stroke="#556070" stroke-width="2" cx="11" cy="11" r="11"></circle>
                     <circle id="Oval" stroke="#556070" stroke-width="2" cx="11" cy="11" r="5"></circle>
                     <circle id="Oval" fill="#556070" cx="11" cy="11" r="2"></circle>
