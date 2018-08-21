@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_geo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="Artboard-Copy-2" transform="translate(-704.000000, -243.000000)">
+            <g id="ic_geo" transform="translate(704.000000, 243.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <g id="Group-6" transform="translate(3.000000, 3.000000)">
+                    <circle id="Oval" stroke="#556070" stroke-width="2" cx="11" cy="11" r="11"></circle>
+                    <circle id="Oval" stroke="#556070" stroke-width="2" cx="11" cy="11" r="5"></circle>
+                    <circle id="Oval" fill="#556070" cx="11" cy="11" r="2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

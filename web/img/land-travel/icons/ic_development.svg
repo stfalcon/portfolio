@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_development</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy" transform="translate(-326.000000, -292.000000)">
+            <g id="ic_sales_copy-copy" transform="translate(326.000000, 292.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <g id="Group" opacity="0.8" transform="translate(2.000000, 4.000000)">
+                    <rect id="Rectangle-5" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="0" y="0" width="23" height="15.9230769" rx="2"></rect>
+                    <polyline id="Rectangle-9" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="8.84615385 18.5769231 8.84615385 15.9230769 8.84615385 15.9230769 14.1538462 15.9230769 14.1538462 18.5769231"></polyline>
+                    <rect id="Rectangle-11" fill="#7C828C" x="5.30769231" y="20.3461538" width="12.3846154" height="1.76923077" rx="0.884615385"></rect>
+                    <rect id="Rectangle-2" fill="#7C828C" fill-rule="nonzero" x="2.65384615" y="3.53846154" width="16.8076923" height="1.76923077"></rect>
+                    <rect id="Rectangle-2" fill="#7C828C" fill-rule="nonzero" x="2.65384615" y="7.07692308" width="7.07692308" height="1.76923077"></rect>
+                    <rect id="Rectangle-2" fill="#7C828C" fill-rule="nonzero" x="2.65384615" y="10.6153846" width="14.1538462" height="1.76923077"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
