@@ -1718,7 +1718,7 @@ body {
   font-weight: 500;
   padding: 0px 15px;
   text-transform: uppercase;
-  border-radius: 4px 4px 0px 0px;
+  border-radius: 4px 4px 0 0;
   color: #ffffff;
   background-color: #ea0d34;
   border: none;
@@ -1726,12 +1726,14 @@ body {
   cursor: pointer;
   outline: none;
   position: fixed;
-  right: -63px;
+  right: 0;
   top: 50%;
-  -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg)translateY(-50%) translateX(50%);
+  transform: rotate(-90deg)translateY(-50%) translateX(50%);
+  transform-origin: right;
   z-index: 998;
 }
+
 .hire_us:active {
   outline: none;
 }
@@ -1751,11 +1753,6 @@ body {
   .hire_us {
     top: 30%;
   }
-}
-
-.hire_us.en-btn {
-  right: -27px;
-  padding: 0px 20px;
 }
 
 .hire_us-mob{

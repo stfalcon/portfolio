@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_stock</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy-2" transform="translate(-324.000000, -761.000000)">
+            <g id="ic_hotels-copy-3" transform="translate(324.000000, 761.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <g id="Group-8" opacity="0.8" transform="translate(3.000000, 3.000000)" fill-rule="nonzero">
+                    <g id="Group-7" transform="translate(0.000000, 11.000000)">
+                        <path d="M1,0 L11,0 L11,11 L1,11 C0.44771525,11 6.76353751e-17,10.5522847 0,10 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z" id="Rectangle-5" stroke="#FFFFFF" stroke-width="2"></path>
+                        <rect id="Rectangle-6" fill="#FFFFFF" x="4.4" y="0" width="2.2" height="3.3"></rect>
+                    </g>
+                    <g id="Group-7" transform="translate(11.000000, 11.000000)">
+                        <path d="M0,0 L10,0 C10.5522847,-1.01453063e-16 11,0.44771525 11,1 L11,10 C11,10.5522847 10.5522847,11 10,11 L0,11 L0,0 Z" id="Rectangle-5" stroke="#FFFFFF" stroke-width="2"></path>
+                        <rect id="Rectangle-6" fill="#FFFFFF" x="4.4" y="0" width="2.2" height="3.3"></rect>
+                    </g>
+                    <g id="Group-7" transform="translate(5.500000, 0.000000)">
+                        <path d="M1,0 L10,0 C10.5522847,-1.01453063e-16 11,0.44771525 11,1 L11,11 L0,11 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z" id="Rectangle-5" stroke="#FFFFFF" stroke-width="2"></path>
+                        <rect id="Rectangle-6" fill="#FFFFFF" x="4.4" y="0" width="2.2" height="3.3"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
