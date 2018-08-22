@@ -6,7 +6,7 @@
 {% endif %}
 <a href="{% if slug %}{{ path('portfolio_category_project', { 'slug': project.slug }) }}{% endif %}">
     {% if project.imageFile is not null %}
-        <img src="{{ vich_uploader_asset(project, 'imageFile')|apply_filter('portfolio_large') }}" alt="{{ project.name }}" />
+        <img src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="{{ project.name }}" />
     {% endif %}
     <span class="project-info">
         <span class="project-info-text">
