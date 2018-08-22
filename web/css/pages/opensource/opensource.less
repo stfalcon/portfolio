@@ -1,5 +1,4 @@
 .opensource {
-  font-family: 'museo_sans_cyrl';
 
   &__title {
     text-align: center;
@@ -12,10 +11,6 @@
     margin: 0 auto;
   }
 
-  &__pagination {
-    font-family: Helvetica, Arial, sans-serif;
-  }
-
   &__sidebar {
     flex-shrink: 0;
     width: 182px;
@@ -25,6 +20,7 @@
   &__opensource-list {
     margin-bottom: 30px;
     flex: 1;
+    max-width: 734px;
   }
 }
 
@@ -102,21 +98,30 @@
     color: #2C373C;
   }
 
+
+  &__categories {
+    display: inline-block;
+    margin-left: 14px;
+  }
+
   &__category {
+    font-family: Helvetica, Arial, sans-serif;
     position: relative;
     bottom: 3px;
     color: #8b8b8c;
     font-size: 11px;
+    font-weight: 700;
     border-radius: 1px;
-    background-color: #e4e4e4;
-    padding: 0 4px;
-    margin-left: 14px;
+    background-color: #e8e8e8;
+    padding: 2px 4px;
+    margin-right: 7px;
   }
 
   &__rating {
     flex-shrink: 0;
     font-size: 16px;
     line-height: 29px;
+    font-weight: 700;
     color: #A3ACB0;
     margin-left: auto;
   }
@@ -130,7 +135,6 @@
   }
 
   &__text {
-    font-family: Helvetica, Arial, sans-serif;
     color: #3C4F57;
     font-size: 16px;
     line-height: 22px;
@@ -155,7 +159,7 @@
   }
 }
 
-@media (max-width: 769px) {
+@media (max-width: 1023px) {
   .opensource {
     &__container {
       flex-direction: column;
@@ -174,6 +178,10 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+
+    &__opensource-list {
+      margin: 0 auto 30px;
+    }
   }
 
 
@@ -183,9 +191,10 @@
       background: none;
       padding: 0 31px;
       margin-bottom: 10px;
+      border: 1px solid transparent;
 
       &--active {
-        border: 1px solid #D7C76E;
+        border-color: #D7C76E;
       }
 
     &:hover {
@@ -195,9 +204,19 @@
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 768px) {
   .opensource-item {
       flex-direction: column;
+
+    &__top {
+      align-items: flex-start;
+    }
+
+    &__categories {
+      display: block;
+      margin-left: 0;
+      margin-top: 5px;
+    }
 
     &__photo {
       width: 100%;

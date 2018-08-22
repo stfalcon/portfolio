@@ -599,6 +599,36 @@ $(function () {
     });
 
     autosize(document.querySelectorAll('#order_promotion_message'));
+
+
+
+    // filter opensource
+
+        $('.sidebar-menu__link').click(function(e) {
+            e.preventDefault();
+            var ourClass = $(this).attr('data-filter-link');
+            $('sidebar-menu__item').addClass('www');
+
+            console.log(ourClass)
+            //
+            // // reset the active class on all the buttons
+            // $('#filterOptions li').removeClass('active');
+            // // update the active state on our clicked button
+            // $(this).parent().addClass('active');
+            //
+            // if(ourClass == 'all') {
+            //     // show all our items
+            //     $('#ourHolder').children('div.item').show();
+            // }
+            // else {
+            //     // hide all elements that don't share ourClass
+            //     $('#ourHolder').children('div:not(.' + ourClass + ')').hide();
+            //     // show all elements that do share ourClass
+            //     $('#ourHolder').children('div.' + ourClass).show();
+            // }
+            // return false;
+        });
+
 });
 
 
