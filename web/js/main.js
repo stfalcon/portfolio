@@ -604,30 +604,28 @@ $(function () {
 
     // filter opensource
 
-        $('.sidebar-menu__link').click(function(e) {
-            e.preventDefault();
-            var ourClass = $(this).attr('data-filter-link');
-            $('sidebar-menu__item').addClass('www');
+    $('.sidebar-menu__link').click(function(e) {
+        e.preventDefault();
+        var ourClass = $(this).attr('data-filter-el');
 
-            console.log(ourClass)
-            //
-            // // reset the active class on all the buttons
-            // $('#filterOptions li').removeClass('active');
-            // // update the active state on our clicked button
-            // $(this).parent().addClass('active');
-            //
-            // if(ourClass == 'all') {
-            //     // show all our items
-            //     $('#ourHolder').children('div.item').show();
-            // }
-            // else {
-            //     // hide all elements that don't share ourClass
-            //     $('#ourHolder').children('div:not(.' + ourClass + ')').hide();
-            //     // show all elements that do share ourClass
-            //     $('#ourHolder').children('div.' + ourClass).show();
-            // }
-            // return false;
-        });
+
+        $('.sidebar-menu__link').removeClass('sidebar-menu__link--active');
+        $(this).addClass('sidebar-menu__link--active');
+
+        if(ourClass == 'filter-all') {
+            $('.opensource-list').children('.opensource-item').hide();
+            $('.opensource-list').children('.opensource-item').fadeIn();
+        }  else if (ourClass == 'filter-android') {
+            $('.opensource-list').children('article.' + ourClass).hide();
+            $('.opensource-list').children('article.' + ourClass).fadeIn();
+        }
+        else {
+            $('.opensource-list').children('article:not(.' + ourClass + ')').hide();
+            $('.opensource-list').children('article.' + ourClass).hide();
+            $('.opensource-list').children('article.' + ourClass).fadeIn();
+        }
+        return false;
+    });
 
 });
 
