@@ -4,14 +4,9 @@
         {% set slug = project.categories.first.slug %}
     {% endif %}
 {% endif %}
-{% if key is defined and key == 0 %}
-    {% set filter_name = 'portfolio_large' %}
-{% else %}
-    {% set filter_name = 'portfolio_small' %}
-{% endif %}
 <a href="{% if slug %}{{ path('portfolio_category_project', { 'slug': project.slug }) }}{% endif %}">
     {% if project.imageFile is not null %}
-        <img src="{{ vich_uploader_asset(project, 'imageFile')|apply_filter(filter_name) }}" alt="{{ project.name }}" />
+        <img src="{{ vich_uploader_asset(project, 'imageFile')|apply_filter('portfolio_large') }}" alt="{{ project.name }}" />
     {% endif %}
     <span class="project-info">
         <span class="project-info-text">
