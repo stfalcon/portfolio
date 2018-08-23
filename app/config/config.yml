@@ -189,7 +189,7 @@ avalanche_imagine:
             options: { size: [48, 48], mode: outbound }
         portfolio_large:
             type:    thumbnail
-            options: { size: [1358, 764], mode: outbound }
+            options: { size: [1358, 764], mode: outbound, quality: 80 }
         portfolio_small:
             type:    thumbnail
             options: { size: [674, 379], mode: outbound }
