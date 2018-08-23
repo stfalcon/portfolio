@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_manychanells</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy-2" transform="translate(-331.000000, -271.000000)">
+            <g id="ic_hotels-copy" transform="translate(331.000000, 271.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <g id="Group" opacity="0.8" transform="translate(13.256303, 14.256303) rotate(90.000000) translate(-13.256303, -14.256303) translate(0.256303, 1.256303)" stroke="#7C828C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <g transform="translate(8.756303, 0.000000)" id="Shape">
+                        <polyline points="11.4512605 0.443697479 0.138655462 12.7563025 11.4512605 25.0689076"></polyline>
+                        <polyline points="7.04201681 25.3462185 11.7285714 25.3462185 11.7285714 20.6596639"></polyline>
+                        <polyline points="13.6386555 9.45630252 16.8554622 12.8394958 13.4722689 16.0563025"></polyline>
+                        <polyline points="7.04201681 0.166386555 11.7285714 0.166386555 11.7285714 4.85294118"></polyline>
+                    </g>
+                    <path d="M24.3067227,12.7563025 L5.07478992,12.7563025" id="Shape"></path>
+                    <circle id="Oval" cx="2.52352941" cy="12.7563025" r="2.41260504"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

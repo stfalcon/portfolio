@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_forwarding</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy-2" transform="translate(-21.000000, -760.000000)">
+            <g id="ic_hotels-copy-5" transform="translate(21.000000, 760.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <g id="Group-7" opacity="0.8" transform="translate(4.000000, 4.000000)" fill-rule="nonzero">
+                    <rect id="Rectangle-5" stroke="#FFFFFF" stroke-width="2" x="0" y="0" width="20" height="20" rx="1"></rect>
+                    <rect id="Rectangle-6" fill="#FFFFFF" x="8" y="0" width="4" height="6"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

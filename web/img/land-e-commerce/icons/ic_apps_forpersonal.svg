@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_apps_forpersonal</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-21.000000, -17.000000)">
+            <g id="ic_hotels" transform="translate(21.000000, 17.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <g id="Group-4" opacity="0.8" transform="translate(3.000000, 1.000000)" fill="#7C828C" fill-rule="nonzero">
+                    <path d="M11,6 L11,25 L21,25 L21,6 L11,6 Z M10,4 L22,4 C22.5522847,4 23,4.44771525 23,5 L23,26 C23,26.5522847 22.5522847,27 22,27 L10,27 C9.44771525,27 9,26.5522847 9,26 L9,5 C9,4.44771525 9.44771525,4 10,4 Z" id="Rectangle-18-Copy"></path>
+                    <circle id="Oval-5" cx="16" cy="21" r="2"></circle>
+                    <path d="M2,21 L2,22 C2,21.4477153 1.55228475,21 1,21 L2,21 Z M2,21 L2,2 L12,2 L12,4.14355469 L14,4.14355469 L14,1 C14,0.44771525 13.5522847,-1.11022302e-16 13,0 L1,0 C0.44771525,0 0,0.44771525 0,1 L0,22 C0,22.5522847 0.44771525,23 1,23 L9.07617188,23 L9.07617188,21 L2,21 Z M2,2 L1,2 C1.55228475,2 2,1.55228475 2,1 L2,2 Z M12,2 L12,4.14355469 L14,4.14355469 L14,1 C14,0.44771525 13.5522847,-1.11022302e-16 13,0 L1,0 C0.44771525,0 0,0.44771525 0,1 L0,22 C0,22.5522847 0.44771525,23 1,23 L9.07617188,23 L9.07617188,21 L2,21 L2,2 L12,2 Z" id="Rectangle-18-Copy"></path>
+                    <circle id="Oval-5" cx="7" cy="17" r="2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

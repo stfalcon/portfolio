@@ -402,13 +402,18 @@
 
 .section-cms {
   text-align: center;
+  padding-bottom: 68px;
   h3 {
     font-family: 'museo_sans_cyrl';
     font-size: 1.3rem;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 40px 15px 0px 15px;
+    padding: 0 15px 0;
     margin-bottom: 35px;
+  }
+
+  & > h3 {
+    padding-top: 106px;
   }
 
   ul.cms-list {
@@ -452,6 +457,23 @@
       &:last-child {
         margin: 0;
       }
+
+      &:only-child {
+        margin: 0 0.88% 33px 0;
+      }
+
+      @media (max-width: 980px) {
+        width: 30.2558%;
+      }
+
+      @media (max-width: 800px) {
+        width: 43.2558%;
+      }
+
+      @media (max-width: 480px) {
+        width: 100%;
+      }
+
       a {
         text-decoration: none;
         color: #2c373c;
