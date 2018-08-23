@@ -86,6 +86,30 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route(path="/get-projects-stars", name="get_projects_stars",
+     *     options = {"expose"=true},
+     *     condition="request.isXmlHttpRequest()")
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function getProjectsStars(Request $request)
+    {
+        $projects = $request->get('names');
+        if (count($projects) === 0) {
+            return new JsonResponse(['error' => true]);
+        }
+//        $projects = array_flip($projects);
+        $resultProjects = [];
+//        foreach ($projects as $projectRepoName => $project) {
+//            $projects[$projectRepoName] = $this->get('app.service.git_hub_api_service')->getProjectStarsCountByName($projectRepoName);
+//        }
+
+        return new JsonResponse(['data' => $resultProjects]);
+    }
+
+    /**
      * Contacts page.
      *
      * @param Request $request Request
