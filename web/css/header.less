@@ -143,14 +143,22 @@
   }
 }
 
+@media (max-height: 638px) {
+  .main-nav {
+
+    .main-nav__list {
+      position: static;
+    }
+  }
+}
+
 @media (max-width: 1023px) {
   .main-nav {
     overflow: scroll;
 
     .main-nav__list {
+      padding: 50px;
       overflow: scroll;
-      padding-top: 172px;
-      padding-bottom: 50px;
       height: auto;
     }
   }
