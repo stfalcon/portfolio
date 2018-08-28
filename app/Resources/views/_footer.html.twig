@@ -53,53 +53,115 @@
 <div class="footer-top clearfix">
     <a class="footer-logo" href="/"></a>
     <nav class="main-nav footer-nav">
-        {{ knp_menu_render('main') }}
-    </nav>
-    <nav class="services-nav">
         <ul>
-            <li>
-                <a href="{{ path('portfolio_categories_list', {'slug': 'web-development'}) }}">{{ "Разработка веб-сайтов" | trans() }}</a>
+            <li class="first">
+                <a href="/en/portfolio">Projects</a>
             </li>
             <li>
-                <a href="{{ path('portfolio_categories_list', {'slug': 'web-design'}) }}">{{ "Дизайн сайтов и интерфейсов" | trans() }}</a>
+                <a href="/en/services/web-development">Services</a>
             </li>
             <li>
-                <a href="{{ path('portfolio_categories_list', {'slug': 'mobile-development'}) }}">{{ "Мобильная разработка" | trans() }}</a>
+                <a href="/en/team">Team</a>
+            </li>
+            <li>
+                <a href="/en/blog">Blog</a>
+            </li>
+            <li>
+                <a href="/en/jobs">Careers</a>
+            </li>
+            <li>
+                <a href="/en/contacts">Contacts</a>
+            </li>
+            <li>
+                <a href="/en/contacts">Careers</a>
+            </li>
+            <li>
+                <a href="/en/contacts">Contacts</a>
             </li>
         </ul>
     </nav>
-    <section class="contacts">
-        <ul class="contact-list">
-            <li>
-                <span>{{ 'Позвонить'|trans }}:</span>
-                <a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
-            </li>
-            <li class="skype-wrap">
-                <span>{{ 'Skype'|trans() }}:</span>
-                <a href="skype:stfalcon.sales?chat" class="skype">stfalcon.sales</a>
-            </li>
-            <li class="write-to">
-                <span>{{ 'Написать'|trans() }}:</span>
-                <a href="mailto:info@stfalcon.com" class="email">info@stfalcon.com</a>
-            </li>
-            <li class="address">
-                <span>{{ "Зайти в гости" | trans() }}:</span>
-                <span class="adress">{{ "улица Заречанская, 3/2, Хмельницкий, Украина"|trans() }}</span>
-                <span class="adress">{{ "переулок Ахтырский, 7, Киев, Украина"|trans() }}</span>
-            </li>
-            <li>
-                <ul class="socials-links">
-                    <li><a href="https://www.facebook.com/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-facebook"></i></a></li>
-                    <li><a href="https://twitter.com/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-twitter"></i></a></li>
-                    <li><a href="https://www.linkedin.com/company-beta/2044170/" rel="nofollow" target="_blank"><i class="icon icon-linkedin icon-linkedin--dark"></i></a></li>
-                    <li><a href="https://www.youtube.com/user/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-youtube"></i></a></li>
-                    <li><a href="https://medium.com/@stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-medium"></i></a></li>
-                    <li><a href="https://github.com/stfalcon-studio" rel="nofollow" target="_blank"><i class="icon icon-github"></i></a></li>
-                </ul>
-            </li>
-        </ul>
-    </section>
-    {{ include('::_social_links.html.twig') }}
+    <div class="contacts-content">
+        <nav class="services-nav">
+            <ul>
+                <li>
+                    <a href="{{ path('portfolio_categories_list', {'slug': 'web-development'}) }}">{{ "Разработка веб-сайтов" | trans() }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('portfolio_categories_list', {'slug': 'web-design'}) }}">{{ "Дизайн сайтов и интерфейсов" | trans() }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('portfolio_categories_list', {'slug': 'mobile-development'}) }}">{{ "Мобильная разработка" | trans() }}</a>
+                </li>
+            </ul>
+        </nav>
+        <section class="contacts">
+            <ul class="contact-list">
+                <li>
+                    <span>{{ 'Позвонить'|trans }}:</span>
+                    <a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
+                </li>
+                <li class="skype-wrap">
+                    <span>{{ 'Skype'|trans() }}:</span>
+                    <a href="skype:stfalcon.sales?chat" class="skype">stfalcon.sales</a>
+                </li>
+                <li class="write-to">
+                    <span>{{ 'Написать'|trans() }}:</span>
+                    <a href="mailto:info@stfalcon.com" class="email">info@stfalcon.com</a>
+                </li>
+                <li class="address">
+                    <span>{{ "Зайти в гости" | trans() }}:</span>
+                    <span class="adress">{{ "улица Заречанская, 3/2, Хмельницкий, Украина"|trans() }}</span>
+                    <span class="adress">{{ "переулок Ахтырский, 7, Киев, Украина"|trans() }}</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <div class="contacts-content">
+        <nav class="services-nav">
+            <ul>
+                <li>
+                    <a href="#">Logistics</a>
+                </li>
+                <li>
+                    <a href="#">Travel</a>
+                </li>
+                <li>
+                    <a href="#">Healthcare</a>
+                </li>
+                <li>
+                    <a href="#">E-commerce</a>
+                </li>
+            </ul>
+        </nav>
+        <section class="contacts">
+            <ul class="contact-list">
+                <li>
+                    <a class="home-btn home-btn--md home-btn--dark home-btn--mob" target="_blank" href="/en/promotion/show-pdf/About_Stfalcon_2018.pdf">About us</a>
+                </li>
+                <li>
+                    <ul class="socials-links">
+                        <li class="socials-links__item"><a href="https://www.facebook.com/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-facebook"></i></a></li>
+                        <li class="socials-links__item"><a href="https://twitter.com/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-twitter"></i></a></li>
+                        <li class="socials-links__item"><a href="https://www.linkedin.com/company-beta/2044170/" rel="nofollow" target="_blank"><i class="icon icon-linkedin icon-linkedin--dark"></i></a></li>
+                        <li class="socials-links__item"><a href="https://www.youtube.com/user/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-youtube"></i></a></li>
+                        <li class="socials-links__item"><a href="https://medium.com/@stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-medium"></i></a></li>
+                        <li class="socials-links__item"><a href="https://github.com/stfalcon-studio" rel="nofollow" target="_blank"><i class="icon icon-github"></i></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </div>
+    {#{{ include('::_social_links.html.twig') }}#}
+
+    {#<ul class="socials-links">#}
+        {#<li class="socials-links__item"><a href="https://www.facebook.com/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-facebook"></i></a></li>#}
+        {#<li class="socials-links__item"><a href="https://twitter.com/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-twitter"></i></a></li>#}
+        {#<li class="socials-links__item"><a href="https://www.linkedin.com/company-beta/2044170/" rel="nofollow" target="_blank"><i class="icon icon-linkedin icon-linkedin--dark"></i></a></li>#}
+        {#<li class="socials-links__item"><a href="https://www.youtube.com/user/stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-youtube"></i></a></li>#}
+        {#<li class="socials-links__item"><a href="https://medium.com/@stfalconcom" rel="nofollow" target="_blank"><i class="icon icon-medium"></i></a></li>#}
+        {#<li class="socials-links__item"><a href="https://github.com/stfalcon-studio" rel="nofollow" target="_blank"><i class="icon icon-github"></i></a></li>#}
+    {#</ul>#}
+
 </div>
 <div class="copyright-cnt">
     <div class="copyright">
