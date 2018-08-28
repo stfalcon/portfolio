@@ -1956,7 +1956,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   padding: 30px 36px 0 35px;
   color: #fff;
   background: #1E2528;
-  text-align: center;
   font-family: 'museo_sans_cyrl', sans-serif;
 
   a {
@@ -1968,21 +1967,21 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 .footer-top {
   position: relative;
-  display: inline-block;
-  text-align: left;
 }
 
 .footer-nav {
-  max-width: 80px;
+  //max-width: 80px;
   float: left;
-  margin: 0 67px 0 0;
+  width: 15%;
+  //margin: 0 67px 0 0;
+  margin: 0;
   overflow: hidden;
 
   li {
     float: none;
     padding: 0;
     margin-right: 0;
-    margin-bottom: 15px;
+    margin-bottom: 17px;
 
     &:last-child {
       margin-bottom: 0;
@@ -1999,9 +1998,10 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 .services-nav {
   float: left;
-  max-width: 215px;
-  min-width: 130px;
-  margin-right: 69px;
+  width: 30%;
+  //max-width: 215px;
+  //min-width: 130px;
+  //margin-right: 69px;
 
   li {
     margin-bottom: 15px;
@@ -2021,6 +2021,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 }
 
 .contacts {
+  width: 70%;
   float: left;
   margin-top: -3px;
 }
@@ -2030,10 +2031,11 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   line-height: 1.5;
 
   li {
+    width: 50%;
     float: left;
-    margin-right: 73px;
+    //margin-right: 73px;
     min-width: 135px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
     span {
       display: block;
@@ -2097,11 +2099,18 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 .footer .contacts-content {
   overflow: hidden;
+  width: 65%;
 }
 
 @media (max-width: 826px) {
   .footer .contacts-content {
     float: left;
+  }
+}
+
+@media (max-width: 1230px){
+  .footer .contacts-content {
+    width: 85%;
   }
 }
 
@@ -2179,9 +2188,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
   .footer-nav {
     margin-bottom: 34px;
-  }
-  .copyright {
-
   }
 }
 
