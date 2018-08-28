@@ -408,6 +408,10 @@
   .header .languages {
     ul {
       width: 186px;
+
+      a:hover {
+        color: @link-hover-color;
+      }
     }
 
     .active a {
@@ -685,11 +689,6 @@
       display: block;
     }
   }
-  //.open-languages-nav {
-  //  .header .languages {
-  //    display: block;
-  //  }
-  //}
   .show-mobile-nav {
     display: block;
   }
@@ -713,19 +712,11 @@
 }
 
 @media (max-width: 1100px) {
-  //.open-main-nav {
-  //  .header .main-nav {
-  //    display: block;
-  //  }
-  //}
   .open-languages-nav {
     .header .languages {
       display: block;
     }
   }
-  //.show-mobile-nav {
-  //  display: block;
-  //}
 }
 
 @media (max-width: 612px) {
