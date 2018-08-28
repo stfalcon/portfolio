@@ -27,9 +27,6 @@
             </aside>
             <div class="opensource-list opensource__opensource-list">
 
-                <!--ANDROID-->
-                <!--ChatKit-->
-
                 <article class="opensource-item filter-android">
                     <div class="opensource-item__photo">
                         <img class="opensource-item__img" src="{{ asset('img/opensource-img/chatkit.png') }}" alt="">
@@ -42,7 +39,9 @@
                                     <span class="opensource-item__category">Android</span>
                                 </div>
                             </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>2112</div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/ChatKit'} %}
+
                         </div>
                         <div class="opensource-item__text">Android library. Flexible components for chat UI implementation with flexible possibilities for styling, customizing and data management.
                         </div>
@@ -53,9 +52,6 @@
                         </div>
                     </div>
                 </article>
-
-                <!--/ChatKit-->
-                <!--FrescoImageViewer-->
 
                 <article class="opensource-item filter-android">
                     <div class="opensource-item__photo">
@@ -69,7 +65,8 @@
                                     <span class="opensource-item__category">Android</span>
                                 </div>
                                 </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>1542</div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/FrescoImageViewer'} %}
                         </div>
                         <div class="opensource-item__text">Customizable Android full screen image viewer for Fresco library supporting "pinch to zoom" and "swipe to dismiss" gestures.
                         </div>
@@ -80,9 +77,6 @@
                         </div>
                     </div>
                 </article>
-
-                <!--/FrescoImageViewer-->
-                <!--SmsVerifyCatcher-->
 
                 <article class="opensource-item filter-android">
                     <div class="opensource-item__photo">
@@ -96,7 +90,8 @@
                                     <span class="opensource-item__category">Android</span>
                                 </div>
                                 </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>585</div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/SmsVerifyCatcher'} %}
                         </div>
                         <div class="opensource-item__text">Android library for phone number verification feature in your app. Automatically copies verification code from SMS right into the app.
                         </div>
@@ -106,9 +101,6 @@
                         </div>
                     </div>
                 </article>
-
-                <!--/SmsVerifyCatcher-->
-                <!--MultiImageView-->
 
                 <article class="opensource-item filter-android">
                     <div class="opensource-item__photo">
@@ -122,7 +114,8 @@
                                     <span class="opensource-item__category">Android</span>
                                 </div>
                             </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>315</div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/MultiImageView'} %}
                         </div>
                         <div class="opensource-item__text">Android library to display a few images in one ImageView like avatar of group chat.
                         </div>
@@ -132,167 +125,6 @@
                         </div>
                     </div>
                 </article>
-
-                <!--/MultiImageView-->
-                <!--UniversalPickerDialog-->
-
-                <article class="opensource-item filter-android">
-                    <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/pickerdialog.png') }}" alt="">
-                    </div>
-                    <div class="opensource-item__description">
-                        <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="UniversalPickerDialog">UniversalPickerDialog
-                                <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">Java</span>
-                                    <span class="opensource-item__category">Android</span>
-                                </div>
-                                </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>118</div>
-                        </div>
-                        <div class="opensource-item__text">Android dialog with auto generated pickers inside, which depends on count of datasets provided.
-                        </div>
-                        <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon-studio/UniversalPickerDialog" class="opensource-item__link">github</a>
-                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!--/UniversalPickerDialog-->
-                <!--ContentManager-->
-
-                <article class="opensource-item filter-android">
-                    <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/java.png') }}" alt="">
-                    </div>
-                    <div class="opensource-item__description">
-                        <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="ContentManager">ContentManager
-                                <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">Java</span>
-                                    <span class="opensource-item__category">Android</span>
-                                </div>
-                            </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>102</div>
-                        </div>
-                        <div class="opensource-item__text">Android library for getting photo or video from a device gallery, cloud or camera. Working with Samsung devices.
-                        </div>
-                        <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon-studio/ContentManager" class="opensource-item__link">github</a>
-                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!--/ContentManager-->
-                <!--SocialAuthHelper-->
-
-                <article class="opensource-item filter-android">
-                    <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/java.png') }}" alt="">
-                    </div>
-                    <div class="opensource-item__description">
-                        <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="SocialAuthHelper">SocialAuthHelper
-                                <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">Java</span>
-                                    <span class="opensource-item__category">Android</span>
-                                </div>
-                            </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>85</div>
-                        </div>
-                        <div class="opensource-item__text">Easy social network authorization for Android. Supports Facebook, Twitter, Instagram, Google+, Vkontakte.
-                        </div>
-                        <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon-studio/SocialAuthHelper" class="opensource-item__link">github</a>
-                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!--/SocialAuthHelper-->
-                <!--BottomTabLayout-->
-
-                <article class="opensource-item filter-android">
-                    <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/java.png') }}" alt="">
-                    </div>
-                    <div class="opensource-item__description">
-                        <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="BottomTabLayout">BottomTabLayout
-                                <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">Java</span>
-                                    <span class="opensource-item__category">Android</span>
-                                </div>
-                            </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>35</div>
-                        </div>
-                        <div class="opensource-item__text">Simple library for creating bottom tab layout
-                        </div>
-                        <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon-studio/SocialAuthHelper" class="opensource-item__link">github</a>
-                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!--/BottomTabLayout-->
-                <!--/ANDROID-->
-
-                <!--IOS-->
-                <!--SwiftExtensions-->
-
-                <article class="opensource-item filter-ios">
-                    <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/swift.png') }}" alt="">
-                    </div>
-                    <div class="opensource-item__description">
-                        <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="SwiftExtensions">SwiftExtensions
-                                <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">Swift</span>
-                                    <span class="opensource-item__category">iOS</span>
-                                </div>
-                                </div>
-                        </div>
-                        <div class="opensource-item__text">SwiftExtension is a bunch of useful extension, that we are using at Stfalcon.
-                        </div>
-                        <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon-studio/SwiftExtensions" class="opensource-item__link">github</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!--/SwiftExtensions-->
-                <!--SocialToolKit-->
-
-                <article class="opensource-item filter-ios">
-                    <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/swift.png') }}" alt="">
-                    </div>
-                    <div class="opensource-item__description">
-                        <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="SocialToolKit">SocialToolKit
-                                <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">Swift</span>
-                                    <span class="opensource-item__category">iOS</span>
-                                </div>
-                                </div>
-                        </div>
-                        <div class="opensource-item__text">Easy social network authorization for iOS. Supports Facebook, Vkontakte and Instagram.
-                        </div>
-                        <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon-studio/SocialToolKit" class="opensource-item__link">github</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!--/SocialToolKit-->
-                <!--/IOS-->
-
-                <!--BACK END-->
-                <!--TinymceBundle-->
 
                 <article class="opensource-item filter-backend">
                     <div class="opensource-item__photo">
@@ -306,7 +138,8 @@
                                     <span class="opensource-item__category">Symfony2</span>
                                 </div>
                             </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>234</div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon/TinymceBundle'} %}
                         </div>
                         <div class="opensource-item__text">Bundle for connecting TinyMCE (WYSIWYG editor) to your Symfony2 project.
                         </div>
@@ -317,34 +150,129 @@
                     </div>
                 </article>
 
-                <!--/TinymceBundle-->
-                <!--PortfolioBundle-->
-
-                <article class="opensource-item filter-backend">
+                <article class="opensource-item filter-android">
                     <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/php.png') }}" alt="">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/pickerdialog.png') }}" alt="">
                     </div>
                     <div class="opensource-item__description">
                         <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="PortfolioBundle" data-user="stfalcon">PortfolioBundle
+                            <div class="opensource-item__title" data-reponame="UniversalPickerDialog">UniversalPickerDialog
                                 <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">PHP</span>
-                                    <span class="opensource-item__category">Symfony2</span>
+                                    <span class="opensource-item__category">Java</span>
+                                    <span class="opensource-item__category">Android</span>
                                 </div>
-                            </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>19</div>
+                                </div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/UniversalPickerDialog'} %}
                         </div>
-                        <div class="opensource-item__text">Simple portfolio module to your symfony2 project.
+                        <div class="opensource-item__text">Android dialog with auto generated pickers inside, which depends on count of datasets provided.
                         </div>
                         <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon/PortfolioBundle" class="opensource-item__link">github</a>
-                            <a target="_blank" href="https://stfalcon.com/en/blog/post/open-source-projects-stfalconcom" class="opensource-item__link">blog</a>
+                            <a target="_blank" href="https://github.com/stfalcon-studio/UniversalPickerDialog" class="opensource-item__link">github</a>
+                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
                         </div>
                     </div>
                 </article>
 
-                <!--/PortfolioBundle-->
-                <!--BlogBundle-->
+                <article class="opensource-item filter-android">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/java.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title" data-reponame="ContentManager">ContentManager
+                                <div class="opensource-item__categories">
+                                    <span class="opensource-item__category">Java</span>
+                                    <span class="opensource-item__category">Android</span>
+                                </div>
+                            </div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/ContentManager'} %}
+                        </div>
+                        <div class="opensource-item__text">Android library for getting photo or video from a device gallery, cloud or camera. Working with Samsung devices.
+                        </div>
+                        <div class="opensource-item__links">
+                            <a target="_blank" href="https://github.com/stfalcon-studio/ContentManager" class="opensource-item__link">github</a>
+                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="opensource-item filter-android">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/java.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title" data-reponame="SocialAuthHelper">SocialAuthHelper
+                                <div class="opensource-item__categories">
+                                    <span class="opensource-item__category">Java</span>
+                                    <span class="opensource-item__category">Android</span>
+                                </div>
+                            </div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/SocialAuthHelper'} %}
+                        </div>
+                        <div class="opensource-item__text">Easy social network authorization for Android. Supports Facebook, Twitter, Instagram, Google+, Vkontakte.
+                        </div>
+                        <div class="opensource-item__links">
+                            <a target="_blank" href="https://github.com/stfalcon-studio/SocialAuthHelper" class="opensource-item__link">github</a>
+                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="opensource-item filter-android">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/java.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title" data-reponame="BottomTabLayout">BottomTabLayout
+                                <div class="opensource-item__categories">
+                                    <span class="opensource-item__category">Java</span>
+                                    <span class="opensource-item__category">Android</span>
+                                </div>
+                            </div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/SocialAuthHelper'} %}
+                        </div>
+                        <div class="opensource-item__text">Simple library for creating bottom tab layout
+                        </div>
+                        <div class="opensource-item__links">
+                            <a target="_blank" href="https://github.com/stfalcon-studio/SocialAuthHelper" class="opensource-item__link">github</a>
+                            <a target="_blank" href="https://stfalcon.com/en/blog/post/useful-Android-libraries-from-stfalcon-com" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="opensource-item filter-frontend">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/js.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title" data-reponame="stf-vue-select">stf-vue-select
+                                <div class="opensource-item__categories">
+                                    <span class="opensource-item__category">JavaScript</span>
+                                    <span class="opensource-item__category">Vue</span>
+                                    <span class="opensource-item__category">CSS</span>
+                                </div>
+                            </div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon-studio/stf-vue-select'} %}
+                        </div>
+                        <div class="opensource-item__text">stf vue select - most flexible and customized select.
+                        </div>
+                        <div class="opensource-item__links">
+                            <a target="_blank" href="https://github.com/stfalcon-studio/stf-vue-select" class="opensource-item__link">github</a>
+                        </div>
+                    </div>
+                </article>
+
+
+
+
 
                 <article class="opensource-item filter-backend">
                     <div class="opensource-item__photo">
@@ -358,7 +286,8 @@
                                     <span class="opensource-item__category">Symfony2</span>
                                 </div>
                             </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>34</div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon/BlogBundle'} %}
                         </div>
                         <div class="opensource-item__text">Simple blog module to your Symfony2 project. Posts / Tags / Cut and Read more / Highlight Source Code / Breadcrumbs / Paginations / Unit tests / Disqus comments widget.
                         </div>
@@ -369,8 +298,31 @@
                     </div>
                 </article>
 
-                <!--/BlogBundle-->
-                <!--NewsBundle-->
+                <article class="opensource-item filter-backend">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/php.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title" data-reponame="PortfolioBundle" data-user="stfalcon">PortfolioBundle
+                                <div class="opensource-item__categories">
+                                    <span class="opensource-item__category">PHP</span>
+                                    <span class="opensource-item__category">Symfony2</span>
+                                </div>
+                            </div>
+                            {% include '@ApplicationDefault/Default/github_stars.html.twig'
+                                with {'repository_url' : 'https://github.com/stfalcon/PortfolioBundle'} %}
+                        </div>
+                        <div class="opensource-item__text">Simple portfolio module to your symfony2 project.
+                        </div>
+                        <div class="opensource-item__links">
+                            <a target="_blank" href="https://github.com/stfalcon/PortfolioBundle" class="opensource-item__link">github</a>
+                            <a target="_blank" href="https://stfalcon.com/en/blog/post/open-source-projects-stfalconcom" class="opensource-item__link">blog</a>
+                        </div>
+                    </div>
+                </article>
+
+
 
                 <article class="opensource-item filter-backend">
                     <div class="opensource-item__photo">
@@ -385,8 +337,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="opensource-item__text">Simple NewsBundle for Symfony2 and SonataAdmin.
-                        </div>
+                        <div class="opensource-item__text">Simple NewsBundle for Symfony2 and SonataAdmin.</div>
                         <div class="opensource-item__links">
                             <a target="_blank" href="https://github.com/stfalcon/BlogBundle" class="opensource-item__link">github</a>
                             <a target="_blank" href="https://stfalcon.com/en/blog/post/open-source-projects-stfalconcom" class="opensource-item__link">blog</a>
@@ -394,8 +345,47 @@
                     </div>
                 </article>
 
-                <!--/NewsBundle-->
-                <!--staginator-->
+                <article class="opensource-item filter-ios">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/swift.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title" data-reponame="SwiftExtensions">SwiftExtensions
+                                <div class="opensource-item__categories">
+                                    <span class="opensource-item__category">Swift</span>
+                                    <span class="opensource-item__category">iOS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="opensource-item__text">SwiftExtension is a bunch of useful extension, that we are using at Stfalcon.
+                        </div>
+                        <div class="opensource-item__links">
+                            <a target="_blank" href="https://github.com/stfalcon-studio/SwiftExtensions" class="opensource-item__link">github</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="opensource-item filter-ios">
+                    <div class="opensource-item__photo">
+                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/swift.png') }}" alt="">
+                    </div>
+                    <div class="opensource-item__description">
+                        <div class="opensource-item__top">
+                            <div class="opensource-item__title" data-reponame="SocialToolKit">SocialToolKit
+                                <div class="opensource-item__categories">
+                                    <span class="opensource-item__category">Swift</span>
+                                    <span class="opensource-item__category">iOS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="opensource-item__text">Easy social network authorization for iOS. Supports Facebook, Vkontakte and Instagram.
+                        </div>
+                        <div class="opensource-item__links">
+                            <a target="_blank" href="https://github.com/stfalcon-studio/SocialToolKit" class="opensource-item__link">github</a>
+                        </div>
+                    </div>
+                </article>
 
                 <article class="opensource-item filter-backend">
                     <div class="opensource-item__photo">
@@ -408,7 +398,7 @@
                                     <span class="opensource-item__category">Ruby</span>
                                     <span class="opensource-item__category">DevOps tools</span>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="opensource-item__text">Easily creation of staging environments.
                         </div>
@@ -418,37 +408,6 @@
                         </div>
                     </div>
                 </article>
-
-                <!--/staginator-->
-                <!--/BACK END-->
-
-                <!--FRONT END-->
-                <!--stf-vue-select-->
-
-                <article class="opensource-item filter-frontend">
-                    <div class="opensource-item__photo">
-                        <img class="opensource-item__img" src="{{ asset('img/opensource-img/js.png') }}" alt="">
-                    </div>
-                    <div class="opensource-item__description">
-                        <div class="opensource-item__top">
-                            <div class="opensource-item__title" data-reponame="stf-vue-select">stf-vue-select
-                                <div class="opensource-item__categories">
-                                    <span class="opensource-item__category">JavaScript</span>
-                                    <span class="opensource-item__category">Vue</span>
-                                    <span class="opensource-item__category">CSS</span>
-                                </div>
-                                </div>
-                            <div class="opensource-item__rating"><i class="opensource-item__icon"></i>50</div></div>
-                        <div class="opensource-item__text">stf vue select - most flexible and customized select.
-                        </div>
-                        <div class="opensource-item__links">
-                            <a target="_blank" href="https://github.com/stfalcon-studio/stf-vue-select" class="opensource-item__link">github</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!--/stf-vue-select-->
-                <!--stf-ng-select-->
 
                 <article class="opensource-item filter-frontend">
                     <div class="opensource-item__photo">
@@ -462,7 +421,7 @@
                                     <span class="opensource-item__category">TypeScript</span>
                                     <span class="opensource-item__category">CSS</span>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="opensource-item__text">The most flexible, reusable and customise select
                         </div>
@@ -471,9 +430,6 @@
                         </div>
                     </div>
                 </article>
-
-                <!--/stf-ng-select-->
-                <!--/FRONT END-->
 
             </div>
         </div>
@@ -513,33 +469,37 @@
 
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {#<script>#}
+        {#$(document).ready(function () {#}
+            {#function getProjectsStars() {#}
+                {#var projects = $('.opensource-item__title');#}
+                {#var projectNames = [];#}
+                {#$.each(projects, function (index, value) {#}
+                    {#var user_name =  $(value).data('user');#}
+                    {#if (!user_name) {#}
+                        {#user_name = 'stfalcon-studio';#}
+                    {#}#}
 
-    <script>
-        $(document).ready(function () {
-            function getProjectsStars() {
-                var projects = $('.opensource-item__title');
-                var projectNames = [];
-                $.each(projects, function (index, value) {
-                    var user_name =  $(value).data('user');
-                    if (!user_name) {
-                        user_name = 'stfalcon-studio';
-                    }
+                    {#projectNames.push({'user': user_name, 'repoName': $(value).data('reponame')});#}
+                {#});#}
+                {#var route = Routing.generate('get_projects_stars', {names: projectNames});#}
 
-                    projectNames.push({'user': user_name, 'repoName': $(value).data('reponame')});
-                });
-                var route = Routing.generate('get_projects_stars', {names: projectNames});
+                {#$.get(route, function (data) {#}
+                    {#if (!data['error']) {#}
+                        {#$.each(data['data'], function (index, value) {#}
+                            {#console.log(index+' '+value);#}
+                            {#var rating = $('.opensource-item__title[data-reponame="'+index+'"]').parent().parent().find('.opensource-item__rating');#}
+                            {#if (rating.length) {#}
+                                {#rating.html('<i class="opensource-item__icon"></i>'+value);#}
+                            {#}#}
+                        {#});#}
+                    {#}#}
+                {#});#}
+            {#}#}
 
-                $.get(route, function (data) {
-                    if (!data['error']) {
-                        $.each(data['data'], function (index, value) {
-                            console.log(index+' '+value);
-                        });
-                    }
-                });
-            }
+            {#getProjectsStars();#}
+        {#});#}
 
-            getProjectsStars();
-        });
-
-    </script>
+    {#</script>#}
 {% endblock javascripts %}

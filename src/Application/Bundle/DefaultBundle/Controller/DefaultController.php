@@ -71,6 +71,7 @@ class DefaultController extends Controller
             ]
         );
     }
+
     /**
      * Opensource page
      *
@@ -100,11 +101,12 @@ class DefaultController extends Controller
         if (count($projects) === 0) {
             return new JsonResponse(['error' => true]);
         }
-//        $projects = array_flip($projects);
         $resultProjects = [];
-//        foreach ($projects as $projectRepoName => $project) {
-//            $projects[$projectRepoName] = $this->get('app.service.git_hub_api_service')->getProjectStarsCountByName($projectRepoName);
-//        }
+        foreach ($projects as $key => $project) {
+            if (isset($project['repoName']) && isset($project['user'])) {
+                $resultProjects[$project['repoName']] = $this->get('app.service.git_hub_api_service')->getProjectStarsCountByName($project);
+            }
+        }
 
         return new JsonResponse(['data' => $resultProjects]);
     }

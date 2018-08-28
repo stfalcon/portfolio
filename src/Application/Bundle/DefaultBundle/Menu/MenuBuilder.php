@@ -53,6 +53,7 @@ class MenuBuilder
             'route'           => 'portfolio_categories_list',
             'routeParameters' => array('slug' => 'web-development'),
         ));
+        $menu->addChild($this->translator->trans('__menu.opensource'), array('route' => 'opensource'));
         $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));
         $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
         $menu->addChild($this->translator->trans('__menu.vacancies'), array('route' => 'jobs_list'));
