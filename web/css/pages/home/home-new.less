@@ -2104,6 +2104,13 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
 }
 
+@media (max-width: 480px) {
+  .address {
+    min-width: auto;
+    width: auto;
+  }
+}
+
 @media (max-width: 759px) {
   .contact-list li {
     flex-basis: 40%;
@@ -2195,6 +2202,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     }
     .contacts {
       margin-bottom: 0;
+      min-width: 128px;
     }
   }
 
@@ -2206,6 +2214,10 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 @media (max-width: 480px) {
   .footer {
+    .contacts {
+      width: 100%;
+      min-width: auto;
+    }
     .contacts-content {
       width: 100%;
     }
@@ -2356,8 +2368,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   .contact-list {
     li {
       margin-right: 15px;
-      flex-basis: auto;
-      flex-grow: 0;
+      width: 30%;
 
       //&:nth-child(2n) {
       //  flex-basis: auto;
