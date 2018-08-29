@@ -1972,7 +1972,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 .footer-nav {
   //max-width: 80px;
   float: left;
-  width: 15%;
+  width: 14%;
   //margin: 0 67px 0 0;
   margin: 0;
   overflow: hidden;
@@ -1998,18 +1998,23 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 .services-nav {
   float: left;
-  width: 30%;
+  width: 25%;
   //max-width: 215px;
   //min-width: 130px;
   //margin-right: 69px;
 
   li {
-    margin-bottom: 15px;
+    margin-bottom: 17px;
 
     &:last-child {
       margin-bottom: 0;
     }
   }
+
+  ul:first-child {
+    margin-bottom: 55px;
+  }
+
   a {
     color: #707B80;
     font-size: 15px;
@@ -2021,7 +2026,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 }
 
 .contacts {
-  width: 70%;
+  width: 25%;
   float: left;
   margin-top: -3px;
 }
@@ -2029,7 +2034,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 @media (max-width: 1023px) {
   .footer {
     .contacts {
-      width: 100%;
+      width: 40%;
     }
   }
 }
@@ -2041,19 +2046,19 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   flex-wrap: wrap;
 
   li {
-    flex-basis: 38%;
-    flex-grow: 1;
+    flex-basis: 100%;
+    //flex-grow: 1;
     //width: 50%;
     //float: left;
     //margin-right: 73px;
     min-width: 135px;
     margin-bottom: 15px;
 
-    &:nth-child(2n) {
-      flex-basis: 60%;
-      flex-grow: 0;
-      min-width: 310px;
-    }
+    //&:nth-child(2n) {
+    //  flex-basis: 60%;
+    //  flex-grow: 0;
+    //  min-width: 310px;
+    //}
 
     span {
       display: block;
@@ -2074,6 +2079,27 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     margin-right: 0;
   }
   .adress {
+    color: #fff;
+  }
+}
+
+.skype-wrap {
+  margin-bottom: 0;
+}
+
+.address {
+  float: left;
+  width: 32%;
+  min-width: 310px;
+
+  span {
+    display: block;
+    margin-bottom: 5px;
+    color: #707b80;
+    font-size: 15px;
+  }
+
+  span.adress {
     color: #fff;
   }
 }
@@ -2128,6 +2154,11 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   //top: 4px;
   //right: 0;
   //margin: 0;
+
+  &--mob {
+    display: none;
+    margin-bottom: 30px;
+  }
 }
 
 .footer .contacts-content {
@@ -2157,12 +2188,13 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   .footer {
     .contacts-content {
       width: 65%;
+      margin-bottom: 34px;
     }
     .contacts-content--mob-fluid {
       width: 100%;
     }
     .contacts {
-      margin-bottom: 22px;
+      margin-bottom: 0;
     }
   }
 
@@ -2233,6 +2265,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     position: relative;
 
     .socials-links {
+      display: none;
       position: static;
       margin: 21px 0 10px -5px;
       float: left;
@@ -2240,6 +2273,11 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
       overflow: visible;
       transform-origin: 0 0 ;
       transform: scale(1.6);
+
+      &--mob {
+        display: block;
+        margin-top: 0;
+      }
     }
   }
   .footer-nav {
@@ -2321,11 +2359,11 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
       flex-basis: auto;
       flex-grow: 0;
 
-      &:nth-child(2n) {
-        flex-basis: auto;
-        flex-grow: 0;
-        min-width: 135px;
-      }
+      //&:nth-child(2n) {
+      //  flex-basis: auto;
+      //  flex-grow: 0;
+      //  min-width: 135px;
+      //}
     }
     .write-to {
       clear: none;
