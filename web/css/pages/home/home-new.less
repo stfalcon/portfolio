@@ -2026,16 +2026,34 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   margin-top: -3px;
 }
 
+@media (max-width: 1023px) {
+  .footer {
+    .contacts {
+      width: 100%;
+    }
+  }
+}
+
 .contact-list {
   overflow: hidden;
   line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
 
   li {
-    width: 50%;
-    float: left;
+    flex-basis: 40%;
+    flex-grow: 1;
+    //width: 50%;
+    //float: left;
     //margin-right: 73px;
     min-width: 135px;
     margin-bottom: 15px;
+
+    &:nth-child(2n) {
+      flex-basis: 60%;
+      flex-grow: 0;
+      min-width: 310px;
+    }
 
     span {
       display: block;
@@ -2086,6 +2104,15 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
 }
 
+.socials-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    flex-basis: 40%;
+  }
+}
+
 .contacts + .socials-links {
   display: none;
 }
@@ -2102,15 +2129,31 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   width: 65%;
 }
 
+@media (max-width: 1230px){
+  .footer .contacts-content {
+    width: 85%;
+  }
+}
+
+@media (max-width: 1012px) {
+  .footer .contacts-content {
+    width: 75%;
+  }
+}
+
 @media (max-width: 826px) {
   .footer .contacts-content {
     float: left;
   }
 }
 
-@media (max-width: 1230px){
-  .footer .contacts-content {
-    width: 85%;
+@media (max-width: 759px) {
+  .footer .contacts-content--mob-fluid {
+    width: 100%;
+  }
+
+  .socials-list li {
+    flex-basis: 100%;
   }
 }
 
@@ -2131,34 +2174,35 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 }
 
 @media (max-width: 1023px) {
-  //.footer {
-  //  .services-nav {
-  //    display: none;
-  //  }
-  //}
+  .footer {
+    .services-nav {
+      display: none;
+    }
+  }
 }
 
-@media (max-width: 1012px){
+@media (max-width: 1023px){
   .footer-nav {
     margin-bottom: 20px;
+    width: 25%;
     //max-width: 100%;
 
-    ul {
-      column-count: 2;
-      column-width: 65px;
-      column-gap: 43px;
-    }
+    //ul {
+    //  column-count: 2;
+    //  column-width: 65px;
+    //  column-gap: 43px;
+    //}
   }
   .services-nav {
     margin-bottom: 20px;
     margin-right: 0;
     //max-width: 100%;
 
-    ul {
-      column-count: 2;
-      column-width: 215px;
-      column-gap: 45px;
-    }
+    //ul {
+    //  column-count: 2;
+    //  column-width: 215px;
+    //  column-gap: 45px;
+    //}
   }
 }
 
@@ -2225,17 +2269,17 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   .footer-nav {
     margin-bottom: 24px;
 
-    ul {
-      width: 256px;
-      column-count: 2;
-      column-width: 110px;
-      column-gap: 20px;
-    }
-    li {
-      margin-right: 0;
-      -webkit-column-break-inside: avoid;
-      column-break-inside: avoid;
-    }
+    //ul {
+    //  width: 256px;
+    //  column-count: 2;
+    //  column-width: 110px;
+    //  column-gap: 20px;
+    //}
+    //li {
+    //  margin-right: 0;
+    //  -webkit-column-break-inside: avoid;
+    //  column-break-inside: avoid;
+    //}
   }
   .contact-list {
     li {
@@ -2249,8 +2293,8 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
   .footer {
     .socials-links {
-      margin: 13px 0 0 -12px;
-      transform: scale(1.6);
+      //margin: 13px 0 0 -12px;
+      //transform: scale(1.6);
     }
   }
 }
