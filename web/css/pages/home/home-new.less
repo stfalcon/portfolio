@@ -2288,7 +2288,7 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
       &--mob {
         display: block;
-        margin-top: 0;
+        margin-top: 4px;
       }
     }
   }
@@ -2350,14 +2350,15 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 @media (max-width: 480px){
   .footer-nav {
-    width: 100%;
+    width: 84%;
     margin-bottom: 24px;
+    min-width: 285px;
 
     ul {
-      width: 256px;
+      //width: 256px;
       column-count: 2;
-      column-width: 110px;
-      column-gap: 20px;
+      //column-width: 110px;
+      //column-gap: 20px;
     }
     //li {
     //  margin-right: 0;
