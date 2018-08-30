@@ -18,7 +18,7 @@
 
   form{
     position: relative;
-    max-width: 615px;
+    max-width: 425px;
     margin: auto;
     padding: 0px 20px;
 
@@ -78,8 +78,8 @@
       font-size: 42px;
       color: #ffffff;
       font-weight: 500;
-      margin-top: 176px;
-      margin-bottom: 12px;
+      //margin-top: 176px;
+      margin-bottom: 30px;
       line-height: 1.1em;
       text-shadow: 0 1px #fff;
       text-transform: none;
@@ -104,8 +104,34 @@
   }
 
   .line {
-    margin: 0 0 33px;
+    margin: 0 0 26px;
     position: relative;
+
+    &--description {
+      margin: 64px 0 36px;
+    }
+
+    &__radio {
+      margin-bottom: 20px;
+    }
+
+    &__lable {
+      margin-bottom: 8px;
+      text-align: left;
+      opacity: 0.31;
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 500;
+    }
+
+    &--budget {
+      margin-bottom: 16px;
+    }
+
+    &--margin-out {
+      margin: 0 -60px;
+    }
   }
 
   .google-captcha {
@@ -124,6 +150,10 @@
     @media (max-width: 690px) {
       width: 100%;
       margin-bottom: 15px;
+    }
+
+    &--fluid {
+      width: 50%;
     }
   }
   
@@ -161,6 +191,10 @@
 
   .float-left {
     float: left!important;
+
+    &--text-left {
+      text-align: left;
+    }
   }
 
   .float-right {
@@ -179,6 +213,15 @@
     }
     &:focus{
       outline: none;
+    }
+
+    &--fluid {
+      width: 100%;
+      margin-top: 0;
+    }
+
+    &--marg-bot {
+      margin-bottom: 68px;
     }
   }
 
@@ -248,6 +291,86 @@
       text-align: center;
       margin-top: 0px;
       margin-bottom: 64px;
+    }
+  }
+
+  .line__left,
+  .line__right,
+  .line__center {
+    width: auto;
+  }
+
+  .line__left {
+
+  }
+
+  .line__right {
+    float: none;
+    display: inline-block;
+  }
+
+  .line__center {
+    float: right;
+  }
+}
+
+.radio {
+  &__input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 7px;
+
+    &:checked + .radio__label:after {
+      opacity: 1;
+    }
+
+    &:checked + .radio__label:before {
+      border: none;
+    }
+
+    //&:focus + .radio__label:before {
+    //  box-shadow: 0 0 0 3px rgba(255,255,0,.7);
+    //}
+  }
+
+  &__label {
+    position: relative;
+    padding: 0 0 0 24px;
+    cursor: pointer;
+
+    span {
+      opacity: 0.55;
+      color: #D8D8D8;
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #ffffff;
+      opacity: .22;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0px 0px 6px rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transition: .2s;
     }
   }
 }

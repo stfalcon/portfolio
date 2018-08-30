@@ -1,42 +1,169 @@
 
+{#<section id="hire-us-widget" class="hire_us-form">#}
+    {#<div class="wrap_form">#}
+        {#<div class="wrap_close">#}
+        {#<svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">#}
+            {#<path class="icon-close-nav"#}
+                  {#d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>#}
+        {#</svg>#}
+            {#</div>#}
+        {#{% if slug is not defined or slug is null %}#}
+            {#{% set slug = 'project'%}#}
+        {#{% endif %}#}
+        {#<form id="hire-us-form" class="webdev-form feedback-form" data-url="{{ path('ajax_hire_us') }}" method="post">#}
+            {#<div class="form-pad">#}
+                {#<h2>{{ 'Заказать проект'|trans }}</h2>#}
+                {#<div class="line line-mob">#}
+                    {#<div class="col2 float-left">#}
+                        {#{{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}#}
+                    {#</div>#}
+                    {#<div class="col2 float-right">#}
+                        {#{{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="line">#}
+                    {#{{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}#}
+                {#</div>#}
+                {#<div class="google-captcha">#}
+                    {#{{ form_widget(form.captcha, {'theme': 'dark' }) }}#}
+                {#</div>#}
+                {#<div class="line">#}
+                    {#{% if slug != 'main_page' %}#}
+                        {#{% set slug = '' %}#}
+                    {#{% endif %}#}
+                    {#<button class="btn send-request"#}
+                            {#style="display: none;">{{ 'Отправить заявку'|trans }}#}
+                    {#</button>#}
+                {#</div>#}
+                {#<div class="line">#}
+                    {#<div class="col3">#}
+                        {#<div class="contacts-info">#}
+                            {#<div class="contacts-info__cell">#}
+                                {#<div class="contacts-info__left">{{ 'Позвонить'|trans }}:</div>#}
+                                {#<div class="contacts-info__right">#}
+                                    {#<div class="contacts-info__item">#}
+                                        {#<a href="tel:+380 67 334-40-40" class="phone-link">+380 67 334-40-40</a>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col3">#}
+                        {#<div class="contacts-info">#}
+                            {#<div class="contacts-info__cell">#}
+                                {#<div class="contacts-info__left">{{ "Skype" | trans() }}:</div>#}
+                                {#<div class="contacts-info__right">#}
+                                    {#<div class="contacts-info__item"><a href="skype:stfalcon.sales?call">stfalcon.sales</a></div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col3">#}
+                        {#<div class="contacts-info">#}
+                            {#<div class="contacts-info__cell">#}
+                                {#<div class="contacts-info__left">{{ "Написать" | trans() }}:</div>#}
+                                {#<div class="contacts-info__right">#}
+                                    {#<div class="contacts-info__item"><a href="mailto:info@stfalcon.com">info@stfalcon.com</a></div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="form-success">#}
+                {#<div class="wr">#}
+                    {#<div class="inner-pad">#}
+                        {#<h2>{{ 'Спасибо!'|trans }}</h2>#}
+                        {#<p>{{ 'Мы изучим Вашу заявку'|trans }}<br>{{ 'и ответим в ближайшее время'|trans }}.</p>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#{{ form_rest(form) }}#}
+        {#</form>#}
+    {#</div>#}
+{#</section>#}
+{#<script>#}
+    {#var showSubmitButton = function () {#}
+        {#$('.send-request').show();#}
+    {#};#}
+{#</script>#}
+
+
 <section id="hire-us-widget" class="hire_us-form">
     <div class="wrap_form">
         <div class="wrap_close">
-        <svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">
-            <path class="icon-close-nav"
-                  d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
-        </svg>
-            </div>
+            <svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">
+                <path class="icon-close-nav"
+                      d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
+            </svg>
+        </div>
         {% if slug is not defined or slug is null %}
             {% set slug = 'project'%}
         {% endif %}
         <form id="hire-us-form" class="webdev-form feedback-form" data-url="{{ path('ajax_hire_us') }}" method="post">
             <div class="form-pad">
                 <h2>{{ 'Заказать проект'|trans }}</h2>
-                <div class="line line-mob">
-                    <div class="col2 float-left">
-                        {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}
-                    </div>
-                    <div class="col2 float-right">
-                        {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
-                    </div>
-                </div>
+
+                {#   #}
+
                 <div class="line">
+                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+                </div>
+
+                {#   #}
+
+                <div class="line">
+                    <input type="text" required="required" placeholder="Телефон">
+                </div>
+
+                <div class="line">
+                    <input type="text" required="required" placeholder="Компания">
+                </div>
+
+                <div class="line">
+                    <input type="text" required="required" placeholder="Должность">
+                </div>
+
+                {#   #}
+
+                <div class="line line--description">
                     {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}
                 </div>
-                <div class="google-captcha">
-                    {{ form_widget(form.captcha, {'theme': 'dark' }) }}
+
+                {#<div class="google-captcha">#}
+                    {#{{ form_widget(form.captcha, {'theme': 'dark' }) }}#}
+                {#</div>#}
+
+                <div class="line line-mob line--budget">
+                    <div class="line__lable">Бюджет</div>
+                    <div class="radio col2 col2--fluid float-left float-left--text-left line__radio">
+                        <input class="radio__input" type="radio" id="price_1" name="price">
+                        <label class="radio__label" for="price_1"><span>$20 000 – $50 000</span></label>
+                    </div>
+                    <div class="radio col2 col2--fluid float-left float-left--text-left line__radio">
+                        <input class="radio__input" type="radio" id="price_2" name="price" checked>
+                        <label class="radio__label" for="price_2"><span>$50 000 – $100 000</span></label>
+                    </div>
+                    <div class="radio col2 col2--fluid float-left float-left--text-left line__radio">
+                        <input class="radio__input" type="radio" id="price_3" name="price">
+                        <label class="radio__label" for="price_3"><span>$100 000 – $150 000</span></label>
+                    </div>
                 </div>
+
                 <div class="line">
                     {% if slug != 'main_page' %}
                         {% set slug = '' %}
                     {% endif %}
-                    <button class="btn send-request"
+                    <button class="btn btn--marg-bot btn--fluid send-request"
                             style="display: none;">{{ 'Отправить заявку'|trans }}
                     </button>
                 </div>
-                <div class="line">
-                    <div class="col3">
+                <div class="line line--margin-out">
+                    <div class="col3 line__left">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ 'Позвонить'|trans }}:</div>
@@ -48,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col3">
+                    <div class="col3 line__center">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ "Skype" | trans() }}:</div>
@@ -58,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col3">
+                    <div class="col3 line__right">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ "Написать" | trans() }}:</div>
@@ -78,7 +205,7 @@
                     </div>
                 </div>
             </div>
-            {{ form_rest(form) }}
+            {#{{ form_rest(form) }}#}
         </form>
     </div>
 </section>
