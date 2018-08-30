@@ -1952,7 +1952,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 // footer
 
 .footer {
-  //overflow: hidden;
   padding: 30px 36px 0 35px;
   color: #fff;
   background: #1E2528;
@@ -1965,17 +1964,9 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
 }
 
-.footer-top {
-  //position: relative;
-}
-
 .main-nav--footer {
-  //max-width: 80px;
-  //float: left;
   width: 15%;
-  //margin: 0 67px 0 0;
   margin: 0;
-  //overflow: hidden;
 
   li {
     float: none;
@@ -1999,9 +1990,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 .services-nav {
   float: left;
   width: 25%;
-  //max-width: 215px;
-  //min-width: 130px;
-  //margin-right: 69px;
 
   li {
     margin-bottom: 17px;
@@ -2040,25 +2028,14 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 }
 
 .contact-list {
-  //overflow: hidden;
   line-height: 1.5;
   display: flex;
   flex-wrap: wrap;
 
   li {
     flex-basis: 100%;
-    //flex-grow: 1;
-    //width: 50%;
-    //float: left;
-    //margin-right: 73px;
     min-width: 135px;
     margin-bottom: 15px;
-
-    //&:nth-child(2n) {
-    //  flex-basis: 60%;
-    //  flex-grow: 0;
-    //  min-width: 310px;
-    //}
 
     span {
       display: block;
@@ -2075,9 +2052,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     color: #d7c86f;
     text-decoration: underline;
   }
-  .write-to {
-    clear: left;
-  }
   .address,
   .skype {
     margin-right: 0;
@@ -2093,7 +2067,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 .address {
   float: left;
-  //width: 32%;
   min-width: 310px;
 
   span {
@@ -2165,11 +2138,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 }
 
 .footer .socials-links {
-  //position: absolute;
-  //top: 4px;
-  //right: 0;
-  //margin: 0;
-
   &--mob {
     display: none;
     margin-bottom: 30px;
@@ -2177,7 +2145,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 }
 
 .footer .contacts-content {
-  //overflow: hidden;
   width: 65%;
   float: left;
 }
@@ -2185,18 +2152,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 @media (max-width: 1230px){
   .footer .contacts-content {
     width: 75%;
-  }
-}
-
-//@media (max-width: 1012px) {
-//  .footer .contacts-content {
-//    width: 75%;
-//  }
-//}
-
-@media (max-width: 826px) {
-  .footer .contacts-content {
-    float: left;
   }
 }
 
@@ -2260,24 +2215,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   .main-nav--footer {
     margin-bottom: 20px;
     width: 25%;
-    //max-width: 100%;
-
-    //ul {
-    //  column-count: 2;
-    //  column-width: 65px;
-    //  column-gap: 43px;
-    //}
-  }
-  .services-nav {
-    margin-bottom: 20px;
-    margin-right: 0;
-    //max-width: 100%;
-
-    //ul {
-    //  column-count: 2;
-    //  column-width: 215px;
-    //  column-gap: 45px;
-    //}
   }
 }
 
@@ -2309,20 +2246,8 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 @media (max-width: 955px) {
   .footer {
-    .socials-links {
-      //display: none;
-    }
     .contacts + .socials-links {
       display: block;
-    }
-    .socials-links {
-      //position: static;
-      //margin: 21px 0 26px -12px;
-      //float: left;
-      //width: 100%;
-      //overflow: visible;
-      //transform-origin: 0 0 ;
-      //transform: scale(2.25);
     }
   }
 }
@@ -2364,38 +2289,16 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     min-width: 285px;
 
     ul {
-      //width: 256px;
       column-count: 2;
-      //column-width: 110px;
-      //column-gap: 20px;
     }
-    //li {
-    //  margin-right: 0;
-    //  -webkit-column-break-inside: avoid;
-    //  column-break-inside: avoid;
-    //}
   }
   .contact-list {
     li {
       margin-right: 15px;
-      //width: 30%;
-
-      //&:nth-child(2n) {
-      //  flex-basis: auto;
-      //  flex-grow: 0;
-      //  min-width: 135px;
-      //}
     }
     .write-to {
       clear: none;
       margin-right: 0;
-    }
-  }
-
-  .footer {
-    .socials-links {
-      //margin: 13px 0 0 -12px;
-      //transform: scale(1.6);
     }
   }
 }
