@@ -8,7 +8,7 @@
         {#<svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/></svg>#}
     {#</nav>#}
     {#<a class="header-line__btn home-btn home-btn--sm home-btn--dark" target="_blank" href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2018.pdf'}) }}">{{ 'about_us'|trans }}</a>#}
-    {#{{ include('::_social_links.html.twig') }}#}
+    {#{% include '::_social_links.html.twig' %}#}
     {#{{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}#}
 {#</div>#}
 
@@ -19,11 +19,11 @@
     </div>
     <a class="logo" href="/"></a>
     <nav class="main-nav">
-        <ul class="main-nav__list">
-            <li class="first"><a href="/en/portfolio">Projects</a></li>
-            <li><a href="/en/services/web-development">Services</a></li>
-            <li class="industry">
-                <a class="industry__title" href="/en/team">Индустрии</a>
+        {#<ul class="main-nav__list">#}
+            {#<li class="first"><a href="/en/portfolio">Projects</a></li>#}
+            {#<li><a href="/en/services/web-development">Services</a></li>#}
+            {#<li class="industry">#}
+                {#<a class="industry__title" href="/en/team">Индустрии</a>#}
                 <div class="sub-nav">
                     <ul class="solutions__list sub-nav__content">
                         <li class="solutions__item solutions__item--current">
@@ -112,14 +112,14 @@
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li><a href="/en/team">Team</a></li>
-            <li><a href="/en/blog">Blog</a></li>
-            <li><a href="/en/jobs">Careers</a></li>
-            <li><a href="/en/contacts">Opensource</a></li>
-            <li class="main-nav__last-item"><a href="/en/contacts">Contacts</a></li>
-            <li class="last"><a href="/en/promotion/show-pdf/About_Stfalcon_2018.pdf" class="header-line__btn home-btn home-btn--mob-fluid home-btn--sm home-btn--dark" target="_blank">About us</a></li>
-        </ul>
+            {#</li>#}
+            {#<li><a href="/en/team">Team</a></li>#}
+            {#<li><a href="/en/blog">Blog</a></li>#}
+            {#<li><a href="/en/jobs">Careers</a></li>#}
+            {#<li><a href="/en/contacts">Opensource</a></li>#}
+            {#<li class="main-nav__last-item"><a href="/en/contacts">Contacts</a></li>#}
+            {#<li class="last"><a href="/en/promotion/show-pdf/About_Stfalcon_2018.pdf" class="header-line__btn home-btn home-btn--mob-fluid home-btn--sm home-btn--dark" target="_blank">About us</a></li>#}
+        {#</ul>#}
         <svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path></svg>
     </nav>
     <a class="header-line__btn home-btn home-btn--sm home-btn--dark" target="_blank" href="/en/promotion/show-pdf/About_Stfalcon_2018.pdf">About us</a>

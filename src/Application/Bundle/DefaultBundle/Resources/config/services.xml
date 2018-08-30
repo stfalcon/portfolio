@@ -26,6 +26,7 @@
         <service id="application_default.menu_builder" class="%application_default.menu_builder.class%">
             <argument type="service" id="knp_menu.factory" />
             <argument type="service" id="translator" />
+            <argument type="service" id="twig" />
         </service>
 
         <service id="application_default.admin.job" class="%application_default.admin.job.class%">
@@ -43,6 +44,24 @@
                  factory-method="createMainMenu">
             <argument type="service" id="request" />
             <tag name="knp_menu.menu" alias="main" />
+        </service>
+
+        <service id="application_default.menu.footer_main"
+                 class="Knp\Menu\MenuItem"
+                 scope="request"
+                 factory-service="application_default.menu_builder"
+                 factory-method="createFooterMainMenu">
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="footer_main" />
+        </service>
+
+        <service id="application_default.menu.services"
+                 class="Knp\Menu\MenuItem"
+                 scope="request"
+                 factory-service="application_default.menu_builder"
+                 factory-method="createServiceMenu">
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="service_menu" />
         </service>
 
         <!-- breadcrumbs menu -->
