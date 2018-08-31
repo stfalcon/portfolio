@@ -1,7 +1,7 @@
 <div class="sub-nav">
     <ul class="solutions__list sub-nav__content">
-        <li class="solutions__item solutions__item--current">
-            <a href="#">
+        <li class="solutions__item" data-current-page="logistics">
+            <a href="{{ path('page_landing', {'type':'logistics'}) }}">
                 <div class="solutions__icon">
                     <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="landing-v4.3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-308.000000, -1050.000000)">
@@ -13,12 +13,12 @@
                         </g>
                     </svg>
                 </div>
-                <div class="solutions__name">Logistics</div>
-                <div class="solutions__text">Transport and logistics IT solutions for your business</div>
+                <div class="solutions__name">{{ 'main.promo.title2_1'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_1.desc'|trans }}</div>
             </a>
         </li>
-        <li class="solutions__item">
-            <a href="#">
+        <li class="solutions__item" data-current-page="travel">
+            <a href="{{ path('page_landing', {'type':'travel'}) }}">
                 <div class="solutions__icon">
                     <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="landing-v4.3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-564.000000, -1052.000000)">
@@ -30,12 +30,12 @@
                         </g>
                     </svg>
                 </div>
-                <div class="solutions__name">Travel</div>
-                <div class="solutions__text">Excellent travel experience for your customers</div>
+                <div class="solutions__name">{{ 'main.promo.title2_2'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_2.desc'|trans }}</div>
             </a>
         </li>
-        <li class="solutions__item">
-            <a href="#">
+        <li class="solutions__item" data-current-page="healthcare">
+            <a href="{{ path('page_landing', {'type':'healthcare'}) }}">
                 <div class="solutions__icon">
                     <svg width="45px" height="61px" viewBox="0 0 45 61" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="landing-v4.3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-828.000000, -1052.000000)">
@@ -47,12 +47,12 @@
                         </g>
                     </svg>
                 </div>
-                <div class="solutions__name">Healthcare</div>
-                <div class="solutions__text">Medical software beneficial for clients, doctors, and businesses</div>
+                <div class="solutions__name">{{ 'main.promo.title2_3'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_3.desc'|trans }}</div>
             </a>
         </li>
-        <li class="solutions__item">
-            <a href="#">
+        <li class="solutions__item" data-current-page="e-commerce">
+            <a href="{{ path('page_landing', {'type':'e-commerce'}) }}">
                 <div class="solutions__icon">
                     <svg viewBox="0 0 58 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -80,9 +80,19 @@
                         </g>
                     </svg>
                 </div>
-                <div class="solutions__name">E-commerce</div>
-                <div class="solutions__text">E-commerce services and marketplace development</div>
+                <div class="solutions__name">{{ 'main.promo.title2_4'|trans }}</div>
+                <div class="solutions__text">{{ 'main.promo.title2_4.desc'|trans }}</div>
             </a>
         </li>
     </ul>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.solutions__item').removeClass('solutions__item--current');
+        {% if app.request.get('_route') == 'page_landing' %}
+            var current_type = '{{ app.request.get('_route_params')['type'] }}';
+            $('.solutions__item[data-current-page="'+current_type+'"]').addClass('solutions__item--current');
+        {% endif %}
+    });
+</script>

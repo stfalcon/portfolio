@@ -3,6 +3,7 @@
 namespace Application\Bundle\DefaultBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -26,7 +27,7 @@ class MenuBuilder
 
     private $extraText = '';
 
-    /** @var \Twig_Environment */
+    /** @var EngineInterface */
     private $templating;
 
     /**
@@ -34,9 +35,9 @@ class MenuBuilder
      *
      * @param FactoryInterface    $factory    Factory interface
      * @param TranslatorInterface $translator Translator interface
-     * @param \Twig_Environment     $templating
+     * @param EngineInterface     $templating
      */
-    public function __construct(FactoryInterface $factory, TranslatorInterface $translator, \Twig_Environment $templating)
+    public function __construct(FactoryInterface $factory, TranslatorInterface $translator, EngineInterface $templating)
     {
         $this->factory = $factory;
         $this->translator = $translator;
@@ -167,7 +168,8 @@ class MenuBuilder
             $menu->addChild($this->translator->trans('Индустрии'), ['uri' => '#'])
                 ->setAttribute('class', 'industry')
                 ->setLinkAttribute('class', 'industry__title')
-                ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
+                    ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
+                    ->setAttribute('render', true)
             ;
         }
         $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));

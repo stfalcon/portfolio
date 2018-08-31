@@ -1,5 +1,9 @@
 {% extends 'knp_menu.html.twig' %}
 
-{% block spanElement %}
-    {{ block('label') }}
+{% block item %}
+    {% if item.attribute('render') is not empty %}
+        {{ item.label|raw }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
 {% endblock %}
