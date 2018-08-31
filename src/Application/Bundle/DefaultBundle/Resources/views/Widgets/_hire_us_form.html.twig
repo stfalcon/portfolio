@@ -138,17 +138,17 @@
                     {#{{ form_widget(form.captcha, {'theme': 'dark' }) }}#}
                 {#</div>#}
 
-                <div class="line line-mob line--budget">
+                <div class="line line--budget">
                     <div class="line__lable">Бюджет</div>
-                    <div class="radio col2 col2--fluid float-left float-left--text-left line__radio">
+                    <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
                         <input class="radio__input" type="radio" id="price_1" name="price">
                         <label class="radio__label" for="price_1"><span>$20 000 – $50 000</span></label>
                     </div>
-                    <div class="radio col2 col2--fluid float-left float-left--text-left line__radio">
+                    <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
                         <input class="radio__input" type="radio" id="price_2" name="price" checked>
                         <label class="radio__label" for="price_2"><span>$50 000 – $100 000</span></label>
                     </div>
-                    <div class="radio col2 col2--fluid float-left float-left--text-left line__radio">
+                    <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
                         <input class="radio__input" type="radio" id="price_3" name="price">
                         <label class="radio__label" for="price_3"><span>$100 000 – $150 000</span></label>
                     </div>
@@ -163,7 +163,7 @@
                     </button>
                 </div>
                 <div class="line line--margin-out">
-                    <div class="col3 line__left">
+                    <div class="col3 line__item line__left">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ 'Позвонить'|trans }}:</div>
@@ -175,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col3 line__center">
+                    <div class="col3 line__item line__center">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ "Skype" | trans() }}:</div>
@@ -185,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col3 line__right">
+                    <div class="col3 line__item line__right">
                         <div class="contacts-info">
                             <div class="contacts-info__cell">
                                 <div class="contacts-info__left">{{ "Написать" | trans() }}:</div>

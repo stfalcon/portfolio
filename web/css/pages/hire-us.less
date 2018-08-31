@@ -74,6 +74,9 @@
 
 
   .form-pad {
+    padding: 84px 0 42px;
+    height: auto;
+
     h2{
       font-size: 42px;
       color: #ffffff;
@@ -131,6 +134,10 @@
 
     &--margin-out {
       margin: 0 -60px;
+
+      @media (max-width: 690px) {
+        margin: 0;
+      }
     }
   }
 
@@ -147,13 +154,14 @@
   .col2 {
     width: 255px;
     position: relative;
-    @media (max-width: 690px) {
-      width: 100%;
-      margin-bottom: 15px;
-    }
 
     &--fluid {
       width: 50%;
+    }
+
+    @media (max-width: 690px) {
+      width: 100%;
+      //margin-bottom: 15px;
     }
   }
   
@@ -300,10 +308,6 @@
     width: auto;
   }
 
-  .line__left {
-
-  }
-
   .line__right {
     float: none;
     display: inline-block;
@@ -311,6 +315,12 @@
 
   .line__center {
     float: right;
+  }
+
+  @media (max-width: 690px) {
+    .line__item {
+      width: 100%;
+    }
   }
 }
 
