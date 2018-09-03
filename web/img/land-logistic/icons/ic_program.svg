@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_program</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="transport2" transform="translate(-1236.000000, -2820.000000)">
+            <g id="3" transform="translate(-104.000000, 2009.000000)">
+                <g id="txt" transform="translate(994.000000, 544.000000)">
+                    <g id="Group-6" transform="translate(346.000000, 267.000000)">
+                        <g id="ic_time">
+                            <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                            <g id="program" opacity="0.8" transform="translate(3.000000, 2.000000)" fill-rule="nonzero">
+                                <path d="M2,3.3 L20,3.3 C21.1045695,3.3 22,4.1954305 22,5.3 L22,12.7239947 L22,21.1 C22,22.2045695 21.1045695,23.1 20,23.1 L2,23.1 C0.8954305,23.1 1.3527075e-16,22.2045695 0,21.1 L0,5.3 C-1.3527075e-16,4.1954305 0.8954305,3.3 2,3.3 Z" id="Rectangle-6" stroke="#FFFFFF" stroke-width="2"></path>
+                                <rect id="Rectangle-10" fill="#FFFFFF" x="4.4" y="0" width="3.3" height="6.6"></rect>
+                                <rect id="Rectangle-10-Copy" fill="#FFFFFF" x="14.3" y="0" width="3.3" height="6.6"></rect>
+                                <polyline id="Path-3" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="5.33134766 13.9745365 9.39997973 17.8438477 17.2533193 8.8"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
