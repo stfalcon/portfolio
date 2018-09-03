@@ -159,10 +159,12 @@
                             </div>
                         </div>
                         <div class="line btn-line">
-                            <div class="google-captcha contact-captcha">
-                                <script src="https://www.google.com/recaptcha/api.js?hl=ru"></script>
-                                <div class="g-recaptcha" data-sitekey="6LeSBhITAAAAAHcwhOMTu-1iLk74EQQmzT937b9Z" data-theme="light" data-callback="showSubmitButton"><div style="width: 304px; height: 78px;"><div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LeSBhITAAAAAHcwhOMTu-1iLk74EQQmzT937b9Z&amp;co=aHR0cHM6Ly9zdGZhbGNvbi5jb206NDQz&amp;hl=ru&amp;v=v1531759913576&amp;theme=light&amp;size=normal&amp;cb=rip15tpw32mk" width="304" height="78" role="presentation" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div>
-                            </div>
+                            {% if form.captcha is defined %}
+                                <div class="google-captcha contact-captcha">
+                                    {{ form_widget(form.captcha) }}
+                                    {{ form_errors(form.captcha) }}
+                                </div>
+                            {% endif %}
                             <button class="btn" type="submit">Отправить</button>
                         </div>
                         <input type="hidden" id="vacancy_form__token" name="vacancy_form[_token]" value="yGOQcxxUWVRiRjpr7zcGHGOOZD1OGah5NO1IfM7ib1k">
