@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
     <title>ic_geo</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="transport&amp;logistic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
-        <g id="Travel&amp;Hospitality" transform="translate(-1331.000000, -4958.000000)">
-            <g id="3" transform="translate(0.000000, 4460.000000)">
-                <g id="txt" transform="translate(1004.000000, 254.000000)">
-                    <g id="Group-11" transform="translate(0.000000, 244.000000)">
-                        <g id="Group-6" transform="translate(327.000000, 0.000000)">
-                            <g id="ic_geo">
-                                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
-                                <circle id="Oval" stroke="#FFFFFF" stroke-width="2" cx="14" cy="14" r="11"></circle>
-                                <circle id="Oval" stroke="#FFFFFF" stroke-width="2" cx="14" cy="14" r="5"></circle>
-                                <circle id="Oval" fill="#FFFFFF" cx="14" cy="14" r="2"></circle>
-                            </g>
-                        </g>
-                    </g>
-                </g>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="Artboard-Copy-4" transform="translate(-1088.000000, -620.000000)">
+            <g id="ic_geo" transform="translate(1088.000000, 620.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <circle id="Oval" stroke="#7C828C" stroke-width="2" cx="14" cy="14" r="11"></circle>
+                <circle id="Oval" stroke="#7C828C" stroke-width="2" cx="14" cy="14" r="5"></circle>
+                <circle id="Oval" fill="#7C828C" cx="14" cy="14" r="2"></circle>
             </g>
         </g>
     </g>

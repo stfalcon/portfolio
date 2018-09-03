@@ -90,7 +90,7 @@
 
 .land-description {
   &__title {
-    max-width: 785px;
+    max-width: 800px;
     color: #454D5C;
     font-size: 42px;
     line-height: 44px;
@@ -127,6 +127,15 @@
       color: #FFFFFF;
       opacity: 0.8;
     }
+
+    .land-description__link--glassy {
+      color: #FFFFFF;
+      opacity: 0.7;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
   &__land-text-list {
@@ -143,6 +152,13 @@
 
     &:hover {
       color: #ed002d;
+    }
+
+    &--glassy {
+      &:hover {
+        color: #ffffff;
+        opacity: 1;
+      }
     }
   }
 }
@@ -198,7 +214,7 @@
     align-items: center;
 
     .land-description {
-      max-width: 640px;
+      max-width: 540px;
     }
   }
 

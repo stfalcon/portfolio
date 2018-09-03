@@ -65,6 +65,7 @@ $(function () {
                         windowCloseTimerId = setTimeout(function () {
                             $('.close-hire_us').trigger('click');
                         }, 4000);
+                        dataLayer.push({'event': 'submit_popupform'});
                     } else{
                         $(form).find("button").prop('disabled', false);
                     }
