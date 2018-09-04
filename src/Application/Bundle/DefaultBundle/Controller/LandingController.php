@@ -10,14 +10,15 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Promotion controller. For promotions actions
  *
- * @Route("/services/web-development")
+ * @Route("/industries")
  */
 class LandingController extends Controller
 {
     /**
      * Promotion index page by type
      *
-     * @Route("/{type}", requirements={"type" = "mobile-app-design|responsive-design|ui-design|ember-js|silex|sylius"}, name="page_landing")
+     * @Route("/{type}", name="page_landing")
+     *
      * @param string $type
      *
      * @return Response
@@ -43,15 +44,19 @@ class LandingController extends Controller
             ->addMeta('property', 'og:image', 'https://stfalcon.com/img/og_image.png')
             ->setLinkCanonical($canonicalUrl);
 
-
-        $form = $this->createForm(new PromotionOrderFormType());
+        $newLanding = !in_array($type, ['mobile-app-design', 'responsive-design', 'ui-design', 'ember-js', 'silex', 'sylius']);
+        $renderedHtml = null;
+        if ($newLanding) {
+            $template = $this->get('twig')->createTemplate($landingPage->getText());
+            $renderedHtml = $this->renderView($template);
+        }
 
         return $this->render(
             'ApplicationDefaultBundle:Default:landing.html.twig',
             [
-                'form' => $form->createView(),
                 'landing_page' => $landingPage,
                 'title' => $landingPage->getMetaTitle(),
+                'render_html' => $renderedHtml,
             ]
         );
     }

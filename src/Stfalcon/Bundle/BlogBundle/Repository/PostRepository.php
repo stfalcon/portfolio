@@ -205,8 +205,8 @@ class PostRepository extends EntityRepository
                 ->addGroupBy('p.id');
         } else {
             $qb->andWhere($qb->expr()->neq('p.title', ':empty'))
+               ->andWhere($qb->expr()->isNotNull('p.title'))
                 ->setParameter('empty', '');
         }
     }
-
 }

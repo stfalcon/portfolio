@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    {{ sonata_seo_title() }}
+
+    <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
+    <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}"/>
+    {{ sonata_seo_metadatas() }}
+    {{ sonata_seo_link_canonical() }}
+    {{ sonata_seo_lang_alternates() }}
+
+    {% if app.environment == 'prod' %}
+        {% include "::google_tag_manager.html.twig" %}
+    {% endif %}
+</head>
+<body>
+<div class="landing-wrapper">
+    <div class="header">
+        {% include '::_header_index.html.twig' %}
+    </div>
+    <section class="land-promo land-promo--realestate">
+        <div class="land-container">
+            <h1 class="land-promo__title">Программное обеспечение для управления недвижимостью</h1>
+            <p class="land-promo__text">Комплексные решения для застройщиков и агентств недвижимости</p>
+        </div>
+    </section>
+    <section class="land-section">
+        <div class="land-container land-section__container">
+            <div class="land-description land-description--center">
+                <h2 class="land-description__title">Создаем специализированное ПО для управления недвижимостью</h2>
+                <p class="land-description__text">Информационные технологии помогают застройщикам и владельцам управлять недвижимостью и продвигать ее на рынке. Благодаря современным ИТ-решениям, вы всегда на связи с клиентами и компаньонами.
+                    Возможность моментально реагировать на запросы из любой точки мира дает преимущество перед конкурентами и привлекает качественные лиды</p>
+            </div>
+            <div class="land-section__img-box land-section__img-box--full">
+                <img src="{{ asset('img/land-realestate/p2.jpg') }}" alt="" class="land-section__img land-section__img--desk">
+                <img src="{{ asset('img/land-realestate/p2_mobile.jpg') }}" alt="" class="land-section__img land-section__img--mob">
+            </div>
+        </div>
+    </section>
+    <section class="land-section land-section--col-2 land-section--text-left">
+        <div class="land-section__col">
+            <div class="land-description">
+                <h2 class="land-description__title">Управление продажами через интернет</h2>
+                <p class="land-description__text">Растущее использование технологии привело к тому, что люди иначе ищут недвижимость.
+                    Воспользуйтесь преимуществами веб-сервисов и мобильных приложений и показывайте клиентам все имеющиеся варианты недвижимости в наиболее привлекательном свете.</p>
+                <ul class="land-text-list land-description__land-text-list">
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_onlineadmin.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Онлайн-администрирование</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_webvsmobile.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Веб- и мобильные приложения</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_geoloc.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Геоинформационные сервисы</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_service.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Быстрое реагирование на запросы клиентов</div>
+                    </li>
+                </ul>
+                <a href="#" class="land-description__link">Читать о проекте Real Estate CRM</a>
+            </div>
+        </div>
+        <div class="land-section__col">
+            <div class="land-section__img-box">
+                <img src="{{ asset('img/land-realestate/p3.jpg') }}" alt="" class="land-section__img">
+            </div>
+        </div>
+    </section>
+    <section class="land-section land-section--col-2 land-section--text-right" style="background-color: #EFF7F9;">
+        <div class="land-section__col land-section__col--sm-pad">
+            <div class="land-description">
+                <h2 class="land-description__title">Автоматизация недвижимости</h2>
+                <p class="land-description__text">Отслеживайте централизованно текущие проекты, детали операций, изменения в договорах, задания, электронную почту и документооборот</p>
+                <ul class="land-text-list land-description__land-text-list">
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_management.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">СRM-управление прцессами</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_remoteaccess.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Удаленный доступ к проектам</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_potentialclients.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Автоматизированный отбор клиентов</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_doc.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Автоматические отчеты</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="land-section__col">
+            <div class="land-section__img-box">
+                <img src="{{ asset('img/land-realestate/p4.jpg') }}" alt="" class="land-section__img">
+            </div>
+        </div>
+    </section>
+    <section class="land-section land-section--col-2 land-section--text-left" style="background-color: #0990B9;">
+        <div class="land-section__col land-section__col--sm-pad">
+            <div class="land-description land-description--white-text">
+                <h2 class="land-description__title">Взаимодействие с арендаторами и агентами </h2>
+                <p class="land-description__text">Используйте технологии, чтобы управлять профилями арендаторов, договорами аренды и сборами оплаты на расстоянии</p>
+                <ul class="land-text-list land-description__land-text-list">
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_view.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Электронные договоры</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_control.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Онлайн-профили</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_notification.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Автоматические напоминания </div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_access.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Доступ к документации из любой точки</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="land-section__col">
+            <div class="land-section__img-box">
+                <img src="{{ asset('img/land-realestate/p5.jpg') }}" alt="" class="land-section__img">
+            </div>
+        </div>
+    </section>
+    <section class="land-section land-section--col-2 land-section--text-right">
+        <div class="land-section__col land-section__col--sm-pad">
+            <div class="land-description">
+                <h2 class="land-description__title">Генерация лидов для недвижимости</h2>
+                <p class="land-description__text">Анализируйте данные и управляйте продажами недвижимости исходя из поведения клиентов
+                </p>
+                <ul class="land-text-list land-description__land-text-list">
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_strategy.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Построение клиентской стратегии </div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_leads.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Автогенерация лидов </div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_website.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Веб-сервисы для лидогенерации</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-realestate/icons/ic_analysis.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Всесторонний анализ кампаний</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="land-section__col">
+            <div class="land-section__img-box">
+                <img src="{{ asset('img/land-realestate/p6.jpg') }}" alt="" class="land-section__img">
+            </div>
+        </div>
+    </section>
+    <div class="section-cms">
+        <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
+        {#{{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProject', { 'category': category })) }}#}
+    </div>
+    <h3 class="post-heading">{{ 'Похожие статьи'|trans }}</h3>
+    {#<div class="wrap_related_posts post-content">#}
+        {#<ul class="related_posts">#}
+            {#{% for post in related_posts %}#}
+                {#<li>#}
+                    {#<a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">#}
+                        {#<div class="wrap_img">#}
+                            {#<div class="container_img">#}
+                                {#{{ get_post_first_image(post, '', app.request.host) }}#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<h3>{{ post.title }}</h3>#}
+                    {#</a>#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
+    {#</div>#}
+    <div class="contact-us">
+        <div class="h2 contact-us__title">
+            {{ 'Давайте сделаем что-то классное вместе'|trans }}
+        </div>
+
+        <div class="contact-us__text">
+            {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи'|trans }}.
+        </div>
+        {#{% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}#}
+        {#{% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':category } %}#}
+        {#{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': category.slug })) }}#}
+
+    </div>
+    <footer class="footer">
+        {{ include('_footer.html.twig') }}
+    </footer>
+</div>
+{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+{% javascripts
+'assets/js/libs/jquery.history.min.js'
+'assets/js/libs/sly.js'
+'assets/js/homepage.js'
+'assets/js/homepage-bg.js'
+'js/jquery.validate.min.js'
+'js/widgets.js'
+'js/subscribe.js'
+output='cache/js/*.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script type="text/javascript">
+    jQuery.extend(jQuery.validator.messages, {
+        required: "{{ 'Заполните это поле'|trans }}",
+        email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
+        maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+        minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+    });
+</script>
+</body>
+</html>

@@ -22,9 +22,9 @@ class UserRepository extends EntityRepository
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.enabled = :enable')
-            ->setParameter('enable', true)
             ->andWhere('u.locked = :locked')
-            ->setParameter('locked', false)
+            ->andWhere('u.hideFromTeamSection = :hide')
+            ->setParameters(['hide' => false, 'enable' => true, 'locked' => false])
             ->orderBy('u.ordering', 'ASC')
             ->getQuery()
             ->getResult();

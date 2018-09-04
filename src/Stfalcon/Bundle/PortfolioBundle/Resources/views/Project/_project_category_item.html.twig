@@ -2,7 +2,7 @@
     <ul class="items_projects">
         {% for  key,project in projects %}
             <li class="project-cell">
-                {% include('@StfalconPortfolio/Project/_project_load_item.html.twig') with {'project': project, 'key': key } %}
+                {% include('@StfalconPortfolio/Project/_project_load_item.html.twig') with {'project': project} %}
             </li>
         {% endfor %}
     </ul>

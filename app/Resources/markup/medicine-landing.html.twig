@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    {{ sonata_seo_title() }}
+
+    <link rel="sitemap" type="application/xml" href="{{ app.request.scheme }}://stfalcon.com/sitemap.xml"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1"/>
+    <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for stfalcon.com" href="{{ url('blog_rss') }}"/>
+    {{ sonata_seo_metadatas() }}
+    {{ sonata_seo_link_canonical() }}
+    {{ sonata_seo_lang_alternates() }}
+
+    {% if app.environment == 'prod' %}
+        {% include "::google_tag_manager.html.twig" %}
+    {% endif %}
+</head>
+<body>
+<div class="landing-wrapper">
+    <div class="header">
+        {% include '::_header_index.html.twig' %}
+    </div>
+    <section class="land-promo land-promo--medicine">
+        <div class="land-container">
+            <h1 class="land-promo__title">Медицинское программное обеспечение</h1>
+            <p class="land-promo__text">Цифровые технологии на службе медицине</p>
+        </div>
+    </section>
+    <section class="land-section">
+        <div class="land-container land-section__container">
+            <div class="land-description land-description--center">
+                <h2 class="land-description__title">Разрабатываем IT-решения для автоматизации медицинской отрасли</h2>
+                <p class="land-description__text">Применение ИТ-технологий в медицине позволяет улучшить лечение и уход и облегчить работу персонала. Информационные технологии в медицине включают математическое моделирование и обработку данных, системы регистрации и анализа показателей, телемедицину,
+                    веб-сервисы и мобильные приложения для врачей и пациентов.</p>
+            </div>
+            <div class="land-section__img-box land-section__img-box--full">
+                <img src="{{ asset('img/land-medicine/p2.jpg') }}" alt="" class="land-section__img land-section__img--desk">
+                <img src="{{ asset('img/land-medicine/p2_mobile.jpg') }}" alt="" class="land-section__img land-section__img--mob">
+            </div>
+        </div>
+    </section>
+    <section class="land-section land-section--col-2 land-section--text-left">
+        <div class="land-section__col">
+            <div class="land-description">
+                <h2 class="land-description__title">Автоматизация медицинского учета</h2>
+                <p class="land-description__text">Наибольшие вызовы в сфере медицинских услуг — это недостаток квалифицированных
+                    специалистов и большие затраты сил и времени на рутинные операции. Современное программное обеспечение решает обе эти задачи.</p>
+                <ul class="land-text-list land-description__land-text-list">
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_documents.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Электронные медицинские карточки</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_search.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Oтслеживание лабораторных данных </div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_docautomatuz.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Aвтоматизация документооборота</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_qualification.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Cистемы повышения квалификации</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_geoloc.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Геолокационные сервисы</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_time.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Учет времени работы</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="land-section__col">
+            <div class="land-section__img-box">
+                <img src="{{ asset('img/land-medicine/p3.jpg') }}" alt="" class="land-section__img">
+            </div>
+        </div>
+    </section>
+    <section class="land-section land-section--col-2 land-section--text-right">
+        <div class="land-section__col">
+            <div class="land-description">
+                <h2 class="land-description__title">Забота о пациентах</h2>
+                <p class="land-description__text">Здравоохранение - это не только постановка медицинского диагноза и лечение. Это также комфорт клиента и индивидуальный подход к каждому пациенту.</p>
+                <ul class="land-text-list land-description__land-text-list">
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_entry.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Быстрая запись на прием</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_noqueue.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Отсутствие очередей</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_onlinecons.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Онлайн консультирование</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_doctor.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Выбор предпочитаемого врача</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_history.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Сохранение истории болезни в виртуальном кабинете</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_nearly.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Возможность найти ближайшего специалиста</div>
+                    </li>
+                </ul>
+                <a href="#" class="land-description__link">Читать о проекте IsDocin</a>
+            </div>
+        </div>
+        <div class="land-section__col">
+            <div class="land-section__img-box">
+                <img src="{{ asset('img/land-medicine/p4.jpg') }}" alt="" class="land-section__img">
+            </div>
+        </div>
+    </section>
+    <section class="land-section land-section--text-left" style="background-color: #f7f7f7;">
+        <div class="land-section__col land-section__col--abs land-section__col land-section__col--sm-pad">
+            <div class="land-description">
+                <h2 class="land-description__title">Помощь докторам </h2>
+                <p class="land-description__text">Программное обеспечение предоставляет докторам доступ к последним достижениям
+                    медицины и к опыту коллег по всему миру. Это позволяет действовать оперативно и безошибочно. </p>
+                <ul class="land-text-list land-description__land-text-list">
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_diagnost.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Высокая точность диагностики</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_diagnosis.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Ранняя постановка диагноза</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_paccard.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Быстрый доступ к данным пациента</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_chat.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Oбмен опытом из любой точки мира</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_interaction.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Оперативное взаимодействие</div>
+                    </li>
+                    <li class="land-text-list__item">
+                        <img src="{{ asset('img/land-medicine/icons/ic_vr.svg') }}" class="land-text-list__icon">
+                        <div class="land-text-list__text">Виртуальная реальность</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="land-section__img-box">
+            <img src="{{ asset('img/land-medicine/p5.jpg') }}" alt="" class="land-section__img land-section__img--desk">
+            <img src="{{ asset('img/land-medicine/p5_mobile.jpg') }}" alt="" class="land-section__img land-section__img--mob">
+        </div>
+    </section>
+    <div class="section-cms">
+        <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
+        {#{{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProject', { 'category': category })) }}#}
+    </div>
+    <h3 class="post-heading">{{ 'Похожие статьи'|trans }}</h3>
+
+    {#<div class="wrap_related_posts post-content">#}
+        {#<ul class="related_posts">#}
+            {#{% for post in related_posts %}#}
+                {#<li>#}
+                    {#<a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more">#}
+                        {#<div class="wrap_img">#}
+                            {#<div class="container_img">#}
+                                {#{{ get_post_first_image(post, '', app.request.host) }}#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<h3>{{ post.title }}</h3>#}
+                    {#</a>#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
+    {#</div>#}
+    <div class="contact-us">
+        <div class="h2 contact-us__title">
+            {{ 'Давайте сделаем что-то классное вместе'|trans }}
+        </div>
+
+        <div class="contact-us__text">
+            {{ 'Свяжитесь с нами, и мы поможем решить ваши задачи'|trans }}.
+        </div>
+        {#{% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}#}
+        {#{% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':category } %}#}
+        {#{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': category.slug })) }}#}
+
+    </div>
+    <footer class="footer">
+        {{ include('_footer.html.twig') }}
+    </footer>
+</div>
+{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+{% javascripts
+'assets/js/libs/jquery.history.min.js'
+'assets/js/libs/sly.js'
+'assets/js/homepage.js'
+'assets/js/homepage-bg.js'
+'js/jquery.validate.min.js'
+'js/widgets.js'
+'js/subscribe.js'
+output='cache/js/*.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script type="text/javascript">
+    jQuery.extend(jQuery.validator.messages, {
+        required: "{{ 'Заполните это поле'|trans }}",
+        email: "{{ 'Пожалуйста введите правильный имейл.'|trans }}",
+        maxlength: jQuery.validator.format("{{ 'Максимальное количество символов {0}'|trans }}"),
+        minlength: jQuery.validator.format("{{ 'Минимальное количество символов {0}'|trans }}"),
+    });
+</script>
+</body>
+</html>

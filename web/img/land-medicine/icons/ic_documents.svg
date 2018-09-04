@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>8245C71B-CB62-49C5-B900-5EB95E3AE10F</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="medicine" transform="translate(-390.000000, -2091.000000)">
+            <g id="2" transform="translate(0.000000, 1645.000000)">
+                <g id="txt" transform="translate(390.000000, 254.000000)">
+                    <g id="Group-6" transform="translate(0.000000, 192.000000)">
+                        <g id="1">
+                            <g id="ic_hotels">
+                                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                                <g id="Group" opacity="0.8" transform="translate(3.000000, 2.000000)">
+                                    <g id="Group-14" transform="translate(6.000000, 0.000000)">
+                                        <path d="M2,0 L10.9487305,0 L13,0 C14.1045695,-2.02906125e-16 15,0.8954305 15,2 L15,4.76611328 L15,13.8595082 L15,17 C15,18.1045695 14.1045695,19 13,19 L2,19 C0.8954305,19 1.3527075e-16,18.1045695 0,17 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z" id="Rectangle-25" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <rect id="Rectangle-21" fill="#7C828C" x="3" y="13" width="5" height="2" rx="1"></rect>
+                                    </g>
+                                    <g id="Group-14" transform="translate(0.000000, 4.000000)">
+                                        <path d="M2,0 L13,-2.22044605e-16 C14.1045695,5.56104062e-16 15,0.8954305 15,2 L15,13.8595082 L15,17 C15,18.1045695 14.1045695,19 13,19 L2,19 C0.8954305,19 1.3527075e-16,18.1045695 0,17 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z" id="Rectangle-25" stroke="#7C828C" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <rect id="Rectangle-21" fill="#7C828C" x="3" y="4" width="9" height="2" rx="1"></rect>
+                                        <rect id="Rectangle-21" fill="#7C828C" x="3" y="8" width="9" height="2" rx="1"></rect>
+                                        <rect id="Rectangle-21" fill="#7C828C" x="3" y="12" width="5" height="2" rx="1"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

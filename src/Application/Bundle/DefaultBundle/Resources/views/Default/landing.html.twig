@@ -1,13 +1,46 @@
 {% extends '::base.html.twig' %}
 {% block title %}{{ title }}{% endblock title %}
-{% set styles = {'mobile-app-design': 'mob_design_land', 'responsive-design':'adaptive_land', 'ui-design':'projection_land','ember-js':'ember_land','silex':'silex_land', 'sylius':'sylius_land'} %}
+{% set styles = {
+    'mobile-app-design': 'mob_design_land',
+    'responsive-design':'adaptive_land',
+    'ui-design':'projection_land',
+    'ember-js':'ember_land',
+    'silex':'silex_land',
+    'sylius':'sylius_land'}
+%}
+
 {% block body %}
-    <div class="wrapper_landing {{ styles[app.request.get('type')] }}">
-        {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
+    {% if styles[app.request.get('type')] is defined %}
+        {% set land_style = 'wrapper_landing '~styles[app.request.get('type')] %}
+    {% else %}
+        {% set land_style = 'landing-wrapper' %}
+    {% endif %}
+    <div class="{{ land_style }}">
         {% if landing_page %}
-            {{ landing_page.text|raw }}
+            {% if render_html is not null %}
+                <div class="header">
+                    {% include '::_header_index.html.twig' %}
+                </div>
+                {{ render_html|raw }}
+            {% else %}
+                {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}
+                {{ landing_page.text|raw }}
+            {% endif %}
         {% endif %}
-        {% include('@ApplicationDefault/Default/_landing_order_form.html.twig') %}
+        {% if landing_page.projects|length > 0 -%}
+            <div class="section-cms">
+                <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
+                {% include ('@StfalconPortfolio/Category/_widget_examples_prj.html.twig') with {'projects': landing_page.projects} %}
+            </div>
+        {% endif %}
+        {% if landing_page.posts|length > 0 %}
+            <div class="blog-post">
+                <div class="post-content">
+                    {% include ('@StfalconBlog/Post/relatedPosts.twig') with {'related_posts': landing_page.posts} %}
+                </div>
+            </div>
+        {% endif %}
+        {% include "@StfalconPortfolio/contact_us-block.html.twig" with {'category' : landing_page} %}
     </div>
 <footer class="footer vcard">
     {% include('::_footer.html.twig') %}
@@ -18,8 +51,8 @@
     {% set locale = app.request.locale %}
     <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
-    {% javascripts 'js/sly.js' 'js/promotion_apps_main.js' output='cache/js/*.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% javascripts 'js/widgets.js' output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
     {% if locale == 'en' %}

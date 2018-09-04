@@ -166,6 +166,15 @@ class User extends BaseUser
     private $userLocale;
 
     /**
+     * Hide from team section
+     *
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $hideFromTeamSection = false;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -173,6 +182,7 @@ class User extends BaseUser
         parent::__construct();
         $this->groups = new ArrayCollection();
         $this->translations = new ArrayCollection();
+        $this->setEnabled(true);
     }
 
     /**
@@ -440,6 +450,26 @@ class User extends BaseUser
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHideFromTeamSection()
+    {
+        return $this->hideFromTeamSection;
+    }
+
+    /**
+     * @param bool $hideFromTeamSection
+     *
+     * @return $this
+     */
+    public function setHideFromTeamSection($hideFromTeamSection)
+    {
+        $this->hideFromTeamSection = $hideFromTeamSection;
 
         return $this;
     }

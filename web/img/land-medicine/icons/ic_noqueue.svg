@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_onlinesignup</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-60.000000, -17.000000)">
+            <g id="ic_sales_copy" transform="translate(60.000000, 17.000000)">
+                <rect id="Rectangle-7" x="0" y="0" width="28" height="28"></rect>
+                <g id="Group" opacity="0.8" transform="translate(2.000000, 1.000000)">
+                    <g id="Group-3" stroke="#7C828C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                        <circle id="Oval" cx="11" cy="5.125" r="4.9375"></circle>
+                        <path d="M10.5444336,21 C8.89255664,21 5.54441211,21 0.5,21 C0.5,17.8942314 1.85755684,15.8006762 3.98091509,14.3083932 C4.93412608,13.6384825 6.04166612,13.0897438 7.25,12.625 C8.52219993,14.4060799 9.47634989,15.7418898 10.1124499,16.6324298" id="Shape"></path>
+                    </g>
+                    <g id="Group-2" transform="translate(10.000000, 11.000000)">
+                        <circle id="Oval" stroke="#7C828C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="6.99999991" cy="7.45454536" r="6.590909"></circle>
+                        <rect id="Rectangle-2" fill="#7C828C" fill-rule="nonzero" x="6" y="3" width="2" height="9" rx="1"></rect>
+                        <rect id="Rectangle-2" fill="#7C828C" fill-rule="nonzero" transform="translate(7.000000, 7.500000) rotate(90.000000) translate(-7.000000, -7.500000) " x="6" y="3" width="2" height="9" rx="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

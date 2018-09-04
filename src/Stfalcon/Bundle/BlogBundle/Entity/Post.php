@@ -387,7 +387,7 @@ class Post implements Translatable
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle() ?: 'новый пост' ;
     }
 
     /**
