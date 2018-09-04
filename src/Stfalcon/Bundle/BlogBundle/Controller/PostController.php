@@ -205,7 +205,7 @@ class PostController extends AbstractController
      * @param string $locale Site locale
      * @param Post   $post   Current post
      *
-     * @return array
+     * @return Response
      */
     public function relatedPostsAction($locale, $post)
     {
