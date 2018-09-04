@@ -59,17 +59,19 @@ class MenuBuilder
             ]
         );
 
-        $menu->setUri($request->getRequestUri());
+        $url = $request->getRequestUri();
+        $menu->setUri($url);
+        $this->removePaginationFromUrlStr($url);
         $categories = $this->postCategoryRepository->findAll();
         $childCategory = $menu->addChild($this->translator->trans('__last_posts'), ['route' => 'blog'])
             ->setLinkAttribute('class', 'tab-title');
-        $this->checkCurrent($childCategory, $request);
+        $this->checkCurrent($childCategory, $url);
         /** @var PostCategory $category */
         foreach ($categories as $category) {
             if ($category->getPosts()->count() > 0) {
                 $childCategory = $menu->addChild($category->getName(), ['route' => 'blog', 'routeParameters' => ['title' => $category->getName()]])
                     ->setLinkAttribute('class', 'tab-title');
-                $this->checkCurrent($childCategory, $request);
+                $this->checkCurrent($childCategory, $url);
             }
         }
 
@@ -78,13 +80,28 @@ class MenuBuilder
 
     /**
      * @param ItemInterface $childCategory
-     * @param Request       $request
+     * @param string        $url
      */
-    private function checkCurrent(ItemInterface $childCategory, Request $request)
+    private function checkCurrent(ItemInterface $childCategory, $url)
     {
-        $childCategory->setCurrent(1 === preg_match('/'.preg_quote($childCategory->getUri(), '/').'/', $request->getRequestUri()));
+        $childCategory->setCurrent(1 === preg_match('/'.preg_quote($url, '/').'$/', $childCategory->getUri()));
         if ($childCategory->isCurrent()) {
             $childCategory->setLinkAttribute('class', 'tab-title active');
+        }
+    }
+
+    /**
+     * @param string $url
+     */
+    private function removePaginationFromUrlStr(&$url)
+    {
+        $urlArray = explode('/', $url);
+        if (0 < preg_match('/[0-9]$/', $urlArray[count($urlArray)-1])) {
+            array_pop($urlArray);
+            if ('all' === strtolower($urlArray[count($urlArray)-1])) {
+                array_pop($urlArray);
+            }
+            $url = implode('/', $urlArray);
         }
     }
 }
