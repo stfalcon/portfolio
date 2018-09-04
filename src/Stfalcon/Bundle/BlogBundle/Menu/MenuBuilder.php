@@ -14,7 +14,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class MenuBuilder
 {
     /**
-     * @var FactoryInterface $factory Factory interface
+     * @var FactoryInterface Factory interface
      */
     private $factory;
 
@@ -23,11 +23,11 @@ class MenuBuilder
      */
     private $postCategoryRepository;
 
-    /** @var TranslatorInterface  */
+    /** @var TranslatorInterface */
     private $translator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param FactoryInterface    $factory
      * @param EntityRepository    $postCategoryRepository
@@ -41,7 +41,7 @@ class MenuBuilder
     }
 
     /**
-     * Main menu
+     * Main menu.
      *
      * @param Request $request Request
      *
@@ -49,7 +49,15 @@ class MenuBuilder
      */
     public function createMainMenu(Request $request)
     {
-        $menu = $this->factory->createItem('root');
+        $menu = $this->factory->createItem(
+            'root',
+            [
+                'childrenAttributes' =>
+                    [
+                        'class' => 'tabs-header tabs-projects',
+                    ],
+            ]
+        );
 
         $menu->setUri($request->getRequestUri());
         $categories = $this->postCategoryRepository->findAll();
@@ -57,7 +65,9 @@ class MenuBuilder
         /** @var PostCategory $category */
         foreach ($categories as $category) {
             if ($category->getPosts()->count() > 0) {
-                $menu->addChild($category->getName(), ['route' => 'blog', 'routeParameters' => ['title' => $category->getName()]]);
+                $menu->addChild($category->getName(), ['route' => 'blog', 'routeParameters' => ['title' => $category->getName()]])
+                    ->setAttribute('class', 'wrap-nav')
+                    ->setLinkAttribute('class', 'tab-title');
             }
         }
 

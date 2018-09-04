@@ -42,7 +42,8 @@ class PostCategoryAdmin extends Admin
     {
         /** @var PostCategory $postCategory */
         $postCategory = $this->getSubject();
-        if ($postCategory->getId()) {
+        $objectId = $postCategory->getId();
+        if ($objectId) {
             $this->prevPosts = clone $postCategory->getPosts();
         }
 
@@ -68,7 +69,12 @@ class PostCategoryAdmin extends Admin
                     'label' => 'Перевод',
                 ]
             )
-            ->add('posts')
+
+            ->add('posts', null, [
+                'help' => \is_null($objectId) ? 'добавлять посты можно только после создания категории' :
+                    'выбирете посты для категори',
+                'disabled' => \is_null($objectId),
+            ])
         ;
     }
 
