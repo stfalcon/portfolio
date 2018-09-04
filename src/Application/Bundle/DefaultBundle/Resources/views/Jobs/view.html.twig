@@ -140,22 +140,18 @@
 
                         <div class="line">
                             <input type="text" id="vacancy_form_name" name="vacancy_form[name]" required="required" placeholder="Ваше имя" aria-required="true">
-
                         </div>
                         <div class="line">
                             <input type="email" id="vacancy_form_email" name="vacancy_form[email]" required="required" placeholder="Электронная почта" aria-required="true">
-
                         </div>
                         <div class="line">
                             <input type="text" id="vacancy_form_phone" name="vacancy_form[phone]" required="required" placeholder="Номер телефона" aria-required="true">
-
                         </div>
                         <div class="line">
                             <div class="file-input">
                                 <p class="filename">Прикрепить резюме</p>
                                 <p class="filesize">до 20 МБ</p>
                                 <input type="file" id="vacancy_form_attach" name="vacancy_form[attach]">
-
                             </div>
                         </div>
                         <div class="line btn-line">
@@ -222,44 +218,44 @@
 
     <div class="services-tabs">
         <div class="section-cms">
-            <h3>Примеры разработки веб-сайтов</h3>
+            <h3>Examples of website development</h3>
             <ul class="project-list">
                 <li>
-                    <a href="/ru/portfolio/smartseeds-ru">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5af6f396a7562.jpeg" alt="SmartSeeds">
-                        <h3>SmartSeeds</h3>
+                    <a href="/en/portfolio/novaposhta-ua">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b27056.png" alt="novaposhta.ua">
+                        <h3>novaposhta.ua</h3>
                     </a>
-                    <p>smartseeds, transportation, symfony, перевозка, поиск заказов</p>
+                    <p>design, HTML markup, development</p>
                 </li>
                 <li>
-                    <a href="/ru/portfolio/novaposhta-ua">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5aaa48186f38d.jpeg" alt="«Нова Пошта» — Личный кабинет">
-                        <h3>«Нова Пошта» — Личный кабинет</h3>
-                    </a>
-                    <p>development, design</p>
-                </li>
-                <li>
-                    <a href="/ru/portfolio/nic-ua">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5af6ed02c3f0c.jpeg" alt="NIC.UA">
+                    <a href="/en/portfolio/NIC-UA">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b2b3c2.png" alt="NIC.UA">
                         <h3>NIC.UA</h3>
                     </a>
-                    <p>программирование</p>
+                    <p>design, development</p>
                 </li>
                 <li>
-                    <a href="/ru/portfolio/npshopping-ua">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5aaa48661a794.jpeg" alt="Нова Пошта Шоппинг">
-                        <h3>Нова Пошта Шоппинг</h3>
+                    <a href="/en/portfolio/MeinFernbus">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b30b0f.png" alt="MeinFernbus">
+                        <h3>MeinFernbus</h3>
                     </a>
-                    <p>development, design</p>
+                    <p>design, development</p>
+                </li>
+                <li>
+                    <a href="/en/portfolio/example-com_1">
+                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b41d0c.jpeg" alt="example.com_1">
+                        <h3>example.com_1</h3>
+                    </a>
+                    <p>design, HTML markup, development</p>
                 </li>
             </ul>
         </div>
     </div>
 
     <div class="blog-post post-content vacancy-page">
-        <a class="read-more prev-page" href="/ru/jobs">
-            <span>Вернуться к списку вакансий</span>
-            <span>Вернуться к списку вакансий</span>
+        <a class="read-more prev-page" href="{{ path('jobs_list') }}">
+            <span>{{ '__back_to_vacansy_list'|trans }}</span>
+            <span>{{ '__back_to_vacansy_list'|trans }}</span>
         </a>
     </div>
 

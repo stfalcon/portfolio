@@ -1343,7 +1343,7 @@
 }
 
 .vacancy-page {
-  margin-bottom: 16px;
+  margin-bottom: 0;
 
   header {
     margin-bottom: 25px;
@@ -1432,7 +1432,7 @@
     overflow: visible;
     margin-left: 0;
     margin-right: 0;
-    //margin-bottom: 80px;
+    margin-bottom: 0;
 
     a {
       color: @link-vacancy-color;
@@ -1537,12 +1537,20 @@
   }
 }
 
-.vacancy-page.post-content {
-  margin-bottom: 115px;
-}
+.vacancy-page {
+  &.post-content {
+    margin-bottom: 115px;
+  }
+  &.post-content:after {
+    margin-left: 0;
+  }
+  & + .services-tabs .section-cms {
+    padding-bottom: 0;
+  }
 
-.vacancy-page.post-content:after {
-  margin-left: 0;
+  & + .services-tabs .project-list {
+    margin-bottom: 0;
+  }
 }
 
 .vacancy-inf {
