@@ -4,6 +4,7 @@ namespace  Stfalcon\Bundle\BlogBundle\Menu;
 
 use Doctrine\ORM\EntityRepository;
 use Knp\Menu\FactoryInterface;
+use Knp\Menu\ItemInterface;
 use Stfalcon\Bundle\BlogBundle\Entity\PostCategory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -52,8 +53,7 @@ class MenuBuilder
         $menu = $this->factory->createItem(
             'root',
             [
-                'childrenAttributes' =>
-                    [
+                'childrenAttributes' => [
                         'class' => 'tabs-header tabs-projects',
                     ],
             ]
@@ -61,16 +61,30 @@ class MenuBuilder
 
         $menu->setUri($request->getRequestUri());
         $categories = $this->postCategoryRepository->findAll();
-        $menu->addChild($this->translator->trans('__last_posts'), ['route' => 'blog']);
+        $childCategory = $menu->addChild($this->translator->trans('__last_posts'), ['route' => 'blog'])
+            ->setLinkAttribute('class', 'tab-title');
+        $this->checkCurrent($childCategory, $request);
         /** @var PostCategory $category */
         foreach ($categories as $category) {
             if ($category->getPosts()->count() > 0) {
-                $menu->addChild($category->getName(), ['route' => 'blog', 'routeParameters' => ['title' => $category->getName()]])
-                    ->setAttribute('class', 'wrap-nav')
+                $childCategory = $menu->addChild($category->getName(), ['route' => 'blog', 'routeParameters' => ['title' => $category->getName()]])
                     ->setLinkAttribute('class', 'tab-title');
+                $this->checkCurrent($childCategory, $request);
             }
         }
 
         return $menu;
+    }
+
+    /**
+     * @param ItemInterface $childCategory
+     * @param Request       $request
+     */
+    private function checkCurrent(ItemInterface $childCategory, Request $request)
+    {
+        $childCategory->setCurrent(1 === preg_match('/'.preg_quote($childCategory->getUri(), '/').'/', $request->getRequestUri()));
+        if ($childCategory->isCurrent()) {
+            $childCategory->setLinkAttribute('class', 'tab-title active');
+        }
     }
 }
