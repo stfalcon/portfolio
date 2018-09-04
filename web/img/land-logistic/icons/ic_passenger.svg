@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_passenger</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="industrial-landings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8" stroke-linecap="round" stroke-linejoin="round">
+        <g id="transport2" transform="translate(-1236.000000, -2908.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="3" transform="translate(-104.000000, 2009.000000)">
+                <g id="txt" transform="translate(994.000000, 544.000000)">
+                    <g id="Group-10" transform="translate(346.000000, 355.000000)">
+                        <g id="ic_passenger">
+                            <g id="Group" transform="translate(3.000000, 3.000000)">
+                                <circle id="Oval" cx="11" cy="4.79761905" r="4.75595238"></circle>
+                                <path d="M21.5,22.047619 L0.5,22.047619 C0.5,17.547619 3.35,13.797619 7.25,12.297619 L11,17.547619 L14.75,12.297619 C18.65,13.797619 21.5,17.547619 21.5,22.047619 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
