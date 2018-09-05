@@ -159,6 +159,15 @@ class Post implements Translatable
     private $metaTitle;
 
     /**
+     * Mode for admin preview before public.
+     *
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $previewMode = true;
+
+    /**
      * Initialization properties for new post entity.
      */
     public function __construct()
@@ -359,7 +368,7 @@ class Post implements Translatable
      */
     public function __toString()
     {
-        return $this->getTitle() ?: 'новый пост' ;
+        return $this->getTitle() ?: 'новый пост';
     }
 
     /**
@@ -566,6 +575,26 @@ class Post implements Translatable
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPreviewMode()
+    {
+        return $this->previewMode;
+    }
+
+    /**
+     * @param bool $previewMode
+     *
+     * @return $this
+     */
+    public function setPreviewMode($previewMode)
+    {
+        $this->previewMode = $previewMode;
 
         return $this;
     }

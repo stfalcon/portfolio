@@ -115,7 +115,8 @@ class PostAdmin extends Admin
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
             ))
-            ->add('published', null, array('required' => false));
+            ->add('published', null, array('required' => false))
+            ->add('previewMode', null, ['required' => false, 'label' => 'Доступно только для админа']);
     }
 
     /**
