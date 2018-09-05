@@ -46,6 +46,15 @@ class PostCategory implements Translatable
     private $posts;
 
     /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     *
+     * @ORM\Column(type="string", nullable=false, unique=true)
+     */
+    private $slug;
+
+    /**
      * @ORM\OneToMany(
      *   targetEntity="Stfalcon\Bundle\BlogBundle\Entity\PostCategoryTranslation",
      *   mappedBy="object",
@@ -180,6 +189,26 @@ class PostCategory implements Translatable
     public function removeTranslation($translation)
     {
         $this->translations->removeElement($translation);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }
