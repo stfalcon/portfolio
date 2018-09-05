@@ -773,17 +773,14 @@
 
 .search-form-wrap{
   display: none;
-  position: fixed;
   top: 92px;
   left: 0;
   right: 0px;
   bottom: 0px;
   margin: 0;
   width: 100%;
-  height: 100%;
   background: rgba(23,27,29,.97);
   z-index: 9999;
-
   overflow-y: auto;
   height: 100%;
   position: fixed;
@@ -1428,8 +1425,7 @@
         position: absolute;
         top: 56px;
         left: 468px;
-        width: 20vw;
-        max-width: 264px;
+        width: 262px;
 
         @media (max-width: 1023px) {
           width: 30vw;
@@ -1469,12 +1465,16 @@
     .google-captcha.contact-captcha {
       margin-top: 10px;
     }
+
+    @media screen and (max-width: 1023px) {
+      width: 100%;
+    }
   }
 
   &__sidebar {
     float: right;
     min-width: 185px;
-    width: 20%;
+    width: 22%;
     margin-top: 12px;
 
     @media (max-width: 1023px) {
@@ -1490,6 +1490,10 @@
     margin-top: 54px;
   }
 
+  @media screen and (max-width: 1089px) {
+    max-width: 760px;
+  }
+
   @media (max-width: 767px) {
     .contacts-wrapper .contacts-form-wr {
       float: none;
@@ -1503,16 +1507,31 @@
 
 .contacts-person {
 
+  &--sm {
+    .contacts-person__photo {
+      width: 54px;
+      height: 54px;
+    }
+  }
+
    &__photo {
+     width: 140px;
+     height: 140px;
+     border-radius: 50%;
+     overflow: hidden;
+     position: relative;
      margin-bottom: 12px;
 
      .contacts-person__img {
        margin: 0;
        max-width: 100%;
-     }
-
-     &--sm {
-       width: 52px;
+       height: 100%;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       object-fit: cover;
+       object-position: center;
      }
   }
 
