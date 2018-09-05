@@ -43,7 +43,7 @@ class PostController extends AbstractController
         $postsCategory = null;
         if ('all' !== $title) {
             $postsCategory = $this->getDoctrine()->getRepository('StfalconBlogBundle:PostCategory')
-                ->findOneBy(['name' => $title]);
+                ->findOneBy(['slug' => $title]);
         }
 
         if ($postsCategory) {

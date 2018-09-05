@@ -69,7 +69,7 @@ class MenuBuilder
         /** @var PostCategory $category */
         foreach ($categories as $category) {
             if ($category->getPosts()->count() > 0) {
-                $childCategory = $menu->addChild($category->getName(), ['route' => 'blog', 'routeParameters' => ['title' => $category->getName()]])
+                $childCategory = $menu->addChild($category->getName(), ['route' => 'blog', 'routeParameters' => ['title' => $category->getSlug()]])
                     ->setLinkAttribute('class', 'tab-title');
                 $this->checkCurrent($childCategory, $url);
             }
