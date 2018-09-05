@@ -69,7 +69,7 @@ class PostCategoryAdmin extends Admin
                     'label' => 'Перевод',
                 ]
             )
-
+            ->add('slug')
             ->add('posts', null, [
                 'help' => \is_null($objectId) ? 'добавлять посты можно только после создания категории' :
                     'выбирете посты для категори',
