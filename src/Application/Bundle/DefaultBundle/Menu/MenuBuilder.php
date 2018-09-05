@@ -165,7 +165,7 @@ class MenuBuilder
             'routeParameters' => array('slug' => 'web-development'),
         ));
         if ($withIndustries) {
-            $menu->addChild($this->translator->trans('Индустрии'), ['uri' => '#'])
+            $menu->addChild($this->translator->trans('__menu.industries'), ['uri' => '#'])
                 ->setAttribute('class', 'industry')
                 ->setLinkAttribute('class', 'industry__title')
                     ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
