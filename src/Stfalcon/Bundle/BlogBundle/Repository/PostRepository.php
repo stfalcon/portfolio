@@ -17,19 +17,23 @@ use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 class PostRepository extends EntityRepository
 {
     /**
-     * @param string $slug
-     * @param string $locale
+     * @param string  $slug
+     * @param string  $locale
+     * @param boolean $isAdmin
      *
      * @return Post|null
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findPostBySlugInLocale($slug, $locale)
+    public function findPostBySlugInLocale($slug, $locale, $isAdmin = false)
     {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.published = 1')
             ->andWhere('p.slug = :slug')
             ->setParameter('slug', $slug)
             ->setMaxResults(1);
+
+        $this->addReviewFilter($qb, $isAdmin);
 
         $this->addLocaleFilter($locale, $qb);
 
@@ -39,15 +43,19 @@ class PostRepository extends EntityRepository
     /**
      * Get all posts
      *
-     * @param string $locale
+     * @param string  $locale
+     * @param boolean $isAdmin
      *
      * @return Query
      */
-    public function getAllPublishedPostsAsQuery($locale)
+    public function getAllPublishedPostsAsQuery($locale, $isAdmin = false)
     {
         $qb = $this->createQueryBuilder('p');
         $qb->andWhere('p.published = 1')
             ->orderBy('p.created', 'DESC');
+
+        $this->addReviewFilter($qb, $isAdmin);
+
         $this->addLocaleFilter($locale, $qb);
 
         return $qb->getQuery();
@@ -56,13 +64,14 @@ class PostRepository extends EntityRepository
     /**
      * Get all posts
      *
-     * @param string $locale
+     * @param string  $locale
+     * @param boolean $isAdmin
      *
      * @return array
      */
-    public function getAllPublishedPosts($locale)
+    public function getAllPublishedPosts($locale, $isAdmin = false)
     {
-        return $this->getAllPublishedPostsAsQuery($locale)->getResult();
+        return $this->getAllPublishedPostsAsQuery($locale, $isAdmin)->getResult();
     }
 
     /**
@@ -70,12 +79,13 @@ class PostRepository extends EntityRepository
      *
      * @param string $locale
      * @param int $count Max count of returned posts
+     * @param boolean $isAdmin
      *
      * @return array
      */
-    public function getLastPosts($locale, $count = null)
+    public function getLastPosts($locale, $count = null, $isAdmin = false)
     {
-        $query = $this->getAllPublishedPostsAsQuery($locale);
+        $query = $this->getAllPublishedPostsAsQuery($locale, $isAdmin);
 
         if ((int)$count) {
             $query->setMaxResults($count);
@@ -85,12 +95,13 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param Tag $tag
-     * @param string $locale
+     * @param Tag     $tag
+     * @param string  $locale
+     * @param boolean $isAdmin
      *
      * @return Query
      */
-    public function findPostsByTagAsQuery(Tag $tag, $locale)
+    public function findPostsByTagAsQuery(Tag $tag, $locale, $isAdmin = false)
     {
         $qb = $this->createQueryBuilder('p');
 
@@ -99,6 +110,8 @@ class PostRepository extends EntityRepository
             ->leftJoin('p.tags', 't')
             ->setParameter('tag_id', $tag->getId())
             ->orderBy('p.created', 'DESC');
+
+        $this->addReviewFilter($qb, $isAdmin);
 
         $this->addLocaleFilter($locale, $qb);
 
@@ -111,10 +124,11 @@ class PostRepository extends EntityRepository
      * @param string $locale Locale
      * @param Post   $post   Current post
      * @param int    $limit  Related posts count
+     * @param boolean $isAdmin
      *
      * @return array
      */
-    public function findRelatedPostsToCurrentPost($locale, $post, $limit = 6)
+    public function findRelatedPostsToCurrentPost($locale, $post, $limit = 6, $isAdmin = false)
     {
         $qb = $this->createQueryBuilder('p');
 
@@ -124,6 +138,8 @@ class PostRepository extends EntityRepository
            ->setParameter('post', $post)
            ->addOrderBy('p.created', 'desc')
            ->join('p.tags', 't');
+
+        $this->addReviewFilter($qb, $isAdmin);
 
         $this->addLocaleFilter($locale, $qb);
 
@@ -136,14 +152,17 @@ class PostRepository extends EntityRepository
      * Find all in array
      *
      * @param array $postsId Posts id
+     * @param boolean $isAdmin
      *
      * @return array Posts
      */
-    public function findAllInArray($postsId)
+    public function findAllInArray($postsId, $isAdmin = false)
     {
         $qb = $this->createQueryBuilder('p');
 
-        return $qb->where($qb->expr()->in('p.id', ':posts'))
+        $this->addReviewFilter($qb, $isAdmin);
+
+        return $qb->andwhere($qb->expr()->in('p.id', ':posts'))
             ->setParameter('posts', $postsId)
             ->addOrderBy('p.created', 'desc')
             ->getQuery()
@@ -153,12 +172,13 @@ class PostRepository extends EntityRepository
     /**
      * Get posts query by user
      *
-     * @param User $user User
-     * @param string $locale Locale
+     * @param User    $user User
+     * @param string  $locale Locale
+     * @param boolean $isAdmin
      *
      * @return array
      */
-    public function getPostsQueryByUser(User $user, $locale)
+    public function getPostsQueryByUser(User $user, $locale, $isAdmin = false)
     {
         $qb = $this->createQueryBuilder('p');
 
@@ -166,6 +186,8 @@ class PostRepository extends EntityRepository
             ->andWhere($qb->expr()->eq('p.published', true))
             ->orderBy('p.created', 'DESC')
             ->setParameter('user_id', $user->getId());
+
+        $this->addReviewFilter($qb, $isAdmin);
 
         $this->addLocaleFilter($locale, $qb);
 
@@ -188,6 +210,18 @@ class PostRepository extends EntityRepository
             $qb->andWhere($qb->expr()->neq('p.title', ':empty'))
                ->andWhere($qb->expr()->isNotNull('p.title'))
                 ->setParameter('empty', '');
+        }
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param boolean      $isAdmin
+     */
+    private function addReviewFilter(QueryBuilder $qb, $isAdmin)
+    {
+        if (!$isAdmin) {
+            $qb->andWhere($qb->expr()->eq('p.previewMode', 0))
+                ->orWhere($qb->expr()->isNull('p.previewMode'));
         }
     }
 }

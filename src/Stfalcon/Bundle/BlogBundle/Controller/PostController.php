@@ -40,7 +40,7 @@ class PostController extends AbstractController
     {
         $postRepository = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post');
 
-        $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
+        $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale(), $this->isGranted('ROLE_ADMIN'));
         $posts = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
 
         $seo = $this->get('sonata.seo.page');
@@ -70,13 +70,13 @@ class PostController extends AbstractController
         /** @var Post $post */
         $post = $this->getDoctrine()
                      ->getRepository('StfalconBlogBundle:Post')
-                     ->findPostBySlugInLocale($slug, $request->getLocale());
+                     ->findPostBySlugInLocale($slug, $request->getLocale(), $this->isGranted('ROLE_ADMIN'));
 
         if (!$post) {
             $locale = 'ru' === $request->getLocale() ? 'en' : 'ru';
             $post = $this->getDoctrine()
                 ->getRepository('StfalconBlogBundle:Post')
-                ->findPostBySlugInLocale($slug, $locale);
+                ->findPostBySlugInLocale($slug, $locale, $this->isGranted('ROLE_ADMIN'));
 
             if ($post && is_null($post->getTitle())) {
                 return $this->redirect(
@@ -136,7 +136,7 @@ class PostController extends AbstractController
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
         $posts = $this->get('doctrine')->getManager()
-                ->getRepository('StfalconBlogBundle:Post')->getAllPublishedPosts($request->getLocale());
+                ->getRepository('StfalconBlogBundle:Post')->getAllPublishedPosts($request->getLocale(), $this->isGranted('ROLE_ADMIN'));
         /** @var Post $post */
         foreach ($posts as $post) {
             $entry = new Entry();
@@ -165,7 +165,7 @@ class PostController extends AbstractController
     public function lastAction($locale, $count = 1)
     {
         $posts = $this->get('doctrine')->getManager()
-                ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, $count);
+                ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, $count, $this->isGranted('ROLE_ADMIN'));
 
         return array('posts' => $posts);
     }
@@ -183,7 +183,7 @@ class PostController extends AbstractController
     public function lastHomepageAction($locale, $count = 1)
     {
         $posts = $this->get('doctrine')->getManager()
-            ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, $count);
+            ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, $count, $this->isGranted('ROLE_ADMIN'));
 
         return array('posts' => $posts);
     }
@@ -199,7 +199,7 @@ class PostController extends AbstractController
     public function relatedPostsAction($locale, $post)
     {
         $postRepository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
-        $relatedPosts = $postRepository->findRelatedPostsToCurrentPost($locale, $post);
+        $relatedPosts = $postRepository->findRelatedPostsToCurrentPost($locale, $post, $this->isGranted('ROLE_ADMIN'));
 
         return $this->render('@StfalconBlog/Post/relatedPosts.twig', [
             'related_posts' => $relatedPosts,
@@ -232,7 +232,7 @@ class PostController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $postRepository = $em->getRepository('StfalconBlogBundle:Post');
-        $postsQuery = $postRepository->getPostsQueryByUser($user, $request->getLocale());
+        $postsQuery = $postRepository->getPostsQueryByUser($user, $request->getLocale(), $this->isGranted('ROLE_ADMIN'));
 
         /** @var SlidingPagination $paginatedPosts */
         $paginatedPosts = $this->get('knp_paginator')->paginate($postsQuery, $page, 10);

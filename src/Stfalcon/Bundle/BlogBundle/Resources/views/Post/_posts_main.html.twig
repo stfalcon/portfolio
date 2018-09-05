@@ -1,20 +1,22 @@
 {% if posts|length > 0 %}
 <ul class="blog__list">
     {% for post in posts %}
-    <li class="blog-article">
-        <a href="{{ path('blog_post_view', {'slug': post.slug}) }}" class="blog-article__link">{{ post.title }}</a>
-        <p class="blog-article__text">{{ post.text|striptags|slice(0, 170)|raw }}…</p>
-        <div class="article-author">
-            {% if post.author and post.author.avatarName %}
-            <img class="article-author__img" src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar') }}"
-                 alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}">
-            {% endif %}
-            <div class="article-author__right">
-                <div class="article-author__name">{{ post.author.firstname | default('') ~ ' ' ~  post.author.lastname | default('') }}</div>
-                <div class="article-author__date">{{ post.created|localizeddate('long', 'none', app.request.locale) }}</div>
-            </div>
-        </div>
-    </li>
+        {% if post.previewMode != true or is_granted('ROLE_ADMIN') %}
+            <li class="blog-article">
+                <a href="{{ path('blog_post_view', {'slug': post.slug}) }}" class="blog-article__link">{{ post.title }}</a>
+                <p class="blog-article__text">{{ post.text|striptags|slice(0, 170)|raw }}…</p>
+                <div class="article-author">
+                    {% if post.author and post.author.avatarName %}
+                    <img class="article-author__img" src="{{ vich_uploader_asset(post.author, 'avatar') | apply_filter('avatar') }}"
+                         alt="{{ post.author.firstname | default('') ~ ' ' ~ post.author.lastname | default('') }}">
+                    {% endif %}
+                    <div class="article-author__right">
+                        <div class="article-author__name">{{ post.author.firstname | default('') ~ ' ' ~  post.author.lastname | default('') }}</div>
+                        <div class="article-author__date">{{ post.created|localizeddate('long', 'none', app.request.locale) }}</div>
+                    </div>
+                </div>
+            </li>
+        {% endif %}
     {% endfor %}
 </ul>
 {% endif %}

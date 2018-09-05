@@ -63,7 +63,7 @@ class SearchController extends AbstractController
             if (null !== $text) {
                 $postsId        = $this->search($locale, $text, 'postSearchIndex');
                 $postRepository = $this->getDoctrine()->getManager()->getRepository('StfalconBlogBundle:Post');
-                $searchedPosts  = $postRepository->findAllInArray($postsId);
+                $searchedPosts  = $postRepository->findAllInArray($postsId, $this->isGranted('ROLE_ADMIN'));
             }
 
             return new JsonResponse([

@@ -39,7 +39,7 @@ class DefaultController extends Controller
             ->findBy(['showInServices' => true], ['ordernum' => 'ASC']);
         $locale = $request->getLocale() ? $request->getLocale() : 'en';
         $posts = $this->get('doctrine')->getManager()
-            ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, 3);
+            ->getRepository('StfalconBlogBundle:Post')->getLastPosts($locale, 3, $this->isGranted('ROLE_ADMIN'));
 
         $projects = $this->getDoctrine()->getRepository('StfalconPortfolioBundle:Project')
             ->findBy(['onFrontPage' => true], ['orderNumber' => 'ASC']);

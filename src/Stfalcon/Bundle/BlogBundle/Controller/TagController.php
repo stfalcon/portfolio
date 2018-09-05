@@ -68,7 +68,7 @@ class TagController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        $query = $postRepository->findPostsByTagAsQuery($tag, $request->getLocale());
+        $query = $postRepository->findPostsByTagAsQuery($tag, $request->getLocale(), $this->isGranted('ROLE_ADMIN'));
         $posts = $this->get('knp_paginator')->paginate($query, $page, 10);
 
         if (count($posts) > 1) {

@@ -193,7 +193,7 @@ class SitemapService
     private function addBlogItems(\SimpleXMLElement $xmlSitemap, $locale)
     {
         $blogPostsRepository = $this->entityManager->getRepository('StfalconBlogBundle:Post');
-        $blogPosts = $blogPostsRepository->getAllPublishedPosts($locale);
+        $blogPosts = $blogPostsRepository->getAllPublishedPosts($locale, true);
 
         if (!empty($blogPosts)) {
             /** @var Post $lastPost */
