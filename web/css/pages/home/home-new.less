@@ -73,10 +73,32 @@
     font-weight: 700;
   }
 
+  &--mob {
+    display: none;
+  }
+
   &--dark {
     color: #2C373C;
     border: 2px solid #2C373C;
   }
+}
+
+@media (max-width: 1100px) {
+  .home-btn--mob {
+    display: inline-block;
+  }
+}
+
+.home-btn--md {
+  margin: 4px 0;
+  min-width: 135px;
+  padding: 0 18px;
+  height: 35px;
+  line-height: 34px;
+  border-radius: 3px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .promo-title {
@@ -102,7 +124,7 @@
     &:after {
       content: '';
       position: absolute;
-      top: 68px;
+      top: 56px;
       right: 0;
       bottom: 0;
       left: 0;
@@ -116,7 +138,7 @@
   }
 
   &--fixed {
-    padding: 68px 24px 0;
+    padding: 56px 24px 0;
 
     .header-line {
       position: fixed;
@@ -131,7 +153,7 @@
 
   &__video {
     position: absolute;
-    top: 68px;
+    top: 56px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -1930,7 +1952,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 // footer
 
 .footer {
-  overflow: hidden;
   padding: 30px 36px 0 35px;
   color: #fff;
   background: #1E2528;
@@ -1942,22 +1963,25 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     text-decoration: none;
     font-family: 'museo_sans_cyrl', sans-serif;
   }
+
+  a,
+  span {
+    &::selection {
+      color: #fff;
+      background-color: #accef7;
+    }
+  }
 }
 
-.footer-top {
-  position: relative;
-}
-
-.footer-nav {
-  max-width: 80px;
-  float: left;
-  margin: 0 67px 0 0;
-  overflow: hidden;
+.main-nav--footer {
+  width: 15%;
+  margin: 0;
 
   li {
     float: none;
+    padding: 0;
     margin-right: 0;
-    margin-bottom: 15px;
+    margin-bottom: 17px;
 
     &:last-child {
       margin-bottom: 0;
@@ -1974,16 +1998,16 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 
 .services-nav {
   float: left;
-  max-width: 215px;
-  margin-right: 69px;
+  width: 25%;
 
   li {
-    margin-bottom: 15px;
+    margin-bottom: 17px;
 
     &:last-child {
       margin-bottom: 0;
     }
   }
+
   a {
     color: #707B80;
     font-size: 15px;
@@ -1991,21 +2015,34 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     &:hover {
       color: #fff;
     }
+
+    &::selection {
+      color: #fff;
+      background-color: #accef7;
+    }
   }
 }
 
 .contacts {
+  width: 25%;
   float: left;
-  margin-top: -3px;
+}
+
+@media (max-width: 1023px) {
+  .footer {
+    .contacts {
+      width: 40%;
+    }
+  }
 }
 
 .contact-list {
-  overflow: hidden;
   line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
 
   li {
-    float: left;
-    margin-right: 73px;
+    flex-basis: 100%;
     min-width: 135px;
     margin-bottom: 15px;
 
@@ -2014,14 +2051,15 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
       margin-bottom: 5px;
       color: #707b80;
       font-size: 15px;
+
+      &:first-child {
+        margin-bottom: 0;
+      }
     }
   }
   .email, .skype {
     color: #d7c86f;
     text-decoration: underline;
-  }
-  .write-to {
-    clear: left;
   }
   .address,
   .skype {
@@ -2029,6 +2067,43 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
   .adress {
     color: #fff;
+  }
+}
+
+.skype-wrap {
+  margin-bottom: 0;
+}
+
+.address {
+  float: left;
+  min-width: 310px;
+
+  span {
+    display: block;
+    margin-bottom: 5px;
+    color: #707b80;
+    font-size: 15px;
+
+    &:first-child {
+      margin-bottom: 0;
+    }
+  }
+
+  span.adress {
+    color: #fff;
+  }
+}
+
+@media (max-width: 480px) {
+  .address {
+    min-width: auto;
+    width: auto;
+  }
+}
+
+@media (max-width: 759px) {
+  .contact-list li {
+    flex-basis: 40%;
   }
 }
 
@@ -2058,15 +2133,68 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
 }
 
+.socials-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    flex-basis: 39%;
+  }
+}
+
 .contacts + .socials-links {
   display: none;
 }
 
 .footer .socials-links {
-  position: absolute;
-  top: 4px;
-  right: 0;
-  margin: 0;
+  &--mob {
+    display: none;
+    margin-bottom: 30px;
+  }
+}
+
+.footer .contacts-content {
+  width: 65%;
+  float: left;
+}
+
+@media (max-width: 1230px){
+  .footer .contacts-content {
+    width: 75%;
+  }
+}
+
+@media (max-width: 759px) {
+  .footer {
+    .contacts-content {
+      width: 65%;
+      margin-bottom: 34px;
+    }
+    .contacts-content--mob-fluid {
+      width: 100%;
+    }
+    .contacts {
+      margin-bottom: 0;
+      min-width: 128px;
+    }
+  }
+
+  .socials-list li {
+    flex-basis: 100%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .footer {
+    .contacts {
+      width: 100%;
+      min-width: auto;
+    }
+    .contacts-content {
+      width: 100%;
+    }
+  }
 }
 
 .footer-logo {
@@ -2092,62 +2220,48 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   }
 }
 
-@media (max-width: 1012px){
-  .footer-nav {
+@media (max-width: 1023px){
+  .main-nav--footer {
     margin-bottom: 20px;
-    max-width: 100%;
+    width: 25%;
+  }
+}
 
-    ul {
-      column-count: 2;
-      column-width: 65px;
-      column-gap: 43px;
+@media (max-width: 759px){
+  .footer {
+    position: relative;
+
+    .socials-links {
+      display: none;
+      position: static;
+      margin: 21px 0 10px -5px;
+      float: left;
+      width: 100%;
+      overflow: visible;
+      transform-origin: 0 0 ;
+      transform: scale(1.6);
+
+      &--mob {
+        display: block;
+        margin-top: 4px;
+      }
     }
   }
-  .services-nav {
-    margin-bottom: 20px;
-    max-width: 100%;
-
-    ul {
-      column-count: 2;
-      column-width: 215px;
-      column-gap: 45px;
-    }
+  .main-nav--footer {
+    margin-bottom: 34px;
+    width: 35%;
   }
 }
 
 @media (max-width: 955px) {
   .footer {
-    .socials-links {
-      display: none;
-    }
     .contacts + .socials-links {
       display: block;
     }
-    .socials-links {
-      position: static;
-      margin: 21px 0 26px -12px;
-      float: left;
-      width: 100%;
-      overflow: visible;
-      transform-origin: 0 0 ;
-      transform: scale(2.25);
-    }
   }
 }
 
-@media (max-width: 790px){
-  .footer {
-    position: relative;
-  }
-  .footer-nav {
-    margin-bottom: 34px;
-  }
-  .copyright {
-
-  }
-}
-
-@media (max-width: 620px){
+@media (max-width: 720px){
   .footer {
     padding: 30px 16px 0;
     margin: 0px 0px 0px;
@@ -2178,19 +2292,13 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
 }
 
 @media (max-width: 480px){
-  .footer-nav {
+  .main-nav--footer {
+    width: 84%;
     margin-bottom: 24px;
+    min-width: 285px;
 
     ul {
-      width: 256px;
       column-count: 2;
-      column-width: 110px;
-      column-gap: 20px;
-    }
-    li {
-      margin-right: 0;
-      -webkit-column-break-inside: avoid;
-      column-break-inside: avoid;
     }
   }
   .contact-list {
@@ -2200,13 +2308,6 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
     .write-to {
       clear: none;
       margin-right: 0;
-    }
-  }
-
-  .footer {
-    .socials-links {
-      margin: 13px 0 0 -12px;
-      transform: scale(1.6);
     }
   }
 }
