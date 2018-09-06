@@ -126,6 +126,7 @@ class MenuBuilder
             ]
         );
 
+
         return $menu;
     }
 
@@ -174,8 +175,10 @@ class MenuBuilder
         }
         $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));
         $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
+        $menu->addChild($this->translator->trans('__menu.opensource'), array('route' => 'opensource'));
         $menu->addChild($this->translator->trans('__menu.vacancies'), array('route' => 'jobs_list'));
         $menu->addChild($this->translator->trans('Контакты'), array('route' => 'contacts'));
+
         $menu->addChild(
             $this->translator->trans('about_us'),
             [
