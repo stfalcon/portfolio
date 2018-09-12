@@ -141,7 +141,6 @@
                 <div class="google-captcha">
                     {{ form_widget(form.captcha, {'theme': 'dark' }) }}
                 </div>
-                </div>
 
                 <div class="line">
                     {% if slug != 'main_page' %}
@@ -193,7 +192,7 @@
                     </div>
                 </div>
             </div>
-            {#{{ form_rest(form) }}#}
+            {{ form_rest(form) }}
         </form>
     </div>
 </section>
