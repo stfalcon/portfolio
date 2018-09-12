@@ -1,3 +1,5 @@
+{% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
+
 
 {#<section id="hire-us-widget" class="hire_us-form">#}
     {#<div class="wrap_form">#}
@@ -107,51 +109,38 @@
                 {#   #}
 
                 <div class="line">
-                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя*'|trans }}) }}
+                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}
                 </div>
 
                 <div class="line">
-                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта*'|trans} }) }}
+                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
                 </div>
 
                 {#   #}
 
                 <div class="line">
-                    <input type="text" required="required" placeholder="Телефон*">
+                    {{ form_widget(form.phone, {'attr': {'placeholder': 'Телефон'|trans} }) }}
                 </div>
 
                 <div class="line">
-                    <input type="text" required="required" placeholder="Компания">
+                    {{ form_widget(form.company, {'attr': {'placeholder': 'Компания'|trans} }) }}
                 </div>
 
                 <div class="line">
-                    <input type="text" required="required" placeholder="Должность">
+                    {{ form_widget(form.position, {'attr': {'placeholder': 'Должность'|trans} }) }}
                 </div>
 
                 {#   #}
 
                 <div class="line line--description">
-                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект*'|trans, 'rows':'1'} }) }}
+                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}
                 </div>
 
                 {#<div class="google-captcha">#}
                     {#{{ form_widget(form.captcha, {'theme': 'dark' }) }}#}
                 {#</div>#}
 
-                <div class="line line--budget">
-                    <div class="line__lable">Бюджет</div>
-                    <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
-                        <input class="radio__input" type="radio" id="price_1" name="price">
-                        <label class="radio__label" for="price_1"><span>$20 000 – $50 000</span></label>
-                    </div>
-                    <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
-                        <input class="radio__input" type="radio" id="price_2" name="price">
-                        <label class="radio__label" for="price_2"><span>$50 000 – $100 000</span></label>
-                    </div>
-                    <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
-                        <input class="radio__input" type="radio" id="price_3" name="price">
-                        <label class="radio__label" for="price_3"><span>$100 000 – $150 000</span></label>
-                    </div>
+                {{ form_row(form.budget, {'attr': {'label': false} }) }}
                 </div>
 
                 <div class="line">

@@ -9,3 +9,15 @@
         </ul>
     {%- endif %}
 {%- endblock form_errors %}
+
+{% block _order_promotion_budget_row %}
+    <div class="line line--budget">
+        <div class="line__lable">Бюджет</div>
+        {%- for child in form %}
+            <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
+                {{- form_widget(child, {'attr': {'class': 'radio__input'}}) -}}
+                {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
+            </div>
+        {% endfor -%}
+    </div>
+{% endblock _order_promotion_budget_row %}
