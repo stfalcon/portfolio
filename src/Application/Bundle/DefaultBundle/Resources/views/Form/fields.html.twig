@@ -16,7 +16,7 @@
         {%- for child in form %}
             <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
                 {{- form_widget(child, {'attr': {'class': 'radio__input'}}) -}}
-                {{- form_label(child, null, {translation_domain: choice_translation_domain, 'label_attr': {'class': 'radio__label'}}) -}}
+                <span>{{- form_label(child, null, {translation_domain: choice_translation_domain, 'label_attr': {'class': 'radio__label'}}) -}}</span>
             </div>
         {% endfor -%}
     </div>
