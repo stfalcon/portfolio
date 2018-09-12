@@ -136,11 +136,11 @@
                     {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}
                 </div>
 
-                {#<div class="google-captcha">#}
-                    {#{{ form_widget(form.captcha, {'theme': 'dark' }) }}#}
-                {#</div>#}
-
                 {{ form_row(form.budget, {'attr': {'label': false} }) }}
+
+                <div class="google-captcha">
+                    {{ form_widget(form.captcha, {'theme': 'dark' }) }}
+                </div>
                 </div>
 
                 <div class="line">
