@@ -16,6 +16,17 @@ $(document).on('click', '.hire_us, .hire_us_land, .hire_us_main' , function () {
     $('body').addClass('open-hire_us');
 });
 
+$.validator.addMethod(
+    "phone",
+    function(value, element, regexp) {
+        var re = new RegExp(regexp);
+        return this.optional(element) || re.test(value);
+    },
+    "Not valid phone number format"
+);
+
+console.log($.validator.messages);
+
 $(function () {
 
     var formDelay = 3000;
@@ -30,8 +41,22 @@ $(function () {
             },
             'order_promotion[email]': {
                 required: true,
-                minlength: 6,
+                minlength: 3,
                 maxlength: 72
+            },
+            'order_promotion[company]': {
+                required: true,
+                minlength: 3,
+                maxlength: 72
+            },
+            'order_promotion[position]': {
+                required: true,
+                minlength: 3,
+                maxlength: 72
+            },
+            'order_promotion[phone]': {
+                required: true,
+                phone: '[0-9\\-\\(\\)\\s]+'
             },
             'order_promotion[message]': {
                 required: true,
