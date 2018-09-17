@@ -343,9 +343,18 @@
       border: none;
     }
 
-    //&:focus + .radio__label:before {
-    //  box-shadow: 0 0 0 3px rgba(255,255,0,.7);
-    //}
+    &:checked + .radio__label span {
+      color: #fff;
+      opacity: 1;
+    }
+  }
+
+
+  .line--budget &:hover {
+    span {
+      color: #fff;
+      opacity: 1;
+    }
   }
 
   &__label {
