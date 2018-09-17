@@ -95,6 +95,8 @@ class PromotionOrderFormType extends AbstractType
                 'budget',
                 'choice',
                 [
+                    'required'    => false,
+                    'empty_value' => false,
                     'label'       => 'Your budget',
                     'expanded'    => true,
                     'choices'     => [
@@ -102,10 +104,6 @@ class PromotionOrderFormType extends AbstractType
                         '$50 000 – $100 000'  => '$50 000 – $100 000',
                         '$100 000 – $150 000' => '$100 000 – $150 000',
                     ],
-                    'constraints' =>
-                        [
-                            new Assert\NotBlank(),
-                        ],
                 ]
             )
             ->add('captcha', 'recaptcha', [
