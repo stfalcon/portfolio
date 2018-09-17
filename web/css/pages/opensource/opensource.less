@@ -69,7 +69,6 @@
 
   &__description {
     flex: 1;
-    padding-top: 6px;
   }
 
   &__photo {
@@ -88,15 +87,15 @@
   &__top {
     display: flex;
     align-items: flex-end;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
   }
 
   &__title {
     font-size: 24px;
+    font-weight: 500;
     line-height: 24px;
     color: #2C373C;
   }
-
 
   &__categories {
     display: inline-block;
@@ -123,6 +122,11 @@
     font-weight: 700;
     color: #A3ACB0;
     margin-left: auto;
+
+    span {
+      display: block;
+      margin-bottom: -6px;
+    }
   }
 
   &__icon {
@@ -139,12 +143,11 @@
     line-height: 22px;
 
     & + .opensource-item__links {
-      margin-top: 18px;
+      margin-top: 16px;
     }
   }
 
   &__link {
-    color: #2C59C2;
     font-size: 11px;
     line-height: 13px;
     letter-spacing: 1px;
@@ -184,7 +187,7 @@
 
     &__sidebar {
       width: 100%;
-      max-width: 320px;
+      max-width: 720px;
       align-self: center;
       margin-bottom: 34px;
       margin-right: 0;
@@ -209,14 +212,16 @@
       padding: 0 31px;
       margin-bottom: 10px;
       border: 1px solid transparent;
+      color: @link-color;
 
       &--active {
         border-color: #D7C76E;
+        color: #2c373c;
       }
 
-    &:hover {
-      border-color: #D7C76E !important;
-    }
+      &:hover {
+        border-color: transparent;
+      }
     }
   }
 }
