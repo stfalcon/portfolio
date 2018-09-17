@@ -68,7 +68,11 @@ $(function () {
         },
         errorPlacement: function (label, element) {
             label.addClass('error-pad');
-            label.insertAfter(element);
+            var parent_elem = element.parent();
+            if (parent_elem.hasClass('line__radio')) {
+                parent_elem = parent_elem.parent();
+            }
+            label.insertAfter(parent_elem);
         },
         wrapper: 'div',
         debug: false,
