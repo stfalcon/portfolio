@@ -21,16 +21,17 @@ $.validator.addMethod(
     function(value, element, regexp) {
         var re = new RegExp(regexp);
         return this.optional(element) || re.test(value);
-    },
-    "Not valid phone number format"
+    }
 );
-
-console.log($.validator.messages);
 
 $(function () {
 
     var formDelay = 3000;
     var $hireUsForm = $('#hire-us-form');
+
+    $.validator.methods.email = function( value, element ) {
+        return this.optional( element ) || /^\w([\-\.]{0,1}\w)*\@\w+([\-\.]{0,1}\w)*\.\w{2,4}$/.test( value );
+    };
 
     $hireUsForm.validate({
         rules: {
@@ -42,21 +43,22 @@ $(function () {
             'order_promotion[email]': {
                 required: true,
                 minlength: 3,
-                maxlength: 72
+                maxlength: 72,
+                email: true
             },
             'order_promotion[company]': {
-                required: true,
+                required: false,
                 minlength: 3,
                 maxlength: 72
             },
             'order_promotion[position]': {
-                required: true,
+                required: false,
                 minlength: 3,
                 maxlength: 72
             },
             'order_promotion[phone]': {
                 required: true,
-                phone: '[0-9\\-\\(\\)\\s]+'
+                phone: '[0-9\\-\\(\\)\\s]+$'
             },
             'order_promotion[message]': {
                 required: true,

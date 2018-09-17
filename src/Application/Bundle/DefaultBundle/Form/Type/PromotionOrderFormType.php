@@ -64,7 +64,6 @@ class PromotionOrderFormType extends AbstractType
                     'label' => 'Your company',
                     'constraints' =>
                         [
-                            new Assert\NotBlank(),
                             new Assert\Length(['min' => 2, 'max' => 72]),
                         ],
                 ]
@@ -76,7 +75,6 @@ class PromotionOrderFormType extends AbstractType
                     'label' => 'Your position',
                     'constraints' =>
                         [
-                            new Assert\NotBlank(),
                             new Assert\Length(['min' => 3, 'max' => 72]),
                         ],
                 ]
