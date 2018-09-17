@@ -72,6 +72,17 @@ class Job implements Translatable
      * @var string
      *
      * @Assert\NotBlank()
+     *
+     * @ORM\Column(type="text")
+     *
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $contactInfo;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = "3"
      * )
@@ -351,5 +362,25 @@ class Job implements Translatable
     public function setTranslations($translations)
     {
         $this->translations = $translations;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactInfo()
+    {
+        return $this->contactInfo;
+    }
+
+    /**
+     * @param string $contactInfo
+     *
+     * @return $this
+     */
+    public function setContactInfo($contactInfo)
+    {
+        $this->contactInfo = $contactInfo;
+
+        return $this;
     }
 }

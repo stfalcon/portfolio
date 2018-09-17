@@ -37,218 +37,75 @@
 
         {% include 'ApplicationDefaultBundle:Jobs:_jobs_header.html.twig' with {'job': job, 'linkTitle': false} %}
 
-
         <div class="post-content vacancy-page__content">
-            <p></p>
-            <p>
-                Stfalcon.com — компания полного цикла разработки <a href="#">веб-сервисов</a> и <a href="#">мобильных приложений</a> для среднего бизнеса и крупных корпораций. Нетривиальные задачи — наш конек.
-            </p>
-            <p>
-                Принимаем участие в организации профильных конференций и ивентов – <a href="#">Fwdays</a>, <a href="#">Сode and Сoffee</a>. Активно поддерживаем и развиваем open source продукты.
-            </p>
-            <p>
-                На данный момент занимаемся расширением команды в двух офисах – Киев (17 сотрудников) и Хмельницкий (42 сотрудника). Также работаем удаленно со специалистами из других регионов Украины.
-            </p>
-
-            <p></p>
-
-            <p>
-            </p><h3>Будет плюсом:</h3>
-            <ul>
-                <li>общий технический бекграунд</li>
-                <li>наличие профильных сертификатов, прохождение курсов/воркшопов</li>
-                <li>примеры собственных успешных проектов</li>
-            </ul>
-            <p></p>
-
-            <p>
-            </p><h3>Что нам важно в человеке:</h3>
-            <ul>
-                <li>Вовлеченность в работу, заинтересовать в достижении результатов </li>
-                <li>Самостоятельность, ответственность и организованность</li>
-                <li>Умение коммуницировать и налаживать отношения в команде</li>
-            </ul>
-            <p></p>
-
-            <p>
-            </p><h3>Задачи на проекте:</h3>
-            <ul>
-                <li>Работа над проектом на всех этапах его жизнедеятельности</li>
-                <li>Обеспечение достижения целей проекта</li>
-                <li>Работа с внешними и внутренними рисками</li>
-                <li>Работа с основными стейкхолдерами проекта для получения положительных отзывов</li>
-                <li>Обеспечение эффективной коммуникации и построение процесса согласно методологиям ведения проектов, которых придерживается компания</li>
-            </ul>
-            <p></p>
-
-            <p>
-            </p><h3> В связи с чем открылась позиция:</h3>
-            <ul>
-                <li>Необходимость расширения команды и налаживание работы всех Project Managers</li>
-            </ul>
-            <p></p>
-
-            <p>
-            </p><h3>Размер и структура компании:</h3>
-            <ul>
-                <li>В компании открыты два офиса, в Хмельницком работает 41 сотрудник, в Киеве 17 сотрудников</li>
-                <li>На сегодняшний день мы занимаемся расширением команд в двух офисах, также мы работаем на удаленной со специалистами из других регионов Украины</li>
-                <li>Структура компании: CEO компании, менеджмент (руководитель офиса и 4 проектных менеджера), команды: web, mobile, design, QA, sales, marketing, HR&amp;Recruiting, back офис
-                </li>
-            </ul>
-            <p></p>
-
-            <p>
-            </p><h3>Наше предложения и условия работы:</h3>
-            <ul>
-                <li>Оформление по ФОП и ведение документов бухгалтером компании</li>
-                <li>Выплата заработной платы до 10 числа каждого месяца</li>
-                <li>Отпуск: 21 календарный день</li>
-                <li>Испытательный срок: 3 месяца</li>
-                <li>График работы: с 9.00 до 18.00 или с 10.00 до 19.00</li>
-                <li>Участие в профильных конференциях 50% от стоимости билета (от 2000 до 6000 гривен в год)</li>
-                <li>Курсы английского языка 50% от стоимости занятий (до 300 гривен в месяц)</li>
-                <li>Абонемент в бассейн/спортзал 50% от стоимости занятий (до 300 гривен в месяц)</li>
-                <li>Тимбилдинги, корпоративы</li>
-            </ul>
-            <p></p>
-
-            <p>
-            </p><h3>Что мы как компания делаем для IT сообщества:</h3>
-            <ul>
-                <li>Мы постоянные партнеры и спонсоры конференций fwdays: frameworksdays.com</li>
-                <li>Организуем и проводим митапы в Хмельницком "code and coffee", на которых обсуждаем различные темы, которые могут быть интересны IT сообществу: kmcnc.stfalcon.com</li>
-                <li>Развиваем проекты со свободным исходным кодом и занимаемся open source решениями:https://github.com/stfalcon-studio</li>
-            </ul>
-            <p></p>
-
-            <p>
-            </p><h3>Этапы интервью:</h3>
-            <ul>
-                <li> Интервью с рекрутером - 30 минут по скайпу </li>
-                <li>Техническое интервью с Project Manager — 1 час по скайпу или лично</li>
-            </ul>
-            <p></p>
+            {{ job.description|highlightCode|raw }}
 
             <div class="sharethis-inline-share-buttons"></div>
 
             <section class="contacts-wrapper">
-                <div class="contacts-form-wr" id="vacancy-form">
-
-                    <form action="/ru/jobs/job/project-manager" id="direct-vacancy-form" method="post" enctype="multipart/form-data" novalidate="novalidate">
-                        <h3>Ответить на вакансию</h3>
-
-                        <div class="line">
-                            <input type="text" id="vacancy_form_name" name="vacancy_form[name]" required="required" placeholder="Ваше имя" aria-required="true">
-                        </div>
-                        <div class="line">
-                            <input type="email" id="vacancy_form_email" name="vacancy_form[email]" required="required" placeholder="Электронная почта" aria-required="true">
-                        </div>
-                        <div class="line">
-                            <input type="text" id="vacancy_form_phone" name="vacancy_form[phone]" required="required" placeholder="Номер телефона" aria-required="true">
-                        </div>
-                        <div class="line">
-                            <div class="file-input">
-                                <p class="filename">Прикрепить резюме</p>
-                                <p class="filesize">до 20 МБ</p>
-                                <input type="file" id="vacancy_form_attach" name="vacancy_form[attach]">
-                            </div>
-                        </div>
-                        <div class="line btn-line">
-                            {% if form.captcha is defined %}
-                                <div class="google-captcha contact-captcha">
-                                    {{ form_widget(form.captcha) }}
-                                    {{ form_errors(form.captcha) }}
-                                </div>
-                            {% endif %}
-                            <button class="btn" type="submit">Отправить</button>
-                        </div>
-                        <input type="hidden" id="vacancy_form__token" name="vacancy_form[_token]" value="yGOQcxxUWVRiRjpr7zcGHGOOZD1OGah5NO1IfM7ib1k">
-                    </form>
-                </div>
-
-                <div class="contacts-person">
-                    <div class="contacts-person__photo contacts-person__photo--sm">
-                        <img src="/img/photo_yanabiluk.png" alt="" class="contacts-person__img">
+                {% if app.session.flashBag.has('vacancy_error') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashBag.get('vacancy_error') %}
+                            <div class="error-list">{{ msg }}</div>
+                        {% endfor %}
                     </div>
-                    <p class="contacts-person__description">
-                        Возникли вопросы? Напишите рекрутеру Яне Билык в <a href="#">linkedin</a> или <a href="#">skype</a>
-                    </p>
+                {% endif %}
+                <div class="contacts-form-wr" id="vacancy-form">
+                    {% include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' %}
+                </div>
+                <div class="vacancy-page__bottom">
+                    {{ job.contactInfo|raw }}
                 </div>
             </section>
         </div>
 
         <div class="vacancy-page__sidebar">
-            <div class="vacancy-inf">
-                <div class="vacancy-inf__item">
-                    <div class="vacancy-inf__title">Город</div>
-                    <div class="vacancy-inf__txt">Киев, Хмельницкий</div>
-                </div>
-                <div class="vacancy-inf__item">
-                    <div class="vacancy-inf__title">График работы</div>
-                    <div class="vacancy-inf__txt">Полный 8-ми рабочий день с 9:00 или 10:00</div>
-                </div>
-                <div class="vacancy-inf__item">
-                    <div class="vacancy-inf__title">Занятость</div>
-                    <div class="vacancy-inf__txt">Полная занятость</div>
-                </div>
-                <div class="vacancy-inf__item">
-                    <div class="vacancy-inf__title">Контактное лицо</div>
-                    <div class="vacancy-inf__txt">Яна Билык</div>
-                </div>
-            </div>
-
-            <div class="contacts-person">
-                <div class="contacts-person__photo">
-                    <img src="/img/photo_yanabiluk.png" alt="" class="contacts-person__img">
-                </div>
-                <div class="contacts-person__list">
-                    <a href="#" class="contacts-person__item">
-                        <div class="contacts-person__icon"><img src="/img/ic_linkedin.svg" alt=""></div>
-                        <div class="contacts-person__title">yana.recruiter</div>
-                    </a>
-                    <a href="#" class="contacts-person__item">
-                        <div class="contacts-person__icon"><img src="/img/ic_skype.svg" alt=""></div>
-                        <div class="contacts-person__title">joanna.travel.b</div>
-                    </a>
-                </div>
-            </div>
+            {{ job.contactInfo|raw }}
         </div>
+            {#<div class="vacancy-inf">#}
+                {#<div class="vacancy-inf__item">#}
+                    {#<div class="vacancy-inf__title">Город</div>#}
+                    {#<div class="vacancy-inf__txt">Киев, Хмельницкий</div>#}
+                {#</div>#}
+                {#<div class="vacancy-inf__item">#}
+                    {#<div class="vacancy-inf__title">График работы</div>#}
+                    {#<div class="vacancy-inf__txt">Полный 8-ми рабочий день с 9:00 или 10:00</div>#}
+                {#</div>#}
+                {#<div class="vacancy-inf__item">#}
+                    {#<div class="vacancy-inf__title">Занятость</div>#}
+                    {#<div class="vacancy-inf__txt">Полная занятость</div>#}
+                {#</div>#}
+                {#<div class="vacancy-inf__item">#}
+                    {#<div class="vacancy-inf__title">Контактное лицо</div>#}
+                    {#<div class="vacancy-inf__txt">Яна Билык</div>#}
+                {#</div>#}
+            {#</div>#}
+
+            {#<div class="contacts-person">#}
+                {#<div class="contacts-person__photo">#}
+                    {#<img src="/img/photo_yanabiluk.png" alt="" class="contacts-person__img">#}
+                {#</div>#}
+                {#<div class="contacts-person__list">#}
+                    {#<a href="#" class="contacts-person__item">#}
+                        {#<div class="contacts-person__icon"><img src="/img/ic_linkedin.svg" alt=""></div>#}
+                        {#<div class="contacts-person__title">yana.recruiter</div>#}
+                    {#</a>#}
+                    {#<a href="#" class="contacts-person__item">#}
+                        {#<div class="contacts-person__icon"><img src="/img/ic_skype.svg" alt=""></div>#}
+                        {#<div class="contacts-person__title">joanna.travel.b</div>#}
+                    {#</a>#}
+                {#</div>#}
+
+                {#<p class="contacts-person__description">#}
+                    {#Возникли вопросы? Напишите рекрутеру Яне Билык в <a href="#">linkedin</a> или <a href="#">skype</a>#}
+                {#</p>#}
+            {#</div>#}
     </article>
 
     <div class="services-tabs">
         <div class="section-cms">
-            <h3>Examples of website development</h3>
-            <ul class="project-list">
-                <li>
-                    <a href="/en/portfolio/novaposhta-ua">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b27056.png" alt="novaposhta.ua">
-                        <h3>novaposhta.ua</h3>
-                    </a>
-                    <p>design, HTML markup, development</p>
-                </li>
-                <li>
-                    <a href="/en/portfolio/NIC-UA">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b2b3c2.png" alt="NIC.UA">
-                        <h3>NIC.UA</h3>
-                    </a>
-                    <p>design, development</p>
-                </li>
-                <li>
-                    <a href="/en/portfolio/MeinFernbus">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b30b0f.png" alt="MeinFernbus">
-                        <h3>MeinFernbus</h3>
-                    </a>
-                    <p>design, development</p>
-                </li>
-                <li>
-                    <a href="/en/portfolio/example-com_1">
-                        <img src="/media/cache/project_thumb/uploads/portfolio/projects/5b33949b41d0c.jpeg" alt="example.com_1">
-                        <h3>example.com_1</h3>
-                    </a>
-                    <p>design, HTML markup, development</p>
-                </li>
-            </ul>
+            <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
+            {{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProjectByCtgSlug', { 'slug': 'web-development' })) }}
         </div>
     </div>
 
