@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 use Stfalcon\Bundle\BlogBundle\Entity\PostCategory;
+use Stfalcon\Bundle\BlogBundle\Entity\PostCategoryTranslation;
 
 /**
  * Class PostCategoryAdmin.
@@ -17,18 +18,29 @@ class PostCategoryAdmin extends Admin
     private $prevPosts = null;
 
     /**
+     * {@inheritdoc}
+     */
+    public function prePersist($object)
+    {
+        $this->updateSlug($object);
+    }
+
+    /**
      * @param PostCategory $object
      *
      * @return mixed|void
      */
     public function preUpdate($object)
     {
+        $this->updateSlug($object);
+
         /** @var Post $post */
         foreach ($this->prevPosts as $post) {
             if (!$object->getPosts()->contains($post)) {
                 $post->setCategory(null);
             }
         }
+
         /** @var Post $post */
         foreach ($object->getPosts() as $post) {
             $post->setCategory($object);
@@ -101,5 +113,21 @@ class PostCategoryAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper->add('name');
+    }
+
+    /**
+     * @param PostCategory $object
+     */
+    private function updateSlug($object)
+    {
+        /**
+         * @var $translation PostCategoryTranslation
+         */
+        foreach ($object->getTranslations() as $key => $translation) {
+            if ('en' === $translation->getLocale() && $translation->getContent()) {
+                $object->setSlug($translation->getContent());
+                break;
+            }
+        }
     }
 }
