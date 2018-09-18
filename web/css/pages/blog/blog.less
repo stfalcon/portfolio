@@ -1344,7 +1344,7 @@
   width: 960px;
 
   header {
-    margin-bottom: 25px;
+    margin-bottom: 38px;
   }
 
   h1 {
@@ -1391,6 +1391,14 @@
       margin-left: 0;
     }
 
+
+    strong {
+      display: inline-block;
+      margin: 36px 0 0;
+      font-size: 1.714rem;
+      font-weight: 400;
+    }
+
     li {
       padding-left: 10px;
       list-style: disc;
@@ -1413,47 +1421,6 @@
       margin: 40px 0 80px;
     }
 
-    .vacancy-page__contacts-wrapper {
-      position: relative;
-      overflow: visible;
-      margin-left: 0;
-      margin-right: 0;
-      margin-bottom: 0;
-
-      a {
-        color: @link-color;
-
-        &:hover {
-          color: @link-hover-color;
-        }
-      }
-
-      .contacts-person {
-        position: absolute;
-        top: 56px;
-        left: 468px;
-        width: 262px;
-
-        @media (max-width: 1023px) {
-          width: 30vw;
-        }
-
-        @media (max-width: 767px) {
-          position: static;
-          width: 100%;
-          margin-top: 52px;
-        }
-      }
-
-      .contacts-form-wr {
-        width: 432px;
-
-        @media (max-width: 462px) {
-          width: auto;
-        }
-      }
-    }
-
     &:after {
       display: none;
     }
@@ -1470,7 +1437,7 @@
     }
 
     .google-captcha.contact-captcha {
-      margin-top: 10px;
+      display: none;
     }
 
     @media screen and (max-width: 1023px) {
@@ -1483,10 +1450,55 @@
     float: right;
     min-width: 185px;
     width: 22%;
-    margin-top: 12px;
+
+    .contacts-person {
+      p {
+        display: none;
+      }
+    }
 
     @media (max-width: 1023px) {
       display: none;
+    }
+  }
+
+  &__bottom {
+    position: absolute;
+    top: 56px;
+    left: 468px;
+    width: 320px;
+
+    .vacancy-info {
+      display: none;
+    }
+
+    .contacts-person a {
+      color: @link-color;
+    }
+    .contacts-person__list {
+      display: none;
+    }
+    .contacts-person__photo {
+      width: 54px;
+      height: 54px;
+    }
+
+    @media (max-width: 767px) {
+      position: static;
+      width: 100%;
+      margin-top: 52px;
+    }
+  }
+
+  .contacts-wrapper {
+    position: relative;
+    overflow: visible;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+
+    .contacts-form-wr {
+      width: 432px;
     }
   }
 
@@ -1507,6 +1519,10 @@
       float: none;
     }
   }
+}
+
+form .line .file-input {
+  margin-bottom: 10px;
 }
 
 .contacts-person {
@@ -1557,6 +1573,10 @@
     left: 0;
     top: 50%;
     margin-top: -10px;
+  }
+
+  p {
+    margin: 0;
   }
 }
 
