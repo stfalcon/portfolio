@@ -9,3 +9,19 @@
         </ul>
     {%- endif %}
 {%- endblock form_errors %}
+
+{% block _order_promotion_budget_row %}
+    <div class="line line--budget">
+        <div class="line__lable">{{ 'Бюджет'|trans }}</div>
+        {%- for child in form %}
+            <div class="radio col2--fluid col2 float-left float-left--text-left line__radio">
+                {{- form_widget(child, {'attr': {'class': 'radio__input'}}) -}}
+                {{- form_label(child) -}}
+            </div>
+        {% endfor -%}
+    </div>
+{% endblock _order_promotion_budget_row %}
+
+{% block _order_promotion_budget_entry_label %}
+    <label for="{{ id }}" class="radio__label"><span>{{ value }}</span></label>
+{% endblock _order_promotion_budget_entry_label %}

@@ -1,4 +1,11 @@
 {% block recaptcha_widget %}
-    <script src='https://www.google.com/recaptcha/api.js?hl={{ locale }}'></script>
-    <div class="g-recaptcha" data-sitekey="{{ site_key }}" data-theme="{{ theme }}" data-callback="{{ callback_name }}"></div>
+    <script src='https://www.google.com/recaptcha/api.js?hl={{ locale }}' async defer></script>
+    <div
+            class="g-recaptcha"
+            data-sitekey="{{ site_key }}"
+            data-theme="{{ theme }}"
+            data-callback="{{ callback_name }}"
+            data-size="{{ size }}"
+    >
+    </div>
 {% endblock %}
