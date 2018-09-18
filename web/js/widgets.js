@@ -16,10 +16,22 @@ $(document).on('click', '.hire_us, .hire_us_land, .hire_us_main' , function () {
     $('body').addClass('open-hire_us');
 });
 
+$.validator.addMethod(
+    "phone",
+    function(value, element, regexp) {
+        var re = new RegExp(regexp);
+        return this.optional(element) || re.test(value);
+    }
+);
+
 $(function () {
 
     var formDelay = 3000;
     var $hireUsForm = $('#hire-us-form');
+
+    $.validator.methods.email = function( value, element ) {
+        return this.optional( element ) || /^\w([\-\.]{0,1}\w)*\@\w+([\-\.]{0,1}\w)*\.\w{2,4}$/.test( value );
+    };
 
     $hireUsForm.validate({
         rules: {
@@ -30,8 +42,23 @@ $(function () {
             },
             'order_promotion[email]': {
                 required: true,
-                minlength: 6,
+                minlength: 3,
+                maxlength: 72,
+                email: true
+            },
+            'order_promotion[company]': {
+                required: false,
+                minlength: 3,
                 maxlength: 72
+            },
+            'order_promotion[position]': {
+                required: false,
+                minlength: 3,
+                maxlength: 72
+            },
+            'order_promotion[phone]': {
+                required: true,
+                phone: '[0-9\\-\\(\\)\\s]+$'
             },
             'order_promotion[message]': {
                 required: true,
@@ -41,7 +68,11 @@ $(function () {
         },
         errorPlacement: function (label, element) {
             label.addClass('error-pad');
-            label.insertAfter(element);
+            var parent_elem = element.parent();
+            if (parent_elem.hasClass('line__radio')) {
+                parent_elem = parent_elem.parent();
+            }
+            label.insertAfter(parent_elem);
         },
         wrapper: 'div',
         debug: false,

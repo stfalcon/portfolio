@@ -131,6 +131,7 @@ return array(
     'Максимальное количество символов {0}' => 'Please enter no more than {0} characters.',
     'Вы не указали e-mail адрес' => 'You haven’t told us your email',
     'Недопустимый адрес электронной почты' => 'Invalid email address',
+    'Не верный формат номера телефона' => 'Not valid phone number format',
     'Мы записали ваш адрес. Обещаем не спамить.' => 'Your email was saved. We promise not to spam you, no matter what.',
 
     // contacts, direct order form

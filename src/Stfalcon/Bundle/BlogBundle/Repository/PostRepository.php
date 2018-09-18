@@ -136,6 +136,10 @@ class PostRepository extends EntityRepository
      */
     public function findRelatedPostsToCurrentPost($locale, $post, $limit = 6)
     {
+        if ($post instanceof Post && 0 === $post->getTags()->count()) {
+            return [];
+        }
+
         $qb = $this->createQueryBuilder('p');
 
         $qb->where($qb->expr()->in('t.text', $post->getTags()->getValues()))
