@@ -47,6 +47,39 @@ class PromotionOrderFormType extends AbstractType
                 ]
             )
             ->add(
+                'phone',
+                'text',
+                [
+                    'label' => 'Your phone',
+                    'constraints' =>
+                        [
+                            new Assert\NotBlank(),
+                        ],
+                ]
+            )
+            ->add(
+                'company',
+                'text',
+                [
+                    'label' => 'Your company',
+                    'constraints' =>
+                        [
+                            new Assert\Length(['min' => 2, 'max' => 72]),
+                        ],
+                ]
+            )
+            ->add(
+                'position',
+                'text',
+                [
+                    'label' => 'Your position',
+                    'constraints' =>
+                        [
+                            new Assert\Length(['min' => 3, 'max' => 72]),
+                        ],
+                ]
+            )
+            ->add(
                 'message',
                 'textarea',
                 [
@@ -56,6 +89,21 @@ class PromotionOrderFormType extends AbstractType
                             new Assert\NotBlank(),
                             new Assert\Length(['min' => 30, 'max' => 5000]),
                         ],
+                ]
+            )
+            ->add(
+                'budget',
+                'choice',
+                [
+                    'required'    => false,
+                    'empty_value' => false,
+                    'label'       => 'Your budget',
+                    'expanded'    => true,
+                    'choices'     => [
+                        '$20 000 – $50 000'   => '$20 000 – $50 000',
+                        '$50 000 – $100 000'  => '$50 000 – $100 000',
+                        '$100 000 – $150 000' => '$100 000 – $150 000',
+                    ],
                 ]
             )
             ->add('captcha', 'recaptcha', [

@@ -1,11 +1,12 @@
 $(function () {
     var vacancy_form = $('#direct-vacancy-form');
+
+    $.validator.methods.email = function( value, element ) {
+        return this.optional( element ) || /^\w([\-\.]{0,1}\w)*\@\w+([\-\.]{0,1}\w)*\.\w{2,4}$/.test( value );
+    };
+
     if (vacancy_form.length) {
         vacancy_form.validate({
-            submitHandler: function(form) {
-                form.submit();
-                $('#direct-vacancy-form').find('.btn').attr('disabled', true);
-            },
             rules: {
                 'vacancy_form[name]': {
                     required: true,
@@ -34,6 +35,9 @@ $(function () {
                     required: directVacancyFormMessage.phone.required,
                     minlength: jQuery.validator.format(directVacancyFormMessage.phone.minlength),
                 }
+            },
+            submitHandler: function(form) {
+                form.submit();
             },
             errorPlacement: function (label, element) {
                 label.addClass('error-pad');

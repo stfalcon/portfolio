@@ -272,6 +272,8 @@ _order-symfony2: 'Contact us'
 _order-ios: 'Contact us'
 _order-android: 'Contact us'
 Опишите ваш проект: 'Tell us a few words about the project'
+Бюджет: 'Budget'
+Компания: 'Company'
 
 Об авторе: 'About author'
 main_title: Web and mobile app development, web design company | Stfalcon.com
