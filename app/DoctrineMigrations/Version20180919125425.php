@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180919120421 extends AbstractMigration
+class Version20180919125425 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,7 @@ class Version20180919120421 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE users ADD startDate DATETIME DEFAULT NULL, ADD endDate DATETIME DEFAULT NULL');
+        $this->addSql('ALTER TABLE users ADD startDate DATE DEFAULT NULL, ADD endDate DATE DEFAULT NULL');
     }
 
     /**

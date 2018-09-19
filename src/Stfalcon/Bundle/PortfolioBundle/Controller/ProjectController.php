@@ -139,35 +139,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Projects counter widget.
-     *
-     * @return array()
-     * @Template("StfalconPortfolioBundle:Project:_projects_counter.html.twig")
-     */
-    public function projectsCounterAction()
-    {
-        $repository = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Project');
-        $projects = $repository->findAllProjectsOrderingByDate();
-
-        $projectYears = array();
-        $projectBefore = 1;
-        foreach ($projects as $project) {
-            $year = (int) $project->getDate()->format('Y');
-            if (isset($projectYears[$year]['counter'])) {
-                ++$projectYears[$year]['counter'];
-            } else {
-                $projectYears[$year] = array('year' => $year, 'counter' => $projectBefore);
-            }
-
-            ++$projectBefore;
-        }
-
-        $projectYears = array_slice($projectYears, -4);
-
-        return array('years' => $projectYears);
-    }
-
-    /**
      * View project.
      *
      * @param Request  $request  Request

@@ -112,9 +112,28 @@ $(function () {
     var yearsCnt = $('.years-count'),
         startPos;
     var yearList = $('.year-slider-wrapp li');
-
+    var usersList = $('.team-list li');
     function updateYear(value) {
         $('#view-year').html(value)
+    }
+
+    function changeUsers(selected_year) {
+        $.each(usersList, function (index, value) {
+            var start_year = $(value).data('start');
+            var end_year = $(value).data('end');
+            var active = $(value).data('active');
+            if (0 === start_year && 9999 === end_year) {
+                if (1 === active) {
+                    $(value).show();
+                } else {
+                    $(value).hide();
+                }
+            } else if (selected_year >= start_year && selected_year <= end_year) {
+                $(value).show();
+            } else {
+                $(value).hide();
+            }
+        });
     }
 
     if ($('#year-slider').length) {
@@ -130,6 +149,9 @@ $(function () {
             change: function (event, ui) {
                 counter(startPos, $(yearList[ui.value]).data('val'));
                 updateYear($(yearList[ui.value]).data('text'));
+            },
+            stop: function (event, ui) {
+                changeUsers($(yearList[ui.value]).text());
             }
         });
         $('#year-slider').draggable(); // Enable toush dragging
@@ -599,8 +621,8 @@ $(function () {
     });
 
     autosize(document.querySelectorAll('#order_promotion_message'));
+    changeUsers(last_year);
 });
-
 
 
 

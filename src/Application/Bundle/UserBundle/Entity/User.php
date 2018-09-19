@@ -184,9 +184,9 @@ class User extends BaseUser
      *
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      *
-     * @Assert\DateTime()
+     * @Assert\Date()
      */
     private $startDate;
 
@@ -195,9 +195,9 @@ class User extends BaseUser
      *
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      *
-     * @Assert\DateTime()
+     * @Assert\Date()
      */
     private $endDate;
 

@@ -44,6 +44,14 @@ class UserAdmin extends Admin
         $formMapper->remove('firstname');
         $formMapper->remove('lastname');
 
+        $datetimePickerOptions =
+            [
+                'dp_use_seconds' => false,
+                'dp_language' => 'ru',
+                'format' => 'dd.MM.y',
+                'required' => false,
+            ];
+
         $formMapper
             ->with('General')
                 ->add('ordering', null, array('required' => false, 'label' => 'Сортировка'))
@@ -117,7 +125,12 @@ class UserAdmin extends Admin
                     'required'  => false,
                     'label'     => 'Любимый напиток',
                 ))
-            ->end();
+            ->end()
+            ->with('Management')
+                ->add('startDate', 'sonata_type_datetime_picker', array_merge(['label' => 'дата начала сотрудничества'], $datetimePickerOptions))
+                ->add('endDate', 'sonata_type_datetime_picker', array_merge(['label' => 'дата окончания сотрудничества'], $datetimePickerOptions))
+            ->end()
+        ;
     }
 
     /**
