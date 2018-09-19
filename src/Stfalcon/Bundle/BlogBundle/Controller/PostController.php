@@ -227,7 +227,7 @@ class PostController extends AbstractController
      * @return Response
      *
      * @Route(
-     *      "/blog/{usernameCanonical}/{title}/{page}",
+     *      "/blog/author/{usernameCanonical}/{title}/{page}",
      *      name         = "blog_author",
      *      requirements = {"page" = "\d+", "title" = "page"},
      *      defaults     = {"page" = "1",   "title" = "page"}
