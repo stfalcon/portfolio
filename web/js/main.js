@@ -621,7 +621,9 @@ $(function () {
     });
 
     autosize(document.querySelectorAll('#order_promotion_message'));
-    changeUsers(last_year);
+    if (typeof last_year !== 'undefined') {
+        changeUsers(last_year);
+    }
 });
 
 
