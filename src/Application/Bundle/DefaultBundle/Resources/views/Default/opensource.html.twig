@@ -470,36 +470,4 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    {#<script>#}
-        {#$(document).ready(function () {#}
-            {#function getProjectsStars() {#}
-                {#var projects = $('.opensource-item__title');#}
-                {#var projectNames = [];#}
-                {#$.each(projects, function (index, value) {#}
-                    {#var user_name =  $(value).data('user');#}
-                    {#if (!user_name) {#}
-                        {#user_name = 'stfalcon-studio';#}
-                    {#}#}
-
-                    {#projectNames.push({'user': user_name, 'repoName': $(value).data('reponame')});#}
-                {#});#}
-                {#var route = Routing.generate('get_projects_stars', {names: projectNames});#}
-
-                {#$.get(route, function (data) {#}
-                    {#if (!data['error']) {#}
-                        {#$.each(data['data'], function (index, value) {#}
-                            {#console.log(index+' '+value);#}
-                            {#var rating = $('.opensource-item__title[data-reponame="'+index+'"]').parent().parent().find('.opensource-item__rating');#}
-                            {#if (rating.length) {#}
-                                {#rating.html('<i class="opensource-item__icon"></i>'+value);#}
-                            {#}#}
-                        {#});#}
-                    {#}#}
-                {#});#}
-            {#}#}
-
-            {#getProjectsStars();#}
-        {#});#}
-
-    {#</script>#}
 {% endblock javascripts %}
