@@ -77,6 +77,14 @@ class Post implements Translatable
     private $tags;
 
     /**
+     * @var PostCategory
+     *
+     * @ORM\ManyToOne(targetEntity="Stfalcon\Bundle\BlogBundle\Entity\PostCategory", inversedBy="posts")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $category;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
@@ -176,6 +184,26 @@ class Post implements Translatable
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return PostCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param PostCategory $category
+     *
+     * @return $this
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
     /**

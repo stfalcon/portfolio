@@ -28,7 +28,21 @@
             {{ form_errors(form.captcha) }}
         </div>
         {% endif %}
-        <button class="btn" type="submit">{{ "__send_text" | trans() }}</button>
+        <button class="btn" onclick="RegSubmit(event)">{{ "__send_text" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>
+<script>
+    var submitHireForm = function (token) {
+        var form = $('#direct-vacancy-form');
+        form.submit();
+    };
+
+    function RegSubmit(e) {
+        e.preventDefault();
+        var form = $('#direct-vacancy-form');
+        if (form.valid()) {
+            grecaptcha.execute();
+        }
+    }
+</script>

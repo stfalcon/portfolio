@@ -1,0 +1,18 @@
+services:
+    stfalcon.bundle.blog_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: 'doctrine:getRepository'
+        arguments: [ 'Stfalcon\Bundle\BlogBundle\Entity\PostCategory' ]
+
+
+    stfalcon.bundle.blog_menu_builder:
+        class: Stfalcon\Bundle\BlogBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@stfalcon.bundle.blog_repository", "@translator"]
+
+    stfalcon.bundle.blog_menu:
+        class: Knp\Menu\MenuItem
+        factory: ["@stfalcon.bundle.blog_menu_builder", createMainMenu]
+        scope: "request"
+        arguments: ["@request"]
+        tags:
+            - { name: knp_menu.menu, alias: blog }
