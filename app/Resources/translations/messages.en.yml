@@ -11,6 +11,7 @@ title: __title
 Аватарка: Avatar
 Блог: Blog
 __menu.vacancies: Careers
+__menu.opensource: Opensource
 Поиск: Search
 
 'Stfalcon':
@@ -58,6 +59,7 @@ __menu.vacancies: Careers
 
 Проекты: Projects
 about_us: 'About us'
+__menu.industries : Industries
 Таг: Tag
 
 'Следующий проект': 'Next project'
