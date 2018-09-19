@@ -17,7 +17,17 @@
     </div>
     <ul class="team-list">
         {% for user in users %}
-        <li>
+            {% if user.startDate is null %}
+                {% set start_date = 0 %}
+            {% else %}
+                {% set start_date = user.startDate|date("Y") %}
+            {% endif %}
+            {% if user.endDate is null %}
+                {% set end_date = 9999 %}
+            {% else %}
+                {% set end_date = user.endDate|date("Y") %}
+            {% endif %}
+        <li data-start="{{ start_date }}" data-end="{{ end_date }}" data-active="{{ user.enabled ? 1 : 0 }}">
             <div class="login-{{ user.username }} {% if user.drink %}drink-{{ user.drink }}{% endif %}">
                 {% if user.avatarName %}
                 <img src="{{ vich_uploader_asset(user, 'avatar') | apply_filter('avatar') }}" alt="{{ user.firstname~' '~user.lastname }}" class="avatar"
