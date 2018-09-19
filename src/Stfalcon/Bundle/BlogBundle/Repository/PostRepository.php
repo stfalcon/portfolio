@@ -7,10 +7,11 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
+use Stfalcon\Bundle\BlogBundle\Entity\PostCategory;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 
 /**
- * PostRepository
+ * PostRepository.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
@@ -21,6 +22,7 @@ class PostRepository extends EntityRepository
      * @param string $locale
      *
      * @return Post|null
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findPostBySlugInLocale($slug, $locale)
@@ -37,7 +39,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Get all posts
+     * Get all posts.
      *
      * @param string $locale
      *
@@ -54,7 +56,25 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Get all posts
+     * @param string       $locale
+     * @param PostCategory $category
+     *
+     * @return Query
+     */
+    public function getAllPublishedPostsWithCtgAsQuery($locale, $category)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where('p.published = 1')
+            ->andWhere($qb->expr()->eq('p.category', ':category'))
+            ->setParameter('category', $category)
+            ->orderBy('p.created', 'DESC');
+        $this->addLocaleFilter($locale, $qb);
+
+        return $qb->getQuery();
+    }
+
+    /**
+     * Get all posts.
      *
      * @param string $locale
      *
@@ -66,10 +86,10 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Get last posts
+     * Get last posts.
      *
      * @param string $locale
-     * @param int $count Max count of returned posts
+     * @param int    $count  Max count of returned posts
      *
      * @return array
      */
@@ -77,7 +97,7 @@ class PostRepository extends EntityRepository
     {
         $query = $this->getAllPublishedPostsAsQuery($locale);
 
-        if ((int)$count) {
+        if ((int) $count) {
             $query->setMaxResults($count);
         }
 
@@ -85,7 +105,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param Tag $tag
+     * @param Tag    $tag
      * @param string $locale
      *
      * @return Query
@@ -106,7 +126,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Find related posts by tags
+     * Find related posts by tags.
      *
      * @param string $locale Locale
      * @param Post   $post   Current post
@@ -137,7 +157,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Find all in array
+     * Find all in array.
      *
      * @param array $postsId Posts id
      *
@@ -155,9 +175,9 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Get posts query by user
+     * Get posts query by user.
      *
-     * @param User $user User
+     * @param User   $user   User
      * @param string $locale Locale
      *
      * @return array

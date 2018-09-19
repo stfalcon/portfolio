@@ -8,6 +8,11 @@
 
 {% block content_wrapper %}
     {{ parent() }}
+    <section class="services-tabs projects-wrapper">
+        <div class="section-offer">
+            {{ knp_menu_render('blog', {'template': '::_knp_render_blog.html.twig'}) }}
+        </div>
+    </section>
     {% if posts %}
         {% include 'StfalconBlogBundle:Post:_posts.html.twig' with {'posts': posts} %}
 
