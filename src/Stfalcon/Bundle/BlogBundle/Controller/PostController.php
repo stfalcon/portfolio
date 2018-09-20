@@ -24,23 +24,70 @@ use Zend\Feed\Writer\Feed;
 class PostController extends AbstractController
 {
     /**
+     * RSS feed.
+     *
+     * @param Request $request Request
+     *
+     * @return Response
+     *
+     * @Route("/blog/rss", name="blog_rss")
+     */
+    public function rssAction(Request $request)
+    {
+        $feed = new Feed();
+
+        $config = $this->container->getParameter('stfalcon_blog.config');
+
+        $feed->setTitle($config['rss']['title']);
+        $feed->setDescription($config['rss']['description']);
+        $feed->setLink($this->generateUrl('blog_rss', array(), true));
+
+        $posts = $this->get('doctrine')->getManager()
+            ->getRepository('StfalconBlogBundle:Post')->getAllPublishedPosts($request->getLocale());
+        /** @var Post $post */
+        foreach ($posts as $post) {
+            $entry = new Entry();
+            $entry->setTitle($post->getTitle());
+            $entry->setLink($this->generateUrl('blog_post_view', array('slug' => $post->getSlug()), true));
+
+            $feed->addEntry($entry);
+        }
+
+        $response = new Response($feed->export('rss'));
+        $response->headers->add(array('Content-Type' => 'application/xml'));
+
+        return $response;
+    }
+
+    /**
      * List of posts for admin.
      *
      * @param Request $request Request
+     * @param string  $title
      * @param int     $page    Page number
      *
      * @return array
      *
      * @Route("/blog/{title}/{page}", name="blog",
-     *      requirements={"page"="\d+", "title"="page"},
-     *      defaults={"page"="1", "title"="page"})
+     *      requirements={"page"="\d+"},
+     *      defaults={"page"="1", "title"="all"})
      * @Template()
      */
-    public function indexAction(Request $request, $page)
+    public function indexAction(Request $request, $title, $page)
     {
         $postRepository = $this->getDoctrine()->getRepository('StfalconBlogBundle:Post');
+        $postsCategory = null;
+        if ('all' !== $title) {
+            $postsCategory = $this->getDoctrine()->getRepository('StfalconBlogBundle:PostCategory')
+                ->findOneBy(['slug' => $title]);
+        }
 
-        $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
+        if ($postsCategory) {
+            $postsQuery = $postRepository->getAllPublishedPostsWithCtgAsQuery($request->getLocale(), $postsCategory);
+        } else {
+            $postsQuery = $postRepository->getAllPublishedPostsAsQuery($request->getLocale());
+        }
+
         $posts = $this->get('knp_paginator')->paginate($postsQuery->getResult(), $page, 10);
 
         $seo = $this->get('sonata.seo.page');
@@ -117,42 +164,6 @@ class PostController extends AbstractController
     }
 
     /**
-     * RSS feed.
-     *
-     * @param Request $request Request
-     *
-     * @return Response
-     *
-     * @Route("/blog/rss", name="blog_rss")
-     */
-    public function rssAction(Request $request)
-    {
-        $feed = new Feed();
-
-        $config = $this->container->getParameter('stfalcon_blog.config');
-
-        $feed->setTitle($config['rss']['title']);
-        $feed->setDescription($config['rss']['description']);
-        $feed->setLink($this->generateUrl('blog_rss', array(), true));
-
-        $posts = $this->get('doctrine')->getManager()
-                ->getRepository('StfalconBlogBundle:Post')->getAllPublishedPosts($request->getLocale());
-        /** @var Post $post */
-        foreach ($posts as $post) {
-            $entry = new Entry();
-            $entry->setTitle($post->getTitle());
-            $entry->setLink($this->generateUrl('blog_post_view', array('slug' => $post->getSlug()), true));
-
-            $feed->addEntry($entry);
-        }
-
-        $response = new Response($feed->export('rss'));
-        $response->headers->add(array('Content-Type' => 'application/xml'));
-
-        return $response;
-    }
-
-    /**
      * Show last blog posts.
      *
      * @param string $locale Locale
@@ -194,7 +205,7 @@ class PostController extends AbstractController
      * @param string $locale Site locale
      * @param Post   $post   Current post
      *
-     * @return array
+     * @return Response
      */
     public function relatedPostsAction($locale, $post)
     {
@@ -216,7 +227,7 @@ class PostController extends AbstractController
      * @return Response
      *
      * @Route(
-     *      "/blog/{usernameCanonical}/{title}/{page}",
+     *      "/blog/author/{usernameCanonical}/{title}/{page}",
      *      name         = "blog_author",
      *      requirements = {"page" = "\d+", "title" = "page"},
      *      defaults     = {"page" = "1",   "title" = "page"}

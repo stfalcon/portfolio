@@ -30,7 +30,21 @@
             {{ form_widget(form.captcha) }}
             {{ form_errors(form.captcha) }}
         </div>
-        <button id="contact-submit" class="btn" type="submit">{{ "Отправить" | trans() }}</button>
+        <button id="contact-submit" class="btn" onclick="RegSubmit(event)" >{{ "Отправить" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>
+<script>
+    var submitHireForm = function (token) {
+        var form = $('#direct-order-form');
+        form.submit();
+    };
+
+    function RegSubmit(e) {
+        e.preventDefault();
+        var form = $('#direct-order-form');
+        if (form.valid()) {
+            grecaptcha.execute();
+        }
+    }
+</script>

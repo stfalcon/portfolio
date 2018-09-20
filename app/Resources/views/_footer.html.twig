@@ -1,44 +1,36 @@
 <div class="footer-top clearfix">
-    {{ include('::_social_links.html.twig') }}
     <a class="footer-logo" href="/"></a>
-    <nav class="main-nav footer-nav">
-        {{ knp_menu_render('main') }}
+    <nav class="main-nav main-nav--footer">
+        {{ knp_menu_render('footer_main') }}
     </nav>
-    <nav class="services-nav">
-        <ul>
-            <li>
-                <a href="{{ path('portfolio_categories_list', {'slug': 'web-development'}) }}">{{ "Разработка веб-сайтов" | trans() }}</a>
-            </li>
-            <li>
-                <a href="{{ path('portfolio_categories_list', {'slug': 'web-design'}) }}">{{ "Дизайн сайтов и интерфейсов" | trans() }}</a>
-            </li>
-            <li>
-                <a href="{{ path('portfolio_categories_list', {'slug': 'mobile-development'}) }}">{{ "Мобильная разработка" | trans() }}</a>
-            </li>
-        </ul>
-    </nav>
-    <section class="contacts">
-        <ul class="contact-list">
-            <li>
-                <span>{{ 'Позвонить'|trans }}:</span>
-                <a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
-            </li>
-            <li class="skype-wrap">
-                <span>{{ 'Skype'|trans() }}:</span>
-                <a href="skype:stfalcon.sales?chat" class="skype">stfalcon.sales</a>
-            </li>
-            <li class="write-to">
-                <span>{{ 'Написать'|trans() }}:</span>
-                <a href="mailto:info@stfalcon.com" class="email">info@stfalcon.com</a>
-            </li>
-            <li class="address">
-                <span>{{ "Зайти в гости" | trans() }}:</span>
-                <span class="adress">{{ "улица Заречанская, 3/2, Хмельницкий, Украина"|trans() }}</span>
-                <span class="adress">{{ "переулок Ахтырский, 7, Киев, Украина"|trans() }}</span>
-            </li>
-        </ul>
-    </section>
-    {{ include('::_social_links.html.twig') }}
+    <div class="contacts-content">
+        <nav class="services-nav">
+            {{ knp_menu_render('service_menu') }}
+        </nav>
+        <section class="contacts">
+            <ul class="contact-list">
+                <li>
+                    <span>{{ 'Позвонить'|trans }}:</span>
+                    <a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
+                </li>
+                <li class="write-to">
+                    <span>{{ 'Написать'|trans() }}:</span>
+                    <a href="mailto:info@stfalcon.com" class="email">info@stfalcon.com</a>
+                </li>
+                <li class="skype-wrap">
+                    <span>{{ 'Skype'|trans() }}:</span>
+                    <a href="skype:stfalcon.sales?chat" class="skype">stfalcon.sales</a>
+                </li>
+            </ul>
+        </section>
+        <div class="address">
+            <span>{{ "Зайти в гости" | trans() }}:</span>
+            <span class="adress">{{ "улица Заречанская, 3/2, Хмельницкий, Украина"|trans() }}</span>
+            <span class="adress">{{ "переулок Ахтырский, 7, Киев, Украина"|trans() }}</span>
+            {{ include('::_social_links.html.twig') }}
+        </div>
+    </div>
+    {% include '::_social_links.html.twig' with {'add_class' : 'socials-links--mob'}  %}
 </div>
 <div class="copyright-cnt">
     <div class="copyright">
