@@ -42,21 +42,29 @@
 
             <div class="sharethis-inline-share-buttons"></div>
 
-            <section class="contacts-wrapper">
-                {% if app.session.flashBag.has('vacancy_error') %}
-                    <div class="alert alert-success">
-                        {% for msg in app.session.flashBag.get('vacancy_error') %}
-                            <div class="error-list">{{ msg }}</div>
-                        {% endfor %}
+            {%- if app.session.flashBag.has('vacancy_send') -%}
+                <div class="alert alert-success">
+                    {%- for msg in app.session.flashBag.get('vacancy_send') -%}
+                        <h3>{{ msg }}</h3>
+                    {%- endfor -%}
+                </div>
+            {%- else -%}
+                <section class="contacts-wrapper">
+                    {%- if app.session.flashBag.has('vacancy_error') -%}
+                        <div class="alert alert-success">
+                            {%- for msg in app.session.flashBag.get('vacancy_error') -%}
+                                <div class="error-list">{{ msg }}</div>
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                    <div class="contacts-form-wr" id="vacancy-form">
+                        {%- include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' -%}
                     </div>
-                {% endif %}
-                <div class="contacts-form-wr" id="vacancy-form">
-                    {% include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' %}
-                </div>
-                <div class="vacancy-page__bottom">
-                    {{ job.contactInfo|raw }}
-                </div>
-            </section>
+                    <div class="vacancy-page__bottom">
+                        {{ job.contactInfo|raw }}
+                    </div>
+                </section>
+            {%- endif -%}
         </div>
 
         <div class="vacancy-page__sidebar">

@@ -73,7 +73,7 @@ class Job implements Translatable
      *
      * @Assert\NotBlank()
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      *
      * @Gedmo\Translatable(fallback=true)
      */
