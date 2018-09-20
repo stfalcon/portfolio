@@ -1,131 +1,8 @@
-{#{% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}#}
-
-{#<section id="hire-us-widget" class="hire_us-form">#}
-    {#<div class="wrap_form">#}
-        {#<div class="wrap_close">#}
-            {#<svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">#}
-                {#<path class="icon-close-nav"#}
-                      {#d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>#}
-            {#</svg>#}
-        {#</div>#}
-        {#{% if slug is not defined or slug is null %}#}
-            {#{% set slug = 'project'%}#}
-        {#{% endif %}#}
-        {#<form id="hire-us-form" class="webdev-form feedback-form" data-url="{{ path('ajax_hire_us') }}" method="post">#}
-            {#<div class="form-pad">#}
-                {#<h2>{{ 'Заказать проект'|trans }}</h2>#}
-
-                {#   #}
-
-                {#<div class="line">#}
-                    {#{{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}#}
-                {#</div>#}
-
-                {#<div class="line">#}
-                    {#{{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}#}
-                {#</div>#}
-
-                {#   #}
-
-                {#<div class="line">#}
-                    {#{{ form_widget(form.phone, {'attr': {'placeholder': 'Телефон'|trans} }) }}#}
-                {#</div>#}
-
-                {#<div class="line">#}
-                    {#{{ form_widget(form.company, {'attr': {'placeholder': 'Компания'|trans} }) }}#}
-                {#</div>#}
-
-                {#<div class="line">#}
-                    {#{{ form_widget(form.position, {'attr': {'placeholder': 'Должность'|trans} }) }}#}
-                {#</div>#}
-
-                {#   #}
-
-                {#<div class="line line--description">#}
-                    {#{{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}#}
-                {#</div>#}
-
-                {#{{ form_row(form.budget, {'attr': {'label': false} }) }}#}
-
-                {#<div class="google-captcha">#}
-                    {#{{ form_widget(form.captcha, {'theme': 'dark'}) }}#}
-                {#</div>#}
-
-                {#<div class="line">#}
-                    {#{% if slug != 'main_page' %}#}
-                        {#{% set slug = '' %}#}
-                    {#{% endif %}#}
-                    {#<button class="btn btn--marg-bot btn--fluid send-request" onclick="RegSubmit(event)">{{ 'Отправить заявку'|trans }}#}
-                    {#</button>#}
-                {#</div>#}
-                {#<div class="line line--margin-out">#}
-                    {#<div class="col3 line__item line__left">#}
-                        {#<div class="contacts-info">#}
-                            {#<div class="contacts-info__cell">#}
-                                {#<div class="contacts-info__left">{{ 'Позвонить'|trans }}:</div>#}
-                                {#<div class="contacts-info__right">#}
-                                    {#<div class="contacts-info__item">#}
-                                        {#<a href="tel:+380 67 334-40-40" class="phone-link">+380 67 334-40-40</a>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#<div class="col3 line__item line__center">#}
-                        {#<div class="contacts-info">#}
-                            {#<div class="contacts-info__cell">#}
-                                {#<div class="contacts-info__left">{{ "Skype" | trans() }}:</div>#}
-                                {#<div class="contacts-info__right">#}
-                                    {#<div class="contacts-info__item"><a href="skype:stfalcon.sales?call">stfalcon.sales</a></div>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#<div class="col3 line__item line__right">#}
-                        {#<div class="contacts-info">#}
-                            {#<div class="contacts-info__cell">#}
-                                {#<div class="contacts-info__left">{{ "Написать" | trans() }}:</div>#}
-                                {#<div class="contacts-info__right">#}
-                                    {#<div class="contacts-info__item"><a href="mailto:info@stfalcon.com">info@stfalcon.com</a></div>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="form-success">#}
-                {#<div class="wr">#}
-                    {#<div class="inner-pad">#}
-                        {#<h2>{{ 'Спасибо!'|trans }}</h2>#}
-                        {#<p>{{ 'Мы изучим Вашу заявку'|trans }}<br>{{ 'и ответим в ближайшее время'|trans }}.</p>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#{{ form_rest(form) }}#}
-        {#</form>#}
-    {#</div>#}
-{#</section>#}
-{#<script>#}
-    {#var submitHireForm = function (token) {#}
-    {#var form = $('#hire-us-form');#}
-        {#form.submit();#}
-    {#};#}
-
-    {#function RegSubmit(e) {#}
-        {#e.preventDefault();#}
-        {#var form = $('#hire-us-form');#}
-        {#if (form.valid()) {#}
-            {#grecaptcha.execute();#}
-        {#}#}
-    {#}#}
-{#</script>#}
-
-
 {% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
 
-<section id="hire-us-widget" class="hire_us-form hire_us-form--lead">
+<section id="hire-us-widget" class="hire_us-form">
     <div class="wrap_form">
-        <div class="wrap_close wrap_close--transparent">
+        <div class="wrap_close">
             <svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">
                 <path class="icon-close-nav"
                       d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
@@ -134,44 +11,85 @@
         {% if slug is not defined or slug is null %}
             {% set slug = 'project'%}
         {% endif %}
-        <form id="hire-us-form" class="webdev-form feedback-form feedback-form--fluid" data-url="{{ path('ajax_hire_us') }}" method="post">
+        <form id="hire-us-form" class="webdev-form feedback-form" data-url="{{ path('ajax_hire_us') }}" method="post">
             <div class="form-pad">
-                <h2 class="form-pad__title">Смотрите полную версию кейса</h2>
-                <p class="form-pad__description">Укажите свои контактные данные чтобы продолжить</p>
+                <h2>{{ 'Заказать проект'|trans }}</h2>
 
-                {#   #}
 
-                <div class="form-pad__wrapper">
-                    <div class="line">
-                        {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}
+
+                <div class="line">
+                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+                </div>
+
+
+
+                <div class="line">
+                    {{ form_widget(form.phone, {'attr': {'placeholder': 'Телефон'|trans} }) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.company, {'attr': {'placeholder': 'Компания'|trans} }) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.position, {'attr': {'placeholder': 'Должность'|trans} }) }}
+                </div>
+
+
+
+                <div class="line line--description">
+                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}
+                </div>
+
+                {{ form_row(form.budget, {'attr': {'label': false} }) }}
+
+                <div class="google-captcha">
+                    {{ form_widget(form.captcha, {'theme': 'dark'}) }}
+                </div>
+
+                <div class="line">
+                    {% if slug != 'main_page' %}
+                        {% set slug = '' %}
+                    {% endif %}
+                    <button class="btn btn--marg-bot btn--fluid send-request" onclick="RegSubmit(event)">{{ 'Отправить заявку'|trans }}
+                    </button>
+                </div>
+                <div class="line line--margin-out">
+                    <div class="col3 line__item line__left">
+                        <div class="contacts-info">
+                            <div class="contacts-info__cell">
+                                <div class="contacts-info__left">{{ 'Позвонить'|trans }}:</div>
+                                <div class="contacts-info__right">
+                                    <div class="contacts-info__item">
+                                        <a href="tel:+380 67 334-40-40" class="phone-link">+380 67 334-40-40</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="line">
-                        {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+                    <div class="col3 line__item line__center">
+                        <div class="contacts-info">
+                            <div class="contacts-info__cell">
+                                <div class="contacts-info__left">{{ "Skype" | trans() }}:</div>
+                                <div class="contacts-info__right">
+                                    <div class="contacts-info__item"><a href="skype:stfalcon.sales?call">stfalcon.sales</a></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    {#   #}
-
-                    <div class="line">
-                        {{ form_widget(form.company, {'attr': {'placeholder': 'Компания'|trans} }) }}
-                    </div>
-
-                    <div class="line">
-                        {{ form_widget(form.position, {'attr': {'placeholder': 'Должность'|trans} }) }}
-                    </div>
-
-                    {#   #}
-
-                    <div class="google-captcha">
-                        {{ form_widget(form.captcha, {'theme': 'dark'}) }}
-                    </div>
-
-                    <div class="line">
-                        {% if slug != 'main_page' %}
-                            {% set slug = '' %}
-                        {% endif %}
-                        <button class="btn btn--marg-bot btn--fluid send-request" onclick="RegSubmit(event)">{{ 'Смотреть'|trans }}
-                        </button>
+                    <div class="col3 line__item line__right">
+                        <div class="contacts-info">
+                            <div class="contacts-info__cell">
+                                <div class="contacts-info__left">{{ "Написать" | trans() }}:</div>
+                                <div class="contacts-info__right">
+                                    <div class="contacts-info__item"><a href="mailto:info@stfalcon.com">info@stfalcon.com</a></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -180,6 +98,77 @@
                     <div class="inner-pad">
                         <h2>{{ 'Спасибо!'|trans }}</h2>
                         <p>{{ 'Мы изучим Вашу заявку'|trans }}<br>{{ 'и ответим в ближайшее время'|trans }}.</p>
+                    </div>
+                </div>
+            </div>
+            {{ form_rest(form) }}
+        </form>
+    </div>
+</section>
+<script>
+    var submitHireForm = function (token) {
+    var form = $('#hire-us-form');
+        form.submit();
+    };
+
+    function RegSubmit(e) {
+        e.preventDefault();
+        var form = $('#hire-us-form');
+        if (form.valid()) {
+            grecaptcha.execute();
+        }
+    }
+</script>
+
+<section class="lead-form">
+    <div class="wrap_form">
+        <div class="wrap_close wrap_close--transparent">
+            <svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">
+                <path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
+            </svg>
+        </div>
+        <form id="hire-us-form" class="webdev-form feedback-form feedback-form--fluid" data-url="/en/ajax-hire-us" method="post">
+            <div class="form-pad">
+                <h2 class="form-pad__title">Смотрите полную версию кейса</h2>
+                <p class="form-pad__description">Укажите свои контактные данные чтобы продолжить</p>
+
+
+                <div class="form-pad__wrapper">
+                    <div class="line">
+                        <input type="text" id="order_promotion_name" name="order_promotion[name]" required="required" placeholder="Your name">
+                    </div>
+
+                    <div class="line">
+                        <input type="email" id="order_promotion_email" name="order_promotion[email]" required="required" class="email" placeholder="E-mail">
+                    </div>
+
+
+                    <div class="line">
+                        <input type="text" id="order_promotion_company" name="order_promotion[company]" required="required" placeholder="Company">
+                    </div>
+
+                    <div class="line">
+                        <input type="text" id="order_promotion_position" name="order_promotion[position]" required="required" placeholder="Position">
+                    </div>
+
+
+                    <div class="google-captcha">
+                        <script src="https://www.google.com/recaptcha/api.js?hl=en" async="" defer=""></script>
+                        <div class="g-recaptcha" data-sitekey="SomeSiteKey" data-theme="dark" data-callback="submitHireForm" data-size="invisible"><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px;"><div class="grecaptcha-logo"><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=SomeSiteKey&amp;co=aHR0cDovLzEyNy4wLjAuMTo4MDAw&amp;hl=en&amp;v=v1536705955372&amp;theme=dark&amp;size=invisible&amp;cb=mjx1eunu57vv" width="256" height="60" role="presentation" name="a-ghuj54kzlwbn" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div>
+
+                    </div>
+
+                    <div class="line">
+                        <button class="btn btn--marg-bot btn--fluid send-request" onclick="RegSubmit(event)">Смотреть
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-success">
+                <div class="wr">
+                    <div class="inner-pad">
+                        <h2>Thanks!</h2>
+                        <p>We will examine your request<br>and reply as soon as possible.</p>
                     </div>
                 </div>
             </div>
@@ -199,5 +188,26 @@
             grecaptcha.execute();
         }
     }
+
+    var body = $('body')
+
+    var hasShowed = false;
+
+    $(window).scroll(function(){
+        if ($(this).scrollTop() >= 800) {
+            console.log("Log");
+
+            if (!body.hasClass( "lead-gener") && !hasShowed) {
+                body.addClass("lead-gener");
+                hasShowed = true;
+            }
+        }
+    });
+
+    $('.lead-form').find('.close-hire_us').on('click', function(){
+        if (body.hasClass( "lead-gener" )) {
+            body.removeClass("lead-gener");
+        }
+    });
 </script>
 
