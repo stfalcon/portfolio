@@ -59,6 +59,8 @@ main_page.service8.description: ''
 main_page.service9.description: ''
 
 __menu.vacancies: Вакансии
+__menu.industries : Индустрии
+
 __back_to_vacansy_list: Вернуться к списку вакансий
 __invite_to_our_team: Приглашаем в нашу команду
 __reply_to_vacancy: Ответить на вакансию
