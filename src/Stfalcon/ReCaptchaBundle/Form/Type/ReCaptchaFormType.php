@@ -46,6 +46,7 @@ class ReCaptchaFormType extends AbstractType
         $view->vars['locale'] = $options['locale'];
         $view->vars['theme'] = $options['theme'];
         $view->vars['callback_name'] = $options['callback_name'];
+        $view->vars['size'] = $options['size'];
     }
 
     /**
@@ -63,7 +64,8 @@ class ReCaptchaFormType extends AbstractType
             'mapped'        => false,
             'locale'        => $this->request->getLocale(),
             'theme'         => 'light',
-            'callback_name' => 'showSubmitButton',
+            'size'          => 'invisible',
+            'callback_name' => 'submitHireForm',
             'constraints'   => [
                 new ValidCaptcha(),
             ],

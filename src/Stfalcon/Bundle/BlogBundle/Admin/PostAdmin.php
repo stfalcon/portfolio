@@ -105,6 +105,7 @@ class PostAdmin extends Admin
                 )
             )
             ->add('slug')
+            ->add('category', 'sonata_type_model', ['multiple' => false, 'required' => false])
             ->add('tags', null)
             ->add('image', null, ['required' => false])
             ->add('author', null, array(
@@ -127,6 +128,7 @@ class PostAdmin extends Admin
             ->addIdentifier('slug')
             ->add('title')
             ->add('created')
+            ->add('category')
             ->add('_action', 'actions', [
                 'label' => 'Действия',
                 'actions' => [

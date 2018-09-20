@@ -20,6 +20,13 @@
             <argument>StfalconBlogBundle:Admin\PostAdmin</argument>
         </service>
 
+        <service id="stfalcon_blog.admin.posts_category" class="Stfalcon\Bundle\BlogBundle\Admin\PostCategoryAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Posts Category" />
+            <argument />
+            <argument>Stfalcon\Bundle\BlogBundle\Entity\PostCategory</argument>
+            <argument />
+        </service>
+
         <service id="stfalcon_blog.admin.tag" class="%stfalcon_blog.admin.tag.class%">
             <tag name="sonata.admin" manager_type="orm" group="BlogBundle" label="Tags" />
             <argument />

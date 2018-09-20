@@ -143,6 +143,7 @@ class WidgetsController extends Controller
             $container    = $this->get('service_container');
             $mailerNotify = $container->getParameter('mailer_notify');
             $subject      = $translated->trans('promotion.order.hire.us.mail.subject', ['%email%' => $email]);
+            $country      = $this->get('application_default.service.geo_ip')->getLocaleByIp($request->getClientIp());
 
             $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
@@ -153,9 +154,14 @@ class WidgetsController extends Controller
                     $this->renderView(
                         '@ApplicationDefault/emails/order_app.html.twig',
                         [
-                            'message' => $data['message'],
-                            'name'    => $name,
-                            'email'   => $email,
+                            'message'  => $data['message'],
+                            'name'     => $name,
+                            'email'    => $email,
+                            'country'  => $country,
+                            'phone'    => $data['phone'],
+                            'company'  => $data['company'],
+                            'position' => $data['position'],
+                            'budget'   => $data['budget'],
                         ]
                     ),
                     'text/html'
