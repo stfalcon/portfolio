@@ -143,7 +143,7 @@ class WidgetsController extends Controller
             $container    = $this->get('service_container');
             $mailerNotify = $container->getParameter('mailer_notify');
             $subject      = $translated->trans('promotion.order.hire.us.mail.subject', ['%email%' => $email]);
-            $country      = $this->get('application_default.service.geo_ip')->getLocaleByIp($request->getClientIp());
+            $country      = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
 
             $message = \Swift_Message::newInstance()
                 ->setSubject($subject)

@@ -3,6 +3,6 @@
 <p>--</p>
 <p>{{ name }} "{{ email }}"</p>
 <p>{{ phone }}</p>
-<p>{{ position }} in {{ company }}</p>
+<p>{{ position }}{% if company is not null %} in {{ company }}{% endif %}</p>
 <p>{{ country }}</p>
 <p>{{ budget }}</p>
