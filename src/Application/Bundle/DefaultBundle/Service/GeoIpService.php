@@ -44,16 +44,15 @@ class GeoIpService extends Reader
      *
      * @return string
      */
-    public function getLocaleByIp($ip)
+    public function getCountryByIp($ip)
     {
         try {
             $country = $this->country($ip);
-            if (isset($this->localeByCountry[$country->country->isoCode])) {
-                return $this->localeByCountry[$country->country->isoCode];
-            }
+
+            return $country->country->name;
         } catch (AddressNotFoundException $e) {
         }
 
-        return 'en';
+        return 'not defined';
     }
 }
