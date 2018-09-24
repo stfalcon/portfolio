@@ -50,7 +50,7 @@
 
     {% set locale = app.request.locale %}
     <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
-    {% javascripts 'js/widgets.js' 'main.js' output='cache/js/*.js' %}
+    {% javascripts 'js/widgets.js' 'js/main.js' output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
