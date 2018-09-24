@@ -107,4 +107,69 @@ $(function () {
             return false;
         }
     });
+
+    var $leadForm = $('#lead-form');
+
+    $leadForm.validate({
+        rules: {
+            'person_form[name]': {
+                required: true,
+                minlength: 3,
+                maxlength: 64
+            },
+            'person_form[email]': {
+                required: true,
+                minlength: 3,
+                maxlength: 72,
+                email: true
+            },
+            'person_form[company]': {
+                required: false,
+                minlength: 3,
+                maxlength: 72
+            },
+            'person_form[position]': {
+                required: false,
+                minlength: 3,
+                maxlength: 72
+            }
+        },
+        errorPlacement: function (label, element) {
+            label.addClass('error-pad');
+            var parent_elem = element.parent();
+            if (parent_elem.hasClass('line__radio')) {
+                parent_elem = parent_elem.parent();
+            }
+            label.insertAfter(parent_elem);
+        },
+        wrapper: 'div',
+        debug: false,
+        submitHandler: function (form, e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: $(form).data('url'),
+                type: "POST",
+                dataType: "json",
+                data: $(form).serialize(),
+                beforeSend: function () {
+                    $(form).find("button").prop('disabled', true);
+                },
+                cache: false,
+                async: false,
+                success: function (response) {
+                    if ('success' === response.status) {
+                        $(form).find('.form-pad').animate({opacity: 0}, 300);
+                        $(form).find('.form-success').fadeIn(300);
+                        $('.close-hire_us').trigger('click');
+                        Cookies.set('lead-data-send', '1');
+                        dataLayer.push({'event': 'submit_leadform'});
+                    } else{
+                        $(form).find("button").prop('disabled', false);
+                    }
+                }
+            });
+            return false;
+        }
+    });
 });

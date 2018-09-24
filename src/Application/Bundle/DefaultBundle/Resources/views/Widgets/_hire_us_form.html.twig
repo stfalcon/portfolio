@@ -106,60 +106,6 @@
     </div>
 </section>
 
-<section class="lead-form">
-    <div class="wrap_form">
-        <div class="wrap_close wrap_close--transparent">
-            <svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">
-                <path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
-            </svg>
-        </div>
-        <form id="hire-us-form" class="webdev-form feedback-form feedback-form--fluid" data-url="/en/ajax-hire-us" method="post">
-            <div class="form-pad">
-                <h2 class="form-pad__title">Смотрите полную версию кейса</h2>
-                <p class="form-pad__description">Укажите свои контактные данные чтобы продолжить</p>
-
-                <div class="form-pad__wrapper">
-                    <div class="line">
-                        <input type="text" required="required" placeholder="Your name">
-                    </div>
-
-                    <div class="line">
-                        <input type="email" required="required" class="email" placeholder="E-mail">
-                    </div>
-
-
-                    <div class="line">
-                        <input type="text" placeholder="Company">
-                    </div>
-
-                    <div class="line">
-                        <input type="text" placeholder="Position">
-                    </div>
-
-
-                    <div class="google-captcha">
-                        <script src="https://www.google.com/recaptcha/api.js?hl=en" async="" defer=""></script>
-                        <div class="g-recaptcha" data-sitekey="SomeSiteKey" data-theme="dark" data-callback="submitHireForm" data-size="invisible"><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px;"><div class="grecaptcha-logo"><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=SomeSiteKey&amp;co=aHR0cDovLzEyNy4wLjAuMTo4MDAw&amp;hl=en&amp;v=v1536705955372&amp;theme=dark&amp;size=invisible&amp;cb=mjx1eunu57vv" width="256" height="60" role="presentation" name="a-ghuj54kzlwbn" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div>
-
-                    </div>
-
-                    <div class="line">
-                        <button class="btn btn--marg-bot btn--fluid send-request" onclick="RegSubmit(event)">Смотреть
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="form-success">
-                <div class="wr">
-                    <div class="inner-pad">
-                        <h2>Thanks!</h2>
-                        <p>We will examine your request<br>and reply as soon as possible.</p>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</section>
 <script>
     var submitHireForm = function (token) {
         var form = $('#hire-us-form');
@@ -173,27 +119,5 @@
             grecaptcha.execute();
         }
     }
-
-    var body = $('body')
-
-    var windowHeight = $(window).height();
-
-    var hasShowed = false;
-
-    $(window).scroll(function(){
-        if ($(this).scrollTop() >= windowHeight) {
-
-            if (!body.hasClass("lead-gener") && !hasShowed) {
-                body.addClass("lead-gener");
-                hasShowed = true;
-            }
-        }
-    });
-
-    $('.lead-form').find('.close-hire_us').on('click', function(){
-        if (body.hasClass( "lead-gener" )) {
-            body.removeClass("lead-gener");
-        }
-    });
 </script>
 
