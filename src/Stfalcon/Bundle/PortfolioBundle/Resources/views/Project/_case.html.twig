@@ -9,17 +9,13 @@
                 </div>
             {% endif %}
             <a href="{{ project.url }}" rel="nofollow" target="_blank" class="project-link">{{ project.url }}</a>
-            {#<ul class="tags">#}
-                {#<li><a href="#">Проектирование</a></li>#}
-                {#<li><a href="#">Дизайн сайта</a></li>#}
-                {#<li><a href="#">Разработка backend</a></li>#}
-                {#<li><a href="#">Разработка backend</a></li>#}
-            {#</ul>#}
         </div>
     </div>
     {{ project.caseContent | raw }}
     {% include '@StfalconPortfolio/contact_us-block.html.twig' with {'category' : category} %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:leadForm', {'projectName': project.name })) }}
+    {%- if 'SmartSeeds' == project.name and 'en' == app.request.locale -%}
+        {{ render(controller('ApplicationDefaultBundle:Widgets:leadForm', {'projectName': project.name })) }}
+    {%- endif -%}
     {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions, 'class': 'row worked-on-project' } %}
     {% if project.relativeProjects | length %}
         <div class="row similar-projects">

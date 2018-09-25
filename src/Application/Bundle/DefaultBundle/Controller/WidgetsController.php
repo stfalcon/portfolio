@@ -118,7 +118,8 @@ class WidgetsController extends Controller
     /**
      * Hire us action
      *
-     * @param string $projectName
+     * @param string  $projectName
+     * @param Request $request
      *
      * @return Response
      *

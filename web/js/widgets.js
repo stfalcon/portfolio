@@ -162,7 +162,7 @@ $(function () {
                         $(form).find('.form-pad').animate({opacity: 0}, 300);
                         $(form).find('.form-success').fadeIn(300);
                         $('.close-hire_us').trigger('click');
-                        Cookies.set('lead-data-send', '1');
+                        Cookies.set('lead-data-send', '1', { expires: 365 });
                         dataLayer.push({'event': 'submit_leadform'});
                     } else{
                         $(form).find("button").prop('disabled', false);
