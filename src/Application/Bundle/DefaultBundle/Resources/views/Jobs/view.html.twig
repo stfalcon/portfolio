@@ -32,43 +32,62 @@
 {% block after_body %}{% endblock %}
 
 {% block content_wrapper %}
-    <article class="blog-post">
+
+    <article class="blog-post vacancy-page clearfix">
+
         {% include 'ApplicationDefaultBundle:Jobs:_jobs_header.html.twig' with {'job': job, 'linkTitle': false} %}
 
-        {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'top'} %}
-
-        <div class="post-content">
+        <div class="post-content vacancy-page__content">
             {{ job.description|highlightCode|raw }}
-            {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
 
-            {% if app.session.flashBag.has('vacancy_send') %}
+            <div class="sharethis-inline-share-buttons"></div>
+
+            {%- if app.session.flashBag.has('vacancy_send') -%}
                 <div class="alert alert-success">
-                    {% for msg in app.session.flashBag.get('vacancy_send') %}
-                    <h3>{{ msg }}</h3>
-                    {% endfor %}
+                    {%- for msg in app.session.flashBag.get('vacancy_send') -%}
+                        <h3>{{ msg }}</h3>
+                    {%- endfor -%}
                 </div>
-            {% else %}
-            <section class="contacts-wrapper">
-                {% if app.session.flashBag.has('vacancy_error') %}
-                    <div class="alert alert-success">
-                        {% for msg in app.session.flashBag.get('vacancy_error') %}
-                            <div class="error-list">{{ msg }}</div>
-                        {% endfor %}
+            {%- else -%}
+                <section class="contacts-wrapper">
+                    {%- if app.session.flashBag.has('vacancy_error') -%}
+                        <div class="alert alert-success">
+                            {%- for msg in app.session.flashBag.get('vacancy_error') -%}
+                                <div class="error-list">{{ msg }}</div>
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                    <div class="contacts-form-wr" id="vacancy-form">
+                        {%- include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' -%}
                     </div>
-                {% endif %}
-                <div class="contacts-form-wr" id="vacancy-form">
-                    {% include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' %}
-                </div>
-            {% endif %}
-            </section>
-            <a class="read-more prev-page" href="{{ path('jobs_list') }}">
-                <span>{{ '__back_to_vacansy_list'|trans }}</span>
-                <span>{{ '__back_to_vacansy_list'|trans }}</span>
-            </a>
+                    <div class="vacancy-page__bottom">
+                        {{ job.contactInfo|raw }}
+                    </div>
+                </section>
+            {%- endif -%}
         </div>
 
+        <div class="vacancy-page__sidebar">
+            {{ job.contactInfo|raw }}
+        </div>
     </article>
 
+    <div class="services-tabs">
+        <div class="section-cms">
+            <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
+            {{ render(controller('StfalconPortfolioBundle:Project:widgetExamplesProjectByCtgSlug', { 'slug': 'web-development' })) }}
+        </div>
+    </div>
+
+    <div class="blog-post post-content vacancy-page">
+        <a class="read-more prev-page" href="{{ path('jobs_list') }}">
+            <span>{{ '__back_to_vacansy_list'|trans }}</span>
+            <span>{{ '__back_to_vacansy_list'|trans }}</span>
+        </a>
+    </div>
+
     <button class="button-up scroll-to-top"></button>
+
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5b7a83c5f8352a0011896d37&product=inline-share-buttons' async='async'></script>
 {% endblock %}
 
