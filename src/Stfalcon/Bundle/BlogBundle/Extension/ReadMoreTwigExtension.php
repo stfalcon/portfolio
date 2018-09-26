@@ -11,6 +11,7 @@ class ReadMoreTwigExtension extends \Twig_Extension
 {
 
     public static $separator = '<!--more-->';
+    public static $cutHereSeparator = '<!--cut-here-->';
 
     /**
      * Returns a list of filters to add to the existing list.
@@ -56,10 +57,16 @@ class ReadMoreTwigExtension extends \Twig_Extension
      */
     public function cutMore($value)
     {
+        $posCutEnd = ((int) strpos($value, self::$cutHereSeparator));
+        if ($posCutEnd > 0) {
+            $posCutEnd += strlen(self::$cutHereSeparator);
+            $value = substr($value, $posCutEnd);
+        }
         $posMore = ((int) strpos($value, self::$separator));
         if ($posMore) {
             return substr($value, 0, $posMore);
         }
+
         return $value;
     }
 

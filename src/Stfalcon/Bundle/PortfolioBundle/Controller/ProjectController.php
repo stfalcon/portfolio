@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -290,6 +291,23 @@ class ProjectController extends Controller
             'projects' => $projects,
             'category' => $category,
         ]);
+    }
+    //
+
+    /**
+     * @param $slug
+     *
+     * @return Response
+     */
+    public function widgetExamplesProjectByCtgSlugAction($slug)
+    {
+        $category = $this->getDoctrine()->getManager()->getRepository('StfalconPortfolioBundle:Category')
+            ->findOneBy(['slug' => $slug]);
+        if ($category instanceof Category) {
+            return $this->widgetExamplesProjectAction($category);
+        }
+
+        return null;
     }
 
     /**

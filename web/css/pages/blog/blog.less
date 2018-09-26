@@ -391,7 +391,7 @@
         padding: 5px 5px 6px 8px;
       }
       &.prev-page {
-        right: -14px;
+        //right: -14px;
 
         span:first-child {
           display: none;
@@ -773,17 +773,14 @@
 
 .search-form-wrap{
   display: none;
-  position: fixed;
   top: 92px;
   left: 0;
   right: 0px;
   bottom: 0px;
   margin: 0;
   width: 100%;
-  height: 100%;
   background: rgba(23,27,29,.97);
   z-index: 9999;
-
   overflow-y: auto;
   height: 100%;
   position: fixed;
@@ -1339,5 +1336,291 @@
     .post-content h3 {
      margin-top: 0;
     }
+  }
+}
+
+.vacancy-page {
+  margin-bottom: 0;
+  width: 960px;
+
+  header {
+    margin-bottom: 38px;
+  }
+
+  h1 {
+    min-height: auto;
+    margin-right: 0;
+    font-size: 35px;
+    line-height: 42px;
+    margin-bottom: 6px;
+  }
+
+
+  li:before {
+    display: none;
+  }
+
+  .post-info time {
+    color: #1C252C;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .post-info {
+    position: static;
+    text-align: left;
+  }
+
+  &__content {
+    float: left;
+    width: 748px;
+    box-sizing: border-box;
+    padding-right: 98px;
+
+    h3 {
+      margin: 54px 0 12px;
+    }
+
+    ul {
+      margin: 0 0 0 26px;
+    }
+
+    p,
+    li {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+
+    strong {
+      display: inline-block;
+      margin: 36px 0 0;
+      font-size: 1.714rem;
+      font-weight: 400;
+    }
+
+    li {
+      padding-left: 10px;
+      list-style: disc;
+    }
+
+    a {
+      color: @link-color;
+      white-space: nowrap;
+
+      &:hover {
+        color: @link-hover-color;
+      }
+    }
+
+    .contacts-person__description p {
+      margin: 0;
+    }
+
+    .sharethis-inline-share-buttons {
+      margin: 40px 0 80px;
+    }
+
+    &:after {
+      display: none;
+    }
+
+    @media (max-width: 572px) {
+      width: 100%;
+    }
+
+    .btn-line .btn {
+      display: block;
+      float: none;
+      margin: 0;
+      width: auto;
+    }
+
+    .google-captcha.contact-captcha {
+      display: none;
+    }
+
+    @media screen and (max-width: 1023px) {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+  &__sidebar {
+    float: right;
+    min-width: 185px;
+    width: 22%;
+
+    .contacts-person {
+      p {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      display: none;
+    }
+  }
+
+  &__bottom {
+    position: absolute;
+    top: 56px;
+    left: 468px;
+    width: 28vw;
+
+    .vacancy-info {
+      display: none;
+    }
+
+    .contacts-person a {
+      color: @link-color;
+    }
+    .contacts-person__list {
+      display: none;
+    }
+    .contacts-person__photo {
+      width: 54px;
+      height: 54px;
+    }
+
+    @media (max-width: 767px) {
+      position: static;
+      width: 100%;
+      margin-top: 52px;
+    }
+  }
+
+  .contacts-wrapper {
+    position: relative;
+    overflow: visible;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+
+    .contacts-form-wr {
+      width: 432px;
+    }
+    .filesize,
+    .filename {
+      font-size: 1.137em;
+    }
+  }
+
+  .read-more {
+    margin-left: 0;
+  }
+
+  .prev-page {
+    margin-top: 54px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  @media (max-width: 767px) {
+    .contacts-wrapper .contacts-form-wr {
+      float: none;
+    }
+  }
+}
+
+form .line .file-input {
+  margin-bottom: 10px;
+}
+
+.contacts-person {
+
+  &--sm {
+    .contacts-person__photo {
+      width: 54px;
+      height: 54px;
+    }
+  }
+
+   &__photo {
+     width: 140px;
+     height: 140px;
+     border-radius: 50%;
+     overflow: hidden;
+     position: relative;
+     margin-bottom: 12px;
+
+     .contacts-person__img {
+       margin: 0;
+       max-width: 100%;
+       height: 100%;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       object-fit: cover;
+       object-position: center;
+     }
+  }
+
+  &__item {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  &__title {
+    padding-left: 30px;
+  }
+
+  &__icon {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 0;
+    top: 50%;
+    margin-top: -10px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.vacancy-page {
+  &.post-content {
+    margin-bottom: 115px;
+  }
+  &.post-content:after {
+    margin-left: 0;
+  }
+  & + .services-tabs .section-cms {
+    padding-bottom: 0;
+  }
+
+  & + .services-tabs .project-list {
+    margin-bottom: 0;
+  }
+}
+
+.vacancy-info {
+  color: #1C252C;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+
+  &__item {
+    margin-bottom: 34px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  &__txt {
+    font-weight: 300;
   }
 }
