@@ -1,8 +1,10 @@
 <p>{{ message }}</p>
 <br/>
 <p>--</p>
-<p>{{ name }} "{{ email }}"</p>
-<p>{{ phone }}</p>
-<p>{{ position }}{% if company is not null %} in {{ company }}{% endif %}</p>
-<p>{{ country }}</p>
-<p>{{ budget }}</p>
+<p>Name: {{ name }}</p>
+<p>E-mail: {{ email }}</p>
+<p>Phone: {{ phone }}</p>
+{% if company is not null %}<p>Company: {{ company }}</p>{% endif %}
+{% if position is not null %}<p>Position: {{ position }}</p>{% endif %}
+{% if budget is not null %}<p>Budget: {{ budget }}</p>{% endif %}
+<p>Country: {{ country }}</p>

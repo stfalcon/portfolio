@@ -1,3 +1,5 @@
-<p>{{ name }} "{{ email }}"</p>
-<p>{{ position }}{% if company is not null %} in {{ company }}{% endif %}</p>
-<p>{{ country }}</p>
+<p>Name: {{ name }}</p>
+<p>E-mail: {{ email }}</p>
+{% if company is not null %}<p>Company: {{ company }}</p>{% endif %}
+{% if position is not null %}<p>Position: {{ position }}</p>{% endif %}
+<p>Country: {{ country }}</p>
