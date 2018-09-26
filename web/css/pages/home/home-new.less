@@ -1957,6 +1957,8 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   background: #1E2528;
   font-family: 'museo_sans_cyrl', sans-serif;
   margin-top: auto;
+  box-sizing: border-box;
+  overflow: hidden;
 
   a {
     color: #fff;
@@ -2250,6 +2252,12 @@ Add your semantic classnames in alongside their corresponding spans here. e.g.
   .main-nav--footer {
     margin-bottom: 34px;
     width: 35%;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer .socials-links {
+    width: auto;
   }
 }
 
