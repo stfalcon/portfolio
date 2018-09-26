@@ -18,17 +18,17 @@
                 {#   #}
 
                 <div class="line">
-                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans }}) }}
+                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans~'*' }}) }}
                 </div>
 
                 <div class="line">
-                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans} }) }}
+                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans~'*' } }) }}
                 </div>
 
                 {#   #}
 
                 <div class="line">
-                    {{ form_widget(form.phone, {'attr': {'placeholder': 'Телефон'|trans} }) }}
+                    {{ form_widget(form.phone, {'attr': {'placeholder': 'Телефон'|trans~'*'} }) }}
                 </div>
 
                 <div class="line">
@@ -42,7 +42,7 @@
                 {#   #}
 
                 <div class="line line--description">
-                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans, 'rows':'1'} }) }}
+                    {{ form_widget(form.message, {'attr': {'placeholder': 'Опишите ваш проект'|trans~'*', 'rows':'1'} }) }}
                 </div>
 
                 {{ form_row(form.budget, {'attr': {'label': false} }) }}
