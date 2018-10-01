@@ -144,4 +144,5 @@ return array(
     'Введите телефон не меньше 7 символов'              => 'Enter phone number that has 7 characters or more',
     'Пожалуйста, введите сообщение'                     => 'Please enter your message',
     'Введите сообщение не меньше 30 символов'           => 'Message length should be 30 characters or more',
+    'lead_form.subject' => 'Send data for read %project_name%'
 );

@@ -327,3 +327,6 @@ __before_20: up to 20 MB
 __send_text: Send
 Номер телефона: Phone number
 __last_posts: New
+__lead_form.title : View the full version of the case
+__lead_form.description : Enter your contacts to continue
+__lead_form.button : Continue

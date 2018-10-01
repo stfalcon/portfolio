@@ -1,3 +1,4 @@
+.lead-form,
 .hire_us-form{
   display: none;
   position: fixed;
@@ -30,6 +31,13 @@
 
   .feedback-form {
     margin: auto;
+  }
+
+  .feedback-form--fluid {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    max-width: initial;
   }
 
   input[type="text"], input[type="email"], textarea{
@@ -104,6 +112,20 @@
       color: #ffffff;
       margin-top: 0;
       margin-bottom: 64px;
+    }
+
+    &__wrapper {
+      position: relative;
+      max-width: 425px;
+      margin: auto;
+    }
+
+    .form-pad__description {
+      margin-bottom: 18px;
+    }
+
+    .form-pad__title {
+      margin-bottom: 14px;
     }
   }
 
@@ -420,7 +442,16 @@
   .hire_us-form{
     display: block;
   }
+  .close-hire_us{
+    display: block;
+  }
+}
 
+.lead-gener {
+  overflow-y: scroll;
+  .lead-form {
+    display: block;
+  }
   .close-hire_us{
     display: block;
   }
@@ -549,5 +580,11 @@ form {
 @media (max-height: 750px) {
   .hire_us {
     top: 30%;
+  }
+}
+
+.wrap_close {
+  &--transparent {
+    opacity: 0.2;
   }
 }
