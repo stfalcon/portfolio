@@ -29,6 +29,8 @@ twig:
     form:
         resources:
             - 'StfalconReCaptchaBundle:Form:recaptcha_widget.html.twig'
+    form_themes:
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 # Doctrine Configuration
 doctrine:

@@ -8,15 +8,16 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Translatable\Translatable;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * User Class
+ * User Class.
  *
  * @ORM\Entity(repositoryClass="Application\Bundle\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="users")
+ *
  * @Gedmo\TranslationEntity(class="Application\Bundle\UserBundle\Entity\UserTranslation")
+ *
  * @Vich\Uploadable
  */
 class User extends BaseUser
@@ -35,14 +36,14 @@ class User extends BaseUser
      * )
      * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatarName")
      *
-     * @var File $image
+     * @var File
      */
     protected $avatar;
 
     /**
      * @ORM\Column(type="string", length=255, name="avatar_name", nullable=true)
      *
-     * @var string $imageName
+     * @var string
      */
     protected $avatarName;
 
@@ -53,36 +54,37 @@ class User extends BaseUser
      * )
      * @Vich\UploadableField(mapping="user_caricature", fileNameProperty="caricatureName")
      *
-     * @var File $caricature
+     * @var File
      */
     protected $caricature;
 
     /**
      * @ORM\Column(type="string", length=255, name="caricature_name", nullable=true )
      *
-     * @var string $caricatureName
+     * @var string
      */
     protected $caricatureName;
 
     /**
      * @ORM\Column(type="string", length=255, name="company_position", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      *
-     * @var string $position
+     * @var string
      */
     protected $position;
 
     /**
      * @ORM\Column(type="array", length=500, name="interests", nullable=true)
      *
-     * @var array $interests
+     * @var array
      */
     protected $interests;
 
     /**
      * @ORM\Column(type="string", length=100, name="drink", nullable=true)
      *
-     * @var string $drink
+     * @var string
      */
     protected $drink;
 
@@ -99,12 +101,13 @@ class User extends BaseUser
 
     /**
      * @var int
+     *
      * @ORM\Column(type="integer")
      */
     protected $ordering = 0;
 
     /**
-     * @var string $description Description
+     * @var string Description
      *
      * @Gedmo\Translatable(fallback=true)
      *
@@ -113,9 +116,9 @@ class User extends BaseUser
     protected $description;
 
     /**
-     * @var array $interestsList
+     * @var array
      */
-    static protected $interestsList = array(
+    protected static $interestsList = array(
         'musics_lover' => 'Меломаны',
         'games' => 'Геймеры',
         'books' => 'Книголюбы',
@@ -130,9 +133,9 @@ class User extends BaseUser
     );
 
     /**
-     * @var array $drinksList
+     * @var array
      */
-    static protected $drinksList = array(
+    protected static $drinksList = array(
         'beer' => 'Пиво',
         'tea' => 'Чай',
         'coffee' => 'Кофе',
@@ -141,12 +144,14 @@ class User extends BaseUser
 
     /**
      * @Gedmo\Translatable(fallback=true)
+     *
      * @var string
      */
     protected $firstname;
 
     /**
      * @Gedmo\Translatable(fallback=true)
+     *
      * @var string
      */
     protected $lastname;
@@ -166,7 +171,7 @@ class User extends BaseUser
     private $userLocale;
 
     /**
-     * Hide from team section
+     * Hide from team section.
      *
      * @var bool
      *
@@ -175,7 +180,29 @@ class User extends BaseUser
     private $hideFromTeamSection = false;
 
     /**
-     * Constructor
+     * The start datetime of cooperation.
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
+     *
+     * @Assert\Date()
+     */
+    private $startDate;
+
+    /**
+     * The end datetime of cooperation.
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
+     *
+     * @Assert\Date()
+     */
+    private $endDate;
+
+    /**
+     * Constructor.
      */
     public function __construct()
     {
@@ -284,7 +311,7 @@ class User extends BaseUser
     /**
      * @return array
      */
-    static public function getInterestsList()
+    public static function getInterestsList()
     {
         return self::$interestsList;
     }
@@ -371,6 +398,7 @@ class User extends BaseUser
             $userTranslation->setObject($this);
         }
     }
+
     /**
      * @param UserTranslation $userTranslation
      */
@@ -431,7 +459,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string Description
      */
@@ -441,7 +469,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description Description
      *
@@ -470,6 +498,46 @@ class User extends BaseUser
     public function setHideFromTeamSection($hideFromTeamSection)
     {
         $this->hideFromTeamSection = $hideFromTeamSection;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param \DateTime $endDate
+     *
+     * @return $this
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param \DateTime $startDate
+     *
+     * @return $this
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
 
         return $this;
     }
