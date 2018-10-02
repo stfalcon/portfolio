@@ -7,5 +7,6 @@
     </div>
     {% include('@StfalconPortfolio/hire_us_button.html.twig') with {'category':category } %}
     {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': category.slug })) }}
+    {% set project_slug = project is defined ? project.slug : category.slug %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': project_slug })) }}
 </div>
