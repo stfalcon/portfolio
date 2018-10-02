@@ -9,7 +9,15 @@
                             {{ get_post_first_image(post, '', app.request.host) }}
                         </div>
                     </div>
-                    <h3>{{ post.title }}</h3>
+                    {% set title = post.title %}
+                    {% if title is empty %}
+                        {% for translate in post.translations %}
+                            {% if translate.locale == 'en' and translate.field == 'title' %}
+                                {% set title = translate.content %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <h3>{{ title }}</h3>
                 </a>
             </li>
         {% endfor %}

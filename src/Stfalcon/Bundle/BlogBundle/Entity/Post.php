@@ -382,12 +382,13 @@ class Post implements Translatable
 
     /**
      * This method allows a class to decide how it will react when it is treated like a string.
+     * Changed as slug because some posts haven't ru title
      *
      * @return string
      */
     public function __toString()
     {
-        return $this->getTitle() ?: 'новый пост' ;
+        return $this->getSlug() ?: 'новый пост' ;
     }
 
     /**
