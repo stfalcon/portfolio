@@ -3,8 +3,10 @@
 <p>--</p>
 <p>Name: {{ name }}</p>
 <p>E-mail: {{ email }}</p>
-<p>Phone: {{ phone }}</p>
+{% if phone is defined and phone is not null %}<p>Phone: {{ phone }}</p>{% endif %}
 {% if company is not null %}<p>Company: {{ company }}</p>{% endif %}
 {% if position is not null %}<p>Position: {{ position }}</p>{% endif %}
 {% if budget is not null %}<p>Budget: {{ budget }}</p>{% endif %}
-<p>Country: {{ country }}</p>
+{% if country is defined and country is not null %}<p>Country: {{ country }}</p>{% endif %}
+{% if slug is defined and slug is not null %}<p>Сторінка створення заявки: {{ slug }}</p>{% endif %}
+

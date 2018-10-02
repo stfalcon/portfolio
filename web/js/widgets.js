@@ -78,7 +78,6 @@ $(function () {
         debug: false,
         submitHandler: function (form, e) {
             e.preventDefault();
-
             $.ajax({
                 url: $(form).data('url'),
                 type: "POST",

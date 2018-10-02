@@ -187,6 +187,7 @@ class WidgetsController extends Controller
                             'company'  => $data['company'],
                             'position' => $data['position'],
                             'budget'   => $data['budget'],
+                            'slug'     => $request->get('slug'),
                         ]
                     ),
                     'text/html'
