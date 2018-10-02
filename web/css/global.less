@@ -6,6 +6,7 @@
 @global-text-color: #2c373c;
 @link-color: #3457c0;
 @link-hover-color: #ed002d;
+@link-vacancy-color: #6d84d2;
 
 html,
 button,
@@ -36,6 +37,8 @@ body {
   background-color: @bg-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
@@ -265,7 +268,7 @@ form {
   .btn-line {
     margin-top: 20px;
     @media (max-width: 1080px) {
-      text-align: center;
+      //text-align: center;
     }
 
     .btn {
@@ -770,11 +773,6 @@ input.error {
 
     h3 {
       font-size: 1.714rem;
-    }
-    li {
-      &>span:first-child {
-        margin-bottom: -2px;
-      }
     }
   }
 

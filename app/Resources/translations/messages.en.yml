@@ -11,6 +11,7 @@ title: __title
 Аватарка: Avatar
 Блог: Blog
 __menu.vacancies: Careers
+__menu.opensource: Opensource
 Поиск: Search
 
 'Stfalcon':
@@ -58,6 +59,7 @@ __menu.vacancies: Careers
 
 Проекты: Projects
 about_us: 'About us'
+__menu.industries : Industries
 Таг: Tag
 
 'Следующий проект': 'Next project'
@@ -325,3 +327,6 @@ __before_20: up to 20 MB
 __send_text: Send
 Номер телефона: Phone number
 __last_posts: New
+__lead_form.title : View the full version of the case
+__lead_form.description : Enter your contacts to continue
+__lead_form.button : Continue

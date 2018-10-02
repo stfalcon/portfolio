@@ -1,0 +1,251 @@
+.opensource {
+
+  &__title {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+
+  &__container {
+    display: flex;
+    max-width: 962px;
+    margin: 0 auto;
+  }
+
+  &__sidebar {
+    flex-shrink: 0;
+    width: 182px;
+    margin-right: 46px;
+  }
+
+  &__opensource-list {
+    margin-bottom: 30px;
+    flex: 1;
+    max-width: 734px;
+  }
+}
+
+.sidebar-menu {
+  &__item {
+    margin-bottom: 1px;
+  }
+
+  &__link {
+    width: 100%;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    color: #2C373C;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: left;
+    background-color: #FFFFFF;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 0 0 0 28px;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #2C59C2;
+    }
+
+    &--active {
+      color: #2C59C2;
+    }
+  }
+}
+
+.opensource-item {
+    display: flex;
+    padding-bottom: 34px;
+    border-bottom: 1px solid rgba(209, 213, 218, 0.64);
+    margin-bottom: 34px;
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 34px;
+    }
+
+  &__description {
+    flex: 1;
+  }
+
+  &__photo {
+    flex-shrink: 0;
+    width: 156px;
+    height: 126px;
+    margin-right: 26px;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #2C373C;
+  }
+
+  &__categories {
+    display: inline-block;
+    margin-left: 14px;
+  }
+
+  &__category {
+    font-family: Helvetica, Arial, sans-serif;
+    position: relative;
+    bottom: 3px;
+    color: #8b8b8c;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 1px;
+    background-color: #e8e8e8;
+    padding: 2px 4px;
+    margin-right: 7px;
+  }
+
+  &__rating {
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #A3ACB0;
+    margin-left: auto;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+    background: url('/img/svg/star.svg');
+    margin-right: 6px;
+  }
+
+  &__text {
+    color: #3C4F57;
+    font-size: 16px;
+    line-height: 22px;
+
+    & + .opensource-item__links {
+      margin-top: 16px;
+    }
+  }
+
+  &__link {
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.opensource-item.filter-frontend,
+.opensource-item.filter-backend,
+.opensource-item.filter-ios,
+.opensource-item.filter-android {
+
+  &:last-of-type {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 34px;;
+  }
+}
+
+.opensource-item--last {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 34px;
+}
+
+@media (max-width: 1023px) {
+  .opensource {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__sidebar {
+      width: 100%;
+      max-width: 720px;
+      align-self: center;
+      margin-bottom: 34px;
+      margin-right: 0;
+    }
+
+    &__sidebar-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    &__opensource-list {
+      margin: 0 auto 30px;
+    }
+  }
+
+  .sidebar-menu {
+    &__link {
+      text-align: center;
+      background: none;
+      padding: 0 31px;
+      margin-bottom: 10px;
+      border: 1px solid transparent;
+      color: @link-color;
+
+      &--active {
+        border-color: #D7C76E;
+        color: #2c373c;
+      }
+
+      &:hover {
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .opensource-item {
+      flex-direction: column;
+
+    &__top {
+      align-items: flex-start;
+    }
+
+    &__categories {
+      display: block;
+      margin-left: 0;
+      margin-top: 5px;
+    }
+
+    &__photo {
+      width: 100%;
+      height: 100%;
+      margin-right: 0;
+      margin-bottom: 25px;
+    }
+
+    &__img {
+      height: 100%;
+    }
+  }
+}

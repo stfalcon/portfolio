@@ -44,6 +44,17 @@ class JobAdmin extends Admin
                                 ],
                             ],
                         ],
+                        'contactInfo' => [
+                            'label' => 'Контактная информация',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => true,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
+                            ],
+                        ],
                         'metaTitle' => [
                             'label' => 'Meta title',
                             'locale_options' => [

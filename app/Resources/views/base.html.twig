@@ -27,6 +27,7 @@
     {% if app.environment == 'prod' %}
         {% include "::google_tag_manager.html.twig" %}
     {% endif %}
+    <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
 </head>
 <body>
     {% if app.environment == 'prod' %}
@@ -42,7 +43,7 @@
 
     {% block javascripts -%}
         <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+
         <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
         {% javascripts
             'js/plugins.js'
@@ -61,6 +62,7 @@
             'js/subscribe.js'
             'js/main.js'
             'js/widgets.js'
+            'js/js.cookie.js'
             output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}

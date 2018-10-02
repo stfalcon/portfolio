@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Form\Type\PersonFormType;
 use Application\Bundle\DefaultBundle\Form\Type\PromotionOrderFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -117,6 +118,30 @@ class WidgetsController extends Controller
     /**
      * Hire us action
      *
+     * @param string  $projectName
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @Route(name="lead_form")
+     */
+    public function leadFormAction($projectName, Request $request)
+    {
+        if (null === $request->cookies->get('lead-data-send')) {
+            $form = $this->createForm(new PersonFormType(), null, ['project_name' => $projectName]);
+
+            return $this->render('ApplicationDefaultBundle:Widgets:_lead_form.html.twig', [
+                'form' => $form->createView(),
+                'project_name' => $projectName,
+            ]);
+        }
+
+        return new Response();
+    }
+
+    /**
+     * Hire us action
+     *
      * @param Request $request
      *
      * @return Response
@@ -143,7 +168,7 @@ class WidgetsController extends Controller
             $container    = $this->get('service_container');
             $mailerNotify = $container->getParameter('mailer_notify');
             $subject      = $translated->trans('promotion.order.hire.us.mail.subject', ['%email%' => $email]);
-            $country      = $this->get('application_default.service.geo_ip')->getLocaleByIp($request->getClientIp());
+            $country      = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
 
             $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
@@ -173,6 +198,66 @@ class WidgetsController extends Controller
                     'status' => 'success',
                 ]);
 //            }
+        }
+
+        return new JsonResponse([
+            'status' => 'error',
+        ]);
+    }
+
+    /**
+     * Send lead form action
+     *
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @throw NotFoundHttpException
+     *
+     * @Route("/ajax-send-lead", name="ajax_send_lead")
+     */
+    public function leadFormAjaxAction(Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(new PersonFormType());
+        $form->handleRequest($request);
+        $translated = $this->get('translator');
+
+        if ($form->isValid() && $request->isMethod('post')) {
+            $data  = $form->getData();
+            $email = $data['email'];
+            $name  = $data['name'];
+            $projectName = $data['projectName'];
+            $container    = $this->get('service_container');
+            $mailerNotify = $container->getParameter('mailer_notify');
+            $subject      = $translated->trans('lead_form.subject', ['%project_name%' => $projectName]);
+            $country      = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject($subject)
+                ->setFrom($mailerNotify)
+                ->setTo($mailerNotify)
+                ->setBody(
+                    $this->renderView(
+                        '@ApplicationDefault/emails/lead_form.html.twig',
+                        [
+                            'name'     => $name,
+                            'email'    => $email,
+                            'country'  => $country,
+                            'company'  => $data['company'],
+                            'position' => $data['position'],
+                        ]
+                    ),
+                    'text/html'
+                );
+            $resultSending = $this->get('mailer')->send($message);
+
+            return new JsonResponse([
+                'status' => 'success',
+            ]);
         }
 
         return new JsonResponse([

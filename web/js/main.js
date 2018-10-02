@@ -624,7 +624,35 @@ $(function () {
     if (typeof last_year !== 'undefined') {
         changeUsers(last_year);
     }
+
+    // filter opensource
+
+    $('.sidebar-menu__link').click(function(e) {
+        e.preventDefault();
+        var ourClass = $(this).attr('data-filter-el');
+
+        $('.sidebar-menu__link').removeClass('sidebar-menu__link--active');
+        $(this).addClass('sidebar-menu__link--active');
+
+        if(ourClass == 'filter-all') {
+            $('.opensource-list').children('.opensource-item').hide();
+            $('.opensource-list').children('.opensource-item').fadeIn();
+            $('.opensource-list').children('.opensource-item').removeClass('opensource-item--last');
+        }  else if (ourClass == 'filter-android') {
+            $('.opensource-list').children('.opensource-item').hide();
+            $('.opensource-list').children('article.' + ourClass).fadeIn();
+            $('.opensource-list').children('article.' + ourClass).last().addClass('opensource-item--last');
+        }
+        else {
+            $('.opensource-list').children('article:not(.' + ourClass + ')').hide();
+            $('.opensource-list').children('article.' + ourClass).hide();
+            $('.opensource-list').children('article.' + ourClass).fadeIn();
+            $('.opensource-list').children('article.' + ourClass).last().addClass('opensource-item--last');
+        }
+        return false;
+    });
 });
+
 
 
 

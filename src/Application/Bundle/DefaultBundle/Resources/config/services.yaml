@@ -1,0 +1,5 @@
+services:
+
+    app.service.git_hub_api_service:
+        class: Application\Bundle\DefaultBundle\Service\GitHubApiService
+        arguments: ['@buzz']

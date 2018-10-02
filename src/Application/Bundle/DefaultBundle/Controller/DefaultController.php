@@ -73,6 +73,45 @@ class DefaultController extends Controller
     }
 
     /**
+     * Opensource page
+     *
+     * @param Request $request Request
+     *
+     * @return array()
+     * @Template()
+     * @Route("/opensource", name="opensource")
+     */
+    public function opensourceAction(Request $request)
+    {
+        return [];
+    }
+
+    /**
+     * @Route(path="/get-projects-stars", name="get_projects_stars",
+     *     options = {"expose"=true},
+     *     condition="request.isXmlHttpRequest()")
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function getProjectsStars(Request $request)
+    {
+        $projects = $request->get('names');
+        if (count($projects) === 0) {
+            return new JsonResponse(['error' => true]);
+        }
+        $resultProjects = [];
+        foreach ($projects as $key => $project) {
+            if (isset($project['repoName']) && isset($project['user'])) {
+                $resultProjects[$project['repoName']] = $this->get('app.service.git_hub_api_service')->getProjectStarsCountByName($project);
+            }
+        }
+
+        return new JsonResponse(['data' => $resultProjects]);
+    }
+
+    /**
      * Contacts page.
      *
      * @param Request $request Request
