@@ -218,7 +218,7 @@
     </footer>
 </section>
 </div>
-{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs')) }}
+{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'main_page' })) }}
 {% endblock body %}
 
 {% block javascripts -%}

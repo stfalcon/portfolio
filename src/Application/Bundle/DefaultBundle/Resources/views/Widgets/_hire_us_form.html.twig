@@ -12,6 +12,7 @@
             {% set slug = 'project'%}
         {% endif %}
         <form id="hire-us-form" class="webdev-form feedback-form" data-url="{{ path('ajax_hire_us') }}" method="post">
+            <input type="hidden" id="slug" name="slug" value="{{ slug }}">
             <div class="form-pad">
                 <h2>{{ 'Заказать проект'|trans }}</h2>
 
@@ -52,9 +53,6 @@
                 </div>
 
                 <div class="line">
-                    {% if slug != 'main_page' %}
-                        {% set slug = '' %}
-                    {% endif %}
                     <button class="btn btn--marg-bot btn--fluid send-request" onclick="RegSubmit(event)">{{ 'Отправить заявку'|trans }}
                     </button>
                 </div>
