@@ -1,0 +1,86 @@
+.header--fixed .header-line {
+    z-index: 11;
+}
+
+.header--fixed .banner {
+    top: 70px;
+}
+
+.header-line {
+    z-index: 11;
+}
+
+.content {
+    padding-top: 200px;
+}
+
+ .banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 69px;
+    z-index: 10;
+}
+
+.banner__img {
+    width: 100%;
+    display: block;
+}
+
+.header__text {
+    margin-top: 326px;
+}
+
+.banner--mob {
+    display: none;
+}
+
+.land-promo {
+  padding-top: 240px;
+}
+
+.team-image {
+  margin-top: 125px;
+}
+
+@media screen and (max-width: 1023px) {
+  .header--fixed .banner {
+    top: 57px;
+  }
+
+  .banner {
+    top: 56px;
+  }
+
+  .content {
+    padding-top: 120px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+    .header__text {
+        margin-top: 212px;
+    }
+
+  .content {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+    .banner--mob-none {
+        display: none;
+    }
+
+    .banner--mob {
+        display: block;
+    }
+
+  .content {
+    padding-top: 160px;
+  }
+
+  .team-image {
+    margin-top: 160px;
+  }
+}
