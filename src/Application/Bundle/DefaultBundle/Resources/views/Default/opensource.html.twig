@@ -533,6 +533,9 @@
     </section>
 
 {% endblock %}
+{% block after_body %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'blog' })) }}
+{% endblock %}
 {% block javascripts %}
     {{ parent() }}
 

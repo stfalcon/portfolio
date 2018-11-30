@@ -29,7 +29,9 @@
     {% endjavascripts %}
 {% endblock javascripts %}
 
-{% block after_body %}{% endblock %}
+{% block after_body %}
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'blog' })) }}
+{% endblock %}
 
 {% block content_wrapper %}
 
