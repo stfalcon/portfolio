@@ -3,7 +3,6 @@
 namespace Application\Bundle\DefaultBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -15,6 +14,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class MenuBuilder
 {
+    const INDUSTRIES_MENU_INDEX = 2;
     /**
      * @var FactoryInterface Factory interface
      */
@@ -156,40 +156,91 @@ class MenuBuilder
      */
     private function getMainMenu(Request $request, $withIndustries = true)
     {
+        $currentRoute = $request->get('_route');
         $menu = $this->factory->createItem('root');
 
         $menu->setUri($request->getRequestUri());
 
-        $menu->addChild($this->translator->trans('Проекты'), array('route' => 'portfolio_all_projects'));
-        $menu->addChild($this->translator->trans('Услуги'), array(
-            'route' => 'portfolio_categories_list',
-            'routeParameters' => array('slug' => 'web-development'),
-        ));
-        if ($withIndustries) {
-            $menu->addChild($this->translator->trans('__menu.industries'), ['uri' => '#'])
-                ->setAttribute('class', 'industry')
-                ->setLinkAttribute('class', 'industry__title')
+        foreach ($this->getMenuItemRoutesRelations() as $index => $menuItemRoutesRelation) {
+            if ($withIndustries && self::INDUSTRIES_MENU_INDEX === $index) {
+                $menu->addChild($this->translator->trans('__menu.industries'), ['uri' => '#'])
+                    ->setAttribute('class', 'industry')
+                    ->setLinkAttribute('class', 'industry__title')
                     ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
                     ->setAttribute('render', true)
-            ;
+                    ->setCurrent('industries' === $currentRoute)
+                ;
+            } else {
+                $isCurrent = $currentRoute === $menuItemRoutesRelation['config']['route'] || (isset($menuItemRoutesRelation['child_routes']) && in_array($currentRoute, $menuItemRoutesRelation['child_routes']));
+                $menu->addChild($menuItemRoutesRelation['title'], $menuItemRoutesRelation['config'])->setCurrent($isCurrent);
+            }
         }
-        $menu->addChild($this->translator->trans('Команда'), array('route' => 'team'));
-        $menu->addChild($this->translator->trans('Блог'), array('route' => 'blog'));
-        $menu->addChild('Open Source', array('route' => 'opensource'));
-        $menu->addChild($this->translator->trans('__menu.vacancies'), array('route' => 'jobs_list'));
-        $menu->addChild($this->translator->trans('Контакты'), array('route' => 'contacts'));
-
-        $menu->addChild(
-            $this->translator->trans('about_us'),
-            [
-                'route' => 'show_pdf',
-                'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2018.pdf'],
-            ]
-        )
-            ->setLinkAttributes(['class' => 'header-line__btn home-btn home-btn--mob-fluid home-btn--sm home-btn--dark', 'target' => '_blank']);
-        $projectsMenu = $menu->getChild($this->translator->trans('Проекты'));
-        $projectsMenu->setCurrent($projectsMenu->getUri() === $request->getRequestUri());
 
         return $menu;
+    }
+
+    /**
+     * @return array
+     */
+    private function getMenuItemRoutesRelations()
+    {
+        $relations = [
+             [
+                'title' => $this->translator->trans('Проекты'),
+                'config' => [
+                    'route' => 'portfolio_all_projects',
+                ],
+                'child_routes' => ['portfolio_category_project', 'portfolio_project_view'],
+            ],
+            [
+                'title' => $this->translator->trans('Услуги'),
+                'config' => [
+                    'route' => 'portfolio_categories_list',
+                    'routeParameters' => ['slug' => 'web-development'],
+                ],
+                'child_routes' => ['portfolio_categories_list'],
+            ],
+            [
+                'title' => $this->translator->trans('Команда'),
+                'config' => [
+                    'route' => 'team',
+                ],
+            ],
+            [
+                'title' => $this->translator->trans('Блог'),
+                'config' => [
+                    'route' => 'blog',
+                ],
+                'child_routes' => ['blog_post_view'],
+            ],
+            [
+                'title' => 'Open Source',
+                'config' => [
+                    'route' => 'opensource',
+                ],
+            ],
+            [
+                'title' => $this->translator->trans('__menu.vacancies'),
+                'config' => [
+                    'route' => 'jobs_list',
+                ],
+                'child_routes' => ['jobs_job_view'],
+            ],
+            [
+                'title' => $this->translator->trans('Контакты'),
+                'config' => [
+                    'route' => 'contacts',
+                ],
+            ],
+            [
+                'title' => $this->translator->trans('about_us'),
+                'config' => [
+                    'route' => 'show_pdf',
+                    'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2018.pdf'],
+                ],
+            ],
+        ];
+
+        return $relations;
     }
 }
