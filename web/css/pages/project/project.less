@@ -328,26 +328,6 @@
   }
 }
 
-.projects-nav {
-  .clearfix;
-  margin-bottom: 14px;
-
-  &:last-child {
-    margin-bottom: 33px;
-  }
-  a {
-    float: left;
-    color: @global-text-color;
-
-    &:last-child {
-      float: right;
-    }
-    &:hover {
-      color: @link-hover-color;
-    }
-  }
-}
-
 .work-on-project {
   &:after {
     content: "";
@@ -401,17 +381,6 @@
     }
   }
 
-  .projects-nav {
-    margin-top: -22px;
-
-    &:last-child {
-      margin: 0 0 19px;
-    }
-    a {
-      font-size: 0.857rem;
-    }
-  }
-
   .work-on-project {
     h2 {
       font-size: 0.857rem;
@@ -432,49 +401,80 @@
   }
 }
 
+.projects-nav {
+  .clearfix;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-top: 10px;
+  }
+
+  a {
+    font-size: 13px;
+    float: left;
+    color: @global-text-color;
+
+    &:last-child {
+      float: right;
+    }
+    &:hover {
+      color: @link-hover-color;
+    }
+  }
+}
+
+.prev-page, .next-page {
+  position: relative;
+  display: inline-block;
+  padding: 5px 8px 6px 5px;
+  font-weight: bold;
+  background: #e3e6e6;
+  margin-left: 26px;
+  text-decoration: none;
+  color: @global-text-color;
+
+  &:after {
+    right: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    border-color: rgba(227, 230, 230, 0);
+    border-right-color: #e3e6e6;
+    border-width: 14px;
+    top: 50%;
+    margin-top: -14px;
+  }
+}
+.next-page {
+  &:after {
+    left: 100%;
+    border-left-color: #e3e6e6;
+    border-right: none;
+  }
+}
+
+.prev-page {
+  &:after {
+    border-right-color: #e3e6e6;
+    border-left: none;
+  }
+}
+.projects-nav {
+  a:last-child {
+    margin: 0 26px 0 0;
+    padding: 5px 5px 6px 8px;
+  }
+}
+
 @media screen and (max-width:1023px){
   .no-controls {
     .prev-slide, .next-slide, .slider-pages {
       display: none;
     }
   }
-  .prev-page, .next-page {
-    position: relative;
-    display: inline-block;
-    padding: 5px 8px 6px 5px;
-    font-weight: bold;
-    background: #e3e6e6;
-    margin-left: 26px;
-    text-decoration: none;
-    color: @global-text-color;
 
-    &:after {
-      right: 100%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      border-color: rgba(227, 230, 230, 0);
-      border-right-color: #e3e6e6;
-      border-width: 14px;
-      top: 50%;
-      margin-top: -14px;
-    }
-  }
-  .next-page {
-    &:after {
-      left: 100%;
-      border-left-color: #e3e6e6;
-      border-right: none;
-    }
-  }
-  .projects-nav {
-    a:last-child {
-      margin: 0 26px 0 0;
-      padding: 5px 5px 6px 8px;
-    }
-  }
   .project-info {
     float: none;
     width: auto;
