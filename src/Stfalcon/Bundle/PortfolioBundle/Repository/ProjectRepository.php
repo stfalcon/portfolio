@@ -154,15 +154,14 @@ class ProjectRepository extends EntityRepository
     }
 
     /**
-     * Find related posts by tags.
+     * Find related projects by categories.
      *
-     * @param string  $locale  Locale
      * @param Project $project Current project
      * @param int     $limit   Related posts count
      *
      * @return array
      */
-    public function findRelatedProjectsToCurrentProject($locale, $project, $limit = 6)
+    public function findRelatedProjectsToCurrentProject($project, $limit = 3)
     {
         if ($project->getCategories()->isEmpty()) {
             return [];
