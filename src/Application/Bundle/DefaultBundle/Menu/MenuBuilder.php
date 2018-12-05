@@ -164,11 +164,11 @@ class MenuBuilder
         foreach ($this->getMenuItemRoutesRelations() as $index => $menuItemRoutesRelation) {
             if ($withIndustries && self::INDUSTRIES_MENU_INDEX === $index) {
                 $menu->addChild($this->translator->trans('__menu.industries'), ['uri' => '#'])
+                    ->setCurrent('page_landing' === $currentRoute)
                     ->setAttribute('class', 'industry')
                     ->setLinkAttribute('class', 'industry__title')
                     ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
                     ->setAttribute('render', true)
-                    ->setCurrent('page_landing' === $currentRoute)
                 ;
             } else {
                 $isCurrent = $currentRoute === $menuItemRoutesRelation['config']['route'] || (isset($menuItemRoutesRelation['child_routes']) && in_array($currentRoute, $menuItemRoutesRelation['child_routes']));
