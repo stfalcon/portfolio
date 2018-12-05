@@ -170,10 +170,10 @@ class MenuBuilder
                     ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
                     ->setAttribute('render', true)
                 ;
-            } else {
-                $isCurrent = $currentRoute === $menuItemRoutesRelation['config']['route'] || (isset($menuItemRoutesRelation['child_routes']) && in_array($currentRoute, $menuItemRoutesRelation['child_routes']));
-                $menu->addChild($menuItemRoutesRelation['title'], $menuItemRoutesRelation['config'])->setCurrent($isCurrent);
             }
+
+            $isCurrent = $currentRoute === $menuItemRoutesRelation['config']['route'] || (isset($menuItemRoutesRelation['child_routes']) && in_array($currentRoute, $menuItemRoutesRelation['child_routes']));
+            $menu->addChild($menuItemRoutesRelation['title'], $menuItemRoutesRelation['config'])->setCurrent($isCurrent);
         }
 
         return $menu;
