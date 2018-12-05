@@ -263,7 +263,6 @@ class ProjectController extends Controller
             'category' => $category,
         ]);
     }
-    //
 
     /**
      * @param $slug
