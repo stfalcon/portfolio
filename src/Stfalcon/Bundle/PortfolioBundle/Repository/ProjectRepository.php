@@ -152,4 +152,37 @@ class ProjectRepository extends EntityRepository
                   ->getQuery()
                   ->getResult();
     }
+
+    /**
+     * Find related posts by tags.
+     *
+     * @param string  $locale  Locale
+     * @param Project $project Current project
+     * @param int     $limit   Related posts count
+     *
+     * @return array
+     */
+    public function findRelatedProjectsToCurrentProject($locale, $project, $limit = 6)
+    {
+        if ($project->getCategories()->isEmpty()) {
+            return [];
+        }
+
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->where($qb->expr()->in('c', ':categories'))
+            ->andWhere($qb->expr()->eq('p.published', ':published'))
+            ->andWhere($qb->expr()->neq('p', ':project'))
+            ->setParameters([
+                'project' => $project,
+                'published' => true,
+                'categories' => $project->getCategories(),
+            ])
+            ->addOrderBy('p.created', 'desc')
+            ->join('p.categories', 'c');
+
+        return $qb->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 }
