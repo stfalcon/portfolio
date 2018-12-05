@@ -65,6 +65,7 @@
             </div>
         </div>
     {% endif %}
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
     {% if related_projects is not empty %}
         <div class="section-cms">
             <h3>{{ 'Похожие проекты'|trans }}</h3>
@@ -80,5 +81,4 @@
             </ul>
         </div>
     {% endif %}
-    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
 {% endblock %}
