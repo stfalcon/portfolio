@@ -168,7 +168,7 @@ class MenuBuilder
                     ->setLinkAttribute('class', 'industry__title')
                     ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
                     ->setAttribute('render', true)
-                    ->setCurrent('industries' === $currentRoute)
+                    ->setCurrent('page_landing' === $currentRoute)
                 ;
             } else {
                 $isCurrent = $currentRoute === $menuItemRoutesRelation['config']['route'] || (isset($menuItemRoutesRelation['child_routes']) && in_array($currentRoute, $menuItemRoutesRelation['child_routes']));
