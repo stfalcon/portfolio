@@ -21,11 +21,11 @@
 {% block title %}{{ project.name }} | {{ "Проекты"|trans }} | {{ parent() }}{% endblock %}
 
 {% block content_wrapper %}
+    {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
     {% if project.showCase %}
          {% include 'StfalconPortfolioBundle:Project:_case.html.twig' %}
     {% else %}
         <div class="content-limited">
-        {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
         <div class="project-wrapper clearfix">
             <aside class="project-info">
                 <h2>{{ project.name }}</h2>
