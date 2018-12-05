@@ -65,5 +65,20 @@
             </div>
         </div>
     {% endif %}
+    {% if related_projects is not empty %}
+        <div class="section-cms">
+            <h3>{{ 'Похожие проекты'|trans }}</h3>
+            <ul class="project-list">
+                {% for project in related_projects %}
+                    <li>
+                        <a href="{{ path('portfolio_project_view', { 'projectSlug': project.slug, 'categorySlug': project.categories.first.slug }) }}">
+                            <img src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="{{ project.name }}">
+                            <h3>{{ project.name }}</h3>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     {% render controller("StfalconPortfolioBundle:Project:nearbyProjects", { 'categorySlug': category.slug, 'projectSlug': project.slug }) %}
 {% endblock %}

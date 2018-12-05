@@ -6,4 +6,5 @@ return array(
     'Комментировать'  => 'Add comment',
     'Поиск' => 'Search',
     'Похожие статьи' => 'Related posts',
+    'Похожие проекты' => 'Related projects',
 );

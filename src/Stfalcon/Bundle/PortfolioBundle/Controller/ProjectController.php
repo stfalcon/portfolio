@@ -123,6 +123,7 @@ class ProjectController extends Controller
                 [
                     'project' => $project,
                     'category' => $project->getCategories()->first(),
+                    'related_projects' => $repository->findRelatedProjectsToCurrentProject($project),
                 ]
             );
         } else {
