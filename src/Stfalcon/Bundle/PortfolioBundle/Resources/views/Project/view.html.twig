@@ -65,16 +65,20 @@
             </div>
         </div>
     {% endif %}
-    {% if related_projects is not empty %}
-        <div class="section-cms">
-            <h3>{{ 'Похожие проекты'|trans }}</h3>
-            <ul class="project-list">
-                {% for project in related_projects %}
+    {% if project.relativeProjects | length %}
+        <div class="row similar-projects">
+            <h2>{{ 'Похожие проекты' | trans() }}</h2>
+            <ul class="projects">
+                {% for relativeProject in project.relativeProjects|slice(1, 3) %}
                     <li>
-                        <a href="{{ path('portfolio_project_view', { 'projectSlug': project.slug, 'categorySlug': project.categories.first.slug }) }}">
-                            <img src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="{{ project.name }}">
-                            <h3>{{ project.name }}</h3>
+                        <a href="{{ path('portfolio_category_project', {'slug': relativeProject.slug}) }}">
+                            {% if relativeProject.image %}
+                                <img src="{{ vich_uploader_asset(relativeProject, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ relativeProject.name }}" />
+                            {% endif %}
+
+                            <h3>{{ relativeProject.name }}</h3>
                         </a>
+                        <p>{{ project.tags }}</p>
                     </li>
                 {% endfor %}
             </ul>

@@ -3,6 +3,7 @@ namespace Stfalcon\Bundle\BlogBundle\Twig;
 
 use Avalanche\Bundle\ImagineBundle\Imagine\CachePathResolver;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
+use Stfalcon\Bundle\BlogBundle\Entity\PostTranslation;
 
 /**
  * Class BlogExtension
@@ -65,8 +66,19 @@ class BlogExtension extends \Twig_Extension
     public function getPostFirstImagePath(Post $post, $filter = '', $host = '')
     {
         $imagePath = '';
+        $postText = $post->getText();
+        if (null === $postText || empty($postText)) {
+            /** @var PostTranslation $translation */
+            foreach ($post->getTranslations() as $translation) {
+                $content = $translation->getContent();
+                if ($translation->getField() === 'text' && null !== $content && !empty($content)) {
+                    $postText = $content;
+                    break;
+                }
+            }
+        }
 
-        if (preg_match('~<img[^>]+src="([^"]+)"[^>]*>~i', $post->getText(), $matches)) {
+        if (preg_match('~<img[^>]+src="([^"]+)"[^>]*>~i', $postText, $matches)) {
             $imagePath = $this->cachePathResolver->getBrowserPath($matches[1], $filter);
         }
 
