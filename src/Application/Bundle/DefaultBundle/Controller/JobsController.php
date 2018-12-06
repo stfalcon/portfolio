@@ -40,12 +40,31 @@ class JobsController extends Controller
         }
         $page = $page > $maxPages ? $maxPages : $page;
         $jobs = $this->get('knp_paginator')->paginate($jobsQuery, $page, $itemsPerPage);
+        $parameters = ['jobs' => $jobs, 'is_errors' => 0];
+
+        if (count($jobs) <= 0) {
+            $vacancyForm = $this->createForm('vacancy_form');
+            $vacancyForm->handleRequest($request);
+            if ($vacancyForm->isSubmitted() && $vacancyForm->isValid()) {
+                $formData = $vacancyForm->getData();
+
+                $resultSending = $this->get('application_default.service.mailer')->sendCandidateProfile($formData, 'No job title');
+                if ($resultSending) {
+                    $request->getSession()->getFlashBag()->add('vacancy_send', $this->get('translator')->trans('Спасибо! Мы с Вами свяжемся в ближайшее время.'));
+
+                    return $this->redirect($this->generateUrl('jobs_list'));
+                }
+                $request->getSession()->getFlashBag()->add('vacancy_error', $this->get('translator')->trans('Произошла ошибка при отправке письма.'));
+            }
+            $parameters['form'] = $vacancyForm->createView();
+            $parameters['is_errors'] = count($vacancyForm->getErrors(true));
+        }
 
         $seo = $this->get('sonata.seo.page');
         $seo->addMeta('property', 'og:url', $this->generateUrl($request->get('_route'), [], true))
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
-        return $this->render('@ApplicationDefault/Jobs/index.html.twig', ['jobs' => $jobs]);
+        return $this->render('@ApplicationDefault/Jobs/index.html.twig', $parameters);
     }
 
     /**

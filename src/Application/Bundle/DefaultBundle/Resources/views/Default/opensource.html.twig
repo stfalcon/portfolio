@@ -534,7 +534,9 @@
 
 {% endblock %}
 {% block after_body %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'blog' })) }}
+    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') with {'page_from': '_opensource' } %}
+
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'opensource' })) }}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

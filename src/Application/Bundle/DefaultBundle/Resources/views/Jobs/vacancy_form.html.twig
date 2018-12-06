@@ -1,7 +1,10 @@
 {% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
 
-<form action="{{ path('jobs_job_view', {'slug':job.slug}) }}" id="direct-vacancy-form" method="post" enctype="multipart/form-data">
-    <h3>{{ "__reply_to_vacancy" | trans() }}</h3>
+{% set form_action = job is defined ? path('jobs_job_view', {'slug':job.slug}) : path('jobs_list') %}
+{% set title = job is defined ? "__reply_to_vacancy" | trans : "__join_to_team" | trans %}
+
+<form action="{{ form_action }}" id="direct-vacancy-form" method="post" enctype="multipart/form-data">
+    <h3>{{ title }}</h3>
     {{ form_errors(form) }}
     <div class="line">
         {{ form_widget(form.name) }}
@@ -28,7 +31,7 @@
             {{ form_errors(form.captcha) }}
         </div>
         {% endif %}
-        <button class="btn" onclick="RegSubmit(event)">{{ "__send_text" | trans() }}</button>
+        <button class="btn" onclick="VacancyFormSubmit(event)">{{ "__send_text" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>
@@ -38,7 +41,7 @@
         form.submit();
     };
 
-    function RegSubmit(e) {
+    function VacancyFormSubmit(e) {
         e.preventDefault();
         var form = $('#direct-vacancy-form');
         if (form.valid()) {
