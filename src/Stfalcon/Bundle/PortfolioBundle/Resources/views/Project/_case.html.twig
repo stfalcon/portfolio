@@ -17,23 +17,4 @@
         {{ render(controller('ApplicationDefaultBundle:Widgets:leadForm', {'projectName': project.name })) }}
     {%- endif -%}
     {% include 'StfalconPortfolioBundle:Project:_project_participants.html.twig' with { 'participants': project.usersWithPositions, 'class': 'row worked-on-project' } %}
-    {% if project.relativeProjects | length %}
-        <div class="row similar-projects">
-            <h2>{{ "Смотрите также" | trans() }}</h2>
-            <ul class="projects">
-                {% for relativeProject in project.relativeProjects %}
-                    <li>
-                        <a href="{{ path('portfolio_category_project', {'slug': relativeProject.slug}) }}">
-                            {% if relativeProject.image %}
-                                <img src="{{ vich_uploader_asset(relativeProject, 'imageFile') | apply_filter('project_thumb') }}" alt="{{ relativeProject.name }}" />
-                            {% endif %}
-
-                            <h3>{{ relativeProject.name }}</h3>
-                        </a>
-                        <p>{{ project.tags }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
 </article>
