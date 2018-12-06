@@ -11,7 +11,11 @@
 }
 
 .content {
-    padding-top: 200px;
+    padding-top: 180px;
+}
+
+.team-image + .content {
+  padding-top: 100px;
 }
 
  .banner {
@@ -25,6 +29,7 @@
 .banner__img {
     width: 100%;
     display: block;
+    max-height: 100px;
 }
 
 .header__text {
@@ -65,6 +70,10 @@
   .content {
     padding-top: 100px;
   }
+
+  .team-image + .content {
+    padding-top: 50px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -76,8 +85,12 @@
         display: block;
     }
 
+  .banner__img {
+    max-height: initial;
+  }
+
   .content {
-    padding-top: 160px;
+    padding-top: 200px;
   }
 
   .team-image {

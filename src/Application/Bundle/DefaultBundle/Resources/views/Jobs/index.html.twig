@@ -16,17 +16,56 @@
 {% endblock %}
 
 {% block after_body %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'blog' })) }}
 {% endblock %}
 
 {% block content_wrapper %}
     <div class="jobs-content">
-    {% if jobs %}
+    {% if jobs is not empty %}
         {% include 'ApplicationDefaultBundle:Jobs:_jobs.html.twig' with {'jobs': jobs} %}
 
         {{ knp_pagination_render(jobs) }}
+    {% else %}
+        {%- if app.session.flashBag.has('vacancy_error') -%}
+            <div class="alert alert-success">
+                {%- for msg in app.session.flashBag.get('vacancy_error') -%}
+                    <div class="error-list">{{ msg }}</div>
+                {%- endfor -%}
+            </div>
+        {%- endif -%}
+        <div class="blog-post">
+            <div class="contacts-form-wr" id="vacancy-form">
+                {%- include 'ApplicationDefaultBundle:Jobs:vacancy_form.html.twig' -%}
+            </div>
+        </div>
     {% endif %}
     </div>
     <button id="scroll-top" class="button-up scroll-to-top"></button>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var directVacancyFormMessage = {
+            name: {
+                required: "{{ 'Пожалуйста, введите ваше имя'|trans }}",
+                minlength: "{{ 'Введите имя не меньше {0} символов'|trans }}"
+            },
+            email: {
+                required: "{{ 'Пожалуйста, введите адрес вашей эл.почты'|trans }}",
+                minlength: "{{ 'Ваша эл.адрес должен быть формата name@domain.com'|trans }}",
+                defaultMessage: "{{ 'Пожалуйста введите правильный имейл'|trans }}"
+            },
+            phone: {
+                required: "{{ 'Пожалуйста, введите телефон'|trans }}",
+                minlength: "{{ 'Введите телефон не меньше {0} символов'|trans }}",
+            }
+        };
+        var isErrors = {{ is_errors }};
+    </script>
+    {% javascripts
+        'js/direct-vacancy-form.js'
+        output='cache/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}
 
