@@ -328,7 +328,7 @@ class Project implements Translatable
      * @ORM\ManyToMany(targetEntity="Project")
      * @ORM\JoinTable(name="relative_projects_ref",
      *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="relative_project_id", referencedColumnName="id", unique=true)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="relative_project_id", referencedColumnName="id")}
      *      )
      **/
     private $relativeProjects;
