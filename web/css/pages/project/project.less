@@ -413,12 +413,7 @@
 
   a {
     font-size: 13px;
-    float: left;
     color: @global-text-color;
-
-    &:last-child {
-      float: right;
-    }
     &:hover {
       color: @link-hover-color;
     }
@@ -450,6 +445,10 @@
   }
 }
 .next-page {
+  float: right;
+  margin: 0 26px 0 0;
+  padding: 5px 5px 6px 8px;
+
   &:after {
     left: 100%;
     border-left-color: #e3e6e6;
@@ -458,15 +457,10 @@
 }
 
 .prev-page {
+  float: left;
   &:after {
     border-right-color: #e3e6e6;
     border-left: none;
-  }
-}
-.projects-nav {
-  a:last-child {
-    margin: 0 26px 0 0;
-    padding: 5px 5px 6px 8px;
   }
 }
 
