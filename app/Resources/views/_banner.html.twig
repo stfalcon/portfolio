@@ -1,9 +1,9 @@
 {% set locale = app.request.locale in ['uk', 'ru'] ? 'ru' : 'en' %}
 {% set large_banner_file_name = 'discount-large-' ~ locale ~ '.png' %}
 {% set small_banner_file_name = 'discount-small-' ~ locale ~ '.png' %}
-<a class="banner banner--mob-none hire_us_main" href="#">
-    <img src="{{ asset('img/discount/' ~ large_banner_file_name) }}" class="banner__img">
-</a>
-<a class="banner banner--mob hire_us_main" href="#">
-    <img src="{{ asset('img/discount/' ~ small_banner_file_name) }}" class="banner__img">
-</a>
+{#<a class="banner banner--mob-none hire_us_main" href="#">#}
+    {#<img src="{{ asset('img/discount/' ~ large_banner_file_name) }}" class="banner__img">#}
+{#</a>#}
+{#<a class="banner banner--mob hire_us_main" href="#">#}
+    {#<img src="{{ asset('img/discount/' ~ small_banner_file_name) }}" class="banner__img">#}
+{#</a>#}
