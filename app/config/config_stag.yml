@@ -1,20 +1,30 @@
 imports:
     - { resource: config.yml }
 
+#monolog:
+#    handlers:
+#        main:
+#            type:         fingers_crossed
+#            action_level: error
+#            handler:      nested
+#        nested:
+#            type:         stream
+#            path:         "%kernel.logs_dir%/%kernel.environment%.log"
+#            level:        debug
+#        gelf:
+#            type: service
+#            id: application_default.monolog.gelf_handler
+#            level: error
+
 monolog:
     handlers:
         main:
-            type:         fingers_crossed
-            action_level: error
-            handler:      nested
-        nested:
-            type:         stream
-            path:         "%kernel.logs_dir%/%kernel.environment%.log"
-            level:        debug
-        gelf:
-            type: service
-            id: application_default.monolog.gelf_handler
-            level: error
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        firephp:
+            type:  firephp
+            level: info
 
 doctrine:
     orm:

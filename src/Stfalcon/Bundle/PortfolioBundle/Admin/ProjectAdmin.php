@@ -78,13 +78,17 @@ class ProjectAdmin extends Admin
         foreach ($project->getTranslations() as $translation) {
             if ('imageFile' === $translation->getField()) {
                 $container = $this->getConfigurationPool()->getContainer();
+                $logger = $container->get('logger');
                 $vichUploader = $container->get('vich_uploader.property_mapping_factory');
                 $path = $vichUploader->fromField($project, 'imageFile');
                 /** @var UploadedFile $uploadFile */
                 $uploadFile = $translation->getContent();
                 if ($uploadFile instanceof UploadedFile) {
                     try {
-                        $file = $uploadFile->move($path->getUploadDir(), sprintf('%s.%s', uniqid(), $uploadFile->guessExtension()));
+                        $filename = sprintf('%s.%s', uniqid(), $uploadFile->guessExtension());
+                        $logger->addInfo($path->getUploadDir());
+                        $logger->addInfo($filename);
+                        $file = $uploadFile->move($path->getUploadDir(), $filename);
                     } catch (\Exception $e) {
                         $container->get('logger')->addCritical($e->getMessage());
                     }
