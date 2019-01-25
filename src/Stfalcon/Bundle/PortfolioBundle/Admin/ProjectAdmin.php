@@ -86,6 +86,7 @@ class ProjectAdmin extends Admin
                     try {
                         $file = $uploadFile->move($path->getUploadDir(), sprintf('%s.%s', uniqid(), $uploadFile->guessExtension()));
                     } catch (\Exception $e) {
+                        $container->get('logger')->addCritical($e->getMessage());
                     }
                 }
                 break;
