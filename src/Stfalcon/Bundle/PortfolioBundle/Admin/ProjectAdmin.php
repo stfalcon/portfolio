@@ -245,7 +245,8 @@ class ProjectAdmin extends Admin
                             ],
                             'image' => [
                                 'label' => 'Image',
-                                'attr' => ['readonly' => true],
+//                                'attr' => ['readonly' => true],
+                                'disabled' => true,
                                 'locale_options' => [
                                     'ru' => [
                                         'required' => false,
