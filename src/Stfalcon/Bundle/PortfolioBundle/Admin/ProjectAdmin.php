@@ -78,7 +78,6 @@ class ProjectAdmin extends Admin
         foreach ($project->getTranslations() as $translation) {
             if ('imageFile' === $translation->getField()) {
                 $container = $this->getConfigurationPool()->getContainer();
-                $logger = $container->get('logger');
                 $vichUploader = $container->get('vich_uploader.property_mapping_factory');
                 $path = $vichUploader->fromField($project, 'imageFile');
                 /** @var UploadedFile $uploadFile */
@@ -97,10 +96,7 @@ class ProjectAdmin extends Admin
 
         if ($file instanceof File) {
             foreach ($project->getTranslations() as $translation) {
-                $logger->addInfo($translation->getField());
                 if ('image' === $translation->getField()) {
-                    $logger->addInfo('set content');
-                    $logger->addInfo($file->getFilename());
                     $translation->setContent($file->getFilename());
                     break;
                 }
@@ -245,8 +241,7 @@ class ProjectAdmin extends Admin
                             ],
                             'image' => [
                                 'label' => 'Image',
-//                                'attr' => ['readonly' => true],
-                                'disabled' => true,
+                                'attr' => ['readonly' => true],
                                 'locale_options' => [
                                     'ru' => [
                                         'required' => false,
