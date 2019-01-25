@@ -96,7 +96,7 @@ class ProjectAdmin extends Admin
                 break;
             }
         }
-
+        $logger->addInfo(get_class($file));
         if ($file instanceof File) {
             $logger->addInfo('file is FIle');
             foreach ($project->getTranslations() as $translation) {
