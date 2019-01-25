@@ -98,8 +98,11 @@ class ProjectAdmin extends Admin
         }
 
         if ($file instanceof File) {
+            $logger->addInfo('file is FIle');
             foreach ($project->getTranslations() as $translation) {
                 if ('image' === $translation->getField()) {
+                    $logger->addInfo('set content');
+                    $logger->addInfo($file->getFilename());
                     $translation->setContent($file->getFilename());
                     break;
                 }
