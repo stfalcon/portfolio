@@ -86,8 +86,6 @@ class ProjectAdmin extends Admin
                 if ($uploadFile instanceof UploadedFile) {
                     try {
                         $filename = sprintf('%s.%s', uniqid(), $uploadFile->guessExtension());
-                        $logger->addInfo($path->getUploadDir());
-                        $logger->addInfo($filename);
                         $file = $uploadFile->move($path->getUploadDir(), $filename);
                     } catch (\Exception $e) {
                         $container->get('logger')->addCritical($e->getMessage());
@@ -96,10 +94,10 @@ class ProjectAdmin extends Admin
                 break;
             }
         }
-        $logger->addInfo(get_class($file));
+
         if ($file instanceof File) {
-            $logger->addInfo('file is FIle');
             foreach ($project->getTranslations() as $translation) {
+                $logger->addInfo($translation->getField());
                 if ('image' === $translation->getField()) {
                     $logger->addInfo('set content');
                     $logger->addInfo($file->getFilename());
