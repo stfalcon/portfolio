@@ -27,6 +27,7 @@
                 {{ landing_page.text|raw }}
             {% endif %}
         {% endif %}
+        {% include "@StfalconPortfolio/contact_us-block.html.twig" with {'category' : landing_page} %}
         {% if landing_page.projects|length > 0 -%}
             <div class="section-cms">
                 <h3>{{ 'Примеры разработки веб-сайтов'|trans }}</h3>
@@ -40,7 +41,6 @@
                 </div>
             </div>
         {% endif %}
-        {% include "@StfalconPortfolio/contact_us-block.html.twig" with {'category' : landing_page} %}
     </div>
 <footer class="footer vcard">
     {% include('::_footer.html.twig') %}
