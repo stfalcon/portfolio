@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPosition;
 use Stfalcon\Bundle\PortfolioBundle\Entity\UserWithPositionTranslation;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class ProjectAdmin.
@@ -72,6 +74,35 @@ class ProjectAdmin extends Admin
      */
     public function preUpdate($project)
     {
+        $file = null;
+        foreach ($project->getTranslations() as $translation) {
+            if ('imageFile' === $translation->getField()) {
+                $container = $this->getConfigurationPool()->getContainer();
+                $vichUploader = $container->get('vich_uploader.property_mapping_factory');
+                $path = $vichUploader->fromField($project, 'imageFile');
+                /** @var UploadedFile $uploadFile */
+                $uploadFile = $translation->getContent();
+                if ($uploadFile instanceof UploadedFile) {
+                    try {
+                        $filename = sprintf('%s.%s', uniqid(), $uploadFile->guessExtension());
+                        $file = $uploadFile->move($path->getUploadDir(), $filename);
+                    } catch (\Exception $e) {
+                        $container->get('logger')->addCritical($e->getMessage());
+                    }
+                }
+                break;
+            }
+        }
+
+        if ($file instanceof File) {
+            foreach ($project->getTranslations() as $translation) {
+                if ('image' === $translation->getField()) {
+                    $translation->setContent($file->getFilename());
+                    break;
+                }
+            }
+        }
+
         /** @var UserWithPosition $userWithPosition */
         foreach ($project->getUsersWithPositions() as $userWithPosition) {
             $userWithPosition->setProject($project);
@@ -196,6 +227,30 @@ class ProjectAdmin extends Admin
                                     ),
                                 ),
                             ),
+                            'imageFile' => [
+                                'label' => 'Image file',
+                                'data_class' => null,
+                                'locale_options' => [
+                                    'ru' => [
+                                        'required' => null === $currentProject->getId(),
+                                    ],
+                                    'en' => [
+                                        'required' => false,
+                                    ],
+                                ],
+                            ],
+                            'image' => [
+                                'label' => 'Image',
+                                'attr' => ['readonly' => true],
+                                'locale_options' => [
+                                    'ru' => [
+                                        'required' => false,
+                                    ],
+                                    'en' => [
+                                        'required' => false,
+                                    ],
+                                ],
+                            ],
                         ),
                         'label' => 'Перевод',
                     ))
@@ -227,7 +282,6 @@ class ProjectAdmin extends Admin
                     ))
                 ->end()
                 ->with('Цвета и Логотип')
-                    ->add('imageFile', 'file', array('required' => null === $currentProject->getId()))
                     ->add('mainPageImageFile', 'file', ['required' => false])
                     ->add('backgroundColor')
                     ->add('useDarkTextColor', null, ['label' => 'Использовать темный цвет текста'])

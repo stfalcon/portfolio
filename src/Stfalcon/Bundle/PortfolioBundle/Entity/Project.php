@@ -142,6 +142,8 @@ class Project implements Translatable
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     *
+     * @Gedmo\Translatable(fallback=true)
      */
     private $image;
 
