@@ -236,7 +236,7 @@ class MenuBuilder
                 'title' => $this->translator->trans('about_us'),
                 'config' => [
                     'route' => 'show_pdf',
-                    'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2018.pdf'],
+                    'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2019.pdf'],
                 ],
             ],
         ];
