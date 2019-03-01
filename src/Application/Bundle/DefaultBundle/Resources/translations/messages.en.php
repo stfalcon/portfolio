@@ -72,6 +72,8 @@ return array(
     'Радиалка' => 'Twiseller',
     'Спасибо! Мы с Вами свяжемся в ближайшее время.' => 'Thank you! We will write you back as soon as possible.',
     'Заявка на сотрудничество' => 'Cooperation request',
+    'Свяжитесь с нами и получите бесплатную консультацию по проекту' => 'Write us to get a free personal consultation',
+    'Свяжитесь с нами и получите бесплатную консультацию' => 'Contact us and get free personal consultation',
     'Прикрепить файл' => 'Attach a file',
     'до 20 МБ' => '20 MB max',
     'Отправить' => 'Send',
