@@ -3,21 +3,7 @@
 {% block body %}
 <div id="bg-wrapper">
 <section class="page-wrapper home-page">
-    <header class="header header--after header--fixed">
-        <!--googleoff: all-->
-        <video class="header__video" width="100%" height="auto" autoplay="autoplay" loop="loop" preload="auto" muted>
-            <source src="{{ asset('uploads/video/STFalconCR1.mp4') }}">
-        </video>
-        <!--googleon: all-->
-        {% include '::_header.html.twig' %}
-        <div class="header__text">
-            <h2 class="header__title">{{ 'We Code Your Ideas'|trans }}</h2>
-            <p class="header__sub-title">
-                {{ 'Разработка Web, iOS и Android приложения с нуля'|trans }}
-            </p>
-            <button id="hire_us-js" type="button" class="hire_us_main button home-btn home-btn--blue header__btn">{{ 'Заказать проект'|trans }}</button>
-        </div>
-    </header>
+    {% include '::_header.html.twig' %}
     <section class="solutions">
         <h2 class="promo-title promo-title--bold solutions__title">{{ 'main.promo.title2'|trans }}</h2>
         <ul class="solutions__list">
