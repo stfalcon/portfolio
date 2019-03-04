@@ -87,12 +87,16 @@
                             <a href="#" class="sub-navigation__link">Calculator</a>
                         </li>
                         <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">About US</a>
+                            <a href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2019.pdf'}) }}" target="_blank" class="sub-navigation__link">About US</a>
+                            <span class="type-hint">PDF</span>
                         </li>
                     </ul>
                 </li>
-
             </ul>
+            <svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav">
+                <path class="icon-close-nav"
+                      d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/>
+            </svg>
         </nav>
         <div class="lang header__lang">
             <div class="lang__item lang__item--active">EN</div>
@@ -102,7 +106,7 @@
             </label>
             <div class="lang__item">RU</div>
         </div>
-        <button type="button" class="header__btn">Contact us</button>
+        <button id="hire_us-js" type="button" class="btn-blue header__btn hire_us_main">Contact us</button>
     </div>
 </header>
 
