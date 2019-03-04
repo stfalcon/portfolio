@@ -4,70 +4,89 @@
 <div id="bg-wrapper">
 <section class="page-wrapper home-page">
     {% include '::_header.html.twig' %}
-    <section class="solutions">
-        <h2 class="promo-title promo-title--bold solutions__title">{{ 'main.promo.title2'|trans }}</h2>
-        <ul class="solutions__list">
-            <li class="solutions__item">
-                <a href="{{ path('page_landing', {'type':'logistics'}) }}" class="solutions__link">
-                    <img src="{{ asset('img/solutions_logistics.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">{{ 'main.promo.title2_1'|trans }}</div>
-                    <div class="solutions__text">{{ 'main.promo.title2_1.desc'|trans }}</div>
-                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
-                </a>
-            </li>
-            <li class="solutions__item">
-                <a href="{{ path('page_landing', {'type':'travel'}) }}" class="solutions__link">
-                    <img src="{{ asset('img/solutions_travel.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">{{ 'main.promo.title2_2'|trans }}</div>
-                    <div class="solutions__text">{{ 'main.promo.title2_2.desc'|trans }}</div>
-                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
-                </a>
-            </li>
-            <li class="solutions__item">
-                <a href="{{ path('page_landing', {'type':'healthcare'}) }}" class="solutions__link">
-                    <img src="{{ asset('img/solutions_healthcare.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">{{ 'main.promo.title2_3'|trans }}</div>
-                    <div class="solutions__text">{{ 'main.promo.title2_3.desc'|trans }}</div>
-                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
-                </a>
-            </li>
-            <li class="solutions__item">
-                <a href="{{ path('page_landing', {'type':'e-commerce'}) }}" class="solutions__link">
-                    <img src="{{ asset('img/ecommerce.svg') }}" alt="" class="solutions__icon">
-                    <div class="solutions__name">{{ 'main.promo.title2_4'|trans }}</div>
-                    <div class="solutions__text">{{ 'main.promo.title2_4.desc'|trans }}</div>
-                    <img src="{{ asset('img/solutions_arrow.svg') }}" alt="" class="solutions__arrow">
-                </a>
-            </li>
-        </ul>
-        <button type="button" class="hire_us_main solutions__btn home-btn home-btn--white">{{ 'main.btn.title2_4'|trans }}</button>
+    <section class="main-promo">
+        <h2 class="main-promo__title">Convenient software increases profit, drives innovation, and creates social good.<br>
+            <a href="#" class="main-promo__link">Let's do this.</a>
+        </h2>
     </section>
-    <section data-bg="#2C373C" class="achievements bg-item">
-        <h2 class="promo-title promo-title--bold achievements__title">{{ 'main.promo.title1'|trans }}</h2>
-        <p class="achievements__text">{{ 'main.promo.title1.desc'|trans }}</p>
-        <a href="https://clutch.co/profile/stfalcon" target="_blank">
-            <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
-        </a>
+
+    <section class="our-services">
+        <div class="our-services__container">
+            <ul class="services-list">
+                <li class="services-list__item">
+                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <div class="services-list__name">Web</div>
+                    <p class="services-list__text">We deliver sophisticated, long lasting, production software on time.
+                        With dozens of production projects under our belt, we have vast experience.</p>
+                </li>
+                <li class="services-list__item">
+                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <div class="services-list__name">iOS</div>
+                    <p class="services-list__text">With dozens of production projects under our belt,
+                        we have vast experience with numerous development methodologies.</p>
+                </li>
+                <li class="services-list__item">
+                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <div class="services-list__name">Android</div>
+                    <p class="services-list__text">We deliver sophisticated, long lasting, production software on time.
+                        With dozens of production projects under our belt, we have vast experience.</p>
+                </li>
+                <li class="services-list__item">
+                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <div class="services-list__name">VR</div>
+                    <p class="services-list__text">With dozens of production projects under our belt,
+                        we have vast experience with numerous development methodologies.</p>
+                </li>
+                <li class="services-list__item">
+                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <div class="services-list__name">Wearable</div>
+                    <p class="services-list__text">We deliver sophisticated, long lasting, production software on time.
+                        With dozens of production projects under our belt, we have vast experience.</p>
+                </li>
+                <li class="services-list__item">
+                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <div class="services-list__name">Kiosks</div>
+                    <p class="services-list__text">With dozens of production projects under our belt,
+                        we have vast experience with numerous development methodologies.</p>
+                </li>
+            </ul>
+        </div>
     </section>
-    <section class="trusted">
-        <h2 class="promo-title promo-title--bold trusted__title">{{ 'main.promo.title3'|trans }}</h2>
-        <ul class="trusted__list">
-            <li class="trusted__item">
-                <img src="{{ asset('img/trusted_np.svg') }}" alt="" class="trusted__img">
-            </li>
-            <li class="trusted__item">
-                <img src="{{ asset('img/trusted_nic.svg') }}" alt="" class="trusted__img">
-            </li>
-            <li class="trusted__item">
-                <img src="{{ asset('img/trusted_ks.svg') }}" alt="" class="trusted__img">
-            </li>
-            <li class="trusted__item">
-                <img src="{{ asset('img/trusted_busfor.svg') }}" alt="" class="trusted__img">
-            </li>
-            <li class="trusted__item">
-                <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
-            </li>
-        </ul>
+
+    <section data-bg="#ffffff" class="trusted bg-item">
+        <div class="trusted__container">
+            {#        <h2 class="promo-title promo-title--bold trusted__title">{{ 'main.promo.title3'|trans }}</h2>#}
+            <h2 class="promo-title promo-title--bold trusted__title">You are in good company</h2>
+            <ul class="trusted__list">
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_np.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_nic.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_ks.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_busfor.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                </li>
+                <li class="trusted__item">
+                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                </li>
+            </ul>
+        </div>
     </section>
     {% set add_class = ' project-item--left-text' %}
     <section class="projects-list">
@@ -104,31 +123,33 @@
         {% endfor %}
     </section>
 
-    <section class="open-source">
+    <section  class="achievements">
         <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
-        <h2 class="promo-title">{{ "Участвуем в Open Source" | trans() }}</h2>
-        <div class="tabs-cnt">
-            <ul class="tabs-content">
-                <li class="tab active">
-                    <p>
-                        {{ '__main.we_contribution_text'|trans({'%link%': 'http://symfony.com', '%github_link%':'https://github.com/stfalcon/', '%android_link%':url('blog_post_view', {'slug':'useful-Android-libraries-from-stfalcon-com'})})|raw }}
-                    </p>
-                </li>
-            </ul>
+        <div class="achievements__container">
+            {#        <h2 class="promo-title promo-title--bold achievements__title">{{ 'main.promo.title1'|trans }}</h2>#}
+            <h2 class="promo-title promo-title--bold achievements__title">Our Achievements and Awards</h2>
+            <div class="achievements__list">
+                <div class="achievements__item">
+                    <a href="https://clutch.co/profile/stfalcon" class="achievements__link" target="_blank">
+                        <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
+                    </a>
+                    <p class="achievements__text">Top Web and Mobile Developer by ThinkMobiles.com</p>
+                </div>
+                <div class="achievements__item">
+                    <a href="https://clutch.co/profile/stfalcon" class="achievements__link" target="_blank">
+                        <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
+                    </a>
+                    <p class="achievements__text">Top B2B Company  by Clutch.com</p>
+                </div>
+                <div class="achievements__item">
+                    <a href="https://clutch.co/profile/stfalcon" class="achievements__link" target="_blank">
+                        <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
+                    </a>
+                    <p class="achievements__text">Top Web Developer  by TheManifest.com</p>
+                </div>
+            </div>
         </div>
     </section>
-
-    {#закоментовано до часу, поки не будуть готові тексти для сервісів#}
-    {#<section class="our-services">#}
-        {#<span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>#}
-        {#<h2 class="promo-title our-services__title">{{ 'main.promo.title4'|trans }}</h2>#}
-        {#<ul class="services-list">#}
-            {#{% for i in 1..9 %}#}
-                {#{% include "@StfalconPortfolio/Category/_service_block.html.twig" with {'index' : i} %}#}
-            {#{% endfor %}#}
-        {#</ul>#}
-        {#<button type="button" class="hire_us_main our-services__btn home-btn home-btn--grey">{{ 'Работать с нами!'|trans }}</button>#}
-    {#</section>#}
 
     <section class="side-projects">
         <h2 class="promo-title side-projects__title">{{ 'main.promo.title5'|trans }}</h2>
@@ -156,14 +177,6 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section class="blog">
-        <h2 class="blog__title">
-            <a href="{{ path('blog') }}" class="promo-title">{{ "Обновления в нашем блоге" | trans() }}</a>
-            <a href="{{ path('blog_rss') }}" target="_blank"><i class="icon icon-rss"></i></a>
-        </h2>
-        {% include "@StfalconBlog/Post/_posts_main.html.twig" with {'posts' : posts} %}
-        {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
     </section>
     <section class="details-info">
         <h1>{{ "Stfalcon LLC &mdash; разработка сайтов и мобильных приложений" | trans()|raw }}</h1>

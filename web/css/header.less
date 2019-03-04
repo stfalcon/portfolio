@@ -1,3 +1,31 @@
+@font-face {
+  font-family: "Gilroy-Bold";
+  src: url("/fonts/Gilroy-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-ExtraBold";
+  src: url("/fonts/Gilroy-ExtraBold.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "PT-Root-UI_Bold";
+  src: url("/fonts/PT-Root-UI_Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "PTSerif-Regular";
+  src: url("/fonts/PTSerif-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -10,6 +38,10 @@
     align-items: center;
   }
 
+  &__lang {
+    margin-right: 40px;
+  }
+
   &__btn {
     width: 184px;
     height: 56px;
@@ -19,6 +51,14 @@
     background: #2B55DB;
     color: #ffffff;
     text-transform: uppercase;
+  }
+}
+
+.main-logo {
+  display: block;
+
+  &__img {
+    display: block;
   }
 }
 
@@ -256,6 +296,10 @@
   }
 }
 
+.header-navigation {
+  margin-right: 40px;
+}
+
 .navigation {
   display: flex;
 
@@ -278,7 +322,19 @@
     transition: color 0.2s ease-in-out;
     text-decoration: none;
 
+    svg {
+      stroke: #8C9BA1;
+    }
+
     &:hover {
+      color: #2B55DB;
+
+      svg {
+        stroke: #2B55DB;
+      }
+    }
+
+    &--active {
       color: #2B55DB;
     }
 
@@ -290,11 +346,16 @@
 
 
 .sub-navigation {
+  display: none;
   position: absolute;
   top: 100%;
-  left: 0;
-  margin-top: 26px;
-  display: none;
+  left: -10px;
+  padding: 26px 10px 10px 10px;
+  background: #ffffff;
+
+  &:hover {
+    display: block;
+  }
 
   &__item {
     margin-bottom: 26px;
@@ -305,7 +366,7 @@
   }
 
   &__link {
-    display: block;
+    display: inline-block;
     font-size: 16px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -314,9 +375,237 @@
     transition: color 0.2s ease-in-out;
     text-decoration: none;
     white-space: nowrap;
+    border-bottom: 1px solid #8C9BA1;
 
     &:hover {
       color: #2B55DB;
+      border-bottom-color: #2B55DB;
+    }
+
+    &--active {
+      color: #2B55DB;
+      border-bottom-color: #2B55DB;
+    }
+  }
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-right: 7px;
+    color: #8C9BA1;
+
+    &--active {
+      color: #111B39;
+    }
+  }
+
+  &__switch {
+    margin-right: 7px;
+    margin-bottom: 1px;
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 17px;
+
+  &__checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .switch__slider:before {
+      transform: translateX(11px);
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #D9DCE5;
+    transition: .4s;
+    border-radius: 10px;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 13px;
+      width: 13px;
+      left: 2px;
+      bottom: 2px;
+      background-color: #2B55DB;
+      transition: .4s;
+      border-radius: 50%;
+    }
+  }
+}
+
+.main-promo {
+ padding: 164px 24px 205px;
+  background: #ffffff;
+
+  &__title {
+    font-family: 'Gilroy-ExtraBold', Helvetica, Arial, serif;
+    max-width: 1016px;
+    line-height: 74px;
+    font-size: 70px;
+    letter-spacing: -1px;
+    color: #040918;
+    text-shadow: none;
+    margin: auto;
+  }
+
+  &__link {
+    color: #040918;
+    text-decoration: none;
+    border-bottom: 16px solid #2B55DB;
+  }
+}
+
+
+@media (max-width: 1023px) {
+  .header {
+    nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(23,27,29,.97);
+      z-index: 999;
+
+      ul {
+        max-width: 460px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: auto;
+        padding: 0 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        li {
+          display: block;
+          text-align: left;
+          float: none;
+          margin: 0;
+          padding: 0;
+
+          &:last-child {
+            margin: 0;
+          }
+
+          &:first-child a {
+            border: none;
+          }
+
+          &.last {
+            display: block;
+            margin-top: 0;
+
+            .home-btn {
+              display: block;
+              float: none;
+              width: 100%;
+              margin-left: 0;
+              height: 48px;
+              line-height: 44px;
+              padding: 0 12px;
+              border: 2px solid #FFFFFF;
+
+              &:hover {
+                border-color: #ed002d;
+              }
+
+            }
+          }
+        }
+
+        a {
+          display: block;
+          padding: 4px 0;
+          font-size: 14px;
+          letter-spacing: 1px;
+          color: #fff;
+          width: 100%;
+          height: 44px;
+          line-height: 46px;
+          outline: solid 0px transparent;
+          border-top: solid 1px rgba(255, 255, 255, .13);
+
+          &:hover {
+            border-color: rgba(255, 255, 255, .13);
+          }
+        }
+      }
+    }
+    .header-line {
+      height: 55px;
+    }
+
+    .languages .active a {
+      color: #ed002d;
+    }
+  }
+  .open-main-nav {
+    .header .main-nav {
+      display: block;
+    }
+  }
+  .show-mobile-nav {
+    display: block;
+  }
+
+  .logo {
+    margin: 11px 0 0;
+    width: 146px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  .last {
+    border: none;
+  }
+
+  h1.header-title {
+    margin-top: 118px;
+    font-size: 32px;
+    line-height: 39px;
+    letter-spacing: 0px;
+  }
+}
+
+@media (max-height: 720px) and (max-width: 1023px) {
+  .header {
+    nav {
+      ul {
+        padding: 50px;
+        height: auto;
+        top: auto;
+        bottom: auto;
+      }
     }
   }
 }

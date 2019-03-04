@@ -20,13 +20,19 @@
         <i class="icon icon-menu"> </i>
     </div>
     <div class="header__left">
-        <a class="logo" href="{{ path('homepage') }}" title="{{ 'Студия stfalcon.com'|trans }}"></a>
+        <a class="main-logo" href="{{ path('homepage') }}" title="{{ 'Студия stfalcon.com'|trans }}">
+            <img src="{{ asset('img/svg/stfalcon_logo.svg')}}" alt="" class="main-logo__img">
+        </a>
     </div>
     <div class="header__right">
         <nav class="header-navigation">
             <ul class="navigation">
                 <li class="navigation__item">
-                    <span class="navigation__link">WORKs</span>
+                    <span class="navigation__link">WORKs
+                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon-arrow"/>
+                        </svg>
+                    </span>
                     <ul class="sub-navigation">
                         <li class="sub-navigation__item">
                             <a href="#" class="sub-navigation__link">Projects</a>
@@ -41,7 +47,11 @@
                     </ul>
                 </li>
                 <li class="navigation__item">
-                    <span class="navigation__link">Industries</span>
+                    <span class="navigation__link">Industries
+                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon-arrow"/>
+                        </svg>
+                    </span>
                     <ul class="sub-navigation">
                         <li class="sub-navigation__item">
                             <a href="#" class="sub-navigation__link">Logistics</a>
@@ -61,7 +71,11 @@
                     <a href="#" class="navigation__link">BLOG</a>
                 </li>
                 <li class="navigation__item">
-                    <span class="navigation__link">Company</span>
+                    <span class="navigation__link">Company
+                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon-arrow"/>
+                        </svg>
+                    </span>
                     <ul class="sub-navigation">
                         <li class="sub-navigation__item">
                             <a href="#" class="sub-navigation__link">Team</a>
@@ -80,11 +94,20 @@
 
             </ul>
         </nav>
-        <div class="lang">
-            <div class="lang__item"></div>
-            <div class="lang__switch"></div>
-            <div class="lang__item"></div>
+        <div class="lang header__lang">
+            <div class="lang__item lang__item--active">EN</div>
+            <label class="switch lang__switch">
+                <input type="checkbox" class="switch__checkbox">
+                <span class="switch__slider"></span>
+            </label>
+            <div class="lang__item">RU</div>
         </div>
         <button type="button" class="header__btn">Contact us</button>
     </div>
 </header>
+
+<span style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <path id="icon-arrow" d="M1 1L5.5 5.5L10 1"/>
+    </svg>
+</span>
