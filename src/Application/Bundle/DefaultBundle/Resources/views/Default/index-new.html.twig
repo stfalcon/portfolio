@@ -6,7 +6,10 @@
     {% include '::_header.html.twig' %}
     <section class="main-promo">
         <h2 class="main-promo__title">Convenient software increases profit, drives innovation, and creates social good.<br>
-            <a href="#" class="main-promo__link hire_us_main">Let's do this.</a>
+            <a href="#" class="main-promo__link hire_us_main">
+                <span class="main-promo__link-bg"></span>
+                <span class="main-promo__link-text">Let's do this.</span>
+            </a>
         </h2>
     </section>
 
@@ -14,37 +17,37 @@
         <div class="our-services__container">
             <ul class="services-list">
                 <li class="services-list__item">
-                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <img src="{{ asset('img/svg/ic_web.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">Web</div>
                     <p class="services-list__text">We deliver sophisticated, long lasting, production software on time.
                         With dozens of production projects under our belt, we have vast experience.</p>
                 </li>
                 <li class="services-list__item">
-                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <img src="{{ asset('img/svg/ic_ios.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">iOS</div>
                     <p class="services-list__text">With dozens of production projects under our belt,
                         we have vast experience with numerous development methodologies.</p>
                 </li>
                 <li class="services-list__item">
-                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <img src="{{ asset('img/svg/ic_android.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">Android</div>
                     <p class="services-list__text">We deliver sophisticated, long lasting, production software on time.
                         With dozens of production projects under our belt, we have vast experience.</p>
                 </li>
                 <li class="services-list__item">
-                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <img src="{{ asset('img/svg/ic_vr.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">VR</div>
                     <p class="services-list__text">With dozens of production projects under our belt,
                         we have vast experience with numerous development methodologies.</p>
                 </li>
                 <li class="services-list__item">
-                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <img src="{{ asset('img/svg/ic_wearable.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">Wearable</div>
                     <p class="services-list__text">We deliver sophisticated, long lasting, production software on time.
                         With dozens of production projects under our belt, we have vast experience.</p>
                 </li>
                 <li class="services-list__item">
-                    <img src="{{ asset('img/features1.svg') }}" alt="" class="services-list__icon">
+                    <img src="{{ asset('img/svg/ic_kiosks.svg') }}" alt="" class="services-list__icon">
                     <div class="services-list__name">Kiosks</div>
                     <p class="services-list__text">With dozens of production projects under our belt,
                         we have vast experience with numerous development methodologies.</p>
@@ -59,31 +62,31 @@
             <h2 class="promo-title promo-title--bold trusted__title">You are in good company</h2>
             <ul class="trusted__list">
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_np.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_np.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_nic.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_ss.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_ks.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_mfb.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_busfor.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_angel.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_ks.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_busfor.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_tickets.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_nic.svg') }}" alt="" class="trusted__img">
                 </li>
                 <li class="trusted__item">
-                    <img src="{{ asset('img/trusted_mfb.svg') }}" alt="" class="trusted__img">
+                    <img src="{{ asset('img/clients_ca.svg') }}" alt="" class="trusted__img">
                 </li>
             </ul>
         </div>
@@ -131,21 +134,21 @@
             <div class="achievements__list">
                 <div class="achievements__item">
                     <a href="https://clutch.co/profile/stfalcon" class="achievements__link" target="_blank">
-                        <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
+                        <img class="achievements__img" src="{{ asset('img/awards_tm.png') }}" alt="">
                     </a>
-                    <p class="achievements__text">Top Web and Mobile Developer by ThinkMobiles.com</p>
+                    <p class="achievements__text">Top Web and Mobile Developer ик <br> by ThinkMobiles.com</p>
                 </div>
                 <div class="achievements__item">
                     <a href="https://clutch.co/profile/stfalcon" class="achievements__link" target="_blank">
-                        <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
+                        <img class="achievements__img" src="{{ asset('img/awards_clutch.png') }}" alt="">
                     </a>
-                    <p class="achievements__text">Top B2B Company  by Clutch.com</p>
+                    <p class="achievements__text">Top B2B Company <br>  by Clutch.com</p>
                 </div>
                 <div class="achievements__item">
                     <a href="https://clutch.co/profile/stfalcon" class="achievements__link" target="_blank">
-                        <img class="achievements__img" src="{{ asset('img/clutch_logo.png') }}" alt="">
+                        <img class="achievements__img" src="{{ asset('img/awards_manifest.png') }}" alt="">
                     </a>
-                    <p class="achievements__text">Top Web Developer  by TheManifest.com</p>
+                    <p class="achievements__text">Top Web Developer <br>  by TheManifest.com</p>
                 </div>
             </div>
         </div>

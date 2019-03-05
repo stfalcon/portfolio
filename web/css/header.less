@@ -490,7 +490,31 @@
   &__link {
     color: #040918;
     text-decoration: none;
-    border-bottom: 16px solid #2B55DB;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+
+    &:hover {
+      color: #ffffff;
+
+      .main-promo__link-bg {
+        height: 100%;
+      }
+    }
+  }
+
+  &__link-text {
+    position: relative;
+  }
+
+  &__link-bg {
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    left: 0;
+    height: 16px;
+    background: #2B55DB;
+    transition: all 0.2s ease-in-out;
   }
 }
 
