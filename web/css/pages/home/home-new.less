@@ -124,7 +124,7 @@
 
 .achievements {
   position: relative;
-  padding: 50px 24px 120px;
+  padding: 60px 24px 120px;
   background: #ffffff;
 
   &__container {
@@ -160,6 +160,7 @@
   }
 
   &__img {
+    width: 100%;
     display: block;
     max-width: 260px;
     margin: 0 auto 10px;
@@ -407,8 +408,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-left: -52px;
-  margin-right: -52px;
+  margin: 0 -10px;
 
   &__icon {
     display: block;
@@ -416,8 +416,11 @@
   }
 
   &__item {
-    flex-basis: 235px;
-    margin:0 52px 74px 52px;
+    flex-basis: 33.333%;
+    max-width: 33.333%;
+    margin-bottom: 70px;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 
   &__name {
@@ -430,9 +433,11 @@
 
   &__text {
     font-family: 'PTSerif-Regular', Helvetica, Arial, serif;
+    max-width: 235px;
     font-size: 16px;
     line-height: 21px;
     color: #8C9BA1;
+    padding: 0;
   }
 }
 
@@ -837,40 +842,26 @@
 }
 
 
-@media screen and (max-width:1260px){
-  .header {
-    &__text {
-      margin-top: 192px;
-    }
-
-    &__btn {
-      margin-bottom: 170px;
-    }
-  }
-}
-
 @media screen and (max-width: 1023px) {
-  // header
-
-  .header {
-    &__video {
-      display: none;
-    }
-  }
-
-  // end header
 
   // trusted
 
   .trusted {
     &__list {
-      flex-wrap: wrap;
-      justify-content: center;
+      margin: 0 -15px;
     }
 
     &__item {
-      flex-basis: 25%;
-      text-align: center;
+      flex-basis: 50%;
+      max-width: 50%;
+      margin-bottom: 24px;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    &__img {
+      max-width: 260px;
+      width: 100%;
     }
   }
 
@@ -960,6 +951,12 @@
 
   // end solutions
 
+  .achievements {
+    &__text {
+      display: none;
+    }
+  }
+
 }
 
 @media screen and (max-width: 800px) {
@@ -975,57 +972,24 @@
 
 @media screen and (max-width: 767px) {
 
-  .promo-title {
-    font-size: 32px;
-    line-height: 38px;
-  }
-
-  // header
-
-  .header {
-
-    &--after {
-      &:after {
-        top: 55px;
-      }
-    }
-
-    &__text{
-      margin-top: 122px;
-    }
+  .main-promo {
+    padding: 80px 16px 140px;
 
     &__title {
-      font-size: 42px;
-      line-height: 48px;
-      margin-bottom: 13px;
-    }
-
-    &__sub-title {
-      font-size: 16px;
-      line-height: 20px;
-      margin-bottom: 20px;
-    }
-
-    &__btn {
-      margin-bottom: 126px;
+      line-height: 40px;
+      font-size: 40px;
     }
   }
 
-  // end header
+  .promo-title {
+    font-size: 40px;
+    line-height: 42px;
+  }
 
   // achievements
 
   .achievements {
-    margin-bottom: 100px;
-
-    &__title {
-      margin-bottom: 18px;
-    }
-
-    &__text {
-      font-size: 16px;
-      line-height: 22px;
-    }
+    padding-bottom: 85px;
   }
 
   // end achievements
@@ -1055,7 +1019,11 @@
   // trusted
 
   .trusted {
-    margin-bottom: 100px;
+    padding: 80px 16px 90px;
+
+    &__title {
+      margin-bottom: 30px;
+    }
   }
 
   // end trusted
@@ -1099,20 +1067,28 @@
   // end blog
 
   // services list
+  .our-services {
+    padding-bottom: 40px;
+  }
 
   .services-list {
-    justify-content: flex-start;
+
+    &__icon {
+     flex: 1;
+    }
 
     &__item {
-      flex-basis: 50%;
-      margin: 0 0 48px;
+      display: flex;
+      flex-direction: column;
+     align-items: center;
+      margin-bottom: 45px;
     }
+
     &__text {
       display: none;
     }
 
     &__name {
-      max-width: 150px;
       margin: 0 auto;
     }
   }
