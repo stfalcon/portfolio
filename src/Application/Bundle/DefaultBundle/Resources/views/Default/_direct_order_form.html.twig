@@ -38,6 +38,7 @@
     var submitHireForm = function (token) {
         var form = $('#direct-order-form');
         form.submit();
+        dataLayer.push({'event': 'submit_direct_order_form'});
     };
 
     function RegSubmit(e) {
