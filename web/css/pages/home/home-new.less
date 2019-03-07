@@ -120,6 +120,52 @@
 }
 //end header
 
+.main-promo {
+  padding: 164px 24px 205px;
+  background: #ffffff;
+
+  &__title {
+    font-family: 'Gilroy-ExtraBold', Helvetica, Arial, serif;
+    max-width: 1016px;
+    line-height: 74px;
+    font-size: 70px;
+    letter-spacing: -1px;
+    color: #040918;
+    text-shadow: none;
+    margin: auto;
+  }
+
+  &__link {
+    color: #040918;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+    z-index: 1;
+
+    &:hover {
+      color: #ffffff;
+
+      .main-promo__link-bg {
+        height: 100%;
+      }
+    }
+  }
+
+  &__link-text {
+    position: relative;
+  }
+
+  &__link-bg {
+    position: absolute;
+    bottom: -4px;
+    right: 0;
+    left: 0;
+    height: 16px;
+    background: #2B55DB;
+    transition: height 0.2s ease-in-out;
+  }
+}
+
 // achievements
 
 .achievements {
@@ -140,10 +186,12 @@
   &__list {
     display: flex;
     justify-content: space-around;
+    margin: 0 -8px;
   }
 
   &__item {
     flex: 1;
+    margin: 0 8px;
   }
 
   &__link {
@@ -410,11 +458,6 @@
   flex-wrap: wrap;
   margin: 0 -10px;
 
-  &__icon {
-    display: block;
-    margin-bottom: 12px;
-  }
-
   &__item {
     flex-basis: 33.333%;
     max-width: 33.333%;
@@ -423,11 +466,24 @@
     box-sizing: border-box;
   }
 
+  &__img {
+    width: 87px;
+    height: 87px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  &__icon {
+    display: block;
+  }
+
   &__name {
     font-family: 'Gilroy-ExtraBold', Helvetica, Arial, serif;
     font-size: 22px;
     line-height: 26px;
     color: #111B39;
+    margin-top: auto;
     margin-bottom: 10px;
   }
 
@@ -952,6 +1008,11 @@
   // end solutions
 
   .achievements {
+
+    &__img {
+      margin-bottom: 0;
+    }
+
     &__text {
       display: none;
     }
@@ -959,16 +1020,6 @@
 
 }
 
-@media screen and (max-width: 800px) {
-
-  .header {
-    &--after {
-      &:after {
-        top: 55px;
-      }
-    }
-  }
-}
 
 @media screen and (max-width: 767px) {
 
@@ -978,6 +1029,11 @@
     &__title {
       line-height: 40px;
       font-size: 40px;
+    }
+
+    &__link-bg {
+      bottom: -6px;
+      height: 12px;
     }
   }
 
@@ -989,7 +1045,7 @@
   // achievements
 
   .achievements {
-    padding-bottom: 85px;
+    padding: 60px 16px 85px;
   }
 
   // end achievements
@@ -1023,6 +1079,10 @@
 
     &__title {
       margin-bottom: 30px;
+    }
+
+    &__item_mob-none {
+      display: none;
     }
   }
 
@@ -1068,20 +1128,22 @@
 
   // services list
   .our-services {
-    padding-bottom: 40px;
+    padding: 0 16px 40px;
   }
 
   .services-list {
-
-    &__icon {
-     flex: 1;
+    &__item {
+      text-align: center;
+      margin-bottom: 45px;
     }
 
-    &__item {
-      display: flex;
-      flex-direction: column;
-     align-items: center;
-      margin-bottom: 45px;
+    &__img {
+      justify-content: center;
+      margin: auto;
+    }
+
+    &__icon {
+      transform: scale(0.66);
     }
 
     &__text {

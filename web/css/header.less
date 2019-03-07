@@ -37,6 +37,7 @@
   white-space: nowrap;
   cursor: pointer;
   text-transform: uppercase;
+  border: none;
 }
 
 .type-hint {
@@ -434,6 +435,18 @@
   &__switch {
     margin-right: 7px;
     margin-bottom: 1px;
+
+    &:after {
+      content: '';
+      display: inline-block;
+      background: transparent;
+      position: absolute;
+      left: -30px;
+      top: 0;
+      bottom: 0;
+      right: -30px;
+      cursor: pointer;
+    }
   }
 }
 
@@ -461,7 +474,7 @@
     right: 0;
     bottom: 0;
     background-color: #D9DCE5;
-    transition: .4s;
+    transition: .2s;
     border-radius: 10px;
 
     &:before {
@@ -475,52 +488,6 @@
       transition: .4s;
       border-radius: 50%;
     }
-  }
-}
-
-.main-promo {
- padding: 164px 24px 205px;
-  background: #ffffff;
-
-  &__title {
-    font-family: 'Gilroy-ExtraBold', Helvetica, Arial, serif;
-    max-width: 1016px;
-    line-height: 74px;
-    font-size: 70px;
-    letter-spacing: -1px;
-    color: #040918;
-    text-shadow: none;
-    margin: auto;
-  }
-
-  &__link {
-    color: #040918;
-    text-decoration: none;
-    position: relative;
-    transition: all 0.2s ease-in-out;
-    z-index: 1;
-
-    &:hover {
-      color: #ffffff;
-
-      .main-promo__link-bg {
-        height: 100%;
-      }
-    }
-  }
-
-  &__link-text {
-    position: relative;
-  }
-
-  &__link-bg {
-    position: absolute;
-    bottom: -8px;
-    right: 0;
-    left: 0;
-    height: 16px;
-    background: #2B55DB;
-    transition: all 0.2s ease-in-out;
   }
 }
 
@@ -560,6 +527,12 @@
 
     &__right {
       overflow-x: auto;
+      margin: 0px -24px
+    }
+
+    &__lang {
+      margin-right: 0;
+      padding-right: 24px;
     }
 
     &__btn {
@@ -569,6 +542,10 @@
         display: block;
       }
     }
+  }
+
+  .header-navigation {
+    padding-left: 24px;
   }
 
   .main-logo {
@@ -609,4 +586,23 @@
       }
     }
   }
+}
+
+@media (max-width: 1023px) {
+  .header {
+    padding: 24px 16px;
+
+    &__right {
+      margin: 0px -16px;
+    }
+
+    &__lang {
+      padding-right: 16px;
+    }
+  }
+
+  .header-navigation {
+    padding-left: 16px;
+  }
+
 }
