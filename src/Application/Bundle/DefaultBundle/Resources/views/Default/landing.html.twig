@@ -18,9 +18,7 @@
     <div class="{{ land_style }}">
         {% if landing_page %}
             {% if render_html is not null %}
-                <div class="header">
                     {% include '::_header.html.twig' %}
-                </div>
                 {{ render_html|raw }}
             {% else %}
                 {% include('@ApplicationDefault/Default/_landing_header.html.twig') with {'landing_page': landing_page}  %}

@@ -340,6 +340,7 @@
     transition: color 0.2s ease-in-out;
     text-decoration: none;
     white-space: nowrap;
+    cursor: pointer;
 
     svg {
       stroke: #8C9BA1;
@@ -436,16 +437,21 @@
     margin-right: 7px;
     margin-bottom: 1px;
 
-    &:after {
-      content: '';
+    .switch__checkbox {
+      width: 100%;
+      height: initial;
       display: inline-block;
       background: transparent;
       position: absolute;
-      left: -30px;
       top: 0;
       bottom: 0;
       right: -30px;
       cursor: pointer;
+    }
+
+    .switch__checkbox:checked {
+      left: -30px;
+      right: auto;
     }
   }
 }
@@ -526,6 +532,7 @@
     }
 
     &__right {
+      -webkit-overflow-scrolling: touch;
       overflow-x: auto;
       margin: 0px -24px
     }
