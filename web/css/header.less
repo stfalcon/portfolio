@@ -59,17 +59,12 @@
   background: #ffffff;
   padding: 32px;
 
-  &__right {
-    display: flex;
-    align-items: center;
+  &__left {
+    flex: 1;
   }
 
   &__lang {
     margin-right: 40px;
-  }
-
-  &__btn--mob {
-    display: none;
   }
 }
 
@@ -252,35 +247,6 @@
     float: right;
     font-weight: 500;
     text-transform: uppercase;
-  }
-}
-
-@media (max-width: 1100px) {
-  .header {
-    .logo {
-      margin: 14px 16px 0 16px;
-    }
-  }
-}
-
-@media (max-width: 1023px) {
-  .open-main-nav {
-    .header .main-nav {
-      display: block;
-    }
-  }
-  .show-mobile-nav {
-    display: block;
-  }
-
-  .logo {
-    margin: 11px 0 0;
-    width: 146px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
   }
 }
 
@@ -522,37 +488,44 @@
 @media (max-width: 1023px) {
   .header {
     padding: 24px;
-    display: block;
-
-    &__left {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-    }
-
-    &__right {
-      -webkit-overflow-scrolling: touch;
-      overflow-x: auto;
-      margin: 0px -24px
-    }
+    flex-wrap: wrap;
 
     &__lang {
       margin-right: 0;
       padding-right: 24px;
     }
+  }
 
-    &__btn {
-      display: none;
-
-      &--mob {
-        display: block;
-      }
+  .lang {
+    &__item {
+      font-size: 14px;
     }
   }
 
   .header-navigation {
-    padding-left: 24px;
+    order: 1;
+    overflow: hidden;
+    margin: 20px -24px 0;
+  }
+
+  .navigation {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+
+    &__item {
+      &:first-child {
+        padding-left: 24px;
+      }
+
+      &:last-child {
+        padding-right: 24px;
+      }
+    }
+
+    &__link {
+      font-size: 15px;
+      text-transform: initial;
+    }
   }
 
   .main-logo {
@@ -582,6 +555,8 @@
     }
 
     &__link {
+      font-size: 15px;
+      text-transform: initial;
       border-bottom: none;
     }
 
@@ -595,13 +570,9 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 768px) {
   .header {
     padding: 24px 16px;
-
-    &__right {
-      margin: 0px -16px;
-    }
 
     &__lang {
       padding-right: 16px;
@@ -609,7 +580,37 @@
   }
 
   .header-navigation {
-    padding-left: 16px;
+    margin: 20px -16px 0;
   }
 
+  .navigation {
+    &__item {
+      &:first-child {
+        padding-left: 16px;
+      }
+
+      &:last-child {
+        padding-right: 16px;
+      }
+    }
+  }
+
+  .main-logo {
+    &__img {
+      max-width: 164px;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .header {
+    &__lang {
+      padding-right: 0;
+    }
+
+    &__btn {
+      width: 100%;
+      margin-top: 16px;
+    }
+  }
 }
