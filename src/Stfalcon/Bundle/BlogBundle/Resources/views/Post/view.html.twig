@@ -8,13 +8,13 @@
         <div class="post-content">
             {{ post.text|moreToSpan|highlightCode|raw }}
 
-            {% if post.author %}
-                {% include 'StfalconBlogBundle:Post:about_author.html.twig' with {'author': post.author} %}
-            {% endif %}
-
             <div class="btn-wrapper-center">
                 <button class="btn btn--grey">Download PDF</button>
             </div>
+
+            {% if post.author %}
+                {% include 'StfalconBlogBundle:Post:about_author.html.twig' with {'author': post.author} %}
+            {% endif %}
 
             {# Related posts widget #}
             {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
