@@ -159,7 +159,7 @@ $(function () {
         });
       $("#range-slider").slider(sliderParams);
 
-        $('#year-slider', '#range-slider').draggable(); // Enable toush dragging
+        $('#year-slider, #range-slider').draggable(); // Enable toush dragging
     }
 
 
