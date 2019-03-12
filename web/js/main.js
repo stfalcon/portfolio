@@ -152,15 +152,16 @@ $(function () {
         });
     }
 
-    if ($('#year-slider, #range-slider').length) {
-        $("#year-slider").slider({
-          ...sliderParams,
-          value: yearList.length - 1,
-        });
-      $("#range-slider").slider(sliderParams);
-
-        $('#year-slider, #range-slider').draggable(); // Enable toush dragging
+    if ($('#year-slider').length) {
+      var slideParamsForYear = $.extend({}, sliderParams, { value: yearList.length - 1 });
+      $("#year-slider").slider(slideParamsForYear);
+      $('#year-slider').draggable(); // Enable toush dragging
     }
+
+  if ($('#range-slider').length) {
+    $("#range-slider").slider(sliderParams);
+    $('#range-slider').draggable(); // Enable toush dragging
+  }
 
 
     function counter(start, end) {
