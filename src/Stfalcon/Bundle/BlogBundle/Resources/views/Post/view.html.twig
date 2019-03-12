@@ -5,22 +5,16 @@
     <article class="blog-post">
         {% include 'StfalconBlogBundle:Post:_post_header.html.twig' with {'post': post, 'linkTitle': false} %}
 
-        {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'top'} %}
-
         <div class="post-content">
             {{ post.text|moreToSpan|highlightCode|raw }}
-            {% include 'StfalconBlogBundle:Post:social_buttons.html.twig' with {'position': 'bottom'} %}
-
-            <div class="contact-us hire_us-mob">
-                <button class="hire_us hire_us-button-mob">{{ 'Работать с нами!'|trans }}</button>
-            </div>
 
             {% if post.author %}
                 {% include 'StfalconBlogBundle:Post:about_author.html.twig' with {'author': post.author} %}
             {% endif %}
 
-            {# Subscribe widget #}
-            {{ render(controller('ApplicationDefaultBundle:Widgets:subscribeWidget', {'category': 'blog'})) }}
+            <div class="btn-wrapper-center">
+                <button class="btn btn--grey">Download PDF</button>
+            </div>
 
             {# Related posts widget #}
             {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
@@ -33,37 +27,12 @@
         {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
 
-        {% if app.environment == 'prod' %}
-            <p>
-                <div id="disqus_thread"></div>
-            </p>
-            <script type="text/javascript">
-                var disqus_shortname = '{{ disqus_shortname }}';
-                var disqus_identifier = '{{ app.request.locale ~ ' ' ~ post.id }}';
-                var disqus_url = '{{ url('blog_post_view', {'slug': post.slug}) }}';
-                var disqus_title = '{{ post.title }}';
-                // var disqus_developer = 1; // developer mode is on
-
-                /* * * DON'T EDIT BELOW THIS LINE * * */
-                (function () {
-                    var dsq = document.createElement('script');
-                    dsq.type = 'text/javascript';
-                    dsq.async = true;
-                    dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-
-                function disqus_config() {
-                    this.language = "{{ app.request.locale }}";
-                }
-            </script>
-        {% endif %}
     </article>
 
     <button class="button-up scroll-to-top"></button>
 {% endblock %}
 
-{% block after_body %}
-    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': post.slug })) }}
-{% endblock %}
+{#{% block after_body %}#}
+{#    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}#}
+{#    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': post.slug })) }}#}
+{#{% endblock %}#}

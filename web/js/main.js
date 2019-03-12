@@ -109,13 +109,29 @@ $(function () {
         }
     });
 
-    var yearsCnt = $('.years-count'),
+    var yearsCnt = $('.range-slider__count'),
         startPos;
-    var yearList = $('.year-slider-wrapp li');
+    var yearList = $('.range-slider__content li');
     var usersList = $('.team-list li');
     function updateYear(value) {
-        $('#view-year').html(value)
+        $('#range-slider-text').html(value)
     }
+    var sliderParams = {
+      min: 0,
+      max: yearList.length - 1,
+      step: 1,
+      range: 'min',
+      start: function (event, ui) {
+        startPos = $(yearList[ui.value]).data('val');
+      },
+      change: function (event, ui) {
+        counter(startPos, $(yearList[ui.value]).data('val'));
+        updateYear($(yearList[ui.value]).data('text'));
+      },
+      stop: function (event, ui) {
+        changeUsers($(yearList[ui.value]).text());
+      }
+    };
 
     function changeUsers(selected_year) {
         $.each(usersList, function (index, value) {
@@ -136,25 +152,14 @@ $(function () {
         });
     }
 
-    if ($('#year-slider').length) {
+    if ($('#year-slider, #range-slider').length) {
         $("#year-slider").slider({
-            min: 0,
-            max: yearList.length - 1,
-            value: yearList.length - 1,
-            step: 1,
-            range: 'min',
-            start: function (event, ui) {
-                startPos = $(yearList[ui.value]).data('val');
-            },
-            change: function (event, ui) {
-                counter(startPos, $(yearList[ui.value]).data('val'));
-                updateYear($(yearList[ui.value]).data('text'));
-            },
-            stop: function (event, ui) {
-                changeUsers($(yearList[ui.value]).text());
-            }
+          ...sliderParams,
+          value: yearList.length - 1,
         });
-        $('#year-slider').draggable(); // Enable toush dragging
+      $("#range-slider").slider(sliderParams);
+
+        $('#year-slider', '#range-slider').draggable(); // Enable toush dragging
     }
 
 

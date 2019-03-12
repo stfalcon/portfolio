@@ -24,18 +24,21 @@
       margin-bottom: 30px;
       font-size: 1.143rem; // 16px
 
-		span {
-			display: block;  
-			color: #969897; 
-		}
+      span {
+        display: block;
+        font-family: 'PTSerif-Regular', Helvetica, Arial, serif;
+        font-size: 16px;
+        color: #8C9BA1;
+      }
 	}
 	a {
-		color: @global-text-color;
+      font-family: 'PT-Root-UI_Bold', Helvetica, Arial, serif;
+      color: @global-text-color;
 
-		&:hover {
-			color: @link-hover-color;
-		}
-	}
+      &:hover {
+        color: @link-hover-color;
+      }
+    }
 	.address {
 		width: 37.3303%;
 	}
@@ -126,7 +129,7 @@
 	}
 }
 
-@media screen and (max-width:560px){
+@media screen and (max-width: 768px){
 	.vacancy-page__content {
 		.contacts-wrapper .contacts-form-wr {
 			width: 100%;
@@ -142,7 +145,7 @@
           float: none;
         }
         .contacts-inf {
-          margin: 0 0 20px;
+          margin: 20px 0;
           overflow: hidden;
         }
 		h1 {
@@ -151,7 +154,6 @@
 		.socials {
 			margin: 10px 0 0 0;
 			width: 100%;
-			text-align: center;
 
             li {
               display: inline-block;
@@ -170,6 +172,14 @@
 	.map-wrapper iframe {
 		height: 360px;	
 	}
+}
+
+@media screen and (max-width:540px){
+  .btn-line {
+    .btn {
+      width: 100%;
+    }
+  }
 }
 
 @media screen and (max-width:410px){

@@ -1,9 +1,5 @@
 /* blog-list */
 
-.posts-list {
-
-}
-
 .blog-post {
   margin: 0 auto 92px;
   width: 74.4186%;
@@ -37,14 +33,17 @@
     text-align: right;
 
     time {
+      font-family: 'PTSerif-Regular', Helvetica, Arial, serif;
       display: block;
       color: #919699;
     }
     span {
+      font-family: 'PT-Root-UI_Bold', Helvetica, Arial, serif;
       display: block;
       font-weight: bold;
     }
     a {
+      font-family: 'PT-Root-UI_Bold', Helvetica, Arial, serif;
       color: @global-text-color;
 
       &:hover {
@@ -155,6 +154,7 @@
     border-radius: 4px;
   }
   h2, h3 {
+    font-family: 'Gilroy-Bold', Helvetica, Arial, serif;
     margin: 59px 7.8125% 18px 7.8125%;
 
     &:first-child {
@@ -172,10 +172,12 @@
     font-size: 1.714rem;
   }
   h4, h5, h6 {
+    font-family: 'Gilroy-Bold', Helvetica, Arial, serif;
     margin-left: 7.8125%;
     margin-right: 7.8125%;
   }
   p, li {
+    font-family: 'PTSerif-Regular', Helvetica, Arial, serif;
     margin: 0 7.8125% 0.7em;
     font-size: 1.500rem;
     line-height: 1.4em;
@@ -540,6 +542,12 @@
       float: left;
       margin-right: -18px;
     }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .btn {
+    width: 100%;
   }
 }
 
