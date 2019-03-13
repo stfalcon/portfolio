@@ -23,7 +23,7 @@ __menu.opensource: Opensource
 Главная: Main Page
 'Дизайн сайтов, мобильные приложения и веб-разработка': 'Web design, mobile apps and web development'
 Должность: Position
-'Зайти в гости': 'Drop in'
+'Наши офисы': 'Our Offices'
 Имя: Name
 Интересы: Interests
 
@@ -86,6 +86,9 @@ __projects_text_now: 'projects launched by now|projects launched by now|projects
 
 'улица Заречанская, 3/2': '3/2 Zarichanska street'
 'переулок Ахтырский, 7': '7 Okhtyrskyi Lane'
+
+'Бостон': 'Boston'
+'США': 'USA'
 
 'Свежее из блога': 'Fresh from blog'
 'На связи': 'Contact us'
