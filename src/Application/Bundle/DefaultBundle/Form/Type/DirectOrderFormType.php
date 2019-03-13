@@ -87,7 +87,7 @@ class DirectOrderFormType extends AbstractType
                 [
                     'attr'        => [
                         'placeholder' => $this->translator->trans(<<<TEXT
-Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 40 000$. Идея приложения состоит в том, что...
+Несколько слов о проекте
 TEXT
                         ),
                     ],

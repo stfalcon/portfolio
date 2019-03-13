@@ -38,19 +38,19 @@
         </section>
     </div>
     <div class="line btn-line">
-        <div class="file-input">
-            <p class="filename">{{ "Прикрепить файл" | trans() }}</p>
-            <p class="filesize">{{ "до 20 МБ" | trans() }}</p>
-            {{ form_widget(form.attach) }}
-            {{ form_errors(form.attach) }}
-        </div>
+{#        <div class="file-input">#}
+{#            <p class="filename">{{ "Прикрепить файл" | trans() }}</p>#}
+{#            <p class="filesize">{{ "до 20 МБ" | trans() }}</p>#}
+{#            {{ form_widget(form.attach) }}#}
+{#            {{ form_errors(form.attach) }}#}
+{#        </div>#}
         <button id="contact-submit" class="btn btn--blue" onclick="RegSubmit(event)" >{{ "Отправить" | trans() }}</button>
         <div class="google-captcha contact-captcha">
             {{ form_widget(form.captcha) }}
             {{ form_errors(form.captcha) }}
         </div>
     </div>
-    {{ form_rest(form) }}
+{#    {{ form_rest(form) }}#}
 </form>
 <script>
     var submitHireForm = function (token) {
