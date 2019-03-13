@@ -1,101 +1,93 @@
 {#<header class="header">#}
-{#    {% include '_banner.html.twig' %}#}
-{#    <div class="header-line">#}
-{#        <div class="show-mobile-nav">#}
-{#            <i class="icon icon-menu"> </i>#}
-{#        </div>#}
-{#        <a class="logo" href="{{ path('homepage') }}" title="{{ 'Студия stfalcon.com'|trans }}"></a>#}
-{#        <nav class="main-nav">#}
-{#            {{ knp_menu_render('main', {'template': '::_knp_render_only.html.twig'}) }}#}
-{#            <svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/></svg>#}
-{#        </nav>#}
-{#        <a class="header-line__btn home-btn home-btn--sm home-btn--dark" target="_blank" href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2019.pdf'}) }}">{{ 'about_us'|trans }}</a>#}
-{#        {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}#}
-{#    </div>#}
+    {#<div class="header-line">#}
+        {#<div class="show-mobile-nav">#}
+            {#<i class="icon icon-menu"> </i>#}
+        {#</div>#}
+        {#<a class="logo" href="{{ path('homepage') }}" title="{{ 'Студия stfalcon.com'|trans }}"></a>#}
+        {#<nav class="main-nav">#}
+            {#{{ knp_menu_render('main', {'template': '::_knp_render_only.html.twig'}) }}#}
+            {#<svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/></svg>#}
+        {#</nav>#}
+        {#<a class="header-line__btn home-btn home-btn--sm home-btn--dark" target="_blank" href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2019.pdf'}) }}">{{ 'about_us'|trans }}</a>#}
+
+    {#</div>#}
 {#</header>#}
 
 <header class="header">
-    {% include '_banner.html.twig' %}
     <div class="header__left">
         <a class="main-logo" href="{{ path('homepage') }}" title="{{ 'Студия stfalcon.com'|trans }}">
             <img src="{{ asset('img/svg/stfalcon_logo.svg')}}" alt="" class="main-logo__img">
         </a>
     </div>
         <nav class="header-navigation">
-            <ul class="navigation">
-                <li class="navigation__item">
-                    <span class="navigation__link">Works
-                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#icon-arrow"/>
-                        </svg>
-                    </span>
-                    <ul class="sub-navigation">
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Projects</a>
-                        </li>
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Services</a>
-                        </li>
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Open Source</a>
-                        </li>
+            {{ knp_menu_render('main', {'template': '::_knp_render_only.html.twig'}) }}
+            {#<ul class="navigation">#}
+                {#<li class="navigation__item">#}
+                    {#<span class="navigation__link">Works#}
+                        {#<svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+                            {#<use xlink:href="#icon-arrow"/>#}
+                        {#</svg>#}
+                    {#</span>#}
+                    {#<ul class="sub-navigation">#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Projects</a>#}
+                        {#</li>#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Services</a>#}
+                        {#</li>#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Open Source</a>#}
+                        {#</li>#}
 
-                    </ul>
-                </li>
-                <li class="navigation__item">
-                    <span class="navigation__link">Industries
-                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#icon-arrow"/>
-                        </svg>
-                    </span>
-                    <ul class="sub-navigation">
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Logistics</a>
-                        </li>
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Travel</a>
-                        </li>
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Healthcare</a>
-                        </li>
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">E-commerce</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="navigation__item">
-                    <a href="#" class="navigation__link">Blog</a>
-                </li>
-                <li class="navigation__item">
-                    <span class="navigation__link">Company
-                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#icon-arrow"/>
-                        </svg>
-                    </span>
-                    <ul class="sub-navigation">
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Team</a>
-                        </li>
-                        <li class="sub-navigation__item">
-                            <a href="#" class="sub-navigation__link">Careers</a>
-                        </li>
-                        <li class="sub-navigation__item">
-                            <a href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2019.pdf'}) }}" target="_blank" class="sub-navigation__link">About US</a>
-                            <span class="type-hint">PDF</span>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    {#</ul>#}
+                {#</li>#}
+                {#<li class="navigation__item">#}
+                    {#<span class="navigation__link">Industries#}
+                        {#<svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+                            {#<use xlink:href="#icon-arrow"/>#}
+                        {#</svg>#}
+                    {#</span>#}
+                    {#<ul class="sub-navigation">#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Logistics</a>#}
+                        {#</li>#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Travel</a>#}
+                        {#</li>#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Healthcare</a>#}
+                        {#</li>#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">E-commerce</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</li>#}
+                {#<li class="navigation__item">#}
+                    {#<a href="#" class="navigation__link">Blog</a>#}
+                {#</li>#}
+                {#<li class="navigation__item">#}
+                    {#<span class="navigation__link">Company#}
+                        {#<svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+                            {#<use xlink:href="#icon-arrow"/>#}
+                        {#</svg>#}
+                    {#</span>#}
+                    {#<ul class="sub-navigation">#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Team</a>#}
+                        {#</li>#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="#" class="sub-navigation__link">Careers</a>#}
+                        {#</li>#}
+                        {#<li class="sub-navigation__item">#}
+                            {#<a href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2019.pdf'}) }}" target="_blank" class="sub-navigation__link">{{ 'about_us'|trans }}</a>#}
+                            {#<span class="type-hint">PDF</span>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</li>#}
+            {#</ul>#}
         </nav>
-        <div class="lang header__lang">
-            <div class="lang__item lang__item--active">EN</div>
-            <label class="switch lang__switch">
-                <input type="checkbox" class="switch__checkbox">
-                <span class="switch__slider"></span>
-            </label>
-            <div class="lang__item">RU</div>
-        </div>
-        <button type="button" class="btn btn--blue header__btn">Contact us</button>
+        {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
+        <a href="{{ path('contacts') }}" class="btn btn--blue header__btn">Contact us</a>
 </header>
 
 <span style="display: none;">

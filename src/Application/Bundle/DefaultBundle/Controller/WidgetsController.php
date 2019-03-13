@@ -21,27 +21,16 @@ class WidgetsController extends Controller
     /**
      * @param Request $request
      *
-     * @Template("ApplicationDefaultBundle:Widgets:_language_switcher.html.twig")
-     * @return array
+     * @return Response
      */
     public function languageSwitcherAction($request)
     {
-        $locales = array(
-//            'de' => array(
-//                'link' => $this->localizeRoute($request, 'de'),
-//                'lang' => 'DE'
-//            ),
-            'ru' => array(
-                'link' => $this->localizeRoute($request, 'ru'),
-                'lang' => 'RU'
-            ),
-            'en' => array(
-                'link' => $this->localizeRoute($request, 'en'),
-                'lang' => 'EN'
-            ),
-        );
+        $locales = [
+            'ru' => $this->localizeRoute($request, 'ru'),
+            'en' => $this->localizeRoute($request, 'en'),
+        ];
 
-        return array('locales' => $locales);
+        return $this->render('ApplicationDefaultBundle:Widgets:_language_switcher.html.twig', ['locales' => $locales]);
     }
 
     /**

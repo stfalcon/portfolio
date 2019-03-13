@@ -18,9 +18,11 @@ __projects_text_now: 'проект мы запустили на сегодняш
 
 about_us: 'О нас'
 main_title: Разработка и дизайн сайтов и мобильных приложений | Компания Stfalcon.com
+main.promo.title: Convenient software increases profit, drives innovation, and creates social&nbsp;good.
+main.promo.title_link: Let's do this.
 main.promo.title1: Мы создаем полезное и удобное программное обеспечение
 main.promo.title2: Эффективные решения для бизнеса
-main.promo.title3: Наши клиенты
+main.promo.title3: You are in good company
 main.promo.title4: Мы предлагаем полный цикл разработки проектов
 main.promo.title5: Мы поддерживаем и организовываем
 main.promo.title2_1: Логистика
@@ -60,6 +62,8 @@ main_page.service9.description: ''
 
 __menu.vacancies: Вакансии
 __menu.industries : Индустрии
+__menu.company: Компания
+__menu.works: Работа
 
 __back_to_vacansy_list: Вернуться к списку вакансий
 __invite_to_our_team: Приглашаем в нашу команду

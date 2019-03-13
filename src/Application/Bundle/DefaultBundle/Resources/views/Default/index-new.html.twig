@@ -5,10 +5,10 @@
 <section class="page-wrapper home-page">
     {% include '::_header.html.twig' %}
     <section class="main-promo">
-        <h2 class="main-promo__title">Convenient software increases profit, drives innovation, and creates social&nbsp;good.<br>
-            <a href="#" class="main-promo__link">
+        <h2 class="main-promo__title">{{ 'main.promo.title'|trans|raw }}<br>
+            <a href="{{ path('contacts') }}" class="main-promo__link">
                 <span class="main-promo__link-bg"></span>
-                <span class="main-promo__link-text">Let's do this.</span>
+                <span class="main-promo__link-text">{{ 'main.promo.title_link'|trans }}</span>
             </a>
         </h2>
     </section>
@@ -70,8 +70,7 @@
 
     <section data-bg="#ffffff" class="trusted bg-item">
         <div class="trusted__container">
-            {#        <h2 class="promo-title promo-title--bold trusted__title">{{ 'main.promo.title3'|trans }}</h2>#}
-            <h2 class="promo-title promo-title--bold trusted__title">You are in good company</h2>
+            <h2 class="promo-title promo-title--bold trusted__title">{{ 'main.promo.title3'|trans }}</h2>
             <ul class="trusted__list">
                 <li class="trusted__item">
                     <img src="{{ asset('img/clients_np.svg') }}" alt="" class="trusted__img">

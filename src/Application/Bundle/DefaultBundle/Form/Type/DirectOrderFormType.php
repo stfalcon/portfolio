@@ -101,15 +101,6 @@ TEXT
                     ],
                 ]
             )
-            ->add('attach', 'file', [
-                'label'       => false,
-                'required'    => false,
-                'constraints' => [
-                    new Assert\File([
-                        'maxSize' => '20M',
-                    ]),
-                ],
-            ])
             ->add('captcha', 'recaptcha', [
                 'label' => false,
             ]);

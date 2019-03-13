@@ -60,6 +60,8 @@ __menu.opensource: Opensource
 Проекты: Projects
 about_us: 'About us'
 __menu.industries : Industries
+__menu.company: Company
+__menu.works: Works
 Таг: Tag
 
 'Следующий проект': 'Next project'
@@ -282,9 +284,11 @@ _order-android: 'Contact us'
 
 Об авторе: 'About author'
 main_title: Web and mobile app development, web design company | Stfalcon.com
+main.promo.title: Convenient software increases profit, drives innovation, and creates social&nbsp;good.
+main.promo.title_link: Let's do this.
 main.promo.title1: Our goal is to create useful and convenient software
 main.promo.title2: Efficient Business Solutions
-main.promo.title3: Trusted by
+main.promo.title3: You are in good company
 main.promo.title4: We offer full-cycle project development
 main.promo.title5: We support and organize
 main.promo.title2_1: Logistics
