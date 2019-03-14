@@ -1,8 +1,15 @@
 <div class="lang header__lang">
-    <a href="{{ locales['en'] }}" class="lang__item{% if 'en' == app.request.locale %} lang__item--active{% endif %}">EN</a>
+    <a id="lang_en" href="{{ locales['en'] }}" class="lang__item{% if 'en' == app.request.locale %} lang__item--active{% endif %}">EN</a>
     <label class="switch lang__switch">
-        <input type="checkbox" class="switch__checkbox">
+        <input id="lang_switcher" type="checkbox" class="switch__checkbox"{% if 'ru' == app.request.locale %} checked{% endif %}>
         <span class="switch__slider"></span>
     </label>
-    <a href="{{ locales['ru'] }}" class="lang__item{% if 'ru' == app.request.locale %} lang__item--active{% endif %}">RU</a>
+    <a id="lang_ru" href="{{ locales['ru'] }}" class="lang__item{% if 'ru' == app.request.locale %} lang__item--active{% endif %}">RU</a>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#lang_switcher').on('change', function () {
+            window.location.href = $(this).is(':checked') ? $('#lang_ru').attr('href') : $('#lang_en').attr('href');
+        });
+    });
+</script>

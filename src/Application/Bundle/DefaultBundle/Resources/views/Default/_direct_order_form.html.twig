@@ -22,20 +22,22 @@
     <div class="line">
         <section class="range-slider">
             <div class="range-slider__counter">
-                <p class="range-slider__text">Budget <span id="range-slider-text"></span></p>
+                <p class="range-slider__text">{{ 'text.budget'|trans }} <span id="range-slider-text"></span></p>
             </div>
             <div class="range-slider__content">
                 <div id="range-slider"></div>
                 <ul>
-                    <li data-text="up to $ 10 000">10K</li>
-                    <li data-text="up to $ 20 000">20K</li>
-                    <li data-text="up to $ 50 000">50K</li>
-                    <li data-text="up to $ 100 000">100K</li>
-                    <li data-text="up to $ 150 000">150K</li>
-                    <li data-text="up to $ 200 000">200K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '10 000'}) }}">10K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '20 000'}) }}">20K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '50 000'}) }}">50K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '100 000'}) }}">100K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '150 000'}) }}">150K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '200 000'}) }}">200K</li>
                 </ul>
             </div>
         </section>
+        {{ form_widget(form.budget) }}
+        {{ form_errors(form.budget) }}
     </div>
     <div class="line btn-line">
         <button id="contact-submit" class="btn btn--blue" onclick="RegSubmit(event)" >{{ "Отправить" | trans() }}</button>
@@ -47,6 +49,12 @@
     {{ form_rest(form) }}
 </form>
 <script>
+    $(document).ready(function () {
+        $('#range-slider-text').on('change', function () {
+           $('#direct_order_budget').val($(this).html());
+        });
+    });
+
     var submitHireForm = function (token) {
         var form = $('#direct-order-form');
         form.submit();

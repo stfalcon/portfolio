@@ -414,6 +414,7 @@
     font-weight: 700;
     margin-right: 7px;
     color: #8C9BA1;
+    text-decoration: none;
 
     &:last-child {
       margin-right: 0;
@@ -421,29 +422,13 @@
 
     &--active {
       color: #111B39;
+      pointer-events: none;
     }
   }
 
   &__switch {
     margin-right: 7px;
     margin-bottom: 1px;
-
-    .switch__checkbox {
-      width: 100%;
-      height: initial;
-      display: inline-block;
-      background: transparent;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: -30px;
-      cursor: pointer;
-    }
-
-    .switch__checkbox:checked {
-      left: -30px;
-      right: auto;
-    }
   }
 }
 

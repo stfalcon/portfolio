@@ -27,6 +27,4 @@ assetic:
 
 swiftmailer:
     transport: 'mail'
-    spool:
-        type: file
-        path: "%kernel.root_dir%/spool"
+    host:      localhost

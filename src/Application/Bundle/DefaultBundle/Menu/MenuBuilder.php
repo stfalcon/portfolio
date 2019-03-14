@@ -33,15 +33,17 @@ class MenuBuilder
     private $templating;
 
     private $types = [
-        'menu' => [
+        [
             'attributes' => ['class' => 'navigation__item'],
             'link_attributes' => ['class' => 'navigation__link'],
             'label_attributes' => ['class' => 'navigation__link'],
+            'children_attributes' => ['class' => 'sub-navigation'],
         ],
-        'sub-menu' => [
-            'attributes' => ['class' => 'sub-navigation'],
+        [
+            'attributes' => ['class' => 'sub-navigation__item'],
             'link_attributes' => ['class' => 'sub-navigation__link'],
             'label_attributes' => ['class' => 'sub-navigation__link'],
+            'children_attributes' => [],
         ],
     ];
 
@@ -200,22 +202,23 @@ class MenuBuilder
      * @param ItemInterface $menu
      * @param array         $menuItem
      * @param string        $currentRoute
+     * @param bool          $isSubMenu
      */
-    private function addMenu(ItemInterface $menu, array $menuItem, $currentRoute)
+    private function addMenu(ItemInterface $menu, array $menuItem, $currentRoute, $isSubMenu = false)
     {
         $isCurrent = (isset($menuItem['config']['route']) && $currentRoute === $menuItem['config']['route']) || (isset($menuItem['child_routes']) && \in_array($currentRoute, $menuItem['child_routes']));
 
         $menu->addChild($menuItem['title'], $menuItem['config'])->setCurrent($isCurrent);
 
-        if (isset($menuItem['type'])) {
-            $menu[$menuItem['title']]->setAttributes($this->types[$menuItem['type']]['attributes'])
-                ->setLinkAttributes($this->types[$menuItem['type']]['link_attributes'])
-                ->setLabelAttributes($this->types[$menuItem['type']]['label_attributes']);
-        }
+        $typeIndex = (int) $isSubMenu;
+        $menu[$menuItem['title']]->setAttributes($this->types[$typeIndex]['attributes'])
+            ->setLinkAttributes($this->types[$typeIndex]['link_attributes'])
+            ->setLabelAttributes($this->types[$typeIndex]['label_attributes']);
 
         if (isset($menuItem['children'])) {
+            $menu[$menuItem['title']]->setChildrenAttributes($this->types[$typeIndex]['children_attributes']);
             foreach ($menuItem['children'] as $child) {
-                $this->addMenu($menu[$menuItem['title']], $child, $currentRoute);
+                $this->addMenu($menu[$menuItem['title']], $child, $currentRoute, true);
             }
         }
     }
@@ -229,14 +232,12 @@ class MenuBuilder
             [
                 'title' => $this->translator->trans('__menu.works').self::MENU_ICON,
                 'config' => [],
-                'type' => 'menu',
                 'children' => [
                     [
                         'title' => $this->translator->trans('Проекты'),
                         'config' => [
                             'route' => 'portfolio_all_projects',
                         ],
-                        'type' => 'sub-menu',
                         'child_routes' => ['portfolio_category_project', 'portfolio_project_view'],
                     ],
                     [
@@ -245,12 +246,10 @@ class MenuBuilder
                             'route' => 'portfolio_categories_list',
                             'routeParameters' => ['slug' => 'web-development'],
                         ],
-                        'type' => 'sub-menu',
                         'child_routes' => ['portfolio_categories_list'],
                     ],
                     [
                         'title' => 'Open Source',
-                        'type' => 'sub-menu',
                         'config' => [
                             'route' => 'opensource',
                         ],
@@ -260,7 +259,6 @@ class MenuBuilder
             [
                 'title' => $this->translator->trans('__menu.industries').self::MENU_ICON,
                 'config' => [],
-                'type' => 'menu',
                 'children' => [
                     [
                         'title' => $this->translator->trans('main.promo.title2_1'),
@@ -268,7 +266,6 @@ class MenuBuilder
                             'route' => 'page_landing',
                             'routeParameters' => ['type' => 'logistics'],
                         ],
-                        'type' => 'sub-menu',
                     ],
                     [
                         'title' => $this->translator->trans('main.promo.title2_2'),
@@ -276,7 +273,6 @@ class MenuBuilder
                             'route' => 'page_landing',
                             'routeParameters' => ['type' => 'travel'],
                         ],
-                        'type' => 'sub-menu',
                     ],
                     [
                         'title' => $this->translator->trans('main.promo.title2_3'),
@@ -284,7 +280,6 @@ class MenuBuilder
                             'route' => 'page_landing',
                             'routeParameters' => ['type' => 'healthcare'],
                         ],
-                        'type' => 'sub-menu',
                     ],
                     [
                         'title' => $this->translator->trans('main.promo.title2_4'),
@@ -292,7 +287,6 @@ class MenuBuilder
                             'route' => 'page_landing',
                             'routeParameters' => ['type' => 'e-commerce'],
                         ],
-                        'type' => 'sub-menu',
                     ],
                 ],
             ],
@@ -302,19 +296,16 @@ class MenuBuilder
                     'route' => 'blog',
                 ],
                 'child_routes' => ['blog_post_view'],
-                'type' => 'menu',
             ],
             [
                 'title' => $this->translator->trans('__menu.company').self::MENU_ICON,
                 'config' => [],
-                'type' => 'menu',
                 'children' => [
                     [
                         'title' => $this->translator->trans('Команда'),
                         'config' => [
                             'route' => 'team',
                         ],
-                        'type' => 'sub-menu',
                     ],
                     [
                         'title' => $this->translator->trans('__menu.vacancies'),
@@ -322,15 +313,13 @@ class MenuBuilder
                             'route' => 'jobs_list',
                         ],
                         'child_routes' => ['jobs_job_view'],
-                        'type' => 'sub-menu',
                     ],
                     [
-                        'title' => $this->translator->trans('about_us'),
+                        'title' => $this->translator->trans('about_us').'<span class="type-hint">PDF</span>',
                         'config' => [
                             'route' => 'show_pdf',
                             'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2019.pdf'],
                         ],
-                        'type' => 'sub-menu',
                     ],
                 ],
             ],

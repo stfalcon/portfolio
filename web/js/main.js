@@ -114,7 +114,7 @@ $(function () {
     var yearList = $('.range-slider__content li');
     var usersList = $('.team-list li');
     function updateYear(value) {
-        $('#range-slider-text').html(value)
+        $('#range-slider-text').html(value).trigger('change');
     }
     var sliderParams = {
       min: 0,
@@ -159,7 +159,7 @@ $(function () {
     }
 
   if ($('#range-slider').length) {
-    $("#range-slider").slider(sliderParams);
+    $("#range-slider").slider(sliderParams).data("slider")._change();
     $('#range-slider').draggable(); // Enable toush dragging
   }
 

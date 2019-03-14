@@ -74,6 +74,8 @@ return array(
     'Заявка на сотрудничество' => 'Cooperation request',
     'Свяжитесь с нами и получите бесплатную консультацию по проекту' => 'Write us to get a free personal consultation',
     'Свяжитесь с нами и получите бесплатную консультацию' => 'Contact us and get free personal consultation',
+    'text.up_to' => 'up to $ %sum%',
+    'text.budget' => 'Budget',
     'Прикрепить файл' => 'Attach a file',
     'до 20 МБ' => '20 MB max',
     'Отправить' => 'Send',
