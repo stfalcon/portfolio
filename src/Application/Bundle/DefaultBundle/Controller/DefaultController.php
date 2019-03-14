@@ -137,6 +137,7 @@ class DefaultController extends Controller
                 $container = $this->get('service_container');
                 $subject = $this->get('translator')->trans('Stfalcon.com direct order from "%email%"', ['%email%' => $formData['email']]);
                 $mailerNotify = $container->getParameter('mailer_notify');
+                $formData['country'] = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject($subject)
