@@ -6,6 +6,9 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Validator\ErrorElement;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class PostAdmin.
@@ -36,11 +39,77 @@ class PostAdmin extends Admin
         $this->configurationPool->getContainer()->get('application_defaultbundle.service.sitemap')->generateSitemap();
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($post)
+    {
+        $this->preUpdate($post);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $container = $this->getConfigurationPool()->getContainer();
+        $validator = $container->get('validator');
+
+        foreach ($object->getTranslations() as $translation) {
+            if ('additionalInfoFile' === $translation->getField()) {
+                /** @var UploadedFile $uploadFile */
+                $uploadFile = $translation->getContent();
+                $errors = $validator->validatePropertyValue($object, 'additionalInfoFile', $uploadFile);
+                if ($errors->count()) {
+                    $errorElement->addViolation($errors->get(0)->getMessage())->end();
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($post)
+    {
+        $file = null;
+        foreach ($post->getTranslations() as $translation) {
+            if ('additionalInfoFile' === $translation->getField()) {
+                $container = $this->getConfigurationPool()->getContainer();
+                $vichUploader = $container->get('vich_uploader.property_mapping_factory');
+                $path = $vichUploader->fromField($post, 'additionalInfoFile');
+                /** @var UploadedFile $uploadFile */
+                $uploadFile = $translation->getContent();
+
+                if ($uploadFile instanceof UploadedFile) {
+                    try {
+                        $filename = sprintf('%s.%s', uniqid(), $uploadFile->guessExtension());
+                        $file = $uploadFile->move($path->getUploadDir(), $filename);
+                    } catch (\Exception $e) {
+                        $container->get('logger')->addCritical($e->getMessage());
+                    }
+                }
+                break;
+            }
+        }
+
+        if ($file instanceof File) {
+            foreach ($post->getTranslations() as $translation) {
+                if ('additionalInfo' === $translation->getField()) {
+                    $translation->setContent($file->getFilename());
+                    break;
+                }
+            }
+        }
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('translations', 'a2lix_translations_gedmo', array(
                     'translatable_class' => 'Stfalcon\Bundle\BlogBundle\Entity\Post',
+                    'cascade_validation' => true,
                     'fields' => array(
                         'title' => array(
                             'label' => 'title',
@@ -67,6 +136,41 @@ class PostAdmin extends Admin
                                 'class' => 'markitup',
                             ),
                         ),
+                        'additionalInfoTitle' => [
+                            'label' => 'Additional Info Title',
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => false,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
+                            ],
+                        ],
+                        'additionalInfoFile' => [
+                                'label' => 'Additional Info File',
+                                'data_class' => null,
+                                'locale_options' => [
+                                    'ru' => [
+                                        'required' => false,
+                                    ],
+                                    'en' => [
+                                        'required' => false,
+                                    ],
+                                ],
+                        ],
+                        'additionalInfo' => [
+                            'label' => 'Additional Info',
+                            'attr' => ['readonly' => true],
+                            'locale_options' => [
+                                'ru' => [
+                                    'required' => false,
+                                ],
+                                'en' => [
+                                    'required' => false,
+                                ],
+                            ],
+                        ],
                         'metaKeywords' => array(
                             'label' => 'Meta keywords',
                             'locale_options' => array(

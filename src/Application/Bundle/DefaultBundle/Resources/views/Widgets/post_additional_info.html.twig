@@ -1,0 +1,72 @@
+{% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
+
+<section id="hire-us-widget" class="hire_us-form">
+    <div class="wrap_form">
+        <div class="wrap_close">
+            <svg viewBox="0 0 20 20" fill="#fff" class="close-hire_us">
+                <path class="icon-close-nav"
+                      d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"></path>
+            </svg>
+        </div>
+        <form id="get-post-data" class="webdev-form feedback-form" action="{{ path('additional_post_info') }}"
+              method="post">
+            <input type="hidden" id="slug" name="slug" value="{{ post.slug }}">
+            <div class="form-pad">
+                <h2>{{ post.additionalInfoTitle }}</h2>
+
+                <div class="line">
+                    {{ form_widget(form.name, {'attr': {'placeholder': 'Ваше имя'|trans~'*' }}) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.email, {'attr': {'class' : 'email', 'placeholder': 'Электронная почта'|trans~'*' } }) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.phone, {'attr': {'placeholder': 'Телефон'|trans~'*'} }) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.company, {'attr': {'placeholder': 'Компания'|trans} }) }}
+                </div>
+
+                <div class="line">
+                    {{ form_widget(form.position, {'attr': {'placeholder': 'Должность'|trans} }) }}
+                </div>
+
+                <div class="google-captcha">
+                    {{ form_widget(form.captcha, {'theme': 'dark'}) }}
+                </div>
+
+                <div class="line">
+                    <button class="btn btn--marg-bot btn--fluid send-request" onclick="RegSubmit(event)">{{ '__download_file'|trans }}
+                    </button>
+                </div>
+            </div>
+            <div class="form-success">
+
+            </div>
+            {{ form_rest(form) }}
+        </form>
+    </div>
+</section>
+
+<script>
+    var env = '{{ app.environment }}';
+    var form = $('#get-post-data');
+    var submitHireForm = function (token) {
+        if ('prod' === env) {
+            dataLayer.push({'event': 'submit_post_data'});
+        }
+        form.submit();
+    };
+
+    function RegSubmit(e) {
+        e.preventDefault();
+
+        if (form.valid()) {
+            grecaptcha.execute();
+        }
+    }
+</script>
+

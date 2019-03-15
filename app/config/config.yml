@@ -131,6 +131,11 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             delete_on_update: true
             delete_on_remove: true
+        post_file:
+            upload_destination: "%kernel.root_dir%/../web/uploads/posts"
+            namer: vich_uploader.namer_uniqid
+            delete_on_update: true
+            delete_on_remove: true
         user_avatar:
             uri_prefix: /uploads/avatar
             upload_destination: "%kernel.root_dir%/../web/uploads/avatar"

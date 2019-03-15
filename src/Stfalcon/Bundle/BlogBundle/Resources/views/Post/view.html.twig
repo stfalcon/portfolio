@@ -7,10 +7,11 @@
 
         <div class="post-content">
             {{ post.text|moreToSpan|highlightCode|raw }}
-
-            <div class="btn-wrapper-center">
-                <button class="btn btn--grey">Download PDF</button>
-            </div>
+            {%- if post.additionalInfo != null -%}
+                <div class="btn-wrapper-center">
+                    <button class="btn btn--grey hire_us_land">{{ '__download_file'|trans }}</button>
+                </div>
+            {%- endif -%}
 
             {% if post.author %}
                 {% include 'StfalconBlogBundle:Post:about_author.html.twig' with {'author': post.author} %}
@@ -32,7 +33,8 @@
     <button class="button-up scroll-to-top"></button>
 {% endblock %}
 
-{#{% block after_body %}#}
-{#    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}#}
-{#    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': post.slug })) }}#}
-{#{% endblock %}#}
+{% block after_body %}
+    {%- if post.additionalInfo != null -%}
+        {% include '@ApplicationDefault/Widgets/post_additional_info.html.twig' with {'form' : form, 'post': post} %}
+    {%- endif -%}
+{% endblock %}
