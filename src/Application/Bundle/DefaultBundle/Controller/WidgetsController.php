@@ -3,6 +3,7 @@
 namespace Application\Bundle\DefaultBundle\Controller;
 
 use Application\Bundle\DefaultBundle\Form\Type\BaseClientInfoFormType;
+use Application\Bundle\DefaultBundle\Form\Type\PersonFormType;
 use Application\Bundle\DefaultBundle\Form\Type\PromotionOrderFormType;
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -265,7 +266,7 @@ class WidgetsController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $form = $this->createForm(new BasePersonFormType());
+        $form = $this->createForm(new PersonFormType());
         $form->handleRequest($request);
         $translated = $this->get('translator');
 
