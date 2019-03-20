@@ -504,10 +504,15 @@
 .side-projects {
   margin-bottom: 62px;
 
+  &__container {
+    max-width: 1016px;
+    margin: auto;
+  }
+
   &__title {
     font-weight: 300;
-    text-align: center;
     color: #040918;
+    padding: 0 24px;
     margin-bottom: 50px;
   }
 
@@ -849,6 +854,8 @@
 
 @media screen and (max-width:1279px){
   .side-projects {
+    margin-bottom: 0;
+
     &__title {
       margin-bottom: 50px;
     }
@@ -1178,6 +1185,12 @@
   }
 
   // end detail info
+
+  .side-projects {
+    &__title {
+      padding: 0 16px;
+    }
+  }
 }
 
 

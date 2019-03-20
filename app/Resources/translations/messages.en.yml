@@ -343,7 +343,7 @@ __main_page:
     achievements:
         title: Our Achievements and Awards
         achive1: Top Web and Mobile Developer  <br>by ThinkMobiles.com
-        achive2: Top B2B Company <br> by Clutch.com
-        achive3: Top Web Developer <br> by TheManifest.com
+        achive2: Top B2B Company  <br>by Clutch.com
+        achive3: Top Web Developer  <br>by TheManifest.com
     button:
         contact_us: Contact us
