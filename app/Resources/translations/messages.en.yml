@@ -10,8 +10,19 @@ title: __title
 
 Аватарка: Avatar
 Блог: Blog
-__menu.vacancies: Careers
-__menu.opensource: Opensource
+
+__menu:
+    vacancies: Careers
+    opensource: Opensource
+    industries: Industries
+    company: Company
+    works: Works
+    projects: Projects
+    services: Services
+    team: Team
+    about_us: About us
+    blog: Blog
+
 Поиск: Search
 
 'Stfalcon':
@@ -57,11 +68,6 @@ __menu.opensource: Opensource
 'Проект не существует':
     '': 'Project does not exist.'
 
-Проекты: Projects
-about_us: 'About us'
-__menu.industries : Industries
-__menu.company: Company
-__menu.works: Works
 Таг: Tag
 
 'Следующий проект': 'Next project'
@@ -70,7 +76,7 @@ __menu.works: Works
 'Список проектов': 'List of projects'
 Украина: Ukraine
 , 29000: ''
-Услуги: Services
+
 Учасники: Participants
 Фамилия: Surname
 Хмельницкий: Khmelnytskyi
@@ -144,9 +150,6 @@ __projects_text_now: 'projects launched by now|projects launched by now|projects
 'Увлекательный мобильный вариант одноименной настольной игры': Fascinating mobile version of the puzzle board game
 'Двумерный аркадный шутер, оружие и враги в ассортименте': 2D arcade shooter, weapons and enemies in range
 'Головоломка, цель которой — убрать все кубики с игрового поля': Puzzle, which goal is to remove all blocks from the board
-'__main.we_contribution_text': 'Our team loves open-source! </br> We create solutions for <a href="%link%" rel="nofollow" target="_blank">Symfony</a> framework,<br> <a href="%android_link%" rel="nofollow" target="_blank">Android</a> & iOS platforms and share this stuff to our <a href="%github_link%" rel="nofollow" target="_blank">GitHub</a>.'
-
-'Мы принимаем активное участие в создании библиотек для Android-разработчиков, а также постоянно добавляем новые open-source проекты в наш GitHub-репозиторий.': We actively participate in the buildout of Android open source libraries and constantly update our GitHub repository with new open source projects.
 
 разработка<br/>веб-сайтов: Web<br/>Development
 Разработка веб-сайтов: Web Development
@@ -316,16 +319,6 @@ main_page.service7.title: QA and Testing
 main_page.service8.title: DevOps
 main_page.service9.title: Technical Support
 
-main_page.service1.description: ''
-main_page.service2.description: ''
-main_page.service3.description: ''
-main_page.service4.description: ''
-main_page.service5.description: ''
-main_page.service6.description: ''
-main_page.service7.description: ''
-main_page.service8.description: ''
-main_page.service9.description: ''
-
 __back_to_vacansy_list: Back to vacancies
 __invite_to_our_team: Welcome to our team
 __reply_to_vacancy: Reply to vacancy
@@ -339,3 +332,19 @@ __lead_form.title : View the full version of the case
 __lead_form.description : Enter your contacts to continue
 __lead_form.button : Continue
 __download_file: Download file
+__main_page:
+    service_title:
+        web: We work on the projects with great and complex functionality and have the experience of working with heavy workload and micro services. We can build independent front- and back-end parts.
+        ios: Сreates the apps which are fully focused on the client’s needs. On your request, we can implement machine learning algorithms, touch ID or Face ID authorizations and integrate Apple Pay into mobile applications.
+        android: We develop native and cross-platform mobile apps, using modern programming languages (Java, Kotlin and Flutter). Our team has expertise in GPS tracking and real-time synchronization implementation, as well as third party integrations, like payment systems.
+        vr: Exploiting the leading-edge VR technologies, we are moving to the next level by eager to create the products which change things for the greater good through the high-quality technology.
+        wearable: We help businesses and startups to integrate their custom solutions with the most advanced devices which can be conveniently worn or carried. It might be a motion tracking solution for logistics and travel, a health monitoring app, an employee productivity tracking software and more.
+        kiosks: With dozens of production projects under our belt, we have vast experience. Using the complex approach in our work we can create any solution - from an app to kiosk.
+
+    achievements:
+        title: Our Achievements and Awards
+        achive1: Top Web and Mobile Developer  <br>by ThinkMobiles.com
+        achive2: Top B2B Company <br> by Clutch.com
+        achive3: Top Web Developer <br> by TheManifest.com
+    button:
+        contact_us: Contact us

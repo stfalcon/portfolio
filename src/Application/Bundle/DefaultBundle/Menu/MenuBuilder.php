@@ -234,14 +234,14 @@ class MenuBuilder
                 'config' => [],
                 'children' => [
                     [
-                        'title' => $this->translator->trans('Проекты'),
+                        'title' => $this->translator->trans('__menu.projects'),
                         'config' => [
                             'route' => 'portfolio_all_projects',
                         ],
                         'child_routes' => ['portfolio_category_project', 'portfolio_project_view'],
                     ],
                     [
-                        'title' => $this->translator->trans('Услуги'),
+                        'title' => $this->translator->trans('__menu.services'),
                         'config' => [
                             'route' => 'portfolio_categories_list',
                             'routeParameters' => ['slug' => 'web-development'],
@@ -291,7 +291,7 @@ class MenuBuilder
                 ],
             ],
             [
-                'title' => $this->translator->trans('Блог'),
+                'title' => $this->translator->trans('__menu.blog'),
                 'config' => [
                     'route' => 'blog',
                 ],
@@ -302,7 +302,7 @@ class MenuBuilder
                 'config' => [],
                 'children' => [
                     [
-                        'title' => $this->translator->trans('Команда'),
+                        'title' => $this->translator->trans('__menu.team'),
                         'config' => [
                             'route' => 'team',
                         ],
@@ -315,7 +315,7 @@ class MenuBuilder
                         'child_routes' => ['jobs_job_view'],
                     ],
                     [
-                        'title' => $this->translator->trans('about_us').'<span class="type-hint">PDF</span>',
+                        'title' => $this->translator->trans('__menu.about_us').'<span class="type-hint">PDF</span>',
                         'config' => [
                             'route' => 'show_pdf',
                             'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2019.pdf'],
