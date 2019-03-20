@@ -335,12 +335,11 @@ __download_file: Download file
 __main_page:
     service_title:
         web: We work on the projects with great and complex functionality and have the experience of working with heavy workload and micro services. We can build independent front- and back-end parts.
-        ios: Сreates the apps which are fully focused on the client’s needs. On your request, we can implement machine learning algorithms, touch ID or Face ID authorizations and integrate Apple Pay into mobile applications.
-        android: We develop native and cross-platform mobile apps, using modern programming languages (Java, Kotlin and Flutter). Our team has expertise in GPS tracking and real-time synchronization implementation, as well as third party integrations, like payment systems.
+        ios: Сreates the apps which are fully focused on the client’s needs. We can implement machine learning algorithms, touch ID or Face ID authorizations, integrate Apple Pay into mobile apps.
+        android: Develop native and cross-platform mobile apps. Our team has expertise in GPS tracking and real-time synchronization, as well as third party integrations, like payment systems.
         vr: Exploiting the leading-edge VR technologies, we are moving to the next level by eager to create the products which change things for the greater good through the high-quality technology.
-        wearable: We help businesses and startups to integrate their custom solutions with the most advanced devices which can be conveniently worn or carried. It might be a motion tracking solution for logistics and travel, a health monitoring app, an employee productivity tracking software and more.
+        wearable: We help businesses and startups to create custom solutions for wearable devices. It might be a motion tracking software, a health monitoring app and more.
         kiosks: With dozens of production projects under our belt, we have vast experience. Using the complex approach in our work we can create any solution - from an app to kiosk.
-
     achievements:
         title: Our Achievements and Awards
         achive1: Top Web and Mobile Developer  <br>by ThinkMobiles.com
