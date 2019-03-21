@@ -96,6 +96,26 @@ class MailerService
     }
 
     /**
+     * @param array  $params
+     * @param string $subject
+     *
+     * @return mixed
+     */
+    public function sendPostDownloadedInfo(array $params, $subject)
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->options['fromEmail'])
+            ->setTo($this->options['fromEmail'])
+            ->setBody(
+                $this->getBody('@ApplicationDefault/emails/lead_form.html.twig', $params),
+                'text/html'
+            );
+
+        return $this->mailer->send($message);
+    }
+
+    /**
      * @param string $template
      * @param array  $templateParams
      *

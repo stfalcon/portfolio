@@ -5,17 +5,23 @@ namespace Stfalcon\Bundle\BlogBundle\Entity;
 use Application\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Translatable\Translatable;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Post entity.
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
+ *
  * @ORM\Table(name="blog_posts")
  * @ORM\Entity(repositoryClass="Stfalcon\Bundle\BlogBundle\Repository\PostRepository")
+ *
  * @Gedmo\TranslationEntity(class="Stfalcon\Bundle\BlogBundle\Entity\PostTranslation")
+ *
+ * @Vich\Uploadable
  */
 class Post implements Translatable
 {
@@ -127,6 +133,8 @@ class Post implements Translatable
      *   mappedBy="object",
      *   cascade={"persist", "remove"}
      * )
+     *
+     * @Assert\Valid
      */
     private $translations;
 
@@ -162,9 +170,38 @@ class Post implements Translatable
      * @var string
      *
      * @ORM\Column(name="meta_title", type="text", nullable=true)
+     *
      * @Gedmo\Translatable(fallback=true)
      */
     private $metaTitle;
+
+    /**
+     * @var File
+     *
+     * @Assert\File(
+     *     mimeTypes={"application/pdf"}
+     * )
+     * @Vich\UploadableField(mapping="post_file", fileNameProperty="additionalInfo")
+     */
+    private $additionalInfoFile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="additional_info", type="string", length=255, nullable=true)
+     *
+     * @Gedmo\Translatable(fallback=true)
+     */
+    private $additionalInfo;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Translatable(fallback=true)
+     *
+     * @ORM\Column(name="additional_info_title", type="string", length=255, nullable=true)
+     */
+    private $additionalInfoTitle;
 
     /**
      * Initialization properties for new post entity.
@@ -382,13 +419,13 @@ class Post implements Translatable
 
     /**
      * This method allows a class to decide how it will react when it is treated like a string.
-     * Changed as slug because some posts haven't ru title
+     * Changed as slug because some posts haven't ru title.
      *
      * @return string
      */
     public function __toString()
     {
-        return $this->getSlug() ?: 'новый пост' ;
+        return $this->getSlug() ?: 'новый пост';
     }
 
     /**
@@ -595,6 +632,67 @@ class Post implements Translatable
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getAdditionalInfoFile()
+    {
+        return $this->additionalInfoFile;
+    }
+
+    /**
+     * @param File $additionalInfoFile
+     *
+     * @return $this
+     */
+    public function setAdditionalInfoFile($additionalInfoFile)
+    {
+        $this->setUpdated(new \DateTime());
+        $this->additionalInfoFile = $additionalInfoFile;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdditionalInfo()
+    {
+        return $this->additionalInfo;
+    }
+
+    /**
+     * @param string $additionalInfo
+     *
+     * @return $this
+     */
+    public function setAdditionalInfo($additionalInfo)
+    {
+        $this->additionalInfo = $additionalInfo;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdditionalInfoTitle()
+    {
+        return $this->additionalInfoTitle;
+    }
+
+    /**
+     * @param string $additionalInfoTitle
+     *
+     * @return $this
+     */
+    public function setAdditionalInfoTitle($additionalInfoTitle)
+    {
+        $this->additionalInfoTitle = $additionalInfoTitle;
 
         return $this;
     }

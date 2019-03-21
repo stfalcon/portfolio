@@ -12,7 +12,8 @@ $(document).on('click', '.close-hire_us', function(){
 });
 
 //Show hire us
-$(document).on('click', '.hire_us, .hire_us_land, .hire_us_main' , function () {
+$(document).on('click', '.hire_us, .hire_us_land, .hire_us_main' , function (e) {
+    e.preventDefault()
     $('body').addClass('open-hire_us');
 });
 
@@ -28,6 +29,7 @@ $(function () {
 
     var formDelay = 3000;
     var $hireUsForm = $('#hire-us-form');
+
 
     $.validator.methods.email = function( value, element ) {
         return this.optional( element ) || /^\w([\-\.]{0,1}\w)*\@\w+([\-\.]{0,1}\w)*\.\w{2,4}$/.test( value );
@@ -105,6 +107,47 @@ $(function () {
             });
             return false;
         }
+    });
+    var $getPostData = $('#get-post-data');
+
+    $getPostData.validate({
+        rules: {
+            'client_info[name]': {
+                required: true,
+                minlength: 3,
+                maxlength: 64
+            },
+            'client_info[email]': {
+                required: true,
+                minlength: 3,
+                maxlength: 72,
+                email: true
+            },
+            'client_info[company]': {
+                required: false,
+                minlength: 3,
+                maxlength: 72
+            },
+            'client_info[position]': {
+                required: false,
+                minlength: 3,
+                maxlength: 72
+            },
+            'client_info[phone]': {
+                required: true,
+                phone: '[0-9\\-\\(\\)\\s]+$'
+            }
+        },
+        errorPlacement: function (label, element) {
+            label.addClass('error-pad');
+            var parent_elem = element.parent();
+            if (parent_elem.hasClass('line__radio')) {
+                parent_elem = parent_elem.parent();
+            }
+            label.insertAfter(parent_elem);
+        },
+        wrapper: 'div',
+        debug: false
     });
 
     var $leadForm = $('#lead-form');

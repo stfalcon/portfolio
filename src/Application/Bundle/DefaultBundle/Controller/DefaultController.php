@@ -135,26 +135,15 @@ class DefaultController extends Controller
             if ($directOrderForm->isValid()) {
                 $formData = $directOrderForm->getData();
                 $container = $this->get('service_container');
-                $attachments = [];
-                if ($formData['attach']) {
-                    /** @var UploadedFile $attach */
-                    $attach = $formData['attach'];
-                    $attachFile = $attach->move(realpath($container->getParameter('kernel.root_dir').'/../attachments/'), $attach->getClientOriginalName());
-                    $attachments[] = $attachFile;
-                }
-
                 $subject = $this->get('translator')->trans('Stfalcon.com direct order from "%email%"', ['%email%' => $formData['email']]);
                 $mailerNotify = $container->getParameter('mailer_notify');
+                $formData['country'] = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject($subject)
                     ->setFrom($mailerNotify)
                     ->setReplyTo($formData['email'])
                     ->setTo($mailerNotify);
-
-                foreach ($attachments as $file) {
-                    $message->attach(\Swift_Attachment::fromPath($file->getRealPath())->setFilename($file->getFilename()));
-                }
 
                 $message->setBody(
                     $this->renderView(

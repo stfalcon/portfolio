@@ -10,9 +10,7 @@
 
 {% block header_content %}
     {% if project.showCase %}
-        <header class="header white">
             {% include '::_header.html.twig' %}
-        </header>
     {% else %}
         {{ parent() }}
     {% endif %}

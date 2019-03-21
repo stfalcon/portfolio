@@ -1,12 +1,15 @@
-<nav class="languages">
-    <ul>
-        {% set currentLang = '' %}
-        {% for key, locale in locales %}
-            <li {% if key == app.request.locale %}class="active" {% set currentLang = locale['lang'] %}{% endif %}>
-                <a href="{{ locale['link'] }}">{{ locale['lang'] }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/></svg>
-</nav>
-<span class="show-mobile-nav current-language">{{ currentLang }}</span>
+<div class="lang header__lang">
+    <a id="lang_en" href="{{ locales['en'] }}" class="lang__item{% if 'en' == app.request.locale %} lang__item--active{% endif %}">EN</a>
+    <label class="switch lang__switch">
+        <input id="lang_switcher" type="checkbox" class="switch__checkbox"{% if 'ru' == app.request.locale %} checked{% endif %}>
+        <span class="switch__slider"></span>
+    </label>
+    <a id="lang_ru" href="{{ locales['ru'] }}" class="lang__item{% if 'ru' == app.request.locale %} lang__item--active{% endif %}">RU</a>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#lang_switcher').on('change', function () {
+            window.location.href = $(this).is(':checked') ? $('#lang_ru').attr('href') : $('#lang_en').attr('href');
+        });
+    });
+</script>

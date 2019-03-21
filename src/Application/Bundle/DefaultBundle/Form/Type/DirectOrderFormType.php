@@ -87,7 +87,7 @@ class DirectOrderFormType extends AbstractType
                 [
                     'attr'        => [
                         'placeholder' => $this->translator->trans(<<<TEXT
-Добрый день! Я хочу заказать мобильное приложение под iOS. Мой бюджет — 40 000$. Идея приложения состоит в том, что...
+Несколько слов о проекте
 TEXT
                         ),
                     ],
@@ -101,15 +101,15 @@ TEXT
                     ],
                 ]
             )
-            ->add('attach', 'file', [
-                'label'       => false,
-                'required'    => false,
-                'constraints' => [
-                    new Assert\File([
-                        'maxSize' => '20M',
-                    ]),
-                ],
-            ])
+            ->add(
+                'budget',
+                'hidden',
+                [
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                    ],
+                ]
+            )
             ->add('captcha', 'recaptcha', [
                 'label' => false,
             ]);

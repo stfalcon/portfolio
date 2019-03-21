@@ -2,6 +2,7 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
+use Application\Bundle\DefaultBundle\Form\Type\BaseClientInfoFormType;
 use Application\Bundle\DefaultBundle\Helpers\SeoOpenGraphEnum;
 use Application\Bundle\UserBundle\Entity\User;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
@@ -158,8 +159,11 @@ class PostController extends AbstractController
 
         $this->get('app.default.seo_alternate')->addAlternate($post, $seo, $request);
 
+        $form = $this->createForm(new BaseClientInfoFormType());
+
         return $this->_getRequestArrayWithDisqusShortname([
             'post' => $post,
+            'form' => $form->createView(),
         ]);
     }
 

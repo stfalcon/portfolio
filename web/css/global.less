@@ -45,7 +45,7 @@ body {
   max-width: 1290px;
   width: 93.71%;
   margin: 0 auto;
-  padding-top: 105px;
+  padding-top: 30px;
 }
 
 hr {
@@ -185,33 +185,42 @@ textarea {
   .box-sizing(border-box);
   width: 100%;
   background: #fff;
-  border: none;
   .border-radius(4px);
-  .box-shadow(0 1px 1px rgba(0,0,0,0.35));
-  //height: 51px;
+  border: 1px solid #E3E7F4;
+  box-sizing: border-box;
+  border-radius: 4px;
   padding: 14px 16px 13px;
-  font-family: @global-font;
+  font-family: 'PT-Root-UI_Bold', Helvetica, Arial, serif;
   font-size: 1.117em;
   line-height: 1.335em;
+  outline: none;
+  appearance: none;
+
+  &:focus {
+    border: 1px solid #2B55DB
+  }
 }
 
 textarea {
-  height: 173px;
+  height: 50px;
 }
 
 /*placeholder css*/
 form :-moz-placeholder {
-  color: #919699;
+  font-family: 'PTSerif-Regular', Helvetica, Arial, serif;
+  color: #8C9BA1;
   opacity: 1 !important;
 }
 
 form ::-moz-placeholder {
-  color: #919699;
+  font-family: 'PTSerif-Regular', Helvetica, Arial, serif;
+  color: #8C9BA1;
   opacity: 1 !important;
 }
 
 form ::-webkit-input-placeholder {
-  color: #919699 !important;
+  font-family: 'PTSerif-Regular', Helvetica, Arial, serif;
+  color: #8C9BA1 !important;
   line-height: 1.335em;
 }
 
@@ -721,51 +730,6 @@ input.error {
 
 /* project-list */
 
-@media screen and (max-width:715px){
-  .icon-old-facebook {
-    .sq(32px);
-    background-position: -105px -3px;
-
-    .svg & {
-      background-position: -28px -3px;
-      background-size: 830px auto;
-    }
-  }
-  .icon-old-twitter {
-    .sq(32px);
-    background-position: -140px -3px;
-
-    .svg & {
-      background-position: -63px -3px;
-      background-size: 830px auto;
-    }
-  }
-
-  .icon-old-linkedin {
-    .sq(32px);
-    background-position: -175px -3px;
-
-    .svg & {
-      background-position: -98px -3px;
-      background-size: 830px auto;
-    }
-  }
-
-  .icon-old-github {
-    .sq(32px);
-    background-position: -205px -3px;
-
-    .svg & {
-      background-position: -133px -3px;
-      background-size: 830px auto;
-    }
-  }
-  .icon-old.icon-old-youtube {
-    width: 32px;
-    height: 32px;
-  }
-}
-
 @media screen and (max-width:410px){
   section.contacts {
     margin-bottom: 22px;
@@ -774,48 +738,6 @@ input.error {
     h3 {
       font-size: 1.714rem;
     }
-  }
-
-  .icon-old-facebook {
-    .sq(48px);
-    background-position: -3px -37px;
-
-    .svg & {
-      background-position: -39px -3px;
-      background-size: 1200px auto;
-    }
-  }
-  .icon-old-twitter {
-    .sq(48px);
-    background-position: -55px -37px;
-
-    .svg & {
-      background-position: -90px -3px;
-      background-size: 1200px auto;
-    }
-  }
-  .icon-old-linkedin {
-    .sq(48px);
-    background-position: -107px -37px;
-
-    .svg & {
-      background-position: -141px -3px;
-      background-size: 1200px auto;
-    }
-  }
-
-  .icon-old-github {
-    .sq(48px);
-    background-position: -159px -37px;
-
-    .svg & {
-      background-position: -192px -3px;
-      background-size: 1200px auto;
-    }
-  }
-  .icon-old.icon-old-youtube {
-    width: 48px;
-    height: 48px;
   }
 }
 
@@ -840,4 +762,8 @@ input.error {
 
 iframe[name="google_conversion_frame"] {
   display: none;
+}
+
+figure {
+  margin: 0
 }

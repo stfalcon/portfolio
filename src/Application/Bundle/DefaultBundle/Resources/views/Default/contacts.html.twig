@@ -36,11 +36,10 @@
 
 {% block content_wrapper %}
     <section class="contacts-wrapper">
-        <h1>
-            {{ 'Контактная информация'|trans }}
-        </h1>
-
         <div class="clearfix">
+            <div class="contacts-form-wr">
+                {% include '@ApplicationDefault/Default/_direct_order_form.html.twig' %}
+            </div>
             <div class="contacts-inf">
                 <div class="info-group">
                     <span>{{ "Позвонить" | trans() }}:</span>
@@ -55,9 +54,13 @@
                     <a href="mailto:info@stfalcon.com"><b>info@stfalcon.com</b></a>
                 </div>
                 <div class="info-group">
-                    <span>{{ "Зайти в гости" | trans() }}:</span>
-                    <b>{{ "улица Заречанская, 3/2"|trans() }}, <br> {{ "Хмельницкий"|trans() }}, {{ "Украина"|trans() }}{{ ", 29000"|trans() }}</b>
-                    <br>
+                    <span>{{ "Наши офисы" | trans() }}:</span>
+                    <div>
+                        <b>{{ "Бостон"|trans() }}, {{ "США"|trans() }}</b>
+                    </div>
+                    <div style="margin-top: 10px">
+                        <b>{{ "улица Заречанская, 3/2"|trans() }}, <br> {{ "Хмельницкий"|trans() }}, {{ "Украина"|trans() }}{{ ", 29000"|trans() }}</b>
+                    </div>
                     <div style="margin-top: 10px">
                         <b>{{ "переулок Ахтырский, 7"|trans() }}, <br> {{ "Киев"|trans() }}, {{ "Украина"|trans() }}</b>
                     </div>
@@ -69,9 +72,6 @@
                     <li><a href="https://www.youtube.com/user/stfalconcom" rel="nofollow" target="_blank"><span class="icon-old icon-old-youtube"></span> <span>YouTube</span></a></li>
                     <li><a href="https://github.com/stfalcon-studio" rel="nofollow" target="_blank"><span class="icon-old icon-old-github"></span> <span>GitHub</span></a></li>
                 </ul>
-            </div>
-            <div class="contacts-form-wr">
-                {% include '@ApplicationDefault/Default/_direct_order_form.html.twig' %}
             </div>
         </div>
     </section>

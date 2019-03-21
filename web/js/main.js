@@ -12,6 +12,7 @@ $(function () {
             contentType: false,
             success: function (response) {
                 $directOrderForm.replaceWith(response.view);
+                window.scrollTo(0, 0);
             }
         });
     });
@@ -109,13 +110,29 @@ $(function () {
         }
     });
 
-    var yearsCnt = $('.years-count'),
+    var yearsCnt = $('.range-slider__count'),
         startPos;
-    var yearList = $('.year-slider-wrapp li');
+    var yearList = $('.range-slider__content li');
     var usersList = $('.team-list li');
     function updateYear(value) {
-        $('#view-year').html(value)
+        $('#range-slider-text').html(value).trigger('change');
     }
+    var sliderParams = {
+      min: 0,
+      max: yearList.length - 1,
+      step: 1,
+      range: 'min',
+      start: function (event, ui) {
+        startPos = $(yearList[ui.value]).data('val');
+      },
+      change: function (event, ui) {
+        counter(startPos, $(yearList[ui.value]).data('val'));
+        updateYear($(yearList[ui.value]).data('text'));
+      },
+      stop: function (event, ui) {
+        changeUsers($(yearList[ui.value]).text());
+      }
+    };
 
     function changeUsers(selected_year) {
         $.each(usersList, function (index, value) {
@@ -137,25 +154,15 @@ $(function () {
     }
 
     if ($('#year-slider').length) {
-        $("#year-slider").slider({
-            min: 0,
-            max: yearList.length - 1,
-            value: yearList.length - 1,
-            step: 1,
-            range: 'min',
-            start: function (event, ui) {
-                startPos = $(yearList[ui.value]).data('val');
-            },
-            change: function (event, ui) {
-                counter(startPos, $(yearList[ui.value]).data('val'));
-                updateYear($(yearList[ui.value]).data('text'));
-            },
-            stop: function (event, ui) {
-                changeUsers($(yearList[ui.value]).text());
-            }
-        });
-        $('#year-slider').draggable(); // Enable toush dragging
+      var slideParamsForYear = $.extend({}, sliderParams, { value: yearList.length - 1 });
+      $("#year-slider").slider(slideParamsForYear);
+      $('#year-slider').draggable(); // Enable toush dragging
     }
+
+  if ($('#range-slider').length) {
+    $("#range-slider").slider(sliderParams).data("slider")._change();
+    $('#range-slider').draggable(); // Enable toush dragging
+  }
 
 
     function counter(start, end) {

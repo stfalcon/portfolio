@@ -23,7 +23,7 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 {% endblock %}
-{% block after_body %}
-    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'projects' } )) }}
-{% endblock %}
+{#{% block after_body %}#}
+{#    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}#}
+{#    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'projects' } )) }}#}
+{#{% endblock %}#}

@@ -13,13 +13,13 @@
                 {{ 'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!'|trans }}
             </p>
         </section>
-        <section class="amount-projects">
-            <div class="projects-counter">
+        <section class="range-slider range-slider--amount-projects">
+            <div class="range-slider__counter">
                 {% set lastYear = years|last %}
-                <span class="years-count">{{ lastYear.counter }}</span><span>+</span>
-                <p id="view-year"><time>{{ '__projects_text_now'|trans()|transchoice(lastYear.counter) }}</time> {{ ""|trans }}</p>
+                <span class="range-slider__count">{{ lastYear.counter }}</span><span>+</span>
+                <p id="range-slider-text"><time>{{ '__projects_text_now'|trans()|transchoice(lastYear.counter) }}</time> {{ ""|trans }}</p>
             </div>
-            <div class="year-slider-wrapp">
+            <div class="range-slider__content">
                 <div id="year-slider"></div>
                 <ul>
                     {% for year in years %}
@@ -70,7 +70,7 @@
         var last_year = '{{ lastYear.year }}';
     </script>
 {% endblock %}
-{% block after_body %}
-    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}
-    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'team' })) }}
-{% endblock %}
+{#{% block after_body %}#}
+{#    {% include('@StfalconPortfolio/hire_us_right_button.html.twig') %}#}
+{#    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'team' })) }}#}
+{#{% endblock %}#}

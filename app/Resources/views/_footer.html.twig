@@ -1,8 +1,8 @@
 <div class="footer-top clearfix">
     <a class="footer-logo" href="/"></a>
-    <nav class="main-nav main-nav--footer">
-        {{ knp_menu_render('footer_main') }}
-    </nav>
+    {#<nav class="main-nav main-nav--footer">#}
+        {#{{ knp_menu_render('footer_main') }}#}
+    {#</nav>#}
     <div class="contacts-content">
         <nav class="services-nav">
             {{ knp_menu_render('service_menu') }}
@@ -24,7 +24,8 @@
             </ul>
         </section>
         <div class="address">
-            <span>{{ "Зайти в гости" | trans() }}:</span>
+            <span>{{ "Наши офисы" | trans() }}:</span>
+            <span class="adress">{{ "Бостон"|trans() }}, {{ "США"|trans() }}</span>
             <span class="adress">{{ "улица Заречанская, 3/2, Хмельницкий, Украина"|trans() }}</span>
             <span class="adress">{{ "переулок Ахтырский, 7, Киев, Украина"|trans() }}</span>
             {{ include('::_social_links.html.twig') }}

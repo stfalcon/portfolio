@@ -1,15 +1,18 @@
 <header class="header">
-    {% include '_banner.html.twig' %}
-    <div class="header-line">
-        <div class="show-mobile-nav">
-            <i class="icon icon-menu"> </i>
-        </div>
-        <a class="logo" href="{{ path('homepage') }}" title="{{ 'Студия stfalcon.com'|trans }}"></a>
-        <nav class="main-nav">
-            {{ knp_menu_render('main', {'template': '::_knp_render_only.html.twig'}) }}
-            <svg viewBox="0 0 20 20" fill="#fff" class="close-mobile-nav"><path class="icon-close-nav" d="M19.53 18.47l.53.53L19 20.06l-.53-.53L10 11.06l-8.47 8.47-.53.53L-.06 19l.53-.53L8.94 10 .47 1.53-.06 1 1-.06l.53.53L10 8.94 18.47.47 19-.06 20.06 1l-.53.53L11.06 10l8.47 8.47zm0 0"/></svg>
-        </nav>
-        <a class="header-line__btn home-btn home-btn--sm home-btn--dark" target="_blank" href="{{ path('show_pdf', {'pdfFilename':'About_Stfalcon_2019.pdf'}) }}">{{ 'about_us'|trans }}</a>
-        {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
+    <div class="header__left">
+        <a class="main-logo" href="{{ path('homepage') }}" title="{{ 'Студия stfalcon.com'|trans }}">
+            <img src="{{ asset('img/svg/stfalcon_logo.svg')}}" alt="" class="main-logo__img">
+        </a>
     </div>
+        <nav class="header-navigation">
+            {{ knp_menu_render('main', {'template': '::_knp_render_only.html.twig'}) }}
+        </nav>
+        {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
+        <a href="{{ path('contacts') }}" class="btn btn--blue header__btn">{{ '__main_page.button.contact_us'|trans }}</a>
 </header>
+
+<span style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <path id="icon-arrow" d="M1 1L5.5 5.5L10 1"/>
+    </svg>
+</span>

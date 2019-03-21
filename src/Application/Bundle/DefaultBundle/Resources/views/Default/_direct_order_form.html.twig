@@ -1,7 +1,7 @@
 {% form_theme form '@ApplicationDefault/Form/fields.html.twig' %}
 
 <form action="" method="post" id="direct-order-form" enctype="multipart/form-data">
-    <h3>{{ "Свяжитесь с нами и получите бесплатную консультацию по проекту" | trans() }}</h3>
+    <h2 class="promo-title">{{ "Свяжитесь с нами и получите бесплатную консультацию по проекту" | trans() }}</h2>
     {{ form_errors(form) }}
     <div class="line">
         {{ form_widget(form.name) }}
@@ -19,26 +19,50 @@
         {{ form_widget(form.message) }}
         {{ form_errors(form.message) }}
     </div>
+    <div class="line">
+        <section class="range-slider">
+            <div class="range-slider__counter">
+                <p class="range-slider__text">{{ 'text.budget'|trans }} <span id="range-slider-text"></span></p>
+            </div>
+            <div class="range-slider__content">
+                <div id="range-slider"></div>
+                <ul>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '10 000'}) }}">10K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '20 000'}) }}">20K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '50 000'}) }}">50K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '100 000'}) }}">100K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '150 000'}) }}">150K</li>
+                    <li data-text="{{ 'text.up_to'|trans({'%sum%' : '200 000'}) }}">200K</li>
+                </ul>
+            </div>
+        </section>
+        {{ form_widget(form.budget) }}
+        {{ form_errors(form.budget) }}
+    </div>
     <div class="line btn-line">
-        <div class="file-input">
-            <p class="filename">{{ "Прикрепить файл" | trans() }}</p>
-            <p class="filesize">{{ "до 20 МБ" | trans() }}</p>
-            {{ form_widget(form.attach) }}
-            {{ form_errors(form.attach) }}
-        </div>
+        <button id="contact-submit" class="btn btn--blue" onclick="RegSubmit(event)" >{{ "Отправить" | trans() }}</button>
         <div class="google-captcha contact-captcha">
             {{ form_widget(form.captcha) }}
             {{ form_errors(form.captcha) }}
         </div>
-        <button id="contact-submit" class="btn" onclick="RegSubmit(event)" >{{ "Отправить" | trans() }}</button>
     </div>
     {{ form_rest(form) }}
 </form>
 <script>
+    var env = '{{ app.environment }}';
+
+    $(document).ready(function () {
+        $('#range-slider-text').on('change', function () {
+           $('#direct_order_budget').val($(this).html());
+        });
+    });
+
     var submitHireForm = function (token) {
         var form = $('#direct-order-form');
         form.submit();
-        dataLayer.push({'event': 'submit_direct_order_form'});
+        if ('prod' === env) {
+            dataLayer.push({'event': 'submit_direct_order_form'});
+        }
     };
 
     function RegSubmit(e) {
