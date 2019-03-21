@@ -49,6 +49,8 @@
     {{ form_rest(form) }}
 </form>
 <script>
+    var env = '{{ app.environment }}';
+
     $(document).ready(function () {
         $('#range-slider-text').on('change', function () {
            $('#direct_order_budget').val($(this).html());
@@ -58,7 +60,9 @@
     var submitHireForm = function (token) {
         var form = $('#direct-order-form');
         form.submit();
-        dataLayer.push({'event': 'submit_direct_order_form'});
+        if ('prod' === env) {
+            dataLayer.push({'event': 'submit_direct_order_form'});
+        }
     };
 
     function RegSubmit(e) {

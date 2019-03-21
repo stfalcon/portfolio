@@ -12,6 +12,7 @@ $(function () {
             contentType: false,
             success: function (response) {
                 $directOrderForm.replaceWith(response.view);
+                window.scrollTo(0, 0);
             }
         });
     });
