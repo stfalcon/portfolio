@@ -226,7 +226,7 @@ class MenuBuilder
             [
                 'title' => $this->translator->trans('__menu.works').self::MENU_ICON,
                 'config' => [],
-                'child_routes' => ['portfolio_all_projects', 'portfolio_categories_list', 'opensource'],
+                'child_routes' => ['portfolio_category_project', 'portfolio_all_projects', 'portfolio_categories_list', 'opensource'],
                 'children' => [
                     [
                         'title' => $this->translator->trans('__menu.projects'),
