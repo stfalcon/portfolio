@@ -173,6 +173,7 @@ class MenuBuilder
     private function getMainMenu(Request $request, $withIndustries = true)
     {
         $currentRoute = $request->get('_route');
+        $currentType = $request->get('type');
         $menu = $this->factory->createItem('root', [
             'childrenAttributes' => [
                 'class' => 'navigation',
@@ -182,17 +183,7 @@ class MenuBuilder
         $menu->setUri($request->getRequestUri());
 
         foreach ($this->getMenuItemRoutesRelations() as $menuItem) {
-//            if ($withIndustries && self::INDUSTRIES_MENU_INDEX === $index) {
-//                $menu->addChild($this->translator->trans('__menu.industries'), ['uri' => '#'])
-//                    ->setCurrent('page_landing' === $currentRoute)
-//                    ->setAttribute('class', 'industry')
-//                    ->setLinkAttribute('class', 'industry__title')
-//                    ->addChild($this->templating->render('::_sub_menu_industries.html.twig'))
-//                    ->setAttribute('render', true)
-//                ;
-//            }
-
-            $this->addMenu($menu, $menuItem, $currentRoute);
+            $this->addMenu($menu, $menuItem, $currentRoute, $currentType);
         }
 
         return $menu;
@@ -202,12 +193,15 @@ class MenuBuilder
      * @param ItemInterface $menu
      * @param array         $menuItem
      * @param string        $currentRoute
+     * @param string        $currentType
      * @param bool          $isSubMenu
      */
-    private function addMenu(ItemInterface $menu, array $menuItem, $currentRoute, $isSubMenu = false)
+    private function addMenu(ItemInterface $menu, array $menuItem, $currentRoute, $currentType, $isSubMenu = false)
     {
         $isCurrent = (isset($menuItem['config']['route']) && $currentRoute === $menuItem['config']['route']) || (isset($menuItem['child_routes']) && \in_array($currentRoute, $menuItem['child_routes']));
-
+        if ($isCurrent && 'page_landing' === $currentRoute && isset($menuItem['config']['routeParameters']['type'])) {
+            $isCurrent = $currentType === $menuItem['config']['routeParameters']['type'];
+        }
         $menu->addChild($menuItem['title'], $menuItem['config'])->setCurrent($isCurrent);
 
         $typeIndex = (int) $isSubMenu;
@@ -218,7 +212,7 @@ class MenuBuilder
         if (isset($menuItem['children'])) {
             $menu[$menuItem['title']]->setChildrenAttributes($this->types[$typeIndex]['children_attributes']);
             foreach ($menuItem['children'] as $child) {
-                $this->addMenu($menu[$menuItem['title']], $child, $currentRoute, true);
+                $this->addMenu($menu[$menuItem['title']], $child, $currentRoute, $currentType, true);
             }
         }
     }
@@ -232,6 +226,7 @@ class MenuBuilder
             [
                 'title' => $this->translator->trans('__menu.works').self::MENU_ICON,
                 'config' => [],
+                'child_routes' => ['portfolio_category_project', 'portfolio_all_projects', 'portfolio_categories_list', 'opensource'],
                 'children' => [
                     [
                         'title' => $this->translator->trans('__menu.projects'),
@@ -259,6 +254,7 @@ class MenuBuilder
             [
                 'title' => $this->translator->trans('__menu.industries').self::MENU_ICON,
                 'config' => [],
+                'child_routes' => ['page_landing'],
                 'children' => [
                     [
                         'title' => $this->translator->trans('main.promo.title2_1'),
@@ -300,6 +296,7 @@ class MenuBuilder
             [
                 'title' => $this->translator->trans('__menu.company').self::MENU_ICON,
                 'config' => [],
+                'child_routes' => ['team', 'jobs_list', 'show_pdf'],
                 'children' => [
                     [
                         'title' => $this->translator->trans('__menu.team'),

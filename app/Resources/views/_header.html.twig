@@ -8,7 +8,9 @@
             {{ knp_menu_render('main', {'template': '::_knp_render_only.html.twig'}) }}
         </nav>
         {{ render(controller('ApplicationDefaultBundle:Widgets:languageSwitcher', {'request': app.request})) }}
+        {%- if hide_contact_btn is not defined -%}
         <a href="{{ path('contacts') }}" class="btn btn--blue header__btn">{{ '__main_page.button.contact_us'|trans }}</a>
+        {%- endif -%}
 </header>
 
 <span style="display: none;">

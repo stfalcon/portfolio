@@ -101,15 +101,7 @@ TEXT
                     ],
                 ]
             )
-            ->add(
-                'budget',
-                'hidden',
-                [
-                    'constraints' => [
-                        new Assert\NotBlank(),
-                    ],
-                ]
-            )
+            ->add('budget','hidden')
             ->add('captcha', 'recaptcha', [
                 'label' => false,
             ]);

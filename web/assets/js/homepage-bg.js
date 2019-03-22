@@ -14,7 +14,7 @@ $(document).ready(function () {
 
                 if ($(elem).attr('data-bg') === ('#FFFFFF')) {
                     $(elem).parent('.our-services').siblings('.projects-list').find('.bg-item--last').css('color', '#2c373c');
-                    $(elem).parent('.open-source').siblings('.projects-list').find('.bg-item--last').css('color', '#2c373c');
+                    $(elem).parent('.achievements').siblings('.projects-list').find('.bg-item--last').css('color', '#2c373c');
                 }
 
                 if ($(elem).hasClass('project-item--dark-text')) {
@@ -27,7 +27,7 @@ $(document).ready(function () {
                 $(elem).prev('.project-item--dark-text').css('color', '#2c373c');
                 $(elem).find('.project-item__description').removeClass('project-item__description--visible');
                 $(elem).parent('.our-services').siblings('.projects-list').find('.bg-item--last').css('color', '#FFFFFF');
-                $(elem).parent('.open-source').siblings('.projects-list').find('.bg-item--last').css('color', '#FFFFFF');
+                $(elem).parent('.achievements').siblings('.projects-list').find('.bg-item--last').css('color', '#FFFFFF');
             }
         });
     }
