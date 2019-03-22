@@ -160,7 +160,7 @@ $(function () {
     }
 
   if ($('#range-slider').length) {
-    $("#range-slider").slider(sliderParams).data("slider")._change();
+    $("#range-slider").slider(sliderParams).data("slider");
     $('#range-slider').draggable(); // Enable toush dragging
   }
 
