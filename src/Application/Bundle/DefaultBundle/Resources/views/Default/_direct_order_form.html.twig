@@ -60,10 +60,13 @@
 
     var submitHireForm = function (token) {
         var form = $('#direct-order-form');
-        form.submit();
         if ('prod' === env) {
             dataLayer.push({'event': 'submit_direct_order_form'});
+            console.log('push');
+        } else {
+            console.log('dev push');
         }
+        form.submit();
     };
 
     function RegSubmit(e) {
