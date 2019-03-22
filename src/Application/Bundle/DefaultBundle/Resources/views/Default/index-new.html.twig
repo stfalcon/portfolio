@@ -97,145 +97,39 @@
         </div>
     </section>
     {% set add_class = ' project-item--left-text' %}
-{#    <section class="projects-list">#}
-{#        {% for project_review in reviews %}#}
-{#            {% set project = project_review['project'] %}#}
-{#            {% set review = project_review['review'] %}#}
-{#            {% if review != null %}#}
-{#                {% set reviewer = review.reviewer %}#}
-{#            {% else %}#}
-{#                {% set reviewer = null %}#}
-{#            {% endif %}#}
-
-{#            {% if add_class == ' project-item--left-text' %}#}
-{#                {% set add_class = '' %}#}
-{#            {% else %}#}
-{#                {% set add_class = ' project-item--left-text' %}#}
-{#            {% endif %}#}
-
-{#            {% if project.useDarkTextColor is defined and project.useDarkTextColor == true %}#}
-{#                {% set text_color_class = 'project-item--dark-text' %}#}
-{#            {% else %}#}
-{#                {% set text_color_class = 'project-item--white-text' %}#}
-{#            {% endif %}#}
-
-{#            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item{% if loop.last %} bg-item--last{% endif %}">#}
-{#            {% if add_class == '' %}#}
-{#                {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}#}
-{#                {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}#}
-{#            {% else %}#}
-{#                {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}#}
-{#                {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}#}
-{#            {% endif %}#}
-{#            </article>#}
-{#        {% endfor %}#}
-{#    </section>#}
-
     <section class="projects-list">
+        {% for project_review in reviews %}
+            {% set project = project_review['project'] %}
+            {% set review = project_review['review'] %}
+            {% if review != null %}
+                {% set reviewer = review.reviewer %}
+            {% else %}
+                {% set reviewer = null %}
+            {% endif %}
 
+            {% if add_class == ' project-item--left-text' %}
+                {% set add_class = '' %}
+            {% else %}
+                {% set add_class = ' project-item--left-text' %}
+            {% endif %}
 
+            {% if project.useDarkTextColor is defined and project.useDarkTextColor == true %}
+                {% set text_color_class = 'project-item--dark-text' %}
+            {% else %}
+                {% set text_color_class = 'project-item--white-text' %}
+            {% endif %}
 
-        <article data-bg="#72BD3E" class="project-item project-item--white-text bg-item">
-            <a href="/en/portfolio/meinfernbus-de" class="project-item__img-block">
-                <img class="project-item__img" src="https://stfalcon.com/uploads/portfolio/projects/5ab10a88a2fa1.png" alt="">
-            </a>                <div class="project-item__description project-item__description--visible">
-                <h2 class="promo-title promo-title--bold project-item__name">MeinFernbus</h2>
-                <div class="project-item__comment">We could arrange such kind of work where the process of development solves much more business problems rather than creates any. This is a very valuable feature when you develop a startup.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="https://stfalcon.com/uploads/avatar/5aba3710360c3.png" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Aleksey Kolupaev,</div>
-                        <div class="comment-author__position">CTO at MeinFernbus</div>
-                    </div>
-                </div>
-                <a href="/en/portfolio/meinfernbus-de" class="project-item__link">Read the Story</a>
-            </div>                        </article>
-
-
-
-        <article data-bg="#51a0cc" class="project-item project-item--left-text project-item--white-text bg-item">
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">SmartSeeds</h2>
-                <div class="project-item__comment">This logistics service allows speeding up transportation, simultaneous delivery tracking and downtime minimization.</div>
-                <div class="comment-author project-item__comment-author">
-                </div>
-                <a href="/en/portfolio/smartseeds-ru" class="project-item__link">Read the Story</a>
-            </div>                <a href="/en/portfolio/smartseeds-ru" class="project-item__img-block">
-                <img class="project-item__img" src="https://stfalcon.com/uploads/portfolio/projects/5ab10acb81746.png" alt="">
-            </a>                        </article>
-
-
-
-        <article data-bg="#e46950" class="project-item project-item--white-text bg-item">
-            <a href="/en/portfolio/novaposhta-ua" class="project-item__img-block">
-                <img class="project-item__img" src="https://stfalcon.com/uploads/portfolio/projects/5ab10a57b43c6.png" alt="">
-            </a>                <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">Nova Poshta — Dashboard</h2>
-                <div class="project-item__comment">We significantly improved current Personal Dashboard, flexibility of created solution allowed us to bring user experience to a new level.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="https://stfalcon.com/uploads/avatar/5aba36d266476.png" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Pavel Yeremenko,</div>
-                        <div class="comment-author__position">Head of UX at Nova Poshta</div>
-                    </div>
-                </div>
-                <a href="/en/portfolio/novaposhta-ua" class="project-item__link">Read the Story</a>
-            </div>                        </article>
-
-
-
-        <article data-bg="#f4f4f4" class="project-item project-item--left-text project-item--dark-text bg-item">
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">NIC.UA</h2>
-                <div class="project-item__comment">An effective communication, rapport and professionalism helped us to embody our project. Now we have a modern and flexible service. And still, we can always rely on their support when we need it.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="https://stfalcon.com/uploads/avatar/5aba36f04b31d.png" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Andrew Khvetkevich,</div>
-                        <div class="comment-author__position">Co-Founder at NIC.UA</div>
-                    </div>
-                </div>
-                <a href="/en/portfolio/nic-ua" class="project-item__link">Read the Story</a>
-            </div>                <a href="/en/portfolio/nic-ua" class="project-item__img-block">
-                <img class="project-item__img" src="https://stfalcon.com/uploads/portfolio/projects/5ab10a7004e9d.png" alt="">
-            </a>                        </article>
-
-
-
-        <article data-bg="#586d79" class="project-item project-item--white-text bg-item">
-            <a href="/en/portfolio/keepsnap-com" class="project-item__img-block">
-                <img class="project-item__img" src="https://stfalcon.com/uploads/portfolio/projects/5ab10a32afbfd.png" alt="">
-            </a>                <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">KeepSnap</h2>
-                <div class="project-item__comment">Stfalcon.com can manage large, scalable projects with ease. They don't take the easy way out and go above and beyond to accommodate their clients' needs.</div>
-                <div class="comment-author project-item__comment-author">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Igor Shnurovskiy,</div>
-                        <div class="comment-author__position">CEO at KeepSnap</div>
-                    </div>
-                </div>
-                <a href="/en/portfolio/keepsnap-com" class="project-item__link">Read the Story</a>
-            </div>                        </article>
-
-
-
-        <article data-bg="#604f4e" class="project-item project-item--left-text project-item--white-text bg-item bg-item--last">
-            <div class="project-item__description">
-                <h2 class="promo-title promo-title--bold project-item__name">Nova Poshta Shopping</h2>
-                <div class="project-item__comment">Specialists considered most convinient design without limiting functionality of the service. They showed professional attitude to the development of the project and we are satisfied with the result.</div>
-                <div class="comment-author project-item__comment-author">
-                    <img class="comment-author__img" src="https://stfalcon.com/uploads/avatar/5aba36e1f38df.png" alt="">
-                    <div class="comment-author__left">
-                        <div class="comment-author__name">Artem Volkhonsyi,</div>
-                        <div class="comment-author__position">Digital Director at Nova Poshta</div>
-                    </div>
-                </div>
-                <a href="/en/portfolio/npshopping-ua" class="project-item__link">Read the Story</a>
-            </div>                <a href="/en/portfolio/npshopping-ua" class="project-item__img-block">
-                <img class="project-item__img" src="https://stfalcon.com/uploads/portfolio/projects/5ab10aa7e3978.png" alt="">
-            </a>                        </article>
+            <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item{% if loop.last %} bg-item--last{% endif %}">
+            {% if add_class == '' %}
+                {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
+                {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
+            {% else %}
+                {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
+                {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
+            {% endif %}
+            </article>
+        {% endfor %}
     </section>
-
 
     <section  class="achievements">
         <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
