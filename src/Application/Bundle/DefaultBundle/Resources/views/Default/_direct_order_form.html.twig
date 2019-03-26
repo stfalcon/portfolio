@@ -62,9 +62,6 @@
         var form = $('#direct-order-form');
         if ('prod' === env) {
             dataLayer.push({'event': 'submit_direct_order_form'});
-            console.log('push');
-        } else {
-            console.log('dev push');
         }
         form.submit();
     };
