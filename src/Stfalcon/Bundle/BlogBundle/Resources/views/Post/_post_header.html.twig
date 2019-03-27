@@ -24,6 +24,5 @@
                 <span>{{ post.author.firstname | default('') ~ ' ' ~  post.author.lastname | default('') }}</span>
             {% endif %}
         {% endif %}
-        <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#disqus_thread" data-disqus-identifier="{{ app.request.locale ~ ' ' ~ post.id }}">{{ 'Комментировать'|trans }}</a>
     </div>
 </header>
