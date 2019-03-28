@@ -11,8 +11,7 @@ services:
             - "php"
 
     php:
-        build:
-            context: ./docker-configs/php-image
+        image: black15/portfolio:2803191
         environment:
             - "PHP_IDE_CONFIG=serverName=portfolio-docker"
         volumes:
