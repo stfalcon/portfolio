@@ -1,0 +1,6 @@
+cp app/config/parameters.yml.docker app/config/parameters.yml
+composer install
+php app/console do:da:cr -q
+php app/console do:mi:mi --no-interaction
+php app/console do:fi:lo --no-interaction
+php app/console assets:install --no-interaction
