@@ -11,7 +11,7 @@ services:
             - "php"
 
     php:
-        image: black15/portfolio:2803191
+        image: black15/portfolio:201908041
         environment:
             - "PHP_IDE_CONFIG=serverName=portfolio-docker"
         volumes:
