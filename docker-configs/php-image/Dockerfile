@@ -30,8 +30,9 @@ RUN cd /tmp && php -r "unlink('composer-setup.php');"
 RUN curl -SLO https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
     tar -xvzf node-v$NODE_VERSION-linux-x64.tar.gz -C / --strip-components=1 && \
     rm /node-v$NODE_VERSION-linux-x64.tar.gz
+RUN npm install -g uglify-js
 RUN npm install -g grunt
-RUN npm install -g less
+RUN npm install -g less@1.7.5
 USER www-data
 WORKDIR /app
 CMD sudo /usr/local/bin/start
