@@ -37,6 +37,7 @@
         <!-- End Google Tag Manager (noscript) -->
     {% endif %}
 
+    {% if 'ru' == app.request.locale %}
     <div class="banner-top">
         <div class="banner-top__title">Бесплатный вебинар</div>
         <div class="banner-top__info">
@@ -44,6 +45,7 @@
             <span class="banner-top__date">, 22&nbsp;апреля</span>
         </div>
     </div>
+    {% endif %}
 
     {% block body %}{% endblock %}
 
