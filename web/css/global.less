@@ -767,3 +767,51 @@ iframe[name="google_conversion_frame"] {
 figure {
   margin: 0
 }
+
+.banner-top {
+  font-family: 'PT-Root-UI_Bold', Helvetica, Arial, serif;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 19px;
+  color: #ffffff;
+  padding: 5px 20px;
+  background: #2753DF;
+  z-index: 5;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+    line-height: 15px;
+  }
+
+  &__title {
+    line-height: 24px;
+    background: #050B1C;
+    border-radius: 4px;
+    padding: 0 12px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      max-width: 100px;
+      line-height: 15px;
+      padding: 3px 8px;
+    }
+  }
+
+  &__link {
+    color: #ffffff;
+    text-decoration: underline;
+
+    &:hover {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}
