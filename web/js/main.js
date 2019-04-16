@@ -627,7 +627,6 @@ $(function () {
         //fixedHireUs();
     });
 
-    autosize(document.querySelectorAll('#order_promotion_message'));
     if (typeof last_year !== 'undefined') {
         changeUsers(last_year);
     }
