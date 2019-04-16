@@ -658,6 +658,24 @@ $(function () {
         }
         return false;
     });
+
+
+  // header indent when has banner
+
+  function headerIndent() {
+    var bannerHeight = $('.banner-top').outerHeight();
+    var mainHeader = $('.header');
+
+    mainHeader.css("margin-top", bannerHeight + "px");
+  }
+
+  if ($('.banner-top').length) {
+    headerIndent();
+
+    $(window).on('resize', function () {
+      headerIndent();
+    });
+  }
 });
 
 
