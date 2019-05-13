@@ -675,6 +675,12 @@ $(function () {
       headerIndent();
     });
   }
+
+  // accept privacy policy
+    $('#accept-privacy-policy').click(function() {
+        Cookies.set('acceptPrivacyPolicy', true, { expires: 365 });
+        $('.cookie-alert').remove();
+    });
 });
 
 

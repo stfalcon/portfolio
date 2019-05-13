@@ -815,3 +815,50 @@ figure {
     }
   }
 }
+
+.cookie-alert {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
+  padding: 16px;
+  z-index: 100;
+  border-top: 1px solid rgba(0, 0, 10, 0.22);
+
+  &__container {
+    max-width: 1016px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  &__left {
+    margin-right: 125px;
+
+    @media (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__text {
+    font-family: 'Gilroy-Bold', Helvetica, Arial, serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: #111b39;
+  }
+
+  &__btn {
+    min-width: 158px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}

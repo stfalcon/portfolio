@@ -34,6 +34,7 @@
 {% endblock %}
 
 {% block after_body %}
+    {{ parent() }}
     {%- if post.additionalInfo != null -%}
         {% include '@ApplicationDefault/Widgets/post_additional_info.html.twig' with {'form' : form, 'post': post} %}
     {%- endif -%}

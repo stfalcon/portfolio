@@ -39,7 +39,11 @@
 
     {% block body %}{% endblock %}
 
-    {% block after_body %}{% endblock %}
+    {% block after_body %}
+        {% if app.request.cookies.has('acceptPrivacyPolicy') == false %}
+            {% include 'cookie_alert.html.twig' %}
+        {% endif %}
+    {% endblock %}
 
     {% block javascripts -%}
         <script src="{{ asset('js/vendor/modernizr-2.6.2.min.js') }}" type="text/javascript"></script>
