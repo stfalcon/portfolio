@@ -39,7 +39,6 @@
 
     {% block body %}{% endblock %}
 
-
     {% block after_body %}
         {% if app.request.cookies.has('acceptPrivacyPolicy') == false %}
             {% include 'cookie_alert.html.twig' %}
