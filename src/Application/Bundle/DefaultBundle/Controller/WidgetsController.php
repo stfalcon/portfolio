@@ -122,7 +122,7 @@ class WidgetsController extends Controller
     public function leadFormAction($projectName, Request $request)
     {
         if (null === $request->cookies->get('lead-data-send')) {
-            $form = $this->createForm(new BasePersonFormType(), null, ['project_name' => $projectName]);
+            $form = $this->createForm(new PersonFormType(), null, ['project_name' => $projectName]);
 
             return $this->render('ApplicationDefaultBundle:Widgets:_lead_form.html.twig', [
                 'form' => $form->createView(),
