@@ -220,4 +220,26 @@ class DefaultController extends Controller
 
         return [];
     }
+
+    /**
+     * @param Request $request
+     *
+     * @Route("/order", name="send_order", methods={"POST"})
+     *
+     * @return JsonResponse
+     */
+    public function sendOrderByPriceAction(Request $request)
+    {
+        $json = $request->getContent();
+        $content = \json_decode($json, true);
+
+        $email = $content['email'];
+        $order = $content['order'];
+        $response = [
+            'email' => $email,
+            'order' => $order,
+        ];
+
+        return new JsonResponse($response);
+    }
 }

@@ -83,8 +83,8 @@ sonata_admin_price_load:
     options:
         i18n: false
 
-get_price:
-    path:  /price
-    defaults: { _controller: ApplicationDefaultBundle:Default:getPrice }
+send_order:
+    path:  /order
+    defaults: { _controller: ApplicationDefaultBundle:Default:sendOrderByPrice }
     options:
         i18n: false
