@@ -85,6 +85,7 @@ sonata_admin_price_load:
 
 send_order:
     path:  /order
+    methods: POST
     defaults: { _controller: ApplicationDefaultBundle:Default:sendOrderByPrice }
     options:
         i18n: false
