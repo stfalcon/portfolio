@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class PriceAdminController extends CoreController
 {
-    const JSON_RESULT_FILE_NAME = 'price_result.json';
+    const JSON_RESULT_FILE_NAME = 'price.json';
     /**
      * @param Request $request
      *

@@ -220,31 +220,4 @@ class DefaultController extends Controller
 
         return [];
     }
-
-    /**
-     * @return JsonResponse
-     *
-     * @Route("/price", name="get_price")
-     */
-    public function getPriceAction()
-    {
-        $config = $this->container->getParameter('application_default.config');
-        $uploadDir = $this->container->getParameter('upload_csv_file');
-        $path = $config['web_root'].$uploadDir;
-        $filename = $path.'/'.PriceAdminController::JSON_RESULT_FILE_NAME;
-        try {
-            $fileSize = \filesize($filename);
-        } catch (\Exception $e) {
-            return new JsonResponse('File not found!', 404);
-        }
-        try {
-            $handel = \fopen($filename, 'r');
-            $json = \fread($handel, $fileSize);
-            \fclose($handel);
-        } catch (FileException $e) {
-            return new JsonResponse('Ошибка чтения файла!', 404);
-        }
-
-        return new JsonResponse(json_decode($json));
-    }
 }
