@@ -3,6 +3,9 @@ imports:
     - { resource: security.yml }
     - { resource: sphinx/sphinx.yml }
 
+parameters:
+    upload_csv_file: '/uploads/files'
+
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
@@ -21,6 +24,7 @@ framework:
     session:         ~
     fragments:       ~
     http_method_override: true
+    serializer: { enabled: true }
 
 # Twig Configuration
 twig:

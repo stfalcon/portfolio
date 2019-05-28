@@ -76,3 +76,15 @@ media:
 team_route:
     resource: "@ApplicationUserBundle/Controller"
     type: annotation
+
+sonata_admin_price_load:
+    path:  /admin/price/load
+    defaults: { _controller: ApplicationDefaultBundle:PriceAdmin:load }
+    options:
+        i18n: false
+
+get_price:
+    path:  /price
+    defaults: { _controller: ApplicationDefaultBundle:Default:getPrice }
+    options:
+        i18n: false

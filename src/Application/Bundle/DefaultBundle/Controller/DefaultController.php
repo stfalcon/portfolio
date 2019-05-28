@@ -8,10 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Default controller. For single actions for project.
@@ -73,7 +72,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Opensource page
+     * Opensource page.
      *
      * @param Request $request Request
      *
@@ -98,7 +97,7 @@ class DefaultController extends Controller
     public function getProjectsStars(Request $request)
     {
         $projects = $request->get('names');
-        if (count($projects) === 0) {
+        if (0 === count($projects)) {
             return new JsonResponse(['error' => true]);
         }
         $resultProjects = [];
@@ -220,5 +219,32 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return [];
+    }
+
+    /**
+     * @return JsonResponse
+     *
+     * @Route("/price", name="get_price")
+     */
+    public function getPriceAction()
+    {
+        $config = $this->container->getParameter('application_default.config');
+        $uploadDir = $this->container->getParameter('upload_csv_file');
+        $path = $config['web_root'].$uploadDir;
+        $filename = $path.'/'.PriceAdminController::JSON_RESULT_FILE_NAME;
+        try {
+            $fileSize = \filesize($filename);
+        } catch (\Exception $e) {
+            return new JsonResponse('File not found!', 404);
+        }
+        try {
+            $handel = \fopen($filename, 'r');
+            $json = \fread($handel, $fileSize);
+            \fclose($handel);
+        } catch (FileException $e) {
+            return new JsonResponse('Ошибка чтения файла!', 404);
+        }
+
+        return new JsonResponse(json_decode($json));
     }
 }
