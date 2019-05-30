@@ -96,6 +96,27 @@ class MailerService
     }
 
     /**
+     * @param string $email
+     * @param string $pdf
+     *
+     * @return int
+     */
+    public function sendOrderPdf($email, $pdf)
+    {
+        $subject = sprintf('Order for %s', $email);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->options['fromEmail'])
+            ->setReplyTo($email)
+            ->setTo('hr@stfalcon.com');
+
+        $message->attach(\Swift_Attachment::newInstance($pdf, 'order.pdf'));
+
+        return $this->mailer->send($message);
+    }
+
+    /**
      * @param array  $params
      * @param string $subject
      *

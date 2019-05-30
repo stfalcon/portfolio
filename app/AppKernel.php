@@ -65,6 +65,8 @@ class AppKernel extends Kernel
 
             new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+
+            new TFox\MpdfPortBundle\TFoxMpdfPortBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['prod'], true)) {

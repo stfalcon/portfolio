@@ -350,3 +350,8 @@ __main_page:
         contact_us: Contact us
 __cookie-alert_text: We use cookies. If you continue using our site, you confirm that you agree to our Privacy Policy.
 __cookie-alert_button_text: Accept
+__order_pdf:
+    header_title: How much does it cost to develop an app? (%type%)
+    title: Price
+    footer_text1: The price you see is an indicative cost estimate based on development timescales and hourly rates.
+    footer_text2: For a personal quote let’s talk about your product.

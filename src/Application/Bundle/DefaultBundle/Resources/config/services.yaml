@@ -3,3 +3,15 @@ services:
     app.service.git_hub_api_service:
         class: Application\Bundle\DefaultBundle\Service\GitHubApiService
         arguments: ['@buzz']
+
+    app.helper.new_pdf_generator:
+        class: Application\Bundle\DefaultBundle\Helpers\NewPdfGeneratorHelper
+        arguments:
+            - "@twig"
+            - "@kernel"
+            - "@tfox.mpdfport"
+    app.price.service:
+        class: Application\Bundle\DefaultBundle\Service\PriceService
+        arguments:
+            - '%application_default.config%'
+            - '%upload_csv_file%'
