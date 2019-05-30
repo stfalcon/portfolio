@@ -94,7 +94,11 @@ var calculator = {
 			$.post(self.config.postUrl, {
 				email: email,
 				platform: self.state.platform,
-				order: self.state.selectedFeatures
+				order: self.state.selectedFeatures.map(function (item) {
+					return {
+						name: item.name
+					}
+				})
 			})
 				.done(function (data) {
 					alert("Pdf is sent. Check your email, please");
