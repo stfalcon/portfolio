@@ -51,7 +51,6 @@ var calculator = {
 
 		$.get(self.config.getUrl)
 			.done(function (data) {
-				//console.log(data);
 				self.state.featureList = data;
 				self.state.android = self.getByPlatform("android");
 				self.state.ios = self.getByPlatform("ios");
