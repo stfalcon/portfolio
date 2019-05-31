@@ -196,16 +196,18 @@ var calculator = {
 $(document).ready(function () {
 	calculator.init();
 
-	let $calcCard = $('.calc-card');
-	let calcCardOffset = $calcCard.offset().top;
+	// uncomment if fixed block in IE-11 will be needed
 
-	$(window).scroll(function () {
-		if ($(window).width() < 1023) return;
 
-		if ($(this).scrollTop() > calcCardOffset - 20) {
-			$calcCard.addClass('calc-card--fixed');
-		} else {
-			$calcCard.removeClass('calc-card--fixed');
-		}
-	});
+	// let $calcCard = $('.calc-card');
+	// let calcCardOffset = $calcCard.offset().top;
+	// $(window).scroll(function () {
+	// 	if ($(window).width() < 1023) return;
+	//
+	// 	if ($(this).scrollTop() > calcCardOffset - 20) {
+	// 		$calcCard.addClass('calc-card--fixed');
+	// 	} else {
+	// 		$calcCard.removeClass('calc-card--fixed');
+	// 	}
+	// });
 });
