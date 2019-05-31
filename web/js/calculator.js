@@ -103,16 +103,16 @@ var calculator = {
 			$.ajax({
 				url: self.config.postUrl,
 				type: "POST",
-				data: formData,
+				data: JSON.stringify(formData),
 				contentType: "application/json; charset=utf-8",
-				dataType:"json"
+				crossDomain: true,
+				dataType: "json",
 			}).done(function () {
 				alert("Pdf is sent. Check your email, please");
 			})
 				.fail(function () {
 					alert("Something was wrong. Please reload the page or try again later");
 				});
-
 		});
 	},
 
