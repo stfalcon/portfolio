@@ -675,22 +675,6 @@ $(function () {
       headerIndent();
     });
   }
-
-    // fixed calc-card
-
-    if ($(window).width() > 1023) {
-        var calcCard = $('.calc-card'),
-          calcCardOffset = $('.calc-card').offset();
-
-        $(window).scroll(function () {
-            console.log(calcCardOffset.top);
-            if ($(this).scrollTop() > calcCardOffset.top - 20) {
-                calcCard.addClass('calc-card--fixed');
-            } else {
-                calcCard.removeClass('calc-card--fixed');
-            }
-        });
-    }
 });
 
 
