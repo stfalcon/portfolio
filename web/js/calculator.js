@@ -90,16 +90,17 @@ var calculator = {
 			e.preventDefault();
 
 			let email = $(this).find('input[type=email]').val();
-
-			$.post(self.config.postUrl, {
-				email: email,
-				platform: self.state.platform,
-				order: self.state.selectedFeatures.map(function (item) {
+			let formData = {
+				"email": email,
+				"platform": self.state.platform,
+				"order": self.state.selectedFeatures.map(function (item) {
 					return {
-						name: item.name
+						"name": item.name
 					}
 				})
-			})
+			};
+
+			$.post(self.config.postUrl, formData)
 				.done(function (data) {
 					alert("Pdf is sent. Check your email, please");
 				})
