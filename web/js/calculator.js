@@ -120,22 +120,9 @@ var calculator = {
 
 		// open mobile card block
 
-		$(self.config.cardToggleBlock).on('click', function () {
+		$(self.config.cardToggleBlock).on('click tap', function () {
 			$(self.config.cardClass).toggleClass(self.config.toggleClassName);
 		});
-
-
-		let $cardContainer = $('.calculator__container');
-		let calcCardOffset = $cardContainer.offset().top;
-		// $(window).scroll(function () {
-		// 	if ($(window).width() > 768) return;
-		//
-		// 	if ($(this).scrollTop() > calcCardOffset + $cardContainer.height() - 100) {
-		// 		$(self.config.cardClass).addClass('calc-card--static');
-		// 	} else {
-		// 		$(self.config.cardClass).removeClass('calc-card--static');
-		// 	}
-		// });
 	},
 
 	getByPlatform(platform) {
