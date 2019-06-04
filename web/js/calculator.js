@@ -18,6 +18,9 @@ var calculator = {
 				qa: '.calc-card__value-qa',
 				pm: '.calc-card__value-pm'
 			},
+			cardToggleBlock: '.calc-card__top',
+			cardClass: '.calculator__popup',
+			toggleClassName: 'calculator__popup--open-mobile'
 		};
 
 		$.extend(calculator.config, settings);
@@ -41,7 +44,8 @@ var calculator = {
 		android: [],
 		ios: [],
 		android_ios: [],
-		formData: {}
+		formData: {},
+		cardStaticPos: false
 	},
 
 	setup: function () {
@@ -79,7 +83,7 @@ var calculator = {
 		// select features in checkboxes
 
 		$('body').on('change', self.config.checkboxItems, function () {
-			$(self.config.popup).css('visibility', 'visible');
+			$(self.config.popup).show();
 
 			self.selectFeatures();
 		});
@@ -114,9 +118,13 @@ var calculator = {
 					alert("Something was wrong. Please reload the page or try again later");
 				});
 		});
+
+		// open mobile card block
+
+		$(self.config.cardToggleBlock).on('click', function () {
+			$(self.config.cardClass).toggleClass(self.config.toggleClassName);
+		});
 	},
-
-
 
 	getByPlatform(platform) {
 		let self = this;
@@ -192,12 +200,18 @@ var calculator = {
 	updateView: function () {
 		let self = this;
 
-		$(self.config.sumContainers.total).text(self.state.total);
-		$(self.config.sumContainers.be).text(self.state.sum.be);
-		$(self.config.sumContainers.design).text(self.state.sum.design);
-		$(self.config.sumContainers.mobile).text(self.state.sum.mobile);
-		$(self.config.sumContainers.qa).text(self.state.sum.qa);
-		$(self.config.sumContainers.pm).text(self.state.sum.pm);
+		// TODO: simplify this
+
+		$(self.config.sumContainers.total).text(self.addPriceSpace(self.state.total));
+		$(self.config.sumContainers.be).text(self.addPriceSpace(self.state.sum.be));
+		$(self.config.sumContainers.design).text(self.addPriceSpace(self.state.sum.design));
+		$(self.config.sumContainers.mobile).text(self.addPriceSpace(self.state.sum.mobile));
+		$(self.config.sumContainers.qa).text(self.addPriceSpace(self.state.sum.qa));
+		$(self.config.sumContainers.pm).text(self.addPriceSpace(self.state.sum.pm));
+	},
+
+	addPriceSpace: function (val) {
+		return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
 };
 
@@ -205,7 +219,6 @@ $(document).ready(function () {
 	calculator.init();
 
 	// uncomment if fixed block in IE-11 will be needed
-
 
 	// let $calcCard = $('.calc-card');
 	// let calcCardOffset = $calcCard.offset().top;
