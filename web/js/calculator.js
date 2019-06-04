@@ -44,8 +44,7 @@ var calculator = {
 		android: [],
 		ios: [],
 		android_ios: [],
-		formData: {},
-		cardStaticPos: false
+		formData: {}
 	},
 
 	setup: function () {
@@ -124,6 +123,19 @@ var calculator = {
 		$(self.config.cardToggleBlock).on('click', function () {
 			$(self.config.cardClass).toggleClass(self.config.toggleClassName);
 		});
+
+
+		let $cardContainer = $('.calculator__container');
+		let calcCardOffset = $cardContainer.offset().top;
+		// $(window).scroll(function () {
+		// 	if ($(window).width() > 768) return;
+		//
+		// 	if ($(this).scrollTop() > calcCardOffset + $cardContainer.height() - 100) {
+		// 		$(self.config.cardClass).addClass('calc-card--static');
+		// 	} else {
+		// 		$(self.config.cardClass).removeClass('calc-card--static');
+		// 	}
+		// });
 	},
 
 	getByPlatform(platform) {
@@ -199,8 +211,6 @@ var calculator = {
 
 	updateView: function () {
 		let self = this;
-
-		// TODO: simplify this
 
 		$(self.config.sumContainers.total).text(self.addPriceSpace(self.state.total));
 		$(self.config.sumContainers.be).text(self.addPriceSpace(self.state.sum.be));
