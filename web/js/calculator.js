@@ -18,6 +18,10 @@ var calculator = {
 				qa: '.calc-card__value-qa',
 				pm: '.calc-card__value-pm'
 			},
+			cardToggleBlock: '.calc-card__top',
+			cardPopup: '.calculator__popup',
+			toggleClassName: 'calculator__popup--open-mobile',
+			submitBtn: '.calc-card__btn'
 		};
 
 		$.extend(calculator.config, settings);
@@ -79,9 +83,26 @@ var calculator = {
 		// select features in checkboxes
 
 		$('body').on('change', self.config.checkboxItems, function () {
-			$(self.config.popup).css('visibility', 'visible');
+			$(self.config.popup).show();
 
 			self.selectFeatures();
+		});
+
+		// mobile fixed block
+
+		$(window).scroll(function () {
+			if ($(window).width() > 768 && $(this).scrollTop() < 1000) return;
+
+			let checkboxList = $('.chips__list');
+			let calcCard = $(self.config.cardPopup);
+
+			let calcCardOffset = checkboxList.offset().top;
+
+			if ($(this).scrollTop() > calcCardOffset + checkboxList.height() - calcCard.height()) {
+				calcCard.addClass('calculator__popup--static');
+			} else {
+				calcCard.removeClass('calculator__popup--static');
+			}
 		});
 
 		// submit form
@@ -90,6 +111,7 @@ var calculator = {
 			e.preventDefault();
 
 			let email = $(this).find('input[type=email]').val();
+			$(self.config.submitBtn).attr('disabled', 'disabled');
 			let formData = {
 				"email": email,
 				"platform": self.state.platform,
@@ -108,15 +130,22 @@ var calculator = {
 				crossDomain: true,
 				dataType: "json",
 			}).done(function () {
-				alert("Pdf is sent. Check your email, please");
+				$(self.config.submitBtn)
+					.replaceWith("<p>Pdf is sent. <br> Check your email, please</p>");
 			})
 				.fail(function () {
 					alert("Something was wrong. Please reload the page or try again later");
+
+					$(self.config.submitBtn).removeAttr('disabled');
 				});
 		});
+
+		// open mobile card block
+
+		$(self.config.cardToggleBlock).on('click tap', function () {
+			$(self.config.cardPopup).toggleClass(self.config.toggleClassName);
+		});
 	},
-
-
 
 	getByPlatform(platform) {
 		let self = this;
@@ -192,12 +221,16 @@ var calculator = {
 	updateView: function () {
 		let self = this;
 
-		$(self.config.sumContainers.total).text(self.state.total);
-		$(self.config.sumContainers.be).text(self.state.sum.be);
-		$(self.config.sumContainers.design).text(self.state.sum.design);
-		$(self.config.sumContainers.mobile).text(self.state.sum.mobile);
-		$(self.config.sumContainers.qa).text(self.state.sum.qa);
-		$(self.config.sumContainers.pm).text(self.state.sum.pm);
+		$(self.config.sumContainers.total).text(self.addPriceSpace(self.state.total));
+		$(self.config.sumContainers.be).text(self.addPriceSpace(self.state.sum.be));
+		$(self.config.sumContainers.design).text(self.addPriceSpace(self.state.sum.design));
+		$(self.config.sumContainers.mobile).text(self.addPriceSpace(self.state.sum.mobile));
+		$(self.config.sumContainers.qa).text(self.addPriceSpace(self.state.sum.qa));
+		$(self.config.sumContainers.pm).text(self.addPriceSpace(self.state.sum.pm));
+	},
+
+	addPriceSpace: function (val) {
+		return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
 };
 
@@ -205,7 +238,6 @@ $(document).ready(function () {
 	calculator.init();
 
 	// uncomment if fixed block in IE-11 will be needed
-
 
 	// let $calcCard = $('.calc-card');
 	// let calcCardOffset = $calcCard.offset().top;
