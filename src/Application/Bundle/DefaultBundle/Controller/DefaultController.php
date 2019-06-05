@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Security\Acl\Exception\Exception;
 use Symfony\Component\Validator\Constraints\Email;
@@ -73,6 +74,16 @@ class DefaultController extends Controller
                 'reviews' => $activeReviews,
             ]
         );
+    }
+
+    /**
+     * @return Response
+     *
+     * @Route("/calculator", name="calculator")
+     */
+    public function calculatorAction()
+    {
+        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig');
     }
 
     /**

@@ -1,8 +1,8 @@
 var calculator = {
 	init: function (settings) {
 		calculator.config = {
-			getUrl: 'http://52918-add-load-price.portfolio.stag.stfalcon.com/uploads/files/price.json',
-			postUrl: 'http://52918-add-load-price.portfolio.stag.stfalcon.com/order',
+			getUrl: '/uploads/files/price.json',
+			postUrl: $('#calc_form').data('url'),
 			platformItems: 'input[name=platform]',
 			tabActiveClass: 'chip-tabs__item--active',
 			featuresScreen: '.calculator__chips_features',
