@@ -21,7 +21,8 @@ var calculator = {
 			cardToggleBlock: '.calc-card__top',
 			cardPopup: '.calculator__popup',
 			toggleClassName: 'calculator__popup--open-mobile',
-			submitBtn: '.calc-card__btn'
+			submitBtn: '.calc-card__btn',
+			successText: '.calculator__form-success'
 		};
 
 		$.extend(calculator.config, settings);
@@ -130,8 +131,14 @@ var calculator = {
 				crossDomain: true,
 				dataType: "json",
 			}).done(function () {
-				$(self.config.submitBtn)
-					.replaceWith("<p>Pdf is sent. <br> Check your email, please</p>");
+				$(self.config.submitBtn).hide();
+				$(self.config.successText).show();
+
+				setTimeout(function () {
+					$(self.config.successText).hide();
+					$(self.config.submitBtn).show().removeAttr('disabled');
+				}, 3500)
+
 			})
 				.fail(function () {
 					alert("Something was wrong. Please reload the page or try again later");
@@ -230,7 +237,7 @@ var calculator = {
 	},
 
 	addPriceSpace: function (val) {
-		return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+		return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
 };
 
