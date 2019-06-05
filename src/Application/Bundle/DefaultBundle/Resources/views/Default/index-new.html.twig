@@ -1,18 +1,192 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div>
-<section class="page-wrapper home-page">
-    {% include '::_header.html.twig' %}
+    <div id="bg-wrapper">
+        <section class="page-wrapper home-page">
+            {% include '::_header.html.twig' %}
 
-    {% include '@ApplicationDefault/Default/_calculator.html.twig' %}
+            <section class="main-promo">
+                <h2 class="main-promo__title">{{ 'main.promo.title'|trans|raw }}<br>
+                    <a href="{{ path('contacts') }}" class="main-promo__link">
+                        <span class="main-promo__link-bg"></span>
+                    </a>
+                </h2>
+            </section>
 
-    <footer class="footer">
-        {{ include('_footer.html.twig') }}
-    </footer>
-</section>
-</div>
-{{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'main_page' })) }}
+            <section class="our-services">
+                <div class="our-services__container">
+                    <ul class="services-list">
+                        <li class="services-list__item">
+                            <div class="services-list__img">
+                                <img src="{{ asset('img/svg/ic_web.svg') }}" alt="" class="services-list__icon">
+                            </div>
+                            <div class="services-list__name">Web</div>
+                            <p class="services-list__text">{{ '__main_page.service_title.web'|trans }}</p>
+                        </li>
+                        <li class="services-list__item">
+                            <div class="services-list__img">
+                                <img src="{{ asset('img/svg/ic_ios.svg') }}" alt="" class="services-list__icon">
+                            </div>
+                            <div class="services-list__name">iOS</div>
+                            <p class="services-list__text">{{ '__main_page.service_title.ios'|trans }}</p>
+                        </li>
+                        <li class="services-list__item">
+                            <div class="services-list__img">
+                                <img src="{{ asset('img/svg/ic_android.svg') }}" alt="" class="services-list__icon">
+                            </div>
+                            <div class="services-list__name">Android</div>
+                            <p class="services-list__text">{{ '__main_page.service_title.android'|trans }}</p>
+                        </li>
+                        <li class="services-list__item">
+                            <div class="services-list__img">
+                                <img src="{{ asset('img/svg/ic_vr.svg') }}" alt="" class="services-list__icon">
+                            </div>
+                            <div class="services-list__name">VR</div>
+                            <p class="services-list__text">{{ '__main_page.service_title.vr'|trans }}</p>
+                        </li>
+                        <li class="services-list__item">
+                            <div class="services-list__img">
+                                <img src="{{ asset('img/svg/ic_wearable.svg') }}" alt="" class="services-list__icon">
+                            </div>
+                            <div class="services-list__name">Wearable</div>
+                            <p class="services-list__text">{{ '__main_page.service_title.wearable'|trans }}</p>
+                        </li>
+                        <li class="services-list__item">
+                            <div class="services-list__img">
+                                <img src="{{ asset('img/svg/ic_kiosks.svg') }}" alt="" class="services-list__icon">
+                            </div>
+                            <div class="services-list__name">Kiosks</div>
+                            <p class="services-list__text">{{ '__main_page.service_title.kiosks'|trans }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section data-bg="#2b55db" class="trusted bg-item">
+                <div class="trusted__container">
+                    <h2 class="promo-title promo-title--bold trusted__title">{{ 'main.promo.title3'|trans }}</h2>
+                    <ul class="trusted__list">
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_np.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_ss.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_mfb.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_angel.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_ks.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_busfor.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_tickets.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item trusted__item_mob-none">
+                            <img src="{{ asset('img/clients_nic.svg') }}" alt="" class="trusted__img">
+                        </li>
+                        <li class="trusted__item">
+                            <img src="{{ asset('img/clients_ca.svg') }}" alt="" class="trusted__img">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            {% set add_class = ' project-item--left-text' %}
+            <section class="projects-list">
+                {% for project_review in reviews %}
+                    {% set project = project_review['project'] %}
+                    {% set review = project_review['review'] %}
+                    {% if review != null %}
+                        {% set reviewer = review.reviewer %}
+                    {% else %}
+                        {% set reviewer = null %}
+                    {% endif %}
+
+                    {% if add_class == ' project-item--left-text' %}
+                        {% set add_class = '' %}
+                    {% else %}
+                        {% set add_class = ' project-item--left-text' %}
+                    {% endif %}
+
+                    {% if project.useDarkTextColor is defined and project.useDarkTextColor == true %}
+                        {% set text_color_class = 'project-item--dark-text' %}
+                    {% else %}
+                        {% set text_color_class = 'project-item--white-text' %}
+                    {% endif %}
+
+                    <article data-bg="{{ project.backgroundColor }}" class="project-item{{ add_class }} {{ text_color_class }} bg-item{% if loop.last %} bg-item--last{% endif %}">
+                        {% if add_class == '' %}
+                            {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
+                            {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
+                        {% else %}
+                            {% include '@ApplicationDefault/Default/_project_comment.html.twig' with {'project':project, 'review' : review, 'reviewer':reviewer} %}
+                            {% include '@ApplicationDefault/Default/_project_image.html.twig' with {'project':project} %}
+                        {% endif %}
+                    </article>
+                {% endfor %}
+            </section>
+
+            <section  class="achievements">
+                <span data-bg="#FFFFFF" class="bg-item bg-item--abs"></span>
+                <div class="achievements__container">
+                    <h2 class="promo-title promo-title--bold achievements__title">{{ '__main_page.achievements.title'|trans }}</h2>
+                    <div class="achievements__list">
+                        <div class="achievements__item">
+                            <img class="achievements__img" src="{{ asset('img/awards_tm.png') }}" alt="">
+                            <p class="achievements__text">{{ '__main_page.achievements.achive1'|trans|raw }}</p>
+                        </div>
+                        <div class="achievements__item">
+                            <img class="achievements__img" src="{{ asset('img/awards_clutch.png') }}" alt="">
+                            <p class="achievements__text">{{ '__main_page.achievements.achive2'|trans|raw }}</p>
+                        </div>
+                        <div class="achievements__item">
+                            <img class="achievements__img" src="{{ asset('img/awards_manifest.png') }}" alt="">
+                            <p class="achievements__text">{{ '__main_page.achievements.achive3'|trans|raw }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="side-projects">
+                <div class="side-projects__container">
+                    <h2 class="promo-title side-projects__title">{{ 'main.promo.title5'|trans }}</h2>
+                </div>
+                <div class="side-projects__list">
+                    <div class="side-projects__box side-projects__box--fwdays">
+                        <div class="side-projects__item side-projects__item--fwdays">
+                            <img src="{{ asset('img/fwdays.svg') }}" alt="" class="side-projects__logo">
+                            <div class="side-projects__text">{{ 'main.promo.title5_1.desc'|trans }}</div>
+                            <a class="arrow-button" href="https://fwdays.com" rel="nofollow" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="side-projects__box side-projects__box--cnc">
+                        <div class="side-projects__item side-projects__item--cnc">
+                            <img src="{{ asset('img/cnc.svg') }}" alt="" class="side-projects__logo">
+                            <div class="side-projects__text">{{ 'main.promo.title5_2.desc'|trans }}</div>
+                            <a class="arrow-button" href="http://kmcnc.stfalcon.com" rel="nofollow" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="side-projects__box side-projects__box--academy">
+                        <div class="side-projects__item side-projects__item--academy">
+                            <img src="{{ asset('img/academy_' ~ app.request.locale ~ '.svg') }}" alt=""
+                                 class="side-projects__logo">
+                            <div class="side-projects__text">{{ 'main.promo.title5_3.desc'|trans }}</div>
+                            <a class="arrow-button" href="http://academy.stfalcon.com" rel="nofollow" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="footer">
+                {{ include('_footer.html.twig') }}
+            </footer>
+        </section>
+    </div>
+    {{ render(controller('ApplicationDefaultBundle:Widgets:hireUs', {'slug': 'main_page' })) }}
 {% endblock body %}
 
 {% block javascripts -%}
@@ -27,6 +201,4 @@
         output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    <script type="text/javascript" src="{{ asset('js/calculator.js') }}"></script>
 {% endblock %}
