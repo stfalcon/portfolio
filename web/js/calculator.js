@@ -19,8 +19,9 @@ var calculator = {
 				pm: '.calc-card__value-pm'
 			},
 			cardToggleBlock: '.calc-card__top',
-			cardClass: '.calculator__popup',
-			toggleClassName: 'calculator__popup--open-mobile'
+			cardPopup: '.calculator__popup',
+			toggleClassName: 'calculator__popup--open-mobile',
+			submitBtn: '.calc-card__btn'
 		};
 
 		$.extend(calculator.config, settings);
@@ -87,12 +88,30 @@ var calculator = {
 			self.selectFeatures();
 		});
 
+		// mobile fixed block
+
+		$(window).scroll(function () {
+			if ($(window).width() > 768 && $(this).scrollTop() < 1000) return;
+
+			let checkboxList = $('.chips__list');
+			let calcCard = $(self.config.cardPopup);
+
+			let calcCardOffset = checkboxList.offset().top;
+
+			if ($(this).scrollTop() > calcCardOffset + checkboxList.height() - calcCard.height()) {
+				calcCard.addClass('calculator__popup--static');
+			} else {
+				calcCard.removeClass('calculator__popup--static');
+			}
+		});
+
 		// submit form
 
 		$(self.config.form).on('submit', function (e) {
 			e.preventDefault();
 
 			let email = $(this).find('input[type=email]').val();
+			$(self.config.submitBtn).attr('disabled', 'disabled');
 			let formData = {
 				"email": email,
 				"platform": self.state.platform,
@@ -111,17 +130,19 @@ var calculator = {
 				crossDomain: true,
 				dataType: "json",
 			}).done(function () {
-				alert("Pdf is sent. Check your email, please");
+				$(self.config.submitBtn).replaceWith("<p>Pdf is sent. Check your email, please</p>");
 			})
 				.fail(function () {
 					alert("Something was wrong. Please reload the page or try again later");
+
+					$(self.config.submitBtn).removeAttr('disabled');
 				});
 		});
 
 		// open mobile card block
 
 		$(self.config.cardToggleBlock).on('click tap', function () {
-			$(self.config.cardClass).toggleClass(self.config.toggleClassName);
+			$(self.config.cardPopup).toggleClass(self.config.toggleClassName);
 		});
 	},
 

@@ -1,4 +1,5 @@
 @mobile: ~"(max-width: 768px)";
+@mobileLandscape: ~"(max-height: 450px)";
 
 .calculator {
   * {
@@ -29,6 +30,11 @@
     color: #040918;
     text-shadow: none;
     margin-bottom: 20px;
+
+    @media @mobile{
+      line-height: 40px;
+      font-size: 38px;
+    }
   }
 
   &__text {
@@ -55,6 +61,13 @@
 
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  &__form{
+    p{
+      color: #ffffff;
+      text-align: center;
     }
   }
 }
@@ -261,6 +274,10 @@
     width: 100%;
   }
 
+  @media @mobile and @mobileLandscape {
+    padding-bottom: 20px;
+  }
+
   &--fixed {
     position: fixed;
     top: 20px;
@@ -281,6 +298,12 @@
       font-size: 18px;
       flex: 33% 0 0;
     }
+
+    @media @mobile and @mobileLandscape {
+      margin-bottom: 7px;
+      font-size: 20px;
+      line-height: 22px;
+    }
   }
 
   &__total {
@@ -296,10 +319,20 @@
       flex: 33% 0 0;
       text-align: right;
     }
+
+    @media @mobile and @mobileLandscape {
+      margin-bottom: 12px;
+      font-size: 20px;
+      line-height: 22px;
+    }
   }
 
   &__list {
     margin-bottom: 40px;
+
+    @media @mobile and @mobileLandscape {
+      margin-bottom: 20px;
+    }
   }
 
   &__item {
@@ -309,6 +342,10 @@
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    @media @mobile and @mobileLandscape {
+      margin-bottom: 5px;
     }
   }
 
@@ -371,6 +408,11 @@
       width: 100%;
       justify-content: space-between;
       cursor: pointer;
+      padding-top: 20px;
+
+      .calculator__popup--static &{
+        padding-top: 40px;
+      }
     }
   }
 
@@ -385,6 +427,10 @@
       svg{
         transform: rotateX(180deg);
       }
+
+      .calculator__popup--static &{
+        display: none;
+      }
     }
 
     .calculator__popup--open-mobile & {
@@ -395,7 +441,7 @@
   }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 870px) {
   .calculator {
     padding-top: 30px;
 
@@ -410,23 +456,21 @@
   }
 }
 
-@media screen and (max-width: 767px) {
-  .calculator {
-    &__title {
-      line-height: 40px;
-      font-size: 38px;
-    }
-  }
-}
-
-
 .calculator__popup{
   @media @mobile {
     position: sticky;
     width: ~"calc(100% + 40px)";
     margin-left: -20px;
-    bottom: -360px;
+    bottom: -370px;
     transition: bottom ease 0.3s;
+
+    &--open-mobile{
+      bottom: 0;
+    }
+  }
+
+  @media @mobile and @mobileLandscape {
+    bottom: -280px;
 
     &--open-mobile{
       bottom: 0;
