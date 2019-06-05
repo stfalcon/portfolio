@@ -130,7 +130,8 @@ var calculator = {
 				crossDomain: true,
 				dataType: "json",
 			}).done(function () {
-				$(self.config.submitBtn).replaceWith("<p>Pdf is sent. Check your email, please</p>");
+				$(self.config.submitBtn)
+					.replaceWith("<p>Pdf is sent. <br> Check your email, please</p>");
 			})
 				.fail(function () {
 					alert("Something was wrong. Please reload the page or try again later");
