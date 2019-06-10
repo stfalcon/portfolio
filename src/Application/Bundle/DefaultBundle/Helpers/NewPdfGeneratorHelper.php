@@ -76,14 +76,18 @@ class NewPdfGeneratorHelper
 
         $mPDF = $this->mPdfPort->getMpdf($constructorArgs);
 
-        $mPDF->fontdata['order'] = array(
+        $mPDF->fontdata['ptroot'] = [
             'R' => 'PT-Root-UI_Bold.ttf',
-        );
+            'B' => 'PT-Root-UI_Bold.ttf',
+        ];
         // phpcs:disable Zend.NamingConventions.ValidVariableName.NotCamelCaps
-        $mPDF->sans_fonts[] = 'order';
-        $mPDF->available_unifonts[] = 'order';
-        $mPDF->default_available_fonts[] = 'order';
+        $mPDF->sans_fonts[] = 'ptroot';
+        $mPDF->available_unifonts[] = 'ptroot';
+        $mPDF->available_unifonts[] = 'ptrootB';
+        $mPDF->default_available_fonts[] = 'ptroot';
+        $mPDF->default_available_fonts[] = 'ptrootB';
         // phpcs:enable
+
         $mPDF->SetDisplayMode('fullpage');
         $mPDF->WriteHTML($html);
         $email = \strtolower(\preg_replace('~([\s\-/@])~', '_', $email));
