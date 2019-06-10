@@ -108,10 +108,10 @@ __email:
 __order:
     page:
         title: Сколько стоит разработка приложения?
-        description: 'To help you get an approximate estimation, we have created an interactive app cost calculator, which allows you to pick and choose the features for your app and easily calculate the preliminary cost. This app estimator will give you the possibility to try out as many different combination of platforms and functionalities as you like, in order to determine what meets your business needs.'
+        description: 'Мы создали интерактивный калькулятор стоимости приложения, который позволяет легко рассчитать приблизительную стоимость вашего приложения. Чтобы максимально точно соответствовать потребностям вашего бизнеса, калькулятор предоставляет возможность выбора разных комбинаций платформ и функций.'
         choise: Выберите платформу
         select: Выберите функции приложения
-        form_detailed: Get detailed PDF
-        form_send: Send
-        form_pdf_send_info: 'Pdf is sent. <br> Check your email, please'
-        footer: Please, don’t take this app cost calculation as fact. Think of this price calculator as a tool to implement the rough estimate instead.
+        form_detailed: Получить Pdf с детальной оценкой
+        form_send: Отправить
+        form_pdf_send_info: 'Pdf отправлен. <br> Пожалуйста, проверьте свою почту'
+        footer: Пожалуйста, не принимайте этот расчет стоимости приложения как факт. Это ориентировочная оценка.
