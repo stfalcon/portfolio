@@ -369,11 +369,11 @@ __email:
 __order:
     page:
         title: How much does it cost to develop an app?
-        description: 'To help you get an approximate estimation, we have created an interactive app cost calculator, which allows you to pick and choose the features for your app and easily calculate the preliminary cost. This app estimator will give you the possibility to try out as many different combination of platforms and functionalities as you like, in order to determine what meets your business needs.'
+        description: 'We have created an interactive calculator, which allows to estimate the approximate cost of your app cost easily. To meet your business needs with maximum accuracy, the tool offers you the choice of combinations of various features and platforms.'
         choise: Choose a platform
         select: Select app features
         form_title: Total cost
         form_detailed: Get detailed PDF
         form_send: Send
         form_pdf_send_info: 'Pdf is sent. <br> Check your email, please'
-        footer: Please, don’t take this app cost calculation as fact. Think of this price calculator as a tool to implement the rough estimate instead.
+        footer: The calculator provides only the approximate cost of mobile app development.
