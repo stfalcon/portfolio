@@ -351,8 +351,28 @@ __main_page:
         contact_us: Contact us
 __cookie-alert_text: We use cookies. If you continue using our site, you confirm that you agree to our Privacy Policy.
 __cookie-alert_button_text: Accept
+
 __order_pdf:
     header_title: How much does it cost to develop an app?
     title: Price
     footer_text1: The price you see is an indicative cost estimate based on development timescales and hourly rates.
     footer_text2: For a personal quote let’s talk about your product.
+
+__email:
+    order:
+        subject: 'Stfalcon: Your app cost calculations are ready'
+        title: Thank you for using our calculator! Your calculations are in the attachment.
+        text1: Please, don’t take this app cost calculation as a fact. Think of this price calculator as a tool to implement the rough estimate instead.
+        text2: We would like to discuss your project in more detail for more accurately assess.  Reply to this email and our representatives will get back to you.
+        footer: 'Best Regards, <br> Stfalcon.com'
+
+__order:
+    page:
+        title: How much does it cost to develop an app?
+        description: 'To help you get an approximate estimation, we have created an interactive app cost calculator, which allows you to pick and choose the features for your app and easily calculate the preliminary cost. This app estimator will give you the possibility to try out as many different combination of platforms and functionalities as you like, in order to determine what meets your business needs.'
+        choise: Choose a platform
+        select: Select app features
+        form_detailed: Get detailed PDF
+        form_send: Send
+        form_pdf_send_info: 'Pdf is sent. <br> Check your email, please'
+        footer: Please, don’t take this app cost calculation as fact. Think of this price calculator as a tool to implement the rough estimate instead.

@@ -96,3 +96,22 @@ __order_pdf:
     title: Прайс
     footer_text1: Цена, которую вы видите, является ориентировочной оценкой стоимости разработки. Оценка основана на строках и почасовой ставке разработчиков.
     footer_text2: Давайте поговорим о детальной оценке вашего проекта.
+
+__email:
+    order:
+        subject: 'Stfalcon: расчеты стоимости вашего приложения готовы'
+        title: Спасибо за использование нашего калькулятора! Ваши расчеты во вложении письма.
+        text1: Пожалуйста, не принимайте этот расчет стоимости приложения как факт. Это приблизительная оценка.
+        text2: Будем рады обсудить ваш проект более детально для точной оценки.
+        footer: Команда Stfalcon.
+
+__order:
+    page:
+        title: Сколько стоит разработка приложения?
+        description: 'To help you get an approximate estimation, we have created an interactive app cost calculator, which allows you to pick and choose the features for your app and easily calculate the preliminary cost. This app estimator will give you the possibility to try out as many different combination of platforms and functionalities as you like, in order to determine what meets your business needs.'
+        choise: Выберите платформу
+        select: Выберите функции приложения
+        form_detailed: Get detailed PDF
+        form_send: Send
+        form_pdf_send_info: 'Pdf is sent. <br> Check your email, please'
+        footer: Please, don’t take this app cost calculation as fact. Think of this price calculator as a tool to implement the rough estimate instead.

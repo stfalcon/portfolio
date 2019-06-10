@@ -1,15 +1,10 @@
 <div class="calculator">
     <div class="calculator__container">
         <div class="calculator__left">
-            <h1 class="calculator__title">How much does it cost to develop an app?</h1>
-            <p class="calculator__text">To help you get an approximate estimation, we have created an interactive app cost
-                calculator,
-                which allows you to pick and choose the features for your app and easily calculate the preliminary cost. This
-                app estimator will
-                give you the possibility to try out as many different combination of platforms and functionalities as you like,
-                in order to determine what meets your business needs.</p>
+            <h1 class="calculator__title">{{ '__order.page.title'|trans }}</h1>
+            <p class="calculator__text">{{ '__order.page.description'|trans }}</p>
             <div class="chips calculator__chips">
-                <div class="chips__title">Choose a platform</div>
+                <div class="chips__title">{{ '__order.page.choise'|trans }}</div>
                 <div class="chip-tabs">
                     <label class="chip-tabs__item">
                         <input type="radio" name="platform" value="ios" class="chip-tabs__radio">
@@ -54,7 +49,7 @@
                 </div>
             </div>
             <div class="chips calculator__chips calculator__chips_features" style="display: none">
-                <div class="chips__title">Select app features</div>
+                <div class="chips__title">{{ '__order.page.select'|trans }}</div>
                 <div class="chips__list">
 
                 </div>
@@ -109,17 +104,16 @@
                     </li>
                 </ul>
                 <form action="#" class="calculator__form" id="calc_form" data-url="{{ path('send_order') }}">
-                    <div class="calc-card__title">Get detailed PDF</div>
+                    <div class="calc-card__title">{{ '__order.page.form_detailed'|trans }}</div>
                     <input type="email" class="calc-card__input" placeholder="Your E-mail" required>
-                    <button class="btn btn--dark calc-card__btn">Send</button>
-                    <p class="calculator__form-success" style="display: none">Pdf is sent. <br> Check your email, please</p>
+                    <button class="btn btn--dark calc-card__btn">{{ '__order.page.form_send'|trans }}</button>
+                    <p class="calculator__form-success" style="display: none">{{ '__order.page.form_pdf_send_info'|trans|raw }}</p>
                 </form>
             </div>
         </div>
     </div>
     <div class="calculator__container">
-        <p class="calculator__hint">Please, don’t take this app cost calculation as fact. Think of this price calculator as
-            a tool to implement the rough estimate instead.</p>
+        <p class="calculator__hint">{{ '__order.page.footer'|trans }}</p>
     </div>
 
 </div>
