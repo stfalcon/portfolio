@@ -146,6 +146,7 @@
       font-size: 14px;
       flex-direction: column;
       min-height: 64px;
+      justify-content: flex-start;
     }
 
     .chip-tabs__item:first-child & {
@@ -199,6 +200,10 @@
 
   &__item-icons{
     display: inline-flex;
+
+    @media @mobile {
+      margin-bottom: 3px;
+    }
   }
 }
 
