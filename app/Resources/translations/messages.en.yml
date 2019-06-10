@@ -372,6 +372,7 @@ __order:
         description: 'To help you get an approximate estimation, we have created an interactive app cost calculator, which allows you to pick and choose the features for your app and easily calculate the preliminary cost. This app estimator will give you the possibility to try out as many different combination of platforms and functionalities as you like, in order to determine what meets your business needs.'
         choise: Choose a platform
         select: Select app features
+        form_title: Total cost
         form_detailed: Get detailed PDF
         form_send: Send
         form_pdf_send_info: 'Pdf is sent. <br> Check your email, please'
