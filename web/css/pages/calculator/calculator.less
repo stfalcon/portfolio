@@ -9,6 +9,7 @@
   }
 
   padding: 160px 0 20px;
+  background: #ffffff;
 
   &__container {
     display: flex;
@@ -135,7 +136,8 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 
@@ -144,9 +146,9 @@
       min-width: 90px;
       padding: 10px;
       font-size: 14px;
-      flex-direction: column;
+      display: block;
       min-height: 64px;
-      justify-content: flex-start;
+      text-align: center;
     }
 
     .chip-tabs__item:first-child & {
