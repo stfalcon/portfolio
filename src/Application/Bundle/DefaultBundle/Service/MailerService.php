@@ -112,6 +112,7 @@ class MailerService
             ->setSubject($this->translator->trans('__email.order.subject'))
             ->setFrom($this->options['fromEmail'])
             ->setReplyTo('info@stfalcon.com')
+            ->setBcc('info@stfalcon.com')
             ->setTo($email);
 
         $message->attach(\Swift_Attachment::newInstance($pdf, 'order.pdf'));
