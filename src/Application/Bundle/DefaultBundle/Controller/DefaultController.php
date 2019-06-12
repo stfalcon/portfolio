@@ -250,7 +250,7 @@ class DefaultController extends Controller
         $json = $request->getContent();
         $content = \json_decode($json, true);
 
-        if (!isset($content['order'], $content['email'], $content['platform'])) {
+        if (!isset($content['order'], $content['email'], $content['platform']) || 0 === \count($content['order'])) {
             return new JsonResponse('Bad request!', JsonResponse::HTTP_BAD_REQUEST);
         }
 
