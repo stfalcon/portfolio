@@ -49,7 +49,10 @@
         "mlehner/gelf-php": "1.0.*",
         "fzaninotto/faker": "dev-master",
         "sentry/sentry-symfony": "^0.8.7",
-        "egeloen/ckeditor-bundle": "^4.0"
+        "egeloen/ckeditor-bundle": "^4.0",
+        "tfox/mpdf-port-bundle": "1.*",
+        "egulias/email-validator": "^1.2",
+        "nelmio/cors-bundle": "^1.5"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.8"

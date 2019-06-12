@@ -2,6 +2,10 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: sphinx/sphinx.yml }
+    - { resource: nelmio_cors.yml}
+
+parameters:
+    upload_csv_file: '/uploads/files'
 
 framework:
     #esi:             ~
@@ -21,6 +25,7 @@ framework:
     session:         ~
     fragments:       ~
     http_method_override: true
+    serializer: { enabled: true }
 
 # Twig Configuration
 twig:

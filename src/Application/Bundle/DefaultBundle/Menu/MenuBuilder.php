@@ -312,6 +312,12 @@ class MenuBuilder
                         'child_routes' => ['jobs_job_view'],
                     ],
                     [
+                        'title' => $this->translator->trans('__menu.calculator'),
+                        'config' => [
+                            'route' => 'calculator',
+                        ],
+                    ],
+                    [
                         'title' => $this->translator->trans('__menu.about_us').'<span class="type-hint">PDF</span>',
                         'config' => [
                             'route' => 'show_pdf',

@@ -8,10 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Security\Acl\Exception\Exception;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Default controller. For single actions for project.
@@ -73,7 +77,17 @@ class DefaultController extends Controller
     }
 
     /**
-     * Opensource page
+     * @return Response
+     *
+     * @Route("/calculator", name="calculator")
+     */
+    public function calculatorAction()
+    {
+        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig');
+    }
+
+    /**
+     * Opensource page.
      *
      * @param Request $request Request
      *
@@ -98,7 +112,7 @@ class DefaultController extends Controller
     public function getProjectsStars(Request $request)
     {
         $projects = $request->get('names');
-        if (count($projects) === 0) {
+        if (0 === count($projects)) {
             return new JsonResponse(['error' => true]);
         }
         $resultProjects = [];
@@ -220,5 +234,54 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:type', SeoOpenGraphEnum::WEBSITE);
 
         return [];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @Route("/order", name="send_order", methods={"POST"})
+     *
+     * @return JsonResponse
+     *
+     * @throws \Exception
+     */
+    public function sendOrderByPriceAction(Request $request)
+    {
+        $json = $request->getContent();
+        $content = \json_decode($json, true);
+
+        if (!isset($content['order'], $content['email'], $content['platform'])) {
+            return new JsonResponse('Bad request!', JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        if (!in_array($content['platform'], ['android', 'ios', 'android_ios'], true)) {
+            return new JsonResponse('Bad request platform!', JsonResponse::HTTP_BAD_REQUEST);
+        }
+        $emailConstraint =
+            [
+                new NotBlank(),
+                new Email(['strict' => true]),
+            ];
+        /** @var $errors \Symfony\Component\Validator\ConstraintViolationList */
+        $errors = $this->get('validator')->validate($content['email'], $emailConstraint);
+        if ($errors->count() > 0) {
+            return new JsonResponse('Bad request email!', JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        $email = $content['email'];
+        try {
+            $content = $this->get('app.price.service')->preparePrice($content);
+        } catch (BadRequestHttpException $e) {
+            return new JsonResponse('Bad request!', JsonResponse::HTTP_BAD_REQUEST);
+        } catch (\Exception $e) {
+            return new JsonResponse('Something wrong!', JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        $pdfService = $this->get('app.helper.new_pdf_generator');
+        $pdf = $pdfService->generatePdfFile($email, $content);
+
+        $this->get('application_default.service.mailer')->sendOrderPdf($email, $pdf);
+
+        return new JsonResponse();
     }
 }

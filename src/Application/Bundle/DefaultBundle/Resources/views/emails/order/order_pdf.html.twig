@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ '__order_pdf.title'|trans }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "ptroot", serif;
+            font-weight: 400;
+            color: #000000;
+            background: #FFFFFF;
+        }
+        .header {
+            padding: 32px 40px 24px;
+        }
+        .header td {
+            vertical-align: top;
+        }
+        .header__logo {
+            display: inline-block;
+            width: 118px;
+            height: 24px;
+            padding-right: 150px;
+            margin-top: 10px;
+        }
+        .header__title-td {
+            line-height: 42px;
+        }
+        .header__title {
+            display: inline-block;
+            font-size: 42px;
+            color: #040918;
+        }
+        .table-wrapper {
+            width: 100%;
+            padding: 0 40px 40px 40px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .table thead td {
+            font-size: 9px;
+            line-height: 26px;
+            border-bottom: 4px solid #040918;
+        }
+        .table tbody td {
+            font-size: 9px;
+            line-height: 10px;
+            padding-top: 15px;
+            border-bottom: 1px solid #ececed;
+            vertical-align: bottom;
+        }
+        .table tbody .table__text {
+            font-size: 14px;
+            line-height: 15px;
+            vertical-align: bottom;
+        }
+        .text-left {
+            text-align: left;
+        }
+        .total {
+            text-align: right;
+            font-size: 24px;
+            line-height: 26px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: #040918;
+            padding: 24px 0;
+        }
+        .footer__text-sm {
+            font-size: 9px;
+            line-height: 12px;
+            color: #ffffff;
+        }
+        .footer__text-lg {
+            font-size: 18px;
+            line-height: 18px;
+            color: #ffffff;
+        }
+        .footer__label {
+            font-size: 9px;
+            line-height: 12px;
+            color: #ffffff;
+        }
+        .footer__value {
+            display: block;
+            font-size: 12px;
+            line-height: 26px;
+            color: #D7C76E;
+            text-decoration: none;
+        }
+        .footer__row {
+            padding: 0 40px 18px;
+            margin-bottom: 18px;
+        }
+        .footer__left {
+            float: left;
+            width: 50%;
+            padding-right: 100px;
+        }
+    </style>
+</head>
+<body>
+     <div class="calc-result">
+         <div class="header">
+             <table>
+                 <tbody>
+                 <tr>
+                     <td>
+                         <img class="header__logo" src="{{ asset('img/stfalcon_logo.png') }}" width="118" height="24">
+                     </td>
+                     <td class="header__title-td">
+                         <div class="header__title">{{ '__order_pdf.header_title'|trans }}</div>
+                     </td>
+                 </tr>
+                 </tbody>
+             </table>
+         </div>
+         {% set mobile_title = data['platform'] == 'android' ? 'Android' : data['platform'] == 'ios' ? 'IOS' : 'Mobile' %}
+         <div class="table-wrapper">
+             <table class="table">
+                 <thead>
+                 <tr>
+                     <td class="text-left">Feature</td>
+                     <td>Design, $</td>
+                     <td>{{ mobile_title }}, $</td>
+                     <td>Backend, $</td>
+                     <td>QA, $</td>
+                     <td>PM, $</td>
+                     <td>Total, $</td>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 {%- for feature in data['order'] -%}
+                     <tr>
+                         <td class="table__text text-left">{{ feature['title'] }}</td>
+                         <td>{{ feature['price']['design']|number_format(0,',',' ') }}</td>
+                         <td>{{ feature['price']['mobile']|number_format(0,',',' ') }}</td>
+                         <td>{{ feature['price']['be']|number_format(0,',',' ') }}</td>
+                         <td>{{ feature['price']['qa']|number_format(0,',',' ') }}</td>
+                         <td>{{ feature['price']['pm']|number_format(0,',',' ') }}</td>
+                         <td class="table__text">{{ feature['total']|number_format(0,',',' ') }}</td>
+                     </tr>
+                 {%- endfor -%}
+                 </tbody>
+             </table>
+            <div class="total">$ {{ data['total']|number_format(0,',',' ') }}</div>
+         </div>
+     </div>
+     <div class="footer">
+         <div class="footer__row">
+             <div class="footer__left">
+                 <div class="footer__text-sm">
+                     {{ '__order_pdf.footer_text1'|trans }}
+                 </div>
+             </div>
+             <div class="footer__right">
+                 <div class="footer__label">Skype</div>
+                 <a href="skype:stfalcon.sales?chat" class="footer__value">stfalcon.sales</a>
+             </div>
+         </div>
+         <div class="footer__row">
+             <div class="footer__left">
+                 <div class="footer__text-lg">
+                     {{ '__order_pdf.footer_text2'|trans }}
+                 </div>
+             </div>
+             <div class="footer__right">
+                 <div class="footer__label">Email</div>
+                 <a href="mailto:info@stfalcon.com" class="footer__value">info@stfalcon.com</a>
+             </div>
+         </div>
+     </div>
+</body>
+</html>

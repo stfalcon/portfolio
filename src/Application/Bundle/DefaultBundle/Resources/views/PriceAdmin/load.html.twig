@@ -1,0 +1,51 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block breadcrumb %}
+    <li><a href="{{ url('sonata_admin_dashboard') }}">{% trans %}Dashboard{% endtrans %}</a><span
+                class="divider">/</span></li>
+    <li class="active">Загрузить прайс</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Загрузить прайс</h1>
+
+    {% if message is defined %}
+        <p style="color:red">{{ message }}</p>
+    {% endif %}
+
+    <form action="{{ form_action }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="price">
+        <input type="submit">
+    </form>
+    {% if result|length > 0 %}
+        <table class="table">
+        <tbody>
+        <tr class="sonata-ba-view-container">
+            <th>
+                <tr>
+                    <td>Название</td>
+                    {% for price_name, price in result[0]['price'] %}
+                        {% for key, item in price %}
+                        <td>{{ price_name ~'-'~ key }}</td>
+                        {% endfor %}
+                    {% endfor %}
+               </tr>
+                {% for feature in result %}
+                    <tr>
+                        <td>{{ feature['title'] }}</td>
+                        {% for price_name, price in feature['price'] %}
+                            {% for item in price %}
+                                <td>{{ item }}</td>
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </th>
+            <tr>
+
+            </tr>
+        </tr>
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

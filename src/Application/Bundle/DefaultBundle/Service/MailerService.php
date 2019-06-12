@@ -2,6 +2,7 @@
 
 namespace Application\Bundle\DefaultBundle\Service;
 
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -24,14 +25,17 @@ class MailerService
      */
     private $options = [];
 
+    private $translator;
+
     /**
      * @param \Swift_Mailer     $mailer
      * @param \Twig_Environment $twig
      * @param array             $options
+     * @param Translator        $translator
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, array $options)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, array $options, Translator $translator)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
@@ -39,6 +43,7 @@ class MailerService
             throw new \InvalidArgumentException('Options array can not be empty');
         }
         $this->options = $options;
+        $this->translator = $translator;
     }
 
     /**
@@ -89,6 +94,29 @@ class MailerService
 
         $message->setBody(
             $this->getBody('@ApplicationDefault/emails/vacancy.html.twig', $params),
+            'text/html'
+        );
+
+        return $this->mailer->send($message);
+    }
+
+    /**
+     * @param string $email
+     * @param string $pdf
+     *
+     * @return int
+     */
+    public function sendOrderPdf($email, $pdf)
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject($this->translator->trans('__email.order.subject'))
+            ->setFrom($this->options['fromEmail'])
+            ->setReplyTo('info@stfalcon.com')
+            ->setTo($email);
+
+        $message->attach(\Swift_Attachment::newInstance($pdf, 'order.pdf'));
+        $message->setBody(
+            $this->getBody('@ApplicationDefault/emails/order/order_mail.html.twig'),
             'text/html'
         );
 

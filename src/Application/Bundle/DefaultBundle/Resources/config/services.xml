@@ -97,6 +97,7 @@
                 <argument key="fromName">%mailer_name%</argument>
                 <argument key="kernelRootDir">%kernel.root_dir%</argument>
             </argument>
+            <argument type="service" id="translator.default" />
         </service>
 
         <service id="application_default.service.geo_ip" class="%application_default.service.geo_ip.class%">
