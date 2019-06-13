@@ -2529,6 +2529,8 @@ ul.error-list li {
 
 @media screen and (max-width: 1023px) {
   .project-item:first-child {
+    position: relative;
+
     &__img {
       margin: 70px 0;
     }
@@ -2536,7 +2538,13 @@ ul.error-list li {
 }
 
 @media screen and (max-width: 639px) {
+  .project-item {
+    text-align: center;
+  }
+
   .project-item:first-child {
+    position: relative;
+
     &__img-block {
       padding: 0;
     }
