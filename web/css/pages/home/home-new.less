@@ -2523,3 +2523,28 @@ ul.error-list li {
     }
   }
 }
+
+//  this styles used for align center project image on main page (only first item)
+// TODO add opportunity to change classes to project item
+
+@media screen and (max-width: 1023px) {
+  .project-item:first-child {
+    .project-item__img {
+      margin: 70px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .project-item:first-child {
+    position: relative;
+
+    .project-item__img-block {
+      padding: 0;
+    }
+
+    .project-item__img {
+      width: 100%;
+    }
+  }
+}
