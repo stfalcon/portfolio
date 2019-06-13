@@ -129,7 +129,7 @@ var calculator = {
 				data: JSON.stringify(formData),
 				contentType: "application/json; charset=utf-8",
 				crossDomain: true,
-				dataType: "json",
+				dataType: "json"
 			}).done(function () {
 				$(self.config.submitBtn).hide();
 				$(self.config.successText).show();
@@ -137,14 +137,14 @@ var calculator = {
 				setTimeout(function () {
 					$(self.config.successText).hide();
 					$(self.config.submitBtn).show().removeAttr('disabled');
-				}, 3500)
-
+				}, 3500);
+				dataLayer.push({'event': 'submit_calculate_order'});
 			})
-				.fail(function () {
-					alert("Something was wrong. Please reload the page or try again later");
+			.fail(function () {
+				alert("Something was wrong. Please reload the page or try again later");
 
-					$(self.config.submitBtn).removeAttr('disabled');
-				});
+				$(self.config.submitBtn).removeAttr('disabled');
+			});
 		});
 
 		// open mobile card block
