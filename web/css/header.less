@@ -1,29 +1,29 @@
 @font-face {
-  font-family: "Gilroy-Bold";
+  font-family: "Gilroy";
   src: url("/fonts/Gilroy-Bold.woff") format("woff");
   font-style: normal;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 @font-face {
-  font-family: "Gilroy-ExtraBold";
+  font-family: "Gilroy";
   src: url("/fonts/Gilroy-ExtraBold.woff") format("woff");
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
 }
 
 @font-face {
-  font-family: "PT-Root-UI_Bold";
+  font-family: "PT-Root-UI";
   src: url("/fonts/PT-Root-UI_Bold.woff") format("woff");
   font-style: normal;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 @font-face {
-  font-family: "PTSerif-Regular";
+  font-family: "PTSerif";
   src: url("/fonts/PTSerif-Regular.woff") format("woff");
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .btn {
@@ -95,6 +95,10 @@ a.btn {
   display: inline-block;
   margin-left: 6px;
   transform: translateY(-3px);
+
+  &--white {
+    background: #ffffff;
+  }
 }
 
 .header {
@@ -297,35 +301,6 @@ a.btn {
   }
 }
 
-.socials-links {
-
-  .footer & {
-    margin: 40px 0 0;
-  }
-  .socials-links__item {
-    float: left;
-    margin-right: 15px;
-    width: 16px;
-    height: 13px;
-    line-height: 14px;
-    text-align: center;
-    min-width: auto;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-  .icon {
-    opacity: 0.3;
-    transition: all 0.1s ease;
-    background-size: 100%;
-  }
-  a:hover {
-    .icon {
-      opacity: 1;
-    }
-  }
-}
 
 .header-navigation {
   margin-right: 40px;
