@@ -1,14 +1,20 @@
 <div class="footer__container">
     <div class="footer__top">
         <div class="footer__title">
-            Our goal is to create useful and convenient software. Let's do this.
+            Our goal is to create useful and convenient software. <br>
+            <a href="{{ path('contacts') }}" class="footer__link">
+                Let's do this.
+                <span class="footer__link-bg"></span>
+            </a>
         </div>
     </div>
     <div class="footer__bottom">
         <div class="footer__left">
-            <img src="{{ asset('img/svg/new-logo.svg')}}" alt="" class="footer__logo">
+            <a href="/" class="footer__logo">
+                <img src="{{ asset('img/svg/new-logo.svg')}}" alt="" class="footer__logo-img">
+            </a>
             <div class="copyright">
-                &copy; 2009–{{ "now"|date("Y") }}, {{ '__Footer.homepage.link'|trans({'%homepage%':url('homepage')})|raw }}
+                &copy; 2009–{{ "now"|date("Y") }}, <br> {{ '__Footer.homepage.link'|trans({'%homepage%':url('homepage')})|raw }}
             </div>
         </div>
         <div class="footer__right">
@@ -16,17 +22,17 @@
                 <nav class="footer-nav">
                     <ul class="footer-nav__list">
                         <li class="footer-nav__item">
-                            <a href="#" class="footer-nav__link">projects</a>
+                            <a href="{{ path('portfolio_all_projects')}}" class="footer-nav__link">{{ 'Проекты'| trans }}</a>
                         </li>
                         <li class="footer-nav__item">
-                            <a href="#" class="footer-nav__link">services</a>
+                            <a href="{{ path('portfolio_categories_list', { 'slug': 'web-development' }) }}" class="footer-nav__link">{{ 'Услуги'| trans }}</a>
                         </li>
                         <li class="footer-nav__item">
-                            <a href="#" class="footer-nav__link">blog</a>
+                            <a href="{{ path('blog') }}" class="footer-nav__link">{{ 'Блог'| trans }}</a>
                         </li>
                         <li class="footer-nav__item">
-                            <a href="#" class="footer-nav__link">
-                                about us
+                            <a href="{{ path('show_pdf', { 'pdfFilename': 'About_Stfalcon_2019.pdf' }) }}" class="footer-nav__link">
+                               {{ 'О нас'| trans }}
                                 <span class="type-hint type-hint--white">PDF</span>
                             </a>
                         </li>
@@ -60,10 +66,14 @@
             </div>
             <div class="footer__item">
                 <div class="footer-social">
-                    {{ include('::_social_links.html.twig') }}
-                    <div class="rules">
-                        <a href="{{ path('privacy_policy_page') }}" class="rules__link">Privacy Policy</a>
-                        <a href="{{ path('terms_of_service_page') }}" class="rules__link">Terms &amp; Conditions</a>
+                    <div class="footer-social__item">
+                        {{ include('::_social_links.html.twig') }}
+                    </div>
+                    <div class="footer-social__item">
+                        <div class="rules">
+                            <a href="{{ path('privacy_policy_page') }}" class="rules__link">Privacy Policy</a>
+                            <a href="{{ path('terms_of_service_page') }}" class="rules__link">Terms &amp; Conditions</a>
+                        </div>
                     </div>
                 </div>
             </div>
