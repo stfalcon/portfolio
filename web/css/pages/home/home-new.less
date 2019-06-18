@@ -902,10 +902,10 @@
     color: #ffffff;
     text-decoration: none;
     text-transform: uppercase;
+    transition: color 0.2s ease-in-out;
 
     &:hover {
-      color: #ffffff;
-      text-decoration: underline;
+      color: #2b55db;
     }
   }
 }
@@ -948,10 +948,11 @@
     a {
       color: #ffffff;
       text-decoration: underline;
+      transition: color 0.2s ease-in-out;
     }
 
     a:hover {
-      text-decoration: none;
+      color: #2b55db;
     }
 
     .no-decorate {
@@ -972,6 +973,11 @@
     font-size: inherit;
     color: inherit;
     text-decoration: underline;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #2b55db;
+    }
   }
 }
 
@@ -984,12 +990,12 @@
     line-height: 19px;
     text-decoration: underline;
     margin-bottom: 20px;
-    color: #ffffff;
-    opacity: 0.5;
+    color: #707B80;
     border: none;
+    transition: color 0.2s ease-in-out;
 
     &:hover {
-      color: #ffffff;
+      color: #2b55db;
     }
 
     &:last-child {
@@ -1007,12 +1013,21 @@
   &__link {
     display: block;
     padding: 2px;
+
+    &:hover {
+      svg {
+        rect {
+          fill: #2b55db;
+        }
+      }
+    }
   }
 
   svg {
     display: block;
     rect {
       fill: #ffffff;
+      transition: fill 0.2s ease-in-out;
     }
   }
 }
