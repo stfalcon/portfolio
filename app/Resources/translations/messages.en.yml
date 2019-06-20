@@ -378,3 +378,7 @@ __order:
         form_send: Send
         form_pdf_send_info: 'Pdf is sent. <br> Check your email, please'
         footer: The calculator provides only the approximate cost of mobile app development.
+
+__calculator:
+    title: 'How much does it cost to make an app? | Stfalcon.com'
+    description: 'App cost calculator to estimate the approximate cost of android or ios app development'

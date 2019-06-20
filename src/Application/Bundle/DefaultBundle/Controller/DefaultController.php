@@ -83,7 +83,14 @@ class DefaultController extends Controller
      */
     public function calculatorAction()
     {
-        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig');
+        $title = $this->get('translator')->trans('__calculator.title');
+        $seo = $this->get('sonata.seo.page');
+        $seo
+            ->addMeta('property', 'og:title', $title)
+            ->addMeta('property', 'og:description', $this->get('translator')->trans('__calculator.description'))
+        ;
+
+        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig', ['main_title' => $title]);
     }
 
     /**
