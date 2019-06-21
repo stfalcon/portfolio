@@ -205,8 +205,15 @@ class MenuBuilder
         $menu->addChild($menuItem['title'], $menuItem['config'])->setCurrent($isCurrent);
 
         $typeIndex = (int) $isSubMenu;
-        $menu[$menuItem['title']]->setAttributes($this->types[$typeIndex]['attributes'])
-            ->setLinkAttributes($this->types[$typeIndex]['link_attributes'])
+
+        $linkAttributes = $this->types[$typeIndex]['link_attributes'];
+        if (isset($menuItem['externalLink']) && $menuItem['externalLink']) {
+            $linkAttributes = \array_merge($linkAttributes, ['target' => '_blank']);
+        }
+
+        $menu[$menuItem['title']]
+            ->setAttributes($this->types[$typeIndex]['attributes'])
+            ->setLinkAttributes($linkAttributes)
             ->setLabelAttributes($this->types[$typeIndex]['label_attributes']);
 
         if (isset($menuItem['children'])) {
@@ -319,6 +326,7 @@ class MenuBuilder
                     ],
                     [
                         'title' => $this->translator->trans('__menu.about_us').'<span class="type-hint">PDF</span>',
+                        'externalLink' => true,
                         'config' => [
                             'route' => 'show_pdf',
                             'routeParameters' => ['pdfFilename' => 'About_Stfalcon_2019.pdf'],

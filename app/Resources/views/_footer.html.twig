@@ -1,44 +1,82 @@
-<div class="footer-top clearfix">
-    <a class="footer-logo" href="/"></a>
-    {#<nav class="main-nav main-nav--footer">#}
-        {#{{ knp_menu_render('footer_main') }}#}
-    {#</nav>#}
-    <div class="contacts-content">
-        <nav class="services-nav">
-            {{ knp_menu_render('service_menu') }}
-        </nav>
-        <section class="contacts">
-            <ul class="contact-list">
-                <li>
-                    <span>{{ 'Позвонить'|trans }}:</span>
-                    <a href="tel:+380 67 334-40-40">+380 67 334-40-40</a>
-                </li>
-                <li class="write-to">
-                    <span>{{ 'Написать'|trans() }}:</span>
-                    <a href="mailto:info@stfalcon.com" class="email">info@stfalcon.com</a>
-                </li>
-                <li class="skype-wrap">
-                    <span>{{ 'Skype'|trans() }}:</span>
-                    <a href="skype:stfalcon.sales?chat" class="skype">stfalcon.sales</a>
-                </li>
-            </ul>
-        </section>
-        <div class="address">
-            <span>{{ "Наши офисы" | trans() }}:</span>
-            <span class="adress">{{ "Бостон"|trans() }}, {{ "США"|trans() }}</span>
-            <span class="adress">{{ "улица Заречанская, 3/2, Хмельницкий, Украина"|trans() }}</span>
-            <span class="adress">{{ "ул. Саксаганского, 121 Киев, Украина"|trans() }}</span>
-            {{ include('::_social_links.html.twig') }}
+<div class="footer__container">
+    <div class="footer__top">
+        <div class="footer__title">
+         {{ 'Создаем полезное и удобное программное обеспечение'| trans }}. <br>
+            <a href="{{ path('contacts') }}" class="footer__link">
+                {{ 'Свяжитесь с нами' | trans }}.
+                <span class="footer__link-bg"></span>
+            </a>
         </div>
     </div>
-    {% include '::_social_links.html.twig' with {'add_class' : 'socials-links--mob'}  %}
-</div>
-<div class="copyright-cnt">
-    <div class="copyright">
-        &copy; 2009–{{ "now"|date("Y") }}, {{ '__Footer.homepage.link'|trans({'%homepage%':url('homepage')})|raw }}
-        <div class="rules">
-            <a href="{{ path('privacy_policy_page') }}">Privacy Policy</a>
-            <a href="{{ path('terms_of_service_page') }}">Terms &amp; Conditions</a>
+    <div class="footer__bottom">
+        <div class="footer__left">
+            <a href="/" class="footer__logo">
+                <img src="{{ asset('img/svg/new-logo.svg')}}" alt="" class="footer__logo-img">
+            </a>
+            <div class="copyright">
+                &copy; 2009–{{ "now"|date("Y") }}, <br> {{ '__Footer.homepage.link'|trans({'%homepage%':url('homepage')})|raw }}
+            </div>
+        </div>
+        <div class="footer__right">
+            <div class="footer__item">
+                <nav class="footer-nav">
+                    <ul class="footer-nav__list">
+                        <li class="footer-nav__item">
+                            <a href="{{ path('portfolio_all_projects')}}" class="footer-nav__link">{{ 'Проекты'| trans }}</a>
+                        </li>
+                        <li class="footer-nav__item">
+                            <a href="{{ path('portfolio_categories_list', { 'slug': 'web-development' }) }}" class="footer-nav__link">{{ 'Услуги'| trans }}</a>
+                        </li>
+                        <li class="footer-nav__item">
+                            <a href="{{ path('blog') }}" class="footer-nav__link">{{ 'Блог'| trans }}</a>
+                        </li>
+                        <li class="footer-nav__item">
+                            <a href="{{ path('show_pdf', { 'pdfFilename': 'About_Stfalcon_2019.pdf' }) }}" target="_blank" class="footer-nav__link">
+                               {{ 'О нас'| trans }}
+                                <span class="type-hint type-hint--white">PDF</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer__item">
+                <div class="footer-contacts">
+                    <ul class="footer-contacts__list">
+                        <li class="footer-contacts__item">
+                            <div class="footer-contacts__label">{{ 'Позвонить'|trans }}</div>
+                            <div class="footer-contacts__value">
+                                <a href="tel:+380673344040" class="no-decorate">+380 67 334-40-40</a>
+                            </div>
+                        </li>
+                        <li class="footer-contacts__item">
+                            <div class="footer-contacts__label">{{ 'Написать'|trans() }}</div>
+                            <div class="footer-contacts__value">
+                                <a href="mailto:info@stfalcon.com">info@stfalcon.com</a>
+                            </div>
+                        </li>
+                        <li class="footer-contacts__item">
+                            <div class="footer-contacts__label">{{ 'Skype'|trans() }}:</div>
+                            <div class="footer-contacts__value">
+                                <a href="skype:stfalcon.sales?chat">stfalcon.sales</a>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__item">
+                <div class="footer-social">
+                    <div class="footer-social__item">
+                        {{ include('::_social_links.html.twig') }}
+                    </div>
+                    <div class="footer-social__item">
+                        <div class="rules">
+                            <a href="{{ path('privacy_policy_page') }}" class="rules__link">Privacy Policy</a>
+                            <a href="{{ path('terms_of_service_page') }}" class="rules__link">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
