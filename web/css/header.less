@@ -125,7 +125,8 @@ a.btn {
   display: block;
 
   &__img {
-    max-width: 235px;
+    max-width: 200px;
+    transform: translateY(-10px);
     display: block;
   }
 }
@@ -559,11 +560,6 @@ a.btn {
 
   .main-logo {
     margin-right: 20px;
-
-    &__img {
-      max-width: 223px;
-      width: 100%;
-    }
   }
 
   .navigation__link:hover + .sub-navigation {
@@ -624,12 +620,6 @@ a.btn {
       }
     }
   }
-
-  .main-logo {
-    &__img {
-      max-width: 164px;
-    }
-  }
 }
 
 @media (max-width: 540px) {
@@ -641,6 +631,15 @@ a.btn {
     &__btn {
       width: 100%;
       margin-top: 16px;
+    }
+  }
+}
+
+@media (max-width: 359px) {
+  .main-logo {
+    &__img {
+      max-width: 160px;
+      transform: translateY(-9px);
     }
   }
 }
