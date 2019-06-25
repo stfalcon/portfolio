@@ -63,7 +63,7 @@ class DefaultController extends Controller
                 ->addMeta('name', 'description', $seoHomepage->getDescription())
                 ->addMeta('property', 'og:title', $seoHomepage->getOgTitle())
                 ->addMeta('property', 'og:description', $seoHomepage->getDescription())
-                ->addMeta('property', 'og:image', '/img/'.$seoHomepage->getOgImage());
+                ->addMeta('property', 'og:image', $request->getSchemeAndHttpHost().'/img/'.$seoHomepage->getOgImage());
         }
 
         return $this->render(
