@@ -112,12 +112,36 @@ class MailerService
             ->setSubject($this->translator->trans('__email.order.subject'))
             ->setFrom($this->options['fromEmail'])
             ->setReplyTo('info@stfalcon.com')
-            ->setBcc('info@stfalcon.com')
             ->setTo($email);
 
         $message->attach(\Swift_Attachment::newInstance($pdf, 'order.pdf'));
         $message->setBody(
             $this->getBody('@ApplicationDefault/emails/order/order_mail.html.twig'),
+            'text/html'
+        );
+
+        return $this->mailer->send($message);
+    }
+
+    /**
+     * @param string $email
+     * @param string $pdf
+     * @param string $country
+     *
+     * @return int
+     */
+    public function sendOrderPdfToStfalcon($email, $pdf, $country)
+    {
+        $subject = sprintf('%s %s', $this->translator->trans('__email.order.subject'), $email);
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->options['fromEmail'])
+            ->setTo('info@stfalcon.com')
+        ;
+
+        $message->attach(\Swift_Attachment::newInstance($pdf, 'order.pdf'));
+        $message->setBody(
+            $this->getBody('@ApplicationDefault/emails/order/order_mail_to_stfalcon.html.twig', ['country' => $country]),
             'text/html'
         );
 

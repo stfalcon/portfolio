@@ -286,8 +286,9 @@ class DefaultController extends Controller
 
         $pdfService = $this->get('app.helper.new_pdf_generator');
         $pdf = $pdfService->generatePdfFile($email, $content);
-
+        $country = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
         $this->get('application_default.service.mailer')->sendOrderPdf($email, $pdf);
+        $this->get('application_default.service.mailer')->sendOrderPdfToStfalcon($email, $pdf, $country);
 
         return new JsonResponse();
     }
