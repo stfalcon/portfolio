@@ -12,7 +12,6 @@
         </div>
     </div>
     {{ project.caseContent | raw }}
-    {% include '@StfalconPortfolio/contact_us-block.html.twig' with {'category' : category} %}
     {%- if 'SmartSeeds' == project.name and 'en' == app.request.locale -%}
         {{ render(controller('ApplicationDefaultBundle:Widgets:leadForm', {'projectName': project.name })) }}
     {%- endif -%}
