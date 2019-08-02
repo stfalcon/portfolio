@@ -32,7 +32,9 @@
             </div>
         {% endif %}
         {% if landing_page.posts|length > 0 %}
-            {% include ('@StfalconBlog/Post/relatedPosts.twig') with {'related_posts': landing_page.posts} %}
+            <div class="landing-related-posts">
+                {% include ('@StfalconBlog/Post/relatedPosts.twig') with {'related_posts': landing_page.posts} %}
+            </div>
         {% endif %}
     </div>
 <footer class="footer vcard">
