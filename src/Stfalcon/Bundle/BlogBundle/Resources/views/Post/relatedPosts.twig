@@ -7,6 +7,7 @@
                     <a href="{{ path('blog_post_view', { 'slug': post.slug }) }}#more" class="related-posts__link">
                         <div class="related-posts__img">
                             {{ get_post_first_image(post, '', app.request.host) }}
+                            <img src="https://stfalcon.com/uploads/images/5abc033bea380.png" alt="VR: Lives Saved not in Pretense">
                         </div>
                         {% set title = post.title %}
                         {% if title is empty %}
