@@ -361,7 +361,7 @@ __order_pdf:
 __email:
     order:
         subject_app: 'Stfalcon: Your app cost calculations are ready'
-        subject_web: 'Stfalcon: Your web cost calculations are ready'
+        subject_web: 'Stfalcon: Your website cost calculations are ready'
         title: Thank you for using our calculator! Your project cost calculations are in the attachment.
         text1: Please, don’t take this app development cost estimation as an end value. The present price calculator is intended for rough estimate only.
         text2: We will be glad to discuss your project in more detail and provide a more accurate assessment of your product development cost. Reply to this email and our representatives will get back to you.
