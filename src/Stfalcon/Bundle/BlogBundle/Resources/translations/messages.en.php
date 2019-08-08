@@ -5,6 +5,6 @@ return array(
     'Читать далее'  => 'Read more',
     'Комментировать'  => 'Add comment',
     'Поиск' => 'Search',
-    'Похожие статьи' => 'Related posts',
+    'Вам также может понравиться' => 'You may also like',
     'Похожие проекты' => 'Related projects',
 );

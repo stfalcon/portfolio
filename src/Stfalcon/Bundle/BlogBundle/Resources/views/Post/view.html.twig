@@ -16,19 +16,21 @@
             {% if post.author %}
                 {% include 'StfalconBlogBundle:Post:about_author.html.twig' with {'author': post.author} %}
             {% endif %}
-
-            {# Related posts widget #}
-            {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
-
-            <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
-                <span>{{ 'К списку записей'|trans }}</span>
-            </a>
         </div>
+
+    </article>
+
+    {# Related posts widget #}
+    {{ render(controller('StfalconBlogBundle:Post:relatedPosts', { 'locale': app.request.locale, 'post': post })) }}
+
+    <div class="blog-post">
+        <a class="read-more prev-page" href="{{ path('blog') }}"><span>{{ 'Вернуться к списку записей'|trans }}</span>
+            <span>{{ 'К списку записей'|trans }}</span>
+        </a>
 
         {# Post tags #}
         {% include 'StfalconBlogBundle:Post:_post_tags.html.twig' with {'post': post} %}
-
-    </article>
+    </div>
 
     <button class="button-up scroll-to-top"></button>
 {% endblock %}

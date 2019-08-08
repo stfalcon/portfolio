@@ -134,7 +134,7 @@ class PostRepository extends EntityRepository
      *
      * @return array
      */
-    public function findRelatedPostsToCurrentPost($locale, $post, $limit = 6)
+    public function findRelatedPostsToCurrentPost($locale, $post, $limit = 3)
     {
         if ($post instanceof Post && 0 === $post->getTags()->count()) {
             return [];
