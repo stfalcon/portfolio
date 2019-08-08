@@ -5,7 +5,12 @@
 {% block content %}
     <div class="row-fluid">
         <div class="span6">
-            <a href="{{ url('sonata_admin_price_load') }}" class="btn">Загрузить прайс</a>
+            <a href="{{ path('sonata_admin_price_load', {'type':'app'}) }}" class="btn">Загрузить APP прайс</a>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <a href="{{ path('sonata_admin_price_load', {'type':'web'}) }}" class="btn">Загрузить WEB прайс</a>
         </div>
     </div>
 

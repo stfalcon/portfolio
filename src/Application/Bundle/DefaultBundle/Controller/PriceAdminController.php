@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\AdminBundle\Controller\CoreController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -14,14 +15,26 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class PriceAdminController extends CoreController
 {
-    const JSON_RESULT_FILE_NAME = 'price.json';
+    const JSON_RESULT_APP_FILE_NAME = 'price_app.json';
+    const JSON_RESULT_WEB_FILE_NAME = 'price_web.json';
+
     /**
      * @param Request $request
+     * @param string $type
      *
      * @return Response
      */
-    public function loadAction(Request $request)
+    public function loadAction(Request $request, $type)
     {
+        if (!\in_array($type, ['web', 'app'], true)) {
+            throw new BadRequestHttpException('Bat type parameter!');
+        }
+
+        $resultFileName = self::JSON_RESULT_APP_FILE_NAME;
+        if ('web' === $type) {
+            $resultFileName = self::JSON_RESULT_WEB_FILE_NAME;
+        }
+
         $message = '';
         $data = [];
         if ($request->isMethod(Request::METHOD_POST) && $request->files->has('price')) {
@@ -47,7 +60,7 @@ class PriceAdminController extends CoreController
                     $data = $this->parseCsvFile($path.'/'.$originalFileName);
                     if (\count($data) > 0) {
                         $resultForFile = $this->get('serializer')->serialize($data, 'json');
-                        $fp = \fopen($path.'/'.self::JSON_RESULT_FILE_NAME, 'w');
+                        $fp = \fopen($path.'/'.$resultFileName, 'w');
                         \fwrite($fp, $resultForFile);
                         \fclose($fp);
                     }
@@ -83,15 +96,17 @@ class PriceAdminController extends CoreController
             \fgetcsv($handle, 1000);
             $row = 0;
             while (false !== ($data = \fgetcsv($handle, 1000))) {
-                $androidPrice = \array_slice($data, 1, 5);
-                $iosPrice = \array_slice($data, 6, 5);
-                $androidIosPrice = \array_slice($data, 11, 5);
+                $androidPrice = \array_slice($data, 3, 5);
+                $iosPrice = \array_slice($data, 8, 5);
+                $androidIosPrice = \array_slice($data, 13, 5);
                 $androidPrice = $this->prepareArray($types, $androidPrice);
                 $iosPrice = $this->prepareArray($types, $iosPrice);
                 $androidIosPrice = $this->prepareArray($types, $androidIosPrice);
 
                 $result[$row]['name'] = \strtolower(\preg_replace('~([\s\-/])~', '_', $data[0]));
                 $result[$row]['title'] = $data[0];
+                $result[$row]['description']['en'] = $data[1];
+                $result[$row]['description']['ru'] = $data[2];
                 $result[$row]['price']['android'] = $androidPrice;
                 $result[$row]['price']['ios'] = $iosPrice;
                 $result[$row]['price']['android_ios'] = $androidIosPrice;

@@ -42,7 +42,7 @@ class PriceService
 
         $path = $this->config['web_root'].$this->uploadCsvFile;
         try {
-            $priceJson = \file_get_contents($path.'/'.PriceAdminController::JSON_RESULT_FILE_NAME);
+            $priceJson = \file_get_contents($path.'/'.PriceAdminController::JSON_RESULT_APP_FILE_NAME);
         } catch (\Exception $e) {
             throw $e;
         }
