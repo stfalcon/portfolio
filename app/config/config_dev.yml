@@ -25,6 +25,10 @@ assetic:
         uglifyjs2: null
         uglifycss: null
 
+# Swiftmailer Configuration
 swiftmailer:
-    transport: 'mail'
-    host:      localhost
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    port:      "%mailer_port%"

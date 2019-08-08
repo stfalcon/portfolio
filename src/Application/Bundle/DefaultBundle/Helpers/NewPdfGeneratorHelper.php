@@ -51,12 +51,13 @@ class NewPdfGeneratorHelper
      *
      * @param string $email
      * @param array  $data
+     * @param string $type
      *
      * @return mixed
      */
-    public function generatePdfFile($email, array $data)
+    public function generatePdfFile($email, array $data, $type)
     {
-        $html = $this->templating->render('@ApplicationDefault/emails/order/order_pdf.html.twig', ['data' => $data]);
+        $html = $this->templating->render('@ApplicationDefault/emails/order/order_pdf.html.twig', ['data' => $data, 'type' => $type]);
 
         // Override default fonts directory for mPDF
         define('_MPDF_SYSTEM_TTFONTS', realpath($this->kernel->getRootDir().'/../web/fonts/').'/');

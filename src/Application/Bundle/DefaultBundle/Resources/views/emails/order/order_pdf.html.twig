@@ -126,7 +126,12 @@
                  </tbody>
              </table>
          </div>
-         {% set mobile_title = data['platform'] == 'android' ? 'Android' : data['platform'] == 'ios' ? 'IOS' : 'Mobile' %}
+         {% set mobile_title = data['platform'] == 'android' ? 'Android' : data['platform'] == 'ios' ? 'IOS' : data['platform'] == 'web' ? 'Web' : 'Mobile' %}
+         {% if type == 'app' %}
+             {% set price_key = 'mobile' %}
+         {% else %}
+             {% set price_key = 'frontend' %}
+         {% endif %}
          <div class="table-wrapper">
              <table class="table">
                  <thead>
@@ -145,7 +150,7 @@
                      <tr>
                          <td class="table__text text-left">{{ feature['title'] }}</td>
                          <td>{{ feature['price']['design']|number_format(0,',',' ') }}</td>
-                         <td>{{ feature['price']['mobile']|number_format(0,',',' ') }}</td>
+                         <td>{{ feature['price'][price_key]|number_format(0,',',' ') }}</td>
                          <td>{{ feature['price']['be']|number_format(0,',',' ') }}</td>
                          <td>{{ feature['price']['qa']|number_format(0,',',' ') }}</td>
                          <td>{{ feature['price']['pm']|number_format(0,',',' ') }}</td>
