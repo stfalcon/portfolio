@@ -20,7 +20,8 @@ __menu:
     projects: Projects
     services: Services
     team: Team
-    calculator: Сalculator
+    calculator_app: Сalculator App
+    calculator_web: Сalculator Web
     about_us: About us
     blog: Blog
 

@@ -57,7 +57,8 @@ __menu:
     projects: Проекты
     services: Услуги
     team: Команда
-    calculator: Калькулятор
+    calculator_app: Калькулятор App
+    calculator_web: Калькулятор Web
     about_us: О нас
     blog: Блог
 

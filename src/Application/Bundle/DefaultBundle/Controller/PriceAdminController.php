@@ -20,12 +20,13 @@ class PriceAdminController extends CoreController
 
     /**
      * @param Request $request
-     * @param string $type
      *
      * @return Response
      */
-    public function loadAction(Request $request, $type)
+    public function loadAction(Request $request)
     {
+        $type = $request->query->get('type');
+
         if (!\in_array($type, ['web', 'app'], true)) {
             throw new BadRequestHttpException('Bat type parameter!');
         }
@@ -54,10 +55,14 @@ class PriceAdminController extends CoreController
                 $config = $this->container->getParameter('application_default.config');
                 $uploadDir = $this->container->getParameter('upload_csv_file');
                 $path = $config['web_root'].$uploadDir;
-                $originalFileName = 'price_original.csv';
+                $originalFileName = \sprintf('price_original_%s.csv', $type);
                 try {
                     $file->move($path, $originalFileName);
-                    $data = $this->parseCsvFile($path.'/'.$originalFileName);
+                    if ('web' === $type) {
+                        $data = $this->parseWebCsvFile($path . '/' . $originalFileName);
+                    } else {
+                        $data = $this->parseAppCsvFile($path . '/' . $originalFileName);
+                    }
                     if (\count($data) > 0) {
                         $resultForFile = $this->get('serializer')->serialize($data, 'json');
                         $fp = \fopen($path.'/'.$resultFileName, 'w');
@@ -76,17 +81,20 @@ class PriceAdminController extends CoreController
                 'base_template' => $this->getBaseTemplate(),
                 'admin_pool' => $this->container->get('sonata.admin.pool'),
                 'blocks' => $this->container->getParameter('sonata.admin.configuration.dashboard_blocks'),
-                'form_action' => $this->generateUrl('sonata_admin_price_load'),
+                'form_action' => $this->generateUrl('sonata_admin_price_load', ['type' => $type]),
                 'message' => $message,
                 'result' => $data,
+                'type' => $type,
             ]
         );
     }
 
     /**
      * @param string $originalFileName
+     *
+     * @return array
      */
-    private function parseCsvFile($originalFileName)
+    private function parseAppCsvFile($originalFileName)
     {
         $types = ['mobile', 'be', 'pm', 'qa', 'design'];
 
@@ -110,6 +118,37 @@ class PriceAdminController extends CoreController
                 $result[$row]['price']['android'] = $androidPrice;
                 $result[$row]['price']['ios'] = $iosPrice;
                 $result[$row]['price']['android_ios'] = $androidIosPrice;
+                ++$row;
+            }
+            \fclose($handle);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string $originalFileName
+     *
+     * @return array
+     */
+    private function parseWebCsvFile($originalFileName)
+    {
+        $types = ['frontend', 'be', 'pm', 'qa', 'design'];
+
+        $result = [];
+        if (false !== ($handle = \fopen($originalFileName, 'r'))) {
+            \fgetcsv($handle, 1000);
+            \fgetcsv($handle, 1000);
+            $row = 0;
+            while (false !== ($data = \fgetcsv($handle, 1000))) {
+                $webPrice = \array_slice($data, 3, 5);
+                $webPrice = $this->prepareArray($types, $webPrice);
+
+                $result[$row]['name'] = \strtolower(\preg_replace('~([\s\-/])~', '_', $data[0]));
+                $result[$row]['title'] = $data[0];
+                $result[$row]['description']['en'] = $data[1];
+                $result[$row]['description']['ru'] = $data[2];
+                $result[$row]['price']['web'] = $webPrice;
                 ++$row;
             }
             \fclose($handle);

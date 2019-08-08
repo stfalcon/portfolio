@@ -3,11 +3,11 @@
 {% block breadcrumb %}
     <li><a href="{{ url('sonata_admin_dashboard') }}">{% trans %}Dashboard{% endtrans %}</a><span
                 class="divider">/</span></li>
-    <li class="active">Загрузить прайс</li>
+    <li class="active">Загрузить {{ type|upper }} прайс</li>
 {% endblock %}
 
 {% block content %}
-    <h1>Загрузить прайс</h1>
+    <h1>Загрузить {{ type|upper }} прайс</h1>
 
     {% if message is defined %}
         <p style="color:red">{{ message }}</p>

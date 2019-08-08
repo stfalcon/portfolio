@@ -25,24 +25,34 @@ class PriceService
     }
 
     /**
-     * @param array $content
+     * @param array  $content
+     * @param string $type
      *
      * @return array
      *
      * @throws BadRequestHttpException
      * @throws \Exception
      */
-    public function preparePrice(array $content)
+    public function preparePrice(array $content, $type)
     {
         if (!isset($content['platform'], $content['order'])) {
             throw new BadRequestHttpException();
+        }
+
+        if (!\in_array($type, ['web', 'app'], true)) {
+            throw new BadRequestHttpException('Bat type parameter!');
+        }
+
+        $resultFileName = PriceAdminController::JSON_RESULT_APP_FILE_NAME;
+        if ('web' === $type) {
+            $resultFileName = PriceAdminController::JSON_RESULT_WEB_FILE_NAME;
         }
 
         $platform = $content['platform'];
 
         $path = $this->config['web_root'].$this->uploadCsvFile;
         try {
-            $priceJson = \file_get_contents($path.'/'.PriceAdminController::JSON_RESULT_APP_FILE_NAME);
+            $priceJson = \file_get_contents($path.'/'.$resultFileName);
         } catch (\Exception $e) {
             throw $e;
         }

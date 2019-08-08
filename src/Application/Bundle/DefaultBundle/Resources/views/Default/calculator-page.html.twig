@@ -7,7 +7,11 @@
 <section class="page-wrapper home-page">
     {% include '::_header.html.twig' %}
 
-    {% include '@ApplicationDefault/Default/_calculator.html.twig' %}
+    {% if type == 'app' %}
+        {% include '@ApplicationDefault/Default/_calculator_app.html.twig' %}
+    {% else %}
+        {% include '@ApplicationDefault/Default/_calculator_web.html.twig' %}
+    {% endif %}
 
     <footer class="footer">
         {{ include('_footer.html.twig') }}
@@ -29,6 +33,8 @@
         output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
+    <script>
+        var calculator_type = '{{ type }}';
+    </script>
     <script type="text/javascript" src="{{ asset('js/calculator.js') }}"></script>
 {% endblock %}

@@ -75,11 +75,13 @@ class DefaultController extends Controller
     }
 
     /**
+     * @param string $type
+     *
      * @return Response
      *
-     * @Route("/calculator", name="calculator")
+     * @Route("/calculator/{type}", name="calculator", defaults={"type": "app"}, requirements={"type": "app|web"})
      */
-    public function calculatorAction()
+    public function calculatorAction($type)
     {
         $title = $this->get('translator')->trans('__calculator.title');
         $seo = $this->get('sonata.seo.page');
@@ -88,7 +90,7 @@ class DefaultController extends Controller
             ->addMeta('property', 'og:description', $this->get('translator')->trans('__calculator.description'))
         ;
 
-        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig', ['main_title' => $title]);
+        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig', ['main_title' => $title, 'type' => $type]);
     }
 
     /**
@@ -243,14 +245,15 @@ class DefaultController extends Controller
 
     /**
      * @param Request $request
+     * @param string  $type
      *
-     * @Route("/order", name="send_order", methods={"POST"})
+     * @Route("/order/{type}", name="send_order", requirements={"type": "app|web"})
      *
      * @return JsonResponse
      *
      * @throws \Exception
      */
-    public function sendOrderByPriceAction(Request $request)
+    public function sendOrderByPriceAction(Request $request, $type)
     {
         $json = $request->getContent();
         $content = \json_decode($json, true);
@@ -275,7 +278,7 @@ class DefaultController extends Controller
 
         $email = $content['email'];
         try {
-            $content = $this->get('app.price.service')->preparePrice($content);
+            $content = $this->get('app.price.service')->preparePrice($content, $type);
         } catch (BadRequestHttpException $e) {
             return new JsonResponse('Bad request!', JsonResponse::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
