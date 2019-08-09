@@ -384,5 +384,7 @@ __order:
         footer_web: The calculator provides only the approximate cost of website development.
 
 __calculator:
-    title: 'How much does it cost to make an app? | Stfalcon.com'
-    description: 'App cost calculator to estimate the approximate cost of android or ios app development'
+    title_app: 'How much does it cost to make an app? | Stfalcon.com'
+    description_app: 'App cost calculator to estimate the approximate cost of android or ios app development'
+    title_web: 'How much does it cost to make a website? | Stfalcon.com'
+    description_web: 'Calculator to estimate the approximate cost of website development'
