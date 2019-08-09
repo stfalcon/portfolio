@@ -120,7 +120,11 @@
                          <img class="header__logo" src="{{ asset('img/stfalcon_logo.png') }}">
                      </td>
                      <td class="header__title-td">
-                         <div class="header__title">{{ '__order_pdf.header_title'|trans }}</div>
+                         {% if type == 'app' %}
+                            <div class="header__title">{{ '__order_pdf.header_title_app'|trans }}</div>
+                         {% else %}
+                            <div class="header__title">{{ '__order_pdf.header_title_web'|trans }}</div>
+                         {% endif %}
                      </td>
                  </tr>
                  </tbody>
