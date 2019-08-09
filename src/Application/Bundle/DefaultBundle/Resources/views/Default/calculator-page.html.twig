@@ -35,6 +35,7 @@
     {% endjavascripts %}
     <script>
         var calculator_type = '{{ type }}';
+        var page_lang = '{{ app.request.locale }}';
     </script>
     <script type="text/javascript" src="{{ asset('js/calculator.js') }}"></script>
 {% endblock %}

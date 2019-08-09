@@ -22,6 +22,8 @@
         <!--[if gte IE 8]>
         <link rel="stylesheet" media="screen" href="{{ asset('css/ie.css') }}"/>
         <![endif]-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/tooltipster.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/themes/tooltipster-shadow.min.css" />
         <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('YmdHi') }}"/>
     {% endblock %}
     {% if app.environment == 'prod' %}
@@ -68,6 +70,8 @@
             'js/js.cookie.js'
             output='cache/js/*.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
+
         {% endjavascripts -%}
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function(event) {
