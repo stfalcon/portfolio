@@ -1,7 +1,7 @@
 var calculator = {
 	init: function (settings) {
 		calculator.config = {
-			getUrl: '/uploads/files/price_'+calculator_type+'.json',
+			getUrl: '/uploads/price_'+calculator_type+'.json',
 			postUrl: $('#calc_form').data('url'),
 			platformItems: 'input[name=platform]',
 			tabActiveClass: 'chip-tabs__item--active',
@@ -15,6 +15,7 @@ var calculator = {
 				be: '.calc-card__value-be',
 				design: '.calc-card__value-design',
 				mobile: '.calc-card__value-mobile',
+				frontend: '.calc-card__value-web',
 				qa: '.calc-card__value-qa',
 				pm: '.calc-card__value-pm'
 			},
@@ -33,12 +34,13 @@ var calculator = {
 		be: 0,
 		design: 0,
 		mobile: 0,
+		frontend: 0,
 		qa: 0,
 		pm: 0
 	},
 
 	state: {
-		platform: '',
+		platform: 'web',
 		featureList: [],
 		selectedFeatures: [],
 		sum: this.initialSum,
@@ -46,6 +48,7 @@ var calculator = {
 		android: [],
 		ios: [],
 		android_ios: [],
+		web: [],
 		formData: {}
 	},
 
@@ -60,12 +63,26 @@ var calculator = {
 				self.state.android = self.getByPlatform("android");
 				self.state.ios = self.getByPlatform("ios");
 				self.state.android_ios = self.getByPlatform("android_ios");
+				self.state.web = self.getByPlatform("web");
 
 				for (let i = 0; i < self.state.featureList.length; i++) {
 					let newCheckbox = self.createCheckbox(data[i]);
 
 					$(self.config.checkboxList).append(newCheckbox);
 				}
+				let tooltipsterParams = {
+					theme: 'tooltipster-shadow',
+					delay: 0,
+					animationDuration: 200,
+					maxWidth: 344,
+					arrow: false,
+					distance: 4,
+				};
+				if (screen.width < 1024) {
+					tooltipsterParams.trigger = 'click';
+				}
+
+				$('.tooltip').tooltipster(tooltipsterParams);
 			})
 			.fail(function () {
 				alert("Something was wrong. Please reload the page or try again later");
@@ -172,7 +189,7 @@ var calculator = {
 	},
 
 	createCheckbox(item) {
-		return '<label class="chip__label">' +
+		return '<label class="chip__label tooltip" title="'+ item.description[page_lang] +'">' +
 			'<input type="checkbox" class="chip__feature" value=' + item.name + '>' +
 			'  <span class="chip__label-text">' +
 			item.title +
@@ -231,7 +248,11 @@ var calculator = {
 		$(self.config.sumContainers.total).text(self.addPriceSpace(self.state.total));
 		$(self.config.sumContainers.be).text(self.addPriceSpace(self.state.sum.be));
 		$(self.config.sumContainers.design).text(self.addPriceSpace(self.state.sum.design));
-		$(self.config.sumContainers.mobile).text(self.addPriceSpace(self.state.sum.mobile));
+		if(calculator_type === 'app') {
+			$(self.config.sumContainers.mobile).text(self.addPriceSpace(self.state.sum.mobile));
+		} else {
+			$(self.config.sumContainers.frontend).text(self.addPriceSpace(self.state.sum.frontend));
+		}
 		$(self.config.sumContainers.qa).text(self.addPriceSpace(self.state.sum.qa));
 		$(self.config.sumContainers.pm).text(self.addPriceSpace(self.state.sum.pm));
 	},
