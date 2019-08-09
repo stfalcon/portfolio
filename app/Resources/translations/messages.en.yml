@@ -374,7 +374,7 @@ __order:
         description: 'We have created an interactive calculator, which allows to estimate the approximate cost of your app easily. To meet your business needs with maximum accuracy, the tool offers you the choice of combinations of various features and platforms.'
         description_web: 'We have created an interactive calculator, which allows to estimate the approximate cost of your website easily. To meet your business needs with maximum accuracy, the tool offers you the choice of combinations of various features.'
         choise: Choose a platform
-        select: Select app features
+        select: Select features
         form_title: Total cost
         form_detailed: Get detailed PDF
         form_send: Send
