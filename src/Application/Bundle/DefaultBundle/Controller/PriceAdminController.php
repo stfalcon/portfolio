@@ -43,14 +43,12 @@ class PriceAdminController extends CoreController
             $fileConstraint =
                 [
                     new NotBlank(),
-                    new File(['mimeTypes' => ['text/plain', 'text/csv']]),
+                    new File(['mimeTypes' => ['text/plain']]),
                 ];
             /** @var $errors \Symfony\Component\Validator\ConstraintViolationList */
             $errors = $this->get('validator')->validate($file, $fileConstraint);
             if ($errors->count() > 0) {
                 $message = $errors->get(0)->getMessage();
-            } elseif ($file->getClientMimeType() !== 'text/csv') {
-                $message = 'Не верный формат файла!';
             } else {
                 $config = $this->container->getParameter('application_default.config');
                 $uploadDir = $this->container->getParameter('upload_csv_file');
