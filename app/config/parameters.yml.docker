@@ -12,6 +12,7 @@ parameters:
     mailer_host: mailcatcher
     mailer_user: null
     mailer_password: null
+    mailer_port: 25
 
     mailer_from:   info@stfalcon.com
     mailer_name:   stfalcon.com
