@@ -1,7 +1,7 @@
 var calculator = {
 	init: function (settings) {
 		calculator.config = {
-			getUrl: '/uploads/price_'+calculator_type+'.json',
+			getUrl: '/uploads/files/price_'+calculator_type+'.json',
 			postUrl: $('#calc_form').data('url'),
 			platformItems: 'input[name=platform]',
 			tabActiveClass: 'chip-tabs__item--active',
