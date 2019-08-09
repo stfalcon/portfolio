@@ -50,7 +50,7 @@ class PriceAdminController extends CoreController
             if ($errors->count() > 0) {
                 $message = $errors->get(0)->getMessage();
             } elseif ($file->getClientMimeType() !== 'text/csv') {
-                $message = 'Не верный формат файла!';
+                $message = 'Не верный формат файла! '.$file->getClientMimeType().'|'.$file->getMimeType();
             } else {
                 $config = $this->container->getParameter('application_default.config');
                 $uploadDir = $this->container->getParameter('upload_csv_file');
