@@ -73,16 +73,14 @@ var calculator = {
 				let tooltipsterParams = {
 					theme: 'tooltipster-shadow',
 					delay: 0,
-					animationDuration: 200,
+					animationDuration: 0,
 					maxWidth: 344,
 					arrow: false,
 					distance: 4,
 				};
-				if (screen.width < 1024) {
-					tooltipsterParams.trigger = 'click';
+				if (screen.width > 1024) {
+					$('.tooltip').tooltipster(tooltipsterParams);
 				}
-
-				$('.tooltip').tooltipster(tooltipsterParams);
 			})
 			.fail(function () {
 				alert("Something was wrong. Please reload the page or try again later");

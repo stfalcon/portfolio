@@ -371,14 +371,17 @@ __email:
 __order:
     page:
         title: How much does it cost to develop an app?
+        title_web: How much does it cost to develop a website?
         description: 'We have created an interactive calculator, which allows to estimate the approximate cost of your app easily. To meet your business needs with maximum accuracy, the tool offers you the choice of combinations of various features and platforms.'
+        description_web: 'We have created an interactive calculator, which allows to estimate the approximate cost of your website easily. To meet your business needs with maximum accuracy, the tool offers you the choice of combinations of various features.'
         choise: Choose a platform
-        select: Select app features
+        select: Select features
         form_title: Total cost
         form_detailed: Get detailed PDF
         form_send: Send
         form_pdf_send_info: 'Pdf is sent. <br> Check your email, please'
         footer: The calculator provides only the approximate cost of mobile app development.
+        footer_web: The calculator provides only the approximate cost of website development.
 
 __calculator:
     title: 'How much does it cost to make an app? | Stfalcon.com'
