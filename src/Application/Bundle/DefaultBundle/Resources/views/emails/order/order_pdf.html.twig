@@ -126,7 +126,7 @@
                  </tbody>
              </table>
          </div>
-         {% set mobile_title = data['platform'] == 'android' ? 'Android' : data['platform'] == 'ios' ? 'IOS' : data['platform'] == 'web' ? 'Web' : 'Mobile' %}
+         {% set different_title = data['platform'] == 'android' ? 'Android' : data['platform'] == 'ios' ? 'IOS' : data['platform'] == 'web' ? 'Frontend' : 'Mobile' %}
          {% if type == 'app' %}
              {% set price_key = 'mobile' %}
          {% else %}
@@ -138,7 +138,7 @@
                  <tr>
                      <td class="text-left">Feature</td>
                      <td>Design, $</td>
-                     <td>{{ mobile_title }}, $</td>
+                     <td>{{ different_title }}, $</td>
                      <td>Backend, $</td>
                      <td>QA, $</td>
                      <td>PM, $</td>

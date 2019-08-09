@@ -247,7 +247,7 @@ class DefaultController extends Controller
      * @param Request $request
      * @param string  $type
      *
-     * @Route("/order/{type}", name="send_order", requirements={"type": "app|web"})
+     * @Route("/calc-order/{type}", methods={"POST"}, name="send_order", requirements={"type": "app|web"})
      *
      * @return JsonResponse
      *
@@ -262,7 +262,7 @@ class DefaultController extends Controller
             return new JsonResponse('Bad request!', JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        if (!in_array($content['platform'], ['android', 'ios', 'android_ios'], true)) {
+        if (!in_array($content['platform'], ['android', 'ios', 'android_ios', 'web'], true)) {
             return new JsonResponse('Bad request platform!', JsonResponse::HTTP_BAD_REQUEST);
         }
         $emailConstraint =
