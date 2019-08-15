@@ -80,7 +80,7 @@
                 </div>
                 <ul class="calc-card__list">
                     <li class="calc-card__item">
-                        <div class="calc-card__label">Backend Development</div>
+                        <div class="calc-card__label">Backend</div>
                         <div class="calc-card__value">
                             $ <span class="calc-card__value-be">0</span>
                         </div>
@@ -113,7 +113,7 @@
                         </div>
                     </li>
                 </ul>
-                <form action="#" class="calculator__form" id="calc_form" data-url="{{ url('send_order') }}">
+                <form action="#" class="calculator__form" id="calc_form" data-url="{{ path('send_order', {'type' : type}) }}">
                     <div class="calc-card__title">{{ '__order.page.form_detailed'|trans }}</div>
                     <input type="email" class="calc-card__input" placeholder="Your E-mail" required>
                     <button class="btn btn--dark calc-card__btn">{{ '__order.page.form_send'|trans }}</button>

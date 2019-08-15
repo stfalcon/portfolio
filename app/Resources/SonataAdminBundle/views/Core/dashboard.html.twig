@@ -3,10 +3,9 @@
 {% block title %}{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock%}
 {% block breadcrumb %}{% endblock %}
 {% block content %}
-    <div class="row-fluid">
-        <div class="span6">
-            <a href="{{ url('sonata_admin_price_load') }}" class="btn">Загрузить прайс</a>
-        </div>
+    <div class="btn-group">
+        <a class="btn btn-link btn-flat" href="{{ path('sonata_admin_price_load', {'type':'app'}) }}">Загрузить APP прайс</a>
+        <a class="btn btn-link btn-flat" href="{{ path('sonata_admin_price_load', {'type':'web'}) }}">Загрузить WEB прайс</a>
     </div>
 
     {{ sonata_block_render_event('sonata.admin.dashboard.top', { 'admin_pool': admin_pool }) }}

@@ -106,10 +106,15 @@ class MailerService
      *
      * @return int
      */
-    public function sendOrderPdf($email, $pdf)
+    public function sendOrderPdf($email, $pdf, $type)
     {
+        $subject = $this->translator->trans('__email.order.subject_app');
+        if ('web' === $type) {
+            $subject = $this->translator->trans('__email.order.subject_web');
+        }
+
         $message = \Swift_Message::newInstance()
-            ->setSubject($this->translator->trans('__email.order.subject'))
+            ->setSubject($subject)
             ->setFrom($this->options['fromEmail'])
             ->setReplyTo('info@stfalcon.com')
             ->setTo($email);
@@ -130,9 +135,12 @@ class MailerService
      *
      * @return int
      */
-    public function sendOrderPdfToStfalcon($email, $pdf, $country)
+    public function sendOrderPdfToStfalcon($email, $pdf, $country, $type)
     {
-        $subject = sprintf('%s %s', $this->translator->trans('__email.order.subject'), $email);
+        $subject = sprintf('%s %s', $this->translator->trans('__email.order.subject_app'), $email);
+        if ('web' === $type) {
+            $subject = sprintf('%s %s', $this->translator->trans('__email.order.subject_web'), $email);
+        }
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom($this->options['fromEmail'])

@@ -1,0 +1,74 @@
+<div class="calculator">
+    <div class="calculator__container">
+        <div class="calculator__left">
+            <h1 class="calculator__title">{{ '__order.page.title_web'|trans }}</h1>
+            <p class="calculator__text">{{ '__order.page.description_web'|trans }}</p>
+            <div class="chips calculator__chips calculator__chips_features">
+                <div class="chips__title">{{ '__order.page.select'|trans }}</div>
+                <div class="chips__list">
+
+                </div>
+            </div>
+        </div>
+        <div class="calculator__right calculator__popup" style="display: none">
+            <div class="calc-card">
+                <div class="calc-card__top">
+                    <div class="calc-card__title calc-card__title--top">{{ '__order.page.form_title'|trans }}</div>
+                    <div class="calc-card__toggle-icon">
+                        <svg width="31" height="11" viewBox="0 0 31 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5" d="M2 1.5L15.5 9.5L29 1.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="calc-card__total">
+                        $ <span class="calc-card__value-total">0</span>
+                    </div>
+                </div>
+                <ul class="calc-card__list">
+                    <li class="calc-card__item">
+                        <div class="calc-card__label">Backend</div>
+                        <div class="calc-card__value">
+                            $ <span class="calc-card__value-be">0</span>
+                        </div>
+                    </li>
+
+                    <li class="calc-card__item">
+                        <div class="calc-card__label">Interface Design</div>
+                        <div class="calc-card__value">
+                            $ <span class="calc-card__value-design">0</span>
+                        </div>
+                    </li>
+
+                    <li class="calc-card__item">
+                        <div class="calc-card__label">Frontend</div>
+                        <div class="calc-card__value">
+                            $ <span class="calc-card__value-web">0</span>
+                        </div>
+                    </li>
+
+                    <li class="calc-card__item">
+                        <div class="calc-card__label">Quality Assurance</div>
+                        <div class="calc-card__value">
+                            $ <span class="calc-card__value-qa">0</span>
+                        </div>
+                    </li>
+                    <li class="calc-card__item">
+                        <div class="calc-card__label">Project Management</div>
+                        <div class="calc-card__value">
+                            $ <span class="calc-card__value-pm">0</span>
+                        </div>
+                    </li>
+                </ul>
+                <form action="#" class="calculator__form" id="calc_form" data-url="{{ path('send_order', {'type' : type}) }}">
+                    <div class="calc-card__title">{{ '__order.page.form_detailed'|trans }}</div>
+                    <input type="email" class="calc-card__input" placeholder="Your E-mail" required>
+                    <button class="btn btn--dark calc-card__btn">{{ '__order.page.form_send'|trans }}</button>
+                    <p class="calculator__form-success" style="display: none">{{ '__order.page.form_pdf_send_info'|trans|raw }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="calculator__container">
+        <p class="calculator__hint">{{ '__order.page.footer_web'|trans }}</p>
+    </div>
+
+</div>

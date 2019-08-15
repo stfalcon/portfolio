@@ -75,20 +75,31 @@ class DefaultController extends Controller
     }
 
     /**
+     * @param string $type
+     *
      * @return Response
      *
-     * @Route("/calculator", name="calculator")
+     * @Route("/calculator/{type}", name="calculator", defaults={"type": "app"}, requirements={"type": "app|web"})
      */
-    public function calculatorAction()
+    public function calculatorAction($type)
     {
-        $title = $this->get('translator')->trans('__calculator.title');
+        $translator = $this->get('translator');
+
+        if ('app' === $type) {
+            $title = $translator->trans('__calculator.title_app');
+            $description = $translator->trans('__calculator.description_app');
+        } else {
+            $title = $translator->trans('__calculator.title_web');
+            $description = $translator->trans('__calculator.description_app');
+        }
+
         $seo = $this->get('sonata.seo.page');
         $seo
             ->addMeta('property', 'og:title', $title)
-            ->addMeta('property', 'og:description', $this->get('translator')->trans('__calculator.description'))
+            ->addMeta('property', 'og:description', $description)
         ;
 
-        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig', ['main_title' => $title]);
+        return $this->render('@ApplicationDefault/Default/calculator-page.html.twig', ['main_title' => $title, 'type' => $type]);
     }
 
     /**
@@ -243,14 +254,15 @@ class DefaultController extends Controller
 
     /**
      * @param Request $request
+     * @param string  $type
      *
-     * @Route("/order", name="send_order", methods={"POST"})
+     * @Route("/calc-order/{type}", methods={"POST"}, name="send_order", requirements={"type": "app|web"})
      *
      * @return JsonResponse
      *
      * @throws \Exception
      */
-    public function sendOrderByPriceAction(Request $request)
+    public function sendOrderByPriceAction(Request $request, $type)
     {
         $json = $request->getContent();
         $content = \json_decode($json, true);
@@ -259,7 +271,7 @@ class DefaultController extends Controller
             return new JsonResponse('Bad request!', JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        if (!in_array($content['platform'], ['android', 'ios', 'android_ios'], true)) {
+        if (!in_array($content['platform'], ['android', 'ios', 'android_ios', 'web'], true)) {
             return new JsonResponse('Bad request platform!', JsonResponse::HTTP_BAD_REQUEST);
         }
         $emailConstraint =
@@ -275,7 +287,7 @@ class DefaultController extends Controller
 
         $email = $content['email'];
         try {
-            $content = $this->get('app.price.service')->preparePrice($content);
+            $content = $this->get('app.price.service')->preparePrice($content, $type);
         } catch (BadRequestHttpException $e) {
             return new JsonResponse('Bad request!', JsonResponse::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
@@ -283,10 +295,12 @@ class DefaultController extends Controller
         }
 
         $pdfService = $this->get('app.helper.new_pdf_generator');
-        $pdf = $pdfService->generatePdfFile($email, $content);
+        $pdf = $pdfService->generatePdfFile($email, $content, $type);
         $country = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
-        $this->get('application_default.service.mailer')->sendOrderPdf($email, $pdf);
-        $this->get('application_default.service.mailer')->sendOrderPdfToStfalcon($email, $pdf, $country);
+
+        $mailService = $this->get('application_default.service.mailer');
+        $mailService->sendOrderPdf($email, $pdf, $type);
+        $mailService->sendOrderPdfToStfalcon($email, $pdf, $country, $type);
 
         return new JsonResponse();
     }

@@ -202,6 +202,9 @@ class MenuBuilder
         if ($isCurrent && 'page_landing' === $currentRoute && isset($menuItem['config']['routeParameters']['type'])) {
             $isCurrent = $currentType === $menuItem['config']['routeParameters']['type'];
         }
+        if ($isCurrent && 'calculator' === $currentRoute && isset($menuItem['config']['routeParameters']['type'])) {
+            $isCurrent = $currentType === $menuItem['config']['routeParameters']['type'];
+        }
         $menu->addChild($menuItem['title'], $menuItem['config'])->setCurrent($isCurrent);
 
         $typeIndex = (int) $isSubMenu;
@@ -319,9 +322,17 @@ class MenuBuilder
                         'child_routes' => ['jobs_job_view'],
                     ],
                     [
-                        'title' => $this->translator->trans('__menu.calculator'),
+                        'title' => $this->translator->trans('__menu.calculator_app'),
                         'config' => [
                             'route' => 'calculator',
+                            'routeParameters' => ['type' => 'app'],
+                        ],
+                    ],
+                    [
+                        'title' => $this->translator->trans('__menu.calculator_web'),
+                        'config' => [
+                            'route' => 'calculator',
+                            'routeParameters' => ['type' => 'web'],
                         ],
                     ],
                     [
