@@ -345,6 +345,13 @@ class Project implements Translatable
     private $usersWithPositions;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", name="center_image_for_responsive", options={"default"=false})
+     */
+    private $centerImageForResponsive = false;
+
+    /**
      * Initialization properties for new project entity.
      */
     public function __construct()
@@ -1234,6 +1241,26 @@ class Project implements Translatable
     public function setMainPageImage($mainPageImage)
     {
         $this->mainPageImage = $mainPageImage;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCenterImageForResponsive()
+    {
+        return $this->centerImageForResponsive;
+    }
+
+    /**
+     * @param bool $centerImageForResponsive
+     *
+     * @return $this
+     */
+    public function setCenterImageForResponsive($centerImageForResponsive)
+    {
+        $this->centerImageForResponsive = $centerImageForResponsive;
 
         return $this;
     }
