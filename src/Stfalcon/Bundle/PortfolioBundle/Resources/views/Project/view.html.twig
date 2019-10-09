@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {% if project.showCase %}
         <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('Ymd') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/newcase.css') }}?{{ 'now'|date('YmdHi') }}"/>
     {% else %}
         {{ parent() }}
     {% endif %}
