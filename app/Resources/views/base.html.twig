@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/tooltipster.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/themes/tooltipster-shadow.min.css" />
         <link rel="stylesheet" media="screen" href="{{ asset('css/style.min.css') }}?{{ 'now'|date('YmdHi') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/newcase.css') }}?{{ 'now'|date('YmdHi') }}"/>
     {% endblock %}
     {% if app.environment == 'prod' %}
         {% include "::google_tag_manager.html.twig" %}
