@@ -1,6 +1,17 @@
+/*TODO: We will need refactoring global styles for body in future*/
+
+body {
+    background: #ffffff !important;
+}
+
+.project-case {
+    background: #ffffff !important;
+}
+
 .newcase {
     background: #ffffff;
     color: #040918 !important;
+    clear: both;
 }
 
 .newcase .newcase-h1 {
