@@ -1,0 +1,94 @@
+/*TODO: We will need refactoring global styles for body in future*/
+
+body {
+    background: #ffffff !important;
+}
+
+.project-case {
+    background: #ffffff !important;
+}
+
+.newcase {
+    background: #ffffff;
+    color: #040918 !important;
+    clear: both;
+}
+
+.newcase .newcase-h1 {
+    font-size:70px;
+    font-family:'Gilroy',Helvetica,Arial,serif;
+    font-weight:900; 
+}
+
+.newcase .newcase-h2 {
+    margin-top: 0px !important;
+    margin-bottom: 20px;
+    font-size:42px;
+    font-family:'Gilroy',Helvetica,Arial,serif;
+    font-weight:900;
+    letter-spacing:0;
+    line-height: 52px;
+    color: #040918;
+    }
+
+.newcase .row {
+    margin-top: 80px;
+}
+
+.newcase .row:first-child {
+    margin-bottom: -40px;
+}
+
+.newcase p, .newcase ul li{
+    font-family:'PT Serif', serif;
+    font-size:20px;
+}
+
+.newcase .text ul li {
+    margin-bottom: 10px;
+}
+
+.newcase .text ul li:after {
+    top:15px;
+}
+
+.newcase .newcase-result {
+    margin-top:120px;
+    background:#040918;
+}
+
+.newcase .newcase-result p{
+    color:#E9E9EB;
+    margin-top:100px;
+}
+
+.newcase .newcase-result .newcase-h2 {
+    color:#E9E9EB;
+    margin-top:0px;
+    margin-bottom:100px;
+}
+
+@media (max-width:767px) {
+    .newcase .newcase-h1 {
+        font-size: 50px;
+    }
+
+    .newcase .newcase-h2 {
+        font-size:32px;
+        line-height:38px;
+    }
+    .newcase .row {
+        margin-top: 40px;
+    }
+    .newcase .row:first-child {
+        margin-bottom: -20px;
+    }
+
+    .newcase .newcase-result p{
+        margin-top:50px;
+    }    
+    .newcase .newcase-result .newcase-h2 {
+        margin-bottom: 60px;
+    }
+
+}
