@@ -76,13 +76,10 @@ __menu:
 Сортировка: Sort
 'Сотрудничая с нами, Вы выбираете надежного партнера для бизнеса!': 'Cooperating with us, you choose a reliable business partner!'
 'Список проектов': 'List of projects'
-Украина: Ukraine
-, 29000: ''
 
 Учасники: Participants
 Фамилия: Surname
-Хмельницкий: Khmelnytskyi
-Киев: Kyiv
+
 'Чем мы занимаемся': 'What we do'
 'Читать дальше': 'Read more'
 'все статьи': 'All articles'
@@ -165,12 +162,18 @@ __projects_text_now: 'projects launched by now|projects launched by now|projects
 Уникальная в своем роде конференция, объединяющая любителей программных фреймворков различных направлений и платформ.: Unique conference in its kind. It brings together fans of software frameworks for all possible platforms.
 ІТ ивент с несколькими краткими докладами, кофе, новыми знакомствами и доброжелательной атмосферой.: IT event with several short presentations, coffee, and new acquaintances. Friendly atmosphere included.
 
-'улица Заречанская, 3/2, Хмельницкий, Украина': 3/2 Zarichanska street, Khmelnytskyi, Ukraine
-'ул. Саксаганского, 121 Киев, Украина': 121 Saksaganskogo, Kyiv, Ukraine
+Stfalcon OÜ: Stfalcon OÜ
+', 29000': ''
+'10-107 ул Лийкури': '10-107 Liikuri street'
 'улица Заречанская, 3/2': '3/2 Zarichanska street'
 'улица Саксаганского, 121': '121 Saksaganskogo street'
-'Бостон': 'Boston'
-'США': 'USA'
+Украина: Ukraine
+Хмельницкий: Khmelnytskyi
+Киев: Kyiv
+Бостон: Boston
+США: USA
+Эстония : Estonia
+'Талин 13618': Tallinn 13618
 
 Подписаться на новые записи: Subscribe for new posts
 
