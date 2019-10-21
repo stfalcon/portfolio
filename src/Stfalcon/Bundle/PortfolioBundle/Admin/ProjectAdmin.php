@@ -263,6 +263,7 @@ class ProjectAdmin extends Admin
                     ->add('published', 'checkbox', array('required' => false))
                     ->add('shadow', 'checkbox', array('required' => false))
                     ->add('onFrontPage', 'checkbox', array('required' => false))
+                    ->add('centerImageForResponsive', 'checkbox', ['required' => false])
                     ->add('orderNumber', null, array('required' => false, 'label' => 'Сортировка'))
                     ->add('showCase', 'checkbox', array('required' => false))
                     ->add('relativeProjects', 'entity', array(
