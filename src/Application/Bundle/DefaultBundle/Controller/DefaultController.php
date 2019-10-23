@@ -158,6 +158,9 @@ class DefaultController extends Controller
             $breadcrumbs->addChild('Контакты')->setCurrent(true);
         }
 
+        $country = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
+        $isUkraineUser = $country === 'Украина';
+
         $directOrderForm = $this->createForm('direct_order', []);
 
         if ($request->isMethod('post')) {
@@ -167,7 +170,7 @@ class DefaultController extends Controller
                 $container = $this->get('service_container');
                 $subject = $this->get('translator')->trans('Stfalcon.com direct order from "%email%"', ['%email%' => $formData['email']]);
                 $mailerNotify = $container->getParameter('mailer_notify');
-                $formData['country'] = $this->get('application_default.service.geo_ip')->getCountryByIp($request->getClientIp());
+                $formData['country'] = $country;
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject($subject)
@@ -211,7 +214,7 @@ class DefaultController extends Controller
             ]);
         }
 
-        return ['form' => $directOrderForm->createView()];
+        return ['form' => $directOrderForm->createView(), 'show_ukr_contacts' => $isUkraineUser];
     }
 
     /**
