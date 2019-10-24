@@ -45,7 +45,14 @@
             <div class="contacts-inf">
                 <div class="info-group">
                     <span>{{ "Позвонить" | trans() }}:</span>
-                    <a href="tel:1 857 239 0934"><b>1 857 239 0934</b></a>
+                    <div>
+                        <a href="tel:1 857 239 0934"><b>1 857 239 0934</b></a>
+                    </div>
+                    {%- if show_ukr_contacts -%}
+                        <div style="margin-top: 10px">
+                            <a href="tel:+38 067 381 74 96"><b>+38 067 381 74 96</b></a>
+                        </div>
+                    {%- endif -%}
                 </div>
                 <div class="info-group">
                     <span>{{ "Skype" | trans() }}:</span>
