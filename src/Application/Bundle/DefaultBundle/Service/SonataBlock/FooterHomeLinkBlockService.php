@@ -56,5 +56,4 @@ class FooterHomeLinkBlockService extends BaseBlockService
             'client_ip' => '127.0.0.1',
         ]);
     }
-
 }
