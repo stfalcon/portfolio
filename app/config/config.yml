@@ -127,6 +127,7 @@ sonata_block:
             contexts:   [admin]
         sonata.user.block.menu:
         sonata.user.block.account:
+        sonata.block.footer:
 
 vich_uploader:
     db_driver: orm

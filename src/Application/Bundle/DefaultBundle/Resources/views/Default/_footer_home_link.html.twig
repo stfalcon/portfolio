@@ -1,0 +1,7 @@
+<div class="copyright">
+    {%- if show_ukr_contacts -%}
+        &copy; 2009–{{ "now"|date("Y") }}, <br> {{ '__footer.homepage.link'|trans({'%homepage%':url('homepage')})|raw }}
+    {%- else -%}
+        &copy; 2009–{{ "now"|date("Y") }}, <br> {{ '__footer.homepage.eu_link'|trans({'%homepage%':url('homepage')})|raw }}
+    {%- endif -%}
+</div>
