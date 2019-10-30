@@ -1,0 +1,5 @@
+services:
+    sonata.block.footer:
+        class: Application\Bundle\DefaultBundle\Service\SonataBlock\FooterHomeLinkBlockService
+        arguments: ['sonata.block.footer', '@templating', '@application_default.service.geo_ip']
+        tags: [name: 'sonata.block']

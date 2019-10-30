@@ -10,8 +10,8 @@ _order-ux-ui: 'Связаться с нами'
 _order-symfony2: 'Связаться с нами'
 _order-ios: 'Связаться с нами'
 _order-android: 'Связаться с нами'
-'__Footer.homepage.link': '<a href="%homepage%">Stfalcon LLC</a> &mdash; разработка сайтов и мобильных приложений'
-
+__footer.homepage.link: '<a href="%homepage%">Stfalcon LLC</a> &mdash; разработка сайтов и мобильных приложений'
+__footer.homepage.eu_link: '<a href="%homepage%">Stfalcon OU</a> &mdash; разработка сайтов и мобильных приложений'
 __projects_text_year: 'проект мы запустили к концу %year% года|проекта мы запустили к концу %year% года|проектов мы запустили к концу %year% года'
 __projects_text_now: 'проект мы запустили на сегодняшний день|проекта мы запустили на сегодняшний день|проектов мы запустили на сегодняшний день'
 

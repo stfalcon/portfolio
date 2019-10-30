@@ -13,9 +13,7 @@
             <a href="/" class="footer__logo">
                 <img src="{{ asset('img/svg/new-logo.svg')}}" alt="" class="footer__logo-img">
             </a>
-            <div class="copyright">
-                &copy; 2009–{{ "now"|date("Y") }}, <br> {{ '__Footer.homepage.link'|trans({'%homepage%':url('homepage')})|raw }}
-            </div>
+            {{ sonata_block_render({ 'type': 'sonata.block.footer' }, {'client_ip': app.request.clientIp}) }}
         </div>
         <div class="footer__right">
             <div class="footer__item">
